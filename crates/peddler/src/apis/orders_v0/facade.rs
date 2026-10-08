@@ -20,18 +20,21 @@ pub async fn confirm_shipment<B: serde::Serialize>(
     params: ConfirmShipmentParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/shipmentConfirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/shipmentConfirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -50,14 +53,17 @@ pub async fn get_order(
     params: GetOrderParams,
 ) -> Result<TypedResponse<super::models::GetOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: ["/orders/v0/orders/", &operation::last_segment(&params.order_id)?]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: ["/orders/v0/orders/", &operation::last_segment(&params.order_id)?]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -76,18 +82,21 @@ pub async fn get_order_address(
     params: GetOrderAddressParams,
 ) -> Result<TypedResponse<super::models::GetOrderAddressResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/address",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/address",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -106,18 +115,21 @@ pub async fn get_order_buyer_info(
     params: GetOrderBuyerInfoParams,
 ) -> Result<TypedResponse<super::models::GetOrderBuyerInfoResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/buyerInfo",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/buyerInfo",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -139,18 +151,21 @@ pub async fn get_order_items(
     let mut query = Vec::new();
     operation::pair(&mut query, "NextToken", params.next_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/orderItems",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/orderItems",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -192,18 +207,21 @@ pub async fn get_order_items_buyer_info(
     let mut query = Vec::new();
     operation::pair(&mut query, "NextToken", params.next_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/orderItems/buyerInfo",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/orderItems/buyerInfo",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -242,18 +260,21 @@ pub async fn get_order_regulated_info(
     params: GetOrderRegulatedInfoParams,
 ) -> Result<TypedResponse<super::models::GetOrderRegulatedInfoResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/regulatedInfo",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/regulatedInfo",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -402,13 +423,16 @@ pub async fn get_orders(
     );
     operation::empty(&mut query, "AmazonOrderIds", params.amazon_order_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/orders/v0/orders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/orders/v0/orders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -448,18 +472,21 @@ pub async fn update_shipment_status<B: serde::Serialize>(
     params: UpdateShipmentStatusParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/shipment",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/shipment",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -479,18 +506,21 @@ pub async fn update_verification_status<B: serde::Serialize>(
     params: UpdateVerificationStatusParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PATCH".into(),
-            path: [
-                "/orders/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/regulatedInfo",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PATCH".into(),
+                path: [
+                    "/orders/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/regulatedInfo",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(raw)
 }

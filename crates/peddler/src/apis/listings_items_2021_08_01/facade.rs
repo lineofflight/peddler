@@ -31,19 +31,22 @@ pub async fn delete_listings_item(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/listings/2021-08-01/items/",
-                &operation::segment(&params.seller_id)?,
-                "/",
-                &operation::last_segment(&params.sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/listings/2021-08-01/items/",
+                    &operation::segment(&params.seller_id)?,
+                    "/",
+                    &operation::last_segment(&params.sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -82,19 +85,22 @@ pub async fn get_listings_item(
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/listings/2021-08-01/items/",
-                &operation::segment(&params.seller_id)?,
-                "/",
-                &operation::last_segment(&params.sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/listings/2021-08-01/items/",
+                    &operation::segment(&params.seller_id)?,
+                    "/",
+                    &operation::last_segment(&params.sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -143,19 +149,22 @@ pub async fn patch_listings_item<B: serde::Serialize>(
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "PATCH".into(),
-            path: [
-                "/listings/2021-08-01/items/",
-                &operation::segment(&params.seller_id)?,
-                "/",
-                &operation::last_segment(&params.sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PATCH".into(),
+                path: [
+                    "/listings/2021-08-01/items/",
+                    &operation::segment(&params.seller_id)?,
+                    "/",
+                    &operation::last_segment(&params.sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -204,19 +213,22 @@ pub async fn put_listings_item<B: serde::Serialize>(
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/listings/2021-08-01/items/",
-                &operation::segment(&params.seller_id)?,
-                "/",
-                &operation::last_segment(&params.sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/listings/2021-08-01/items/",
+                    &operation::segment(&params.seller_id)?,
+                    "/",
+                    &operation::last_segment(&params.sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -330,17 +342,20 @@ pub async fn search_listings_items(
     operation::empty(&mut query, "withStatus", params.with_status.as_ref());
     operation::empty(&mut query, "withoutStatus", params.without_status.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/listings/2021-08-01/items/",
-                &operation::last_segment(&params.seller_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/listings/2021-08-01/items/",
+                    &operation::last_segment(&params.seller_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

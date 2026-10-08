@@ -1,7 +1,9 @@
 //! Every operation of an API and its parameters, read from Amazon's Swagger 2 spec.
-use crate::{GenerationError, manifest::ModelSpec};
+use crate::{GenerationError, docs::regex, manifest::ModelSpec};
 use heck::{ToPascalCase, ToSnakeCase};
+use regress::Regex;
 use serde_json::{Map, Value, json};
+use std::sync::LazyLock;
 
 #[derive(Debug)]
 pub struct Operation {
@@ -10,6 +12,8 @@ pub struct Operation {
     pub method: String,
     pub path: String,
     pub description: String,
+    /// The requests per second its usage plan allows, if it documents a number
+    pub rate: Option<f64>,
     /// The kind of sandbox call it can make, if any: "static" or "dynamic"
     pub sandbox: Option<&'static str>,
     pub parameters: Vec<Parameter>,
@@ -80,15 +84,14 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
             }
             // What is refused of an operation names it. The caller names the file.
             let named = |error: GenerationError| GenerationError(format!("{id}: {error}"));
+            let description = operation["description"].as_str().unwrap_or_default();
             operations.push(Operation {
                 name: snake(&wire_id),
                 id: id.to_owned(),
                 method: method.to_ascii_uppercase(),
                 path: path.clone(),
-                description: operation["description"]
-                    .as_str()
-                    .unwrap_or_default()
-                    .to_owned(),
+                description: description.to_owned(),
+                rate: rate(description).map_err(named)?,
                 sandbox: sandbox(methods, operation),
                 parameters: parameters(spec, api, &shared, operation).map_err(named)?,
                 successes: successes(spec, operation).map_err(named)?,
@@ -97,6 +100,39 @@ pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, Generatio
     }
     operations.sort_by(|a, b| a.name.cmp(&b.name));
     Ok(operations)
+}
+/// The rate of an operation, in requests per second, from the usage plan table of its
+/// description, which is the only place a spec has it. v5 read it with this pattern: the
+/// cell before the burst, in the row after the header's. The table has 2 columns, or 3
+/// when it starts with the plan's name. A line break may be spelled as a backslash and
+/// an n. A rate of `n` varies by seller, so the operation has none.
+///
+/// Amazon may change how it writes the table. A description that names a usage plan
+/// without a table this reads, or with a rate that is no positive number, is refused.
+fn rate(description: &str) -> Result<Option<f64>, GenerationError> {
+    static TABLE: LazyLock<Regex> = LazyLock::new(|| {
+        regex(concat!(
+            r"Burst[\s]*\|(?:\\n|\n)",
+            r"\|(?:[\s]*-+[\s]*\|){2,3}(?:\\n|\n)",
+            r"(?:\|[^|]*){0,1}\|[\s]*([^\s]+)[\s]*\|[^|]*\|",
+        ))
+    });
+    static USAGE_PLAN: LazyLock<Regex> = LazyLock::new(|| regex(r"Usage[\s]+[Pp]lans?:"));
+    let Some(found) = TABLE.find(description) else {
+        return if USAGE_PLAN.find(description).is_some() {
+            Err(GenerationError("usage plan without a rate table".into()))
+        } else {
+            Ok(None)
+        };
+    };
+    let value = &description[found.group(1).expect("the rate is captured")];
+    if value.eq_ignore_ascii_case("n") {
+        return Ok(None);
+    }
+    match value.parse::<f64>() {
+        Ok(rate) if rate.is_finite() && rate > 0.0 => Ok(Some(rate)),
+        _ => Err(GenerationError(format!("unsupported rate {value:?}"))),
+    }
 }
 /// The kind of sandbox call an operation can make, as v5 read it: static if its first
 /// success response has a static sandbox, or else dynamic if it or its path has one.

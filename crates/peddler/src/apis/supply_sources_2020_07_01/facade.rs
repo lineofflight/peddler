@@ -19,17 +19,20 @@ pub async fn archive_supply_source(
     params: ArchiveSupplySourceParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/supplySources/2020-07-01/supplySources/",
-                &operation::last_segment(&params.supply_source_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/supplySources/2020-07-01/supplySources/",
+                    &operation::last_segment(&params.supply_source_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }
@@ -48,13 +51,16 @@ pub async fn create_supply_source<B: serde::Serialize>(
     params: CreateSupplySourceParams<B>,
 ) -> Result<TypedResponse<super::models::CreateSupplySourceResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/supplySources/2020-07-01/supplySources".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/supplySources/2020-07-01/supplySources".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -73,17 +79,20 @@ pub async fn get_supply_source(
     params: GetSupplySourceParams,
 ) -> Result<TypedResponse<super::models::SupplySource>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/supplySources/2020-07-01/supplySources/",
-                &operation::last_segment(&params.supply_source_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/supplySources/2020-07-01/supplySources/",
+                    &operation::last_segment(&params.supply_source_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -118,13 +127,16 @@ pub async fn get_supply_sources(
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/supplySources/2020-07-01/supplySources".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/supplySources/2020-07-01/supplySources".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -167,17 +179,20 @@ pub async fn update_supply_source<B: serde::Serialize>(
     params: UpdateSupplySourceParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/supplySources/2020-07-01/supplySources/",
-                &operation::last_segment(&params.supply_source_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/supplySources/2020-07-01/supplySources/",
+                    &operation::last_segment(&params.supply_source_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }
@@ -200,18 +215,21 @@ pub async fn update_supply_source_status<B: serde::Serialize>(
     params: UpdateSupplySourceStatusParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/supplySources/2020-07-01/supplySources/",
-                &operation::segment(&params.supply_source_id)?,
-                "/status",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/supplySources/2020-07-01/supplySources/",
+                    &operation::segment(&params.supply_source_id)?,
+                    "/status",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }

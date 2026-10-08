@@ -32,17 +32,20 @@ pub async fn get_remittance(
         params.next_token_for_line_items.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/remittances/2026-03-17/remittances/",
-                &operation::last_segment(&params.unique_payment_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/remittances/2026-03-17/remittances/",
+                    &operation::last_segment(&params.unique_payment_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -94,13 +97,16 @@ pub async fn get_remittance_headers(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "startDate", params.start_date.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/remittances/2026-03-17/remittances".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/remittances/2026-03-17/remittances".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

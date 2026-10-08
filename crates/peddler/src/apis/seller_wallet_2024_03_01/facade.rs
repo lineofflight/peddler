@@ -45,13 +45,16 @@ pub async fn create_transaction<B: serde::Serialize>(
         Some(&params.amount_digital_signature),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transactions".into(),
-            query,
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transactions".into(),
+                query,
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -96,13 +99,16 @@ pub async fn create_transfer_schedule<B: serde::Serialize>(
         Some(&params.amount_digital_signature),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
-            query,
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
+                query,
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -127,17 +133,20 @@ pub async fn delete_schedule_transaction(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/finances/transfers/wallet/2024-03-01/transferSchedules/",
-                &operation::last_segment(&params.transfer_schedule_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/finances/transfers/wallet/2024-03-01/transferSchedules/",
+                    &operation::last_segment(&params.transfer_schedule_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -159,17 +168,20 @@ pub async fn get_account(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/transfers/wallet/2024-03-01/accounts/",
-                &operation::last_segment(&params.account_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/transfers/wallet/2024-03-01/accounts/",
+                    &operation::last_segment(&params.account_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -194,17 +206,20 @@ pub async fn get_transaction(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/transfers/wallet/2024-03-01/transactions/",
-                &operation::last_segment(&params.transaction_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/transfers/wallet/2024-03-01/transactions/",
+                    &operation::last_segment(&params.transaction_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -261,13 +276,16 @@ pub async fn get_transfer_preview(
         Some(&params.source_currency_code),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transferPreview".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transferPreview".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -292,17 +310,20 @@ pub async fn get_transfer_schedule(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/transfers/wallet/2024-03-01/transferSchedules/",
-                &operation::last_segment(&params.transfer_schedule_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/transfers/wallet/2024-03-01/transferSchedules/",
+                    &operation::last_segment(&params.transfer_schedule_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -324,18 +345,21 @@ pub async fn list_account_balances(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/transfers/wallet/2024-03-01/accounts/",
-                &operation::segment(&params.account_id)?,
-                "/balance",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/transfers/wallet/2024-03-01/accounts/",
+                    &operation::segment(&params.account_id)?,
+                    "/balance",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -364,13 +388,16 @@ pub async fn list_account_transactions(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transactions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transactions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -411,13 +438,16 @@ pub async fn list_accounts(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/wallet/2024-03-01/accounts".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/wallet/2024-03-01/accounts".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -446,13 +476,16 @@ pub async fn list_transfer_schedules(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -517,13 +550,16 @@ pub async fn update_transfer_schedule<B: serde::Serialize>(
         Some(&params.amount_digital_signature),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
-            query,
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: "/finances/transfers/wallet/2024-03-01/transferSchedules".into(),
+                query,
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -42,13 +42,16 @@ pub async fn get_invoice_status(
     operation::pair(&mut query, "programType", Some(&params.program_type));
     operation::pair(&mut query, "shipmentId", params.shipment_id.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/delivery/2022-07-01/invoice/status".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/delivery/2022-07-01/invoice/status".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.133),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -76,13 +79,16 @@ pub async fn submit_invoice<B: serde::Serialize>(
     operation::pair(&mut query, "orderId", params.order_id.as_ref());
     operation::pair(&mut query, "shipmentId", params.shipment_id.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/delivery/2022-07-01/invoice".into(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/delivery/2022-07-01/invoice".into(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.133),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

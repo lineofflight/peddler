@@ -19,18 +19,21 @@ pub async fn get_bill_of_lading(
     params: GetBillOfLadingParams,
 ) -> Result<TypedResponse<super::models::GetBillOfLadingResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/inbound/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/billOfLading",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/inbound/v0/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/billOfLading",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -82,18 +85,21 @@ pub async fn get_labels(
         params.package_labels_to_print.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/inbound/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/labels",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/inbound/v0/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/labels",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -124,13 +130,16 @@ pub async fn get_prep_instructions(
     operation::empty(&mut query, "SellerSKUList", params.seller_sku_list.as_ref());
     operation::empty(&mut query, "ASINList", params.asin_list.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/inbound/v0/prepInstructions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/inbound/v0/prepInstructions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -169,13 +178,16 @@ pub async fn get_shipment_items(
     operation::pair(&mut query, "NextToken", params.next_token.as_ref());
     operation::pair(&mut query, "QueryType", Some(&params.query_type));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/inbound/v0/shipmentItems".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/inbound/v0/shipmentItems".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -222,18 +234,21 @@ pub async fn get_shipment_items_by_shipment_id(
     let mut query = Vec::new();
     operation::pair(&mut query, "MarketplaceId", params.marketplace_id.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/inbound/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/items",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/inbound/v0/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/items",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -288,13 +303,16 @@ pub async fn get_shipments(
     );
     operation::empty(&mut query, "ShipmentIdList", params.shipment_id_list.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/inbound/v0/shipments".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/inbound/v0/shipments".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

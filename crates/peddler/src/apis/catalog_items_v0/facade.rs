@@ -29,13 +29,16 @@ pub async fn list_catalog_categories(
     operation::pair(&mut query, "MarketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "SellerSKU", params.seller_sku.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/catalog/v0/categories".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/catalog/v0/categories".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

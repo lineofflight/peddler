@@ -33,17 +33,20 @@ pub async fn get_promotion(
     operation::pair(&mut query, "locale", params.locale.as_ref());
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/promotions/2025-12-01/promotions/",
-                &operation::last_segment(&params.promotion_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/promotions/2025-12-01/promotions/",
+                    &operation::last_segment(&params.promotion_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.1),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -91,19 +94,22 @@ pub async fn get_selection(
     operation::pair(&mut query, "revisionId", Some(&params.revision_id));
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/promotions/2025-12-01/promotions/",
-                &operation::segment(&params.promotion_id)?,
-                "/selections/",
-                &operation::last_segment(&params.selection_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/promotions/2025-12-01/promotions/",
+                    &operation::segment(&params.promotion_id)?,
+                    "/selections/",
+                    &operation::last_segment(&params.selection_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.1),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -209,13 +215,16 @@ pub async fn search_promotions(
     operation::empty(&mut query, "promotionTypes", params.promotion_types.as_ref());
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/promotions/2025-12-01/promotions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/promotions/2025-12-01/promotions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.1),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

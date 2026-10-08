@@ -29,13 +29,16 @@ pub async fn add_inventory<B: serde::Serialize>(
         Some(&params.x_amzn_idempotency_token),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fba/inventory/v1/items/inventory".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fba/inventory/v1/items/inventory".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -54,13 +57,16 @@ pub async fn create_inventory_item<B: serde::Serialize>(
     params: CreateInventoryItemParams<B>,
 ) -> Result<TypedResponse<super::models::CreateInventoryItemResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fba/inventory/v1/items".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fba/inventory/v1/items".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -82,17 +88,20 @@ pub async fn delete_inventory_item(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/fba/inventory/v1/items/",
-                &operation::last_segment(&params.seller_sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/fba/inventory/v1/items/",
+                    &operation::last_segment(&params.seller_sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -146,13 +155,16 @@ pub async fn get_inventory_summaries(
     operation::empty(&mut query, "sellerSkus", params.seller_skus.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/inventory/v1/summaries".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/inventory/v1/summaries".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

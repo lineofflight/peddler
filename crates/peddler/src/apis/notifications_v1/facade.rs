@@ -19,13 +19,16 @@ pub async fn create_destination<B: serde::Serialize>(
     params: CreateDestinationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateDestinationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/notifications/v1/destinations".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/notifications/v1/destinations".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -45,17 +48,20 @@ pub async fn create_subscription<B: serde::Serialize>(
     params: CreateSubscriptionParams<B>,
 ) -> Result<TypedResponse<super::models::CreateSubscriptionResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/notifications/v1/subscriptions/",
-                &operation::last_segment(&params.notification_type)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/notifications/v1/subscriptions/",
+                    &operation::last_segment(&params.notification_type)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -74,17 +80,20 @@ pub async fn delete_destination(
     params: DeleteDestinationParams,
 ) -> Result<TypedResponse<super::models::DeleteDestinationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/notifications/v1/destinations/",
-                &operation::last_segment(&params.destination_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/notifications/v1/destinations/",
+                    &operation::last_segment(&params.destination_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -107,19 +116,22 @@ pub async fn delete_subscription_by_id(
     params: DeleteSubscriptionByIdParams,
 ) -> Result<TypedResponse<super::models::DeleteSubscriptionByIdResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/notifications/v1/subscriptions/",
-                &operation::segment(&params.notification_type)?,
-                "/",
-                &operation::last_segment(&params.subscription_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/notifications/v1/subscriptions/",
+                    &operation::segment(&params.notification_type)?,
+                    "/",
+                    &operation::last_segment(&params.subscription_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -138,17 +150,20 @@ pub async fn get_destination(
     params: GetDestinationParams,
 ) -> Result<TypedResponse<super::models::GetDestinationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/notifications/v1/destinations/",
-                &operation::last_segment(&params.destination_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/notifications/v1/destinations/",
+                    &operation::last_segment(&params.destination_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -170,13 +185,16 @@ pub async fn get_destinations(
     params: GetDestinationsParams,
 ) -> Result<TypedResponse<super::models::GetDestinationsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/notifications/v1/destinations".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/notifications/v1/destinations".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -201,17 +219,20 @@ pub async fn get_subscription(
     let mut query = Vec::new();
     operation::pair(&mut query, "payloadVersion", params.payload_version.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/notifications/v1/subscriptions/",
-                &operation::last_segment(&params.notification_type)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/notifications/v1/subscriptions/",
+                    &operation::last_segment(&params.notification_type)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -234,19 +255,22 @@ pub async fn get_subscription_by_id(
     params: GetSubscriptionByIdParams,
 ) -> Result<TypedResponse<super::models::GetSubscriptionByIdResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/notifications/v1/subscriptions/",
-                &operation::segment(&params.notification_type)?,
-                "/",
-                &operation::last_segment(&params.subscription_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/notifications/v1/subscriptions/",
+                    &operation::segment(&params.notification_type)?,
+                    "/",
+                    &operation::last_segment(&params.subscription_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -283,13 +307,16 @@ pub async fn get_subscriptions(
     operation::pair(&mut query, "payloadVersion", params.payload_version.as_ref());
     operation::empty(&mut query, "notificationTypes", Some(&params.notification_types));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/notifications/v1/subscriptions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/notifications/v1/subscriptions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -329,18 +356,21 @@ pub async fn send_test_notification<B: serde::Serialize>(
     params: SendTestNotificationParams<B>,
 ) -> Result<TypedResponse<super::models::SendTestNotificationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/notifications/v1/subscriptions/",
-                &operation::segment(&params.notification_type)?,
-                "/testNotification",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/notifications/v1/subscriptions/",
+                    &operation::segment(&params.notification_type)?,
+                    "/testNotification",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

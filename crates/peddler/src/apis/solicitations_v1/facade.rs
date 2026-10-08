@@ -26,18 +26,21 @@ pub async fn create_product_review_and_seller_feedback_solicitation(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/solicitations/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/solicitations/productReviewAndSellerFeedback",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/solicitations/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/solicitations/productReviewAndSellerFeedback",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -63,17 +66,20 @@ pub async fn get_solicitation_actions_for_order(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/solicitations/v1/orders/",
-                &operation::last_segment(&params.amazon_order_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/solicitations/v1/orders/",
+                    &operation::last_segment(&params.amazon_order_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }

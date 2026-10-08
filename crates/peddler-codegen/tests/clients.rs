@@ -200,3 +200,89 @@ fn a_default_on_a_body_fails_generation() {
         );
     }
 }
+
+/// The usage plan tables Amazon writes, as the specs have them.
+const TWO_COLUMNS: &str = "Returns an item.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0167 | 20 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits.";
+const THREE_COLUMNS: &str = "Search.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits.";
+
+fn rated(description: &str) -> Result<Option<f64>, String> {
+    let mut value = spec();
+    value["paths"]["/empty"]["post"]["description"] = json!(description);
+    let operations = clients::render(&value, &ALL_APIS[0]).map_err(|error| error.0)?;
+    Ok(operations
+        .iter()
+        .find(|op| op.name == "empty")
+        .unwrap()
+        .rate)
+}
+
+#[test]
+fn the_rate_is_read_from_the_usage_plan_table_as_v5_read_it() {
+    assert_eq!(rated(TWO_COLUMNS), Ok(Some(0.0167)));
+    assert_eq!(rated(THREE_COLUMNS), Ok(Some(5.0)));
+    // Some specs spell a line break as a backslash and an n.
+    assert_eq!(rated(&TWO_COLUMNS.replace('\n', "\\n")), Ok(Some(0.0167)));
+    for (written, rate) in [(".5", 0.5), ("2.0", 2.0), ("80", 80.0), ("1.133", 1.133)] {
+        let description = TWO_COLUMNS.replace("0.0167", written);
+        assert_eq!(rated(&description), Ok(Some(rate)), "{written}");
+    }
+    // A table that ends the description, as Messaging's do.
+    let (table, _) = TWO_COLUMNS.split_once("\n\nThe").unwrap();
+    assert_eq!(rated(table), Ok(Some(0.0167)));
+    // A rate that varies by seller is no rate, and nor is no usage plan.
+    for unknown in ["n", "N"] {
+        assert_eq!(rated(&TWO_COLUMNS.replace("0.0167", unknown)), Ok(None));
+    }
+    assert_eq!(rated("Returns an item."), Ok(None));
+    assert_eq!(rated(""), Ok(None));
+}
+
+#[test]
+fn a_usage_plan_whose_rate_cannot_be_read_fails_generation() {
+    for (description, error) in [
+        (
+            "**Usage Plan:** 1 request per second.".to_owned(),
+            "empty: usage plan without a rate table",
+        ),
+        (
+            TWO_COLUMNS.replace("| ---- | ---- |\n", ""),
+            "empty: usage plan without a rate table",
+        ),
+        (
+            TWO_COLUMNS.replace("0.0167", "varies"),
+            "empty: unsupported rate \"varies\"",
+        ),
+        (
+            TWO_COLUMNS.replace("0.0167", "0"),
+            "empty: unsupported rate \"0\"",
+        ),
+        (
+            TWO_COLUMNS.replace("0.0167", "-1"),
+            "empty: unsupported rate \"-1\"",
+        ),
+        (
+            TWO_COLUMNS.replace("0.0167", "inf"),
+            "empty: unsupported rate \"inf\"",
+        ),
+    ] {
+        assert_eq!(rated(&description), Err(error.to_owned()), "{description}");
+    }
+}
+
+#[test]
+fn an_operation_hands_its_rate_to_the_client() {
+    let mut value = spec();
+    value["paths"]["/items/{asin}"]["get"]["description"] = json!(TWO_COLUMNS);
+    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    let facade = facades::rust(&operations, &[]).unwrap();
+    let calls: Vec<_> = facade.split(".execute_json(").skip(1).collect();
+    assert_eq!(calls.len(), 2);
+    for (call, rate) in calls.iter().zip(["None", "Some(0.0167)"]) {
+        let (arguments, _) = call.split_once(".await?").unwrap();
+        let arguments = arguments.trim_end().trim_end_matches(')').trim_end();
+        assert!(
+            arguments.trim_end_matches(',').ends_with(rate),
+            "{arguments}"
+        );
+    }
+}

@@ -19,7 +19,7 @@ fn spec(operation: &str) -> Value {
     let description = if catalog {
         "Returns an item."
     } else {
-        "Updates part of a listing. Refer to the [Listings Items guide](doc:listings-items-api-v2021-08-01-use-case-guide).\n**Note:** Only the fields that you send change.\n\n**Usage Plan:**\n\n| Rate | Burst |\n| 5 | 10 |"
+        "Updates part of a listing. Refer to the [Listings Items guide](doc:listings-items-api-v2021-08-01-use-case-guide).\n**Note:** Only the fields that you send change.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |"
     };
     let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic API.","version":"1","description":"Reads and updates listings. See the <a href=\"https://example.com/guide\">guide</a>."},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
     for (_, methods) in spec["paths"].as_object_mut().unwrap() {
@@ -156,6 +156,36 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     assert!(ruby.contains(
         "      def get_catalog_item(asin, marketplace_ids, included_data: [\"\\#{exit}\"])\n"
     ));
+    // The rate of the usage plan goes to the client with the request, and into the
+    // inventory. An operation without a usage plan has none.
+    let facade = |module: &str| {
+        let path = format!("crates/peddler/src/apis/{module}/facade.rs");
+        rendered[Path::new(&path)].replace(char::is_whitespace, "")
+    };
+    assert!(
+        facade("listings_items_2021_08_01")
+            .contains("body:Some(operation::json(&params.body)?),},Some(5.0),).await?;")
+    );
+    assert!(facade("catalog_items_2022_04_01").contains("body:None,},None,).await?;"));
+    let inventory: Value = serde_json::from_str(
+        &rendered[Path::new("crates/peddler-codegen/operation-inventory.json")],
+    )
+    .unwrap();
+    let rates: Vec<_> = inventory["apis"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .flat_map(|api| api["operations"].as_array().unwrap())
+        .map(|operation| {
+            (
+                operation["id"].as_str().unwrap(),
+                operation["rate"].as_f64(),
+            )
+        })
+        .collect();
+    assert!(rates.contains(&("patchListingsItem", Some(5.0))));
+    assert!(rates.contains(&("getCatalogItem", None)));
+    assert_eq!(rates.iter().filter(|(_, rate)| rate.is_some()).count(), 1);
     let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
     assert!(rbs.contains(
         "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?) -> Response"

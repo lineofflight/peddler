@@ -41,13 +41,16 @@ pub async fn list_balances(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/2024-06-19/balances".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/2024-06-19/balances".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -122,13 +125,16 @@ pub async fn list_summary(
     );
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/2024-06-19/summary".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/2024-06-19/summary".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -202,13 +208,16 @@ pub async fn list_transactions(
     );
     operation::pair(&mut query, "transactionStatus", params.transaction_status.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/2024-06-19/transactions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/2024-06-19/transactions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

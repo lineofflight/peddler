@@ -32,13 +32,16 @@ pub async fn get_vehicles(
     operation::pair(&mut query, "updatedAfter", params.updated_after.as_ref());
     operation::pair(&mut query, "vehicleType", Some(&params.vehicle_type));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/catalog/2024-11-01/automotive/vehicles".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/catalog/2024-11-01/automotive/vehicles".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -17,7 +17,7 @@ const METHOD: usize = 6;
 /// What Ruby's `\s` matches, as a character class. A regex's own `\s` matches more.
 const SPACE: &str = r" \t\r\n\f\v";
 
-fn regex(pattern: &str) -> Regex {
+pub(crate) fn regex(pattern: &str) -> Regex {
     Regex::with_flags(&pattern.replace("\\s", SPACE), "u").expect("valid pattern")
 }
 
@@ -110,7 +110,7 @@ fn accepts(p: &Parameter) -> &'static str {
     }
 }
 
-/// An operation's description without its usage plan, which Peddler doesn't act on.
+/// An operation's description without its usage plan. `clients::rate` reads that.
 fn description(text: &str) -> String {
     // Some specs spell a line break as a backslash and an n.
     let delimiter = if text.contains("\\n") { "\\n" } else { "\n" };
@@ -250,6 +250,7 @@ mod tests {
             method: "GET".into(),
             path: "/things".into(),
             description: hostile.into(),
+            rate: None,
             sandbox: Some("static"),
             parameters: vec![parameter],
             successes: Vec::new(),

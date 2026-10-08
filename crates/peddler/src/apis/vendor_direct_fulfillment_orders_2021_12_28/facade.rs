@@ -19,17 +19,20 @@ pub async fn get_order(
     params: GetOrderParams,
 ) -> Result<TypedResponse<super::models::Order>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -77,13 +80,17 @@ pub async fn get_orders(
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     operation::pair(&mut query, "status", params.status.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
+                    .into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -123,13 +130,17 @@ pub async fn submit_acknowledgement<B: serde::Serialize>(
     params: SubmitAcknowledgementParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionId>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/orders/2021-12-28/acknowledgements".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -19,17 +19,20 @@ pub async fn cancel_report(
     params: CancelReportParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/reports/2021-06-30/reports/",
-                &operation::last_segment(&params.report_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/reports/2021-06-30/reports/",
+                    &operation::last_segment(&params.report_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(raw)
 }
@@ -48,17 +51,20 @@ pub async fn cancel_report_schedule(
     params: CancelReportScheduleParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/reports/2021-06-30/schedules/",
-                &operation::last_segment(&params.report_schedule_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/reports/2021-06-30/schedules/",
+                    &operation::last_segment(&params.report_schedule_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(raw)
 }
@@ -77,13 +83,16 @@ pub async fn create_report<B: serde::Serialize>(
     params: CreateReportParams<B>,
 ) -> Result<TypedResponse<super::models::CreateReportResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/reports/2021-06-30/reports".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/reports/2021-06-30/reports".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -102,13 +111,16 @@ pub async fn create_report_schedule<B: serde::Serialize>(
     params: CreateReportScheduleParams<B>,
 ) -> Result<TypedResponse<super::models::CreateReportScheduleResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/reports/2021-06-30/schedules".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/reports/2021-06-30/schedules".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -127,17 +139,20 @@ pub async fn get_report(
     params: GetReportParams,
 ) -> Result<TypedResponse<super::models::Report>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/reports/2021-06-30/reports/",
-                &operation::last_segment(&params.report_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/reports/2021-06-30/reports/",
+                    &operation::last_segment(&params.report_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -166,17 +181,20 @@ pub async fn get_report_document(
         params.enable_content_encoding_url_header.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/reports/2021-06-30/documents/",
-                &operation::last_segment(&params.report_document_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/reports/2021-06-30/documents/",
+                    &operation::last_segment(&params.report_document_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -195,17 +213,20 @@ pub async fn get_report_schedule(
     params: GetReportScheduleParams,
 ) -> Result<TypedResponse<super::models::ReportSchedule>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/reports/2021-06-30/schedules/",
-                &operation::last_segment(&params.report_schedule_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/reports/2021-06-30/schedules/",
+                    &operation::last_segment(&params.report_schedule_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -227,13 +248,16 @@ pub async fn get_report_schedules(
     operation::csv(&mut query, "reportTypes", Some(&params.report_types));
     operation::empty(&mut query, "reportTypes", Some(&params.report_types));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/reports/2021-06-30/schedules".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/reports/2021-06-30/schedules".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -294,13 +318,16 @@ pub async fn get_reports(
     );
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/reports/2021-06-30/reports".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/reports/2021-06-30/reports".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -334,12 +361,15 @@ pub(crate) async fn get_reports_continue(
     params: GetReportsContinueParams,
 ) -> Result<Response, Error> {
     client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/reports/2021-06-30/reports".into(),
-            query: vec![("nextToken".into(), params.next_token)],
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/reports/2021-06-30/reports".into(),
+                query: vec![("nextToken".into(), params.next_token)],
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await
 }

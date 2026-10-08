@@ -39,13 +39,16 @@ pub async fn get_listings_restrictions(
     operation::pair(&mut query, "sellerId", Some(&params.seller_id));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/listings/2021-08-01/restrictions".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/listings/2021-08-01/restrictions".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

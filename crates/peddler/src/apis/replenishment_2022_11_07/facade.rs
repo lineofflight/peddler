@@ -24,13 +24,16 @@ pub async fn get_selling_partner_metrics<B: serde::Serialize>(
     params: GetSellingPartnerMetricsParams<B>,
 ) -> Result<TypedResponse<super::models::GetSellingPartnerMetricsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/replenishment/2022-11-07/sellingPartners/metrics/search".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/replenishment/2022-11-07/sellingPartners/metrics/search".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -54,13 +57,16 @@ pub async fn list_offer_metrics<B: serde::Serialize>(
     params: ListOfferMetricsParams<B>,
 ) -> Result<TypedResponse<super::models::ListOfferMetricsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/replenishment/2022-11-07/offers/metrics/search".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/replenishment/2022-11-07/offers/metrics/search".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -84,13 +90,16 @@ pub async fn list_offers<B: serde::Serialize>(
     params: ListOffersParams<B>,
 ) -> Result<TypedResponse<super::models::ListOffersResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/replenishment/2022-11-07/offers/search".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/replenishment/2022-11-07/offers/search".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -19,17 +19,20 @@ pub async fn cancel_query(
     params: CancelQueryParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/dataKiosk/2023-11-15/queries/",
-                &operation::last_segment(&params.query_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/dataKiosk/2023-11-15/queries/",
+                    &operation::last_segment(&params.query_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(raw)
 }
@@ -48,13 +51,16 @@ pub async fn create_query<B: serde::Serialize>(
     params: CreateQueryParams<B>,
 ) -> Result<TypedResponse<super::models::CreateQueryResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/dataKiosk/2023-11-15/queries".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/dataKiosk/2023-11-15/queries".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -73,17 +79,20 @@ pub async fn get_document(
     params: GetDocumentParams,
 ) -> Result<TypedResponse<super::models::GetDocumentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/dataKiosk/2023-11-15/documents/",
-                &operation::last_segment(&params.document_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/dataKiosk/2023-11-15/documents/",
+                    &operation::last_segment(&params.document_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -136,13 +145,16 @@ pub async fn get_queries(
         params.processing_statuses.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/dataKiosk/2023-11-15/queries".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/dataKiosk/2023-11-15/queries".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -181,17 +193,20 @@ pub async fn get_query(
     params: GetQueryParams,
 ) -> Result<TypedResponse<super::models::Query>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/dataKiosk/2023-11-15/queries/",
-                &operation::last_segment(&params.query_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/dataKiosk/2023-11-15/queries/",
+                    &operation::last_segment(&params.query_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

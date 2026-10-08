@@ -19,17 +19,20 @@ pub async fn get_purchase_order(
     params: GetPurchaseOrderParams,
 ) -> Result<TypedResponse<super::models::GetPurchaseOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/orders/v1/purchaseOrders/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/orders/v1/purchaseOrders/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -98,13 +101,16 @@ pub async fn get_purchase_orders(
     );
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/orders/v1/purchaseOrders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/orders/v1/purchaseOrders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -208,13 +214,16 @@ pub async fn get_purchase_orders_status(
     operation::pair(&mut query, "updatedAfter", params.updated_after.as_ref());
     operation::pair(&mut query, "updatedBefore", params.updated_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/orders/v1/purchaseOrdersStatus".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/orders/v1/purchaseOrdersStatus".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -253,13 +262,16 @@ pub async fn submit_acknowledgement<B: serde::Serialize>(
     params: SubmitAcknowledgementParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitAcknowledgementResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/orders/v1/acknowledgements".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/orders/v1/acknowledgements".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

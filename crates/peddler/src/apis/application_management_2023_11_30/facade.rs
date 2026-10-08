@@ -22,13 +22,16 @@ pub async fn rotate_application_client_secret(
     params: RotateApplicationClientSecretParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/applications/2023-11-30/clientSecret".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/applications/2023-11-30/clientSecret".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0167),
+        )
         .await?;
     Ok(raw)
 }

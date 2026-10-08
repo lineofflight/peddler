@@ -19,13 +19,16 @@ pub async fn create_scheduled_package<B: serde::Serialize>(
     params: CreateScheduledPackageParams<B>,
 ) -> Result<TypedResponse<super::models::Package>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/easyShip/2022-03-23/package".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/easyShip/2022-03-23/package".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -44,13 +47,16 @@ pub async fn create_scheduled_package_bulk<B: serde::Serialize>(
     params: CreateScheduledPackageBulkParams<B>,
 ) -> Result<TypedResponse<super::models::CreateScheduledPackagesResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/easyShip/2022-03-23/packages/bulk".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/easyShip/2022-03-23/packages/bulk".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -76,13 +82,16 @@ pub async fn get_scheduled_package(
     operation::pair(&mut query, "amazonOrderId", Some(&params.amazon_order_id));
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/easyShip/2022-03-23/package".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/easyShip/2022-03-23/package".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -106,13 +115,16 @@ pub async fn list_handover_slots<B: serde::Serialize>(
     params: ListHandoverSlotsParams<B>,
 ) -> Result<TypedResponse<super::models::ListHandoverSlotsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/easyShip/2022-03-23/timeSlot".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/easyShip/2022-03-23/timeSlot".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -136,13 +148,16 @@ pub async fn update_scheduled_packages<B: serde::Serialize>(
     params: UpdateScheduledPackagesParams<B>,
 ) -> Result<TypedResponse<super::models::Packages>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PATCH".into(),
-            path: "/easyShip/2022-03-23/package".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: params.body.as_ref().map(operation::json).transpose()?,
-        })
+        .execute_json(
+            Request {
+                method: "PATCH".into(),
+                path: "/easyShip/2022-03-23/package".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: params.body.as_ref().map(operation::json).transpose()?,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

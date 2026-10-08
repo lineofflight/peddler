@@ -19,13 +19,17 @@ pub async fn get_competitive_summary<B: serde::Serialize>(
     params: GetCompetitiveSummaryParams<B>,
 ) -> Result<TypedResponse<super::models::CompetitiveSummaryBatchResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/batches/products/pricing/2022-05-01/items/competitiveSummary".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/batches/products/pricing/2022-05-01/items/competitiveSummary"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.033),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -47,14 +51,17 @@ pub async fn get_featured_offer_expected_price_batch<B: serde::Serialize>(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
-                .into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.033),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

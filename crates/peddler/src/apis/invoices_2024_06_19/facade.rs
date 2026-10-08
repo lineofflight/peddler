@@ -19,13 +19,16 @@ pub async fn create_government_invoice<B: serde::Serialize>(
     params: CreateGovernmentInvoiceParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/tax/invoices/2024-06-19/governmentInvoiceRequests".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/tax/invoices/2024-06-19/governmentInvoiceRequests".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }
@@ -44,13 +47,16 @@ pub async fn create_invoices_export<B: serde::Serialize>(
     params: CreateInvoicesExportParams<B>,
 ) -> Result<TypedResponse<super::models::ExportInvoicesResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/tax/invoices/2024-06-19/exports".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/tax/invoices/2024-06-19/exports".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -92,17 +98,20 @@ pub async fn get_government_invoice_document(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "transactionType", Some(&params.transaction_type));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/tax/invoices/2024-06-19/governmentInvoiceRequests/",
-                &operation::last_segment(&params.shipment_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/tax/invoices/2024-06-19/governmentInvoiceRequests/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -142,13 +151,16 @@ pub async fn get_government_invoice_status(
     operation::pair(&mut query, "shipmentId", Some(&params.shipment_id));
     operation::pair(&mut query, "transactionType", Some(&params.transaction_type));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/tax/invoices/2024-06-19/governmentInvoiceRequests".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/tax/invoices/2024-06-19/governmentInvoiceRequests".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -176,17 +188,20 @@ pub async fn get_invoice(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/tax/invoices/2024-06-19/invoices/",
-                &operation::last_segment(&params.invoice_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/tax/invoices/2024-06-19/invoices/",
+                    &operation::last_segment(&params.invoice_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -264,13 +279,16 @@ pub async fn get_invoices(
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     operation::empty(&mut query, "statuses", params.statuses.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/tax/invoices/2024-06-19/invoices".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/tax/invoices/2024-06-19/invoices".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -316,13 +334,16 @@ pub async fn get_invoices_attributes(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/tax/invoices/2024-06-19/attributes".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/tax/invoices/2024-06-19/attributes".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -347,17 +368,20 @@ pub async fn get_invoices_document(
     let mut query = Vec::new();
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/tax/invoices/2024-06-19/documents/",
-                &operation::last_segment(&params.invoices_document_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/tax/invoices/2024-06-19/documents/",
+                    &operation::last_segment(&params.invoices_document_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -382,17 +406,20 @@ pub async fn get_invoices_export(
     let mut query = Vec::new();
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/tax/invoices/2024-06-19/exports/",
-                &operation::last_segment(&params.export_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/tax/invoices/2024-06-19/exports/",
+                    &operation::last_segment(&params.export_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -433,13 +460,16 @@ pub async fn get_invoices_exports(
     operation::pair(&mut query, "status", params.status.as_ref());
     operation::pair(&mut query, "warehouseCode", params.warehouse_code.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/tax/invoices/2024-06-19/exports".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/tax/invoices/2024-06-19/exports".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

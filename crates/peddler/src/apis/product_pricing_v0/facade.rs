@@ -37,13 +37,16 @@ pub async fn get_competitive_pricing(
     operation::empty(&mut query, "Asins", params.asins.as_ref());
     operation::empty(&mut query, "Skus", params.skus.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/products/pricing/v0/competitivePrice".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/products/pricing/v0/competitivePrice".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -74,18 +77,21 @@ pub async fn get_item_offers(
     operation::pair(&mut query, "ItemCondition", Some(&params.item_condition));
     operation::pair(&mut query, "MarketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/products/pricing/v0/items/",
-                &operation::segment(&params.asin)?,
-                "/offers",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/products/pricing/v0/items/",
+                    &operation::segment(&params.asin)?,
+                    "/offers",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -104,13 +110,16 @@ pub async fn get_item_offers_batch<B: serde::Serialize>(
     params: GetItemOffersBatchParams<B>,
 ) -> Result<TypedResponse<super::models::GetItemOffersBatchResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/batches/products/pricing/v0/itemOffers".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/batches/products/pricing/v0/itemOffers".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.1),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -145,18 +154,21 @@ pub async fn get_listing_offers(
     operation::pair(&mut query, "ItemCondition", Some(&params.item_condition));
     operation::pair(&mut query, "MarketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/products/pricing/v0/listings/",
-                &operation::segment(&params.seller_sku)?,
-                "/offers",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/products/pricing/v0/listings/",
+                    &operation::segment(&params.seller_sku)?,
+                    "/offers",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -175,13 +187,16 @@ pub async fn get_listing_offers_batch<B: serde::Serialize>(
     params: GetListingOffersBatchParams<B>,
 ) -> Result<TypedResponse<super::models::GetListingOffersBatchResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/batches/products/pricing/v0/listingOffers".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/batches/products/pricing/v0/listingOffers".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -221,13 +236,16 @@ pub async fn get_pricing(
     operation::empty(&mut query, "Asins", params.asins.as_ref());
     operation::empty(&mut query, "Skus", params.skus.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/products/pricing/v0/price".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/products/pricing/v0/price".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

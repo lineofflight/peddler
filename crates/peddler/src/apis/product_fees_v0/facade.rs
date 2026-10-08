@@ -20,18 +20,21 @@ pub async fn get_my_fees_estimate_for_asin<B: serde::Serialize>(
     params: GetMyFeesEstimateForAsinParams<B>,
 ) -> Result<TypedResponse<super::models::GetMyFeesEstimateResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/products/fees/v0/items/",
-                &operation::segment(&params.asin)?,
-                "/feesEstimate",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/products/fees/v0/items/",
+                    &operation::segment(&params.asin)?,
+                    "/feesEstimate",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -51,18 +54,21 @@ pub async fn get_my_fees_estimate_for_sku<B: serde::Serialize>(
     params: GetMyFeesEstimateForSkuParams<B>,
 ) -> Result<TypedResponse<super::models::GetMyFeesEstimateResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/products/fees/v0/listings/",
-                &operation::segment(&params.seller_sku)?,
-                "/feesEstimate",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/products/fees/v0/listings/",
+                    &operation::segment(&params.seller_sku)?,
+                    "/feesEstimate",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -81,13 +87,16 @@ pub async fn get_my_fees_estimates<B: serde::Serialize>(
     params: GetMyFeesEstimatesParams<B>,
 ) -> Result<TypedResponse<super::models::GetMyFeesEstimatesResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/products/fees/v0/feesEstimate".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/products/fees/v0/feesEstimate".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

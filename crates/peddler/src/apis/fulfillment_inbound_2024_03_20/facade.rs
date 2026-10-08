@@ -19,18 +19,21 @@ pub async fn cancel_inbound_plan(
     params: CancelInboundPlanParams,
 ) -> Result<TypedResponse<super::models::CancelInboundPlanResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/cancellation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/cancellation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -55,20 +58,23 @@ pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
     params: CancelSelfShipAppointmentParams<B>,
 ) -> Result<TypedResponse<super::models::CancelSelfShipAppointmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/selfShipAppointmentCancellation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/selfShipAppointmentCancellation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -97,22 +103,25 @@ pub async fn confirm_delivery_window_options(
     params: ConfirmDeliveryWindowOptionsParams,
 ) -> Result<TypedResponse<super::models::ConfirmDeliveryWindowOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/deliveryWindowOptions/",
-                &operation::segment(&params.delivery_window_option_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/deliveryWindowOptions/",
+                    &operation::segment(&params.delivery_window_option_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -135,20 +144,23 @@ pub async fn confirm_packing_option(
     params: ConfirmPackingOptionParams,
 ) -> Result<TypedResponse<super::models::ConfirmPackingOptionResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingOptions/",
-                &operation::segment(&params.packing_option_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingOptions/",
+                    &operation::segment(&params.packing_option_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -171,20 +183,23 @@ pub async fn confirm_placement_option(
     params: ConfirmPlacementOptionParams,
 ) -> Result<TypedResponse<super::models::ConfirmPlacementOptionResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/placementOptions/",
-                &operation::segment(&params.placement_option_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/placementOptions/",
+                    &operation::segment(&params.placement_option_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -216,22 +231,25 @@ pub async fn confirm_shipment_content_update_preview(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/contentUpdatePreviews/",
-                &operation::segment(&params.content_update_preview_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/contentUpdatePreviews/",
+                    &operation::segment(&params.content_update_preview_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -251,18 +269,21 @@ pub async fn confirm_transportation_options<B: serde::Serialize>(
     params: ConfirmTransportationOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::ConfirmTransportationOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/transportationOptions/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/transportationOptions/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -281,13 +302,16 @@ pub async fn create_inbound_plan<B: serde::Serialize>(
     params: CreateInboundPlanParams<B>,
 ) -> Result<TypedResponse<super::models::CreateInboundPlanResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/inbound/fba/2024-03-20/inboundPlans".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/inbound/fba/2024-03-20/inboundPlans".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -306,13 +330,16 @@ pub async fn create_marketplace_item_labels<B: serde::Serialize>(
     params: CreateMarketplaceItemLabelsParams<B>,
 ) -> Result<TypedResponse<super::models::CreateMarketplaceItemLabelsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/inbound/fba/2024-03-20/items/labels".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/inbound/fba/2024-03-20/items/labels".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -335,20 +362,23 @@ pub async fn generate_delivery_window_options(
     params: GenerateDeliveryWindowOptionsParams,
 ) -> Result<TypedResponse<super::models::GenerateDeliveryWindowOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/deliveryWindowOptions",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/deliveryWindowOptions",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -367,18 +397,21 @@ pub async fn generate_packing_options(
     params: GeneratePackingOptionsParams,
 ) -> Result<TypedResponse<super::models::GeneratePackingOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingOptions",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingOptions",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -398,18 +431,21 @@ pub async fn generate_placement_options<B: serde::Serialize>(
     params: GeneratePlacementOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::GeneratePlacementOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/placementOptions",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/placementOptions",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -437,20 +473,23 @@ pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/selfShipAppointmentSlots",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/selfShipAppointmentSlots",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -478,20 +517,23 @@ pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/contentUpdatePreviews",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/contentUpdatePreviews",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -511,18 +553,21 @@ pub async fn generate_transportation_options<B: serde::Serialize>(
     params: GenerateTransportationOptionsParams<B>,
 ) -> Result<TypedResponse<super::models::GenerateTransportationOptionsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/transportationOptions",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/transportationOptions",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -545,20 +590,23 @@ pub async fn get_delivery_challan_document(
     params: GetDeliveryChallanDocumentParams,
 ) -> Result<TypedResponse<super::models::GetDeliveryChallanDocumentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/deliveryChallanDocument",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/deliveryChallanDocument",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -577,17 +625,20 @@ pub async fn get_inbound_operation_status(
     params: GetInboundOperationStatusParams,
 ) -> Result<TypedResponse<super::models::InboundOperationStatus>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/operations/",
-                &operation::last_segment(&params.operation_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/operations/",
+                    &operation::last_segment(&params.operation_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -606,17 +657,20 @@ pub async fn get_inbound_plan(
     params: GetInboundPlanParams,
 ) -> Result<TypedResponse<super::models::InboundPlan>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::last_segment(&params.inbound_plan_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::last_segment(&params.inbound_plan_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -650,20 +704,23 @@ pub async fn get_self_ship_appointment_slots(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/selfShipAppointmentSlots",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/selfShipAppointmentSlots",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -707,19 +764,22 @@ pub async fn get_shipment(
     params: GetShipmentParams,
 ) -> Result<TypedResponse<super::models::Shipment>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::last_segment(&params.shipment_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -748,21 +808,24 @@ pub async fn get_shipment_content_update_preview(
     params: GetShipmentContentUpdatePreviewParams,
 ) -> Result<TypedResponse<super::models::ContentUpdatePreview>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/contentUpdatePreviews/",
-                &operation::last_segment(&params.content_update_preview_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/contentUpdatePreviews/",
+                    &operation::last_segment(&params.content_update_preview_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -796,20 +859,23 @@ pub async fn list_delivery_window_options(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/deliveryWindowOptions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/deliveryWindowOptions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -862,18 +928,21 @@ pub async fn list_inbound_plan_boxes(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/boxes",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/boxes",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -926,18 +995,21 @@ pub async fn list_inbound_plan_items(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/items",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/items",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -990,18 +1062,21 @@ pub async fn list_inbound_plan_pallets(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/pallets",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/pallets",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1066,13 +1141,16 @@ pub async fn list_inbound_plans(
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     operation::pair(&mut query, "status", params.status.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/inbound/fba/2024-03-20/inboundPlans".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/inbound/fba/2024-03-20/inboundPlans".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1116,13 +1194,16 @@ pub async fn list_item_compliance_details(
     operation::repeated(&mut query, "mskus", Some(&params.mskus));
     operation::empty(&mut query, "mskus", Some(&params.mskus));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/inbound/fba/2024-03-20/items/compliance".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/inbound/fba/2024-03-20/items/compliance".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1156,20 +1237,23 @@ pub async fn list_packing_group_boxes(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingGroups/",
-                &operation::segment(&params.packing_group_id)?,
-                "/boxes",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingGroups/",
+                    &operation::segment(&params.packing_group_id)?,
+                    "/boxes",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1224,20 +1308,23 @@ pub async fn list_packing_group_items(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingGroups/",
-                &operation::segment(&params.packing_group_id)?,
-                "/items",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingGroups/",
+                    &operation::segment(&params.packing_group_id)?,
+                    "/items",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1290,18 +1377,21 @@ pub async fn list_packing_options(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingOptions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingOptions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1353,18 +1443,21 @@ pub async fn list_placement_options(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/placementOptions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/placementOptions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1409,13 +1502,16 @@ pub async fn list_prep_details(
     operation::repeated(&mut query, "mskus", Some(&params.mskus));
     operation::empty(&mut query, "mskus", Some(&params.mskus));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/inbound/fba/2024-03-20/items/prepDetails".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/inbound/fba/2024-03-20/items/prepDetails".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1449,20 +1545,23 @@ pub async fn list_shipment_boxes(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/boxes",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/boxes",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1519,20 +1618,23 @@ pub async fn list_shipment_content_update_previews(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/contentUpdatePreviews",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/contentUpdatePreviews",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1587,20 +1689,23 @@ pub async fn list_shipment_items(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/items",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/items",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1654,20 +1759,23 @@ pub async fn list_shipment_pallets(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "paginationToken", params.pagination_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/pallets",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/pallets",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1729,18 +1837,21 @@ pub async fn list_transportation_options(
     );
     operation::pair(&mut query, "shipmentId", params.shipment_id.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/transportationOptions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/transportationOptions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1793,22 +1904,25 @@ pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
     params: ScheduleSelfShipAppointmentParams<B>,
 ) -> Result<TypedResponse<super::models::ScheduleSelfShipAppointmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/selfShipAppointmentSlots/",
-                &operation::segment(&params.slot_id)?,
-                "/schedule",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/selfShipAppointmentSlots/",
+                    &operation::segment(&params.slot_id)?,
+                    "/schedule",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1828,18 +1942,21 @@ pub async fn set_packing_information<B: serde::Serialize>(
     params: SetPackingInformationParams<B>,
 ) -> Result<TypedResponse<super::models::SetPackingInformationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/packingInformation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/packingInformation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1858,13 +1975,16 @@ pub async fn set_prep_details<B: serde::Serialize>(
     params: SetPrepDetailsParams<B>,
 ) -> Result<TypedResponse<super::models::SetPrepDetailsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/inbound/fba/2024-03-20/items/prepDetails".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/inbound/fba/2024-03-20/items/prepDetails".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1884,18 +2004,21 @@ pub async fn update_inbound_plan_name<B: serde::Serialize>(
     params: UpdateInboundPlanNameParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/name",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/name",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -1917,13 +2040,16 @@ pub async fn update_item_compliance_details<B: serde::Serialize>(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: "/inbound/fba/2024-03-20/items/compliance".into(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: "/inbound/fba/2024-03-20/items/compliance".into(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -1948,20 +2074,23 @@ pub async fn update_shipment_name<B: serde::Serialize>(
     params: UpdateShipmentNameParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/name",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/name",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -1986,20 +2115,23 @@ pub async fn update_shipment_source_address<B: serde::Serialize>(
     params: UpdateShipmentSourceAddressParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateShipmentSourceAddressResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/sourceAddress",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/sourceAddress",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -2024,20 +2156,23 @@ pub async fn update_shipment_tracking_details<B: serde::Serialize>(
     params: UpdateShipmentTrackingDetailsParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateShipmentTrackingDetailsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/inbound/fba/2024-03-20/inboundPlans/",
-                &operation::segment(&params.inbound_plan_id)?,
-                "/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/trackingDetails",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/inbound/fba/2024-03-20/inboundPlans/",
+                    &operation::segment(&params.inbound_plan_id)?,
+                    "/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/trackingDetails",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

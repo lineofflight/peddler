@@ -19,18 +19,21 @@ pub async fn get_invoice_status(
     params: GetInvoiceStatusParams,
 ) -> Result<TypedResponse<super::models::GetInvoiceStatusResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/outbound/brazil/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/invoice/status",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/outbound/brazil/v0/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/invoice/status",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.133),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -49,17 +52,20 @@ pub async fn get_shipment_details(
     params: GetShipmentDetailsParams,
 ) -> Result<TypedResponse<super::models::GetShipmentDetailsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/outbound/brazil/v0/shipments/",
-                &operation::last_segment(&params.shipment_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/outbound/brazil/v0/shipments/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.133),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -79,18 +85,21 @@ pub async fn submit_invoice<B: serde::Serialize>(
     params: SubmitInvoiceParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitInvoiceResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/fba/outbound/brazil/v0/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/invoice",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/fba/outbound/brazil/v0/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/invoice",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.133),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

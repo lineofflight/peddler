@@ -19,17 +19,20 @@ pub async fn cancel_feed(
     params: CancelFeedParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/feeds/2021-06-30/feeds/",
-                &operation::last_segment(&params.feed_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/feeds/2021-06-30/feeds/",
+                    &operation::last_segment(&params.feed_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -48,13 +51,16 @@ pub async fn create_feed<B: serde::Serialize>(
     params: CreateFeedParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFeedResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/feeds/2021-06-30/feeds".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/feeds/2021-06-30/feeds".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.0083),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -73,13 +79,16 @@ pub async fn create_feed_document<B: serde::Serialize>(
     params: CreateFeedDocumentParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFeedDocumentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/feeds/2021-06-30/documents".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/feeds/2021-06-30/documents".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -98,17 +107,20 @@ pub async fn get_feed(
     params: GetFeedParams,
 ) -> Result<TypedResponse<super::models::Feed>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/feeds/2021-06-30/feeds/",
-                &operation::last_segment(&params.feed_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/feeds/2021-06-30/feeds/",
+                    &operation::last_segment(&params.feed_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -137,17 +149,20 @@ pub async fn get_feed_document(
         params.enable_content_encoding_url_header.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/feeds/2021-06-30/documents/",
-                &operation::last_segment(&params.feed_document_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/feeds/2021-06-30/documents/",
+                    &operation::last_segment(&params.feed_document_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -208,13 +223,16 @@ pub async fn get_feeds(
         params.processing_statuses.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/feeds/2021-06-30/feeds".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/feeds/2021-06-30/feeds".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -248,12 +266,15 @@ pub(crate) async fn get_feeds_continue(
     params: GetFeedsContinueParams,
 ) -> Result<Response, Error> {
     client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/feeds/2021-06-30/feeds".into(),
-            query: vec![("nextToken".into(), params.next_token)],
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/feeds/2021-06-30/feeds".into(),
+                query: vec![("nextToken".into(), params.next_token)],
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0222),
+        )
         .await
 }

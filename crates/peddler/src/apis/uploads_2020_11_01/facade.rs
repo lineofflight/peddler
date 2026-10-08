@@ -36,17 +36,20 @@ pub async fn create_upload_destination_for_resource(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/uploads/2020-11-01/uploadDestinations/",
-                &operation::last_segment(&params.resource)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/uploads/2020-11-01/uploadDestinations/",
+                    &operation::last_segment(&params.resource)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

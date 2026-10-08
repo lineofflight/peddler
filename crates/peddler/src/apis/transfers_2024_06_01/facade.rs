@@ -35,13 +35,16 @@ pub async fn get_payment_methods(
         params.payment_method_types.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/2024-06-01/paymentMethods".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/2024-06-01/paymentMethods".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -60,13 +63,16 @@ pub async fn initiate_payout<B: serde::Serialize>(
     params: InitiatePayoutParams<B>,
 ) -> Result<TypedResponse<super::models::InitiatePayoutResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/finances/transfers/2024-06-01/payouts".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/finances/transfers/2024-06-01/payouts".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(0.017),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -101,13 +107,16 @@ pub async fn list_expected_payouts(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/2024-06-01/payouts/expected".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/2024-06-01/payouts/expected".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -171,13 +180,16 @@ pub async fn list_payouts(
     operation::pair(&mut query, "payoutId", params.payout_id.as_ref());
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/transfers/2024-06-01/payouts".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/transfers/2024-06-01/payouts".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

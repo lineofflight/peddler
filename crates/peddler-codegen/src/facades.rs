@@ -256,13 +256,18 @@ fn request(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
     };
     writeln!(
         source,
-        "let raw = client.execute_json(Request {{ method: {:?}.into(), path: {}, {}, body: {body} }}).await?;",
+        "let raw = client.execute_json(Request {{ method: {:?}.into(), path: {}, {}, body: {body} }}, {}).await?;",
         op.method,
         path(op)?,
-        fields.join(", ")
+        fields.join(", "),
+        rate(op)
     )
     .unwrap();
     Ok(())
+}
+/// An operation's documented rate, as the client takes it for the wait after a 429.
+fn rate(op: &Operation) -> String {
+    format!("{:?}", op.rate)
 }
 /// The expression for an operation's path, with each argument as one escaped segment.
 fn path(op: &Operation) -> Result<String, GenerationError> {
@@ -312,7 +317,7 @@ fn path(op: &Operation) -> Result<String, GenerationError> {
 /// A private continuation operation for APIs whose token replaces every other
 /// parameter: it sends the token and path parameters only, so the initial
 /// request's required filters are not demanded again. It runs through the same
-/// client, so the token, retries and timeout are unchanged.
+/// client, so the token, retries, rate and timeout are unchanged.
 fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(), GenerationError> {
     let token = &mapped.mapping.input[1..];
     let kept: Vec<&Parameter> = op
@@ -344,10 +349,11 @@ fn adapter(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(),
         .wire_name;
     writeln!(
         source,
-        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{\nclient.execute_json(Request {{ method: {:?}.into(), path: {}, query: vec![({wire:?}.into(), params.{token})], headers: Vec::new(), body: None }}).await\n}}",
+        "pub(crate) async fn {}_continue(client:&Client, params:{strukt})->Result<Response,Error> {{\nclient.execute_json(Request {{ method: {:?}.into(), path: {}, query: vec![({wire:?}.into(), params.{token})], headers: Vec::new(), body: None }}, {}).await\n}}",
         op.name,
         op.method,
-        path(op)?
+        path(op)?,
+        rate(op)
     )
     .unwrap();
     Ok(())
@@ -681,6 +687,7 @@ fn operation_json(
         "key": key,
         "method": op.method,
         "path": op.path,
+        "rate": op.rate,
         "parameters": parameters,
         "successes": successes,
         "pagination": pagination,

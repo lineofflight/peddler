@@ -19,17 +19,20 @@ pub async fn get_return(
     params: GetReturnParams,
 ) -> Result<TypedResponse<super::models::Return>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/externalFulfillment/2024-09-11/returns/",
-                &operation::last_segment(&params.return_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/externalFulfillment/2024-09-11/returns/",
+                    &operation::last_segment(&params.return_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -98,13 +101,16 @@ pub async fn list_returns(
     operation::pair(&mut query, "rmaId", params.rma_id.as_ref());
     operation::pair(&mut query, "status", params.status.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/externalFulfillment/2024-09-11/returns".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/externalFulfillment/2024-09-11/returns".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

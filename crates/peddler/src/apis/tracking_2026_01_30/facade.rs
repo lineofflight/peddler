@@ -65,13 +65,16 @@ pub async fn get_shipment_tracking(
     let mut headers = Vec::new();
     operation::pair(&mut headers, "Accept-Language", params.accept_language.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/tracking/2026-01-30/shipments/track".into(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/tracking/2026-01-30/shipments/track".into(),
+                query,
+                headers,
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

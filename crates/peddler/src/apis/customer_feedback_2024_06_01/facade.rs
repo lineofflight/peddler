@@ -39,18 +39,21 @@ pub async fn get_browse_node_return_topics(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/browseNodes/",
-                &operation::segment(&params.browse_node_id)?,
-                "/returns/topics",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/browseNodes/",
+                    &operation::segment(&params.browse_node_id)?,
+                    "/returns/topics",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetBrowseNodeReturnTopicsResponse {
         raw,
@@ -91,18 +94,21 @@ pub async fn get_browse_node_return_trends(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/browseNodes/",
-                &operation::segment(&params.browse_node_id)?,
-                "/returns/trends",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/browseNodes/",
+                    &operation::segment(&params.browse_node_id)?,
+                    "/returns/trends",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetBrowseNodeReturnTrendsResponse {
         raw,
@@ -146,18 +152,21 @@ pub async fn get_browse_node_review_topics(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "sortBy", Some(&params.sort_by));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/browseNodes/",
-                &operation::segment(&params.browse_node_id)?,
-                "/reviews/topics",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/browseNodes/",
+                    &operation::segment(&params.browse_node_id)?,
+                    "/reviews/topics",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetBrowseNodeReviewTopicsResponse {
         raw,
@@ -198,18 +207,21 @@ pub async fn get_browse_node_review_trends(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/browseNodes/",
-                &operation::segment(&params.browse_node_id)?,
-                "/reviews/trends",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/browseNodes/",
+                    &operation::segment(&params.browse_node_id)?,
+                    "/reviews/trends",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetBrowseNodeReviewTrendsResponse {
         raw,
@@ -245,18 +257,21 @@ pub async fn get_item_browse_node(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/items/",
-                &operation::segment(&params.asin)?,
-                "/browseNode",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/items/",
+                    &operation::segment(&params.asin)?,
+                    "/browseNode",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetItemBrowseNodeResponse { raw })
 }
@@ -298,18 +313,21 @@ pub async fn get_item_review_topics(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "sortBy", Some(&params.sort_by));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/items/",
-                &operation::segment(&params.asin)?,
-                "/reviews/topics",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/items/",
+                    &operation::segment(&params.asin)?,
+                    "/reviews/topics",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetItemReviewTopicsResponse { raw })
 }
@@ -345,18 +363,21 @@ pub async fn get_item_review_trends(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/customerFeedback/2024-06-01/items/",
-                &operation::segment(&params.asin)?,
-                "/reviews/trends",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/customerFeedback/2024-06-01/items/",
+                    &operation::segment(&params.asin)?,
+                    "/reviews/trends",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(GetItemReviewTrendsResponse { raw })
 }

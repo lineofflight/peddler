@@ -19,18 +19,21 @@ pub async fn cancel_inbound(
     params: CancelInboundParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/awd/2024-05-09/inboundOrders/",
-                &operation::segment(&params.order_id)?,
-                "/cancellation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/awd/2024-05-09/inboundOrders/",
+                    &operation::segment(&params.order_id)?,
+                    "/cancellation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -49,13 +52,16 @@ pub async fn check_inbound_eligibility<B: serde::Serialize>(
     params: CheckInboundEligibilityParams<B>,
 ) -> Result<TypedResponse<super::models::InboundEligibility>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/awd/2024-05-09/inboundEligibility".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/awd/2024-05-09/inboundEligibility".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -74,18 +80,21 @@ pub async fn confirm_inbound(
     params: ConfirmInboundParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/awd/2024-05-09/inboundOrders/",
-                &operation::segment(&params.order_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/awd/2024-05-09/inboundOrders/",
+                    &operation::segment(&params.order_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -104,18 +113,21 @@ pub async fn confirm_outbound(
     params: ConfirmOutboundParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/awd/2024-05-09/outboundOrders/",
-                &operation::segment(&params.order_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/awd/2024-05-09/outboundOrders/",
+                    &operation::segment(&params.order_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -134,18 +146,21 @@ pub async fn confirm_replenishment_order(
     params: ConfirmReplenishmentOrderParams,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/awd/2024-05-09/replenishmentOrders/",
-                &operation::segment(&params.order_id)?,
-                "/confirmation",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/awd/2024-05-09/replenishmentOrders/",
+                    &operation::segment(&params.order_id)?,
+                    "/confirmation",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }
@@ -164,13 +179,16 @@ pub async fn create_inbound<B: serde::Serialize>(
     params: CreateInboundParams<B>,
 ) -> Result<TypedResponse<super::models::InboundOrderReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/awd/2024-05-09/inboundOrders".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/awd/2024-05-09/inboundOrders".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -189,13 +207,16 @@ pub async fn create_outbound<B: serde::Serialize>(
     params: CreateOutboundParams<B>,
 ) -> Result<TypedResponse<super::models::OutboundOrderReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/awd/2024-05-09/outboundOrders".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/awd/2024-05-09/outboundOrders".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -214,13 +235,16 @@ pub async fn create_replenishment_order<B: serde::Serialize>(
     params: CreateReplenishmentOrderParams<B>,
 ) -> Result<TypedResponse<super::models::ReplenishmentOrderReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/awd/2024-05-09/replenishmentOrders".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/awd/2024-05-09/replenishmentOrders".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -239,17 +263,20 @@ pub async fn get_inbound(
     params: GetInboundParams,
 ) -> Result<TypedResponse<super::models::InboundOrder>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/inboundOrders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/inboundOrders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -274,17 +301,20 @@ pub async fn get_inbound_shipment(
     let mut query = Vec::new();
     operation::pair(&mut query, "skuQuantities", params.sku_quantities.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/inboundShipments/",
-                &operation::last_segment(&params.shipment_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/inboundShipments/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -312,18 +342,21 @@ pub async fn get_inbound_shipment_labels(
     operation::pair(&mut query, "formatType", params.format_type.as_ref());
     operation::pair(&mut query, "pageType", params.page_type.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/inboundShipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/labels",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/inboundShipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/labels",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -342,18 +375,21 @@ pub async fn get_label_page_types(
     params: GetLabelPageTypesParams,
 ) -> Result<TypedResponse<super::models::ShipmentLabelPageTypes>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/inboundShipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/labelPageTypes",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/inboundShipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/labelPageTypes",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -372,17 +408,20 @@ pub async fn get_outbound(
     params: GetOutboundParams,
 ) -> Result<TypedResponse<super::models::OutboundOrder>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/outboundOrders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/outboundOrders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -401,17 +440,20 @@ pub async fn get_replenishment_order(
     params: GetReplenishmentOrderParams,
 ) -> Result<TypedResponse<super::models::ReplenishmentOrder>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/awd/2024-05-09/replenishmentOrders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/awd/2024-05-09/replenishmentOrders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -461,13 +503,16 @@ pub async fn list_inbound_shipments(
     operation::pair(&mut query, "updatedAfter", params.updated_after.as_ref());
     operation::pair(&mut query, "updatedBefore", params.updated_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/awd/2024-05-09/inboundShipments".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/awd/2024-05-09/inboundShipments".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -532,13 +577,16 @@ pub async fn list_inventory(
     operation::pair(&mut query, "sku", params.sku.as_ref());
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/awd/2024-05-09/inventory".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/awd/2024-05-09/inventory".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -603,13 +651,16 @@ pub async fn list_outbounds(
     operation::pair(&mut query, "updatedAfter", params.updated_after.as_ref());
     operation::pair(&mut query, "updatedBefore", params.updated_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/awd/2024-05-09/outboundOrders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/awd/2024-05-09/outboundOrders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -674,13 +725,16 @@ pub async fn list_replenishment_orders(
     operation::pair(&mut query, "updatedAfter", params.updated_after.as_ref());
     operation::pair(&mut query, "updatedBefore", params.updated_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/awd/2024-05-09/replenishmentOrders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/awd/2024-05-09/replenishmentOrders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -721,17 +775,20 @@ pub async fn update_inbound<B: serde::Serialize>(
     params: UpdateInboundParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/awd/2024-05-09/inboundOrders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/awd/2024-05-09/inboundOrders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -751,18 +808,21 @@ pub async fn update_inbound_shipment_transport_details<B: serde::Serialize>(
     params: UpdateInboundShipmentTransportDetailsParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/awd/2024-05-09/inboundShipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/transport",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/awd/2024-05-09/inboundShipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/transport",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -782,17 +842,20 @@ pub async fn update_outbound<B: serde::Serialize>(
     params: UpdateOutboundParams<B>,
 ) -> Result<TypedResponse<super::models::OutboundOrderReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/awd/2024-05-09/outboundOrders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/awd/2024-05-09/outboundOrders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

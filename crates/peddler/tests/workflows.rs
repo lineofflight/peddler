@@ -3,7 +3,7 @@ mod support;
 use bytes::Bytes;
 use futures_util::{StreamExt, TryStreamExt, stream};
 use peddler::{
-    Client,
+    Client, ClientConfig,
     documents::{Error as DocumentError, TransferOptions, UploadOptions},
     workflows::{WaitOptions, WorkflowError},
 };
@@ -26,6 +26,12 @@ fn json(status: u16, body: &str) -> Reply {
 
 fn client(url: &str) -> Client {
     Client::new(url, "SECRET_API_TOKEN").unwrap()
+}
+/// A client that retries a call up to 3 times.
+fn retrying(url: &str) -> Client {
+    let mut config = ClientConfig::new(url, "SECRET_API_TOKEN");
+    config.retry.max_retries = 3;
+    Client::with_config(config).unwrap()
 }
 fn report_document(base: &str, algorithm: Option<&str>) -> String {
     let algorithm = algorithm
@@ -813,4 +819,142 @@ async fn create_and_upload_can_be_split_without_hiding_the_signed_url() {
             .to_lowercase()
             .contains("content-type: text/xml")
     );
+}
+
+/// A throttled reply. `at_once` asks for the retry without a wait.
+fn throttled(at_once: bool) -> Reply {
+    let headers = if at_once { "Retry-After: 0\r\n" } else { "" };
+    http(429, headers, b"{\"errors\":[]}")
+}
+
+#[tokio::test]
+async fn a_poll_is_retried_as_the_client_retries_and_no_wait_outlasts_the_timeout() {
+    // A throttled poll is sent again within the wait.
+    let server = serve(|index, _, _| match index {
+        0 => throttled(true),
+        _ => json(200, &report("DONE")),
+    })
+    .await;
+    let done = retrying(&server.url)
+        .workflows()
+        .wait_for_report("r1", fast(10, 2_000))
+        .await
+        .unwrap();
+    assert_eq!(done.json().unwrap().processing_status, "DONE");
+    assert_eq!(server.requests().len(), 2);
+
+    // `getReport` allows 2 requests a second, so the retry of a throttled poll waits
+    // half a second. The wait for the report ends at its own timeout all the same.
+    let server = serve(|_, _, _| throttled(false)).await;
+    let started = Instant::now();
+    let error = retrying(&server.url)
+        .workflows()
+        .wait_for_report("r1", fast(10, 150))
+        .await
+        .unwrap_err();
+    assert!(matches!(error, WorkflowError::Timeout), "{error:?}");
+    let elapsed = started.elapsed();
+    assert!(elapsed >= Duration::from_millis(150), "{elapsed:?}");
+    assert!(elapsed < Duration::from_millis(450), "{elapsed:?}");
+    assert_eq!(server.requests().len(), 1);
+}
+
+#[tokio::test]
+async fn a_lookup_is_retried_within_the_limit_of_the_whole_download() {
+    // A throttled lookup is sent again, and the download goes on.
+    let server = serve(|index, request, base| {
+        if request.starts_with("GET /signed") {
+            http(200, "", b"report")
+        } else if index == 0 {
+            throttled(true)
+        } else {
+            json(200, &report_document(base, None))
+        }
+    })
+    .await;
+    let download = retrying(&server.url)
+        .workflows()
+        .download_report_document("d1", TransferOptions::default())
+        .await
+        .unwrap();
+    assert_eq!(bytes(download).await, b"report");
+    assert_eq!(server.requests().len(), 3);
+
+    // `getReportDocument` allows 1 request a minute, so its retry waits a minute. The
+    // limit of the whole download comes first, and the lookup has timed out.
+    let server = serve(|_, _, _| throttled(false)).await;
+    let options = TransferOptions {
+        timeout: Duration::from_millis(150),
+        ..Default::default()
+    };
+    let started = Instant::now();
+    let error = retrying(&server.url)
+        .workflows()
+        .download_report_document("d1", options)
+        .await
+        .unwrap_err();
+    assert!(
+        matches!(error, WorkflowError::Request(peddler::Error::Timeout)),
+        "{error:?}"
+    );
+    let elapsed = started.elapsed();
+    assert!(elapsed >= Duration::from_millis(150), "{elapsed:?}");
+    assert!(elapsed < Duration::from_millis(450), "{elapsed:?}");
+    assert_eq!(server.requests().len(), 1);
+}
+
+#[tokio::test]
+async fn creating_a_feed_document_is_retried_after_a_429_only_and_the_upload_never() {
+    let created = |base: &str| {
+        let url = format!("{base}/signed?sig=SIGNED_SECRET");
+        json(
+            201,
+            &format!("{{\"feedDocumentId\":\"fd1\",\"url\":\"{url}\"}}"),
+        )
+    };
+    // A throttled create made no document, so it is sent again.
+    let server = serve(move |index, request, base| {
+        if request.starts_with("PUT /signed") {
+            http(200, "", b"")
+        } else if index == 0 {
+            throttled(true)
+        } else {
+            created(base)
+        }
+    })
+    .await;
+    let document_id = retrying(&server.url)
+        .workflows()
+        .create_and_upload_feed_document("text/xml", chunks(&[b"x"]), UploadOptions::default())
+        .await
+        .unwrap();
+    assert_eq!(document_id, "fd1");
+    assert_eq!(server.count("POST /feeds"), 2);
+    assert_eq!(server.count("PUT /signed"), 1);
+
+    // A create that failed may have made one, and an upload is never sent twice.
+    let server = serve(move |_, request, base| {
+        if request.starts_with("PUT /signed") {
+            http(503, "Retry-After: 0\r\n", b"busy")
+        } else if request.contains("\"contentType\":\"text/csv\"") {
+            http(503, "Retry-After: 0\r\n", b"{\"errors\":[]}")
+        } else {
+            created(base)
+        }
+    })
+    .await;
+    let workflows = retrying(&server.url).workflows();
+    let error = workflows
+        .create_and_upload_feed_document("text/csv", chunks(&[b"x"]), UploadOptions::default())
+        .await
+        .unwrap_err();
+    assert_eq!(error.response().unwrap().status, 503);
+    assert_eq!(server.count("POST /feeds"), 1);
+    let error = workflows
+        .create_and_upload_feed_document("text/xml", chunks(&[b"x"]), UploadOptions::default())
+        .await
+        .unwrap_err();
+    assert!(matches!(error, WorkflowError::Upload { .. }), "{error:?}");
+    assert_eq!(server.count("POST /feeds"), 2);
+    assert_eq!(server.count("PUT /signed"), 1);
 }

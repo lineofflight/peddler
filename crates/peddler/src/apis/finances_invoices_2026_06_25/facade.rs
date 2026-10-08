@@ -32,17 +32,20 @@ pub async fn get_invoice(
         params.next_token_for_line_items.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/invoices/2026-06-25/invoices/",
-                &operation::last_segment(&params.invoice_identifier)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/invoices/2026-06-25/invoices/",
+                    &operation::last_segment(&params.invoice_identifier)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -101,13 +104,16 @@ pub async fn get_invoice_headers(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "toIssueDate", params.to_issue_date.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/invoices/2026-06-25/invoices".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/invoices/2026-06-25/invoices".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

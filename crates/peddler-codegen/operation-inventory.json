@@ -24,6 +24,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundOrders/{orderId}/cancellation",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -50,6 +51,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundEligibility",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::InboundEligibility",
@@ -76,6 +78,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundOrders/{orderId}/confirmation",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -102,6 +105,7 @@
             }
           ],
           "path": "/awd/2024-05-09/outboundOrders/{orderId}/confirmation",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -128,6 +132,7 @@
             }
           ],
           "path": "/awd/2024-05-09/replenishmentOrders/{orderId}/confirmation",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -154,6 +159,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundOrders",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::InboundOrderReference",
@@ -180,6 +186,7 @@
             }
           ],
           "path": "/awd/2024-05-09/outboundOrders",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::OutboundOrderReference",
@@ -206,6 +213,7 @@
             }
           ],
           "path": "/awd/2024-05-09/replenishmentOrders",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ReplenishmentOrderReference",
@@ -232,6 +240,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundOrders/{orderId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::InboundOrder",
@@ -272,6 +281,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundShipments/{shipmentId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::InboundShipment",
@@ -324,6 +334,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundShipments/{shipmentId}/labels",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ShipmentLabels",
@@ -350,6 +361,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundShipments/{shipmentId}/labelPageTypes",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ShipmentLabelPageTypes",
@@ -376,6 +388,7 @@
             }
           ],
           "path": "/awd/2024-05-09/outboundOrders/{orderId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::OutboundOrder",
@@ -402,6 +415,7 @@
             }
           ],
           "path": "/awd/2024-05-09/replenishmentOrders/{orderId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ReplenishmentOrder",
@@ -519,6 +533,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundShipments",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ShipmentListing",
@@ -605,6 +620,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inventory",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::InventoryListing",
@@ -689,6 +705,7 @@
             }
           ],
           "path": "/awd/2024-05-09/outboundOrders",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::OutboundListing",
@@ -773,6 +790,7 @@
             }
           ],
           "path": "/awd/2024-05-09/replenishmentOrders",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ReplenishmentOrderListing",
@@ -809,6 +827,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundOrders/{orderId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -845,6 +864,7 @@
             }
           ],
           "path": "/awd/2024-05-09/inboundShipments/{shipmentId}/transport",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -881,6 +901,7 @@
             }
           ],
           "path": "/awd/2024-05-09/outboundOrders/{orderId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::OutboundOrderReference",
@@ -927,6 +948,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PostContentDocumentResponse",
@@ -953,6 +975,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/media",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::CreateMediaResponse",
@@ -1006,6 +1029,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetContentDocumentResponse",
@@ -1042,6 +1066,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/media/{mediaId}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetMediaResponse",
@@ -1127,6 +1152,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::ListContentDocumentAsinRelationsResponse",
@@ -1163,6 +1189,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PostContentDocumentApprovalSubmissionResponse",
@@ -1209,6 +1236,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PostContentDocumentAsinRelationsResponse",
@@ -1245,6 +1273,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PostContentDocumentSuspendSubmissionResponse",
@@ -1293,6 +1322,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SearchContentDocumentsResponse",
@@ -1352,6 +1382,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentPublishRecords",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SearchContentPublishRecordsResponse",
@@ -1398,6 +1429,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PostContentDocumentResponse",
@@ -1444,6 +1476,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/media/{mediaId}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::UpdateMediaResponse",
@@ -1493,6 +1526,7 @@
             }
           ],
           "path": "/aplus/2020-11-01/contentAsinValidations",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::ValidateContentDocumentAsinRelationsResponse",
@@ -1529,6 +1563,7 @@
             }
           ],
           "path": "/appIntegrations/2024-04-01/notifications",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CreateNotificationResponse",
@@ -1555,6 +1590,7 @@
             }
           ],
           "path": "/appIntegrations/2024-04-01/notifications/deletion",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -1591,6 +1627,7 @@
             }
           ],
           "path": "/appIntegrations/2024-04-01/notifications/{notificationId}/feedback",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -1616,6 +1653,7 @@
           "pagination_exclusion": null,
           "parameters": [],
           "path": "/applications/2023-11-30/clientSecret",
+          "rate": 0.0167,
           "successes": [
             {
               "model": null,
@@ -1672,6 +1710,7 @@
             }
           ],
           "path": "/catalog/v0/categories",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ListCatalogCategoriesResponse",
@@ -1747,6 +1786,7 @@
             }
           ],
           "path": "/catalog/2020-12-01/items/{asin}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Item",
@@ -1882,6 +1922,7 @@
             }
           ],
           "path": "/catalog/2020-12-01/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ItemSearchResults",
@@ -1957,6 +1998,7 @@
             }
           ],
           "path": "/catalog/2022-04-01/items/{asin}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Item",
@@ -2135,6 +2177,7 @@
             }
           ],
           "path": "/catalog/2022-04-01/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ItemSearchResults",
@@ -2181,6 +2224,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/returns/topics",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BrowseNodeReturnTopicsResponse",
@@ -2221,6 +2265,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/returns/trends",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BrowseNodeReturnTrendsResponse",
@@ -2271,6 +2316,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/reviews/topics",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BrowseNodeReviewTopicsResponse",
@@ -2311,6 +2357,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/reviews/trends",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BrowseNodeReviewTrendsResponse",
@@ -2351,6 +2398,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/items/{asin}/browseNode",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BrowseNodeResponse",
@@ -2401,6 +2449,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/items/{asin}/reviews/topics",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ItemReviewTopicsResponse",
@@ -2441,6 +2490,7 @@
             }
           ],
           "path": "/customerFeedback/2024-06-01/items/{asin}/reviews/trends",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ItemReviewTrendsResponse",
@@ -2481,6 +2531,7 @@
             }
           ],
           "path": "/dataKiosk/2023-11-15/queries/{queryId}",
+          "rate": 0.0222,
           "successes": [
             {
               "model": null,
@@ -2507,6 +2558,7 @@
             }
           ],
           "path": "/dataKiosk/2023-11-15/queries",
+          "rate": 0.0167,
           "successes": [
             {
               "model": "super::models::CreateQueryResponse",
@@ -2533,6 +2585,7 @@
             }
           ],
           "path": "/dataKiosk/2023-11-15/documents/{documentId}",
+          "rate": 0.0167,
           "successes": [
             {
               "model": "super::models::GetDocumentResponse",
@@ -2615,6 +2668,7 @@
             }
           ],
           "path": "/dataKiosk/2023-11-15/queries",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::GetQueriesResponse",
@@ -2641,6 +2695,7 @@
             }
           ],
           "path": "/dataKiosk/2023-11-15/queries/{queryId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Query",
@@ -2735,6 +2790,7 @@
             }
           ],
           "path": "/delivery/2022-07-01/invoice/status",
+          "rate": 1.133,
           "successes": [
             {
               "model": "super::models::GetInvoiceStatusResponse",
@@ -2781,6 +2837,7 @@
             }
           ],
           "path": "/delivery/2022-07-01/invoice",
+          "rate": 1.133,
           "successes": [
             {
               "model": "super::models::SubmitInvoiceResponse",
@@ -2817,6 +2874,7 @@
             }
           ],
           "path": "/easyShip/2022-03-23/package",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::Package",
@@ -2843,6 +2901,7 @@
             }
           ],
           "path": "/easyShip/2022-03-23/packages/bulk",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CreateScheduledPackagesResponse",
@@ -2879,6 +2938,7 @@
             }
           ],
           "path": "/easyShip/2022-03-23/package",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::Package",
@@ -2905,6 +2965,7 @@
             }
           ],
           "path": "/easyShip/2022-03-23/timeSlot",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ListHandoverSlotsResponse",
@@ -2931,6 +2992,7 @@
             }
           ],
           "path": "/easyShip/2022-03-23/package",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::Packages",
@@ -2967,6 +3029,7 @@
             }
           ],
           "path": "/externalFulfillment/inventory/2024-09-11/inventories",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BatchInventoryResponse",
@@ -3003,6 +3066,7 @@
             }
           ],
           "path": "/externalFulfillment/2026-07-30/location",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CreateSandboxLocationResponse",
@@ -3039,6 +3103,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/returns/{returnId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::Return",
@@ -3209,6 +3274,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/returns",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ReturnsResponse",
@@ -3255,6 +3321,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -3281,6 +3348,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CreateSandboxShipmentResponse",
@@ -3307,6 +3375,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/invoice",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::InvoiceResponse",
@@ -3367,6 +3436,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/shipLabels",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ShipLabelsResponse",
@@ -3393,6 +3463,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::Shipment",
@@ -3513,6 +3584,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ShipmentsResponse",
@@ -3563,6 +3635,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -3589,6 +3662,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/invoice",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::InvoiceResponse",
@@ -3625,6 +3699,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/shippingOptions",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ShippingOptionsResponse",
@@ -3671,6 +3746,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages/{packageId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -3730,6 +3806,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages/{packageId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -3766,6 +3843,7 @@
             }
           ],
           "path": "/externalFulfillment/2024-09-11/shipments/{shipmentId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -3829,6 +3907,7 @@
             }
           ],
           "path": "/fba/inbound/v1/eligibility/itemPreview",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetItemEligibilityPreviewResponse",
@@ -3875,6 +3954,7 @@
             }
           ],
           "path": "/fba/inventory/v1/items/inventory",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::AddInventoryResponse",
@@ -3901,6 +3981,7 @@
             }
           ],
           "path": "/fba/inventory/v1/items",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CreateInventoryItemResponse",
@@ -3937,6 +4018,7 @@
             }
           ],
           "path": "/fba/inventory/v1/items/{sellerSku}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::DeleteInventoryItemResponse",
@@ -4054,6 +4136,7 @@
             }
           ],
           "path": "/fba/inventory/v1/summaries",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetInventorySummariesResponse",
@@ -4090,6 +4173,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/feeds/{feedId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": null,
@@ -4116,6 +4200,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/feeds",
+          "rate": 0.0083,
           "successes": [
             {
               "model": "super::models::CreateFeedResponse",
@@ -4142,6 +4227,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/documents",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::CreateFeedDocumentResponse",
@@ -4168,6 +4254,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/feeds/{feedId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Feed",
@@ -4204,6 +4291,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/documents/{feedDocumentId}",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::FeedDocument",
@@ -4312,6 +4400,7 @@
             }
           ],
           "path": "/feeds/2021-06-30/feeds",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::GetFeedsResponse",
@@ -4378,6 +4467,7 @@
             }
           ],
           "path": "/finances/remittances/2026-03-17/remittances/{uniquePaymentId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetRemittanceResponse",
@@ -4444,6 +4534,7 @@
             }
           ],
           "path": "/finances/remittances/2026-03-17/remittances",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetRemittancesResponse",
@@ -4510,6 +4601,7 @@
             }
           ],
           "path": "/finances/invoices/2026-06-25/invoices/{invoiceIdentifier}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoiceResponse",
@@ -4589,6 +4681,7 @@
             }
           ],
           "path": "/finances/invoices/2026-06-25/invoices",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesResponse",
@@ -4669,6 +4762,7 @@
             }
           ],
           "path": "/finances/v0/financialEventGroups",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListFinancialEventGroupsResponse",
@@ -4739,6 +4833,7 @@
             }
           ],
           "path": "/finances/v0/financialEvents",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListFinancialEventsResponse",
@@ -4819,6 +4914,7 @@
             }
           ],
           "path": "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListFinancialEventsResponse",
@@ -4877,6 +4973,7 @@
             }
           ],
           "path": "/finances/v0/orders/{orderId}/financialEvents",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListFinancialEventsResponse",
@@ -4967,6 +5064,7 @@
             }
           ],
           "path": "/finances/2024-06-19/balances",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListBalancesResponse",
@@ -5068,6 +5166,7 @@
             }
           ],
           "path": "/finances/2024-06-19/summary",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::SummaryResponse",
@@ -5166,6 +5265,7 @@
             }
           ],
           "path": "/finances/2024-06-19/transactions",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListTransactionsResponse",
@@ -5215,6 +5315,7 @@
             }
           ],
           "path": "/finances/transfers/2024-06-01/paymentMethods",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetPaymentMethodsResponse",
@@ -5241,6 +5342,7 @@
             }
           ],
           "path": "/finances/transfers/2024-06-01/payouts",
+          "rate": 0.017,
           "successes": [
             {
               "model": "super::models::InitiatePayoutResponse",
@@ -5300,6 +5402,7 @@
             }
           ],
           "path": "/finances/transfers/2024-06-01/payouts/expected",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListExpectedPayoutsResponse",
@@ -5391,6 +5494,7 @@
             }
           ],
           "path": "/finances/transfers/2024-06-01/payouts",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::ListPayoutsResponse",
@@ -5427,6 +5531,7 @@
             }
           ],
           "path": "/fba/inbound/v0/shipments/{shipmentId}/billOfLading",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetBillOfLadingResponse",
@@ -5545,6 +5650,7 @@
             }
           ],
           "path": "/fba/inbound/v0/shipments/{shipmentId}/labels",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetLabelsResponse",
@@ -5598,6 +5704,7 @@
             }
           ],
           "path": "/fba/inbound/v0/prepInstructions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetPrepInstructionsResponse",
@@ -5685,6 +5792,7 @@
             }
           ],
           "path": "/fba/inbound/v0/shipmentItems",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetShipmentItemsResponse",
@@ -5721,6 +5829,7 @@
             }
           ],
           "path": "/fba/inbound/v0/shipments/{shipmentId}/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetShipmentItemsResponse",
@@ -5837,6 +5946,7 @@
             }
           ],
           "path": "/fba/inbound/v0/shipments",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetShipmentsResponse",
@@ -5873,6 +5983,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/cancellation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CancelInboundPlanResponse",
@@ -5919,6 +6030,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentCancellation",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CancelSelfShipAppointmentResponse",
@@ -5965,6 +6077,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions/{deliveryWindowOptionId}/confirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ConfirmDeliveryWindowOptionsResponse",
@@ -6001,6 +6114,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions/{packingOptionId}/confirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ConfirmPackingOptionResponse",
@@ -6037,6 +6151,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions/{placementOptionId}/confirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ConfirmPlacementOptionResponse",
@@ -6083,6 +6198,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews/{contentUpdatePreviewId}/confirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ConfirmShipmentContentUpdatePreviewResponse",
@@ -6119,6 +6235,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions/confirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ConfirmTransportationOptionsResponse",
@@ -6145,6 +6262,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateInboundPlanResponse",
@@ -6171,6 +6289,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/items/labels",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateMarketplaceItemLabelsResponse",
@@ -6207,6 +6326,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GenerateDeliveryWindowOptionsResponse",
@@ -6233,6 +6353,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GeneratePackingOptionsResponse",
@@ -6269,6 +6390,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GeneratePlacementOptionsResponse",
@@ -6315,6 +6437,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GenerateSelfShipAppointmentSlotsResponse",
@@ -6361,6 +6484,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GenerateShipmentContentUpdatePreviewsResponse",
@@ -6397,6 +6521,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GenerateTransportationOptionsResponse",
@@ -6433,6 +6558,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryChallanDocument",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetDeliveryChallanDocumentResponse",
@@ -6459,6 +6585,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/operations/{operationId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::InboundOperationStatus",
@@ -6485,6 +6612,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::InboundPlan",
@@ -6552,6 +6680,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetSelfShipAppointmentSlotsResponse",
@@ -6588,6 +6717,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Shipment",
@@ -6634,6 +6764,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews/{contentUpdatePreviewId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ContentUpdatePreview",
@@ -6701,6 +6832,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListDeliveryWindowOptionsResponse",
@@ -6758,6 +6890,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/boxes",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListInboundPlanBoxesResponse",
@@ -6815,6 +6948,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListInboundPlanItemsResponse",
@@ -6872,6 +7006,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/pallets",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListInboundPlanPalletsResponse",
@@ -6962,6 +7097,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListInboundPlansResponse",
@@ -7001,6 +7137,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/items/compliance",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListItemComplianceDetailsResponse",
@@ -7068,6 +7205,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingGroups/{packingGroupId}/boxes",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListPackingGroupBoxesResponse",
@@ -7135,6 +7273,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingGroups/{packingGroupId}/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListPackingGroupItemsResponse",
@@ -7192,6 +7331,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListPackingOptionsResponse",
@@ -7249,6 +7389,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListPlacementOptionsResponse",
@@ -7288,6 +7429,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/items/prepDetails",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ListPrepDetailsResponse",
@@ -7355,6 +7497,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/boxes",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListShipmentBoxesResponse",
@@ -7422,6 +7565,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListShipmentContentUpdatePreviewsResponse",
@@ -7489,6 +7633,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/items",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListShipmentItemsResponse",
@@ -7556,6 +7701,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/pallets",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListShipmentPalletsResponse",
@@ -7633,6 +7779,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListTransportationOptionsResponse",
@@ -7689,6 +7836,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots/{slotId}/schedule",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ScheduleSelfShipAppointmentResponse",
@@ -7725,6 +7873,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingInformation",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::SetPackingInformationResponse",
@@ -7751,6 +7900,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/items/prepDetails",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::SetPrepDetailsResponse",
@@ -7787,6 +7937,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/name",
+          "rate": 2.0,
           "successes": [
             {
               "model": null,
@@ -7823,6 +7974,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/items/compliance",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::UpdateItemComplianceDetailsResponse",
@@ -7869,6 +8021,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/name",
+          "rate": 2.0,
           "successes": [
             {
               "model": null,
@@ -7915,6 +8068,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/sourceAddress",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::UpdateShipmentSourceAddressResponse",
@@ -7961,6 +8115,7 @@
             }
           ],
           "path": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/trackingDetails",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::UpdateShipmentTrackingDetailsResponse",
@@ -7997,6 +8152,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CancelFulfillmentOrderResponse",
@@ -8023,6 +8179,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateFulfillmentOrderResponse",
@@ -8059,6 +8216,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateFulfillmentReturnResponse",
@@ -8085,6 +8243,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/deliveryOffers",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetDeliveryOffersResponse",
@@ -8152,6 +8311,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/features/inventory/{featureName}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetFeatureInventoryResponse",
@@ -8198,6 +8358,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetFeatureSkuResponse",
@@ -8224,6 +8385,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/features",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetFeaturesResponse",
@@ -8250,6 +8412,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetFulfillmentOrderResponse",
@@ -8276,6 +8439,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/preview",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetFulfillmentPreviewResponse",
@@ -8303,6 +8467,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/tracking",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetPackageTrackingDetailsResponse",
@@ -8350,6 +8515,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListAllFulfillmentOrdersResponse",
@@ -8406,6 +8572,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/returnReasonCodes",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListReturnReasonCodesResponse",
@@ -8442,6 +8609,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/status",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::SubmitFulfillmentOrderStatusUpdateResponse",
@@ -8478,6 +8646,7 @@
             }
           ],
           "path": "/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::UpdateFulfillmentOrderResponse",
@@ -8524,6 +8693,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders/{orderId}/cancel",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CancelOrderResponse",
@@ -8560,6 +8730,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateOrderResponse",
@@ -8600,6 +8771,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/offers",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetOffersResponse",
@@ -8650,6 +8822,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders/{orderId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetOrderResponse",
@@ -8686,6 +8859,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/previews",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::GetOrderPreviewResponse",
@@ -8757,6 +8931,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::ListOrdersResponse",
@@ -8803,6 +8978,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders/{orderId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::UpdateOrderResponse",
@@ -8849,6 +9025,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders/{orderId}/status",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -8905,6 +9082,7 @@
             }
           ],
           "path": "/fulfillment/outbound/2026-07-04/orders/{orderId}/packages/{packageId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -8941,6 +9119,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/governmentInvoiceRequests",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -8967,6 +9146,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/exports",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ExportInvoicesResponse",
@@ -9043,6 +9223,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/governmentInvoiceRequests/{shipmentId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GovtInvoiceDocumentResponse",
@@ -9109,6 +9290,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/governmentInvoiceRequests",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GovernmentInvoiceStatusResponse",
@@ -9155,6 +9337,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/invoices/{invoiceId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoiceResponse",
@@ -9343,6 +9526,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/invoices",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesResponse",
@@ -9379,6 +9563,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/attributes",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesAttributesResponse",
@@ -9415,6 +9600,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/documents/{invoicesDocumentId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesDocumentResponse",
@@ -9451,6 +9637,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/exports/{exportId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesExportResponse",
@@ -9555,6 +9742,7 @@
             }
           ],
           "path": "/tax/invoices/2024-06-19/exports",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetInvoicesExportsResponse",
@@ -9624,6 +9812,7 @@
             }
           ],
           "path": "/listings/2020-09-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -9693,6 +9882,7 @@
             }
           ],
           "path": "/listings/2020-09-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -9762,6 +9952,7 @@
             }
           ],
           "path": "/listings/2020-09-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -9831,6 +10022,7 @@
             }
           ],
           "path": "/listings/2021-08-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -9906,6 +10098,7 @@
             }
           ],
           "path": "/listings/2021-08-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::Item",
@@ -10004,6 +10197,7 @@
             }
           ],
           "path": "/listings/2021-08-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -10102,6 +10296,7 @@
             }
           ],
           "path": "/listings/2021-08-01/items/{sellerId}/{sku}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ListingsItemSubmissionResponse",
@@ -10366,6 +10561,7 @@
             }
           ],
           "path": "/listings/2021-08-01/items/{sellerId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ItemSearchResults",
@@ -10470,6 +10666,7 @@
             }
           ],
           "path": "/listings/2021-08-01/restrictions",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::RestrictionList",
@@ -10506,6 +10703,7 @@
             }
           ],
           "path": "/mfn/v0/shipments/{shipmentId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CancelShipmentResponse",
@@ -10532,6 +10730,7 @@
             }
           ],
           "path": "/mfn/v0/shipments",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::CreateShipmentResponse",
@@ -10558,6 +10757,7 @@
             }
           ],
           "path": "/mfn/v0/additionalSellerInputs",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetAdditionalSellerInputsResponse",
@@ -10584,6 +10784,7 @@
             }
           ],
           "path": "/mfn/v0/eligibleShippingServices",
+          "rate": 6.0,
           "successes": [
             {
               "model": "super::models::GetEligibleShipmentServicesResponse",
@@ -10610,6 +10811,7 @@
             }
           ],
           "path": "/mfn/v0/shipments/{shipmentId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetShipmentResponse",
@@ -10669,6 +10871,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10718,6 +10921,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10767,6 +10971,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10816,6 +11021,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10865,6 +11071,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10914,6 +11121,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -10963,6 +11171,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -11012,6 +11221,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/warranty",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -11051,6 +11261,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/attributes",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -11090,6 +11301,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -11139,6 +11351,7 @@
             }
           ],
           "path": "/messaging/v1/orders/{amazonOrderId}/messages/invoice",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -11175,6 +11388,7 @@
             }
           ],
           "path": "/notifications/v1/destinations",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CreateDestinationResponse",
@@ -11211,6 +11425,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions/{notificationType}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CreateSubscriptionResponse",
@@ -11237,6 +11452,7 @@
             }
           ],
           "path": "/notifications/v1/destinations/{destinationId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::DeleteDestinationResponse",
@@ -11273,6 +11489,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::DeleteSubscriptionByIdResponse",
@@ -11299,6 +11516,7 @@
             }
           ],
           "path": "/notifications/v1/destinations/{destinationId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetDestinationResponse",
@@ -11314,6 +11532,7 @@
           "pagination_exclusion": null,
           "parameters": [],
           "path": "/notifications/v1/destinations",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetDestinationsResponse",
@@ -11350,6 +11569,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions/{notificationType}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetSubscriptionResponse",
@@ -11386,6 +11606,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions/{notificationType}/{subscriptionId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetSubscriptionByIdResponse",
@@ -11456,6 +11677,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetSubscriptionsResponse",
@@ -11492,6 +11714,7 @@
             }
           ],
           "path": "/notifications/v1/subscriptions/{notificationType}/testNotification",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::SendTestNotificationResponse",
@@ -11538,6 +11761,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/shipmentConfirmation",
+          "rate": 2.0,
           "successes": [
             {
               "model": null,
@@ -11564,6 +11788,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderResponse",
@@ -11590,6 +11815,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/address",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderAddressResponse",
@@ -11616,6 +11842,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/buyerInfo",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderBuyerInfoResponse",
@@ -11662,6 +11889,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/orderItems",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderItemsResponse",
@@ -11708,6 +11936,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/orderItems/buyerInfo",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderItemsBuyerInfoResponse",
@@ -11734,6 +11963,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/regulatedInfo",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderRegulatedInfoResponse",
@@ -12001,6 +12231,7 @@
             }
           ],
           "path": "/orders/v0/orders",
+          "rate": 0.0167,
           "successes": [
             {
               "model": "super::models::GetOrdersResponse",
@@ -12037,6 +12268,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/shipment",
+          "rate": 5.0,
           "successes": [
             {
               "model": null,
@@ -12073,6 +12305,7 @@
             }
           ],
           "path": "/orders/v0/orders/{orderId}/regulatedInfo",
+          "rate": 0.5,
           "successes": [
             {
               "model": null,
@@ -12122,6 +12355,7 @@
             }
           ],
           "path": "/orders/2026-01-01/orders/{orderId}",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderResponse",
@@ -12264,6 +12498,7 @@
             }
           ],
           "path": "/orders/2026-01-01/orders",
+          "rate": 0.0056,
           "successes": [
             {
               "model": "super::models::SearchOrdersResponse",
@@ -12310,6 +12545,7 @@
             }
           ],
           "path": "/products/fees/v0/items/{Asin}/feesEstimate",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetMyFeesEstimateResponse",
@@ -12346,6 +12582,7 @@
             }
           ],
           "path": "/products/fees/v0/listings/{SellerSKU}/feesEstimate",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetMyFeesEstimateResponse",
@@ -12372,6 +12609,7 @@
             }
           ],
           "path": "/products/fees/v0/feesEstimate",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetMyFeesEstimatesResponse",
@@ -12462,6 +12700,7 @@
             }
           ],
           "path": "/products/pricing/v0/competitivePrice",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetPricingResponse",
@@ -12529,6 +12768,7 @@
             }
           ],
           "path": "/products/pricing/v0/items/{Asin}/offers",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOffersResponse",
@@ -12555,6 +12795,7 @@
             }
           ],
           "path": "/batches/products/pricing/v0/itemOffers",
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::GetItemOffersBatchResponse",
@@ -12622,6 +12863,7 @@
             }
           ],
           "path": "/products/pricing/v0/listings/{SellerSKU}/offers",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetOffersResponse",
@@ -12648,6 +12890,7 @@
             }
           ],
           "path": "/batches/products/pricing/v0/listingOffers",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetListingOffersBatchResponse",
@@ -12745,6 +12988,7 @@
             }
           ],
           "path": "/products/pricing/v0/price",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetPricingResponse",
@@ -12781,6 +13025,7 @@
             }
           ],
           "path": "/batches/products/pricing/2022-05-01/items/competitiveSummary",
+          "rate": 0.033,
           "successes": [
             {
               "model": "super::models::CompetitiveSummaryBatchResponse",
@@ -12807,6 +13052,7 @@
             }
           ],
           "path": "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice",
+          "rate": 0.033,
           "successes": [
             {
               "model": "super::models::GetFeaturedOfferExpectedPriceBatchResponse",
@@ -12974,6 +13220,7 @@
             }
           ],
           "path": "/definitions/2020-09-01/productTypes/{productType}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ProductTypeDefinition",
@@ -13046,6 +13293,7 @@
             }
           ],
           "path": "/definitions/2020-09-01/productTypes",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::ProductTypeList",
@@ -13106,6 +13354,7 @@
             }
           ],
           "path": "/promotions/2025-12-01/promotions/{promotionId}",
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::GetPromotionResponse",
@@ -13208,6 +13457,7 @@
             }
           ],
           "path": "/promotions/2025-12-01/promotions/{promotionId}/selections/{selectionId}",
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::GetSelectionResponse",
@@ -13427,6 +13677,7 @@
             }
           ],
           "path": "/promotions/2025-12-01/promotions",
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::SearchPromotionsResponse",
@@ -13463,6 +13714,7 @@
             }
           ],
           "path": "/replenishment/2022-11-07/sellingPartners/metrics/search",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetSellingPartnerMetricsResponse",
@@ -13489,6 +13741,7 @@
             }
           ],
           "path": "/replenishment/2022-11-07/offers/metrics/search",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ListOfferMetricsResponse",
@@ -13515,6 +13768,7 @@
             }
           ],
           "path": "/replenishment/2022-11-07/offers/search",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::ListOffersResponse",
@@ -13551,6 +13805,7 @@
             }
           ],
           "path": "/reports/2021-06-30/reports/{reportId}",
+          "rate": 0.0222,
           "successes": [
             {
               "model": null,
@@ -13577,6 +13832,7 @@
             }
           ],
           "path": "/reports/2021-06-30/schedules/{reportScheduleId}",
+          "rate": 0.0222,
           "successes": [
             {
               "model": null,
@@ -13603,6 +13859,7 @@
             }
           ],
           "path": "/reports/2021-06-30/reports",
+          "rate": 0.0167,
           "successes": [
             {
               "model": "super::models::CreateReportResponse",
@@ -13629,6 +13886,7 @@
             }
           ],
           "path": "/reports/2021-06-30/schedules",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::CreateReportScheduleResponse",
@@ -13655,6 +13913,7 @@
             }
           ],
           "path": "/reports/2021-06-30/reports/{reportId}",
+          "rate": 2.0,
           "successes": [
             {
               "model": "super::models::Report",
@@ -13691,6 +13950,7 @@
             }
           ],
           "path": "/reports/2021-06-30/documents/{reportDocumentId}",
+          "rate": 0.0167,
           "successes": [
             {
               "model": "super::models::ReportDocument",
@@ -13717,6 +13977,7 @@
             }
           ],
           "path": "/reports/2021-06-30/schedules/{reportScheduleId}",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::ReportSchedule",
@@ -13746,6 +14007,7 @@
             }
           ],
           "path": "/reports/2021-06-30/schedules",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::ReportScheduleList",
@@ -13854,6 +14116,7 @@
             }
           ],
           "path": "/reports/2021-06-30/reports",
+          "rate": 0.0222,
           "successes": [
             {
               "model": "super::models::GetReportsResponse",
@@ -14005,6 +14268,7 @@
             }
           ],
           "path": "/sales/v1/orderMetrics",
+          "rate": 0.5,
           "successes": [
             {
               "model": "super::models::GetOrderMetricsResponse",
@@ -14071,6 +14335,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transactions",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CreateTransactionResponse",
@@ -14127,6 +14392,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferSchedules",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransferSchedule",
@@ -14163,6 +14429,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferSchedules/{transferScheduleId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::DeleteTransferSchedule",
@@ -14199,6 +14466,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/accounts/{accountId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BankAccount",
@@ -14235,6 +14503,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transactions/{transactionId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::Transaction",
@@ -14311,6 +14580,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferPreview",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransferRatePreview",
@@ -14347,6 +14617,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferSchedules/{transferScheduleId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransferSchedule",
@@ -14383,6 +14654,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/accounts/{accountId}/balance",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BalanceListing",
@@ -14439,6 +14711,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transactions",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransactionListing",
@@ -14465,6 +14738,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/accounts",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::BankAccountListing",
@@ -14521,6 +14795,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferSchedules",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransferScheduleListing",
@@ -14577,6 +14852,7 @@
             }
           ],
           "path": "/finances/transfers/wallet/2024-03-01/transferSchedules",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransferSchedule",
@@ -14602,6 +14878,7 @@
           "pagination_exclusion": null,
           "parameters": [],
           "path": "/sellers/v1/account",
+          "rate": 0.016,
           "successes": [
             {
               "model": "super::models::GetAccountResponse",
@@ -14617,6 +14894,7 @@
           "pagination_exclusion": null,
           "parameters": [],
           "path": "/sellers/v1/marketplaceParticipations",
+          "rate": 0.016,
           "successes": [
             {
               "model": "super::models::GetMarketplaceParticipationsResponse",
@@ -14663,6 +14941,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/appointments",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::SetAppointmentResponse",
@@ -14709,6 +14988,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}/resources",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::AssignAppointmentResourcesResponse",
@@ -14748,6 +15028,7 @@
             }
           ],
           "path": "/service/v1/reservation/{reservationId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": null,
@@ -14784,6 +15065,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/cancellations",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CancelServiceJobByServiceJobIdResponse",
@@ -14810,6 +15092,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/completions",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CompleteServiceJobByServiceJobIdResponse",
@@ -14849,6 +15132,7 @@
             }
           ],
           "path": "/service/v1/reservation",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CreateReservationResponse",
@@ -14875,6 +15159,7 @@
             }
           ],
           "path": "/service/v1/documents",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CreateServiceDocumentUploadDestination",
@@ -14944,6 +15229,7 @@
             }
           ],
           "path": "/service/v1/appointmentSlots",
+          "rate": 20.0,
           "successes": [
             {
               "model": "super::models::GetAppointmentSlotsResponse",
@@ -15003,6 +15289,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/appointmentSlots",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetAppointmentSlotsResponse",
@@ -15072,6 +15359,7 @@
             }
           ],
           "path": "/service/v1/serviceResources/{resourceId}/capacity/fixed",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::FixedSlotCapacity",
@@ -15141,6 +15429,7 @@
             }
           ],
           "path": "/service/v1/serviceResources/{resourceId}/capacity/range",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::RangeSlotCapacity",
@@ -15167,6 +15456,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}",
+          "rate": 20.0,
           "successes": [
             {
               "model": "super::models::GetServiceJobByServiceJobIdResponse",
@@ -15406,6 +15696,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetServiceJobsResponse",
@@ -15452,6 +15743,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::SetAppointmentResponse",
@@ -15498,6 +15790,7 @@
             }
           ],
           "path": "/service/v1/serviceJobs/{serviceJobId}/appointments/{appointmentId}/fulfillment",
+          "rate": 5.0,
           "successes": [
             {
               "model": null,
@@ -15547,6 +15840,7 @@
             }
           ],
           "path": "/service/v1/reservation/{reservationId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::UpdateReservationResponse",
@@ -15596,6 +15890,7 @@
             }
           ],
           "path": "/service/v1/serviceResources/{resourceId}/schedules",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::UpdateScheduleResponse",
@@ -15632,6 +15927,7 @@
             }
           ],
           "path": "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice/status",
+          "rate": 1.133,
           "successes": [
             {
               "model": "super::models::GetInvoiceStatusResponse",
@@ -15658,6 +15954,7 @@
             }
           ],
           "path": "/fba/outbound/brazil/v0/shipments/{shipmentId}",
+          "rate": 1.133,
           "successes": [
             {
               "model": "super::models::GetShipmentDetailsResponse",
@@ -15694,6 +15991,7 @@
             }
           ],
           "path": "/fba/outbound/brazil/v0/shipments/{shipmentId}/invoice",
+          "rate": 1.133,
           "successes": [
             {
               "model": "super::models::SubmitInvoiceResponse",
@@ -15730,6 +16028,7 @@
             }
           ],
           "path": "/shipping/v1/shipments/{shipmentId}/cancel",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CancelShipmentResponse",
@@ -15756,6 +16055,7 @@
             }
           ],
           "path": "/shipping/v1/shipments",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::CreateShipmentResponse",
@@ -15771,6 +16071,7 @@
           "pagination_exclusion": null,
           "parameters": [],
           "path": "/shipping/v1/account",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetAccountResponse",
@@ -15797,6 +16098,7 @@
             }
           ],
           "path": "/shipping/v1/rates",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetRatesResponse",
@@ -15823,6 +16125,7 @@
             }
           ],
           "path": "/shipping/v1/shipments/{shipmentId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::GetShipmentResponse",
@@ -15849,6 +16152,7 @@
             }
           ],
           "path": "/shipping/v1/tracking/{trackingId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::GetTrackingInformationResponse",
@@ -15885,6 +16189,7 @@
             }
           ],
           "path": "/shipping/v1/shipments/{shipmentId}/purchaseLabels",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::PurchaseLabelsResponse",
@@ -15911,6 +16216,7 @@
             }
           ],
           "path": "/shipping/v1/purchaseShipment",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::PurchaseShipmentResponse",
@@ -15957,6 +16263,7 @@
             }
           ],
           "path": "/shipping/v1/shipments/{shipmentId}/containers/{trackingId}/label",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::RetrieveShippingLabelResponse",
@@ -16015,6 +16322,7 @@
             }
           ],
           "path": "/shipping/v2/shipments/{shipmentId}/cancel",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::CancelShipmentResponse",
@@ -16063,6 +16371,7 @@
             }
           ],
           "path": "/shipping/v2/claims",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::CreateClaimResponse",
@@ -16131,6 +16440,7 @@
             }
           ],
           "path": "/shipping/v2/shipments/directPurchase",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::DirectPurchaseResponse",
@@ -16189,6 +16499,7 @@
             }
           ],
           "path": "/shipping/v2/collectionForms",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GenerateCollectionFormResponse",
@@ -16260,6 +16571,7 @@
             }
           ],
           "path": "/shipping/v2/accessPoints",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetAccessPointsResponse",
@@ -16318,6 +16630,7 @@
             }
           ],
           "path": "/shipping/v2/shipments/additionalInputs/schema",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetAdditionalInputsResponse",
@@ -16356,6 +16669,7 @@
             }
           ],
           "path": "/shipping/v2/carrierAccountFormInputs",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetCarrierAccountFormInputsResponse",
@@ -16404,6 +16718,7 @@
             }
           ],
           "path": "/shipping/v2/carrierAccounts",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetCarrierAccountsResponse",
@@ -16452,6 +16767,7 @@
             }
           ],
           "path": "/shipping/v2/collectionForms/{collectionFormId}",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetCollectionFormResponse",
@@ -16500,6 +16816,7 @@
             }
           ],
           "path": "/shipping/v2/collectionForms/history",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetCollectionFormHistoryResponse",
@@ -16548,6 +16865,7 @@
             }
           ],
           "path": "/shipping/v2/shipments/rates",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetRatesResponse",
@@ -16626,6 +16944,7 @@
             }
           ],
           "path": "/shipping/v2/shipments/{shipmentId}/documents",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetShipmentDocumentsResponse",
@@ -16684,6 +17003,7 @@
             }
           ],
           "path": "/shipping/v2/tracking",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetTrackingResponse",
@@ -16732,6 +17052,7 @@
             }
           ],
           "path": "/shipping/v2/unmanifestedShipments",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::GetUnmanifestedShipmentsResponse",
@@ -16790,6 +17111,7 @@
             }
           ],
           "path": "/shipping/v2/carrierAccounts/{carrierId}",
+          "rate": 5.0,
           "successes": [
             {
               "model": "super::models::LinkCarrierAccountResponse",
@@ -16848,6 +17170,7 @@
             }
           ],
           "path": "/shipping/v2/carrierAccounts/{carrierId}",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::LinkCarrierAccountResponse",
@@ -16896,6 +17219,7 @@
             }
           ],
           "path": "/shipping/v2/oneClickShipment",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::OneClickShipmentResponse",
@@ -16954,6 +17278,7 @@
             }
           ],
           "path": "/shipping/v2/shipments",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::PurchaseShipmentResponse",
@@ -17002,6 +17327,7 @@
             }
           ],
           "path": "/shipping/v2/ndrFeedback",
+          "rate": 80.0,
           "successes": [
             {
               "model": null,
@@ -17060,6 +17386,7 @@
             }
           ],
           "path": "/shipping/v2/carrierAccounts/{carrierId}/unlink",
+          "rate": 80.0,
           "successes": [
             {
               "model": "super::models::UnlinkCarrierAccountResponse",
@@ -17109,6 +17436,7 @@
             }
           ],
           "path": "/solicitations/v1/orders/{amazonOrderId}/solicitations/productReviewAndSellerFeedback",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -17148,6 +17476,7 @@
             }
           ],
           "path": "/solicitations/v1/orders/{amazonOrderId}",
+          "rate": 1.0,
           "successes": [
             {
               "model": null,
@@ -17184,6 +17513,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -17210,6 +17540,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::CreateSupplySourceResponse",
@@ -17236,6 +17567,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::SupplySource",
@@ -17283,6 +17615,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetSupplySourcesResponse",
@@ -17319,6 +17652,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -17355,6 +17689,7 @@
             }
           ],
           "path": "/supplySources/2020-07-01/supplySources/{supplySourceId}/status",
+          "rate": null,
           "successes": [
             {
               "model": null,
@@ -17391,6 +17726,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases/{caseId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::Case",
@@ -17427,6 +17763,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ListCasesResult",
@@ -17500,6 +17837,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases/{caseId}/contacts",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::ListContactsResult",
@@ -17536,6 +17874,7 @@
             }
           ],
           "path": "/tokens/2021-03-01/restrictedDataToken",
+          "rate": 1.0,
           "successes": [
             {
               "model": "super::models::CreateRestrictedDataTokenResponse",
@@ -17652,6 +17991,7 @@
             }
           ],
           "path": "/tracking/2026-01-30/shipments/track",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::GetShipmentTrackingResponse",
@@ -17721,6 +18061,7 @@
             }
           ],
           "path": "/uploads/2020-11-01/uploadDestinations/{resource}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::CreateUploadDestinationResponse",
@@ -17801,6 +18142,7 @@
             }
           ],
           "path": "/catalog/2024-11-01/automotive/vehicles",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::VehiclesResponse",
@@ -17847,6 +18189,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/inventory/v1/warehouses/{warehouseId}/items",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitInventoryUpdateResponse",
@@ -17883,6 +18226,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/v1/purchaseOrders/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetOrderResponse",
@@ -18004,6 +18348,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/v1/purchaseOrders",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetOrdersResponse",
@@ -18030,6 +18375,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/v1/acknowledgements",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitAcknowledgementResponse",
@@ -18066,6 +18412,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::Order",
@@ -18187,6 +18534,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::OrderList",
@@ -18213,6 +18561,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/orders/2021-12-28/acknowledgements",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::TransactionId",
@@ -18249,6 +18598,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/payments/v1/invoices",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitInvoiceResponse",
@@ -18285,6 +18635,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/sandbox/2021-10-28/orders",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransactionReference",
@@ -18311,6 +18662,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/sandbox/2021-10-28/transactions/{transactionId}",
+          "rate": null,
           "successes": [
             {
               "model": "super::models::TransactionStatus",
@@ -18347,6 +18699,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/customerInvoices/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetCustomerInvoiceResponse",
@@ -18439,6 +18792,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/customerInvoices",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetCustomerInvoicesResponse",
@@ -18465,6 +18819,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/packingSlips/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetPackingSlipResponse",
@@ -18558,6 +18913,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/packingSlips",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetPackingSlipListResponse",
@@ -18584,6 +18940,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/shippingLabels/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetShippingLabelResponse",
@@ -18677,6 +19034,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/shippingLabels",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetShippingLabelListResponse",
@@ -18703,6 +19061,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/shipmentConfirmations",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitShipmentConfirmationsResponse",
@@ -18729,6 +19088,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitShipmentStatusUpdatesResponse",
@@ -18755,6 +19115,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/v1/shippingLabels",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitShippingLabelsResponse",
@@ -18791,6 +19152,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/containerLabel",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::CreateContainerLabelResponse",
@@ -18827,6 +19189,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::ShippingLabel",
@@ -18853,6 +19216,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::CustomerInvoice",
@@ -18945,6 +19309,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::CustomerInvoiceList",
@@ -18971,6 +19336,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PackingSlip",
@@ -19064,6 +19430,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/packingSlips",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::PackingSlipList",
@@ -19090,6 +19457,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::ShippingLabel",
@@ -19183,6 +19551,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::ShippingLabelList",
@@ -19209,6 +19578,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::TransactionReference",
@@ -19235,6 +19605,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::TransactionReference",
@@ -19261,6 +19632,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::TransactionReference",
@@ -19297,6 +19669,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/transactions/v1/transactions/{transactionId}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetTransactionResponse",
@@ -19333,6 +19706,7 @@
             }
           ],
           "path": "/vendor/directFulfillment/transactions/2021-12-28/transactions/{transactionId}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::TransactionStatus",
@@ -19369,6 +19743,7 @@
             }
           ],
           "path": "/vendor/payments/v1/invoices",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitInvoicesResponse",
@@ -19405,6 +19780,7 @@
             }
           ],
           "path": "/vendor/orders/v1/purchaseOrders/{purchaseOrderNumber}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetPurchaseOrderResponse",
@@ -19570,6 +19946,7 @@
             }
           ],
           "path": "/vendor/orders/v1/purchaseOrders",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetPurchaseOrdersResponse",
@@ -19750,6 +20127,7 @@
             }
           ],
           "path": "/vendor/orders/v1/purchaseOrdersStatus",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetPurchaseOrdersStatusResponse",
@@ -19776,6 +20154,7 @@
             }
           ],
           "path": "/vendor/orders/v1/acknowledgements",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitAcknowledgementResponse",
@@ -20073,6 +20452,7 @@
             }
           ],
           "path": "/vendor/shipping/v1/shipments",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetShipmentDetailsResponse",
@@ -20186,6 +20566,7 @@
             }
           ],
           "path": "/vendor/shipping/v1/transportLabels",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetShipmentLabels",
@@ -20212,6 +20593,7 @@
             }
           ],
           "path": "/vendor/shipping/v1/shipmentConfirmations",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitShipmentConfirmationsResponse",
@@ -20238,6 +20620,7 @@
             }
           ],
           "path": "/vendor/shipping/v1/shipments",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::SubmitShipmentConfirmationsResponse",
@@ -20274,6 +20657,7 @@
             }
           ],
           "path": "/vendor/transactions/v1/transactions/{transactionId}",
+          "rate": 10.0,
           "successes": [
             {
               "model": "super::models::GetTransactionResponse",

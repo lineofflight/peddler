@@ -53,13 +53,16 @@ pub async fn list_financial_event_groups(
     );
     operation::pair(&mut query, "NextToken", params.next_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/v0/financialEventGroups".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/v0/financialEventGroups".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -124,13 +127,16 @@ pub async fn list_financial_events(
     operation::pair(&mut query, "PostedAfter", params.posted_after.as_ref());
     operation::pair(&mut query, "PostedBefore", params.posted_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/finances/v0/financialEvents".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/finances/v0/financialEvents".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -192,18 +198,21 @@ pub async fn list_financial_events_by_group_id(
     operation::pair(&mut query, "PostedAfter", params.posted_after.as_ref());
     operation::pair(&mut query, "PostedBefore", params.posted_before.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/v0/financialEventGroups/",
-                &operation::segment(&params.event_group_id)?,
-                "/financialEvents",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/v0/financialEventGroups/",
+                    &operation::segment(&params.event_group_id)?,
+                    "/financialEvents",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -259,18 +268,21 @@ pub async fn list_financial_events_by_order_id(
     );
     operation::pair(&mut query, "NextToken", params.next_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/finances/v0/orders/",
-                &operation::segment(&params.order_id)?,
-                "/financialEvents",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/finances/v0/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/financialEvents",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

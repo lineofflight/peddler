@@ -26,17 +26,20 @@ pub async fn get_order(
     operation::csv(&mut query, "includedData", params.included_data.as_ref());
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/orders/2026-01-01/orders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/orders/2026-01-01/orders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -111,13 +114,16 @@ pub async fn search_orders(
     operation::empty(&mut query, "fulfilledBy", params.fulfilled_by.as_ref());
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/orders/2026-01-01/orders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/orders/2026-01-01/orders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.0056),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -19,17 +19,20 @@ pub async fn get_transaction_status(
     params: GetTransactionStatusParams,
 ) -> Result<TypedResponse<super::models::TransactionStatus>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/transactions/2021-12-28/transactions/",
-                &operation::last_segment(&params.transaction_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/transactions/2021-12-28/transactions/",
+                    &operation::last_segment(&params.transaction_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

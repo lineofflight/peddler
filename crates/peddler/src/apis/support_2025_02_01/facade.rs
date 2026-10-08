@@ -19,17 +19,20 @@ pub async fn get_case(
     params: GetCaseParams,
 ) -> Result<TypedResponse<super::models::Case>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/support/2025-02-01/cases/",
-                &operation::last_segment(&params.case_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/support/2025-02-01/cases/",
+                    &operation::last_segment(&params.case_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -48,13 +51,16 @@ pub async fn list_cases<B: serde::Serialize>(
     params: ListCasesParams<B>,
 ) -> Result<TypedResponse<super::models::ListCasesResult>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/support/2025-02-01/cases".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/support/2025-02-01/cases".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -113,18 +119,21 @@ pub async fn list_contacts(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/support/2025-02-01/cases/",
-                &operation::segment(&params.case_id)?,
-                "/contacts",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/support/2025-02-01/cases/",
+                    &operation::segment(&params.case_id)?,
+                    "/contacts",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

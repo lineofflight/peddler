@@ -28,18 +28,21 @@ pub async fn confirm_customization_details<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/confirmCustomizationDetails",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/confirmCustomizationDetails",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -67,18 +70,21 @@ pub async fn create_confirm_delivery_details<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/confirmDeliveryDetails",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/confirmDeliveryDetails",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -106,18 +112,21 @@ pub async fn create_confirm_order_details<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/confirmOrderDetails",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/confirmOrderDetails",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -145,18 +154,21 @@ pub async fn create_confirm_service_details<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/confirmServiceDetails",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/confirmServiceDetails",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -184,18 +196,21 @@ pub async fn create_digital_access_key<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/digitalAccessKey",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/digitalAccessKey",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -223,18 +238,21 @@ pub async fn create_legal_disclosure<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/legalDisclosure",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/legalDisclosure",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -262,18 +280,21 @@ pub async fn create_unexpected_problem<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/unexpectedProblem",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/unexpectedProblem",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -301,18 +322,21 @@ pub async fn create_warranty<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/warranty",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/warranty",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -338,18 +362,21 @@ pub async fn get_attributes(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/attributes",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/attributes",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -375,17 +402,20 @@ pub async fn get_messaging_actions_for_order(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::last_segment(&params.amazon_order_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::last_segment(&params.amazon_order_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -413,18 +443,21 @@ pub async fn send_invoice<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/messaging/v1/orders/",
-                &operation::segment(&params.amazon_order_id)?,
-                "/messages/invoice",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/messaging/v1/orders/",
+                    &operation::segment(&params.amazon_order_id)?,
+                    "/messages/invoice",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }

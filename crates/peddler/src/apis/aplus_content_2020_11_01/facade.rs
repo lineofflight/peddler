@@ -22,13 +22,16 @@ pub async fn create_content_document<B: serde::Serialize>(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/aplus/2020-11-01/contentDocuments".into(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/aplus/2020-11-01/contentDocuments".into(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -47,13 +50,16 @@ pub async fn create_media<B: serde::Serialize>(
     params: CreateMediaParams<B>,
 ) -> Result<TypedResponse<super::models::CreateMediaResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/aplus/2020-11-01/media".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/aplus/2020-11-01/media".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -86,17 +92,20 @@ pub async fn get_content_document(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::empty(&mut query, "includedDataSet", Some(&params.included_data_set));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::last_segment(&params.content_reference_key)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::last_segment(&params.content_reference_key)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -125,17 +134,20 @@ pub async fn get_media(
         params.associated_media_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/aplus/2020-11-01/media/",
-                &operation::last_segment(&params.media_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/aplus/2020-11-01/media/",
+                    &operation::last_segment(&params.media_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -174,18 +186,21 @@ pub async fn list_content_document_asin_relations(
     operation::empty(&mut query, "includedDataSet", params.included_data_set.as_ref());
     operation::empty(&mut query, "asinSet", params.asin_set.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
-                "/asins",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::segment(&params.content_reference_key)?,
+                    "/asins",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -236,18 +251,21 @@ pub async fn post_content_document_approval_submission(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
-                "/approvalSubmissions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::segment(&params.content_reference_key)?,
+                    "/approvalSubmissions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -277,18 +295,21 @@ pub async fn post_content_document_asin_relations<B: serde::Serialize>(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
-                "/asins",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::segment(&params.content_reference_key)?,
+                    "/asins",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -316,18 +337,21 @@ pub async fn post_content_document_suspend_submission(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::segment(&params.content_reference_key)?,
-                "/suspendSubmissions",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::segment(&params.content_reference_key)?,
+                    "/suspendSubmissions",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -353,13 +377,16 @@ pub async fn search_content_documents(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "pageToken", params.page_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/aplus/2020-11-01/contentDocuments".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/aplus/2020-11-01/contentDocuments".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -408,13 +435,16 @@ pub async fn search_content_publish_records(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::pair(&mut query, "pageToken", params.page_token.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/aplus/2020-11-01/contentPublishRecords".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/aplus/2020-11-01/contentPublishRecords".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -462,17 +492,20 @@ pub async fn update_content_document<B: serde::Serialize>(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/aplus/2020-11-01/contentDocuments/",
-                &operation::last_segment(&params.content_reference_key)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/aplus/2020-11-01/contentDocuments/",
+                    &operation::last_segment(&params.content_reference_key)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -503,17 +536,20 @@ pub async fn update_media<B: serde::Serialize>(
         params.associated_media_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PATCH".into(),
-            path: [
-                "/aplus/2020-11-01/media/",
-                &operation::last_segment(&params.media_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PATCH".into(),
+                path: [
+                    "/aplus/2020-11-01/media/",
+                    &operation::last_segment(&params.media_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -545,13 +581,16 @@ pub async fn validate_content_document_asin_relations<B: serde::Serialize>(
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     operation::empty(&mut query, "asinSet", params.asin_set.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/aplus/2020-11-01/contentAsinValidations".into(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/aplus/2020-11-01/contentAsinValidations".into(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

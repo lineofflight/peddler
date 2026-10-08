@@ -19,13 +19,16 @@ pub async fn submit_invoice<B: serde::Serialize>(
     params: SubmitInvoiceParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitInvoiceResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/payments/v1/invoices".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/payments/v1/invoices".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

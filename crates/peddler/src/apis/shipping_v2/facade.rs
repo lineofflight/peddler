@@ -29,18 +29,21 @@ pub async fn cancel_shipment(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/shipping/v2/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/cancel",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/shipping/v2/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/cancel",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -69,13 +72,16 @@ pub async fn create_claim<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/claims".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/claims".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -114,13 +120,16 @@ pub async fn direct_purchase_shipment<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/shipments/directPurchase".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/shipments/directPurchase".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -156,13 +165,16 @@ pub async fn generate_collection_form<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/collectionForms".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/collectionForms".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -204,13 +216,16 @@ pub async fn get_access_points(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/shipping/v2/accessPoints".into(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/shipping/v2/accessPoints".into(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -244,13 +259,16 @@ pub async fn get_additional_inputs(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/shipping/v2/shipments/additionalInputs/schema".into(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/shipping/v2/shipments/additionalInputs/schema".into(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -282,13 +300,16 @@ pub async fn get_carrier_account_form_inputs(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/shipping/v2/carrierAccountFormInputs".into(),
-            query: Vec::new(),
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/shipping/v2/carrierAccountFormInputs".into(),
+                query: Vec::new(),
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -317,13 +338,16 @@ pub async fn get_carrier_accounts<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: "/shipping/v2/carrierAccounts".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: "/shipping/v2/carrierAccounts".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -352,17 +376,20 @@ pub async fn get_collection_form(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/shipping/v2/collectionForms/",
-                &operation::last_segment(&params.collection_form_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/shipping/v2/collectionForms/",
+                    &operation::last_segment(&params.collection_form_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -391,13 +418,16 @@ pub async fn get_collection_form_history<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: "/shipping/v2/collectionForms/history".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: "/shipping/v2/collectionForms/history".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -426,13 +456,16 @@ pub async fn get_rates<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/shipments/rates".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/shipments/rates".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -475,18 +508,21 @@ pub async fn get_shipment_documents(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/shipping/v2/shipments/",
-                &operation::segment(&params.shipment_id)?,
-                "/documents",
-            ]
-                .concat(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/shipping/v2/shipments/",
+                    &operation::segment(&params.shipment_id)?,
+                    "/documents",
+                ]
+                    .concat(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -520,13 +556,16 @@ pub async fn get_tracking(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/shipping/v2/tracking".into(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/shipping/v2/tracking".into(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -555,13 +594,16 @@ pub async fn get_unmanifested_shipments<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: "/shipping/v2/unmanifestedShipments".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: "/shipping/v2/unmanifestedShipments".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -592,17 +634,20 @@ pub async fn link_carrier_account<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/shipping/v2/carrierAccounts/",
-                &operation::last_segment(&params.carrier_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/shipping/v2/carrierAccounts/",
+                    &operation::last_segment(&params.carrier_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -633,17 +678,20 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/shipping/v2/carrierAccounts/",
-                &operation::last_segment(&params.carrier_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/shipping/v2/carrierAccounts/",
+                    &operation::last_segment(&params.carrier_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -672,13 +720,16 @@ pub async fn one_click_shipment<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/oneClickShipment".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/oneClickShipment".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -714,13 +765,16 @@ pub async fn purchase_shipment<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/shipments".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/shipments".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -749,13 +803,16 @@ pub async fn submit_ndr_feedback<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/shipping/v2/ndrFeedback".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/shipping/v2/ndrFeedback".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -786,18 +843,21 @@ pub async fn unlink_carrier_account<B: serde::Serialize>(
         params.x_amzn_shipping_business_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/shipping/v2/carrierAccounts/",
-                &operation::segment(&params.carrier_id)?,
-                "/unlink",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/shipping/v2/carrierAccounts/",
+                    &operation::segment(&params.carrier_id)?,
+                    "/unlink",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(80.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

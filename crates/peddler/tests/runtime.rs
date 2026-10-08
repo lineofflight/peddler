@@ -4,6 +4,7 @@ use peddler::{
     Client, ClientConfig, Error, Request,
     apis::{
         catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
+        orders_v0::{GetOrdersParams, get_orders},
         shipping_v2::{GetRatesParams, GetTrackingParams, get_rates, get_tracking},
     },
     auth::{AuthError, LwaClient, TokenSource},
@@ -13,7 +14,7 @@ use std::{
         Arc,
         atomic::{AtomicUsize, Ordering},
     },
-    time::Duration,
+    time::{Duration, Instant},
 };
 use support::{Reply, bind, http, replies};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
@@ -36,6 +37,8 @@ fn retrying(base: String, max_retries: u32) -> ClientConfig {
 fn at_once(status: u16, body: &[u8]) -> Reply {
     http(status, "Retry-After: 0\r\n", body)
 }
+/// Shipping v2 documents 80 requests a second, so a retry after a 429 waits 12.5
+/// milliseconds, then 25, then 50, and up to 100 more each.
 fn tracking() -> GetTrackingParams {
     GetTrackingParams::new("tracking".into(), "carrier".into())
 }
@@ -93,6 +96,72 @@ async fn a_failed_write_is_not_sent_again_but_a_failed_get_is() {
         );
         assert_eq!(api.requests().len(), 3);
     }
+}
+#[tokio::test]
+async fn an_operation_waits_by_its_documented_rate_after_a_429() {
+    let api = replies(vec![
+        http(429, "", b"{}"),
+        http(429, "", b"{}"),
+        http(200, "", b"{}"),
+        http(429, "", b"{}"),
+        http(200, "", b"{}"),
+    ])
+    .await;
+    let client = Client::with_config(retrying(api.url.clone(), 2)).unwrap();
+    let started = Instant::now();
+    assert_eq!(
+        get_tracking(&client, tracking()).await.unwrap().raw.status,
+        200
+    );
+    // 12.5 and 25 milliseconds, and up to 100 more each. Without the rate the second
+    // wait alone would be a second or more.
+    let elapsed = started.elapsed();
+    assert!(elapsed >= Duration::from_micros(37_500), "{elapsed:?}");
+    assert!(elapsed < Duration::from_secs(1), "{elapsed:?}");
+    // A write has the same rate and the same wait.
+    let rates = get_rates(&client, GetRatesParams::new(serde_json::json!({})));
+    assert_eq!(rates.await.unwrap().raw.status, 200);
+    assert_eq!(api.requests().len(), 5);
+    assert!(started.elapsed() < Duration::from_secs(1));
+}
+#[tokio::test]
+async fn retry_after_replaces_the_wait_of_an_operation_limited_to_one_request_a_minute() {
+    let api = replies(vec![at_once(429, b"{}"), http(200, "", b"{}")]).await;
+    let client = Client::with_config(retrying(api.url.clone(), 1)).unwrap();
+    let params = GetOrdersParams::new(vec!["ATVPDKIKX0DER".into()]);
+    // By its rate the wait would be a minute.
+    let orders = tokio::time::timeout(Duration::from_secs(5), get_orders(&client, params));
+    assert_eq!(orders.await.unwrap().unwrap().raw.status, 200);
+    assert_eq!(api.requests().len(), 2);
+}
+#[tokio::test]
+async fn the_timeout_limits_each_attempt_and_not_the_waits_between_them() {
+    let slow = |status| http(status, "", b"{}").delayed(Duration::from_millis(80));
+    let api = replies(vec![slow(429), slow(429), slow(429), slow(200)]).await;
+    let mut c = retrying(api.url.clone(), 3);
+    c.timeout = Duration::from_millis(250);
+    let client = Client::with_config(c).unwrap();
+    let started = Instant::now();
+    assert_eq!(
+        get_tracking(&client, tracking()).await.unwrap().raw.status,
+        200
+    );
+    // 4 attempts of 80 milliseconds and 3 waits: more than one timeout allows a call.
+    assert!(started.elapsed() > Duration::from_millis(400));
+    assert_eq!(api.requests().len(), 4);
+
+    // An attempt that takes longer than the timeout is cut off. A write is not sent again.
+    let api = replies(vec![http(200, "", b"{}").delayed(Duration::from_secs(5))]).await;
+    let mut c = retrying(api.url.clone(), 3);
+    c.timeout = Duration::from_millis(50);
+    let client = Client::with_config(c).unwrap();
+    let started = Instant::now();
+    assert_eq!(
+        client.execute(request("POST")).await.unwrap_err(),
+        Error::Timeout
+    );
+    assert!(started.elapsed() < Duration::from_secs(1));
+    assert_eq!(api.requests().len(), 1);
 }
 #[tokio::test]
 async fn a_failed_connection_is_retried_for_a_get_and_never_for_a_write() {

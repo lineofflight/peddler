@@ -21,18 +21,21 @@ pub async fn cancel_fulfillment_order(
     params: CancelFulfillmentOrderParams,
 ) -> Result<TypedResponse<super::models::CancelFulfillmentOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::segment(&params.seller_fulfillment_order_id)?,
-                "/cancel",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/fulfillmentOrders/",
+                    &operation::segment(&params.seller_fulfillment_order_id)?,
+                    "/cancel",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -51,13 +54,16 @@ pub async fn create_fulfillment_order<B: serde::Serialize>(
     params: CreateFulfillmentOrderParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFulfillmentOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fba/outbound/2020-07-01/fulfillmentOrders".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fba/outbound/2020-07-01/fulfillmentOrders".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -80,18 +86,21 @@ pub async fn create_fulfillment_return<B: serde::Serialize>(
     params: CreateFulfillmentReturnParams<B>,
 ) -> Result<TypedResponse<super::models::CreateFulfillmentReturnResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::segment(&params.seller_fulfillment_order_id)?,
-                "/return",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/fulfillmentOrders/",
+                    &operation::segment(&params.seller_fulfillment_order_id)?,
+                    "/return",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -110,13 +119,16 @@ pub async fn delivery_offers<B: serde::Serialize>(
     params: DeliveryOffersParams<B>,
 ) -> Result<TypedResponse<super::models::GetDeliveryOffersResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fba/outbound/2020-07-01/deliveryOffers".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fba/outbound/2020-07-01/deliveryOffers".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -147,17 +159,20 @@ pub async fn get_feature_inventory(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "queryStartDate", params.query_start_date.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/outbound/2020-07-01/features/inventory/",
-                &operation::last_segment(&params.feature_name)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/features/inventory/",
+                    &operation::last_segment(&params.feature_name)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -209,19 +224,22 @@ pub async fn get_feature_sku(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/outbound/2020-07-01/features/inventory/",
-                &operation::segment(&params.feature_name)?,
-                "/",
-                &operation::last_segment(&params.seller_sku)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/features/inventory/",
+                    &operation::segment(&params.feature_name)?,
+                    "/",
+                    &operation::last_segment(&params.seller_sku)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -242,13 +260,16 @@ pub async fn get_features(
     let mut query = Vec::new();
     operation::pair(&mut query, "marketplaceId", Some(&params.marketplace_id));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/outbound/2020-07-01/features".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/outbound/2020-07-01/features".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -269,17 +290,20 @@ pub async fn get_fulfillment_order(
     params: GetFulfillmentOrderParams,
 ) -> Result<TypedResponse<super::models::GetFulfillmentOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::last_segment(&params.seller_fulfillment_order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/fulfillmentOrders/",
+                    &operation::last_segment(&params.seller_fulfillment_order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -298,13 +322,16 @@ pub async fn get_fulfillment_preview<B: serde::Serialize>(
     params: GetFulfillmentPreviewParams<B>,
 ) -> Result<TypedResponse<super::models::GetFulfillmentPreviewResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fba/outbound/2020-07-01/fulfillmentOrders/preview".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fba/outbound/2020-07-01/fulfillmentOrders/preview".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -325,13 +352,16 @@ pub async fn get_package_tracking_details(
     let mut query = Vec::new();
     operation::pair(&mut query, "packageNumber", Some(&params.package_number));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/outbound/2020-07-01/tracking".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/outbound/2020-07-01/tracking".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -362,13 +392,16 @@ pub async fn list_all_fulfillment_orders(
     operation::pair(&mut query, "nextToken", params.next_token.as_ref());
     operation::pair(&mut query, "queryStartDate", params.query_start_date.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/outbound/2020-07-01/fulfillmentOrders".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/outbound/2020-07-01/fulfillmentOrders".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -425,13 +458,16 @@ pub async fn list_return_reason_codes(
     );
     operation::pair(&mut query, "sellerSku", Some(&params.seller_sku));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/outbound/2020-07-01/returnReasonCodes".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/outbound/2020-07-01/returnReasonCodes".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -457,18 +493,21 @@ pub async fn submit_fulfillment_order_status_update<B: serde::Serialize>(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::segment(&params.seller_fulfillment_order_id)?,
-                "/status",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/fulfillmentOrders/",
+                    &operation::segment(&params.seller_fulfillment_order_id)?,
+                    "/status",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -491,17 +530,20 @@ pub async fn update_fulfillment_order<B: serde::Serialize>(
     params: UpdateFulfillmentOrderParams<B>,
 ) -> Result<TypedResponse<super::models::UpdateFulfillmentOrderResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fba/outbound/2020-07-01/fulfillmentOrders/",
-                &operation::last_segment(&params.seller_fulfillment_order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fba/outbound/2020-07-01/fulfillmentOrders/",
+                    &operation::last_segment(&params.seller_fulfillment_order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

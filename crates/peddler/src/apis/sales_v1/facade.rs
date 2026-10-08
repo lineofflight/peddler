@@ -71,13 +71,16 @@ pub async fn get_order_metrics(
     operation::pair(&mut query, "sku", params.sku.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/sales/v1/orderMetrics".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/sales/v1/orderMetrics".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.5),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

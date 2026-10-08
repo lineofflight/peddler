@@ -165,13 +165,16 @@ pub async fn get_shipment_details(
         params.vendor_shipment_identifier.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/shipping/v1/shipments".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/shipping/v1/shipments".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -260,13 +263,16 @@ pub async fn get_shipment_labels(
         params.vendor_shipment_identifier.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/shipping/v1/transportLabels".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/shipping/v1/transportLabels".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -305,13 +311,16 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     params: SubmitShipmentConfirmationsParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentConfirmationsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/shipping/v1/shipmentConfirmations".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/shipping/v1/shipmentConfirmations".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -330,13 +339,16 @@ pub async fn submit_shipments<B: serde::Serialize>(
     params: SubmitShipmentsParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitShipmentConfirmationsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/shipping/v1/shipments".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/shipping/v1/shipments".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

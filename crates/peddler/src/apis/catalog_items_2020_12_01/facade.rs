@@ -37,14 +37,20 @@ pub async fn get_catalog_item(
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "includedData", params.included_data.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: ["/catalog/2020-12-01/items/", &operation::last_segment(&params.asin)?]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/catalog/2020-12-01/items/",
+                    &operation::last_segment(&params.asin)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -108,13 +114,16 @@ pub async fn search_catalog_items(
         params.classification_ids.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/catalog/2020-12-01/items".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/catalog/2020-12-01/items".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

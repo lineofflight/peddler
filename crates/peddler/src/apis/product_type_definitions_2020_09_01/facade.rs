@@ -68,17 +68,20 @@ pub async fn get_definitions_product_type(
     operation::pair(&mut query, "sellerId", params.seller_id.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/definitions/2020-09-01/productTypes/",
-                &operation::last_segment(&params.product_type)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/definitions/2020-09-01/productTypes/",
+                    &operation::last_segment(&params.product_type)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -115,13 +118,16 @@ pub async fn search_definitions_product_types(
     operation::empty(&mut query, "keywords", params.keywords.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/definitions/2020-09-01/productTypes".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/definitions/2020-09-01/productTypes".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

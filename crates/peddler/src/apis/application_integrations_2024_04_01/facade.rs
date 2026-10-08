@@ -19,13 +19,16 @@ pub async fn create_notification<B: serde::Serialize>(
     params: CreateNotificationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateNotificationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/appIntegrations/2024-04-01/notifications".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/appIntegrations/2024-04-01/notifications".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -44,13 +47,16 @@ pub async fn delete_notifications<B: serde::Serialize>(
     params: DeleteNotificationsParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/appIntegrations/2024-04-01/notifications/deletion".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/appIntegrations/2024-04-01/notifications/deletion".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -70,18 +76,21 @@ pub async fn record_action_feedback<B: serde::Serialize>(
     params: RecordActionFeedbackParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/appIntegrations/2024-04-01/notifications/",
-                &operation::segment(&params.notification_id)?,
-                "/feedback",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/appIntegrations/2024-04-01/notifications/",
+                    &operation::segment(&params.notification_id)?,
+                    "/feedback",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(raw)
 }

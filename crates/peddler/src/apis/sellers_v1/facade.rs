@@ -22,13 +22,16 @@ pub async fn get_account(
     params: GetAccountParams,
 ) -> Result<TypedResponse<super::models::GetAccountResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/sellers/v1/account".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/sellers/v1/account".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.016),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -50,13 +53,16 @@ pub async fn get_marketplace_participations(
     params: GetMarketplaceParticipationsParams,
 ) -> Result<TypedResponse<super::models::GetMarketplaceParticipationsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/sellers/v1/marketplaceParticipations".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/sellers/v1/marketplaceParticipations".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(0.016),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

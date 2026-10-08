@@ -20,18 +20,21 @@ pub async fn submit_inventory_update<B: serde::Serialize>(
     params: SubmitInventoryUpdateParams<B>,
 ) -> Result<TypedResponse<super::models::SubmitInventoryUpdateResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/vendor/directFulfillment/inventory/v1/warehouses/",
-                &operation::segment(&params.warehouse_id)?,
-                "/items",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/vendor/directFulfillment/inventory/v1/warehouses/",
+                    &operation::segment(&params.warehouse_id)?,
+                    "/items",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

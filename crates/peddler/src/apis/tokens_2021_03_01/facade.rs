@@ -19,13 +19,16 @@ pub async fn create_restricted_data_token<B: serde::Serialize>(
     params: CreateRestrictedDataTokenParams<B>,
 ) -> Result<TypedResponse<super::models::CreateRestrictedDataTokenResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/tokens/2021-03-01/restrictedDataToken".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/tokens/2021-03-01/restrictedDataToken".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

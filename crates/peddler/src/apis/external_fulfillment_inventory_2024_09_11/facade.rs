@@ -19,13 +19,16 @@ pub async fn batch_inventory<B: serde::Serialize>(
     params: BatchInventoryParams<B>,
 ) -> Result<TypedResponse<super::models::BatchInventoryResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/externalFulfillment/inventory/2024-09-11/inventories".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/externalFulfillment/inventory/2024-09-11/inventories".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

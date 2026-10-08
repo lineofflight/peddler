@@ -20,18 +20,21 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
     params: AddAppointmentForServiceJobByServiceJobIdParams<B>,
 ) -> Result<TypedResponse<super::models::SetAppointmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/appointments",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/appointments",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -56,20 +59,23 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
     params: AssignAppointmentResourcesParams<B>,
 ) -> Result<TypedResponse<super::models::AssignAppointmentResourcesResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/appointments/",
-                &operation::segment(&params.appointment_id)?,
-                "/resources",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/appointments/",
+                    &operation::segment(&params.appointment_id)?,
+                    "/resources",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -95,17 +101,20 @@ pub async fn cancel_reservation(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: [
-                "/service/v1/reservation/",
-                &operation::last_segment(&params.reservation_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/service/v1/reservation/",
+                    &operation::last_segment(&params.reservation_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -137,18 +146,21 @@ pub async fn cancel_service_job_by_service_job_id(
         Some(&params.cancellation_reason_code),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/cancellations",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/cancellations",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -170,18 +182,21 @@ pub async fn complete_service_job_by_service_job_id(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/completions",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/completions",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -204,13 +219,16 @@ pub async fn create_reservation<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/service/v1/reservation".into(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/service/v1/reservation".into(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -232,13 +250,16 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
     Error,
 > {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/service/v1/documents".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/service/v1/documents".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -274,13 +295,16 @@ pub async fn get_appointment_slots(
     operation::pair(&mut query, "storeId", Some(&params.store_id));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/service/v1/appointmentSlots".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/service/v1/appointmentSlots".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(20.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -312,18 +336,21 @@ pub async fn get_appointmment_slots_by_job_id(
     operation::pair(&mut query, "startTime", params.start_time.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/appointmentSlots",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/appointmentSlots",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -354,18 +381,21 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/service/v1/serviceResources/",
-                &operation::segment(&params.resource_id)?,
-                "/capacity/fixed",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/service/v1/serviceResources/",
+                    &operation::segment(&params.resource_id)?,
+                    "/capacity/fixed",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -416,18 +446,21 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
     operation::pair(&mut query, "nextPageToken", params.next_page_token.as_ref());
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/service/v1/serviceResources/",
-                &operation::segment(&params.resource_id)?,
-                "/capacity/range",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/service/v1/serviceResources/",
+                    &operation::segment(&params.resource_id)?,
+                    "/capacity/range",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -466,17 +499,20 @@ pub async fn get_service_job_by_service_job_id(
     params: GetServiceJobByServiceJobIdParams,
 ) -> Result<TypedResponse<super::models::GetServiceJobByServiceJobIdResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::last_segment(&params.service_job_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::last_segment(&params.service_job_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(20.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -570,13 +606,16 @@ pub async fn get_service_jobs(
     operation::empty(&mut query, "requiredSkills", params.required_skills.as_ref());
     operation::empty(&mut query, "storeIds", params.store_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/service/v1/serviceJobs".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/service/v1/serviceJobs".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -625,19 +664,22 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
     params: RescheduleAppointmentForServiceJobByServiceJobIdParams<B>,
 ) -> Result<TypedResponse<super::models::SetAppointmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/appointments/",
-                &operation::last_segment(&params.appointment_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/appointments/",
+                    &operation::last_segment(&params.appointment_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -662,20 +704,23 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
     params: SetAppointmentFulfillmentDataParams<B>,
 ) -> Result<Response, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/serviceJobs/",
-                &operation::segment(&params.service_job_id)?,
-                "/appointments/",
-                &operation::segment(&params.appointment_id)?,
-                "/fulfillment",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/serviceJobs/",
+                    &operation::segment(&params.service_job_id)?,
+                    "/appointments/",
+                    &operation::segment(&params.appointment_id)?,
+                    "/fulfillment",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(raw)
 }
@@ -703,17 +748,20 @@ pub async fn update_reservation<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/reservation/",
-                &operation::last_segment(&params.reservation_id)?,
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/reservation/",
+                    &operation::last_segment(&params.reservation_id)?,
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -741,18 +789,21 @@ pub async fn update_schedule<B: serde::Serialize>(
     operation::csv(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     operation::empty(&mut query, "marketplaceIds", Some(&params.marketplace_ids));
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/service/v1/serviceResources/",
-                &operation::segment(&params.resource_id)?,
-                "/schedules",
-            ]
-                .concat(),
-            query,
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/service/v1/serviceResources/",
+                    &operation::segment(&params.resource_id)?,
+                    "/schedules",
+                ]
+                    .concat(),
+                query,
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

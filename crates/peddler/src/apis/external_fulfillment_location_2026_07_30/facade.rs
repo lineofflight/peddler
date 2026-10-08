@@ -19,13 +19,16 @@ pub async fn create_sandbox_location<B: serde::Serialize>(
     params: CreateSandboxLocationParams<B>,
 ) -> Result<TypedResponse<super::models::CreateSandboxLocationResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/externalFulfillment/2026-07-30/location".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/externalFulfillment/2026-07-30/location".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

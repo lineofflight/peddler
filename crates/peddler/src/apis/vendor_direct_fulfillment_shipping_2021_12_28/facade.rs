@@ -19,13 +19,17 @@ pub async fn create_container_label<B: serde::Serialize>(
     params: CreateContainerLabelParams<B>,
 ) -> Result<TypedResponse<super::models::CreateContainerLabelResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/containerLabel".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/containerLabel"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -48,17 +52,20 @@ pub async fn create_shipping_labels<B: serde::Serialize>(
     params: CreateShippingLabelsParams<B>,
 ) -> Result<TypedResponse<super::models::ShippingLabel>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: [
-                "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: [
+                    "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -77,17 +84,20 @@ pub async fn get_customer_invoice(
     params: GetCustomerInvoiceParams,
 ) -> Result<TypedResponse<super::models::CustomerInvoice>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -125,14 +135,17 @@ pub async fn get_customer_invoices(
     operation::pair(&mut query, "shipFromPartyId", params.ship_from_party_id.as_ref());
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices"
-                .into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices"
+                    .into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -172,17 +185,20 @@ pub async fn get_packing_slip(
     params: GetPackingSlipParams,
 ) -> Result<TypedResponse<super::models::PackingSlip>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -224,13 +240,17 @@ pub async fn get_packing_slips(
     operation::pair(&mut query, "shipFromPartyId", params.ship_from_party_id.as_ref());
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/packingSlips".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/packingSlips"
+                    .into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -270,17 +290,20 @@ pub async fn get_shipping_label(
     params: GetShippingLabelParams,
 ) -> Result<TypedResponse<super::models::ShippingLabel>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
-                &operation::last_segment(&params.purchase_order_number)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/",
+                    &operation::last_segment(&params.purchase_order_number)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -322,13 +345,17 @@ pub async fn get_shipping_labels(
     operation::pair(&mut query, "shipFromPartyId", params.ship_from_party_id.as_ref());
     operation::pair(&mut query, "sortOrder", params.sort_order.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
+                    .into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -368,14 +395,17 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     params: SubmitShipmentConfirmationsParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
-                .into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -394,14 +424,17 @@ pub async fn submit_shipment_status_updates<B: serde::Serialize>(
     params: SubmitShipmentStatusUpdatesParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
-                .into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -420,13 +453,17 @@ pub async fn submit_shipping_label_request<B: serde::Serialize>(
     params: SubmitShippingLabelRequestParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
+                    .into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(10.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

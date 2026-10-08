@@ -30,13 +30,16 @@ pub async fn get_item_eligibility_preview(
     operation::pair(&mut query, "program", Some(&params.program));
     operation::empty(&mut query, "marketplaceIds", params.marketplace_ids.as_ref());
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fba/inbound/v1/eligibility/itemPreview".into(),
-            query,
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fba/inbound/v1/eligibility/itemPreview".into(),
+                query,
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

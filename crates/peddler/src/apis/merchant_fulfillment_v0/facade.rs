@@ -19,14 +19,20 @@ pub async fn cancel_shipment(
     params: CancelShipmentParams,
 ) -> Result<TypedResponse<super::models::CancelShipmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "DELETE".into(),
-            path: ["/mfn/v0/shipments/", &operation::last_segment(&params.shipment_id)?]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "DELETE".into(),
+                path: [
+                    "/mfn/v0/shipments/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -45,13 +51,16 @@ pub async fn create_shipment<B: serde::Serialize>(
     params: CreateShipmentParams<B>,
 ) -> Result<TypedResponse<super::models::CreateShipmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/mfn/v0/shipments".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/mfn/v0/shipments".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -70,13 +79,16 @@ pub async fn get_additional_seller_inputs<B: serde::Serialize>(
     params: GetAdditionalSellerInputsParams<B>,
 ) -> Result<TypedResponse<super::models::GetAdditionalSellerInputsResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/mfn/v0/additionalSellerInputs".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/mfn/v0/additionalSellerInputs".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -95,13 +107,16 @@ pub async fn get_eligible_shipment_services<B: serde::Serialize>(
     params: GetEligibleShipmentServicesParams<B>,
 ) -> Result<TypedResponse<super::models::GetEligibleShipmentServicesResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/mfn/v0/eligibleShippingServices".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/mfn/v0/eligibleShippingServices".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(6.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -120,14 +135,20 @@ pub async fn get_shipment(
     params: GetShipmentParams,
 ) -> Result<TypedResponse<super::models::GetShipmentResponse>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: ["/mfn/v0/shipments/", &operation::last_segment(&params.shipment_id)?]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/mfn/v0/shipments/",
+                    &operation::last_segment(&params.shipment_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            Some(1.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

@@ -19,13 +19,16 @@ pub async fn generate_order_scenarios<B: serde::Serialize>(
     params: GenerateOrderScenariosParams<B>,
 ) -> Result<TypedResponse<super::models::TransactionReference>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/vendor/directFulfillment/sandbox/2021-10-28/orders".into(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/vendor/directFulfillment/sandbox/2021-10-28/orders".into(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -44,17 +47,20 @@ pub async fn get_order_scenarios(
     params: GetOrderScenariosParams,
 ) -> Result<TypedResponse<super::models::TransactionStatus>, Error> {
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/vendor/directFulfillment/sandbox/2021-10-28/transactions/",
-                &operation::last_segment(&params.transaction_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers: Vec::new(),
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/vendor/directFulfillment/sandbox/2021-10-28/transactions/",
+                    &operation::last_segment(&params.transaction_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers: Vec::new(),
+                body: None,
+            },
+            None,
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }

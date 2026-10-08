@@ -29,18 +29,21 @@ pub async fn cancel_order(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::segment(&params.order_id)?,
-                "/cancel",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fulfillment/outbound/2026-07-04/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/cancel",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -86,13 +89,16 @@ pub async fn create_order<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fulfillment/outbound/2026-07-04/orders".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fulfillment/outbound/2026-07-04/orders".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(CreateOrderResponse { raw })
 }
@@ -121,13 +127,16 @@ pub async fn get_offers<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fulfillment/outbound/2026-07-04/offers".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fulfillment/outbound/2026-07-04/offers".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(5.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -160,17 +169,20 @@ pub async fn get_order(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: [
-                "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: [
+                    "/fulfillment/outbound/2026-07-04/orders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -199,13 +211,16 @@ pub async fn get_order_preview<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "POST".into(),
-            path: "/fulfillment/outbound/2026-07-04/previews".into(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "POST".into(),
+                path: "/fulfillment/outbound/2026-07-04/previews".into(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -247,13 +262,16 @@ pub async fn list_orders(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "GET".into(),
-            path: "/fulfillment/outbound/2026-07-04/orders".into(),
-            query,
-            headers,
-            body: None,
-        })
+        .execute_json(
+            Request {
+                method: "GET".into(),
+                path: "/fulfillment/outbound/2026-07-04/orders".into(),
+                query,
+                headers,
+                body: None,
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -304,17 +322,20 @@ pub async fn update_order<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::last_segment(&params.order_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fulfillment/outbound/2026-07-04/orders/",
+                    &operation::last_segment(&params.order_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            Some(2.0),
+        )
         .await?;
     Ok(TypedResponse::new(raw))
 }
@@ -345,18 +366,21 @@ pub async fn update_order_status<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::segment(&params.order_id)?,
-                "/status",
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fulfillment/outbound/2026-07-04/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/status",
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }
@@ -389,19 +413,22 @@ pub async fn update_package<B: serde::Serialize>(
         params.x_amzn_fulfillment_service_id.as_ref(),
     );
     let raw = client
-        .execute_json(Request {
-            method: "PUT".into(),
-            path: [
-                "/fulfillment/outbound/2026-07-04/orders/",
-                &operation::segment(&params.order_id)?,
-                "/packages/",
-                &operation::last_segment(&params.package_id)?,
-            ]
-                .concat(),
-            query: Vec::new(),
-            headers,
-            body: Some(operation::json(&params.body)?),
-        })
+        .execute_json(
+            Request {
+                method: "PUT".into(),
+                path: [
+                    "/fulfillment/outbound/2026-07-04/orders/",
+                    &operation::segment(&params.order_id)?,
+                    "/packages/",
+                    &operation::last_segment(&params.package_id)?,
+                ]
+                    .concat(),
+                query: Vec::new(),
+                headers,
+                body: Some(operation::json(&params.body)?),
+            },
+            None,
+        )
         .await?;
     Ok(raw)
 }

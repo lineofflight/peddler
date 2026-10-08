@@ -415,9 +415,15 @@ impl Client {
         self.execute_inner(request, false, None).await
     }
 
-    /// Like `execute`, with the `Accept` header generated calls send.
-    pub(crate) async fn execute_json(&self, request: Request) -> Result<Response, Error> {
-        self.execute_inner(request, true, None).await
+    /// Like `execute`, as a generated operation sends it: with its `Accept` header and
+    /// the requests per second Amazon documents for it, if any, which set the wait
+    /// after a 429.
+    pub(crate) async fn execute_json(
+        &self,
+        request: Request,
+        rate: Option<f64>,
+    ) -> Result<Response, Error> {
+        self.execute_inner(request, true, rate).await
     }
 
     async fn execute_inner(
