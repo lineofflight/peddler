@@ -49,7 +49,7 @@ let client = Client::new("https://sellingpartnerapi-eu.amazon.com", "Atza|...")?
 
 Put `sandbox.` before the host for Amazon's sandbox. The base URL takes no path. Plain `http` is accepted for `localhost` and loopback addresses only, so that a token is never sent unencrypted over a network.
 
-`ClientConfig` sets the rest: the timeout of a whole call, retries, a `User-Agent` of your own and a connection pool to share.
+`ClientConfig` sets the rest: the timeout of an attempt, retries, a `User-Agent` of your own and a connection pool to share.
 
 ```rust
 use peddler::{Client, ClientConfig, policy::RetryPolicy};
@@ -211,15 +211,25 @@ let address = orders_v0::get_order_address(&restricted, params).await?;
 
 ## Retries and timeouts
 
-A client makes 1 attempt and allows 30 seconds for a call, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
+A client makes 1 attempt and allows it 30 seconds, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
 
-With `RetryPolicy { max_retries }`, the client retries a GET, a HEAD or an OPTIONS that Amazon answers with 429, 500, 502, 503 or 504. The generated operations use GET of these. It never retries another method, since that may change data twice, nor a failed connection. `max_retries` is at most 10.
+`RetryPolicy { max_retries }` is all there is to configure: how often a call is retried, 10 times at most. What is retried and how long each wait is are fixed, and are those of Peddler 5 for Ruby.
 
-Before each retry it waits a random time: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. With 3 retries, the waits add up to 1.4 seconds at most.
+The client retries a request that Amazon answers with 429, whatever its method: a throttled request was not processed.
 
-If the response has a `Retry-After` header, the client waits at least as long as it asks. If it asks for more than 30 seconds, it doesn't retry.
+It also retries a GET, a HEAD or an OPTIONS that Amazon answers with 500, 502, 503 or 504, that got no response, or that ran past the timeout. The generated operations use GET of these. It never retries another method after these, since Amazon may have processed the request, and a second one could submit a feed or an order twice.
 
-The timeout is 1 deadline for the whole call: asking a token source, every attempt, every wait and reading the body. When retries run out, or the next wait doesn't fit in the time left, the call returns the last response. A call that is cut off by the deadline is `Error::Timeout`.
+After a 429, the client waits by the rate Amazon documents for the operation: 1 / rate seconds before the first retry, twice that before the second, and so on, plus up to 0.1 seconds. An operation limited to 0.5 requests a second waits 2, 4 and 8 seconds. One limited to 1 request a minute waits 60, 120 and 240. On a host that starts with `sandbox.`, the first wait is 0.2 seconds, whatever the rate.
+
+Each generated function carries the rate of its operation, read from the usage plan in Amazon's model. `operation-inventory.json` in `peddler-codegen` lists them. The client doesn't read the limit that the headers of a response carry.
+
+After a 5xx, a failed connection or a timeout, the client waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of an operation without a documented rate, and of a `Request` sent with `execute`.
+
+If the response has a `Retry-After` header, the client waits as long as it asks instead. A value that is neither seconds nor a date is ignored.
+
+The timeout limits each attempt: asking a token source, the request and reading the body. The waits between attempts are not counted, and no wait has a ceiling: with 10 retries, the last wait for an operation limited to 1 request a minute is over 8 hours. Choose `max_retries` by how long a call may take, or put the call in `tokio::time::timeout`. Dropping the future ends a wait as it ends a request.
+
+When the retries run out, the call returns the last response, or `Error::Timeout` or `Error::Transport` if the last attempt got none.
 
 Amazon limits each operation for each seller. The crate doesn't count your calls against those limits. Space them in your application.
 
@@ -326,9 +336,9 @@ if let Some(document_id) = report.report_document_id {
 }
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait.
 
-`download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
+`download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup, with its retries and the waits before them, and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
 
 `create_and_upload_feed_document` creates a feed document, uploads your content to it and returns the feed document ID. It doesn't create the feed. Pass the ID to `create_feed`.
 
@@ -351,7 +361,7 @@ let body = serde_json::json!({
 let feed = feeds::create_feed(&client, feeds::CreateFeedParams::new(body)).await?;
 ```
 
-A workflow never retries a request that changes data. A metadata request that Amazon answers with an error is `WorkflowError::Http`, and `error.response()` returns the response. A failed upload is `WorkflowError::Upload`, which keeps the `document_id`, and holds `documents::Error::Timeout` when the upload ran out of time.
+A workflow never retries a transfer. It creates a feed document as the client sends any write: retried after a 429 only, if the policy has retries. A metadata request that Amazon answers with an error is `WorkflowError::Http`, and `error.response()` returns the response. A failed upload is `WorkflowError::Upload`, which keeps the `document_id`, and holds `documents::Error::Timeout` when the upload ran out of time.
 
 ## Typed models
 
