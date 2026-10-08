@@ -36,7 +36,7 @@ Packaging builds and tests everything and publishes nothing:
 
 - `crate`: `cargo package`, then a fresh consumer that builds against the packaged crate. Run by hand on macOS only
 - `source-gem`: built, audited, installed and smoke tested on Ruby 3.3, 3.4 and 4.0. Run by hand on macOS only
-- `cross-gem`: the 4 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. **Never run**
+- `cross-gem`: the 4 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates in its binary. **Never run**
 - `smoke`: each platform gem installed without Rust on its own platform and Ruby, 12 legs. **Never run**
 
 Every job must pass. Then download what it built.
@@ -46,6 +46,23 @@ gh run download <run-id> --dir artifacts
 ```
 
 `artifacts` holds `peddler-6.0.0-arm64-darwin.gem`, `peddler-6.0.0-x86_64-darwin.gem`, `peddler-6.0.0-aarch64-linux-gnu.gem`, `peddler-6.0.0-x86_64-linux-gnu.gem`, `peddler-6.0.0.gem` and `peddler-0.1.0.crate`, each in a directory of its own.
+
+### The license notices
+
+A platform gem links 105 to 108 Rust crates into its binary, by platform, so it ships their licenses. `tools/third_party_licenses.rb` writes `THIRD_PARTY_LICENSES.html` for a platform from `Cargo.lock`: the crates linked into the extension for that platform, each with its version, its license and the text. It is never edited by hand and never committed. The gem task runs the tool, and `tools/gem_audit.rb` refuses a platform gem without the file.
+
+The tool needs cargo-about, at the version it names:
+
+```sh
+cargo install cargo-about --version 0.9.2 --locked
+bundle exec rake native gem
+```
+
+Build into an empty `pkg`. The gem task does not add a new file to a package directory an earlier build left there, and then fails with `["THIRD_PARTY_LICENSES.html"] are not files`.
+
+`tools/third_party_licenses/about.toml` lists the licenses a crate may have. When a dependency arrives under another one, the tool fails and names the crate, and so does the `cross-gem` job. Read the license. If Peddler can ship under it, add it to `accepted`. If not, replace the crate.
+
+To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 
 On the first run, read the glibc version the Linux binaries need and state it in the README's platform table.
 

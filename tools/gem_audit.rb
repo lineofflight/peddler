@@ -4,6 +4,7 @@
 # Content audit for built peddler gems: ruby tools/gem_audit.rb pkg/*.gem
 # Reads the file list from the gem's data archive, not just its metadata.
 require "rubygems/package"
+require "tmpdir"
 
 FORBIDDEN = [
   %r{(\A|/)\.git(/|\z)}, %r{(\A|/)target/}, %r{(\A|/)tmp/}, /selling-partner-api-models/, %r{(\A|/)cassettes?/},
@@ -13,6 +14,17 @@ FORBIDDEN = [
 CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb"].freeze
 RUST = %r{\A(Cargo\.|crates/)}
 BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
+# The licenses of the crates linked into a binary. See tools/third_party_licenses.rb.
+NOTICES = "THIRD_PARTY_LICENSES.html"
+
+# A file of a gem, or nil if the gem has none of that name
+def content(path, name)
+  Dir.mktmpdir do |dir|
+    Gem::Package.new(path).extract_files(dir, name)
+    file = File.join(dir, name)
+    File.read(file) if File.file?(file)
+  end
+end
 
 abort("usage: ruby tools/gem_audit.rb pkg/peddler-*.gem") if ARGV.empty?
 
@@ -28,6 +40,9 @@ problems = ARGV.flat_map do |path|
     found << "#{path}: source gem ships binaries" unless binaries.empty?
   else
     found << "#{path}: platform gem has no binary" if binaries.empty?
+    notices = content(path, NOTICES)
+    found << "#{path}: platform gem lacks #{NOTICES}" unless notices
+    found << "#{path}: #{NOTICES} is empty" if notices && notices.strip.empty?
     found << "#{path}: Linux gem is not -gnu (#{spec.platform})" if spec.platform.os == "linux" && spec.platform.version != "gnu"
     found << "#{path}: platform gem ships Rust sources" if files.any? { |file| file.match?(RUST) }
     found << "#{path}: platform gem declares rb_sys" if spec.runtime_dependencies.any? { |dep| dep.name == "rb_sys" }

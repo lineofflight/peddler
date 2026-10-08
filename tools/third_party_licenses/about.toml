@@ -1,0 +1,26 @@
+# What cargo-about is told when it writes the licence notices of a platform gem.
+# See tools/third_party_licenses.rb.
+
+# The licences a crate linked into the extension may have. Where a crate offers a
+# choice, the first one listed here is taken. A crate that none of these satisfies
+# fails the packaging step: read its licence before adding it here.
+accepted = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+    "MPL-2.0",
+]
+
+# Only what ends up in the binary: no build scripts and no tests.
+ignore-build-dependencies = true
+ignore-dev-dependencies = true
+
+# The extension is Peddler's own, under the gem's licence.
+private = { ignore = true }
+
+# chrono keeps its 2 licences in 1 file.
+workarounds = ["chrono"]

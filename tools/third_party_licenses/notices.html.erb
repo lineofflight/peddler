@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="<%= h(stamp) %>">
+<title>Third-party licenses of peddler <%= h(version) %> (<%= h(platform) %>)</title>
+</head>
+<body>
+<h1>Third-party licenses</h1>
+<p>The peddler <%= h(version) %> gem for <%= h(platform) %> contains a compiled extension. The <%= crates.size %> Rust crates below are linked into it. Each is listed with its version and its license, and the text of every license follows. Peddler itself is under the MIT License in the LICENSE file of the gem.</p>
+<h2>Crates</h2>
+<table>
+<tr><th>Crate</th><th>Version</th><th>License</th><th>Text</th></tr>
+<% crates.each do |crate| -%>
+<tr><td><%= h(crate.name) %></td><td><%= h(crate.version) %></td><td><%= h(crate.license) %></td><td><%= crate.texts.map { |index| %(<a href="#text-#{index}">#{h(notices[index].id)}</a>) }.join(", ") %></td></tr>
+<% end -%>
+</table>
+<h2>License texts</h2>
+<% notices.each_with_index do |notice, index| -%>
+<h3 id="text-<%= index %>"><%= h(notice.name) %> (<%= h(notice.id) %>)</h3>
+<p>Applies to: <%= h(notice.crates.join(", ")) %></p>
+<pre><%= h(notice.text) %></pre>
+<% end -%>
+</body>
+</html>

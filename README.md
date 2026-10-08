@@ -742,6 +742,14 @@ bundle exec steep check --severity-level=hint
 
 `rake test` builds the extension first. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md). A release is made by hand: see [RELEASING.md](RELEASING.md).
 
+## License
+
+Peddler is released under the [MIT License](LICENSE).
+
+A precompiled gem has Rust crates linked into its extension, each under a license of its own: MIT, Apache-2.0, BSD-3-Clause, ISC or Unicode-3.0. `THIRD_PARTY_LICENSES.html` at the root of each precompiled gem lists every one of them with its version and the text of its license. `gem contents peddler` shows where it is.
+
+The source gem has no such file. It compiles the crates on your machine, where Cargo downloads each with its license.
+
 [api-docs]: https://developer-docs.amazon.com/sp-api/docs/welcome
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application

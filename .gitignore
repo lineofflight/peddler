@@ -12,4 +12,5 @@ vendor
 /crates/peddler-codegen/target/
 /tmp/
 /lib/peddler/peddler_native.*
+/THIRD_PARTY_LICENSES.html
 /lib/peddler/[0-9]*/
