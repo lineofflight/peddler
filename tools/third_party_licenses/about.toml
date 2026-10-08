@@ -27,7 +27,8 @@ workarounds = ["chrono"]
 
 # 5 crates ship a license file that cargo-about doesn't take by itself, so it would
 # print the standard text of the license, without the crate's copyright line. Each
-# entry points at the file the crate ships. A checksum is of the text that is used:
+# entry points at the file the crate ships. The last entry, for encoding_rs, keeps a
+# source file out of the notices. A checksum is of the text that is used:
 # the file, or the part from `start` to `end`. When a new version of the crate changes
 # that text, the tool fails and names the crate: read the new file, then update the
 # entry.
@@ -88,3 +89,23 @@ license = "ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause A
 [[aws-lc-sys.clarify.files]]
 path = "LICENSE"
 checksum = "728536b4160e051f86d7c9c388f704866b3d512cd7df97ac3516c65279523c4e"
+
+# cargo-about also took 1 of its source files, which has the BSD-3-Clause text in a
+# comment above a data table, for a license file.
+[encoding_rs.clarify]
+license = "(Apache-2.0 OR MIT) AND BSD-3-Clause"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-MIT"
+license = "MIT"
+checksum = "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-APACHE"
+license = "Apache-2.0"
+checksum = "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-WHATWG"
+license = "BSD-3-Clause"
+checksum = "838118388fe5c2e7f1dbbaeed13e1c7f3ebf88be91319c7c1d77c18e987d1a50"

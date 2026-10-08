@@ -36,7 +36,7 @@ Packaging builds and tests everything and publishes nothing:
 
 - `crate`: `cargo package`, then a fresh consumer that builds against the packaged crate. Run by hand on macOS only
 - `source-gem`: built, audited, installed and smoke tested on Ruby 3.3, 3.4 and 4.0. Run by hand on macOS only
-- `cross-gem`: the 4 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates in its binary. **Never run**
+- `cross-gem`: the 4 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates and of the standard library in its binary. **Never run**
 - `smoke`: each platform gem installed without Rust on its own platform and Ruby, 12 legs. **Never run**
 
 Every job must pass. Then download what it built.
@@ -49,7 +49,7 @@ gh run download <run-id> --dir artifacts
 
 ### The license notices
 
-A platform gem links 105 to 108 Rust crates into its binary, by platform, so it ships their licenses. `tools/third_party_licenses.rb` writes `THIRD_PARTY_LICENSES.html` for a platform from `Cargo.lock`: the crates linked into the extension for that platform, each with its version, its license and the text. It is never edited by hand and never committed. The gem task runs the tool, and `tools/gem_audit.rb` refuses a platform gem without the file.
+A platform gem links 105 to 108 Rust crates into its binary, by platform, so it ships their licenses. `tools/third_party_licenses.rb` writes `THIRD_PARTY_LICENSES.html` for a platform from `Cargo.lock`: the crates linked into the extension for that platform, each with its version, its license and the text, and then the notices of the Rust standard library, which is linked too. It is never edited by hand and never committed. The gem task runs the tool, and `tools/gem_audit.rb` refuses a platform gem without the file.
 
 The tool needs cargo-about, at the version it names:
 
@@ -62,7 +62,11 @@ Build into an empty `pkg`. The gem task does not add a new file to a package dir
 
 `tools/third_party_licenses/about.toml` lists the licenses a crate may have. When a dependency arrives under another one, the tool fails and names the crate, and so does the `cross-gem` job. Read the license. If Peddler can ship under it, add it to `accepted`. If not, replace the crate.
 
-The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 5 today, which points at the file the crate ships and holds a checksum of the text. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
+The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 5 today, which points at the file the crate ships and holds a checksum of the text. A sixth, for `encoding_rs`, keeps cargo-about from printing a source file as a license. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
+
+The notices of the standard library are a document the toolchain ships, `share/doc/rust/COPYRIGHT-library.html`: std, core, alloc and the crates they bundle. The tool copies it in and names the toolchain. A toolchain without it fails the tool.
+
+The `cross-gem` job writes the notices on the runner, and a container builds the binary with a toolchain of its own. When the 2 differ, the gem task says so in the job's log, and the notices name the runner's toolchain. Read the log on the first run. If they differ, install the container's version on the runner before the notices are written.
 
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 

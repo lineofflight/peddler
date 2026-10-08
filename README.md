@@ -745,7 +745,7 @@ bundle exec steep check --severity-level=hint
 
 Peddler is released under the [MIT License](LICENSE).
 
-A precompiled gem has Rust crates linked into its extension, each under a license of its own: MIT, Apache-2.0, BSD-3-Clause, ISC or Unicode-3.0. `THIRD_PARTY_LICENSES.html` at the root of each precompiled gem lists every one of them with its version and the text of its license. `gem contents peddler` shows where it is.
+A precompiled gem has Rust crates linked into its extension, each under a license of its own: MIT, Apache-2.0, BSD-3-Clause, ISC or Unicode-3.0. `THIRD_PARTY_LICENSES.html` at the root of each precompiled gem lists every one of them with its version and the text of its license, and has the notices of the Rust standard library. `gem contents peddler` shows where it is.
 
 The source gem has no such file. It compiles the crates on your machine, where Cargo downloads each with its license.
 

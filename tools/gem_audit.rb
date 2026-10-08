@@ -42,7 +42,8 @@ problems = ARGV.flat_map do |path|
     found << "#{path}: platform gem has no binary" if binaries.empty?
     notices = content(path, NOTICES)
     found << "#{path}: platform gem lacks #{NOTICES}" unless notices
-    found << "#{path}: #{NOTICES} is empty" if notices && notices.strip.empty?
+    found << "#{path}: #{NOTICES} lists no crate" if notices && !notices.include?('<tr class="crate">')
+    found << "#{path}: #{NOTICES} is cut short" if notices && !notices.rstrip.end_with?("</body>\n</html>")
     found << "#{path}: Linux gem is not -gnu (#{spec.platform})" if spec.platform.os == "linux" && spec.platform.version != "gnu"
     found << "#{path}: platform gem ships Rust sources" if files.any? { |file| file.match?(RUST) }
     found << "#{path}: platform gem declares rb_sys" if spec.runtime_dependencies.any? { |dep| dep.name == "rb_sys" }

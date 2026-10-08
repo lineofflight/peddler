@@ -115,8 +115,10 @@ jobs:
           cargo-cache: false
       # The gem carries the licenses of the crates in its binary. The containers below
       # have no cargo-about, so the notices are written here. The gem task takes them as
-      # they are while Cargo.lock is unchanged. A license that
-      # tools/third_party_licenses/about.toml doesn't accept fails this step.
+      # they are while the lockfile and the manifests are unchanged, and says so in the
+      # log if its toolchain is another than this runner's, whose standard library the
+      # notices name. A license that tools/third_party_licenses/about.toml doesn't
+      # accept fails this step.
       - name: Write the third-party license notices
         run: |
           cargo install cargo-about --version 0.9.2 --locked

@@ -25,7 +25,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Name what ran out of time in the class of a timeout: `Peddler::TimeoutError` for a request, the lookup of a document by its ID included, `Peddler::DocumentTimeoutError` for a transfer, and `Peddler::WorkflowTimeoutError` only for a `wait_for_*` past its own `timeout:`
 - Cancel a call and close its connection, or end its wait before a retry, when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running and a wait no shorter
 - Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need Rust 1.88 or later; see [native extension](README.md#native-extension)
-- Ship `THIRD_PARTY_LICENSES.html` in each precompiled gem: every Rust crate linked into its extension, with its version, its license and the license's text
+- Ship `THIRD_PARTY_LICENSES.html` in each precompiled gem: every Rust crate linked into its extension, with its version, its license and the license's text, and the notices of the Rust standard library
 - Publish the core as the [`peddler` Rust crate](crates/peddler/README.md)
 
 ### Changed

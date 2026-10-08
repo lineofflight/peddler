@@ -4,19 +4,23 @@
 # Writes the license notices of a platform gem: ruby tools/third_party_licenses.rb arm64-darwin [OUTPUT]
 #
 # A platform gem links Rust crates statically into its extension, so it carries their licenses. The notices list
-# exactly the crates linked into peddler_native for the platform, each with its version, its license and the text.
+# exactly the crates linked into peddler_native for the platform, each with its version, its license and the text,
+# and the Rust standard library, which is linked too.
 #
 # - cargo names the crates: the normal dependencies of the extension for the target. That leaves out build
 #   scripts, tests and procedural macros, which run when the extension is built and are not in it, and the
 #   generator, which is another workspace.
 # - cargo-about finds the license and its text in each crate, and fails when a crate has a license that
-#   tools/third_party_licenses/about.toml doesn't accept. It runs offline, so it reads only what the crates ship.
+#   tools/third_party_licenses/about.toml doesn't accept. It runs offline, so it reads only what the crates ship,
+#   and cargo fetches every crate of the lockfile first: cargo-about resolves them for all platforms.
 # - Where cargo-about finds no license file in a crate, it would print the standard text of the license, which
 #   has no copyright line of the crate. That fails here: about.toml has an entry for each such crate.
+# - The toolchain ships the license and copyright notices of the standard library: std, core, alloc and the
+#   crates they bundle. They are copied in, with the toolchain's version. A toolchain without them fails.
 #
 # The file is stamped with what it was written from. When that is unchanged, the file is left as it is and
 # cargo-about is not needed: the containers that cross-compile have none, so the packaging workflow writes the
-# notices before it starts them.
+# notices before it starts them. The file is written under another name and renamed, so it is whole or absent.
 require "digest"
 require "erb"
 require "json"
@@ -28,7 +32,20 @@ ROOT = File.expand_path("..", __dir__)
 CONFIG = "tools/third_party_licenses/about.toml"
 TEMPLATE = "tools/third_party_licenses/notices.html.erb"
 MANIFEST = "crates/peddler-ruby/Cargo.toml"
-INPUTS = ["Cargo.lock", CONFIG, TEMPLATE, "tools/third_party_licenses.rb", "lib/peddler/version.rb"].freeze
+# What the notices are written from, beside the toolchain. The manifests are among them: a feature can link
+# another crate without a change to the lockfile.
+INPUTS = [
+  "Cargo.lock",
+  "Cargo.toml",
+  "crates/peddler/Cargo.toml",
+  MANIFEST,
+  CONFIG,
+  TEMPLATE,
+  "tools/third_party_licenses.rb",
+  "lib/peddler/version.rb",
+].freeze
+# Where a toolchain keeps the notices of the standard library, under its sysroot
+STANDARD_LIBRARY = "share/doc/rust/COPYRIGHT-library.html"
 # Crates that ship no license file at all, as "name version", for which the standard text is all there is
 NO_LICENSE_FILE = [].freeze
 
@@ -43,6 +60,8 @@ def run(*command)
 end
 
 def h(text) = ERB::Util.html_escape(text)
+
+def meta(name, content) = %(<meta name="#{name}" content="#{h(content)}">)
 
 # The Rust target of a platform gem. Only the 4 that are built have one.
 def target(platform)
@@ -62,22 +81,45 @@ def linked(triple)
   crates.map { |name, version| [name, version.delete_prefix("v")] }.sort
 end
 
-platform = Gem::Platform.new(ARGV.fetch(0) { abort("usage: ruby tools/third_party_licenses.rb PLATFORM [OUTPUT]") })
-triple = target(platform)
-output = File.expand_path(ARGV.fetch(1, "THIRD_PARTY_LICENSES.html"), ROOT)
-digest = Digest::SHA256.hexdigest(INPUTS.map { |path| File.read(File.join(ROOT, path)) }.join("\0"))
-stamp = "cargo-about #{CARGO_ABOUT}; #{triple}; #{digest}"
-if File.exist?(output) && File.read(output).include?(%(<meta name="generator" content="#{stamp}">))
-  puts "#{File.basename(output)} is up to date for #{triple}"
-  exit
+# The notices of the standard library as the toolchain ships them: the body of its document.
+def standard_library
+  path = File.join(run("rustc", "--print", "sysroot").strip, STANDARD_LIBRARY)
+  body = File.read(path)[%r{<body>(.*)</body>}m, 1] if File.file?(path)
+  return body.strip if body && !body.strip.empty?
+
+  abort("#{path} is missing or empty, so the toolchain has no license notices for the standard library, which is " \
+    "linked into the extension. A toolchain that rustup installs has them, in its rustc component.")
 end
 
+platform = Gem::Platform.new(ARGV.fetch(0) { abort("usage: ruby tools/third_party_licenses.rb PLATFORM [OUTPUT]") })
+triple = target(platform)
+# A Linux gem is named for glibc, whatever name it was asked for by.
+platform = platform.os == "linux" ? [platform.cpu, "linux", "gnu"].join("-") : platform.to_s
+output = File.expand_path(ARGV.fetch(1, "THIRD_PARTY_LICENSES.html"), ROOT)
+digest = Digest::SHA256.hexdigest(INPUTS.map { |path| File.read(File.join(ROOT, path)) }.join("\0"))
+stamp = "cargo-about #{CARGO_ABOUT}; #{platform}; #{triple}; #{digest}"
+toolchain = run("rustc", "--version").strip
 installed = Open3.capture2e("cargo", "about", "--version").first.strip
+written = File.exist?(output) ? File.read(output) : ""
+if written.include?(meta("generator", stamp)) && written.rstrip.end_with?("</html>")
+  if written.include?(meta("toolchain", toolchain))
+    puts "#{File.basename(output)} is up to date for #{platform}"
+    exit
+  elsif installed != "cargo-about #{CARGO_ABOUT}"
+    # A container that cross-compiles: it can't write the notices again, and nothing else has changed.
+    warn("#{File.basename(output)} was written with #{written[/<meta name="toolchain" content="([^"]*)">/, 1]} and " \
+      "this is #{toolchain}: its entry for the standard library is the other toolchain's")
+    exit
+  end
+end
+
 unless installed == "cargo-about #{CARGO_ABOUT}"
   abort("cargo-about #{CARGO_ABOUT} is needed, found #{installed.lines.first.to_s.strip.inspect}. " \
     "Install it with: cargo install cargo-about --version #{CARGO_ABOUT} --locked")
 end
 
+library = standard_library
+run("cargo", "fetch", "--locked")
 crates = linked(triple)
 # cargo-about writes some keys of a crate's manifest twice.
 report = JSON.parse(
@@ -115,6 +157,10 @@ crates = crates.map do |name, version|
 end
 
 version = File.read(File.join(ROOT, "lib/peddler/version.rb"))[/VERSION = "(.+)"/, 1]
-File.write(output, ERB.new(File.read(File.join(ROOT, TEMPLATE)), trim_mode: "-").result(binding))
-puts "#{File.basename(output)}: #{crates.size} crates for #{triple}; texts by license: " \
-  "#{counts.map { |id, count| "#{id} #{count}" }.join(", ")}; #{standard.size} on a standard text"
+# Written beside the file and renamed, so that a run that is cut off leaves no half of it.
+draft = "#{output}.#{Process.pid}.tmp"
+File.write(draft, ERB.new(File.read(File.join(ROOT, TEMPLATE)), trim_mode: "-").result(binding))
+File.rename(draft, output)
+puts "#{File.basename(output)}: #{crates.size} crates for #{platform}; texts by license: " \
+  "#{counts.map { |id, count| "#{id} #{count}" }.join(", ")}; #{standard.size} on a standard text; " \
+  "standard library of #{toolchain}"
