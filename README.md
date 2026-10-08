@@ -191,9 +191,9 @@ orders = response.dig("payload", "Orders")
 
 A parameter value takes what an operation's argument takes: a String, a number, a boolean, a `Peddler::Marketplace`, or an Array of them, which is joined with commas. A method or a path that is not a String raises `ArgumentError`, such as `path must be a String`.
 
-The client takes 2 options. `timeout:` is the number of seconds a whole call may take, 30 by default. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
+The client takes 2 options. `timeout:` is the number of seconds each attempt of a call may take, 30 by default. Without `retries:` a call is 1 attempt. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
 
-A call ends early only when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. Peddler then cancels the request and closes its connection. A signal your program traps and `Thread#wakeup` raise nothing, so the call goes on.
+A call ends early only when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. Peddler then cancels the request and closes its connection, or ends the wait before a retry. A signal your program traps and `Thread#wakeup` raise nothing, so the call goes on and a wait is no shorter.
 
 Requests go through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host.
 
@@ -259,15 +259,21 @@ client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, re
 client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"), created_after: "2026-01-01T00:00:00Z")
 ```
 
-Peddler retries a GET that Amazon answers with 429, 500, 502, 503 or 504. Through `request`, it retries a HEAD and an OPTIONS too. It never retries another method, since that may change data twice, and it doesn't retry a failed connection.
+Peddler retries a request that Amazon answers with 429, whatever its method: a throttled request was not processed.
 
-Before each retry it waits a random time: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. With `retries: 3`, the waits add up to 1.4 seconds at most.
+It also retries a GET that Amazon answers with 500, 502, 503 or 504, that got no response, or that ran past `timeout:`. Through `request`, it retries a HEAD and an OPTIONS too. It never retries another method after these, since Amazon may have processed the request, and a second one could submit a feed or an order twice.
 
-If the response has a `Retry-After` header, Peddler waits at least as long as it asks. If it asks for more than 30 seconds, or for more time than the call has left, Peddler doesn't retry.
+After a 429, Peddler waits by the rate Amazon documents for the operation: 1 / rate seconds before the first retry, twice that before the second, and so on, plus up to 0.1 seconds. An operation limited to 0.5 requests a second waits 2, 4 and 8 seconds. One limited to 1 request a minute waits 60, 120 and 240. In the sandbox the first wait is 0.2 seconds, whatever the rate.
 
-`timeout:` covers the whole call: every attempt and every wait. When Peddler stops retrying, the last response raises `Peddler::Error` like any other.
+The rates come from Amazon's API models. Peddler doesn't read `x-amzn-RateLimit-Limit`, so a higher limit that Amazon gave your account doesn't shorten a wait.
 
-These waits are short. An operation that Amazon limits to 1 request a minute is still throttled 1.4 seconds later. For that, rescue the error and run the work again later.
+After a 5xx, a failed connection or a timeout, Peddler waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of an operation without a documented rate, and of a call through `request`.
+
+If the response has a `Retry-After` header, Peddler waits as long as it asks instead.
+
+`timeout:` limits each attempt. The waits between attempts are not counted, and no wait has a ceiling: with `retries: 10`, the last wait for an operation limited to 1 request a minute is over 8 hours. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
+
+When Peddler stops retrying, the last response raises `Peddler::Error` like any other. If the last attempt got no response, it raises `Peddler::TransportError` or `Peddler::TimeoutError`.
 
 ### Typed Responses
 
@@ -345,7 +351,7 @@ A failure that is not an HTTP error response from the API has a class of its own
 | Error | Raised when |
 | --- | --- |
 | `Peddler::TransportError` | A request got no response: DNS, connection or TLS failed. |
-| `Peddler::TimeoutError` | A call ran past its `timeout:`. So did a token request, or the request that looks a document up or creates one. A `Peddler::TransportError`. |
+| `Peddler::TimeoutError` | The last attempt of a call ran past its `timeout:`. So did a token request, or the request that looks a document up or creates one. A `Peddler::TransportError`. |
 | `Peddler::AuthenticationError` | Login with Amazon rejected a token request. Has `status` and `code`, and matches patterns on them. |
 | `Peddler::PaginationError` | A `*_pages` enumerator cannot continue. Has `reason`. |
 | `Peddler::DocumentError` | A document transfer failed, or a document is not what the reader expects. |
@@ -417,7 +423,7 @@ end
 | `client.feeds` | `wait_for_feed` | `open_feed_document` | `download_result_feed_document` | `upload_feed_document`, `create_and_upload_feed_document` |
 | `client.data_kiosk` | `wait_for_query` | `open_query_document` | `download_query_document` | |
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out.
 
 4 helpers return a whole document in a response. They allow 600 seconds for a call.
 
@@ -465,7 +471,7 @@ client.reports.open_report_document(report.report_document_id, timeout: 120) do 
 end
 ```
 
-The timeout covers the whole call: looking the document up by its ID, then downloading it. A download that runs past it raises `Peddler::DocumentTimeoutError`. If looking the document up takes that long, it raises `Peddler::TimeoutError`, as any request does.
+The timeout covers the whole call: looking the document up by its ID, with its retries and the waits before them, then downloading it. A download that runs past it raises `Peddler::DocumentTimeoutError`. If looking the document up takes that long, it raises `Peddler::TimeoutError`, as any request does.
 
 An option that breaks its rule raises `ArgumentError` that names it, such as `max_bytes must be a positive Integer that fits in 64 bits`. An unknown one raises `unknown option: the options are timeout, compression, max_bytes and max_record_bytes`. An upload and a wait name a bad option in the same way.
 
@@ -504,7 +510,7 @@ report.summary.messages_accepted # => 2
 
 An upload declares its length when it can tell it: a String, and a source that answers `size`, such as a File or a StringIO, are sent with `Content-Length`. For another source, pass `content_length:` with the number of bytes it holds. Without one, the body is sent chunked. This holds for `upload_feed_document` and `upload_document` too.
 
-If creating the feed document takes longer than the upload's `timeout:` (30 seconds), it raises `Peddler::TimeoutError`. If the upload does, it raises `Peddler::DocumentTimeoutError`.
+If creating the feed document takes longer than the upload's `timeout:` (30 seconds), it raises `Peddler::TimeoutError`. If the upload does, it raises `Peddler::DocumentTimeoutError`. Creating the document is retried as the client's `retries:` says, which for a write means after a 429 only. The upload is never retried.
 
 #### Signed URLs
 
