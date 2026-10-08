@@ -19,11 +19,11 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Add `create_and_upload_feed_document` on `client.feeds`, and `Client#upload_document` for a signed URL, which upload a String or an IO. A String, and a source that answers `size`, such as a File or a StringIO, are sent with `Content-Length`, as `upload_feed_document` sends them, and `content_length:` declares the length of another source
 - Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`. A `Peddler::AuthenticationError` matches in the same way
 - Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: ids })`. A parameter value takes what an operation's argument takes, a `Peddler::Marketplace` and an Array among them
-- Add a `timeout:` option to the client: the seconds a whole call may take, retries included. The default is 30
+- Add a `timeout:` option to the client: the seconds each attempt of a call may take. The waits between retries are not counted. The default is 30
 - Add a `base_url:` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
 - Add `Peddler::TransportError` and `Peddler::TimeoutError` for requests that get no response, `Peddler::AuthenticationError` (with `status` and `code`) for rejected token requests, and `Peddler::PaginationError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError` and `Peddler::ForkError`
 - Name what ran out of time in the class of a timeout: `Peddler::TimeoutError` for a request, the lookup of a document by its ID included, `Peddler::DocumentTimeoutError` for a transfer, and `Peddler::WorkflowTimeoutError` only for a `wait_for_*` past its own `timeout:`
-- Cancel a call and close its connection when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running
+- Cancel a call and close its connection, or end its wait before a retry, when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running and a wait no shorter
 - Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need Rust 1.88 or later; see [native extension](README.md#native-extension)
 - Publish the core as the [`peddler` Rust crate](crates/peddler/README.md)
 
@@ -36,11 +36,10 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Raise `Peddler::Error` for any status outside 2xx. 5.x raised from 400 up and returned a 3xx as a response
 - Return a new client from `sandbox` and leave the one it is called on in production
 - Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
-- Retry only a GET, when Amazon answers 429, 500, 502, 503 or 504. A request that changes data and a failed connection are no longer retried. `retries:` takes 0 to 10
-- Wait a random time before a retry: up to 0.2 seconds before the first, up to 0.4 before the second, up to 0.8 before the third, doubling up to 30 seconds. `retries: 3` waits 1.4 seconds at most. 5.x waited 1 / rate limit seconds after a 429, doubling: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second
-- Wait at least as long as `Retry-After` asks, and don't retry when it asks for more than 30 seconds or for more time than the call has left. 5.x waited whatever it asked
+- Retry only a GET after a 500, 502, 503 or 504, a failed connection or a timeout. 5.x sent a request that changes data again after these, which could submit a feed or an order twice. A 429 is still retried whatever the method, and the waits before a retry are those of 5.x. `retries:` takes 0 to 10
+- Ignore a `Retry-After` header that is neither a number of seconds nor a date. 5.x retried at once
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
-- Allow 30 seconds for a call by default. 5.x had no timeout
+- Allow each attempt of a call 30 seconds by default. 5.x had no timeout
 - Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent, such as `order_id is required`. An object whose `to_s` is an inspect form, such as `#<Object>`, counts as the wrong type. See the [argument forms](UPGRADING.md#argument-forms) that are still sent as 5.x sent them
 - Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument. The same goes for the ID a document helper takes
 - Refuse a String that is not valid UTF-8 with an `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`. 5.x sent its bytes
@@ -62,7 +61,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Remove the API classes and their accessors: `Peddler.orders_v0.new(aws_region, access_token)`, `Peddler::APIs::OrdersV0.new` and `Peddler::API`, with its `http:` option and its `access_token`, `retries`, `endpoint` and `endpoint_uri` readers. Use `Peddler::Client`
 - Remove `Peddler::LWA.request` and `Peddler::LWAToken`
 - Remove `Peddler::Errors` and the error classes named after Amazon's codes; rescue `Peddler::Error` and match on `code`
-- Remove the `rate_limit:` argument of operation methods. Pacing calls is left to the application
+- Remove the `rate_limit:` argument of operation methods. A retry after a 429 still waits by the rate Amazon documents for the operation, which was the argument's default
 - Remove the sandbox guards (`Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
 - Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model. Remove `Response.wrap` and `Response#parser` too
 - Remove the `Peddler::Helpers` modules. Their methods are on the API views, where they were called
@@ -96,6 +95,8 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - **Removed**: Notifications: `FulfillmentOrderStatusNotification`, `FulfillmentShipment`, `FulfillmentShipmentPackage`, and `FulfillmentReturnItem` types from Fulfillment Order Status
 - **Added**: A+ Content 2020-11-01: `create_media`, `get_media`, and `update_media` operations; Premium and Brand Story modules on `ContentModule`
 - **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
+- **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
+- **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so the retry of a 429 waits 0.5 seconds, then 1, then 2
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
