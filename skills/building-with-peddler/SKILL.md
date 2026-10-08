@@ -70,15 +70,17 @@ addresses = order_ids.map { |id| restricted.orders_v0.get_order_address(id).pars
 
 Peddler does not pace calls. Spread them out in the application, for example with the job queue's rate limiting. The `x-amzn-RateLimit-Limit` response header carries the limit of an operation.
 
-With `retries:` (default `0`, at most `10`), the client retries a GET on `429`, `500`, `502`, `503` and `504`. Its waits are short and random: up to 0.2, 0.4 and 0.8 seconds, doubling, so `retries: 3` waits 1.4 seconds at most. It waits for a `Retry-After` of up to 30 seconds, and doesn't retry after a longer one.
+With `retries:` (default `0`, at most `10`), the client retries a `429` whatever the method, and a GET on `500`, `502`, `503`, `504`, a failed connection or a timeout.
 
 ```ruby
 client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, retries: 3)
 ```
 
-Retries cover a brief burst, not an exhausted quota. For a `429` that survives them, reschedule the job. Never sleep in a loop.
+After a `429` it waits by the rate Amazon documents for the operation: 1 / rate seconds, doubling. That is 2, 4 and 8 seconds at 0.5 requests a second, and 60, 120 and 240 at 1 request a minute. After a failure it waits up to 1 second, then 1 to 2, then 3 to 4. A `Retry-After` header replaces either wait.
 
-A request that changes data is never retried. Reschedule the job instead, and make it safe to run twice.
+`timeout:` (30 seconds) limits each attempt, not the waits between them. A throttled call with `retries: 3` can hold its thread for minutes, so keep `retries:` at `0` in a web request and let a background job wait. For a `429` that survives the retries, reschedule the job. Never sleep in a loop.
+
+A request that changes data is retried after a `429` only, since Amazon did not process it. After a `5xx` or no response it may have been processed: reschedule the job, and make it safe to run twice.
 
 ## Error handling
 
