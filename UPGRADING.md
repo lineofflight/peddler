@@ -253,10 +253,11 @@ Each operation keeps the rate that `rate_limit:` had by default, from Amazon's A
 
 `retries:` stays, and waits as it did. After a 429 it waits 1 / rate seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx or a failed connection it waits up to 1 second, then 1 to 2, then 3 to 4. If the response has a `Retry-After` header, it waits as long as that asks instead.
 
-It differs in 2 ways.
+It differs in 3 ways.
 
 - **What it retries after a failure.** After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
 - **`timeout:`.** It limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
+- **A wait of more than 10 minutes.** When the rate or `Retry-After` asks for a wait of more than 600 seconds, v6 stops retrying and the last response raises. v5 waited however long that was. With `retries: 3` only `search_orders` of Orders 2026-01-01 loses a retry, since its third wait would be 714 seconds. With more retries, an operation limited to 1 request a minute is retried 4 times at most. The [README](README.md#rate-limiting) has the number for each rate.
 
 `retries:` takes 0 to 10.
 

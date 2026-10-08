@@ -78,6 +78,8 @@ client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, re
 
 After a `429` it waits by the rate Amazon documents for the operation: 1 / rate seconds, doubling. That is 2, 4 and 8 seconds at 0.5 requests a second, and 60, 120 and 240 at 1 request a minute. After a failure it waits up to 1 second, then 1 to 2, then 3 to 4. A `Retry-After` header replaces either wait.
 
+A wait longer than 10 minutes ends retrying, and the last response raises. So an operation limited to 1 request a minute is retried 4 times at most, whatever `retries:` says.
+
 `timeout:` (30 seconds) limits each attempt, not the waits between them. A throttled call with `retries: 3` can hold its thread for minutes, so keep `retries:` at `0` in a web request and let a background job wait. For a `429` that survives the retries, reschedule the job. Never sleep in a loop.
 
 A request that changes data is retried after a `429` only, since Amazon did not process it. After a `5xx` or no response it may have been processed: reschedule the job, and make it safe to run twice.

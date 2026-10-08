@@ -26,7 +26,8 @@ module Peddler
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
     # @param [Integer, Float] timeout seconds for each attempt of a call. The waits between retries are not counted.
-    # @param [Integer] retries how often to retry a throttled request, or a GET that failed, from 0 to 10
+    # @param [Integer] retries how often to retry a throttled request, or a GET that failed, from 0 to 10. A wait of
+    #   more than 600 seconds before a retry ends retrying.
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?

@@ -8,7 +8,9 @@
 //! deducted before the transfer starts, so the transfer receives the remainder.
 //! The deadline also covers reading the downloaded body, and the waits between the
 //! attempts of a metadata request the client retries: a wait that would outlast the
-//! deadline ends there, and the helper has timed out.
+//! deadline ends there, and the helper has timed out. A request that is told to wait
+//! longer than the client waits is not retried, so its 429 is [`WorkflowError::Http`]
+//! at once.
 //!
 //! No helper retries a transfer or submits a feed. Creating a feed document is
 //! retried as the client retries any write: after a 429 only, which made no

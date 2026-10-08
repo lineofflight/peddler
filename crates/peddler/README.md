@@ -227,7 +227,21 @@ After a 5xx, a failed connection or a timeout, the client waits up to 1 second, 
 
 If the response has a `Retry-After` header, the client waits as long as it asks instead. A value that is neither seconds nor a date is ignored.
 
-The timeout limits each attempt: asking a token source, the request and reading the body. The waits between attempts are not counted, and no wait has a ceiling: with 10 retries, the last wait for an operation limited to 1 request a minute is over 8 hours. Choose `max_retries` by how long a call may take, or put the call in `tokio::time::timeout`. Dropping the future ends a wait as it ends a request.
+A wait is 600 seconds at most. When the rate or `Retry-After` asks for a longer one, the client stops retrying and returns that response, as when the retries run out. So the rate of an operation sets how many retries its 429 can use. One limited to 1 request a minute waits 60, 120, 240 and 480 seconds and is not retried a fifth time.
+
+| Requests a second | Retries of a 429 |
+| --- | --- |
+| 0.0056 | 2 |
+| 0.0083 | 3 |
+| 0.016 to 0.0222 | 4 |
+| 0.033 | 5 |
+| 0.1 | 6 |
+| 0.5 | 9 |
+| 1 or more | 10 |
+
+52 operations are limited to less than 1 request a second, so none of them can use 10 retries.
+
+The timeout limits each attempt: asking a token source, the request and reading the body. The waits between attempts are not counted, so a call can take far longer than the timeout: 17 minutes for 9 retries at 0.5 requests a second, and 100 minutes if `Retry-After` asks for 600 seconds 10 times. Choose `max_retries` by how long a call may take, or put the call in `tokio::time::timeout`. Dropping the future ends a wait as it ends a request.
 
 When the retries run out, the call returns the last response, or `Error::Timeout` or `Error::Transport` if the last attempt got none.
 
@@ -336,7 +350,7 @@ if let Some(document_id) = report.report_document_id {
 }
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait. A poll that is told to wait more than 600 seconds is not retried: it is `WorkflowError::Http` with the 429, at once.
 
 `download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup, with its retries and the waits before them, and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
 

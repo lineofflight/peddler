@@ -569,6 +569,8 @@ mod tests {
     #[derive(Clone, Copy)]
     enum Attempt {
         Status(u16),
+        /// A 429 whose `Retry-After` asks for this many seconds.
+        Asks(u64),
         /// The connection fails.
         Fails,
         /// Nothing answers.
@@ -602,6 +604,11 @@ mod tests {
                         Status(status) => Ok(Response {
                             status,
                             headers: Vec::new(),
+                            body: Vec::new(),
+                        }),
+                        Asks(seconds) => Ok(Response {
+                            status: 429,
+                            headers: vec![("retry-after".into(), seconds.to_string())],
                             body: Vec::new(),
                         }),
                         Fails => Err(Error::Transport),
@@ -719,21 +726,37 @@ mod tests {
     }
 
     #[tokio::test(start_paused = true)]
-    async fn a_retry_after_longer_than_any_clock_is_waited_for_and_ends_when_the_call_is_dropped() {
-        let client = client(1);
-        let attempts = AtomicUsize::new(0);
-        let call = client.run("GET", Some(80.0), |_token| {
-            attempts.fetch_add(1, Ordering::SeqCst);
-            std::future::ready(Ok(Response {
-                status: 429,
-                headers: vec![("retry-after".into(), u64::MAX.to_string())],
-                body: Vec::new(),
-            }))
-        });
-        // Nothing but the caller ends such a wait. A day later it still goes on.
-        let day = Duration::from_secs(86_400);
-        assert!(tokio::time::timeout(day, call).await.is_err());
-        assert_eq!(attempts.into_inner(), 1);
+    async fn a_wait_of_600_seconds_is_waited_and_a_longer_one_ends_retrying() {
+        // What `Retry-After` asks for.
+        for (asked, waited) in [
+            (600, true),
+            (601, false),
+            (86_400, false),
+            (u64::MAX, false),
+        ] {
+            let script = [Asks(asked), Status(200)];
+            let (result, attempts, elapsed) = run(&client(10), "GET", Some(80.0), &script).await;
+            if waited {
+                assert_eq!((result, attempts), (Ok(200), 2), "{asked}");
+                assert!(took(elapsed, 600.0, 600.0), "{elapsed}");
+            } else {
+                // The last response is returned at once, as when the retries run out.
+                assert_eq!((result, attempts, elapsed), (Ok(429), 1, 0.0), "{asked}");
+            }
+        }
+        // What the rate asks for. At 1 request a minute the fifth wait would be 958
+        // seconds, so the fifth 429 is returned after waits of 60, 120, 240 and 480.
+        let (result, attempts, elapsed) =
+            run(&client(10), "POST", Some(0.0167), &[Status(429); 5]).await;
+        assert_eq!((result, attempts), (Ok(429), 5));
+        assert!(
+            took(elapsed, 15.0 / 0.0167, 15.0 / 0.0167 + 0.4),
+            "{elapsed}"
+        );
+        // A failure never waits that long: 10 retries, the last after 511 to 512 seconds.
+        let (result, attempts, elapsed) = run(&client(10), "GET", None, &[Fails; 11]).await;
+        assert_eq!((result, attempts), (Err(Error::Transport), 11));
+        assert!(took(elapsed, 1013.0, 1023.0), "{elapsed}");
     }
 
     #[tokio::test(start_paused = true)]
