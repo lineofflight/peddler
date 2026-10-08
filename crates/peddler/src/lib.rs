@@ -5,7 +5,8 @@
 //! [`auth::LwaClient`] requests them. Each operation is an async function in a module
 //! of [`apis`], with its parameters in a struct. The function returns once Amazon has
 //! answered, whatever the status: an HTTP error status is a response, not an `Err`,
-//! until [`Response::error_for_status`] is asked.
+//! until [`Response::error_for_status`] is asked. A client retries nothing unless its
+//! [`policy::RetryPolicy`] says how often.
 //!
 //! ```no_run
 //! use peddler::{Client, apis::orders_v0};
@@ -59,7 +60,7 @@ mod url;
 pub use operation::{DecodeError, TypedResponse};
 
 use auth::{AuthError, TokenSource};
-use policy::RetryPolicy;
+use policy::{Call, Outcome, RetryPolicy};
 use reqwest::{Method, Url, header::HeaderValue};
 use std::{future::Future, time::Duration};
 
@@ -159,7 +160,8 @@ pub struct ClientConfig {
     pub base_url: String,
     /// The token to send, or its source.
     pub access_token: AccessToken,
-    /// One deadline for a call: every attempt, the body and the retry delays.
+    /// The limit of each attempt: asking a token source, the request and the body.
+    /// The waits between the attempts of a retried call are not counted.
     pub timeout: Duration,
     /// How often a throttled or failed call is retried. The default is never.
     pub retry: RetryPolicy,
@@ -169,7 +171,8 @@ pub struct ClientConfig {
     pub pool: Option<Pool>,
 }
 impl ClientConfig {
-    /// A configuration with a timeout of 30 seconds, no retries and a pool of its own.
+    /// A configuration that allows an attempt 30 seconds, with no retries and a pool of
+    /// its own.
     pub fn new(base_url: impl Into<String>, access_token: impl Into<AccessToken>) -> Self {
         Self {
             base_url: base_url.into(),
@@ -192,6 +195,8 @@ pub struct Client {
     user_agent: Option<HeaderValue>,
     retry: RetryPolicy,
     timeout: Duration,
+    /// Whether the origin is Amazon's sandbox, where a 429 has a wait of its own.
+    sandbox: bool,
 }
 
 impl std::fmt::Debug for Client {
@@ -242,7 +247,7 @@ pub enum Error {
     /// The client was given something it can't use or send: a base URL, a token, a
     /// timeout, a path, a header or an argument.
     InvalidRequest,
-    /// The call took longer than the client's timeout.
+    /// An attempt took longer than the client's timeout, and so did every retry of it.
     Timeout,
     /// The request couldn't be sent or the response couldn't be read.
     Transport,
@@ -265,12 +270,12 @@ impl std::error::Error for Error {}
 
 impl Client {
     /// A client for the endpoint of a selling region that sends this access token,
-    /// allows a call 30 seconds and never retries.
+    /// allows an attempt 30 seconds and never retries.
     pub fn new(base_url: &str, access_token: &str) -> Result<Self, Error> {
         Self::with_config(ClientConfig::new(base_url, access_token))
     }
 
-    /// Like `new`, with another timeout for a whole call.
+    /// Like `new`, with another timeout for an attempt.
     pub fn with_timeout(
         base_url: &str,
         access_token: &str,
@@ -322,6 +327,10 @@ impl Client {
             AccessToken::Static(token) => Token::Static(token_header(&token)?),
             AccessToken::Source(source) => Token::Source(source),
         };
+        // Amazon's sandbox is the host of a selling region after `sandbox.`.
+        let sandbox = origin
+            .host_str()
+            .is_some_and(|host| host.starts_with("sandbox."));
         Ok(Self {
             http: pool.http,
             origin,
@@ -329,6 +338,7 @@ impl Client {
             user_agent,
             retry,
             timeout,
+            sandbox,
         })
     }
 
@@ -351,33 +361,41 @@ impl Client {
         }
     }
 
-    /// Runs `send` once per attempt, with that attempt's token, under one deadline
-    /// that also covers asking a token source and the retry delays.
-    async fn run<F, Fut>(&self, method: &str, send: F) -> Result<Response, Error>
+    /// Runs `send` once per attempt, with that attempt's token. The timeout limits
+    /// each attempt, asking a token source included. The waits between attempts, which
+    /// the policy sets, are not counted against it. `rate` is the requests per second
+    /// Amazon documents for the operation, if this is one and it has one.
+    async fn run<F, Fut>(&self, method: &str, rate: Option<f64>, send: F) -> Result<Response, Error>
     where
         F: Fn(HeaderValue) -> Fut,
         Fut: Future<Output = Result<Response, Error>>,
     {
-        let deadline = deadline(self.timeout).ok_or(Error::InvalidRequest)?;
-        tokio::time::timeout_at(deadline, async {
-            let mut retry_index = 0;
-            loop {
-                let response = send(self.token().await?).await?;
-                let Some(delay) =
-                    self.retry
-                        .retry_delay(method, response.status, &response.headers, retry_index)
-                else {
-                    return Ok(response);
-                };
-                if delay >= deadline.saturating_duration_since(tokio::time::Instant::now()) {
-                    return Ok(response);
-                }
-                tokio::time::sleep(delay).await;
-                retry_index += 1;
-            }
-        })
-        .await
-        .map_err(|_| Error::Timeout)?
+        let call = Call {
+            method,
+            rate,
+            sandbox: self.sandbox,
+        };
+        let mut retry = 0;
+        loop {
+            let attempt = async { send(self.token().await?).await };
+            let result = tokio::time::timeout(self.timeout, attempt)
+                .await
+                .unwrap_or(Err(Error::Timeout));
+            let outcome = match &result {
+                Ok(response) => Outcome::Response {
+                    status: response.status,
+                    headers: &response.headers,
+                },
+                Err(Error::Timeout | Error::Transport) => Outcome::Failed,
+                // What another attempt wouldn't change. A token source is never retried.
+                Err(_) => return result,
+            };
+            retry += 1;
+            let Some(wait) = self.retry.wait(call, outcome, retry) else {
+                return result;
+            };
+            tokio::time::sleep(wait).await;
+        }
     }
 
     /// What only the Selling Partner API receives: the token, the time of this
@@ -391,17 +409,23 @@ impl Client {
     }
 
     /// Sends a request with the client's access token, timeout and retries, and
-    /// returns the response whatever its status.
+    /// returns the response whatever its status. It has no documented rate, so a
+    /// retry after a 429 waits as one after a 503 does.
     pub async fn execute(&self, request: Request) -> Result<Response, Error> {
-        self.execute_inner(request, false).await
+        self.execute_inner(request, false, None).await
     }
 
     /// Like `execute`, with the `Accept` header generated calls send.
     pub(crate) async fn execute_json(&self, request: Request) -> Result<Response, Error> {
-        self.execute_inner(request, true).await
+        self.execute_inner(request, true, None).await
     }
 
-    async fn execute_inner(&self, request: Request, accept_json: bool) -> Result<Response, Error> {
+    async fn execute_inner(
+        &self,
+        request: Request,
+        accept_json: bool,
+        rate: Option<f64>,
+    ) -> Result<Response, Error> {
         if !request.path.starts_with('/')
             || request.path.starts_with("//")
             || request
@@ -437,7 +461,7 @@ impl Client {
             builder = builder.header(name, value);
         }
         let buffered = builder.build().map_err(|_| Error::InvalidRequest)?;
-        self.run(&method_name, |token| {
+        self.run(&method_name, rate, |token| {
             let mut request = buffered.try_clone().expect("buffered body is repeatable");
             async move {
                 self.authorize(request.headers_mut(), &token);
@@ -526,4 +550,181 @@ fn token_header(value: &str) -> Result<HeaderValue, Error> {
     let mut token = HeaderValue::from_str(value).map_err(|_| Error::InvalidRequest)?;
     token.set_sensitive(true);
     Ok(token)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    use tokio::time::Instant;
+
+    /// How one attempt ends.
+    #[derive(Clone, Copy)]
+    enum Attempt {
+        Status(u16),
+        /// The connection fails.
+        Fails,
+        /// Nothing answers.
+        Hangs,
+        /// The token source fails.
+        Unauthenticated,
+    }
+    use Attempt::*;
+
+    fn client(retries: u32) -> Client {
+        let mut config = ClientConfig::new("https://sellingpartnerapi-eu.amazon.com", "token");
+        config.retry.max_retries = retries;
+        Client::with_config(config).unwrap()
+    }
+
+    /// Runs a call whose attempts end as scripted. Returns the status or the error, the
+    /// number of attempts and the time the call took on the paused clock, in seconds.
+    async fn run(
+        client: &Client,
+        method: &str,
+        rate: Option<f64>,
+        script: &[Attempt],
+    ) -> (Result<u16, Error>, usize, f64) {
+        let attempts = AtomicUsize::new(0);
+        let started = Instant::now();
+        let result = client
+            .run(method, rate, |_token| {
+                let attempt = script[attempts.fetch_add(1, Ordering::SeqCst)];
+                async move {
+                    match attempt {
+                        Status(status) => Ok(Response {
+                            status,
+                            headers: Vec::new(),
+                            body: Vec::new(),
+                        }),
+                        Fails => Err(Error::Transport),
+                        Hangs => std::future::pending().await,
+                        Unauthenticated => Err(Error::Authentication(AuthError::InvalidResponse)),
+                    }
+                }
+            })
+            .await;
+        (
+            result.map(|response| response.status),
+            attempts.into_inner(),
+            started.elapsed().as_secs_f64(),
+        )
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_wait_between_attempts_is_not_counted_against_the_timeout() {
+        // The first wait alone, a minute, is twice the timeout of 30 seconds.
+        let script = [Status(429), Status(429), Status(200)];
+        let (result, attempts, elapsed) = run(&client(2), "GET", Some(0.0167), &script).await;
+        assert_eq!((result, attempts), (Ok(200), 3));
+        let waits = 3.0 / 0.0167;
+        assert!((waits..waits + 0.2).contains(&elapsed), "{elapsed}");
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn the_timeout_limits_each_attempt_and_a_safe_method_tries_again() {
+        let (result, attempts, elapsed) =
+            run(&client(2), "GET", None, &[Hangs, Hangs, Status(200)]).await;
+        assert_eq!((result, attempts), (Ok(200), 3));
+        // 2 attempts of 30 seconds, a wait of up to 1 second and one of 1 to 2.
+        assert!((61.0..63.0).contains(&elapsed), "{elapsed}");
+        let (result, attempts, elapsed) = run(&client(2), "GET", None, &[Hangs; 3]).await;
+        assert_eq!((result, attempts), (Err(Error::Timeout), 3));
+        assert!((91.0..93.0).contains(&elapsed), "{elapsed}");
+        // A write that got no answer may have been processed.
+        for method in ["POST", "PUT", "PATCH", "DELETE"] {
+            let (result, attempts, elapsed) = run(&client(2), method, Some(5.0), &[Hangs]).await;
+            assert_eq!((result, attempts), (Err(Error::Timeout), 1), "{method}");
+            assert!((30.0..30.1).contains(&elapsed), "{elapsed}");
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_failed_connection_is_retried_for_a_safe_method_only() {
+        for method in ["GET", "HEAD", "OPTIONS"] {
+            let (result, attempts, elapsed) = run(&client(3), method, Some(5.0), &[Fails; 4]).await;
+            assert_eq!((result, attempts), (Err(Error::Transport), 4), "{method}");
+            // Up to 1 second, then 1 to 2, then 3 to 4.
+            assert!((4.0..7.0).contains(&elapsed), "{elapsed}");
+        }
+        let (result, attempts, _) = run(&client(3), "GET", None, &[Fails, Status(200)]).await;
+        assert_eq!((result, attempts), (Ok(200), 2));
+        for method in ["POST", "PUT", "PATCH", "DELETE"] {
+            let (result, attempts, elapsed) = run(&client(3), method, Some(5.0), &[Fails]).await;
+            assert_eq!((result, attempts), (Err(Error::Transport), 1), "{method}");
+            assert_eq!(elapsed, 0.0);
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_write_is_retried_after_a_429_and_not_after_a_5xx() {
+        for method in ["POST", "PUT", "PATCH", "DELETE"] {
+            let script = [Status(429), Status(429), Status(201)];
+            let (result, attempts, elapsed) = run(&client(2), method, Some(5.0), &script).await;
+            assert_eq!((result, attempts), (Ok(201), 3), "{method}");
+            // A fifth of a second, then 2 fifths, and up to a tenth more each.
+            assert!((0.6..0.8).contains(&elapsed), "{elapsed}");
+            for status in [500, 502, 503, 504] {
+                let (result, attempts, elapsed) =
+                    run(&client(2), method, Some(5.0), &[Status(status)]).await;
+                assert_eq!((result, attempts), (Ok(status), 1), "{method}");
+                assert_eq!(elapsed, 0.0);
+            }
+        }
+        // The last response is returned when the retries run out.
+        let (result, attempts, _) = run(&client(2), "POST", Some(80.0), &[Status(429); 3]).await;
+        assert_eq!((result, attempts), (Ok(429), 3));
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_call_without_a_rate_waits_after_a_429_as_after_a_503() {
+        for status in [429, 500, 502, 503, 504] {
+            let script = [Status(status), Status(status), Status(status), Status(200)];
+            let (result, attempts, elapsed) = run(&client(3), "GET", None, &script).await;
+            assert_eq!((result, attempts), (Ok(200), 4), "{status}");
+            assert!((4.0..7.0).contains(&elapsed), "{status} {elapsed}");
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn nothing_is_retried_by_default_or_when_another_attempt_changes_nothing() {
+        for attempt in [Status(429), Status(503), Fails] {
+            let (_, attempts, elapsed) = run(&client(0), "GET", Some(5.0), &[attempt]).await;
+            assert_eq!((attempts, elapsed), (1, 0.0));
+        }
+        for attempt in [
+            Status(200),
+            Status(400),
+            Status(404),
+            Status(501),
+            Unauthenticated,
+        ] {
+            let (_, attempts, elapsed) = run(&client(10), "GET", Some(5.0), &[attempt]).await;
+            assert_eq!((attempts, elapsed), (1, 0.0));
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn the_sandbox_is_known_by_its_host_and_waits_a_fifth_of_a_second() {
+        let mut config = ClientConfig::new("https://sandbox.sellingpartnerapi-na.amazon.com", "t");
+        config.retry.max_retries = 1;
+        let sandbox = Client::with_config(config).unwrap();
+        let script = [Status(429), Status(200)];
+        let (result, _, elapsed) = run(&sandbox, "GET", Some(0.0167), &script).await;
+        assert_eq!(result, Ok(200));
+        assert!((0.2..0.3).contains(&elapsed), "{elapsed}");
+        // A view with another token calls the same host.
+        let view = sandbox.with_access_token("other").unwrap();
+        let (_, _, elapsed) = run(&view, "GET", Some(0.0167), &script).await;
+        assert!((0.2..0.3).contains(&elapsed), "{elapsed}");
+        for production in [
+            "https://sellingpartnerapi-na.amazon.com",
+            "http://localhost:1",
+        ] {
+            assert!(
+                !Client::new(production, "t").unwrap().sandbox,
+                "{production}"
+            );
+        }
+    }
 }

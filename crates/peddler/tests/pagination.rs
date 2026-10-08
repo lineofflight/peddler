@@ -23,13 +23,14 @@ struct Recorded {
 
 /// Serves `replies` in order, one request per connection. Requests beyond the
 /// script get a 500 so that an unexpected extra fetch is both visible and failing.
+/// Every reply asks for a retry at once, so that a test of one doesn't wait.
 async fn serve(replies: Vec<(u16, String)>) -> Server {
     support::serve(move |index, _, _| {
         let (status, body) = replies
             .get(index)
             .cloned()
             .unwrap_or((500, "unexpected extra request".into()));
-        http(status, "", body.as_bytes())
+        http(status, "Retry-After: 0\r\n", body.as_bytes())
     })
     .await
 }

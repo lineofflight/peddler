@@ -83,23 +83,6 @@ class RuntimeTest < NativeTest
     refute_match(/dummy-secret|secret/, error.message)
   end
 
-  def test_retries_a_throttled_get_but_never_a_write
-    replies = [[429, "throttled"], [200, "{}"], [429, "write-throttled"]]
-    seen = Queue.new
-    serve(count: 3, handler: lambda { |socket, first, headers, _body|
-      seen << [first[0], headers["x-amz-access-token"]]
-      status, body = replies.shift
-      respond(socket, status: status, headers: [["Retry-After", "0"]], body: body)
-    }) do |url|
-      instance = client(url, retries: 2)
-
-      assert_equal(200, instance.request("GET", "/").status)
-      assert_equal("write-throttled", assert_raises(Peddler::Error) { instance.request("POST", "/", body: {}) }.response.body)
-    end
-
-    assert_equal([["GET", "local-secret"], ["GET", "local-secret"], ["POST", "local-secret"]], Array.new(3) { seen.pop })
-  end
-
   def test_error_code_and_message_are_rust_metadata_and_nothing_else_from_the_body_is_shown
     body = '{"errors":[{"code":"InvalidInput","message":"Amazon says no","details":"dummy-private"}]}'
     serve(handler: ->(socket, *) { respond(socket, status: 400, body: body) }) do |url|

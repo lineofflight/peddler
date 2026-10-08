@@ -25,8 +25,8 @@ module Peddler
     # @param [String, #call] access_token a Login with Amazon access token or a restricted data token, or its source
     # @param [String] region the AWS region of the selling region, unless base_url is given
     # @param [String] base_url a custom destination instead of Amazon's endpoint for a region
-    # @param [Integer, Float] timeout seconds for a whole call, including retries
-    # @param [Integer] retries how often to retry a throttled or failed GET, from 0 to 10
+    # @param [Integer, Float] timeout seconds for each attempt of a call. The waits between retries are not counted.
+    # @param [Integer] retries how often to retry a throttled request, or a GET that failed, from 0 to 10
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
@@ -85,7 +85,8 @@ module Peddler
     # Calls an endpoint Peddler has no method for yet
     #
     # The request carries the client's access token and keeps its timeout and retries, as an operation's method
-    # does. The response has no typed model, so {Peddler::Response#parse} returns the Hash.
+    # does. Amazon documents no rate for it, so a retry after a 429 waits as one after a 503 does. The response has
+    # no typed model, so {Peddler::Response#parse} returns the Hash.
     #
     # @example
     #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
@@ -97,7 +98,7 @@ module Peddler
     # @return [Peddler::Response]
     # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
     # @raise [Peddler::Error] if the response is outside 2xx
-    # @raise [Peddler::TimeoutError] if the call takes longer than the client's timeout
+    # @raise [Peddler::TimeoutError] if the last attempt takes longer than the client's timeout
     # @raise [Peddler::TransportError] if the request can't be sent or the response can't be read
     # @raise [Peddler::ForkError] if the client was built before the process forked
     def request(method, path, params: {}, body: nil)

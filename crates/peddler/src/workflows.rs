@@ -6,12 +6,16 @@
 //! (`TransferOptions::timeout`, `UploadOptions::transfer.timeout` or
 //! `WaitOptions::timeout`), measured from the call. Time spent on metadata is
 //! deducted before the transfer starts, so the transfer receives the remainder.
-//! The deadline also covers reading the downloaded body.
+//! The deadline also covers reading the downloaded body, and the waits between the
+//! attempts of a metadata request the client retries: a wait that would outlast the
+//! deadline ends there, and the helper has timed out.
 //!
-//! No helper retries a mutation or submits a feed. Error messages never contain
-//! signed URLs, response bodies or tokens. A failed metadata response is available
-//! through [`WorkflowError::response`], and the reply of a signed URL that rejects
-//! a transfer through [`documents::Error::Rejected`].
+//! No helper retries a transfer or submits a feed. Creating a feed document is
+//! retried as the client retries any write: after a 429 only, which made no
+//! document. Error messages never contain signed URLs, response bodies or tokens. A
+//! failed metadata response is available through [`WorkflowError::response`], and
+//! the reply of a signed URL that rejects a transfer through
+//! [`documents::Error::Rejected`].
 
 use crate::{
     Client, Error as ClientError, Response, TypedResponse,
@@ -108,9 +112,9 @@ impl FeedDocumentTarget {
 pub enum WorkflowError {
     /// Invalid identifier, content type, interval, timeout or transfer limits.
     InvalidConfig,
-    /// Metadata request failed before an HTTP response. A lookup that takes longer
-    /// than the client's timeout, or than the deadline of its call, is
-    /// [`ClientError::Timeout`] here.
+    /// Metadata request failed before an HTTP response. A lookup whose last attempt
+    /// takes longer than the client's timeout, or that takes longer than the deadline
+    /// of its call with its retries, is [`ClientError::Timeout`] here.
     Request(ClientError),
     /// Metadata response had an unexpected status. Raw response retained.
     Http(Response),
@@ -429,8 +433,9 @@ impl Workflows {
 
     /// Only create the feed document. `options` are validated and their transfer
     /// timeout starts the one total deadline, shared with the later
-    /// [`FeedDocumentTarget::upload`]. Create is never retried and `createFeed` is
-    /// not called. The signed URL stays private to the returned target.
+    /// [`FeedDocumentTarget::upload`]. Create is retried as the client retries a
+    /// write, after a 429 only, and `createFeed` is not called. The signed URL stays
+    /// private to the returned target.
     pub async fn create_feed_document(
         &self,
         content_type: &str,

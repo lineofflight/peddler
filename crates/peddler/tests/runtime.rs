@@ -2,7 +2,10 @@ mod support;
 
 use peddler::{
     Client, ClientConfig, Error, Request,
-    apis::catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
+    apis::{
+        catalog_items_2022_04_01::{GetCatalogItemParams, get_catalog_item},
+        shipping_v2::{GetRatesParams, GetTrackingParams, get_rates, get_tracking},
+    },
     auth::{AuthError, LwaClient, TokenSource},
 };
 use std::{
@@ -10,9 +13,9 @@ use std::{
         Arc,
         atomic::{AtomicUsize, Ordering},
     },
-    time::{Duration, Instant},
+    time::Duration,
 };
-use support::{bind, http, replies};
+use support::{Reply, bind, http, replies};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 fn request(method: &str) -> Request {
@@ -29,66 +32,81 @@ fn retrying(base: String, max_retries: u32) -> ClientConfig {
     config.retry.max_retries = max_retries;
     config
 }
+/// A reply that asks for a retry at once, so that a test of one doesn't wait.
+fn at_once(status: u16, body: &[u8]) -> Reply {
+    http(status, "Retry-After: 0\r\n", body)
+}
+fn tracking() -> GetTrackingParams {
+    GetTrackingParams::new("tracking".into(), "carrier".into())
+}
 #[tokio::test]
-async fn retry_safe_get_but_never_patch_and_keep_final_response() {
+async fn a_throttled_call_is_retried_whatever_its_method_and_keeps_the_final_response() {
     let api = replies(vec![
-        http(429, "Retry-After: 0\r\n", b"first"),
+        at_once(429, b"first"),
         http(200, "", b"ok"),
+        at_once(429, b"first"),
+        at_once(429, b"second"),
         http(429, "x-repeat: a\r\nx-repeat: b\r\n", b"last"),
     ])
     .await;
     let client = Client::with_config(retrying(api.url.clone(), 2)).unwrap();
     assert_eq!(client.execute(request("GET")).await.unwrap().body, b"ok");
+    // A throttled write was not processed, so it is sent again, until the retries run out.
     let final_response = client.execute(request("PATCH")).await.unwrap();
     assert_eq!(final_response.body, b"last");
     assert_eq!(final_response.status, 429);
-    assert_eq!(api.requests().len(), 3);
+    let repeated: Vec<_> = final_response
+        .headers
+        .iter()
+        .filter(|(name, _)| name == "x-repeat")
+        .collect();
+    assert_eq!(repeated.len(), 2);
+    let methods: Vec<_> = api
+        .requests()
+        .iter()
+        .map(|request| request.split(' ').next().unwrap().to_owned())
+        .collect();
+    assert_eq!(methods, ["GET", "GET", "PATCH", "PATCH", "PATCH"]);
 }
 #[tokio::test]
-async fn backoff_longer_than_the_deadline_returns_the_last_response() {
-    let api = replies(vec![http(429, "Retry-After: 1\r\n", b"retain")]).await;
-    let mut c = retrying(api.url.clone(), 1);
-    c.timeout = Duration::from_millis(50);
-    let client = Client::with_config(c).unwrap();
-    assert_eq!(
-        client.execute(request("GET")).await.unwrap().body,
-        b"retain"
-    );
-    assert_eq!(api.requests().len(), 1);
-}
-#[tokio::test]
-async fn one_deadline_covers_every_attempt_and_the_retry_delay() {
-    let (listener, base) = bind().await;
-    let api = tokio::spawn(async move {
-        let mut buf = [0; 4096];
-        let (mut socket, _) = listener.accept().await.unwrap();
-        assert!(socket.read(&mut buf).await.unwrap() > 0);
-        tokio::time::sleep(Duration::from_millis(200)).await;
-        socket
-            .write_all(b"HTTP/1.1 503 Test\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
+async fn a_failed_write_is_not_sent_again_but_a_failed_get_is() {
+    for status in [500, 502, 503, 504] {
+        let api = replies(vec![
+            at_once(status, b"write"),
+            at_once(status, b"read"),
+            http(200, "", b"ok"),
+        ])
+        .await;
+        let client = Client::with_config(retrying(api.url.clone(), 2)).unwrap();
+        // A write that failed may have been processed.
+        let write = get_rates(&client, GetRatesParams::new(serde_json::json!({})))
             .await
             .unwrap();
-        // The second attempt is never answered and is cut off by the first one's deadline.
-        let (mut socket, _) = listener.accept().await.unwrap();
-        assert!(socket.read(&mut buf).await.unwrap() > 0);
-        assert_eq!(socket.read(&mut buf).await.unwrap(), 0);
-    });
-    // The first retry waits 200 milliseconds at most, which leaves time for the attempt.
-    let mut c = retrying(base, 3);
-    c.timeout = Duration::from_millis(600);
-    let client = Client::with_config(c).unwrap();
-    let started = Instant::now();
+        assert_eq!(
+            (write.raw.status, write.raw.body),
+            (status, b"write".to_vec())
+        );
+        assert_eq!(api.requests().len(), 1);
+        assert_eq!(
+            get_tracking(&client, tracking()).await.unwrap().raw.body,
+            b"ok"
+        );
+        assert_eq!(api.requests().len(), 3);
+    }
+}
+#[tokio::test]
+async fn a_failed_connection_is_retried_for_a_get_and_never_for_a_write() {
+    // The first 2 connections are closed without a reply.
+    let api = replies(vec![Reply::raw(""), Reply::raw(""), http(200, "", b"ok")]).await;
+    let client = Client::with_config(retrying(api.url.clone(), 1)).unwrap();
     assert_eq!(
-        client.execute(request("GET")).await.unwrap_err(),
-        Error::Timeout
+        client.execute(request("POST")).await.unwrap_err(),
+        Error::Transport
     );
-    // A deadline per attempt would have allowed 200 + 600 milliseconds.
-    assert!(
-        started.elapsed() < Duration::from_millis(800),
-        "{:?}",
-        started.elapsed()
-    );
-    api.await.unwrap();
+    assert_eq!(api.requests().len(), 1);
+    // The wait before the first retry of a failure is less than a second.
+    assert_eq!(client.execute(request("GET")).await.unwrap().body, b"ok");
+    assert_eq!(api.requests().len(), 3);
 }
 #[tokio::test]
 async fn a_view_sends_its_own_token_and_leaves_the_original_unchanged() {
@@ -182,7 +200,7 @@ async fn a_failing_token_source_is_the_auth_error_and_sends_nothing() {
         // The source itself is never retried.
         assert_eq!(asked.load(Ordering::SeqCst), 1);
     }
-    // The deadline of a call covers a source that never answers.
+    // The timeout of an attempt covers a source that never answers.
     let stuck = TokenSource::new(std::future::pending::<Result<String, AuthError>>);
     let mut config = ClientConfig::new(base, stuck);
     config.timeout = Duration::from_millis(30);
@@ -333,7 +351,7 @@ async fn cancelled_lwa_source_refresh_closes_socket_and_recovers() {
     assert_eq!(api.requests().len(), 1);
 }
 #[tokio::test]
-async fn overall_deadline_cancels_the_lwa_source_socket() {
+async fn the_timeout_of_an_attempt_cancels_the_lwa_source_socket() {
     let (listener, lwa) = bind().await;
     let auth = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
@@ -384,7 +402,7 @@ async fn cancelled_request_closes_socket_and_client_recovers() {
     api.await.unwrap();
 }
 #[tokio::test]
-async fn overall_deadline_closes_the_socket() {
+async fn the_timeout_of_an_attempt_closes_the_socket() {
     let (listener, base) = bind().await;
     let api = tokio::spawn(async move {
         let (mut socket, _) = listener.accept().await.unwrap();
@@ -403,14 +421,13 @@ async fn overall_deadline_closes_the_socket() {
 #[tokio::test]
 async fn generated_get_uses_retry_policy_and_retains_final_error() {
     let api = replies(vec![
-        http(429, "Retry-After: 0\r\n", b"first"),
+        at_once(429, b"first"),
         http(200, "", b"{}"),
-        http(503, "Retry-After: 2\r\n", b"unparsed"),
+        at_once(503, b"again"),
+        at_once(503, b"unparsed"),
     ])
     .await;
-    let mut c = retrying(api.url.clone(), 1);
-    c.timeout = Duration::from_secs(1);
-    let client = Client::with_config(c).unwrap();
+    let client = Client::with_config(retrying(api.url.clone(), 1)).unwrap();
     assert_eq!(
         get_catalog_item(
             &client,
@@ -431,7 +448,7 @@ async fn generated_get_uses_retry_policy_and_retains_final_error() {
     .into_raw();
     assert_eq!(last.status, 503);
     assert_eq!(last.body, b"unparsed");
-    assert_eq!(api.requests().len(), 3);
+    assert_eq!(api.requests().len(), 4);
 }
 
 fn header<'a>(request: &'a str, name: &str) -> Option<&'a str> {

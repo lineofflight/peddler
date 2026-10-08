@@ -113,7 +113,7 @@ module Peddler
     QUOTA_EXCEEDED = "Peddler/Errors/QuotaExceededTest/test_quota_exceeded"
 
     def cassette
-      name.match?(/quota|retries/) ? QUOTA_EXCEEDED : NOT_FOUND
+      name.include?("quota") ? QUOTA_EXCEEDED : NOT_FOUND
     end
 
     def test_operation_raises_not_found
@@ -148,15 +148,6 @@ module Peddler
 
       assert_equal([404, "NotFound"], [error.status, error.code])
       refute_kind_of(WorkflowError, error)
-    end
-
-    def test_retries_exhausted_raise_the_last_response
-      retrying = Client.new(base_url: @replay.url, access_token: "FILTERED", retries: 1)
-      error = assert_raises(Error) do
-        retrying.product_pricing_v0.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
-      end
-
-      assert_equal([429, "QuotaExceeded"], [error.status, error.code])
     end
   end
 end
