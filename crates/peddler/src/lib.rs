@@ -247,7 +247,7 @@ pub enum Error {
     /// The client was given something it can't use or send: a base URL, a token, a
     /// timeout, a path, a header or an argument.
     InvalidRequest,
-    /// An attempt took longer than the client's timeout, and so did every retry of it.
+    /// The last attempt took longer than the client's timeout.
     Timeout,
     /// The request couldn't be sent or the response couldn't be read.
     Transport,
@@ -387,7 +387,8 @@ impl Client {
                     headers: &response.headers,
                 },
                 Err(Error::Timeout | Error::Transport) => Outcome::Failed,
-                // What another attempt wouldn't change. A token source is never retried.
+                // What another attempt wouldn't change. A token source that failed is not
+                // asked again.
                 Err(_) => return result,
             };
             retry += 1;
