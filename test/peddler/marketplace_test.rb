@@ -54,6 +54,14 @@ module Peddler
       assert_equal(@marketplace.id, @marketplace.to_str)
     end
 
+    def test_to_json_is_its_id_at_any_depth
+      id = @marketplace.id
+
+      assert_equal(%("#{id}"), @marketplace.to_json)
+      assert_equal(%(["#{id}"]), JSON.generate([@marketplace]))
+      assert_equal(%({"a":[{"b":"#{id}"}]}), JSON.generate({ "a" => [{ "b" => @marketplace }] }))
+    end
+
     def test_dynamic_shorthand_methods
       assert_equal("US", Marketplace.us.country_code)
       assert_equal("GB", Marketplace.gb.country_code)

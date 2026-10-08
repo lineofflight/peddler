@@ -71,6 +71,27 @@ class ArgumentsTest < NativeTest
     )
   end
 
+  # v5 sent a marketplace inside a body as its inspect text.
+  def test_a_marketplace_inside_a_body_is_sent_as_its_id
+    uk = Peddler::Marketplace.find("UK")
+    us = Peddler::Marketplace.find("US")
+    requests = sent do |client|
+      client.feeds_2021_06_30.create_feed({ "feedType" => "X", "marketplaceIds" => [us] })
+      # At any depth of a Hash or an Array, in an operation and in a raw request
+      client.product_fees_v0.get_my_fees_estimates([{ "FeesEstimateRequest" => { "MarketplaceId" => uk } }])
+      client.request("POST", "/raw", body: { "a" => [{ "b" => [us, { "c" => uk }] }] })
+    end
+
+    assert_equal(
+      [
+        'POST /feeds/2021-06-30/feeds {"feedType":"X","marketplaceIds":["ATVPDKIKX0DER"]}',
+        'POST /products/fees/v0/feesEstimate [{"FeesEstimateRequest":{"MarketplaceId":"A1F83G8C2ARO7P"}}]',
+        'POST /raw {"a":[{"b":["ATVPDKIKX0DER",{"c":"A1F83G8C2ARO7P"}]}]}',
+      ],
+      requests,
+    )
+  end
+
   def test_an_object_whose_text_is_an_inspect_form_is_refused_by_name
     point = Data.define(:x).new(x: SENTINEL)
     messages = refused(

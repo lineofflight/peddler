@@ -165,7 +165,7 @@ response = client.orders_v0.get_orders(
 )
 ```
 
-Where a marketplace ID goes, a `Peddler::Marketplace` works too: `Peddler::Marketplace.find("UK")` in place of its ID. A String must be valid UTF-8, or the call raises `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`.
+Where a marketplace ID goes, a `Peddler::Marketplace` works too: `Peddler::Marketplace.find("UK")` in place of its ID. That holds for an argument and anywhere inside a request body, in an operation and in `request`. A String must be valid UTF-8, or the call raises `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`.
 
 A request body is a Hash with the field names Amazon documents. A String that holds JSON also works.
 

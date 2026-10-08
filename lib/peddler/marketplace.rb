@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "json"
+
 module Peddler
   # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
   MARKETPLACE_IDS = Ractor.make_shareable({
@@ -102,6 +104,13 @@ module Peddler
     # @return [String]
     def to_str
       id
+    end
+
+    # Its ID as JSON, so a marketplace anywhere inside a request body is sent as its ID
+    #
+    # @return [String]
+    def to_json(*)
+      id.to_json(*)
     end
   end
 end

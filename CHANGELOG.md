@@ -42,6 +42,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
 - Allow each attempt of a call 30 seconds by default. 5.x had no timeout
 - Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent, such as `order_id is required`. An object whose `to_s` is an inspect form, such as `#<Object>`, counts as the wrong type. See the [argument forms](UPGRADING.md#argument-forms) that are still sent as 5.x sent them
+- Send a `Peddler::Marketplace` as its ID where 5.x sent its inspect text: alone where a list of IDs goes, and anywhere inside a request body, from an operation and from `Client#request`
 - Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument. The same goes for the ID a document helper takes
 - Refuse a String that is not valid UTF-8 with an `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`. 5.x sent its bytes
 - Raise `ArgumentError` that names the option or argument and its rule when `Peddler::Client.new`, `Peddler::LWA.new`, a grant, a document transfer or a wait gets a bad one, such as `retries must be an Integer between 0 and 10`. An unknown option of a transfer raises one that lists the options

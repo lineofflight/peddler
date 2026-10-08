@@ -21,6 +21,7 @@ module Peddler
 
     def endpoint: () -> Endpoint
 
+    def to_json: (*untyped) -> String
     alias to_s to_str
     def to_str: () -> String
   end

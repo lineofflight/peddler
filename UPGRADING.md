@@ -288,7 +288,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 
 - Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
 - The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
-- A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too.
+- A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too, and so does one inside a request body.
 - The documentation of every operation and API class, as YARD comments.
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `headers.include?("Name")`, `charset` and `to_s` on a response. A response is still its text where a String is taken, as in `JSON.parse(response)`.
@@ -319,6 +319,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 | A String of several items: `included_data: "attributes,issues"` | `includedData=attributes%2Cissues` | the same |
 | A list of `Peddler::Marketplace` objects | their IDs | the same |
 | A `Peddler::Marketplace` alone: `get_catalog_item("B0X", marketplace)` | its inspect text | its ID |
+| A `Peddler::Marketplace` inside a body, at any depth: `create_feed({ "marketplaceIds" => [marketplace] })` | its inspect text | its ID |
 | `nil` for an optional argument | nothing | the same |
 | A Hash or an Array for a body | its JSON | the same |
 | A String that holds JSON for a body | the String | the same JSON, once |
