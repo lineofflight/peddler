@@ -30,7 +30,7 @@ response = client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-
 
 `Peddler.<api>` and `Peddler::APIs::OrdersV0.new` are gone. `Peddler::APIs::OrdersV0` is now a module that holds the typed models, so `Peddler::APIs::OrdersV0::Order` still works.
 
-The `http:` option is gone, with the `http` gem. A client takes `timeout:`, the seconds a whole call may take. The default is 30, where v5 had none.
+The `http:` option is gone, with the `http` gem. A client takes `timeout:`, the seconds each attempt of a call may take. The default is 30, where v5 had none.
 
 An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10` or `region must be one of us-east-1, us-west-2, eu-west-1`.
 
@@ -249,23 +249,16 @@ api.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z", rate_limi
 client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
 ```
 
-`retries:` stays, and differs in 3 ways.
+Each operation keeps the rate that `rate_limit:` had by default, from Amazon's API models, and you can no longer give another.
 
-- **What it retries.** v6 retries a GET, when Amazon answers 429, 500, 502, 503 or 504. v5 retried every method, also a request that changes data, and also a failed connection.
-- **How long it waits.** After a 429, v5 waited 1 / rate limit seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx it waited up to 1 second, then up to 2, then up to 4. v6 waits a random time after either: up to 0.2 seconds before the first retry, up to 0.4 before the second, up to 0.8 before the third, and so on, doubling up to 30 seconds. So `retries: 3` waits 1.4 seconds at most, where v5 waited 14 seconds or 7 minutes on those 2 throttled operations.
-- **`Retry-After`.** If the response has the header, both wait as long as it asks. But if it asks for more than 30 seconds, or for more time than the call has left, v6 doesn't retry. v5 waited whatever it asked.
+`retries:` stays, and waits as it did. After a 429 it waits 1 / rate seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx or a failed connection it waits up to 1 second, then 1 to 2, then 3 to 4. If the response has a `Retry-After` header, it waits as long as that asks instead.
 
-`retries:` takes 0 to 10, and a single `timeout:` covers every attempt and every wait.
+It differs in 2 ways.
 
-If you relied on `retries:` to wait out a throttled operation, it no longer does that. Rescue the error and run the work again later.
+- **What it retries after a failure.** After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
+- **`timeout:`.** It limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
 
-```ruby
-begin
-  client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
-rescue Peddler::Error => e
-  e.status == 429 ? retry_later : raise
-end
-```
+`retries:` takes 0 to 10.
 
 #### 6. Tests
 
@@ -347,6 +340,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 
 - A required argument given as `nil`, and the other forms in the lower half of the table above, raise `ArgumentError` where v5 sent a request.
 - Any status outside 2xx raises `Peddler::Error`, from an API call and from a signed URL in the document helpers. v5 raised from 400 up and returned a 3xx as a response.
+- A `Retry-After` header that is neither a number of seconds nor a date is ignored, and the retry waits as it would without one. v5 retried at once.
 - The document helpers allow 600 seconds for a call. v5 had no limit. Past it, the transfer raises `Peddler::DocumentTimeoutError`. The request that looks a document up by its ID is a request like any other: it raises `Peddler::TimeoutError` when it takes longer than that, or than the client's `timeout:`. For a longer transfer, use `client.reports.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
 - Given a document ID, `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`. Given a URL, it decompresses only when the reply says `Content-Encoding: gzip`, so a report whose metadata says `GZIP` still arrives compressed.
 - `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone. In RBS, `status` is a `Peddler::Response::Status` where v5 declared an `Integer`: it compares as one, and `code` is the `Integer`.
