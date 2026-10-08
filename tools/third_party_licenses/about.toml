@@ -24,3 +24,67 @@ private = { ignore = true }
 
 # chrono keeps its 2 licences in 1 file.
 workarounds = ["chrono"]
+
+# 5 crates ship a license file that cargo-about doesn't take by itself, so it would
+# print the standard text of the license, without the crate's copyright line. Each
+# entry points at the file the crate ships. A checksum is of the text that is used:
+# the file, or the part from `start` to `end`. When a new version of the crate changes
+# that text, the tool fails and names the crate: read the new file, then update the
+# entry.
+
+# Its MIT text is wrapped narrowly, which cargo-about scores too low.
+[async-stream.clarify]
+license = "MIT"
+
+[[async-stream.clarify.files]]
+path = "LICENSE"
+checksum = "157d381f6304eba77459fc10dfb5b1b22fc0d04e384a32865f32d8e67a34c0eb"
+
+# An Apache-2.0 text without its appendix is taken for the Pixar license.
+[sync_wrapper.clarify]
+license = "Apache-2.0"
+
+[[sync_wrapper.clarify.files]]
+path = "LICENSE"
+checksum = "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+
+# As sync_wrapper.
+[ryu.clarify]
+license = "Apache-2.0 OR BSL-1.0"
+
+[[ryu.clarify.files]]
+path = "LICENSE-APACHE"
+license = "Apache-2.0"
+checksum = "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+
+[[ryu.clarify.files]]
+path = "LICENSE-BOOST"
+license = "BSL-1.0"
+checksum = "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+
+# Both of its licenses are in 1 file.
+[aws-lc-rs.clarify]
+license = "ISC AND (Apache-2.0 OR ISC)"
+
+[[aws-lc-rs.clarify.files]]
+path = "LICENSE"
+license = "ISC"
+checksum = "3cc9b9267235c6c73f950b3189f33b3f6d3a6daf6fa07763843edd7a9a8b6b2e"
+start = "Copyright Amazon.com, Inc. or its affiliates."
+end = "OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+
+[[aws-lc-rs.clarify.files]]
+path = "LICENSE"
+license = "Apache-2.0"
+checksum = "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b"
+start = "                                 Apache License"
+end = "END OF TERMS AND CONDITIONS"
+
+# Its file lists the copyright lines of every part of AWS-LC and then the text of
+# each license, so the whole file stands for each of them.
+[aws-lc-sys.clarify]
+license = "ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)"
+
+[[aws-lc-sys.clarify.files]]
+path = "LICENSE"
+checksum = "728536b4160e051f86d7c9c388f704866b3d512cd7df97ac3516c65279523c4e"

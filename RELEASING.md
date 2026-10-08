@@ -62,6 +62,8 @@ Build into an empty `pkg`. The gem task does not add a new file to a package dir
 
 `tools/third_party_licenses/about.toml` lists the licenses a crate may have. When a dependency arrives under another one, the tool fails and names the crate, and so does the `cross-gem` job. Read the license. If Peddler can ship under it, add it to `accepted`. If not, replace the crate.
 
+The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 5 today, which points at the file the crate ships and holds a checksum of the text. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
+
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 
 On the first run, read the glibc version the Linux binaries need and state it in the README's platform table.

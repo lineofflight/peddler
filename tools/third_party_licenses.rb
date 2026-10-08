@@ -11,6 +11,8 @@
 #   generator, which is another workspace.
 # - cargo-about finds the license and its text in each crate, and fails when a crate has a license that
 #   tools/third_party_licenses/about.toml doesn't accept. It runs offline, so it reads only what the crates ship.
+# - Where cargo-about finds no license file in a crate, it would print the standard text of the license, which
+#   has no copyright line of the crate. That fails here: about.toml has an entry for each such crate.
 #
 # The file is stamped with what it was written from. When that is unchanged, the file is left as it is and
 # cargo-about is not needed: the containers that cross-compile have none, so the packaging workflow writes the
@@ -27,9 +29,11 @@ CONFIG = "tools/third_party_licenses/about.toml"
 TEMPLATE = "tools/third_party_licenses/notices.html.erb"
 MANIFEST = "crates/peddler-ruby/Cargo.toml"
 INPUTS = ["Cargo.lock", CONFIG, TEMPLATE, "tools/third_party_licenses.rb", "lib/peddler/version.rb"].freeze
+# Crates that ship no license file at all, as "name version", for which the standard text is all there is
+NO_LICENSE_FILE = [].freeze
 
 Crate = Struct.new(:name, :version, :license, :texts)
-Notice = Struct.new(:id, :name, :text, :crates)
+Notice = Struct.new(:id, :name, :text, :crates, :standard)
 
 def run(*command)
   output, error, status = Open3.capture3(*command, chdir: ROOT)
@@ -85,8 +89,23 @@ licenses = report.fetch("crates").to_h do |crate|
   [crate.fetch("package").values_at("name", "version"), crate.fetch("license")]
 end
 notices = report.fetch("licenses").filter_map do |license|
-  users = license.fetch("used_by").map { |use| use.fetch("crate").values_at("name", "version") } & crates
-  Notice.new(license.fetch("id"), license.fetch("name"), license.fetch("text"), users.sort.map { |user| user.join(" ") }) unless users.empty?
+  users = (license.fetch("used_by").map { |use| use.fetch("crate").values_at("name", "version") } & crates).sort
+  next if users.empty?
+
+  Notice.new(license.fetch("id"), license.fetch("name"), license.fetch("text"), users.map { |user| user.join(" ") },
+    license.fetch("source_path").nil?)
+end
+standard = notices.select(&:standard).flat_map { |notice| notice.crates.map { |crate| "#{crate} (#{notice.id})" } }
+unexplained = standard.reject { |crate| NO_LICENSE_FILE.include?(crate[/\A\S+ \S+/]) }
+unless unexplained.empty?
+  abort("cargo-about took no license file of #{unexplained.join(", ")}, so the notices would have the standard text " \
+    "without the crate's copyright line. Point a clarify entry in #{CONFIG} at the file the crate ships, or add the " \
+    "crate to NO_LICENSE_FILE if it ships none.")
+end
+counts = notices.flat_map { |notice| [notice.id] * notice.crates.size }.tally.sort_by { |id, count| [-count, id] }
+# A file that stands for several licenses of a crate is printed once.
+notices = notices.group_by(&:text).map do |text, same|
+  Notice.new(same.map(&:id).uniq.join(", "), same.map(&:name).uniq.join(", "), text, same.flat_map(&:crates).uniq.sort)
 end
 crates = crates.map do |name, version|
   texts = notices.each_index.select { |index| notices[index].crates.include?("#{name} #{version}") }
@@ -97,6 +116,5 @@ end
 
 version = File.read(File.join(ROOT, "lib/peddler/version.rb"))[/VERSION = "(.+)"/, 1]
 File.write(output, ERB.new(File.read(File.join(ROOT, TEMPLATE)), trim_mode: "-").result(binding))
-counts = notices.flat_map { |notice| [notice.id] * notice.crates.size }.tally.sort_by { |id, count| [-count, id] }
 puts "#{File.basename(output)}: #{crates.size} crates for #{triple}; texts by license: " \
-  "#{counts.map { |id, count| "#{id} #{count}" }.join(", ")}"
+  "#{counts.map { |id, count| "#{id} #{count}" }.join(", ")}; #{standard.size} on a standard text"
