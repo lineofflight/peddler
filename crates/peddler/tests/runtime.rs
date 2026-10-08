@@ -99,30 +99,36 @@ async fn a_failed_write_is_not_sent_again_but_a_failed_get_is() {
 }
 #[tokio::test]
 async fn an_operation_waits_by_its_documented_rate_after_a_429() {
+    let throttled = || http(429, "", b"{}");
     let api = replies(vec![
-        http(429, "", b"{}"),
-        http(429, "", b"{}"),
+        throttled(),
+        throttled(),
         http(200, "", b"{}"),
-        http(429, "", b"{}"),
+        throttled(),
+        throttled(),
         http(200, "", b"{}"),
     ])
     .await;
     let client = Client::with_config(retrying(api.url.clone(), 2)).unwrap();
+    // 12.5 and 25 milliseconds, and up to 100 more each. Without the rate the second
+    // wait alone would be a second or more, so each call is throttled twice.
+    let waited_by_the_rate = |started: Instant| {
+        let elapsed = started.elapsed();
+        assert!(elapsed >= Duration::from_micros(37_500), "{elapsed:?}");
+        assert!(elapsed < Duration::from_secs(1), "{elapsed:?}");
+    };
     let started = Instant::now();
     assert_eq!(
         get_tracking(&client, tracking()).await.unwrap().raw.status,
         200
     );
-    // 12.5 and 25 milliseconds, and up to 100 more each. Without the rate the second
-    // wait alone would be a second or more.
-    let elapsed = started.elapsed();
-    assert!(elapsed >= Duration::from_micros(37_500), "{elapsed:?}");
-    assert!(elapsed < Duration::from_secs(1), "{elapsed:?}");
-    // A write has the same rate and the same wait.
+    waited_by_the_rate(started);
+    // A write has the same rate and the same waits.
+    let started = Instant::now();
     let rates = get_rates(&client, GetRatesParams::new(serde_json::json!({})));
     assert_eq!(rates.await.unwrap().raw.status, 200);
-    assert_eq!(api.requests().len(), 5);
-    assert!(started.elapsed() < Duration::from_secs(1));
+    waited_by_the_rate(started);
+    assert_eq!(api.requests().len(), 6);
 }
 #[tokio::test]
 async fn retry_after_replaces_the_wait_of_an_operation_limited_to_one_request_a_minute() {

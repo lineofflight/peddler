@@ -91,20 +91,24 @@ class RetriesTest < NativeTest
   end
 
   # Shipping v2 allows 80 requests a second: the first retry waits 12.5 milliseconds and the second 25, and up to
-  # 100 more each. Without the rate the second wait alone would be a second or more.
+  # 100 more each. Without the rate the second wait alone would be a second or more, so each call is throttled
+  # twice and timed on its own.
   def test_an_operation_waits_by_the_rate_amazon_documents_for_it
-    requests = replying([429], [429], [200], [429], [200]) do |url|
+    requests = replying([429], [429], [200], [429], [429], [200]) do |url|
       instance = client(url, retries: 2)
-      elapsed = seconds do
-        assert_equal(200, instance.shipping_v2.get_tracking("tracking", "carrier").status)
-        assert_equal(200, instance.shipping_v2.get_rates({}).status)
-      end
+      calls = [
+        -> { instance.shipping_v2.get_tracking("tracking", "carrier") },
+        -> { instance.shipping_v2.get_rates({}) },
+      ]
+      calls.each do |call|
+        elapsed = seconds { assert_equal(200, call.call.status) }
 
-      assert_operator(elapsed, :>=, 0.05)
-      assert_operator(elapsed, :<, 1)
+        assert_operator(elapsed, :>=, 0.0375)
+        assert_operator(elapsed, :<, 1)
+      end
     end
 
-    assert_equal(["GET", "GET", "GET", "POST", "POST"], requests)
+    assert_equal(["GET", "GET", "GET", "POST", "POST", "POST"], requests)
   end
 
   # `get_orders` allows 1 request a minute, so by its rate the retry would wait a minute.
@@ -169,71 +173,54 @@ class RetriesTest < NativeTest
     assert_equal(["POST"], requests)
   end
 
-  # `get_orders` allows 1 request a minute, so the retry of a throttled one waits a minute. Only the first request
-  # is answered 429.
-  def waiting_a_minute
+  # `get_catalog_item` allows 2 requests a second, so the retry of a throttled one waits 0.5 seconds and up to 0.1
+  # more. 3 calls are throttled, and each wait is ended in its own way well before that. Then the time of the
+  # waits passes, and no retry was sent.
+  def test_a_wait_before_a_retry_ends_when_ruby_raises_in_its_thread
     answered = Queue.new
     responder = lambda do |_method, target, *|
-      next [200, "{}"] unless target.start_with?("/orders/v0/orders")
+      next [200, "{}"] unless target.start_with?("/catalog/")
 
       answered << true
       [429, "{}"]
     end
     serve_keep_alive(responder: responder) do |url, _accepted, requests|
       instance = client(url, retries: 1)
-      yield(instance, lambda {
-        Timeout.timeout(3) { answered.pop }
-        # The reply reaches the client, which then waits.
-        sleep(0.05)
-      })
-
-      # Nothing was sent again, and the client goes on working.
-      assert_equal(1, requests.size)
-      assert_equal(200, instance.request("GET", "/").status)
-    end
-  end
-
-  def test_thread_raise_ends_the_wait_before_a_retry
-    waiting_a_minute do |instance, waiting|
-      worker = Thread.new do
-        instance.orders_v0.get_orders(MARKETPLACE)
+      throttled = -> { instance.catalog_items_2022_04_01.get_catalog_item("ASIN", MARKETPLACE) }
+      raised = Thread.new do
+        throttled.call
       rescue Interrupt => error
         error
       end
-      waiting.call
-      worker.raise(Interrupt, "stop waiting")
-
-      assert(worker.join(2), "the wait went on")
-      assert_instance_of(Interrupt, worker.value)
-      assert_equal("stop waiting", worker.value.message)
-    ensure
-      worker&.kill
-      worker&.join
-    end
-  end
-
-  def test_thread_kill_ends_the_wait_before_a_retry
-    waiting_a_minute do |instance, waiting|
-      worker = Thread.new { instance.orders_v0.get_orders(MARKETPLACE) }
-      waiting.call
-      worker.kill
-
-      assert(worker.join(2), "the wait went on")
-      assert_nil(worker.value)
-    ensure
-      worker&.kill
-      worker&.join
-    end
-  end
-
-  def test_timeout_ends_the_wait_before_a_retry
-    waiting_a_minute do |instance, _waiting|
-      elapsed = seconds do
-        assert_raises(Timeout::Error) { Timeout.timeout(0.2) { instance.orders_v0.get_orders(MARKETPLACE) } }
+      killed = Thread.new { throttled.call }
+      timed = Thread.new do
+        Timeout.timeout(0.2) { throttled.call }
+      rescue Timeout::Error => error
+        error
       end
+      Timeout.timeout(3) { 3.times { answered.pop } }
+      waiting = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      # The replies reach the client, which then waits.
+      sleep(0.05)
+      raised.raise(Interrupt, "stop waiting")
+      killed.kill
 
-      assert_operator(elapsed, :>=, 0.2)
-      assert_operator(elapsed, :<, 2)
+      [raised, killed, timed].each { |thread| assert(thread.join(0.3), "the wait went on") }
+      assert_instance_of(Interrupt, raised.value)
+      assert_equal("stop waiting", raised.value.message)
+      assert_nil(killed.value)
+      assert_instance_of(Timeout::Error, timed.value)
+
+      # Had a wait gone on, its retry would have been sent by now. The client goes on working.
+      sleep([waiting + 0.7 - Process.clock_gettime(Process::CLOCK_MONOTONIC), 0].max)
+
+      assert_equal(3, requests.size, "a retry was sent")
+      assert_equal(200, instance.request("GET", "/").status)
+    ensure
+      [raised, killed, timed].each do |thread|
+        thread&.kill
+        thread&.join
+      end
     end
   end
 
