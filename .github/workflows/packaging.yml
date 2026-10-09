@@ -13,6 +13,8 @@ on:
       - "Cargo.lock"
       - "crates/**"
       - "lib/peddler/**"
+      - "sig/**"
+      - "tools/inline_rbs.rb"
       - "tools/native_smoke.rb"
       - "tools/gem_audit.rb"
       - "tools/third_party_licenses.rb"

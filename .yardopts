@@ -1,2 +1,3 @@
 --markup-provider=rdiscount
 --markup=markdown
+--load tools/yard_rbs.rb

@@ -15,7 +15,8 @@ Gem::Specification.new do |gem|
   gem.homepage = "https://github.com/lineofflight/peddler"
   gem.license  = "MIT"
 
-  ruby_files = Dir["lib/peddler/**/*.rb", "lib/peddler/**/*.json", "sig/peddler/**/*.rbs"]
+  ruby_files = Dir["lib/peddler/**/*.rb", "lib/peddler/**/*.json", "sig/peddler/**/*.rbs",
+    "sig/inline/**/*.rbs"]
     .append("lib/peddler.rb", "sig/peddler.rbs", "LICENSE", "README.md", "CHANGELOG.md", "UPGRADING.md")
   # The Cargo workspace closure the extension needs to resolve and build with --locked.
   rust_files = ["Cargo.toml", "Cargo.lock"] +

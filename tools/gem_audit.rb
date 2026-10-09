@@ -17,6 +17,12 @@ BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
 # The licenses of the crates linked into a binary. See tools/third_party_licenses.rb.
 NOTICES = "THIRD_PARTY_LICENSES.html"
 
+# The Ruby that carries inline RBS. An application's Steep reads a gem's sig/ and nothing else, so each of these
+# files ships with the signatures rake rbs:export wrote from it.
+INLINE = %r{\Alib/(peddler|peddler/[^/]+|peddler/(?:lwa|native)/.+)\.rb\z}
+# sig/peddler.rbs is the entry point's signature until lib/peddler.rb is converted
+SIGNATURES = %r{\Asig/(inline/.+|peddler/.+|peddler)\.rbs\z}
+
 # A file of a gem, or nil if the gem has none of that name
 def content(path, name)
   Dir.mktmpdir do |dir|
@@ -34,6 +40,12 @@ problems = ARGV.flat_map do |path|
   Gem::Package.new(path).contents.each { |file| files << file }
   binaries = files.grep(BINARY)
   found = files.flat_map { |file| FORBIDDEN.select { |pattern| file.match?(pattern) }.map { "#{path}: forbidden #{file}" } }
+  exported = files.grep(INLINE) { "sig/inline/#{Regexp.last_match(1)}.rbs" }
+  # Not yet checked: that every inline file has its export. A file converts when it carries annotations, and
+  # the audit cannot tell, so "lacks" waits until every file under INLINE is converted.
+  found.concat((files.grep(%r{\Asig/inline/}) - exported).map { |file| "#{path}: #{file} has no Ruby file" })
+  found.concat(files.grep(%r{\Asig/}).grep_v(SIGNATURES).map { |file| "#{path}: forbidden #{file}" })
+  found << "#{path}: lacks the signatures of the typed models" if files.grep(%r{\Asig/peddler/apis/}).empty?
   found << "#{path}: license is not MIT" unless spec.licenses == ["MIT"] && files.include?("LICENSE")
   if spec.platform == Gem::Platform::RUBY
     found << "#{path}: source gem lacks the Cargo closure" unless (CLOSURE - files).empty?

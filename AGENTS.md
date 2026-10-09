@@ -37,6 +37,21 @@ Run above in background, some commands may takes minutes.
 - Types nested by API version (e.g., `Peddler::APIs::CatalogItems20220401::Item`)
 - Consumer usage (auth, responses, errors, sandbox): see [README](README.md#usage)
 
+## Inline RBS
+
+Hand-written Ruby moves from `sig/peddler/*.rbs` to inline RBS, file by file. Steep reads a file inline when it has a `#:` or `# @rbs` line (see `Steepfile`). `rake rbs:export` writes `sig/inline` from those files; it is committed and `rake rbs:verify` fails when stale. Never edit `sig/inline`.
+
+- A leading annotation ends on the line directly above its `def`, `attr_*` or constant. A blank line detaches it.
+- A trailing `#:` sits on the last line of the node.
+- A comment line starts an annotation when it begins with `# @rbs` or `#:` (no space). Indented lines continue it.
+- `# @rbs @name: Type` for instance variables only counts before the first statement of a class body, with a blank line after, or after its last statement.
+- Doc style (`# @rbs name: Type -- text`) takes required and optional from the Ruby parameter. It cannot say overloads or type parameters. An unlisted parameter is `untyped`; a line naming no parameter is an error.
+- A class may be declared in Ruby and in a `.rbs` file, if each member is declared once. An unannotated `def` in an inline file is `(?) -> untyped`, so delete the `.rbs` entry when converting.
+- Annotation mistakes fail `steep check` and `# steep:ignore` does not silence them.
+- Use `def self.x`, not `class << self`: Steep reads the latter as instance methods. RuboCop enforces it on these paths.
+- Never run `steep check` on one file: it reports false unknown constants and skips the duplicate-declaration check. Check the whole project.
+- `steep check --steepfile=Steepfile.shipped` checks `lib` against the signatures an application gets.
+
 ## Generator Workflow
 
 1. Edit templates in `lib/generator/templates/` or logic in `lib/generator/`; for operation methods and Rust code, edit `crates/peddler-codegen/`

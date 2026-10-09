@@ -111,4 +111,4 @@ namespace :generate do
   end
 end
 
-task default: [:rubocop, :test, :steep]
+task default: [:rubocop, :test, :steep, "rbs:verify"]
