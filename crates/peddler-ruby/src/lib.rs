@@ -350,7 +350,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     // Every method defined below may be called from any Ractor. A handle belongs to the
     // Ractor that made it, as any object that isn't shareable does. What the handles of
     // several Ractors share is `SHARED` and what it holds, the runtime and the pool,
-    // which are `Sync`. A class or a constant is looked up in Ruby on each use, but for
+    // which are `Sync`, and the flag of the exchange hook, which only the main Ractor
+    // sets (see `hook`). A class or a constant is looked up in Ruby on each use, but for
     // the 4 classes that magnus keeps, at the end of this function.
     // SAFETY: called while the extension loads, before it defines a method.
     unsafe { rb_sys::rb_ext_ractor_safe(true) };

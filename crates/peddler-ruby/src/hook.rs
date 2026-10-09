@@ -9,10 +9,14 @@
 //! A question is parked in a slot of the calling thread that exists only during a pass
 //! of a call that answers. Anywhere else, on a runtime thread or in a call that asks
 //! nothing, there is no slot: the exchange goes to the network and a token is refused.
+//!
+//! A token source is its Ractor's own and is asked there. The exchange hook is the main
+//! Ractor's: only it sets one, and while one is set a call of another Ractor is refused.
 
 use super::{ACCESS_TOKEN, argument_error, peddler_const};
 use magnus::{
-    Error, RArray, RModule, RString, Ruby, Symbol, TryConvert, Value, method, prelude::*,
+    Error, ExceptionClass, RArray, RClass, RModule, RString, Ruby, Symbol, TryConvert, Value,
+    method, prelude::*,
 };
 use peddler::{
     Response,
@@ -170,11 +174,47 @@ pub(super) fn hooked() -> bool {
     HOOKED.load(Ordering::Acquire)
 }
 
+/// What a Ractor other than the main one is told of the hook. The hook is an instance
+/// variable of a module, which only the main Ractor sets, and what WebMock keeps behind
+/// it is not shareable either.
+const SET: &str = "the exchange hook is set and cleared in the main Ractor only";
+const CALL: &str = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor";
+
+fn main_ractor(ruby: &Ruby) -> Result<bool, Error> {
+    let ractor: RClass = ruby.class_object().const_get("Ractor")?;
+    let current: Value = ractor.funcall("current", ())?;
+    current.equal(ractor.funcall::<_, _, Value>("main", ())?)
+}
+
+fn isolation_error(ruby: &Ruby, message: &'static str) -> Error {
+    let class = ruby
+        .class_object()
+        .const_get::<_, RClass>("Ractor")
+        .and_then(|ractor| ractor.const_get::<_, ExceptionClass>("IsolationError"));
+    match class {
+        Ok(class) => Error::new(class, message),
+        Err(error) => error,
+    }
+}
+
+/// Refuses a call of a Ractor other than the main one while a hook is set. It can't be
+/// asked there, and a request sent on without asking would reach the network from a
+/// test that believes it stubbed.
+pub(super) fn guard(ruby: &Ruby) -> Result<(), Error> {
+    if hooked() && !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, CALL));
+    }
+    Ok(())
+}
+
 /// `Peddler::Native.exchange_hook = hook`, or nil for none. The hook answers
 /// `call(method, url, headers, body)` with `[status, headers, body]` for a response,
 /// `:timeout`, or anything else to let the request go out, which it gets back in
 /// `completed(ticket, status, headers, body)` with the real response.
-fn set(native: RModule, hook: Value) -> Result<Value, Error> {
+fn set(ruby: &Ruby, native: RModule, hook: Value) -> Result<Value, Error> {
+    if !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, SET));
+    }
     native.ivar_set(HOOK, hook)?;
     HOOKED.store(!hook.is_nil(), Ordering::Release);
     Ok(hook)
@@ -193,6 +233,7 @@ impl Responder {
     /// None for a call that asks Ruby nothing: no token source and no exchange hook.
     pub(super) fn new(ruby: &Ruby, source: Option<Value>) -> Result<Option<Self>, Error> {
         let hook = if hooked() {
+            guard(ruby)?;
             peddler_const::<RModule>(ruby, "Native")?.ivar_get::<_, Option<Value>>(HOOK)?
         } else {
             None

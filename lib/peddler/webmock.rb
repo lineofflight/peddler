@@ -25,6 +25,9 @@ module WebMock
     # A document isn't streamed while WebMock is enabled: an upload is read to its end before it is sent, and a
     # download arrives whole before its first row is read.
     #
+    # WebMock works in the main Ractor only: its stubs live there. While it is enabled, a call Peddler makes in
+    # another Ractor raises `Ractor::IsolationError` and sends nothing.
+    #
     # @example
     #   require "webmock/minitest"
     #   require "peddler/webmock"

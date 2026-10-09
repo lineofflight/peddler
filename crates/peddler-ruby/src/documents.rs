@@ -395,6 +395,9 @@ impl Upload {
         content_length: Option<u64>,
     ) -> Result<Self, Error> {
         let state = engine.0.get(ruby)?;
+        // An upload first asks Ruby in `finish`. A Ractor the hook refuses is told here,
+        // before its source is read.
+        hook::guard(ruby)?;
         let options = UploadOptions {
             transfer: Config::parse(ruby, &config)?,
             content_type,
