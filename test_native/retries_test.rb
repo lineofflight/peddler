@@ -168,25 +168,12 @@ class RetriesTest < NativeTest
     assert_equal(["GET", "GET"], requests)
   end
 
-  def test_a_wait_longer_than_900_seconds_ends_retrying_and_the_last_response_raises
-    requests = replying([429, [["Retry-After", "901"]]]) do |url|
-      elapsed = seconds do
-        error = assert_raises(Peddler::Error) { client(url, retries: 3).shipping_v2.get_tracking("tracking", "carrier") }
-
-        assert_equal([429, "QuotaExceeded"], [error.status, error.code])
-      end
-
-      assert_operator(elapsed, :<, 1)
-    end
-
-    assert_equal(["GET"], requests)
-  end
-
-  def test_900_seconds_is_the_longest_wait_and_no_number_of_retries_makes_it_longer
-    # A second request would mean the wait was followed. None comes: the 429 raises at once.
+  # As in v5, a wait is as long as `Retry-After` asks: 15 minutes, a day, or more seconds than a clock holds. No
+  # wait ends retrying and none is cut short. The call waits until its thread is interrupted, and no retry was sent.
+  def test_a_wait_has_no_ceiling_and_goes_on_until_the_caller_gives_up
     ["901", "86400", "18446744073709551616"].each do |asked|
-      requests = replying([429, [["Retry-After", asked]]]) do |url|
-        Timeout.timeout(5) { assert_raises(Peddler::Error) { client(url, retries: 10).request("POST", "/", body: {}) } }
+      requests = replying([429, [["Retry-After", asked]]], [200]) do |url|
+        assert_raises(Timeout::Error) { Timeout.timeout(0.3) { client(url, retries: 1).request("POST", "/", body: {}) } }
       end
 
       assert_equal(["POST"], requests, asked)
@@ -326,18 +313,17 @@ class RetriesTest < NativeTest
     assert_equal(["GET"], requests)
   end
 
-  # The 429 is the error, not the timeout of the wait, which has 5 seconds left.
-  def test_a_poll_told_to_wait_longer_than_900_seconds_raises_its_429_at_once
+  # A poll told to wait 15 minutes is not cut short either: the wait for the job ends at its own timeout.
+  def test_a_poll_told_to_wait_past_the_timeout_of_its_job_has_timed_out
     requests = replying([429, [["Retry-After", "901"]]]) do |url|
       elapsed = seconds do
-        error = assert_raises(Peddler::Error) do
-          client(url, retries: 3).reports.wait_for_report("r1", interval: 0.01, timeout: 5)
+        assert_raises(Peddler::WorkflowTimeoutError) do
+          client(url, retries: 3).reports.wait_for_report("r1", interval: 0.01, timeout: 0.15)
         end
-
-        assert_equal(429, error.status)
       end
 
-      assert_operator(elapsed, :<, 1)
+      assert_operator(elapsed, :>=, 0.15)
+      assert_operator(elapsed, :<, 0.45)
     end
 
     assert_equal(["GET"], requests)

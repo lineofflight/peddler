@@ -159,16 +159,6 @@ async fn retry_after_replaces_the_wait_of_an_operation_limited_to_one_request_a_
     assert_eq!(api.requests().len(), 2);
 }
 #[tokio::test]
-async fn a_wait_longer_than_900_seconds_ends_retrying_with_the_last_response() {
-    let api = replies(vec![http(429, "Retry-After: 901\r\n", b"too long")]).await;
-    let client = Client::with_config(retrying(api.url.clone(), 3)).unwrap();
-    let started = Instant::now();
-    let last = get_tracking(&client, tracking()).await.unwrap().into_raw();
-    assert_eq!((last.status, last.body), (429, b"too long".to_vec()));
-    assert!(started.elapsed() < Duration::from_secs(1));
-    assert_eq!(api.requests().len(), 1);
-}
-#[tokio::test]
 async fn the_timeout_limits_each_attempt_and_not_the_waits_between_them() {
     let slow = |status| http(status, "", b"{}").delayed(Duration::from_millis(80));
     let api = replies(vec![slow(429), slow(429), slow(429), slow(200)]).await;

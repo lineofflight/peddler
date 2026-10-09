@@ -12,12 +12,10 @@
 //!   `2^(retry - 1) - 1` seconds plus up to 1 second, so up to 1, then 1 to 2, then
 //!   3 to 4. A 429 of a call without a rate waits like this too.
 //! - A `Retry-After` header replaces the wait of its response.
-//! - A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer
-//!   one, retrying ends and the call returns that response, as when the retries run
-//!   out. So a 429 of an operation limited to 1 request a minute is retried 4 times at
-//!   most, after 60, 120, 240 and 480 seconds, and one limited to 0.5 a second 9
-//!   times. An operation limited to 1 a second or more can use 10 retries, and so can
-//!   one without a documented rate, whose waits end at 512 seconds.
+//!
+//! No wait has a ceiling: it is as long as the rate or `Retry-After` asks, so every
+//! operation can use 10 retries. The tenth retry of one limited to 1 request a minute
+//! waits 512 minutes.
 
 use std::{
     fmt,
@@ -28,8 +26,6 @@ use std::{
 const SANDBOX_WAIT: f64 = 0.2;
 /// The most that chance adds to the wait after a 429, in seconds.
 const THROTTLE_JITTER: f64 = 0.1;
-/// The longest wait before a retry. A longer one ends retrying.
-const MAX_WAIT: Duration = Duration::from_secs(900);
 
 /// How often a client retries. The default is never. Nothing else about a retry is
 /// configurable: the [module](self) says what is retried and how long each wait is.
@@ -122,28 +118,24 @@ impl RetryPolicy {
             }
             _ => return None,
         };
-        let asked = match outcome {
-            Outcome::Response { headers, .. } => retry_after(headers, now),
-            Outcome::Failed => None,
+        if let Outcome::Response { headers, .. } = outcome
+            && let Some(asked) = retry_after(headers, now)
+        {
+            return Some(asked);
+        }
+        let doubled = 2f64.powi(retry as i32 - 1);
+        let seconds = match call.rate {
+            Some(rate) if throttled => {
+                let first = if call.sandbox {
+                    SANDBOX_WAIT
+                } else {
+                    1.0 / rate
+                };
+                first * doubled + random * THROTTLE_JITTER
+            }
+            _ => doubled - 1.0 + random,
         };
-        let wait = asked.unwrap_or_else(|| {
-            let doubled = 2f64.powi(retry as i32 - 1);
-            let seconds = match call.rate {
-                Some(rate) if throttled => {
-                    let first = if call.sandbox {
-                        SANDBOX_WAIT
-                    } else {
-                        1.0 / rate
-                    };
-                    first * doubled + random * THROTTLE_JITTER
-                }
-                _ => doubled - 1.0 + random,
-            };
-            Duration::try_from_secs_f64(seconds).unwrap_or(Duration::MAX)
-        });
-        // Only the wait of a response can be this long: a failure waits 512 seconds at
-        // most. So there is a response to return.
-        (wait <= MAX_WAIT).then_some(wait)
+        Some(Duration::try_from_secs_f64(seconds).unwrap_or(Duration::MAX))
     }
 }
 
@@ -220,69 +212,9 @@ mod tests {
         // An operation limited to 1 request a minute waits a minute, then 2, then 4.
         let minute = policy.wait_at(call("GET", Some(0.0167)), status(429), 1, EPOCH, 0.0);
         assert!((59.0..61.0).contains(&seconds(minute)));
-    }
-
-    /// Every rate Amazon documents today, with the retries of a 429 that fit under
-    /// the ceiling of 900 seconds.
-    const RETRIES_BY_RATE: [(f64, u32); 17] = [
-        (0.0056, 3),
-        (0.0083, 3),
-        (0.016, 4),
-        (0.0167, 4),
-        (0.017, 4),
-        (0.0222, 5),
-        (0.033, 5),
-        (0.1, 7),
-        (0.5, 9),
-        (1.0, 10),
-        (1.133, 10),
-        (2.0, 10),
-        (5.0, 10),
-        (6.0, 10),
-        (10.0, 10),
-        (20.0, 10),
-        (80.0, 10),
-    ];
-
-    #[test]
-    fn a_wait_longer_than_900_seconds_ends_retrying() {
-        let policy = policy(10);
-        for (rate, retries) in RETRIES_BY_RATE {
-            // Chance never decides: no rate's wait comes within its tenth of a second
-            // of the ceiling.
-            for random in [0.0, 0.999_999] {
-                for retry in 1..=10 {
-                    let call = call("POST", Some(rate));
-                    let wait = policy.wait_at(call, status(429), retry, EPOCH, random);
-                    assert_eq!(wait.is_some(), retry <= retries, "{rate} {retry}: {wait:?}");
-                    assert!(wait.is_none_or(|wait| wait <= MAX_WAIT));
-                }
-            }
-        }
-        // Every operation can use 3 retries, as v5's examples had it. The slowest waits
-        // 179, 357 and 714 seconds.
-        assert!(RETRIES_BY_RATE.iter().all(|(_, retries)| *retries >= 3));
-        let slowest = call("GET", Some(0.0056));
-        let third = policy.wait_at(slowest, status(429), 3, EPOCH, 0.0);
-        assert!(close(seconds(third), 4.0 / 0.0056));
-        assert_eq!(policy.wait_at(slowest, status(429), 4, EPOCH, 0.0), None);
-        // 1 request a minute: 60, 120, 240 and 480 seconds, and no fifth retry.
-        let minute = call("GET", Some(0.0167));
-        let fourth = policy.wait_at(minute, status(429), 4, EPOCH, 0.0);
-        assert!(close(seconds(fourth), 8.0 / 0.0167));
-        assert_eq!(policy.wait_at(minute, status(429), 5, EPOCH, 0.0), None);
-        // A failure never waits that long, nor does the sandbox, so both use 10 retries.
-        for outcome in [status(503), Outcome::Failed] {
-            let wait = policy.wait_at(minute, outcome, 10, EPOCH, 0.999_999);
-            assert!(wait.is_some_and(|wait| wait < Duration::from_secs(512)));
-        }
-        let sandbox = Call {
-            method: "GET",
-            rate: Some(0.0056),
-            sandbox: true,
-        };
-        let wait = policy.wait_at(sandbox, status(429), 10, EPOCH, 0.999_999);
-        assert!(wait.is_some_and(|wait| wait < Duration::from_secs(103)));
+        // The tenth retry of the slowest documented rate still has a wait.
+        let last = policy.wait_at(call("GET", Some(0.0056)), status(429), 10, EPOCH, 0.999);
+        assert!(close(seconds(last), 512.0 / 0.0056 + 0.0999));
     }
 
     #[test]
@@ -424,7 +356,13 @@ mod tests {
     fn retry_after_replaces_the_wait_of_its_response() {
         let policy = policy(10);
         let slow = call("GET", Some(0.0167));
-        for (value, expected) in [("0", 0), ("1", 1), (" 7 ", 7), ("120", 120), ("900", 900)] {
+        for (value, expected) in [
+            ("0", 0),
+            ("1", 1),
+            (" 7 ", 7),
+            ("120", 120),
+            ("86400", 86400),
+        ] {
             for (call, code) in [(slow, 429), (slow, 503), (call("POST", None), 429)] {
                 for retry in [1, 5] {
                     let headers = header(value);
@@ -433,25 +371,11 @@ mod tests {
                 }
             }
         }
-        // More than 900 seconds ends retrying, and so does more than a number holds.
-        // Neither is grounds to retry early.
-        for value in [
-            "901",
-            "86400",
-            "18446744073709551615",
-            "18446744073709551616",
-        ] {
-            for (call, code) in [(slow, 429), (call("GET", Some(80.0)), 429), (slow, 503)] {
-                let headers = header(value);
-                let wait = policy.wait_at(call, asking(code, &headers), 1, EPOCH, 0.0);
-                assert_eq!(wait, None, "{value} {code}");
-            }
-        }
-        // A short one is followed where the rate alone would end retrying.
-        let headers = header("1");
+        // More seconds than a number holds is still a wait, not grounds to retry early.
+        let headers = header("18446744073709551616");
         assert_eq!(
-            policy.wait_at(slow, asking(429, &headers), 5, EPOCH, 0.0),
-            Some(Duration::from_secs(1))
+            policy.wait_at(slow, asking(429, &headers), 1, EPOCH, 0.0),
+            Some(Duration::MAX)
         );
         // The header of a response that isn't retried changes nothing.
         let headers = header("0");
@@ -466,15 +390,14 @@ mod tests {
         let policy = policy(1);
         let now = httpdate::parse_http_date("Wed, 21 Oct 2015 07:28:00 GMT").unwrap();
         for (date, expected) in [
-            ("Wed, 21 Oct 2015 07:28:05 GMT", Some(5)),
-            ("Wed, 21 Oct 2015 07:30:00 GMT", Some(120)),
-            ("Wed, 21 Oct 2015 07:43:00 GMT", Some(900)),
-            ("Wed, 21 Oct 2015 07:43:01 GMT", None),
-            ("Wed, 21 Oct 2015 07:27:59 GMT", Some(0)),
+            ("Wed, 21 Oct 2015 07:28:05 GMT", 5),
+            ("Wed, 21 Oct 2015 07:30:00 GMT", 120),
+            ("Thu, 22 Oct 2015 07:28:00 GMT", 86400),
+            ("Wed, 21 Oct 2015 07:27:59 GMT", 0),
         ] {
             let headers = header(date);
             let wait = policy.wait_at(call("GET", Some(0.5)), asking(429, &headers), 1, now, 0.5);
-            assert_eq!(wait, expected.map(Duration::from_secs), "{date}");
+            assert_eq!(wait, Some(Duration::from_secs(expected)), "{date}");
         }
     }
 
