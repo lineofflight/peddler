@@ -13,8 +13,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
     module MessagingV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "messaging_v1.confirm_customization_details" => -> { CreateConfirmCustomizationDetailsResponse },
         "messaging_v1.create_confirm_delivery_details" => -> { CreateConfirmDeliveryDetailsResponse },
         "messaging_v1.create_confirm_order_details" => -> { CreateConfirmOrderDetailsResponse },
@@ -26,7 +26,7 @@ module Peddler
         "messaging_v1.get_attributes" => -> { GetAttributesResponse },
         "messaging_v1.get_messaging_actions_for_order" => -> { GetMessagingActionsForOrderResponse },
         "messaging_v1.send_invoice" => -> { InvoiceResponse },
-      }.freeze
+      })
     end
   end
 end

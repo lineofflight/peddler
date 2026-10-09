@@ -80,18 +80,15 @@ module Peddler
 
       # Dynamically generate shorthand methods for each country code
       # e.g., Marketplace.us returns the US marketplace
-      MARKETPLACE_IDS.each_key do |country_code|
-        method_name = country_code.downcase
-        define_method(method_name) do
+      # GB (Great Britain) is a special alias for UK
+      #
+      # Their blocks are shareable, so that any Ractor can call the methods.
+      [*MARKETPLACE_IDS.keys, "GB"].each do |country_code|
+        finder = Ractor.make_shareable(proc do
           # @type self: singleton(Marketplace)
           find(country_code)
-        end
-      end
-
-      # Special alias for GB (Great Britain) -> UK
-      define_method(:gb) do
-        # @type self: singleton(Marketplace)
-        find("GB")
+        end)
+        define_method(country_code.downcase, &finder) # steep:ignore BlockTypeMismatch
       end
     end
 

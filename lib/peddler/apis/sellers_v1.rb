@@ -17,11 +17,11 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     module SellersV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "sellers_v1.get_account" => -> { GetAccountResponse },
         "sellers_v1.get_marketplace_participations" => -> { GetMarketplaceParticipationsResponse },
-      }.freeze
+      })
     end
   end
 end

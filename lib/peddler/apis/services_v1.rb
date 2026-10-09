@@ -11,8 +11,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     module ServicesV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "services_v1.add_appointment_for_service_job_by_service_job_id" => -> { SetAppointmentResponse },
         "services_v1.assign_appointment_resources" => -> { AssignAppointmentResourcesResponse },
         "services_v1.cancel_reservation" => -> { CancelReservationResponse },
@@ -29,7 +29,7 @@ module Peddler
         "services_v1.reschedule_appointment_for_service_job_by_service_job_id" => -> { SetAppointmentResponse },
         "services_v1.update_reservation" => -> { UpdateReservationResponse },
         "services_v1.update_schedule" => -> { UpdateScheduleResponse },
-      }.freeze
+      })
     end
   end
 end

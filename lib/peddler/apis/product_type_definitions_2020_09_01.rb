@@ -16,11 +16,11 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     module ProductTypeDefinitions20200901
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "product_type_definitions_2020_09_01.get_definitions_product_type" => -> { ProductTypeDefinition },
         "product_type_definitions_2020_09_01.search_definitions_product_types" => -> { ProductTypeList },
-      }.freeze
+      })
     end
   end
 end

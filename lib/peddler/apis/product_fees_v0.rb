@@ -11,12 +11,12 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     module ProductFeesV0
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "product_fees_v0.get_my_fees_estimate_for_asin" => -> { GetMyFeesEstimateResponse },
         "product_fees_v0.get_my_fees_estimate_for_sku" => -> { GetMyFeesEstimateResponse },
         "product_fees_v0.get_my_fees_estimates" => -> { GetMyFeesEstimatesResponse },
-      }.freeze
+      })
     end
   end
 end

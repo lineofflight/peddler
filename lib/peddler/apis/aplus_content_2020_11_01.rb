@@ -13,8 +13,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     module AplusContent20201101
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "aplus_content_2020_11_01.create_content_document" => -> { PostContentDocumentResponse },
         "aplus_content_2020_11_01.create_media" => -> { CreateMediaResponse },
         "aplus_content_2020_11_01.get_content_document" => -> { GetContentDocumentResponse },
@@ -28,7 +28,7 @@ module Peddler
         "aplus_content_2020_11_01.update_content_document" => -> { PostContentDocumentResponse },
         "aplus_content_2020_11_01.update_media" => -> { UpdateMediaResponse },
         "aplus_content_2020_11_01.validate_content_document_asin_relations" => -> { ValidateContentDocumentASINRelationsResponse },
-      }.freeze
+      })
     end
   end
 end

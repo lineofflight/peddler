@@ -14,14 +14,14 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     module EasyShip20220323
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "easy_ship_2022_03_23.create_scheduled_package" => -> { Package },
         "easy_ship_2022_03_23.create_scheduled_package_bulk" => -> { CreateScheduledPackagesResponse },
         "easy_ship_2022_03_23.get_scheduled_package" => -> { Package },
         "easy_ship_2022_03_23.list_handover_slots" => -> { ListHandoverSlotsResponse },
         "easy_ship_2022_03_23.update_scheduled_packages" => -> { Packages },
-      }.freeze
+      })
     end
   end
 end

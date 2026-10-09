@@ -11,8 +11,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     module AmazonWarehousingAndDistribution20240509
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility" => -> { InboundEligibility },
         "amazon_warehousing_and_distribution_2024_05_09.create_inbound" => -> { InboundOrderReference },
         "amazon_warehousing_and_distribution_2024_05_09.create_outbound" => -> { OutboundOrderReference },
@@ -28,7 +28,7 @@ module Peddler
         "amazon_warehousing_and_distribution_2024_05_09.list_outbounds" => -> { OutboundListing },
         "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders" => -> { ReplenishmentOrderListing },
         "amazon_warehousing_and_distribution_2024_05_09.update_outbound" => -> { OutboundOrderReference },
-      }.freeze
+      })
     end
   end
 end

@@ -11,10 +11,10 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tracking-api-model/tracking_2026-01-30.json
     module Tracking20260130
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "tracking_2026_01_30.get_shipment_tracking" => -> { GetShipmentTrackingResponse },
-      }.freeze
+      })
     end
   end
 end

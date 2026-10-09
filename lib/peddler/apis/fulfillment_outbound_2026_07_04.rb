@@ -12,8 +12,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
     module FulfillmentOutbound20260704
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "fulfillment_outbound_2026_07_04.cancel_order" => -> { CancelOrderResponse },
         "fulfillment_outbound_2026_07_04.create_order" => -> { CreateOrderResponse },
         "fulfillment_outbound_2026_07_04.get_offers" => -> { GetOffersResponse },
@@ -21,7 +21,7 @@ module Peddler
         "fulfillment_outbound_2026_07_04.get_order_preview" => -> { GetOrderPreviewResponse },
         "fulfillment_outbound_2026_07_04.list_orders" => -> { ListOrdersResponse },
         "fulfillment_outbound_2026_07_04.update_order" => -> { UpdateOrderResponse },
-      }.freeze
+      })
     end
   end
 end

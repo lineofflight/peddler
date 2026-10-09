@@ -3,16 +3,17 @@
 module Peddler
   module Native
     # How arguments change after the first page. By default every argument
-    # carries over and only the token is replaced.
+    # carries over and only the token is replaced. It is shareable, as a
+    # Pagination is, so that any Ractor can read the generated table.
     class Continuation
       attr_reader :operation, :keep, :drop, :set
 
       def initialize(operation: nil, keep: nil, drop: [], set: {})
         @operation = operation
-        @keep = keep&.map(&:to_s)&.freeze
-        @drop = drop.map(&:to_s).freeze
-        @set = set.transform_keys(&:to_s).freeze
-        freeze
+        @keep = keep&.map(&:to_s)
+        @drop = drop.map(&:to_s)
+        @set = set.transform_keys(&:to_s)
+        Ractor.make_shareable(self)
       end
     end
 
@@ -31,7 +32,7 @@ module Peddler
         @continuation = continuation
         @input_keys = segments(input)
         @output_keys = segments(output)
-        freeze
+        Ractor.make_shareable(self)
       end
 
       # Lazily yields one Response per page, requesting the next page only once

@@ -12,8 +12,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     module SellerWallet20240301
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "seller_wallet_2024_03_01.create_transaction" => -> { CreateTransactionResponse },
         "seller_wallet_2024_03_01.create_transfer_schedule" => -> { TransferSchedule },
         "seller_wallet_2024_03_01.delete_schedule_transaction" => -> { DeleteTransferSchedule },
@@ -26,7 +26,7 @@ module Peddler
         "seller_wallet_2024_03_01.list_accounts" => -> { BankAccountListing },
         "seller_wallet_2024_03_01.list_transfer_schedules" => -> { TransferScheduleListing },
         "seller_wallet_2024_03_01.update_transfer_schedule" => -> { TransferSchedule },
-      }.freeze
+      })
     end
   end
 end

@@ -11,13 +11,13 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
     module DataKiosk20231115
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "data_kiosk_2023_11_15.create_query" => -> { CreateQueryResponse },
         "data_kiosk_2023_11_15.get_document" => -> { GetDocumentResponse },
         "data_kiosk_2023_11_15.get_queries" => -> { GetQueriesResponse },
         "data_kiosk_2023_11_15.get_query" => -> { Query },
-      }.freeze
+      })
     end
   end
 end

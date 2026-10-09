@@ -11,8 +11,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     module Invoices20240619
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "invoices_2024_06_19.create_invoices_export" => -> { ExportInvoicesResponse },
         "invoices_2024_06_19.get_government_invoice_document" => -> { GovtInvoiceDocumentResponse },
         "invoices_2024_06_19.get_government_invoice_status" => -> { GovernmentInvoiceStatusResponse },
@@ -22,7 +22,7 @@ module Peddler
         "invoices_2024_06_19.get_invoices_document" => -> { GetInvoicesDocumentResponse },
         "invoices_2024_06_19.get_invoices_export" => -> { GetInvoicesExportResponse },
         "invoices_2024_06_19.get_invoices_exports" => -> { GetInvoicesExportsResponse },
-      }.freeze
+      })
     end
   end
 end

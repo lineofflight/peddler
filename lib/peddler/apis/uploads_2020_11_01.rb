@@ -11,10 +11,10 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
     module Uploads20201101
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "uploads_2020_11_01.create_upload_destination_for_resource" => -> { CreateUploadDestinationResponse },
-      }.freeze
+      })
     end
   end
 end

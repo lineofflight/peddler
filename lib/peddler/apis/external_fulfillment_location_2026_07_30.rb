@@ -11,10 +11,10 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentLocation_2026-07-30.json
     module ExternalFulfillmentLocation20260730
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "external_fulfillment_location_2026_07_30.create_sandbox_location" => -> { CreateSandboxLocationResponse },
-      }.freeze
+      })
     end
   end
 end

@@ -12,8 +12,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     module ShippingV2
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "shipping_v2.cancel_shipment" => -> { CancelShipmentResponse },
         "shipping_v2.create_claim" => -> { CreateClaimResponse },
         "shipping_v2.direct_purchase_shipment" => -> { DirectPurchaseResponse },
@@ -33,7 +33,7 @@ module Peddler
         "shipping_v2.one_click_shipment" => -> { OneClickShipmentResponse },
         "shipping_v2.purchase_shipment" => -> { PurchaseShipmentResponse },
         "shipping_v2.unlink_carrier_account" => -> { UnlinkCarrierAccountResponse },
-      }.freeze
+      })
     end
   end
 end

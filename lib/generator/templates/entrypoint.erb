@@ -33,11 +33,12 @@ module Peddler
   end
 
   module APIs
-    # Each API's typed model lookup, by the API part of a native operation key
-    PARSERS = {
+    # Each API's typed model lookup, by the API part of a native operation key. Shareable, so that any Ractor can
+    # read it.
+    PARSERS = Ractor.make_shareable({
 <% apis.each do |api| -%>
       "<%= api.name_with_version %>" => -> { <%= api.class_name %>::PARSERS },
 <% end -%>
-    }.freeze
+    })
   end
 end

@@ -11,8 +11,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
     module CustomerFeedback20240601
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "customer_feedback_2024_06_01.get_browse_node_return_topics" => -> { BrowseNodeReturnTopicsResponse },
         "customer_feedback_2024_06_01.get_browse_node_return_trends" => -> { BrowseNodeReturnTrendsResponse },
         "customer_feedback_2024_06_01.get_browse_node_review_topics" => -> { BrowseNodeReviewTopicsResponse },
@@ -20,7 +20,7 @@ module Peddler
         "customer_feedback_2024_06_01.get_item_browse_node" => -> { BrowseNodeResponse },
         "customer_feedback_2024_06_01.get_item_review_topics" => -> { ItemReviewTopicsResponse },
         "customer_feedback_2024_06_01.get_item_review_trends" => -> { ItemReviewTrendsResponse },
-      }.freeze
+      })
     end
   end
 end

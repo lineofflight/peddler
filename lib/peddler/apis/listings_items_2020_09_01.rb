@@ -16,12 +16,12 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
     module ListingsItems20200901
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "listings_items_2020_09_01.delete_listings_item" => -> { ListingsItemSubmissionResponse },
         "listings_items_2020_09_01.patch_listings_item" => -> { ListingsItemSubmissionResponse },
         "listings_items_2020_09_01.put_listings_item" => -> { ListingsItemSubmissionResponse },
-      }.freeze
+      })
     end
   end
 end

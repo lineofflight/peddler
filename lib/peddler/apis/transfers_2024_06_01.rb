@@ -11,13 +11,13 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     module Transfers20240601
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "transfers_2024_06_01.get_payment_methods" => -> { GetPaymentMethodsResponse },
         "transfers_2024_06_01.initiate_payout" => -> { InitiatePayoutResponse },
         "transfers_2024_06_01.list_expected_payouts" => -> { ListExpectedPayoutsResponse },
         "transfers_2024_06_01.list_payouts" => -> { ListPayoutsResponse },
-      }.freeze
+      })
     end
   end
 end

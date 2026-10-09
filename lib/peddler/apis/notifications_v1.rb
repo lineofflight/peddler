@@ -15,8 +15,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     module NotificationsV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "notifications_v1.create_destination" => -> { CreateDestinationResponse },
         "notifications_v1.create_subscription" => -> { CreateSubscriptionResponse },
         "notifications_v1.delete_destination" => -> { DeleteDestinationResponse },
@@ -27,7 +27,7 @@ module Peddler
         "notifications_v1.get_subscription_by_id" => -> { GetSubscriptionByIdResponse },
         "notifications_v1.get_subscriptions" => -> { GetSubscriptionsResponse },
         "notifications_v1.send_test_notification" => -> { SendTestNotificationResponse },
-      }.freeze
+      })
     end
   end
 end

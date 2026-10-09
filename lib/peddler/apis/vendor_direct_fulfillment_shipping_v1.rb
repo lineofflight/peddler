@@ -11,8 +11,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     module VendorDirectFulfillmentShippingV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "vendor_direct_fulfillment_shipping_v1.get_customer_invoice" => -> { GetCustomerInvoiceResponse },
         "vendor_direct_fulfillment_shipping_v1.get_customer_invoices" => -> { GetCustomerInvoicesResponse },
         "vendor_direct_fulfillment_shipping_v1.get_packing_slip" => -> { GetPackingSlipResponse },
@@ -22,7 +22,7 @@ module Peddler
         "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations" => -> { SubmitShipmentConfirmationsResponse },
         "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates" => -> { SubmitShipmentStatusUpdatesResponse },
         "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request" => -> { SubmitShippingLabelsResponse },
-      }.freeze
+      })
     end
   end
 end

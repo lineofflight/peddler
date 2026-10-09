@@ -11,12 +11,12 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json
     module VendorDirectFulfillmentOrdersV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "vendor_direct_fulfillment_orders_v1.get_order" => -> { GetOrderResponse },
         "vendor_direct_fulfillment_orders_v1.get_orders" => -> { GetOrdersResponse },
         "vendor_direct_fulfillment_orders_v1.submit_acknowledgement" => -> { SubmitAcknowledgementResponse },
-      }.freeze
+      })
     end
   end
 end

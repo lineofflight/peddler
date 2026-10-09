@@ -11,11 +11,11 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     module VendorDirectFulfillmentSandboxTestData20211028
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios" => -> { TransactionReference },
         "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios" => -> { TransactionStatus },
-      }.freeze
+      })
     end
   end
 end

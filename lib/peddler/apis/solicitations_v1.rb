@@ -15,11 +15,11 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     module SolicitationsV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "solicitations_v1.create_product_review_and_seller_feedback_solicitation" => -> { CreateProductReviewAndSellerFeedbackSolicitationResponse },
         "solicitations_v1.get_solicitation_actions_for_order" => -> { GetSolicitationActionsForOrderResponse },
-      }.freeze
+      })
     end
   end
 end

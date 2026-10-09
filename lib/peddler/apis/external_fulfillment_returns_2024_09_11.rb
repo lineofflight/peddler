@@ -11,11 +11,11 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentReturns_2024-09-11.json
     module ExternalFulfillmentReturns20240911
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "external_fulfillment_returns_2024_09_11.get_return" => -> { Return },
         "external_fulfillment_returns_2024_09_11.list_returns" => -> { ReturnsResponse },
-      }.freeze
+      })
     end
   end
 end

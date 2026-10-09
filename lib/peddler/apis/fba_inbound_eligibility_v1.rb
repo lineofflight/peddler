@@ -14,10 +14,10 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     module FBAInboundEligibilityV1
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "fba_inbound_eligibility_v1.get_item_eligibility_preview" => -> { GetItemEligibilityPreviewResponse },
-      }.freeze
+      })
     end
   end
 end

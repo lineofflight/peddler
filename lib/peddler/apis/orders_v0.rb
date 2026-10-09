@@ -16,8 +16,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     module OrdersV0
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "orders_v0.get_order" => -> { GetOrderResponse },
         "orders_v0.get_order_address" => -> { GetOrderAddressResponse },
         "orders_v0.get_order_buyer_info" => -> { GetOrderBuyerInfoResponse },
@@ -25,7 +25,7 @@ module Peddler
         "orders_v0.get_order_items_buyer_info" => -> { GetOrderItemsBuyerInfoResponse },
         "orders_v0.get_order_regulated_info" => -> { GetOrderRegulatedInfoResponse },
         "orders_v0.get_orders" => -> { GetOrdersResponse },
-      }.freeze
+      })
     end
   end
 end

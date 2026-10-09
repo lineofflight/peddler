@@ -15,12 +15,12 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     module Replenishment20221107
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "replenishment_2022_11_07.get_selling_partner_metrics" => -> { GetSellingPartnerMetricsResponse },
         "replenishment_2022_11_07.list_offer_metrics" => -> { ListOfferMetricsResponse },
         "replenishment_2022_11_07.list_offers" => -> { ListOffersResponse },
-      }.freeze
+      })
     end
   end
 end

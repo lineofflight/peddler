@@ -11,14 +11,14 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     module MerchantFulfillmentV0
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "merchant_fulfillment_v0.cancel_shipment" => -> { CancelShipmentResponse },
         "merchant_fulfillment_v0.create_shipment" => -> { CreateShipmentResponse },
         "merchant_fulfillment_v0.get_additional_seller_inputs" => -> { GetAdditionalSellerInputsResponse },
         "merchant_fulfillment_v0.get_eligible_shipment_services" => -> { GetEligibleShipmentServicesResponse },
         "merchant_fulfillment_v0.get_shipment" => -> { GetShipmentResponse },
-      }.freeze
+      })
     end
   end
 end

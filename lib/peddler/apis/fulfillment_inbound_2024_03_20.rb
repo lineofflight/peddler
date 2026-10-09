@@ -12,8 +12,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
     module FulfillmentInbound20240320
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "fulfillment_inbound_2024_03_20.cancel_inbound_plan" => -> { CancelInboundPlanResponse },
         "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment" => -> { CancelSelfShipAppointmentResponse },
         "fulfillment_inbound_2024_03_20.confirm_delivery_window_options" => -> { ConfirmDeliveryWindowOptionsResponse },
@@ -57,7 +57,7 @@ module Peddler
         "fulfillment_inbound_2024_03_20.update_item_compliance_details" => -> { UpdateItemComplianceDetailsResponse },
         "fulfillment_inbound_2024_03_20.update_shipment_source_address" => -> { UpdateShipmentSourceAddressResponse },
         "fulfillment_inbound_2024_03_20.update_shipment_tracking_details" => -> { UpdateShipmentTrackingDetailsResponse },
-      }.freeze
+      })
     end
   end
 end

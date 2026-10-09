@@ -15,10 +15,10 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
     module ListingsRestrictions20210801
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "listings_restrictions_2021_08_01.get_listings_restrictions" => -> { RestrictionList },
-      }.freeze
+      })
     end
   end
 end

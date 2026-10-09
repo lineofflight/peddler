@@ -12,8 +12,8 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
     module ExternalFulfillmentShipments20240911
-      # Typed models of successful responses, by native operation key
-      PARSERS = {
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
         "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment" => -> { CreateSandboxShipmentResponse },
         "external_fulfillment_shipments_2024_09_11.generate_invoice" => -> { InvoiceResponse },
         "external_fulfillment_shipments_2024_09_11.generate_ship_labels" => -> { ShipLabelsResponse },
@@ -21,7 +21,7 @@ module Peddler
         "external_fulfillment_shipments_2024_09_11.get_shipments" => -> { ShipmentsResponse },
         "external_fulfillment_shipments_2024_09_11.retrieve_invoice" => -> { InvoiceResponse },
         "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options" => -> { ShippingOptionsResponse },
-      }.freeze
+      })
     end
   end
 end
