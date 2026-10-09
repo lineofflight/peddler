@@ -160,6 +160,9 @@ module Peddler
       parsers = APIs::PARSERS[operation[/\A[^.]+/]] or return
 
       parsers.call[operation]&.call
+    rescue Ractor::UnsafeError
+      # Ruby 3.3 loads code in the main Ractor only, and this is another that found the model not loaded.
+      raise Ractor::UnsafeError, "call Peddler.eager_load! in the main Ractor before another Ractor parses a response"
     end
   end
 end

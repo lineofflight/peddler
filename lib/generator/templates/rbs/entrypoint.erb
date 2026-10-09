@@ -1,7 +1,11 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 module Peddler
+  LOADER: Zeitwerk::Loader
+
   def self.new: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Integer | Float, ?retries: Integer) -> Client
+
+  def self.eager_load!: () -> void
 
   module APIs
     PARSERS: Hash[String, ^() -> Hash[String, ^() -> untyped]]

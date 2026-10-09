@@ -15,12 +15,19 @@ end
 loader.ignore("#{__dir__}/peddler/native")
 loader.ignore("#{__dir__}/peddler/[0-9]*")
 # The WebMock adapter loads only when an application requires it.
-loader.ignore("#{__dir__}/peddler/webmock.rb")
+webmock = "#{__dir__}/peddler/webmock.rb"
+loader.ignore(webmock)
 loader.setup
+Peddler::LOADER = loader
 
 require "peddler/native/boot"
+# What an application calls loads now, so that a Ractor finds it loaded: on Ruby 3.3 only the main Ractor loads code.
+# The typed models load on first use, or all at once with Peddler.eager_load!.
+(Dir["#{__dir__}/peddler/{*,lwa/*}.rb"] - [webmock]).sort.each { |file| require file }
 
 module Peddler
+  private_constant :LOADER
+
   class << self
     # Builds a client: short for {Peddler::Client#initialize Peddler::Client.new}, with the same arguments
     #
@@ -29,6 +36,16 @@ module Peddler
     # @return [Peddler::Client]
     def new(...)
       Client.new(...)
+    end
+
+    # Loads every typed model now, which takes about a second
+    #
+    # Ruby 3.3 loads code in the main Ractor only. Call this there before another Ractor parses a response, a
+    # notification, a report, a feed or a Data Kiosk document. From Ruby 3.4 a Ractor loads a model on first use.
+    #
+    # @return [void]
+    def eager_load!
+      LOADER.eager_load
     end
   end
 
