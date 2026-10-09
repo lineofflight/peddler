@@ -13,6 +13,11 @@ module WebMock
     # URLs. `stub_request`, `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` then
     # work as they do for any HTTP library.
     #
+    # WebMock doesn't say whether it is enabled, so the adapter tells when it loads, by whether Net::HTTP is
+    # swapped. Require this file before a selective `WebMock.enable!(except: ...)`, which then enables it with the
+    # rest. Required after one that leaves Net::HTTP out, the adapter stays off, and Peddler's requests reach the
+    # network.
+    #
     # Only the exchange is replaced. A stubbed response is retried, paginated, parsed and raised on as one from
     # Amazon is. `to_timeout` raises what a timeout does: {Peddler::TimeoutError}, or
     # {Peddler::DocumentTimeoutError} for a signed URL. `to_raise` raises the error itself.
@@ -94,7 +99,8 @@ module WebMock
         end
       end
 
-      # WebMock doesn't say whether it is enabled, but its Net::HTTP adapter swaps the constant while it is.
+      # WebMock doesn't say whether it is enabled, but its Net::HTTP adapter swaps the constant while it is. See the
+      # comment of the class for the `enable!` this misreads.
       enable! unless ::Net::HTTP.equal?(NetHttpAdapter::OriginalNetHTTP)
     end
   end
