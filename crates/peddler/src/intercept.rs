@@ -63,7 +63,9 @@ pub trait Interceptor: Send + Sync + 'static {
 }
 
 impl Pool {
-    /// The same pool, whose clients ask `interceptor` before every exchange.
+    /// The same pool, whose clients ask `interceptor` before every exchange. Hidden with
+    /// the module: an inherent method of a public type isn't covered by it.
+    #[doc(hidden)]
     pub fn with_interceptor(mut self, interceptor: impl Interceptor) -> Self {
         self.interceptor = Some(Arc::new(interceptor));
         self
