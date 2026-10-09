@@ -124,6 +124,22 @@ class WebMockTest < WebMockTestCase
     assert_equal(429, assert_raises(Peddler::Error) { seller.orders_v0.get_order("1") }.status)
   end
 
+  # `get_orders` allows 1 request a minute, so by its rate the first retry would wait a minute. At 100 requests a
+  # second it waits 10 milliseconds and the second 20, and up to 100 more each.
+  def test_a_throttled_stub_is_retried_by_the_rate_limit_of_the_call
+    stub = stub_request(:get, "#{EU}/orders/v0/orders").with(query: { "MarketplaceIds" => UK })
+      .to_return({ status: 429 }, { status: 429 }, { status: 200, body: '{"payload":{"Orders":[]}}', headers: JSON_TYPE })
+    started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    response = Timeout.timeout(10) { seller(retries: 2).orders_v0.get_orders([UK], rate_limit: 100) }
+    elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
+
+    assert_equal(200, response.status)
+    assert_empty(response.parse.payload.orders)
+    assert_operator(elapsed, :>=, 0.03)
+    assert_operator(elapsed, :<, 1)
+    assert_requested(stub, times: 3)
+  end
+
   def test_to_timeout_raises_what_a_timeout_does_and_to_raise_the_error_itself
     failure = Class.new(StandardError).new("boom")
     signed = "https://signed.example/document?X-Amz-Signature=abc"

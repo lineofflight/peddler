@@ -54,6 +54,25 @@ class TokenSourceTest < NativeTest
     end
   end
 
+  # `get_orders` allows 1 request a minute, so by its rate the first retry would wait a minute. At 100 requests a
+  # second it waits 10 milliseconds and the second 20, and up to 100 more each. The source is asked after each wait.
+  def test_a_call_with_a_rate_limit_asks_before_every_attempt_and_waits_by_that_rate
+    statuses = [429, 429, 200]
+    serve_keep_alive(responder: ->(*) { [statuses.shift, "{}"] }) do |url, _accepted, requests|
+      source, calls = counting_source
+      orders = Peddler::Client.new(base_url: url, access_token: source, retries: 2).orders_v0
+      started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      response = Timeout.timeout(10) { orders.get_orders(["ATVPDKIKX0DER"], rate_limit: 100) }
+      elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
+
+      assert_equal(200, response.status)
+      assert_operator(elapsed, :>=, 0.03)
+      assert_operator(elapsed, :<, 1)
+      assert_equal(["token-1", "token-2", "token-3"], tokens(requests, 3))
+      assert_equal(3, calls.call)
+    end
+  end
+
   # Asking is part of the attempt, as it is in the core. Ruby can't interrupt a source, so a slow one is waited
   # for, and the attempt has then timed out.
   def test_timeout_limits_an_attempt_with_the_time_its_source_takes
