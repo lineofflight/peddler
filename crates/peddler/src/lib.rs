@@ -197,6 +197,8 @@ pub struct Client {
     timeout: Duration,
     /// Whether the origin is Amazon's sandbox, where a 429 has a wait of its own.
     sandbox: bool,
+    /// The rate a view was given in place of the documented ones, which may be none.
+    rate_limit: Option<Option<f64>>,
 }
 
 impl std::fmt::Debug for Client {
@@ -245,7 +247,7 @@ pub struct Response {
 #[non_exhaustive]
 pub enum Error {
     /// The client was given something it can't use or send: a base URL, a token, a
-    /// timeout, a path, a header or an argument.
+    /// timeout, a rate, a path, a header or an argument.
     InvalidRequest,
     /// The last attempt took longer than the client's timeout.
     Timeout,
@@ -339,6 +341,7 @@ impl Client {
             retry,
             timeout,
             sandbox,
+            rate_limit: None,
         })
     }
 
@@ -347,6 +350,20 @@ impl Client {
     pub fn with_access_token(&self, access_token: &str) -> Result<Self, Error> {
         let mut view = self.clone();
         view.token = Token::Static(token_header(access_token)?);
+        Ok(view)
+    }
+
+    /// A view whose calls wait after a 429 by `rate` requests per second, in place of
+    /// the rate Amazon documents for each operation: for a seller whose limit differs.
+    /// `None` is no rate, so a 429 waits as a 503 does. Nothing is paced, and a call
+    /// that isn't throttled is unchanged. It refuses a rate that isn't a positive,
+    /// finite number.
+    pub fn with_rate_limit(&self, rate: Option<f64>) -> Result<Self, Error> {
+        if rate.is_some_and(|rate| !(rate.is_finite() && rate > 0.0)) {
+            return Err(Error::InvalidRequest);
+        }
+        let mut view = self.clone();
+        view.rate_limit = Some(rate);
         Ok(view)
     }
 
@@ -364,7 +381,8 @@ impl Client {
     /// Runs `send` once per attempt, with that attempt's token. The timeout limits
     /// each attempt, asking a token source included. The waits between attempts, which
     /// the policy sets, are not counted against it. `rate` is the requests per second
-    /// Amazon documents for the operation, if this is one and it has one.
+    /// Amazon documents for the operation, if this is one and it has one. The rate a
+    /// view was given replaces it.
     async fn run<F, Fut>(&self, method: &str, rate: Option<f64>, send: F) -> Result<Response, Error>
     where
         F: Fn(HeaderValue) -> Fut,
@@ -372,7 +390,7 @@ impl Client {
     {
         let call = Call {
             method,
-            rate,
+            rate: self.rate_limit.unwrap_or(rate),
             sandbox: self.sandbox,
         };
         let mut retry = 0;
@@ -411,7 +429,8 @@ impl Client {
 
     /// Sends a request with the client's access token, timeout and retries, and
     /// returns the response whatever its status. It has no documented rate, so a
-    /// retry after a 429 waits as one after a 503 does.
+    /// retry after a 429 waits as one after a 503 does, unless the client is a view
+    /// with a rate: see [`Client::with_rate_limit`].
     pub async fn execute(&self, request: Request) -> Result<Response, Error> {
         self.execute_inner(request, false, None).await
     }
@@ -786,6 +805,39 @@ mod tests {
                 !Client::new(production, "t").unwrap().sandbox,
                 "{production}"
             );
+        }
+    }
+
+    #[tokio::test(start_paused = true)]
+    async fn a_view_with_a_rate_waits_by_it_in_place_of_the_documented_one() {
+        let script = [Status(429), Status(429), Status(200)];
+        // At 100 requests a second: a hundredth of a second, then 2, and up to a tenth
+        // more each. By the documented rate the first wait alone would be a minute.
+        let slow = client(2);
+        let fast = slow.with_rate_limit(Some(100.0)).unwrap();
+        let (result, attempts, elapsed) = run(&fast, "GET", Some(0.0167), &script).await;
+        assert_eq!((result, attempts), (Ok(200), 3));
+        assert!(took(elapsed, 0.03, 0.23), "{elapsed}");
+        // A call without a documented rate waits by it too.
+        let (_, _, elapsed) = run(&fast, "POST", None, &script).await;
+        assert!(took(elapsed, 0.03, 0.23), "{elapsed}");
+        // A view of the view keeps the rate. The client it came from never had it.
+        let view = fast.with_access_token("other").unwrap();
+        let (_, _, elapsed) = run(&view, "GET", Some(0.0167), &script).await;
+        assert!(took(elapsed, 0.03, 0.23), "{elapsed}");
+        let (_, _, elapsed) = run(&slow, "GET", Some(0.0167), &script).await;
+        assert!(took(elapsed, 3.0 / 0.0167, 3.0 / 0.0167 + 0.2), "{elapsed}");
+        // No rate: up to 1 second, then 1 to 2, as after a 503.
+        let unrated = slow.with_rate_limit(None).unwrap();
+        let (result, attempts, elapsed) = run(&unrated, "GET", Some(80.0), &script).await;
+        assert_eq!((result, attempts), (Ok(200), 3));
+        assert!(took(elapsed, 1.0, 3.0), "{elapsed}");
+        // Nothing is paced: a call that isn't throttled doesn't wait.
+        let (_, attempts, elapsed) = run(&fast, "GET", Some(0.0167), &[Status(200)]).await;
+        assert_eq!((attempts, elapsed), (1, 0.0));
+        for rate in [0.0, -1.0, f64::NAN, f64::INFINITY, f64::NEG_INFINITY] {
+            let refused = slow.with_rate_limit(Some(rate)).unwrap_err();
+            assert_eq!(refused, Error::InvalidRequest, "{rate}");
         }
     }
 }

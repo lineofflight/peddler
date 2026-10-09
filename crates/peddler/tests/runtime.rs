@@ -131,6 +131,24 @@ async fn an_operation_waits_by_its_documented_rate_after_a_429() {
     assert_eq!(api.requests().len(), 6);
 }
 #[tokio::test]
+async fn a_view_with_a_rate_replaces_the_documented_rate_of_an_operation() {
+    let throttled = || http(429, "", b"{}");
+    let api = replies(vec![throttled(), throttled(), http(200, "", b"{}")]).await;
+    let client = Client::with_config(retrying(api.url.clone(), 2)).unwrap();
+    // `get_orders` allows 1 request a minute, so by its rate the first wait would be a
+    // minute. At 100 a second the waits are 10 and 20 milliseconds, and up to 100 more
+    // each.
+    let view = client.with_rate_limit(Some(100.0)).unwrap();
+    let params = GetOrdersParams::new(vec!["ATVPDKIKX0DER".into()]);
+    let started = Instant::now();
+    let orders = tokio::time::timeout(Duration::from_secs(5), get_orders(&view, params));
+    assert_eq!(orders.await.unwrap().unwrap().raw.status, 200);
+    let elapsed = started.elapsed();
+    assert!(elapsed >= Duration::from_millis(30), "{elapsed:?}");
+    assert!(elapsed < Duration::from_secs(1), "{elapsed:?}");
+    assert_eq!(api.requests().len(), 3);
+}
+#[tokio::test]
 async fn retry_after_replaces_the_wait_of_an_operation_limited_to_one_request_a_minute() {
     let api = replies(vec![at_once(429, b"{}"), http(200, "", b"{}")]).await;
     let client = Client::with_config(retrying(api.url.clone(), 1)).unwrap();

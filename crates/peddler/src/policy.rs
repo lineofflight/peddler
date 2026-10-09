@@ -4,12 +4,13 @@
 //!
 //! - A 429 is retried whatever the method: a throttled request was not processed. The
 //!   wait is `1 / rate` seconds, doubling with each retry, plus up to 0.1 seconds,
-//!   where `rate` is the requests per second Amazon documents for the operation. In
-//!   Amazon's sandbox the first wait is 0.2 seconds instead.
+//!   where `rate` is the requests per second Amazon documents for the operation, or
+//!   the rate [`Client::with_rate_limit`](crate::Client::with_rate_limit) gave in its
+//!   place. In Amazon's sandbox the first wait is 0.2 seconds instead.
 //! - A 500, 502, 503 or 504, and an attempt that got no response, are retried for GET,
 //!   HEAD and OPTIONS only: a write may have been processed. The wait is
 //!   `2^(retry - 1) - 1` seconds plus up to 1 second, so up to 1, then 1 to 2, then
-//!   3 to 4. A 429 of an operation without a documented rate waits like this too.
+//!   3 to 4. A 429 of a call without a rate waits like this too.
 //! - A `Retry-After` header replaces the wait of its response.
 //! - A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer
 //!   one, retrying ends and the call returns that response, as when the retries run
@@ -55,7 +56,8 @@ impl std::error::Error for PolicyError {}
 pub(crate) struct Call<'a> {
     /// The HTTP method, in uppercase.
     pub method: &'a str,
-    /// The requests per second Amazon documents for the operation, if it does.
+    /// The requests per second Amazon documents for the operation, or the rate a view
+    /// of the client was given in its place. None when the call has neither.
     pub rate: Option<f64>,
     /// Whether the client calls Amazon's sandbox.
     pub sandbox: bool,
