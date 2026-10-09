@@ -3,6 +3,7 @@
 require_relative "test_helper"
 require "open3"
 require "rbconfig"
+require "peddler/webmock"
 
 # A Ractor other than the main one builds its own client and uses all of Peddler. Each scenario runs whole in a
 # Ractor and returns plain values. The servers run in the main Ractor, which also compares what came back.
@@ -15,6 +16,9 @@ class RactorTest < NativeTest
     scope: "a::scope").freeze
   ITEM = JSON.generate(asin: "B01", summaries: [{ marketplaceId: "A1F83G8C2ARO7P", itemName: "A book" }]).freeze
   PROBLEM = JSON.generate(errors: [{ code: "QuotaExceeded", message: "Slow down" }]).freeze
+  # What a Ractor other than the main one is told of the exchange hook, which WebMock sets
+  HOOK_SET = "the exchange hook is set and cleared in the main Ractor only"
+  HOOK_CALL = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor"
 
   def setup
     @experimental = Warning[:experimental]
@@ -153,6 +157,112 @@ class RactorTest < NativeTest
 
       assert_equal(["asked-1", "asked-2", "granted", "granted"], sent.map { |_, _, headers, _| headers["x-amz-access-token"] })
     end
+  end
+
+  # A source belongs to the Ractor that made it and is asked there before every attempt, as in the main Ractor. The
+  # source of Peddler::LWA makes its grant from inside the call that asks.
+  def test_a_token_source_is_asked_before_every_attempt_in_its_ractor
+    attempts = Hash.new(0)
+    responder = lambda do |_method, target, *|
+      next [200, TOKENS] if target == "/auth"
+      next [200, "{}"] if (attempts[target] += 1) > 1
+
+      # Without Retry-After the wait is by the rate, which the call below gives.
+      [429, PROBLEM, target == "/callable" ? [["Retry-After", "0"]] : []]
+    end
+    serve_keep_alive(responder: responder) do |url, _, requests|
+      counts = in_ractor(url) do |base|
+        asked = 0
+        Peddler.new(base_url: base, access_token: -> { "asked-#{asked += 1}" }, retries: 1).request("GET", "/callable")
+        lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{base}/auth")
+        source = lwa.token_source(refresh_token: "refresh")
+        calls = 0
+        source.define_singleton_method(:call) do
+          calls += 1
+          super()
+        end
+        Peddler.new(base_url: base, access_token: source, retries: 1).orders_v0.get_order("9", rate_limit: 1000)
+        [asked, calls]
+      end
+
+      assert_equal([2, 2], counts)
+      sent = Array.new(requests.size) { requests.pop }.map { |_, target, headers, _| [target, headers["x-amz-access-token"]] }
+
+      assert_equal(
+        [
+          ["/callable", "asked-1"],
+          ["/callable", "asked-2"],
+          ["/auth", nil],
+          ["/orders/v0/orders/9", "granted"],
+          ["/orders/v0/orders/9", "granted"],
+        ],
+        sent,
+      )
+    end
+  end
+
+  def test_only_the_main_ractor_sets_the_exchange_hook
+    serve_keep_alive do |url, _, requests|
+      refused = in_ractor do
+        [Object, nil].map do |hook|
+          Peddler::Native.exchange_hook = hook
+        rescue Ractor::IsolationError => error
+          error.message
+        end
+      end
+
+      assert_equal([HOOK_SET, HOOK_SET], refused)
+      # So none is set, and with none a call reaches the network from either Ractor.
+      assert_equal(200, client(url).request("GET", "/main").code)
+      assert_equal(200, in_ractor(url) { |base| Peddler.new(base_url: base, access_token: "t").request("GET", "/ractor").code })
+      assert_equal(["/main", "/ractor"], Array.new(requests.size) { requests.pop }.map { |_, target, *| target })
+    end
+  ensure
+    Peddler::Native.exchange_hook = nil
+  end
+
+  # WebMock keeps its stubs and its record of requests in the main Ractor, and nothing of them is shareable. While it
+  # is enabled, a call from another Ractor is refused. Sent on, it would reach the network from a test that believes
+  # it stubbed.
+  def test_webmock_answers_the_main_ractor_and_refuses_another
+    serve_keep_alive do |url, _, requests|
+      WebMock.enable!
+      WebMock.disable_net_connect!
+      WebMock.stub_request(:get, "#{url}/stubbed").to_return(body: '{"stubbed":true}')
+      refused = in_ractor(url) do |base|
+        client = Peddler.new(base_url: base, access_token: "ractor-token")
+        calls = [
+          -> { client.request("GET", "/stubbed") },
+          -> { client.orders_v0.get_order("9") },
+          -> { client.orders_v0.get_orders_pages(["UK"]).first },
+          -> { client.reports.wait_for_report("r1") },
+          -> { client.reports.open_report_document("d1") },
+          -> { client.download_document("#{base}/stubbed") },
+          -> { client.upload_document("#{base}/stubbed", "content", content_type: "text/plain") },
+          -> { client.feeds.create_and_upload_feed_document("content", content_type: "text/plain") },
+          -> { Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{base}/auth").refresh(refresh_token: "r") },
+          -> { Peddler::Native.exchange_hook = nil },
+        ]
+        calls.map do |call|
+          call.call
+          "not refused"
+        rescue Ractor::IsolationError => error
+          error.message
+        end
+      end
+
+      assert_equal([HOOK_CALL] * 9 + [HOOK_SET], refused)
+      # The Ractor cleared nothing: the main Ractor is still answered by the stub, and nothing reached the server.
+      assert_equal({ "stubbed" => true }, client(url).request("GET", "/stubbed").to_h)
+      assert_equal(0, requests.size)
+      WebMock.disable!
+
+      assert_equal(200, in_ractor(url) { |base| Peddler.new(base_url: base, access_token: "t").request("GET", "/").code })
+      assert_equal(1, requests.size)
+    end
+  ensure
+    WebMock.reset!
+    WebMock.disable!
   end
 
   def test_errors_keep_their_attributes
@@ -360,9 +470,11 @@ class RactorTest < NativeTest
       response = Peddler::Response.new(200, [], '{"asin":"B01"}', nil, operation: "catalog_items_2022_04_01.get_catalog_item")
       puts take(Ractor.new(response) { |copy| copy.send(:parser).name })
       puts take(Ractor.new { Peddler::Notifications::OrderChange::Notification.name })
+      puts [defined?(WebMock), $LOADED_FEATURES.grep(%r{peddler/webmock}).size].inspect
     RUBY
 
-    assert_equal("Peddler::APIs::CatalogItems20220401::Item\nPeddler::Notifications::OrderChange::Notification\n", with)
+    # Loading everything leaves the WebMock adapter alone: an application requires it or doesn't.
+    assert_equal("Peddler::APIs::CatalogItems20220401::Item\nPeddler::Notifications::OrderChange::Notification\n[nil, 0]\n", with)
     if RUBY_VERSION < "3.4"
       assert_equal("Ractor::UnsafeError: call Peddler.eager_load! in the main Ractor before another Ractor parses a response\n", without)
     else
@@ -374,14 +486,15 @@ class RactorTest < NativeTest
   def test_a_ractor_needs_no_loading_call_for_the_client
     output = run_ruby(<<~RUBY)
       puts take(Ractor.new {
-        client = Peddler::Client.new(region: "eu-west-1", access_token: "token").sandbox
+        client = Peddler.new(region: "eu-west-1", access_token: "token").sandbox
         lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret")
         error = Peddler::Error.new("message", Peddler::Response.new(404, [], "{}"), code: "NotFound")
         [client.sandbox?, lwa.token_source(scope: "a::scope").inspect, error.status, Peddler::Marketplace.us.id, Peddler::VERSION].join(" ")
       })
+      puts [defined?(WebMock), $LOADED_FEATURES.grep(%r{peddler/webmock}).size].inspect
     RUBY
 
-    assert_equal("true #<Peddler::LWA::TokenSource> 404 ATVPDKIKX0DER #{Peddler::VERSION}\n", output)
+    assert_equal("true #<Peddler::LWA::TokenSource> 404 ATVPDKIKX0DER #{Peddler::VERSION}\n[nil, 0]\n", output)
   end
 
   private
