@@ -1,5 +1,7 @@
 //! The three Login with Amazon grants, one request each.
-use super::{AuthError, check_lifetime, check_token, endpoint, read_response, transport};
+use super::{
+    AuthError, check_lifetime, check_token, endpoint, read_reply, read_response, transport,
+};
 use crate::Pool;
 use reqwest::Url;
 use serde::Deserialize;
@@ -7,7 +9,7 @@ use std::{fmt, sync::Arc, time::Duration};
 use tokio::time::Instant;
 
 struct Config {
-    http: reqwest::Client,
+    pool: Pool,
     endpoint: Url,
     client_id: String,
     client_secret: String,
@@ -90,7 +92,7 @@ impl LwaClient {
         }
         Ok(Self {
             config: Arc::new(Config {
-                http: pool.http.clone(),
+                pool: pool.clone(),
                 endpoint: endpoint(lwa_endpoint)?,
                 client_id: client_id.into(),
                 client_secret: client_secret.into(),
@@ -160,16 +162,19 @@ impl LwaClient {
             .checked_add(self.config.timeout)
             .ok_or(AuthError::InvalidConfig)?;
         tokio::time::timeout_at(deadline, async {
-            let response = self
-                .config
+            let pool = &self.config.pool;
+            let request = pool
                 .http
                 .post(self.config.endpoint.clone())
                 .timeout(self.config.timeout)
-                .form(fields)
-                .send()
-                .await
-                .map_err(transport)?;
-            let tokens: LwaTokens = read_response(response).await?;
+                .form(fields);
+            let tokens: LwaTokens = match pool.interceptor() {
+                Some(interceptor) => {
+                    let request = request.build().map_err(transport)?;
+                    read_reply(pool.intercepted(interceptor, request).await?)?
+                }
+                None => read_response(request.send().await.map_err(transport)?).await?,
+            };
             if !tokens.token_type.eq_ignore_ascii_case("bearer") {
                 return Err(AuthError::InvalidResponse);
             }

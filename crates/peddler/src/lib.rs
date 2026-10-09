@@ -51,6 +51,8 @@ pub mod data_kiosk;
 pub mod api_error;
 pub mod auth;
 pub mod documents;
+#[doc(hidden)]
+pub mod intercept;
 pub mod pagination;
 pub mod policy;
 pub mod workflows;
@@ -62,7 +64,7 @@ pub use operation::{DecodeError, TypedResponse};
 use auth::{AuthError, TokenSource};
 use policy::{Call, Outcome, RetryPolicy};
 use reqwest::{Method, Url, header::HeaderValue};
-use std::{future::Future, time::Duration};
+use std::{future::Future, sync::Arc, time::Duration};
 
 /// Amazon's Login with Amazon token endpoint.
 pub const DEFAULT_LWA_ENDPOINT: &str = "https://api.amazon.com/auth/o2/token";
@@ -71,6 +73,9 @@ pub const DEFAULT_LWA_ENDPOINT: &str = "https://api.amazon.com/auth/o2/token";
 #[derive(Clone)]
 pub struct Pool {
     http: reqwest::Client,
+    /// What a request without a User-Agent of its own is sent with.
+    user_agent: HeaderValue,
+    interceptor: Option<Arc<dyn intercept::Interceptor>>,
 }
 
 impl std::fmt::Debug for Pool {
@@ -82,7 +87,7 @@ impl std::fmt::Debug for Pool {
 impl Pool {
     /// A pool that sends the crate's own User-Agent.
     pub fn new() -> Result<Self, Error> {
-        Self::build(concat!(
+        Self::with_user_agent(concat!(
             "Peddler/",
             env!("CARGO_PKG_VERSION"),
             " (Language=Rust)"
@@ -91,12 +96,8 @@ impl Pool {
 
     /// Replaces the crate's own User-Agent, for a wrapper that identifies itself.
     pub fn with_user_agent(user_agent: &str) -> Result<Self, Error> {
-        HeaderValue::from_str(user_agent).map_err(|_| Error::InvalidRequest)?;
-        Self::build(user_agent)
-    }
-
-    // Timeouts are set per request, so clients with different ones can share a pool.
-    fn build(user_agent: &str) -> Result<Self, Error> {
+        let user_agent = HeaderValue::from_str(user_agent).map_err(|_| Error::InvalidRequest)?;
+        // Timeouts are set per request, so clients with different ones can share a pool.
         let http = reqwest::Client::builder()
             .redirect(reqwest::redirect::Policy::none())
             .retry(reqwest::retry::never())
@@ -104,10 +105,14 @@ impl Pool {
             .no_brotli()
             .no_deflate()
             .no_zstd()
-            .user_agent(user_agent)
+            .user_agent(user_agent.clone())
             .build()
             .map_err(|_| Error::Transport)?;
-        Ok(Self { http })
+        Ok(Self {
+            http,
+            user_agent,
+            interceptor: None,
+        })
     }
 }
 
@@ -189,7 +194,7 @@ impl ClientConfig {
 /// The client never fetches, refreshes or caches a token itself.
 #[derive(Clone)]
 pub struct Client {
-    http: reqwest::Client,
+    pool: Pool,
     origin: Url,
     token: Token,
     user_agent: Option<HeaderValue>,
@@ -334,7 +339,7 @@ impl Client {
             .host_str()
             .is_some_and(|host| host.starts_with("sandbox."));
         Ok(Self {
-            http: pool.http,
+            pool,
             origin,
             token,
             user_agent,
@@ -470,7 +475,7 @@ impl Client {
             url.query_pairs_mut().extend_pairs(&request.query);
         }
         let method_name = method.as_str().to_owned();
-        let mut builder = self.http.request(method, url).timeout(self.timeout);
+        let mut builder = self.pool.http.request(method, url).timeout(self.timeout);
         if accept_json {
             builder = builder.header(reqwest::header::ACCEPT, "application/json");
         }
@@ -491,7 +496,11 @@ impl Client {
             let mut request = buffered.try_clone().expect("buffered body is repeatable");
             async move {
                 self.authorize(request.headers_mut(), &token);
+                if let Some(interceptor) = self.pool.interceptor() {
+                    return Ok(self.pool.intercepted(interceptor, request).await?);
+                }
                 let response = self
+                    .pool
                     .http
                     .execute(request)
                     .await

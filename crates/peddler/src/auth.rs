@@ -120,17 +120,31 @@ fn check_lifetime(seconds: u64, start: Instant) -> Result<(), AuthError> {
 async fn read_response<T: serde::de::DeserializeOwned>(
     response: reqwest::Response,
 ) -> Result<T, AuthError> {
-    let status = response.status();
-    if !status.is_success() {
+    let status = response.status().as_u16();
+    decode(status, read_body(response).await)
+}
+
+/// Like `read_response`, for the whole reply an interceptor gave.
+fn read_reply<T: serde::de::DeserializeOwned>(reply: crate::Response) -> Result<T, AuthError> {
+    let body = if reply.body.len() > BODY_LIMIT {
+        Err(AuthError::InvalidResponse)
+    } else {
+        Ok(reply.body)
+    };
+    decode(reply.status, body)
+}
+
+/// What a reply inside 2xx holds, or the rejection of one outside.
+fn decode<T: serde::de::DeserializeOwned>(
+    status: u16,
+    body: Result<Vec<u8>, AuthError>,
+) -> Result<T, AuthError> {
+    if !(200..300).contains(&status) {
         // Nothing else of a rejection is kept: not the description, not the body.
-        let code = read_body(response).await.ok().and_then(error_code);
-        return Err(AuthError::Rejected {
-            status: status.as_u16(),
-            code,
-        });
+        let code = body.ok().and_then(error_code);
+        return Err(AuthError::Rejected { status, code });
     }
-    let body = read_body(response).await?;
-    serde_json::from_slice(&body).map_err(|_| AuthError::InvalidResponse)
+    serde_json::from_slice(&body?).map_err(|_| AuthError::InvalidResponse)
 }
 
 async fn read_body(response: reqwest::Response) -> Result<Vec<u8>, AuthError> {

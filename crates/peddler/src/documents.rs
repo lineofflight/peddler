@@ -9,7 +9,7 @@
 //! Synchronous parsing checks deadline expiry after completion; it cannot preempt
 //! CPU work. GZIP consumes every member and validates trailing input.
 
-use crate::url;
+use crate::{Pool, intercept, url};
 use async_compression::tokio::bufread::GzipDecoder;
 use bytes::Bytes;
 use encoding_rs::{Decoder, DecoderResult, Encoding};
@@ -190,7 +190,7 @@ impl fmt::Debug for UploadOptions {
 /// builds it on the client's pool, without its access token.
 #[derive(Clone)]
 pub struct DocumentClient {
-    http: reqwest::Client,
+    pool: Pool,
 }
 impl fmt::Debug for DocumentClient {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -201,7 +201,7 @@ impl crate::Client {
     /// A cheap view sharing the existing pool without the API access token.
     pub fn documents(&self) -> DocumentClient {
         DocumentClient {
-            http: self.http.clone(),
+            pool: self.pool.clone(),
         }
     }
 }
@@ -458,33 +458,27 @@ impl DocumentClient {
     pub async fn download(&self, url: &str, options: TransferOptions) -> Result<Download, Error> {
         let deadline = options.deadline()?;
         let url = signed_url(url)?;
-        let response = timeout_at(deadline, self.http.get(url).timeout(options.timeout).send())
+        let request = self.pool.http.get(url).timeout(options.timeout);
+        if let Some(interceptor) = self.pool.interceptor() {
+            let request = request.build().map_err(transport)?;
+            let reply = timeout_at(deadline, self.pool.intercepted(interceptor, request))
+                .await
+                .map_err(|_| Error::Timeout)??;
+            let (status, headers, body) = accepted_reply(reply)?;
+            let source = futures_util::stream::iter([Ok::<_, io::Error>(Bytes::from(body))]);
+            return document(status, headers, source, options, deadline);
+        }
+        let response = timeout_at(deadline, request.send())
             .await
             .map_err(|_| Error::Timeout)?
             .map_err(transport)?;
         let response = accepted(response, deadline).await?;
         let status = response.status().as_u16();
         let headers = response.headers().clone();
-        let gzip = encoding(&headers, options.compression)?;
         let source = response
             .bytes_stream()
             .map_err(|error| io::Error::other(transport(error)));
-        let reader = StreamReader::new(source);
-        let reader: Pin<Box<dyn AsyncRead + Send>> = if gzip {
-            let mut decoder = GzipDecoder::new(BufReader::new(reader));
-            decoder.multiple_members(true);
-            Box::pin(decoder)
-        } else {
-            Box::pin(reader)
-        };
-        let body = read_chunks(reader, deadline, options.max_bytes, gzip);
-        Ok(Download {
-            status,
-            headers,
-            body,
-            options,
-            deadline,
-        })
+        document(status, headers, source, options, deadline)
     }
 
     /// PUT a caller-owned byte stream. Caller errors are discarded, never chained.
@@ -564,14 +558,35 @@ impl DocumentClient {
             }
         };
         let mut request = self
+            .pool
             .http
             .put(url)
             .headers(headers)
-            .timeout(options.transfer.timeout)
-            .body(reqwest::Body::wrap_stream(body));
+            .timeout(options.transfer.timeout);
         if let Some(length) = options.content_length {
             request = request.header(CONTENT_LENGTH, length);
         }
+        if let Some(interceptor) = self.pool.interceptor() {
+            // An interceptor takes a whole body, so the source is read to its end first,
+            // under the checks it gets as a stream.
+            let mut whole = Vec::new();
+            let mut body = std::pin::pin!(body);
+            while let Some(chunk) = body.next().await {
+                whole.extend_from_slice(&chunk?);
+            }
+            let request = request.body(whole).build().map_err(transport)?;
+            let reply = timeout_at(deadline, self.pool.intercepted(interceptor, request))
+                .await
+                .map_err(|_| Error::Timeout)??;
+            let (status, headers, mut body) = accepted_reply(reply)?;
+            body.truncate(MAX_RESPONSE_BYTES);
+            return Ok(UploadResponse {
+                status,
+                headers,
+                body,
+            });
+        }
+        let request = request.body(reqwest::Body::wrap_stream(body));
         let result = timeout_at(deadline, request.send())
             .await
             .map_err(|_| Error::Timeout)?;
@@ -722,6 +737,47 @@ fn read_chunks(
             yield Bytes::copy_from_slice(&buffer[..read]);
         }
     })
+}
+/// The document of a reply inside 2xx, decompressed as its headers and the options say.
+fn document(
+    status: u16,
+    headers: HeaderMap,
+    source: impl Stream<Item = io::Result<Bytes>> + Send + 'static,
+    options: TransferOptions,
+    deadline: Instant,
+) -> Result<Download, Error> {
+    let gzip = encoding(&headers, options.compression)?;
+    let reader = StreamReader::new(source);
+    let reader: Pin<Box<dyn AsyncRead + Send>> = if gzip {
+        let mut decoder = GzipDecoder::new(BufReader::new(reader));
+        decoder.multiple_members(true);
+        Box::pin(decoder)
+    } else {
+        Box::pin(reader)
+    };
+    let body = read_chunks(reader, deadline, options.max_bytes, gzip);
+    Ok(Download {
+        status,
+        headers,
+        body,
+        options,
+        deadline,
+    })
+}
+/// Like `accepted`, for the whole reply an interceptor gave: its status, headers and
+/// body when the status is inside 2xx.
+fn accepted_reply(reply: crate::Response) -> Result<(u16, HeaderMap, Vec<u8>), Error> {
+    let headers = intercept::header_map(&reply.headers);
+    let mut body = reply.body;
+    if (200..300).contains(&reply.status) {
+        return Ok((reply.status, headers, body));
+    }
+    body.truncate(MAX_RESPONSE_BYTES);
+    Err(Error::Rejected(Box::new(Rejection {
+        status: reply.status,
+        headers,
+        body,
+    })))
 }
 /// The response if its status is inside 2xx. Otherwise the rejection.
 async fn accepted(
