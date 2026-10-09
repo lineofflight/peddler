@@ -428,15 +428,32 @@ class WorkflowsTest < NativeTest
     end
   end
 
+  # A helper's timeout covers its lookup and its transfer, and here only the transfer is slow. On a busy machine a
+  # lookup can still miss a tenth of a second, which is a request that timed out and says nothing of the transfer.
+  # So the helper is called again with more time, until its lookup ends and the transfer is what times out.
   def test_a_slow_transfer_raises_the_timeout_of_a_document
     slow_server(%r{\A/signed}) do |url, _|
       instance = client(url)
+      timeouts = [0.1, 0.4, 1.6]
 
       [
-        -> { instance.reports.open_report_document("d1", timeout: 0.1) },
-        -> { instance.feeds.open_feed_document("d1", timeout: 0.1) },
-        -> { instance.data_kiosk.open_query_document("d1", timeout: 0.1) },
-        -> { instance.feeds.create_and_upload_feed_document("content", content_type: "text/xml", timeout: 0.1) },
+        ->(timeout) { instance.reports.open_report_document("d1", timeout: timeout) },
+        ->(timeout) { instance.feeds.open_feed_document("d1", timeout: timeout) },
+        ->(timeout) { instance.data_kiosk.open_query_document("d1", timeout: timeout) },
+        ->(timeout) { instance.feeds.create_and_upload_feed_document("content", content_type: "text/xml", timeout: timeout) },
+      ].each do |call|
+        raised = timeouts.each do |timeout|
+          break call.call(timeout)
+        rescue Peddler::DocumentTimeoutError => error
+          break error
+        rescue Peddler::TimeoutError
+          next
+        end
+
+        assert_instance_of(Peddler::DocumentTimeoutError, raised)
+      end
+      # A signed URL has no lookup before it.
+      [
         -> { instance.download_document("#{url}/signed", timeout: 0.1) },
         -> { instance.upload_document("#{url}/signed", "content", content_type: "text/xml", timeout: 0.1) },
       ].each { |call| assert_raises(Peddler::DocumentTimeoutError, &call) }
