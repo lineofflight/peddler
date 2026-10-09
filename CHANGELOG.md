@@ -9,6 +9,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 ### Added
 
 - Add `Peddler::Client`, a single client for every API: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, or `client.orders` for the latest version
+- Add `Peddler.new`, short for `Peddler::Client.new`, which takes the same arguments
 - Accept a callable as `access_token:`, such as a lambda around your cache. The client calls it once before each call, including each page of a `*_pages` enumerator, and keeps nothing it returns. A call that is retried sends that token on every attempt
 - Add `Client#with_access_token`, a view of a client that sends another token over the same connections, for another seller or a restricted data token
 - Add `Peddler::LWA#refresh`, `#client_credentials` and `#exchange_authorization_code`, which return `Peddler::LWA::Tokens`. Tokens with the same values are equal, as they were as `LWAToken`

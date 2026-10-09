@@ -1,6 +1,8 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 module Peddler
+  def self.new: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Integer | Float, ?retries: Integer) -> Client
+
   module APIs
     PARSERS: Hash[String, ^() -> Hash[String, ^() -> untyped]]
   end

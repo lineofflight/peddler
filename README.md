@@ -97,7 +97,7 @@ The client sends the access token you give it. It never requests, refreshes or c
 Most applications run several processes. Give the client a callable that reads the token from a cache your processes share and requests a new one when the cache is empty.
 
 ```ruby
-client = Peddler::Client.new(
+client = Peddler.new(
   region: "eu-west-1",
   access_token: -> {
     Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
@@ -106,6 +106,8 @@ client = Peddler::Client.new(
   },
 )
 ```
+
+`Peddler.new` is short for `Peddler::Client.new`.
 
 The client calls it once before every call, on the thread that makes the call: each operation and each page of a `*_pages` enumerator. Keep it thread-safe. `timeout:` doesn't limit it, and a call that is [retried](#rate-limiting) sends that token again on every attempt.
 

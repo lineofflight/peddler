@@ -6,14 +6,14 @@ description: >-
 
 # Building with Peddler
 
-Peddler is an SP-API client generated from Amazon's OpenAPI models. A single `Peddler::Client` reaches every API: `client.<api>` is the latest version and `client.<api>_<version>` a pinned one.
+Peddler is an SP-API client generated from Amazon's OpenAPI models. A single `Peddler::Client` reaches every API: `client.<api>` is the latest version and `client.<api>_<version>` a pinned one. `Peddler.new` is short for `Peddler::Client.new`.
 
 This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws_region, access_token)`), `Peddler::LWA.request` and `Peddler::Errors::*`. Check the version in `Gemfile.lock` before you write code, and see `UPGRADING.md` in the gem to move from 5 to 6.
 
 ## Quick reference
 
 - Create a client (with retries):
-  `client = Peddler::Client.new(region: "eu-west-1", access_token: token, retries: 3)`
+  `client = Peddler.new(region: "eu-west-1", access_token: token, retries: 3)`
 - Latest or pinned API version:
   `client.orders`, `client.orders_v0`
 - Call an operation, required arguments in order and optional ones as keywords:

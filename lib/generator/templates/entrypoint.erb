@@ -19,6 +19,17 @@ loader.setup
 require "peddler/native/boot"
 
 module Peddler
+  class << self
+    # Builds a client: short for {Peddler::Client#initialize Peddler::Client.new}, with the same arguments
+    #
+    # @example
+    #   client = Peddler.new(region: "us-east-1", access_token: token)
+    # @return [Peddler::Client]
+    def new(...)
+      Client.new(...)
+    end
+  end
+
   module APIs
     # Each API's typed model lookup, by the API part of a native operation key
     PARSERS = {

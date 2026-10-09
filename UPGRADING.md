@@ -24,7 +24,7 @@ client = Peddler::Client.new(region: "eu-west-1", access_token: access_token, re
 response = client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
 ```
 
-`client.orders` is the latest version of an API, as `Peddler.orders` was, and `client.orders_v0` a pinned one.
+`client.orders` is the latest version of an API, as `Peddler.orders` was, and `client.orders_v0` a pinned one. `Peddler.new` is short for `Peddler::Client.new`.
 
 1 of them moved since 5.5.0. `fulfillment_outbound` is now Fulfillment Outbound 2026-07-04, which has `create_order` where 2020-07-01 had `create_fulfillment_order`. To stay on the older version, call `client.fulfillment_outbound_2020_07_01`.
 

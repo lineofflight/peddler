@@ -15,6 +15,14 @@ class PeddlerTest < Minitest::Test
     refute(defined?(HTTP), "the root entrypoint must not load http.rb")
   end
 
+  def test_new_is_short_for_client_new
+    arguments = { region: "us-east-1", access_token: "token", timeout: 5, retries: 2 }
+    client = Object.new
+    build = ->(**options) { client if options == arguments }
+
+    Peddler::Client.stub(:new, build) { assert_same(client, Peddler.new(**arguments)) }
+  end
+
   def test_public_classes_live_at_the_root
     [
       :Client, :Response, :Error, :LWA, :Document, :TransportError,
