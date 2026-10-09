@@ -133,4 +133,15 @@ serve(->(socket) { reply(socket, body: payload.string, headers: { "Content-Encod
   check(!requests.first[:headers].key?("x-amz-access-token"), "document download does not leak the access token")
 end
 
+# A Ractor other than the main one: the extension has to say it is safe there, or Ruby refuses every call.
+serve(->(socket) { reply(socket, body: '{"ractor":true}') }) do |url, requests|
+  Warning[:experimental] = false
+  ractor = Ractor.new(url) do |base|
+    Peddler::Client.new(base_url: base, access_token: "ractor-token").request("GET", "/ractor").to_h
+  end
+  waiter = Thread.new { ractor.respond_to?(:value) ? ractor.value : ractor.take }
+  check(waiter.join(10) && waiter.value == { "ractor" => true }, "a Ractor makes a request with a client of its own")
+  check(requests.first[:headers]["x-amz-access-token"] == "ractor-token", "the Ractor's client sends its token")
+end
+
 puts("smoke passed: ruby #{RUBY_VERSION} #{RUBY_PLATFORM} peddler #{spec.version} (#{spec.platform})")
