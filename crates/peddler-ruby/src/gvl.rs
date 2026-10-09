@@ -1,5 +1,9 @@
 //! Protected, owned-work GVL release shared by requests and document transfers.
-use super::{Shared, fork, native_error};
+use super::{
+    Shared, fork,
+    hook::{self, Pass, Responder},
+    native_error,
+};
 use futures_util::FutureExt;
 use magnus::{Error, Ruby, rb_sys::AsRawValue};
 use std::{
@@ -17,6 +21,8 @@ struct Invocation<F: Future> {
     woken: *const Notify,
     // Empty until the work ends. A panic is `Err`.
     result: Option<Result<F::Output, ()>>,
+    // What the work asked of Ruby in the last pass. None in a call that answers nothing.
+    pass: Option<Pass>,
 }
 
 /// Runs `future` to its end with the GVL released. Ruby wakes the thread for an
@@ -38,6 +44,30 @@ where
     F: Future + Send + 'static,
     F::Output: Send + 'static,
 {
+    asking(ruby, failure_class, rebuild, shared, &mut None, future)
+}
+
+/// Like `wait`, for work that asks Ruby (see `hook`). A question ends the pass. The
+/// responder answers it here, between passes, on the calling thread with the GVL held,
+/// and the next pass goes on with the answer. So Ruby is never called from a poll of
+/// the work or from a runtime thread, and what it calls may make a native call of its
+/// own: no pass is running then.
+///
+/// What Ruby raises there ends the work as an interrupt does: the future is dropped and
+/// the exception goes on, the same object. A callable may fork too, and then it returns
+/// in the child as a trap handler does.
+pub(super) fn asking<F>(
+    ruby: &Ruby,
+    failure_class: &str,
+    rebuild: &'static str,
+    shared: &'static Shared,
+    responder: &mut Option<Responder>,
+    future: F,
+) -> Result<F::Output, Error>
+where
+    F: Future + Send + 'static,
+    F::Output: Send + 'static,
+{
     // Allocations stay outside protect so Ruby longjmp cannot skip their Drop.
     let woken = Box::new(Notify::new());
     let mut invocation = Box::new(Invocation {
@@ -45,10 +75,11 @@ where
         future: Box::pin(future),
         woken: &*woken,
         result: None,
+        pass: responder.as_ref().map(Responder::pass),
     });
     let nil = ruby.qnil().as_raw();
     let pid = std::process::id();
-    let outcome = loop {
+    let outcome = 'call: loop {
         let pass = magnus::rb_sys::protect(|| {
             // SAFETY: callback and unblock share only a separate Notify allocation;
             // all work owns Rust data and no Ruby calls occur under released GVL.
@@ -75,6 +106,33 @@ where
         }
         if let Some(result) = invocation.result.take() {
             break Ok(result);
+        }
+        let Some(responder) = responder.as_mut() else {
+            continue;
+        };
+        while let Some((question, reply)) = invocation.pass.as_mut().and_then(Pass::next) {
+            let answer = catch_unwind(AssertUnwindSafe(|| responder.answer(ruby, question)));
+            // Ruby forked while it was asked, and this is the child. As above.
+            if std::process::id() != pid {
+                std::mem::forget((invocation, reply));
+                return Err(match answer {
+                    Ok(Err(error)) => error,
+                    Ok(Ok(_)) => fork::error(ruby, rebuild),
+                    Err(payload) => {
+                        std::mem::forget(payload);
+                        fork::error(ruby, rebuild)
+                    }
+                });
+            }
+            match answer {
+                // The work may have given the question up, and then nobody takes the answer.
+                Ok(Ok(answer)) => drop(reply.send(answer)),
+                Ok(Err(error)) => break 'call Err(error),
+                Err(payload) => {
+                    std::mem::forget(payload);
+                    break 'call Ok(Err(()));
+                }
+            }
         }
     };
     // Unfinished work is dropped where it ran, inside the runtime.
@@ -109,8 +167,9 @@ unsafe extern "C" fn unblock(data: *mut c_void) {
     // before the work waits leaves a permit, so it isn't lost.
     unsafe { &*data.cast::<Notify>() }.notify_one();
 }
-/// One pass: until the work ends or Ruby wakes the thread. The work is polled before
-/// the wake-up, so every pass moves it on however often the thread is woken.
+/// One pass: until the work ends, asks Ruby, or Ruby wakes the thread. The work is
+/// polled before the wake-up, so every pass moves it on however often the thread is
+/// woken.
 unsafe extern "C" fn run<F>(data: *mut c_void) -> *mut c_void
 where
     F: Future + Send + 'static,
@@ -120,14 +179,20 @@ where
     let invocation = unsafe { &mut *data.cast::<Invocation<F>>() };
     // SAFETY: the separate Notify outlives this callback.
     let woken = unsafe { &*invocation.woken };
+    // The work finds the questions of this pass on this thread, and nowhere after it.
+    let answering = invocation.pass.take().map(hook::enter).is_some();
     let pass = catch_unwind(AssertUnwindSafe(|| {
         invocation.shared.runtime.block_on(async {
             tokio::select! { biased;
                 result = invocation.future.as_mut() => Some(result),
+                () = hook::asked(), if answering => None,
                 () = woken.notified() => None,
             }
         })
     }));
+    if answering {
+        invocation.pass = hook::leave();
+    }
     invocation.result = match pass {
         Ok(result) => result.map(Ok),
         Err(payload) => {

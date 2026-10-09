@@ -4,9 +4,7 @@ use magnus::{
     Error, RModule, RString, Ruby, TryConvert, Value, function, method, prelude::*, typed_data::Obj,
 };
 use peddler::{
-    Client, ClientConfig, Pool, Request, Response,
-    auth::{AuthError, TokenSource},
-    policy::RetryPolicy,
+    Client, ClientConfig, Pool, Request, Response, auth::TokenSource, policy::RetryPolicy,
 };
 use std::{
     sync::{Arc, Mutex},
@@ -16,9 +14,11 @@ use std::{
 mod documents;
 mod fork;
 mod gvl;
+mod hook;
 mod lwa;
 mod workflows;
 use fork::ForkOwned;
+use hook::Responder;
 use tokio::runtime::{Builder, Runtime};
 
 /// Amazon's error code, request ID and message, for a response outside 2xx.
@@ -67,7 +67,9 @@ impl Shared {
             .enable_all()
             .build()
             .ok()?;
-        let pool = Pool::with_user_agent(user_agent).ok()?;
+        let pool = Pool::with_user_agent(user_agent)
+            .ok()?
+            .with_interceptor(hook::Hook);
         Some(Box::leak(Box::new(Self { runtime, pool })))
     }
 }
@@ -228,8 +230,8 @@ impl Engine {
         })
     }
 
-    /// A view without a token of its own that asks `source` before each call that sends
-    /// one.
+    /// A view without a token of its own that asks `source` before each attempt that
+    /// sends one.
     fn with_token_source(
         ruby: &Ruby,
         rb_self: Obj<Self>,
@@ -242,26 +244,16 @@ impl Engine {
         Ok(view)
     }
 
-    /// The client for one call. The fork guard runs first: a source is the caller's code
-    /// and may use a socket the child inherited. Then the source, if the engine has one,
-    /// is asked on this thread with the GVL held, and its token goes into a view of the
-    /// client that the call drops. So a source is asked once for a call, outside the
-    /// timeout of an attempt, and every retry of the call sends that token. Only the
-    /// crate's own `TokenSource` is asked before each attempt.
-    fn client(ruby: &Ruby, rb_self: Obj<Self>) -> Result<(Client, &'static Shared), Error> {
+    /// The client for one call, and what answers its questions (see `hook`), if it asks
+    /// any. The fork guard runs first: a source is the caller's code and may use a socket
+    /// the child inherited. A source is then asked before each attempt, as the crate asks
+    /// its own `TokenSource`: on this thread with the GVL held, between passes of the
+    /// call, and inside the timeout of the attempt.
+    fn client(ruby: &Ruby, rb_self: Obj<Self>) -> Result<Call, Error> {
         let state = rb_self.0.get(ruby)?;
-        let Some(source) = rb_self.ivar_get::<_, Option<Value>>(TOKEN_SOURCE)? else {
-            return Ok((state.client.clone(), state.shared));
-        };
-        let token: Value = source.funcall("call", ())?;
-        // Raises the fixed ArgumentError that a token given to the client gets.
-        let token: String =
-            peddler_const::<RModule>(ruby, "Native")?.funcall("access_token", (token,))?;
-        let client = state
-            .client
-            .with_access_token(&token)
-            .map_err(|_| argument_error(ruby, ACCESS_TOKEN))?;
-        Ok((client, state.shared))
+        let source = rb_self.ivar_get::<_, Option<Value>>(TOKEN_SOURCE)?;
+        let responder = Responder::new(ruby, source)?;
+        Ok((state.client.clone(), state.shared, responder))
     }
 
     fn request(
@@ -308,10 +300,10 @@ impl Engine {
     }
 
     fn execute(ruby: &Ruby, rb_self: Obj<Self>, work: Work) -> Result<ResponseParts, Error> {
-        let (client, shared) = Self::client(ruby, rb_self)?;
+        let (client, shared, mut responder) = Self::client(ruby, rb_self)?;
         // Its method was checked, so what the core refuses of a raw request is its path.
         let raw = matches!(work, Work::Raw(_));
-        let result = gvl::wait(ruby, "TransportError", fork::CLIENT, shared, async move {
+        let future = async move {
             match work {
                 Work::Raw(request) => client.execute(request).await,
                 Work::Operation {
@@ -324,7 +316,15 @@ impl Engine {
                 }
             }
             .map(Completed::new)
-        })?;
+        };
+        let result = gvl::asking(
+            ruby,
+            "TransportError",
+            fork::CLIENT,
+            shared,
+            &mut responder,
+            future,
+        )?;
         match result {
             Ok(completed) => Ok(completed.into_parts(ruby)),
             Err(peddler::Error::InvalidRequest) if raw => Err(argument_error(ruby, PATH)),
@@ -342,6 +342,9 @@ enum Work {
     },
 }
 
+/// A client, the shared state it runs on, and what answers the questions of the call.
+type Call = (Client, &'static Shared, Option<Responder>);
+
 #[magnus::init(name = "peddler_native")]
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let peddler = ruby.define_module("Peddler")?;
@@ -357,6 +360,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     documents::init(ruby, native, engine)?;
     workflows::init(engine)?;
     lwa::init(ruby, native)?;
+    hook::init(native)?;
     Ok(())
 }
 
@@ -364,7 +368,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 #[serde(deny_unknown_fields)]
 struct Config {
     base_url: String,
-    /// Absent when the engine asks a token source before each call.
+    /// Absent when the engine asks a token source before each attempt.
     access_token: Option<String>,
     timeout: f64,
     retries: u32,
@@ -375,9 +379,10 @@ struct Config {
 impl Config {
     /// The client, or what to tell the caller of the option the core refuses.
     fn client(&self, pool: &Pool) -> Result<Client, &'static str> {
-        // A request on the template itself has no token to send and fails closed.
-        let template = TokenSource::new(|| async { Err(AuthError::InvalidConfig) });
-        let mut config = ClientConfig::new(self.base_url.clone(), template);
+        // Without a token of its own the client asks Ruby for one before each attempt. An
+        // engine that has no source to ask has no token to send and fails closed.
+        let source = TokenSource::new(hook::token);
+        let mut config = ClientConfig::new(self.base_url.clone(), source);
         config.timeout = timeout(self.timeout)?;
         config.retry = RetryPolicy {
             max_retries: self.retries,

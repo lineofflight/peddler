@@ -13,6 +13,9 @@ module Peddler
     def self.user_agent: () -> String
     def self.status_reason: (Integer code) -> String?
 
+    # What the native layer hands every HTTP exchange to, or nil for none. The WebMock adapter sets it.
+    def self.exchange_hook=: (untyped hook) -> untyped
+
     type tokens = [String, String?, String, Integer, String?]
 
     # What the generated facades take

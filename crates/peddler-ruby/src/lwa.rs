@@ -1,5 +1,7 @@
 //! Login with Amazon grants on the shared runtime and pool, one request each.
-use super::{ForkOwned, Shared, argument_error, fork, gvl, native_error, peddler_const, shared};
+use super::{
+    ForkOwned, Responder, Shared, argument_error, fork, gvl, native_error, peddler_const, shared,
+};
 use magnus::{Error, RModule, Ruby, function, method, prelude::*};
 use peddler::auth::{AuthError, LwaClient};
 
@@ -66,7 +68,9 @@ impl LwaEngine {
     fn grant(ruby: &Ruby, engine: &Self, grant: Grant) -> Result<Tokens, Error> {
         let (shared, client) = engine.0.get(ruby)?;
         let client = client.clone();
-        let result = gvl::wait(ruby, "TransportError", fork::LWA, shared, async move {
+        // A grant sends no token. It asks Ruby only while an exchange hook is set.
+        let mut responder = Responder::new(ruby, None)?;
+        let future = async move {
             match grant {
                 Grant::Code(code, redirect_uri) => {
                     client
@@ -76,7 +80,15 @@ impl LwaEngine {
                 Grant::Refresh(refresh_token) => client.refresh(&refresh_token).await,
                 Grant::ClientCredentials(scope) => client.client_credentials(&scope).await,
             }
-        })?;
+        };
+        let result = gvl::asking(
+            ruby,
+            "TransportError",
+            fork::LWA,
+            shared,
+            &mut responder,
+            future,
+        )?;
         let tokens = result.map_err(|e| error(ruby, e))?;
         Ok((
             tokens.access_token,

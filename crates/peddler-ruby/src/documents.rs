@@ -1,7 +1,7 @@
 //! Native document handles: owned streams, shared runtime and bounded uploads.
 use super::{
-    Completed, Engine, ForkOwned, Response, ResponseParts, Shared, argument_error, fork, gvl,
-    native_error,
+    Completed, Engine, ForkOwned, Responder, Response, ResponseParts, Shared, argument_error, fork,
+    gvl, hook, native_error,
 };
 use bytes::Bytes;
 use futures_util::{FutureExt, StreamExt};
@@ -11,6 +11,7 @@ use peddler::documents::{
     UploadResponse,
 };
 use std::{
+    future::Future,
     panic::AssertUnwindSafe,
     sync::{Arc, Mutex},
 };
@@ -149,9 +150,17 @@ impl Document {
         let options = Config::parse(ruby, &json)?;
         let client = state.client.documents();
         let shared = state.shared;
-        let download = gvl::wait(ruby, "DocumentError", fork::CLIENT, shared, async move {
-            client.download(&url, options).await
-        })?
+        // A signed URL gets no token. The download asks Ruby only while an exchange hook
+        // is set.
+        let mut responder = Responder::new(ruby, None)?;
+        let download = gvl::asking(
+            ruby,
+            "DocumentError",
+            fork::CLIENT,
+            shared,
+            &mut responder,
+            async move { client.download(&url, options).await },
+        )?
         .map_err(|e| error(ruby, e))?;
         Ok(Self::from_download(shared, download))
     }
@@ -346,16 +355,31 @@ impl Completion {
 }
 pub(super) type UploadSource =
     std::pin::Pin<Box<dyn futures_util::Stream<Item = Result<Bytes, ()>> + Send + 'static>>;
+type Transfer =
+    std::pin::Pin<Box<dyn Future<Output = Result<UploadResponse, DocumentError>> + Send>>;
+/// Where `push` puts a chunk.
+#[derive(Clone)]
+enum Feed {
+    /// To the transfer, which runs on the runtime and takes a chunk at a time.
+    Running(mpsc::Sender<Bytes>),
+    /// Aside, for a transfer that starts in `finish`.
+    Held(mpsc::UnboundedSender<Bytes>),
+}
 struct UploadOwner {
     shared: &'static Shared,
     document_id: Option<String>,
-    sender: Mutex<Option<mpsc::Sender<Bytes>>>,
+    sender: Mutex<Option<Feed>>,
     completion: Arc<Completion>,
-    abort: AbortHandle,
+    abort: Option<AbortHandle>,
+    // The transfer of an upload that began while an exchange hook was set. A runtime
+    // thread can't ask Ruby, so `finish` runs it, on the thread that can.
+    held: Mutex<Option<Transfer>>,
 }
 impl Drop for UploadOwner {
     fn drop(&mut self) {
-        self.abort.abort();
+        if let Some(abort) = &self.abort {
+            abort.abort();
+        }
     }
 }
 #[magnus::wrap(class = "Peddler::Native::UploadHandle", free_immediately)]
@@ -384,6 +408,9 @@ impl Upload {
     }
     /// Start a bounded upload task whose body is fed through a capacity-1 channel.
     /// `make` builds the transfer future from the owned source stream.
+    ///
+    /// While an exchange hook is set there is no task: the chunks are kept and the
+    /// transfer runs in `finish`, which can ask Ruby.
     pub(super) fn spawn<F, Fut>(
         shared: &'static Shared,
         document_id: Option<String>,
@@ -391,33 +418,44 @@ impl Upload {
     ) -> Result<Self, Error>
     where
         F: FnOnce(UploadSource) -> Fut,
-        Fut: std::future::Future<Output = Result<UploadResponse, DocumentError>> + Send + 'static,
+        Fut: Future<Output = Result<UploadResponse, DocumentError>> + Send + 'static,
     {
-        let (sender, receiver) = mpsc::channel::<Bytes>(1);
         let completion = Arc::new(Completion {
             result: Mutex::new(UploadState::Pending),
             notify: Notify::new(),
         });
-        let target = Arc::clone(&completion);
-        let source = futures_util::stream::unfold(receiver, |mut receiver| async move {
-            receiver
-                .recv()
-                .await
-                .map(|value| (Ok::<_, ()>(value), receiver))
-        });
-        let work = make(Box::pin(source));
-        let worker = shared.runtime.spawn(async move {
-            let result = match AssertUnwindSafe(work).catch_unwind().await {
-                Ok(result) => result,
-                Err(payload) => {
-                    std::mem::forget(payload);
-                    Err(DocumentError::Transport)
-                }
-            };
-            target.settle(result);
-        });
-        let abort = worker.abort_handle();
-        drop(worker);
+        let (sender, abort, held) = if hook::hooked() {
+            let (sender, receiver) = mpsc::unbounded_channel::<Bytes>();
+            let source = futures_util::stream::unfold(receiver, |mut receiver| async move {
+                receiver
+                    .recv()
+                    .await
+                    .map(|value| (Ok::<_, ()>(value), receiver))
+            });
+            let work: Transfer = Box::pin(make(Box::pin(source)));
+            (Feed::Held(sender), None, Some(work))
+        } else {
+            let (sender, receiver) = mpsc::channel::<Bytes>(1);
+            let source = futures_util::stream::unfold(receiver, |mut receiver| async move {
+                receiver
+                    .recv()
+                    .await
+                    .map(|value| (Ok::<_, ()>(value), receiver))
+            });
+            let work = make(Box::pin(source));
+            let target = Arc::clone(&completion);
+            let worker = shared.runtime.spawn(async move {
+                let result = match AssertUnwindSafe(work).catch_unwind().await {
+                    Ok(result) => result,
+                    Err(payload) => {
+                        std::mem::forget(payload);
+                        Err(DocumentError::Transport)
+                    }
+                };
+                target.settle(result);
+            });
+            (Feed::Running(sender), Some(worker.abort_handle()), None)
+        };
         Ok(Self(ForkOwned::new(
             fork::CLIENT,
             UploadOwner {
@@ -426,6 +464,7 @@ impl Upload {
                 sender: Mutex::new(Some(sender)),
                 completion,
                 abort,
+                held: Mutex::new(held),
             },
         )))
     }
@@ -454,6 +493,10 @@ impl Upload {
         if !matches!(*completion.result.lock().unwrap(), UploadState::Pending) {
             return Ok(false);
         }
+        let sender = match sender {
+            Feed::Running(sender) => sender,
+            Feed::Held(sender) => return Ok(sender.send(data).is_ok()),
+        };
         let data = match sender.try_reserve() {
             Ok(permit) => {
                 permit.send(data);
@@ -479,6 +522,19 @@ impl Upload {
         let owner = upload.0.get(ruby)?;
         let sender = owner.sender.lock().unwrap().take();
         drop(sender);
+        let held = owner.held.lock().unwrap().take();
+        if let Some(work) = held {
+            let mut responder = Responder::new(ruby, None)?;
+            let completion = Arc::clone(&owner.completion);
+            gvl::asking(
+                ruby,
+                "DocumentError",
+                fork::CLIENT,
+                owner.shared,
+                &mut responder,
+                async move { completion.settle(work.await) },
+            )?;
+        }
         let completion = Arc::clone(&owner.completion);
         let response = gvl::wait(
             ruby,
@@ -504,7 +560,11 @@ impl Upload {
     }
     fn close(ruby: &Ruby, upload: &Self) -> Result<(), Error> {
         let owner = upload.0.get(ruby)?;
-        owner.abort.abort();
+        if let Some(abort) = &owner.abort {
+            abort.abort();
+        }
+        let held = owner.held.lock().unwrap().take();
+        drop(held);
         owner.completion.settle(Err(DocumentError::UploadSource));
         let sender = owner.sender.lock().unwrap().take();
         drop(sender);

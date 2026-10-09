@@ -2,7 +2,7 @@
 
 require_relative "test_helper"
 
-# The access token may be a source the client asks once before each call it starts.
+# The access token may be a source the client asks before each attempt of a call.
 # rubocop:disable Minitest/MultipleAssertions
 class TokenSourceTest < NativeTest
   PAGES = ['{"payload":{"NextToken":"A"}}', '{"payload":{"NextToken":"B"}}', '{"payload":{}}'].freeze
@@ -38,29 +38,36 @@ class TokenSourceTest < NativeTest
     end
   end
 
-  # The source is Ruby and the retries are the core's, which holds the token for the whole call.
-  def test_source_is_asked_once_for_a_call_and_every_retry_sends_that_token
+  # The source is Ruby and the retries are the core's, which asks it in the middle of the call.
+  def test_source_is_asked_before_every_attempt_and_a_retry_sends_a_fresh_token
     statuses = [429, 503, 200, 200]
     responder = ->(*) { [statuses.shift, "{}", [["Retry-After", "0"]]] }
-    serve_keep_alive(responder: responder) do |url, _accepted, requests|
+    serve_keep_alive(responder: responder) do |url, accepted, requests|
       source, calls = counting_source
       instance = Peddler::Client.new(base_url: url, access_token: source, retries: 2)
 
       assert_equal(200, instance.request("GET", "/").status)
-      assert_equal(1, calls.call)
+      assert_equal(3, calls.call)
       assert_equal(200, instance.request("GET", "/").status)
-      assert_equal(["token-1", "token-1", "token-1", "token-2"], tokens(requests, 4))
+      assert_equal(["token-1", "token-2", "token-3", "token-4"], tokens(requests, 4))
+      assert_equal(1, accepted.size)
     end
   end
 
-  def test_timeout_does_not_limit_the_source
+  # Asking is part of the attempt, as it is in the core. Ruby can't interrupt a source, so a slow one is waited
+  # for, and the attempt has then timed out.
+  def test_timeout_limits_an_attempt_with_the_time_its_source_takes
     serve_keep_alive do |url, *|
       slow = lambda do
         sleep(0.15)
         "token"
       end
 
-      assert_equal(200, Peddler::Client.new(base_url: url, access_token: slow, timeout: 0.05).request("GET", "/").status)
+      assert_equal(200, Peddler::Client.new(base_url: url, access_token: slow, timeout: 5).request("GET", "/").status)
+      instance = Peddler::Client.new(base_url: url, access_token: slow, timeout: 0.05)
+      error = assert_raises(Peddler::TimeoutError) { instance.request("GET", "/") }
+
+      assert_equal("request timed out", error.message)
     end
   end
 
@@ -94,7 +101,7 @@ class TokenSourceTest < NativeTest
     end
   end
 
-  def test_helpers_whose_loop_runs_in_rust_ask_once_and_signed_urls_never_ask
+  def test_helpers_whose_loop_runs_in_rust_ask_before_every_request_and_signed_urls_never_ask
     statuses = ["IN_QUEUE", "IN_PROGRESS", "DONE"]
     responder = lambda do |_method, target, *|
       next [200, "signed body"] if target.start_with?("/signed")
@@ -106,11 +113,11 @@ class TokenSourceTest < NativeTest
       instance = Peddler::Client.new(base_url: url, access_token: source)
 
       assert_equal("DONE", instance.reports.wait_for_report("r1", interval: 0.01, timeout: 5).to_h.fetch("processingStatus"))
-      assert_equal(["token-1"] * 3, tokens(requests, 3))
-      assert_equal(1, calls.call)
+      assert_equal(["token-1", "token-2", "token-3"], tokens(requests, 3))
+      assert_equal(3, calls.call)
       assert_equal("signed body", instance.download_document("#{url}/signed?sig=1") { |document| document.each_chunk.to_a.join })
       assert_nil(tokens(requests, 1).first)
-      assert_equal(1, calls.call)
+      assert_equal(3, calls.call)
     end
   end
 

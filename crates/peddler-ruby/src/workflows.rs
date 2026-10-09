@@ -49,13 +49,19 @@ fn download(
     id: String,
     config: String,
 ) -> Result<Document, Error> {
-    let (client, shared) = Engine::client(ruby, engine)?;
+    let (client, shared, mut responder) = Engine::client(ruby, engine)?;
     let kind = kind(ruby, &kind_name)?;
     let options = Config::parse(ruby, &config)?;
     let workflows = client.workflows();
-    let download = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
-        workflows.download(kind, &id, options).await
-    })?
+    let future = async move { workflows.download(kind, &id, options).await };
+    let download = gvl::asking(
+        ruby,
+        "WorkflowError",
+        fork::CLIENT,
+        shared,
+        &mut responder,
+        future,
+    )?
     .map_err(|error| workflow_error(ruby, error))?;
     Ok(Document::from_download(shared, download))
 }
@@ -68,7 +74,7 @@ fn wait(
     interval: f64,
     timeout: f64,
 ) -> Result<ResponseParts, Error> {
-    let (client, shared) = Engine::client(ruby, engine)?;
+    let (client, shared, mut responder) = Engine::client(ruby, engine)?;
     let kind = kind(ruby, &kind_name)?;
     // Ruby checked the ID as a path argument. Each option is checked apart here, as the
     // core takes it, so that an error names the one it refuses.
@@ -80,9 +86,15 @@ fn wait(
         timeout: super::timeout(timeout).map_err(|message| argument_error(ruby, message))?,
     };
     let workflows = client.workflows();
-    let result = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
-        workflows.wait(kind, &id, options).await.map(Completed::new)
-    })?;
+    let future = async move { workflows.wait(kind, &id, options).await.map(Completed::new) };
+    let result = gvl::asking(
+        ruby,
+        "WorkflowError",
+        fork::CLIENT,
+        shared,
+        &mut responder,
+        future,
+    )?;
     let completed = result.map_err(|error| workflow_error(ruby, error))?;
     Ok(completed.into_parts(ruby))
 }
@@ -98,7 +110,7 @@ fn start_feed_upload(
     content_length: Option<u64>,
     declared: bool,
 ) -> Result<Upload, Error> {
-    let (client, shared) = Engine::client(ruby, engine)?;
+    let (client, shared, mut responder) = Engine::client(ruby, engine)?;
     let options = UploadOptions {
         transfer: Config::parse(ruby, &config)?,
         content_type: content_type.clone(),
@@ -116,9 +128,15 @@ fn start_feed_upload(
     }
     let workflows = client.workflows();
     let create = options.clone();
-    let target = gvl::wait(ruby, "WorkflowError", fork::CLIENT, shared, async move {
-        workflows.create_feed_document(&content_type, &create).await
-    })?
+    let future = async move { workflows.create_feed_document(&content_type, &create).await };
+    let target = gvl::asking(
+        ruby,
+        "WorkflowError",
+        fork::CLIENT,
+        shared,
+        &mut responder,
+        future,
+    )?
     .map_err(|error| match error {
         // The options were checked, which leaves the content type as a header.
         WorkflowError::InvalidConfig => argument_error(ruby, CONTENT_TYPE),
