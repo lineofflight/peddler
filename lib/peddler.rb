@@ -14,6 +14,8 @@ end
 # The native layer loads eagerly below. Compiled extensions ship in lib/peddler/<ruby minor>/.
 loader.ignore("#{__dir__}/peddler/native")
 loader.ignore("#{__dir__}/peddler/[0-9]*")
+# The WebMock adapter loads only when an application requires it.
+loader.ignore("#{__dir__}/peddler/webmock.rb")
 loader.setup
 
 require "peddler/native/boot"

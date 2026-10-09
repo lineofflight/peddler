@@ -27,6 +27,8 @@ gem "rubocop-rake"
 gem "rubocop-shopify"
 gem "ruby-lsp"
 gem "steep"
+gem "vcr"
+gem "webmock"
 gem "yard"
 
 # For exploratory code

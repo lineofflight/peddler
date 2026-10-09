@@ -15,6 +15,8 @@ target :lib do
 
   ignore "lib/generator.rb"
   ignore "lib/generator"
+  # It is written against WebMock, which has no signatures.
+  ignore "lib/peddler/webmock.rb"
 
   library(
     "delegate",
