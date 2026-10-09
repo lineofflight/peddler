@@ -36,8 +36,9 @@ module Peddler
 
       # Lazily yields one Response per page, requesting the next page only once
       # the consumer asks for it. A page that is an HTTP error raises
-      # Peddler::Error. Arguments are never mutated.
-      def pages(engine, arguments)
+      # Peddler::Error. Arguments are never mutated. The rate limit is the rate
+      # of every page for the wait after a 429.
+      def pages(engine, arguments, rate_limit = nil)
         initial = normalize(arguments)
         initial_token = token_in(initial)
         generate(initial)
@@ -50,7 +51,7 @@ module Peddler
           loop do
             operation = (token && @continuation.operation) || @operation
             page = token.nil? ? initial : follow(initial, token)
-            response = Response.from_parts(engine.operation(operation, generate(page)), @operation)
+            response = Response.from_parts(engine.operation(operation, generate(page), rate_limit), @operation)
             following, failure = next_token(response, token || initial_token)
             yielder << response
             raise PaginationError, failure if failure

@@ -290,13 +290,21 @@ impl Engine {
         )
     }
 
+    /// `rate_limit` is the rate of this call for the wait after a 429, in place of the
+    /// documented one. Ruby checked it, and passes the documented one by default.
     fn operation(
         ruby: &Ruby,
         rb_self: Obj<Self>,
         name: String,
         arguments: String,
+        rate_limit: Option<f64>,
     ) -> Result<ResponseParts, Error> {
-        Self::execute(ruby, rb_self, Work::Operation { name, arguments })
+        let work = Work::Operation {
+            name,
+            arguments,
+            rate_limit,
+        };
+        Self::execute(ruby, rb_self, work)
     }
 
     fn execute(ruby: &Ruby, rb_self: Obj<Self>, work: Work) -> Result<ResponseParts, Error> {
@@ -306,7 +314,12 @@ impl Engine {
         let result = gvl::wait(ruby, "TransportError", fork::CLIENT, shared, async move {
             match work {
                 Work::Raw(request) => client.execute(request).await,
-                Work::Operation { name, arguments } => {
+                Work::Operation {
+                    name,
+                    arguments,
+                    rate_limit,
+                } => {
+                    let client = client.with_rate_limit(rate_limit)?;
                     peddler::apis::execute(&client, &name, &arguments).await
                 }
             }
@@ -322,7 +335,11 @@ impl Engine {
 
 enum Work {
     Raw(Request),
-    Operation { name: String, arguments: String },
+    Operation {
+        name: String,
+        arguments: String,
+        rate_limit: Option<f64>,
+    },
 }
 
 #[magnus::init(name = "peddler_native")]
@@ -336,7 +353,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     engine.define_method("with_access_token", method!(Engine::with_access_token, 1))?;
     engine.define_method("with_token_source", method!(Engine::with_token_source, 1))?;
     engine.define_method("request", method!(Engine::request, 4))?;
-    engine.define_method("operation", method!(Engine::operation, 2))?;
+    engine.define_method("operation", method!(Engine::operation, 3))?;
     documents::init(ruby, native, engine)?;
     workflows::init(engine)?;
     lwa::init(ruby, native)?;

@@ -25,7 +25,7 @@ module Peddler
       attr_reader output: String
       attr_reader continuation: Continuation
       def initialize: (operation: String, input: String, output: String, ?continuation: Continuation) -> void
-      def pages: (Engine engine, Hash[String | Symbol, untyped] arguments) -> Enumerator[Response, void]
+      def pages: (Engine engine, Hash[String | Symbol, untyped] arguments, ?Float? rate_limit) -> Enumerator[Response, void]
 
       private
 

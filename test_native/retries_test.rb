@@ -4,9 +4,9 @@ require_relative "test_helper"
 
 # What `retries:` does: which requests are sent again, how long each waits first and what `timeout:` limits.
 #
-# No test waits a second. A reply asks for its retry at once with `Retry-After: 0`, or the operation is one Amazon
-# documents a high rate for, so that the wait by its rate is short. A wait that must not end is a minute long,
-# and the test interrupts it.
+# No test waits a second but the one of `rate_limit: nil`, whose second wait is a second or more. A reply asks for
+# its retry at once with `Retry-After: 0`, or the operation is one Amazon documents a high rate for, so that the
+# wait by its rate is short. A wait that must not end is a minute long, and the test interrupts it.
 # rubocop:disable Minitest/MultipleAssertions
 class RetriesTest < NativeTest
   AT_ONCE = [["Retry-After", "0"]].freeze
@@ -109,6 +109,52 @@ class RetriesTest < NativeTest
     end
 
     assert_equal(["GET", "GET", "GET", "POST", "POST", "POST"], requests)
+  end
+
+  # `get_orders` allows 1 request a minute, so by its rate the first retry would wait a minute. At 100 requests a
+  # second it waits 10 milliseconds and the second 20, and up to 100 more each. Every page waits by the rate too.
+  def test_rate_limit_replaces_the_rate_amazon_documents
+    requests = replying([429], [429], [200], [429], [429], [200]) do |url|
+      orders = client(url, retries: 2).orders_v0
+      calls = [
+        -> { orders.get_orders(MARKETPLACE, rate_limit: 100.0) },
+        -> { orders.get_orders_pages(MARKETPLACE, rate_limit: 100).first },
+      ]
+      calls.each do |call|
+        elapsed = seconds { assert_equal(200, call.call.status) }
+
+        assert_operator(elapsed, :>=, 0.03)
+        assert_operator(elapsed, :<, 1)
+      end
+    end
+
+    assert_equal(["GET"] * 6, requests)
+  end
+
+  # Without a rate a 429 waits as a failed request does: up to a second, then 1 to 2. By the rate of `get_orders`
+  # the first wait alone would be a minute.
+  def test_a_rate_limit_of_nil_is_no_rate
+    requests = replying([429], [429], [200]) do |url|
+      orders = client(url, retries: 2).orders_v0
+      elapsed = seconds { Timeout.timeout(10) { assert_equal(200, orders.get_orders(MARKETPLACE, rate_limit: nil).status) } }
+
+      assert_operator(elapsed, :>=, 1)
+      assert_operator(elapsed, :<, 4)
+    end
+
+    assert_equal(["GET"] * 3, requests)
+  end
+
+  # A call that is not throttled is sent at once, however low the rate: nothing is paced.
+  def test_rate_limit_delays_no_call_that_is_not_throttled
+    requests = replying([200]) do |url|
+      orders = client(url, retries: 2).orders_v0
+      elapsed = seconds { 5.times { assert_equal(200, orders.get_orders(MARKETPLACE, rate_limit: 0.001).status) } }
+
+      assert_operator(elapsed, :<, 1)
+    end
+
+    assert_equal(["GET"] * 5, requests)
   end
 
   # `get_orders` allows 1 request a minute, so by its rate the retry would wait a minute.

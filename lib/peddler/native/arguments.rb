@@ -96,6 +96,19 @@ module Peddler
           value.is_a?(Array) ? value.map { |item| scalar(name, item) }.join(",") : scalar(name, value)
         end
 
+        # The requests per second a caller gives for the wait after a 429, in place of the rate Amazon documents for
+        # the operation. nil is no rate. v5 divided 1.0 by it, so it is any number that is positive as a Float.
+        def rate_limit(value)
+          return if value.nil?
+
+          rate = Float(value, exception: false) if value.is_a?(Numeric)
+          unless rate&.finite? && rate.positive?
+            raise ArgumentError, "rate_limit must be a positive number of requests per second"
+          end
+
+          rate
+        end
+
         # The arguments as the JSON the core takes. Each was checked but the inside of a body, so what can't be
         # encoded is there. The encoder's error quotes the value, so the error is raised here, outside its rescue,
         # where it can't become the cause.

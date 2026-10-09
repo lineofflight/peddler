@@ -15,6 +15,7 @@ module Peddler
       def self.body: (String name, untyped value, ?required: bool) -> untyped
       def self.missing: (String name, bool required) -> nil
       def self.parameter: (String name, untyped value) -> String
+      def self.rate_limit: (untyped value) -> Float?
       def self.encode: (Hash[Symbol, untyped] arguments, ?String? body) -> String
       def self.scalar: (String name, untyped value) -> String
       def self.plain: (untyped value) -> untyped

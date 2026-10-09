@@ -471,7 +471,7 @@ fn ruby_default(value: &Value) -> Result<String, GenerationError> {
 }
 /// The parts of an operation's Ruby method that its `*_pages` twin shares.
 struct RubyMethod {
-    /// Its parameter list, in parentheses, or nothing
+    /// Its parameter list, in parentheses
     parameters: String,
     /// The statement that builds the arguments for the core
     arguments: String,
@@ -485,6 +485,19 @@ impl RubyMethod {
         let name = |p: &Parameter| crate::clients::snake(&p.wire_name);
         let mut ordered: Vec<&Parameter> = op.parameters.iter().collect();
         ordered.sort_by_key(|p| (!p.required, p.position));
+        if ordered.iter().any(|p| name(p) == "rate_limit") {
+            return Err(GenerationError(format!(
+                "{}: a parameter is named rate_limit",
+                op.name
+            )));
+        }
+        // v5's last keyword: the rate for the wait after a 429, the documented one by
+        // default. Every method takes it, so a call keeps working when Amazon adds or
+        // removes a usage plan.
+        let rate_limit = match op.rate {
+            Some(rate) => format!("rate_limit: {rate:?}"),
+            None => "rate_limit: nil".into(),
+        };
         let parameters = ordered
             .iter()
             .map(|p| match p.schema.get("default") {
@@ -492,6 +505,7 @@ impl RubyMethod {
                 Some(default) => Ok(format!("{}: {}", name(p), ruby_default(default)?)),
                 None => Ok(format!("{}: nil", name(p))),
             })
+            .chain([Ok(rate_limit)])
             .collect::<Result<Vec<_>, GenerationError>>()?
             .join(", ");
         let types = ordered
@@ -501,6 +515,7 @@ impl RubyMethod {
                 ty if ty.contains('|') => format!("?{}: ({ty})?", name(p)),
                 ty => format!("?{}: {ty}?", name(p)),
             })
+            .chain(["?rate_limit: (Float | Integer)?".into()])
             .collect::<Vec<_>>()
             .join(", ");
         // The core is strict about types. `Arguments` takes the forms v5 took.
@@ -525,11 +540,7 @@ impl RubyMethod {
             })
             .collect::<String>();
         Ok(Self {
-            parameters: if parameters.is_empty() {
-                String::new()
-            } else {
-                format!("({parameters})")
-            },
+            parameters: format!("({parameters})"),
             arguments: if entries.is_empty() {
                 "        # @type var arguments: Hash[Symbol, untyped]\n        arguments = {}\n"
                     .into()
@@ -584,14 +595,14 @@ pub(crate) fn ruby(
             let body = body.map_or(String::new(), |name| format!(", {name:?}"));
             // The response carries its operation key so Ruby can resolve the typed model.
             ruby.push_str(&docs::operation(op));
-            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, Arguments.encode(arguments{body})), {key:?})\n      end\n",op.name).unwrap();
+            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, Arguments.encode(arguments{body}), Arguments.rate_limit(rate_limit)), {key:?})\n      end\n",op.name).unwrap();
             writeln!(rbs, "      def {}: ({types}) -> Response", op.name).unwrap();
             if let Some(mapped) = resolved
                 .iter()
                 .find(|r| r.module == api.module && r.name == op.name)
             {
                 ruby.push_str(&docs::pages(op));
-                writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments)\n      end\n",op.name,mapped.key).unwrap();
+                writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments, Arguments.rate_limit(rate_limit))\n      end\n",op.name,mapped.key).unwrap();
                 writeln!(
                     rbs,
                     "      def {}_pages: ({types}) -> Enumerator[Response, void]",

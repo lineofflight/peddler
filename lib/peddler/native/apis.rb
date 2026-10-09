@@ -100,12 +100,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order you want to cancel.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_inbound(order_id)
+      def cancel_inbound(order_id, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.cancel_inbound", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound")
       end
 
       # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
@@ -113,24 +114,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Represents the packages you want to inbound.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def check_inbound_eligibility(body)
+      def check_inbound_eligibility(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.check_inbound_eligibility")
       end
 
       # Confirms an AWD inbound order in `DRAFT` status.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to confirm.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_inbound(order_id)
+      def confirm_inbound(order_id, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_inbound", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.confirm_inbound")
       end
 
       # Confirms an AWD outbound order for a set of shipments that contain items that must be outbound to a destination
@@ -138,12 +141,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] ID for the outbound order you want to confirm.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_outbound(order_id)
+      def confirm_outbound(order_id, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_outbound", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.confirm_outbound")
       end
 
       # Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed
@@ -151,12 +155,13 @@ module Peddler
       # Order can only be confirmed in ELIGIBLE state.
       #
       # @param order_id [String] ID of the replenishment order to be confirmed.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_replenishment_order(order_id)
+      def confirm_replenishment_order(order_id, rate_limit: nil)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.confirm_replenishment_order")
       end
 
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
@@ -164,12 +169,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Payload for creating an inbound order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_inbound(body)
+      def create_inbound(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_inbound", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.create_inbound")
       end
 
       # Creates a draft AWD outbound order with the specified products. The API returns the order ID for the newly
@@ -178,12 +184,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Payload for creating an outbound order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_outbound(body)
+      def create_outbound(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_outbound", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.create_outbound")
       end
 
       # Creates an AWD replenishment order with given products to replenish.
@@ -193,24 +200,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Payload for creating a replenishment order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_replenishment_order(body)
+      def create_replenishment_order(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.create_replenishment_order")
       end
 
       # Retrieves an AWD inbound order.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to retrieve.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound(order_id)
+      def get_inbound(order_id, rate_limit: 2.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound")
       end
 
       # Retrieves an AWD inbound shipment.
@@ -219,13 +228,14 @@ module Peddler
       # @param shipment_id [String] ID for the shipment. A shipment contains the cases being inbounded.
       # @param sku_quantities [String] If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_shipment(shipment_id, sku_quantities: nil)
+      def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           sku_quantities: Arguments.string("sku_quantities", sku_quantities),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment")
       end
 
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
@@ -236,14 +246,15 @@ module Peddler
       # @param page_type [String] Page type for the generated labels. The default is `PLAIN_PAPER`.
       # @param format_type [String] The format type of the output file that contains your labels. The default format
       #   type is `PDF`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_shipment_labels(shipment_id, page_type: nil, format_type: nil)
+      def get_inbound_shipment_labels(shipment_id, page_type: nil, format_type: nil, rate_limit: 1.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_type: Arguments.string("page_type", page_type),
           format_type: Arguments.string("format_type", format_type),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_inbound_shipment_labels")
       end
 
       # Retrieves the available label page types for a shipment ID that you specify. This is an asynchronous operation.
@@ -251,12 +262,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] ID for the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_label_page_types(shipment_id)
+      def get_label_page_types(shipment_id, rate_limit: 1.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_label_page_types", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_label_page_types")
       end
 
       # Retrieves an AWD outbound order with a set of shipments that contain items that are outbound into a destination
@@ -266,12 +278,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] ID for the outbound order to be retrieved.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_outbound(order_id)
+      def get_outbound(order_id, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_outbound", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_outbound")
       end
 
       # Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be
@@ -279,12 +292,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] ID of the replenishment order to be retrieved.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_replenishment_order(order_id)
+      def get_replenishment_order(order_id, rate_limit: nil)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.get_replenishment_order")
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -305,8 +319,9 @@ module Peddler
       #   results, call the operation with this token and include the same arguments as the call that produced the
       #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
       #   return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
+      def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
           sort_by: Arguments.string("sort_by", sort_by),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -316,11 +331,12 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_shipments}
-      def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil)
+      def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
           sort_by: Arguments.string("sort_by", sort_by),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -330,7 +346,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments").pages(@engine, arguments)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -346,8 +362,9 @@ module Peddler
       #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
       #   return empty pages.
       # @param max_results [Integer] Maximum number of results to return.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
+      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         arguments = {
           sku: Arguments.string("sku", sku),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -355,11 +372,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           max_results: Arguments.integer("max_results", max_results),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inventory}
-      def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25)
+      def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         arguments = {
           sku: Arguments.string("sku", sku),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -367,7 +385,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           max_results: Arguments.integer("max_results", max_results),
         }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inventory").pages(@engine, arguments)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_inventory").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are
@@ -385,8 +403,9 @@ module Peddler
       #   results, call the operation with this token and include the same arguments as the call that produced the
       #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
       #   return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_outbounds(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
+      def list_outbounds(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
           updated_before: Arguments.string("updated_before", updated_before),
@@ -394,11 +413,12 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_outbounds}
-      def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
+      def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
           updated_before: Arguments.string("updated_before", updated_before),
@@ -406,7 +426,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_outbounds").pages(@engine, arguments)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_outbounds").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
@@ -425,8 +445,9 @@ module Peddler
       #   results, call the operation with this token and include the same arguments as the call that produced the
       #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
       #   return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
+      def list_replenishment_orders(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
           updated_before: Arguments.string("updated_before", updated_before),
@@ -434,11 +455,12 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", Arguments.encode(arguments)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_replenishment_orders}
-      def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil)
+      def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: nil)
         arguments = {
           updated_after: Arguments.string("updated_after", updated_after),
           updated_before: Arguments.string("updated_before", updated_before),
@@ -446,7 +468,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
@@ -455,13 +477,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to update.
       # @param body [Hash, Array, String] Represents an AWD inbound order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_inbound(order_id, body)
+      def update_inbound(order_id, body, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound")
       end
 
       # Updates transport details for an AWD shipment.
@@ -469,13 +492,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The shipment ID.
       # @param body [Hash, Array, String] Transportation details for the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_inbound_shipment_transport_details(shipment_id, body)
+      def update_inbound_shipment_transport_details(shipment_id, body, rate_limit: 1.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.update_inbound_shipment_transport_details")
       end
 
       # Updates an AWD outbound order that is in `DRAFT`, `ELIGIBLE`, or `INELIGIBLE` status. This API allows updates on
@@ -485,13 +509,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] ID for the outbound order to be updated.
       # @param body [Hash, Array, String] Represents an AWD outbound order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_outbound(order_id, body)
+      def update_outbound(order_id, body, rate_limit: 1.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", Arguments.encode(arguments, "body")), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
+        Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.update_outbound", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.update_outbound")
       end
     end
 
@@ -512,13 +537,14 @@ module Peddler
       #
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_content_document(marketplace_id, post_content_document_request)
+      def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.create_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_content_document", Arguments.encode(arguments, "post_content_document_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.create_content_document")
       end
 
       # Create a media asset record. The `mediaType` field determines the type of asset to create.
@@ -533,12 +559,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param create_media_request [Hash, Array, String] The media creation request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_media(create_media_request)
+      def create_media(create_media_request, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("create_media_request", create_media_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", Arguments.encode(arguments, "create_media_request")), "aplus_content_2020_11_01.create_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.create_media", Arguments.encode(arguments, "create_media_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.create_media")
       end
 
       # Retrieve an A+ Content document, if available.
@@ -548,14 +575,15 @@ module Peddler
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_content_document(content_reference_key, marketplace_id, included_data_set)
+      def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           included_data_set: Arguments.array("included_data_set", included_data_set, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", Arguments.encode(arguments)), "aplus_content_2020_11_01.get_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_content_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.get_content_document")
       end
 
       # Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape.
@@ -568,13 +596,14 @@ module Peddler
       # @param media_id [String] The unique identifier for the media asset.
       # @param associated_media_id [String] When provided, returns only the specific association. When omitted, returns
       #   all associated media.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_media(media_id, associated_media_id: nil)
+      def get_media(media_id, associated_media_id: nil, rate_limit: 10.0)
         arguments = {
           media_id: Arguments.segment("media_id", media_id, last: true),
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", Arguments.encode(arguments)), "aplus_content_2020_11_01.get_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.get_media", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.get_media")
       end
 
       # Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the
@@ -592,8 +621,9 @@ module Peddler
       #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
       #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
       #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
+      def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -601,11 +631,12 @@ module Peddler
           asin_set: Arguments.array("asin_set", asin_set),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", Arguments.encode(arguments)), "aplus_content_2020_11_01.list_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_content_document_asin_relations}
-      def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil)
+      def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -613,7 +644,7 @@ module Peddler
           asin_set: Arguments.array("asin_set", asin_set),
           page_token: Arguments.string("page_token", page_token),
         }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.list_content_document_asin_relations").pages(@engine, arguments)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.list_content_document_asin_relations").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
@@ -622,13 +653,14 @@ module Peddler
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def post_content_document_approval_submission(content_reference_key, marketplace_id)
+      def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", Arguments.encode(arguments)), "aplus_content_2020_11_01.post_content_document_approval_submission")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_approval_submission", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.post_content_document_approval_submission")
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs,
@@ -641,14 +673,15 @@ module Peddler
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param post_content_document_asin_relations_request [Hash, Array, String] The content document ASIN relations
       #   request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def post_content_document_asin_relations(content_reference_key, marketplace_id, post_content_document_asin_relations_request)
+      def post_content_document_asin_relations(content_reference_key, marketplace_id, post_content_document_asin_relations_request, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_asin_relations_request", post_content_document_asin_relations_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_asin_relations_request")), "aplus_content_2020_11_01.post_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_asin_relations_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.post_content_document_asin_relations")
       end
 
       # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
@@ -658,13 +691,14 @@ module Peddler
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def post_content_document_suspend_submission(content_reference_key, marketplace_id)
+      def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", Arguments.encode(arguments)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.post_content_document_suspend_submission", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.post_content_document_suspend_submission")
       end
 
       # Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the
@@ -677,22 +711,24 @@ module Peddler
       #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
       #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
       #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_content_documents(marketplace_id, page_token: nil)
+      def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", Arguments.encode(arguments)), "aplus_content_2020_11_01.search_content_documents")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.search_content_documents")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_content_documents}
-      def search_content_documents_pages(marketplace_id, page_token: nil)
+      def search_content_documents_pages(marketplace_id, page_token: nil, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_documents").pages(@engine, arguments)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_documents").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Searches for A+ Content publishing records, if available.
@@ -704,24 +740,26 @@ module Peddler
       #   next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken`
       #   with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are
       #   no more pages to return. A `pageToken` value is not usable across different operations.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_content_publish_records(marketplace_id, asin, page_token: nil)
+      def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asin: Arguments.string("asin", asin, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", Arguments.encode(arguments)), "aplus_content_2020_11_01.search_content_publish_records")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_content_publish_records}
-      def search_content_publish_records_pages(marketplace_id, asin, page_token: nil)
+      def search_content_publish_records_pages(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asin: Arguments.string("asin", asin, required: true),
           page_token: Arguments.string("page_token", page_token),
         }
-        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_publish_records").pages(@engine, arguments)
+        PAGINATIONS.fetch("aplus_content_2020_11_01.search_content_publish_records").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Update an existing A+ Content document.
@@ -731,14 +769,15 @@ module Peddler
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
+      def update_content_document(content_reference_key, marketplace_id, post_content_document_request, rate_limit: 10.0)
         arguments = {
           content_reference_key: Arguments.segment("content_reference_key", content_reference_key, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.update_content_document")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_content_document", Arguments.encode(arguments, "post_content_document_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.update_content_document")
       end
 
       # Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For
@@ -757,14 +796,15 @@ module Peddler
       # @param associated_media_id [String] When provided, identifies the specific video-image pairing for title
       #   updates. Required when updating a pairing title.
       # @param update_media_request [Hash, Array, String] The media update request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_media(media_id, update_media_request, associated_media_id: nil)
+      def update_media(media_id, update_media_request, associated_media_id: nil, rate_limit: 10.0)
         arguments = {
           media_id: Arguments.segment("media_id", media_id, last: true),
           associated_media_id: Arguments.string("associated_media_id", associated_media_id),
           body: Arguments.body("update_media_request", update_media_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", Arguments.encode(arguments, "update_media_request")), "aplus_content_2020_11_01.update_media")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.update_media", Arguments.encode(arguments, "update_media_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.update_media")
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -772,14 +812,15 @@ module Peddler
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param asin_set [Array<String>] The set of ASINs.
       # @param post_content_document_request [Hash, Array, String] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil)
+      def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil, rate_limit: 10.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asin_set: Arguments.array("asin_set", asin_set),
           body: Arguments.body("post_content_document_request", post_content_document_request, required: true),
         }
-        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_request")), "aplus_content_2020_11_01.validate_content_document_asin_relations")
+        Response.from_parts(@engine.operation("aplus_content_2020_11_01.validate_content_document_asin_relations", Arguments.encode(arguments, "post_content_document_request"), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.validate_content_document_asin_relations")
       end
     end
 
@@ -798,24 +839,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `createNotification` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_notification(body)
+      def create_notification(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.create_notification")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.create_notification", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "application_integrations_2024_04_01.create_notification")
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `deleteNotifications` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_notifications(body)
+      def delete_notifications(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.delete_notifications")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.delete_notifications", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "application_integrations_2024_04_01.delete_notifications")
       end
 
       # Records the seller's response to a notification.
@@ -823,13 +866,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param notification_id [String] A `notificationId` uniquely identifies a notification.
       # @param body [Hash, Array, String] The request body for the `recordActionFeedback` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def record_action_feedback(notification_id, body)
+      def record_action_feedback(notification_id, body, rate_limit: 1.0)
         arguments = {
           notification_id: Arguments.segment("notification_id", notification_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", Arguments.encode(arguments, "body")), "application_integrations_2024_04_01.record_action_feedback")
+        Response.from_parts(@engine.operation("application_integrations_2024_04_01.record_action_feedback", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "application_integrations_2024_04_01.record_action_feedback")
       end
     end
 
@@ -849,11 +893,12 @@ module Peddler
       # generated and sent to the developer-registered queue. For more information, refer to [Rotate your application's
       # client secret](https://developer-docs.amazon.com/sp-api/docs/rotate-your-application-client-secret).
       #
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def rotate_application_client_secret
+      def rotate_application_client_secret(rate_limit: 0.0167)
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", Arguments.encode(arguments)), "application_management_2023_11_30.rotate_application_client_secret")
+        Response.from_parts(@engine.operation("application_management_2023_11_30.rotate_application_client_secret", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "application_management_2023_11_30.rotate_application_client_secret")
       end
     end
 
@@ -875,14 +920,15 @@ module Peddler
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil)
+      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asin: Arguments.string("asin", asin),
           seller_sku: Arguments.string("seller_sku", seller_sku),
         }
-        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", Arguments.encode(arguments)), "catalog_items_v0.list_catalog_categories")
+        Response.from_parts(@engine.operation("catalog_items_v0.list_catalog_categories", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_v0.list_catalog_categories")
       end
     end
 
@@ -911,15 +957,16 @@ module Peddler
       #   summaries.
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
+      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
         arguments = {
           asin: Arguments.segment("asin", asin, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", Arguments.encode(arguments)), "catalog_items_2020_12_01.get_catalog_item")
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.get_catalog_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2020_12_01.get_catalog_item")
       end
 
       # Search for and return a list of Amazon catalog items and associated information.
@@ -939,8 +986,9 @@ module Peddler
       #   marketplace.
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_catalog_items(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
+      def search_catalog_items(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0)
         arguments = {
           keywords: Arguments.array("keywords", keywords, required: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -952,11 +1000,12 @@ module Peddler
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", Arguments.encode(arguments)), "catalog_items_2020_12_01.search_catalog_items")
+        Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
-      def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil)
+      def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0)
         arguments = {
           keywords: Arguments.array("keywords", keywords, required: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -968,7 +1017,7 @@ module Peddler
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
           locale: Arguments.string("locale", locale),
         }
-        PAGINATIONS.fetch("catalog_items_2020_12_01.search_catalog_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("catalog_items_2020_12_01.search_catalog_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -995,15 +1044,16 @@ module Peddler
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
       # @param locale [String] The locale for which you want to retrieve localized summaries. Defaults to the primary
       #   locale of the marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil)
+      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
         arguments = {
           asin: Arguments.segment("asin", asin, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", Arguments.encode(arguments)), "catalog_items_2022_04_01.get_catalog_item")
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.get_catalog_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2022_04_01.get_catalog_item")
       end
 
       # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
@@ -1033,8 +1083,9 @@ module Peddler
       #   results.
       # @param keywords_locale [String] The language of the keywords that are included in queries based on `keywords`.
       #   Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
+      def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         arguments = {
           identifiers: Arguments.array("identifiers", identifiers),
           identifiers_type: Arguments.string("identifiers_type", identifiers_type),
@@ -1049,11 +1100,12 @@ module Peddler
           page_token: Arguments.string("page_token", page_token),
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
         }
-        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", Arguments.encode(arguments)), "catalog_items_2022_04_01.search_catalog_items")
+        Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_catalog_items}
-      def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil)
+      def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         arguments = {
           identifiers: Arguments.array("identifiers", identifiers),
           identifiers_type: Arguments.string("identifiers_type", identifiers_type),
@@ -1068,7 +1120,7 @@ module Peddler
           page_token: Arguments.string("page_token", page_token),
           keywords_locale: Arguments.string("keywords_locale", keywords_locale),
         }
-        PAGINATIONS.fetch("catalog_items_2022_04_01.search_catalog_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("catalog_items_2022_04_01.search_catalog_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -1090,13 +1142,14 @@ module Peddler
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_browse_node_return_topics(browse_node_id, marketplace_id)
+      def get_browse_node_return_topics(browse_node_id, marketplace_id, rate_limit: nil)
         arguments = {
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_topics", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_browse_node_return_topics")
       end
 
       # Retrieve the trends of topics that customers mention when they return items in a browse node.
@@ -1106,13 +1159,14 @@ module Peddler
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_browse_node_return_trends(browse_node_id, marketplace_id)
+      def get_browse_node_return_trends(browse_node_id, marketplace_id, rate_limit: nil)
         arguments = {
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_return_trends", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_browse_node_return_trends")
       end
 
       # Retrieve a browse node's ten most positive and ten most negative review topics.
@@ -1123,14 +1177,15 @@ module Peddler
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @param sort_by [String] The metric by which to sort the data in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by)
+      def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by, rate_limit: nil)
         arguments = {
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_topics", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_browse_node_review_topics")
       end
 
       # Retrieve the positive and negative review trends of items in a browse node for the past six months.
@@ -1140,13 +1195,14 @@ module Peddler
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. For more
       #   information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_browse_node_review_trends(browse_node_id, marketplace_id)
+      def get_browse_node_review_trends(browse_node_id, marketplace_id, rate_limit: nil)
         arguments = {
           browse_node_id: Arguments.segment("browse_node_id", browse_node_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_browse_node_review_trends", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_browse_node_review_trends")
       end
 
       # This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree
@@ -1157,13 +1213,14 @@ module Peddler
       #   within a marketplace.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_browse_node(asin, marketplace_id)
+      def get_item_browse_node(asin, marketplace_id, rate_limit: nil)
         arguments = {
           asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_browse_node")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_browse_node", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_item_browse_node")
       end
 
       # Retrieve an item's ten most positive and ten most negative review topics.
@@ -1174,14 +1231,15 @@ module Peddler
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
       # @param sort_by [String] The metric by which to sort data in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_review_topics(asin, marketplace_id, sort_by)
+      def get_item_review_topics(asin, marketplace_id, sort_by, rate_limit: nil)
         arguments = {
           asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           sort_by: Arguments.string("sort_by", sort_by, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_review_topics")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_topics", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_item_review_topics")
       end
 
       # Retrieve an item's positive and negative review trends for the past six months.
@@ -1191,13 +1249,14 @@ module Peddler
       #   within a marketplace. This API takes child ASIN as an input.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_review_trends(asin, marketplace_id)
+      def get_item_review_trends(asin, marketplace_id, rate_limit: nil)
         arguments = {
           asin: Arguments.segment("asin", asin),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", Arguments.encode(arguments)), "customer_feedback_2024_06_01.get_item_review_trends")
+        Response.from_parts(@engine.operation("customer_feedback_2024_06_01.get_item_review_trends", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "customer_feedback_2024_06_01.get_item_review_trends")
       end
     end
 
@@ -1220,12 +1279,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_query(query_id)
+      def cancel_query(query_id, rate_limit: 0.0222)
         arguments = {
           query_id: Arguments.segment("query_id", query_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", Arguments.encode(arguments)), "data_kiosk_2023_11_15.cancel_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.cancel_query", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.cancel_query")
       end
 
       # Creates a Data Kiosk query request.
@@ -1237,12 +1297,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The body of the request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_query(body)
+      def create_query(body, rate_limit: 0.0167)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", Arguments.encode(arguments, "body")), "data_kiosk_2023_11_15.create_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.create_query", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.create_query")
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -1250,12 +1311,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param document_id [String] The identifier for the Data Kiosk document.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_document(document_id)
+      def get_document(document_id, rate_limit: 0.0167)
         arguments = {
           document_id: Arguments.segment("document_id", document_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_document")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.get_document")
       end
 
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
@@ -1273,8 +1335,9 @@ module Peddler
       #   `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided
       #   with the request that generated this token, with the exception of `pageSize` which can be modified between
       #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
+      def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil, rate_limit: 0.0222)
         arguments = {
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
           page_size: Arguments.integer("page_size", page_size),
@@ -1282,11 +1345,12 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_queries")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.get_queries")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_queries}
-      def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil)
+      def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil, rate_limit: 0.0222)
         arguments = {
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
           page_size: Arguments.integer("page_size", page_size),
@@ -1294,7 +1358,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("data_kiosk_2023_11_15.get_queries").pages(@engine, arguments)
+        PAGINATIONS.fetch("data_kiosk_2023_11_15.get_queries").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
@@ -1302,12 +1366,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The query identifier.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_query(query_id)
+      def get_query(query_id, rate_limit: 2.0)
         arguments = {
           query_id: Arguments.segment("query_id", query_id, last: true),
         }
-        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", Arguments.encode(arguments)), "data_kiosk_2023_11_15.get_query")
+        Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_query", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.get_query")
       end
     end
 
@@ -1334,8 +1399,9 @@ module Peddler
       # @param marketplace_id [String] The Amazon store identifier.
       # @param invoice_type [String] The invoice's type.
       # @param program_type [String] The Amazon program that seller is currently enrolled.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil, invoice_id: nil)
+      def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil, invoice_id: nil, rate_limit: 1.133)
         arguments = {
           order_id: Arguments.string("order_id", order_id),
           shipment_id: Arguments.string("shipment_id", shipment_id),
@@ -1344,7 +1410,7 @@ module Peddler
           invoice_type: Arguments.string("invoice_type", invoice_type, required: true),
           program_type: Arguments.string("program_type", program_type, required: true),
         }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", Arguments.encode(arguments)), "delivery_by_amazon_2022_07_01.get_invoice_status")
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.get_invoice_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "delivery_by_amazon_2022_07_01.get_invoice_status")
       end
 
       # Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId`
@@ -1354,14 +1420,15 @@ module Peddler
       # @param order_id [String] The identifier for the order.
       # @param shipment_id [String] The identifier for the shipment.
       # @param body [Hash, Array, String] The request body that specifies invoice, program and `marketplaceId` values.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_invoice(body, order_id: nil, shipment_id: nil)
+      def submit_invoice(body, order_id: nil, shipment_id: nil, rate_limit: 1.133)
         arguments = {
           order_id: Arguments.string("order_id", order_id),
           shipment_id: Arguments.string("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", Arguments.encode(arguments, "body")), "delivery_by_amazon_2022_07_01.submit_invoice")
+        Response.from_parts(@engine.operation("delivery_by_amazon_2022_07_01.submit_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "delivery_by_amazon_2022_07_01.submit_invoice")
       end
     end
 
@@ -1402,12 +1469,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_package_request [Hash, Array, String] The request schema for the
       #   `createScheduledPackage` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_scheduled_package(create_scheduled_package_request)
+      def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("create_scheduled_package_request", create_scheduled_package_request, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", Arguments.encode(arguments, "create_scheduled_package_request")), "easy_ship_2022_03_23.create_scheduled_package")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package", Arguments.encode(arguments, "create_scheduled_package_request"), Arguments.rate_limit(rate_limit)), "easy_ship_2022_03_23.create_scheduled_package")
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -1434,12 +1502,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash, Array, String] The request schema for the
       #   `createScheduledPackageBulk` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_scheduled_package_bulk(create_scheduled_packages_request)
+      def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("create_scheduled_packages_request", create_scheduled_packages_request, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", Arguments.encode(arguments, "create_scheduled_packages_request")), "easy_ship_2022_03_23.create_scheduled_package_bulk")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.create_scheduled_package_bulk", Arguments.encode(arguments, "create_scheduled_packages_request"), Arguments.rate_limit(rate_limit)), "easy_ship_2022_03_23.create_scheduled_package_bulk")
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -1449,13 +1518,14 @@ module Peddler
       # @param amazon_order_id [String] An Amazon-defined order identifier. Identifies the order that the seller wants
       #   to deliver using Amazon Easy Ship.
       # @param marketplace_id [String] An identifier for the marketplace in which the seller is selling.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_scheduled_package(amazon_order_id, marketplace_id)
+      def get_scheduled_package(amazon_order_id, marketplace_id, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.string("amazon_order_id", amazon_order_id, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", Arguments.encode(arguments)), "easy_ship_2022_03_23.get_scheduled_package")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.get_scheduled_package", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "easy_ship_2022_03_23.get_scheduled_package")
       end
 
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
@@ -1474,12 +1544,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param list_handover_slots_request [Hash, Array, String] The request schema for the `listHandoverSlots`
       #   operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_handover_slots(list_handover_slots_request: nil)
+      def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("list_handover_slots_request", list_handover_slots_request),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", Arguments.encode(arguments, "list_handover_slots_request")), "easy_ship_2022_03_23.list_handover_slots")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.list_handover_slots", Arguments.encode(arguments, "list_handover_slots_request"), Arguments.rate_limit(rate_limit)), "easy_ship_2022_03_23.list_handover_slots")
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -1493,12 +1564,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param update_scheduled_packages_request [Hash, Array, String] The request schema for the
       #   `updateScheduledPackages` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_scheduled_packages(update_scheduled_packages_request: nil)
+      def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("update_scheduled_packages_request", update_scheduled_packages_request),
         }
-        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", Arguments.encode(arguments, "update_scheduled_packages_request")), "easy_ship_2022_03_23.update_scheduled_packages")
+        Response.from_parts(@engine.operation("easy_ship_2022_03_23.update_scheduled_packages", Arguments.encode(arguments, "update_scheduled_packages_request"), Arguments.rate_limit(rate_limit)), "easy_ship_2022_03_23.update_scheduled_packages")
       end
     end
 
@@ -1519,12 +1591,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] A list of inventory requests.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def batch_inventory(body)
+      def batch_inventory(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", Arguments.encode(arguments, "body")), "external_fulfillment_inventory_2024_09_11.batch_inventory")
+        Response.from_parts(@engine.operation("external_fulfillment_inventory_2024_09_11.batch_inventory", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_inventory_2024_09_11.batch_inventory")
       end
     end
 
@@ -1544,12 +1617,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] The request body for creating a sandbox location.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_sandbox_location(body)
+      def create_sandbox_location(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", Arguments.encode(arguments, "body")), "external_fulfillment_location_2026_07_30.create_sandbox_location")
+        Response.from_parts(@engine.operation("external_fulfillment_location_2026_07_30.create_sandbox_location", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_location_2026_07_30.create_sandbox_location")
       end
     end
 
@@ -1568,12 +1642,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param return_id [String] The ID of the return item you want.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_return(return_id)
+      def get_return(return_id, rate_limit: nil)
         arguments = {
           return_id: Arguments.segment("return_id", return_id, last: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", Arguments.encode(arguments)), "external_fulfillment_returns_2024_09_11.get_return")
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.get_return", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_returns_2024_09_11.get_return")
       end
 
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
@@ -1603,8 +1678,9 @@ module Peddler
       #   `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with
       #   this token and include the same arguments as the call that produced the token. To get a complete list, call
       #   this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
+      def list_returns(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil, rate_limit: nil)
         arguments = {
           return_location_id: Arguments.string("return_location_id", return_location_id),
           rma_id: Arguments.string("rma_id", rma_id),
@@ -1619,11 +1695,12 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", Arguments.encode(arguments)), "external_fulfillment_returns_2024_09_11.list_returns")
+        Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_returns}
-      def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil)
+      def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil, rate_limit: nil)
         arguments = {
           return_location_id: Arguments.string("return_location_id", return_location_id),
           rma_id: Arguments.string("rma_id", rma_id),
@@ -1638,7 +1715,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("external_fulfillment_returns_2024_09_11.list_returns").pages(@engine, arguments)
+        PAGINATIONS.fetch("external_fulfillment_returns_2024_09_11.list_returns").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -1659,13 +1736,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment.
       # @param body [Hash, Array, String] A list of packages in the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_packages(shipment_id, body)
+      def create_packages(shipment_id, body, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.create_packages")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_packages", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.create_packages")
       end
 
       # Creates a sandbox shipment to simulate order creation in the test environment. This operation is available only
@@ -1674,24 +1752,26 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] The request body for creating a sandbox shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_sandbox_shipment(body)
+      def create_sandbox_shipment(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.create_sandbox_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.create_sandbox_shipment")
       end
 
       # Get invoices for the shipment you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose invoice you want.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_invoice(shipment_id)
+      def generate_invoice(shipment_id, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.generate_invoice")
       end
 
       # Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
@@ -1701,27 +1781,29 @@ module Peddler
       # @param shipping_option_id [String] The ID of the shipping option whose shipping labels you want.
       # @param operation [String] Specify whether you want to generate or regenerate a label.
       # @param body [Hash, Array, String] Shipping details for when shipping is not done by the marketplace channel.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil)
+      def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           shipping_option_id: Arguments.string("shipping_option_id", shipping_option_id),
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.generate_ship_labels", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.generate_ship_labels")
       end
 
       # Get a single shipment with the ID you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment you want to retrieve.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id)
+      def get_shipment(shipment_id, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.get_shipment")
       end
 
       # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
@@ -1743,8 +1825,9 @@ module Peddler
       #   includes `nextToken` when there are multiple pages of results. To get the next page of results, call the
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipments(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
+      def get_shipments(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil, rate_limit: nil)
         arguments = {
           location_id: Arguments.string("location_id", location_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
@@ -1755,11 +1838,12 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.get_shipments")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
-      def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil)
+      def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil, rate_limit: nil)
         arguments = {
           location_id: Arguments.string("location_id", location_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
@@ -1770,7 +1854,7 @@ module Peddler
           max_results: Arguments.integer("max_results", max_results),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("external_fulfillment_shipments_2024_09_11.get_shipments").pages(@engine, arguments)
+        PAGINATIONS.fetch("external_fulfillment_shipments_2024_09_11.get_shipments").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Confirm or reject the specified shipment.
@@ -1779,26 +1863,28 @@ module Peddler
       # @param shipment_id [String] The ID of the shipment you want to confirm or reject.
       # @param operation [String] The status of the shipment.
       # @param body [Hash, Array, String] Information about the shipment and its line items.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def process_shipment(shipment_id, operation, body: nil)
+      def process_shipment(shipment_id, operation, body: nil, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           operation: Arguments.string("operation", operation, required: true),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.process_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.process_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.process_shipment")
       end
 
       # Retrieve invoices for the shipment you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose invoice you want to retrieve.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def retrieve_invoice(shipment_id)
+      def retrieve_invoice(shipment_id, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.retrieve_invoice")
       end
 
       # Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the
@@ -1807,13 +1893,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package for which you want to retrieve shipping options.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def retrieve_shipping_options(shipment_id, package_id)
+      def retrieve_shipping_options(shipment_id, package_id, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_id: Arguments.string("package_id", package_id, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", Arguments.encode(arguments)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.retrieve_shipping_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.retrieve_shipping_options")
       end
 
       # Updates the details about the packages that will be used to fulfill the specified shipment.
@@ -1822,14 +1909,15 @@ module Peddler
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package whose information you want to update.
       # @param body [Hash, Array, String] The body of the request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_package(shipment_id, package_id, body)
+      def update_package(shipment_id, package_id, body, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_package")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.update_package")
       end
 
       # Updates the status of the packages.
@@ -1840,15 +1928,16 @@ module Peddler
       # @param status [String] **This field is only used for the Seller Flex program**. For the Self Delivery program,
       #   package statuses are defined in the body parameter.
       # @param body [Hash, Array, String] The body of the request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_package_status(shipment_id, package_id, status: nil, body: nil)
+      def update_package_status(shipment_id, package_id, status: nil, body: nil, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_id: Arguments.segment("package_id", package_id, last: true),
           status: Arguments.string("status", status),
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_package_status")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_package_status", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.update_package_status")
       end
 
       # Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport
@@ -1857,13 +1946,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The unique identifier of the shipment to update.
       # @param body [Hash, Array, String] The request body for updating a sandbox shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_sandbox_shipment(shipment_id, body)
+      def update_sandbox_shipment(shipment_id, body, rate_limit: nil)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", Arguments.encode(arguments, "body")), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
+        Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.update_sandbox_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.update_sandbox_shipment")
       end
     end
 
@@ -1890,14 +1980,15 @@ module Peddler
       #   eligibility. Required only when program=INBOUND.
       # @param asin [String] The ASIN of the item for which you want an eligibility preview.
       # @param program [String] The program that you want to check eligibility against.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_eligibility_preview(asin, program, marketplace_ids: nil)
+      def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           asin: Arguments.string("asin", asin, required: true),
           program: Arguments.string("program", program, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", Arguments.encode(arguments)), "fba_inbound_eligibility_v1.get_item_eligibility_preview")
+        Response.from_parts(@engine.operation("fba_inbound_eligibility_v1.get_item_eligibility_preview", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fba_inbound_eligibility_v1.get_item_eligibility_preview")
       end
     end
 
@@ -1920,13 +2011,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
       # @param add_inventory_request_body [Hash, Array, String] List of items to add to Sandbox inventory.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
+      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
         arguments = {
           x_amzn_idempotency_token: Arguments.string("x_amzn_idempotency_token", x_amzn_idempotency_token, required: true),
           body: Arguments.body("add_inventory_request_body", add_inventory_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", Arguments.encode(arguments, "add_inventory_request_body")), "fba_inventory_v1.add_inventory")
+        Response.from_parts(@engine.operation("fba_inventory_v1.add_inventory", Arguments.encode(arguments, "add_inventory_request_body"), Arguments.rate_limit(rate_limit)), "fba_inventory_v1.add_inventory")
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
@@ -1935,12 +2027,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param create_inventory_item_request_body [Hash, Array, String] CreateInventoryItem Request Body Parameter.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_inventory_item(create_inventory_item_request_body)
+      def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
         arguments = {
           body: Arguments.body("create_inventory_item_request_body", create_inventory_item_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", Arguments.encode(arguments, "create_inventory_item_request_body")), "fba_inventory_v1.create_inventory_item")
+        Response.from_parts(@engine.operation("fba_inventory_v1.create_inventory_item", Arguments.encode(arguments, "create_inventory_item_request_body"), Arguments.rate_limit(rate_limit)), "fba_inventory_v1.create_inventory_item")
       end
 
       # Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a
@@ -1950,13 +2043,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_inventory_item(seller_sku, marketplace_id)
+      def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
         arguments = {
           seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", Arguments.encode(arguments)), "fba_inventory_v1.delete_inventory_item")
+        Response.from_parts(@engine.operation("fba_inventory_v1.delete_inventory_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fba_inventory_v1.delete_inventory_item")
       end
 
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
@@ -1993,8 +2087,9 @@ module Peddler
       #   expire 30 seconds after being created.
       # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
       #   summaries.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
+      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           details: Arguments.boolean("details", details),
           granularity_type: Arguments.string("granularity_type", granularity_type, required: true),
@@ -2005,11 +2100,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", Arguments.encode(arguments)), "fba_inventory_v1.get_inventory_summaries")
+        Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fba_inventory_v1.get_inventory_summaries")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_inventory_summaries}
-      def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
+      def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           details: Arguments.boolean("details", details),
           granularity_type: Arguments.string("granularity_type", granularity_type, required: true),
@@ -2020,7 +2116,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        PAGINATIONS.fetch("fba_inventory_v1.get_inventory_summaries").pages(@engine, arguments)
+        PAGINATIONS.fetch("fba_inventory_v1.get_inventory_summaries").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2041,24 +2137,26 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_feed(feed_id)
+      def cancel_feed(feed_id, rate_limit: 2.0)
         arguments = {
           feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", Arguments.encode(arguments)), "feeds_2021_06_30.cancel_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.cancel_feed", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.cancel_feed")
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Information required to create the feed.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_feed(body)
+      def create_feed(body, rate_limit: 0.0083)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", Arguments.encode(arguments, "body")), "feeds_2021_06_30.create_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.create_feed")
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -2067,12 +2165,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Specifies the content type for the createFeedDocument operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_feed_document(body)
+      def create_feed_document(body, rate_limit: 0.5)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", Arguments.encode(arguments, "body")), "feeds_2021_06_30.create_feed_document")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.create_feed_document", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.create_feed_document")
       end
 
       # Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
@@ -2080,12 +2179,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_feed(feed_id)
+      def get_feed(feed_id, rate_limit: 2.0)
         arguments = {
           feed_id: Arguments.segment("feed_id", feed_id, last: true),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", Arguments.encode(arguments)), "feeds_2021_06_30.get_feed")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.get_feed")
       end
 
       # Returns the information required for retrieving a feed document's contents.
@@ -2095,13 +2195,14 @@ module Peddler
       # @param enable_content_encoding_url_header [Boolean] When `true`, the Content-Encoding header on the returned URL
       #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
       #   automatic decompression by HTTP clients.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_feed_document(feed_document_id, enable_content_encoding_url_header: nil)
+      def get_feed_document(feed_document_id, enable_content_encoding_url_header: nil, rate_limit: 0.0222)
         arguments = {
           feed_document_id: Arguments.segment("feed_document_id", feed_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", Arguments.encode(arguments)), "feeds_2021_06_30.get_feed_document")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feed_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.get_feed_document")
       end
 
       # Returns feed details for the feeds that match the filters that you specify.
@@ -2122,8 +2223,9 @@ module Peddler
       #   returned when the number of results exceeds the specified pageSize value. To get the next page of results,
       #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
       #   parameters will cause the request to fail.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
+      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
           feed_types: Arguments.array("feed_types", feed_types),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -2133,11 +2235,12 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", Arguments.encode(arguments)), "feeds_2021_06_30.get_feeds")
+        Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.get_feeds")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_feeds}
-      def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil)
+      def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
           feed_types: Arguments.array("feed_types", feed_types),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
@@ -2147,7 +2250,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("feeds_2021_06_30.get_feeds").pages(@engine, arguments)
+        PAGINATIONS.fetch("feeds_2021_06_30.get_feeds").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2171,24 +2274,26 @@ module Peddler
       #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
       # @param next_token_for_line_items [String] A token to fetch the next page of results. Use the value returned in
       #   the previous response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_remittance(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
+      def get_remittance(unique_payment_id, marketplace_id, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
           unique_payment_id: Arguments.segment("unique_payment_id", unique_payment_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", Arguments.encode(arguments)), "finance_remittance_2026_03_17.get_remittance")
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finance_remittance_2026_03_17.get_remittance")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_remittance}
-      def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil)
+      def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
           unique_payment_id: Arguments.segment("unique_payment_id", unique_payment_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance").pages(@engine, arguments)
+        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are
@@ -2206,26 +2311,28 @@ module Peddler
       #   `endDate` is 90 days.
       # @param next_token [String] A token to fetch the next page of results. Use the value returned in the previous
       #   response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_remittance_headers(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
+      def get_remittance_headers(marketplace_id, start_date: nil, end_date: nil, next_token: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           start_date: Arguments.string("start_date", start_date),
           end_date: Arguments.string("end_date", end_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", Arguments.encode(arguments)), "finance_remittance_2026_03_17.get_remittance_headers")
+        Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_remittance_headers}
-      def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil)
+      def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           start_date: Arguments.string("start_date", start_date),
           end_date: Arguments.string("end_date", end_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance_headers").pages(@engine, arguments)
+        PAGINATIONS.fetch("finance_remittance_2026_03_17.get_remittance_headers").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2252,24 +2359,26 @@ module Peddler
       # @param next_token_for_line_items [String] The response includes `nextTokenForLineItems` when the number of line
       #   items exceeds the default page size (600). To get the next page of line items, call the operation with this
       #   token, including the same request parameters as the call that generated the token.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
+      def get_invoice(marketplace_id, invoice_identifier, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           invoice_identifier: Arguments.segment("invoice_identifier", invoice_identifier, last: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", Arguments.encode(arguments)), "finances_invoices_2026_06_25.get_invoice")
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_invoices_2026_06_25.get_invoice")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoice}
-      def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil)
+      def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           invoice_identifier: Arguments.segment("invoice_identifier", invoice_identifier, last: true),
           next_token_for_line_items: Arguments.string("next_token_for_line_items", next_token_for_line_items),
         }
-        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns invoice headers for all invoices matching filters that you specify.
@@ -2293,8 +2402,9 @@ module Peddler
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param invoices_modified_after [String] Retrieve invoices that were modified after this date-time. In [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice_headers(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
+      def get_invoice_headers(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil, rate_limit: nil)
         arguments = {
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2302,11 +2412,12 @@ module Peddler
           to_issue_date: Arguments.string("to_issue_date", to_issue_date),
           invoices_modified_after: Arguments.string("invoices_modified_after", invoices_modified_after),
         }
-        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", Arguments.encode(arguments)), "finances_invoices_2026_06_25.get_invoice_headers")
+        Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoice_headers}
-      def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil)
+      def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil, rate_limit: nil)
         arguments = {
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
@@ -2314,7 +2425,7 @@ module Peddler
           to_issue_date: Arguments.string("to_issue_date", to_issue_date),
           invoices_modified_after: Arguments.string("invoices_modified_after", invoices_modified_after),
         }
-        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice_headers").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_invoices_2026_06_25.get_invoice_headers").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2349,26 +2460,28 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_financial_event_groups(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
+      def list_financial_event_groups(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           financial_event_group_started_before: Arguments.string("financial_event_group_started_before", financial_event_group_started_before),
           financial_event_group_started_after: Arguments.string("financial_event_group_started_after", financial_event_group_started_after),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", Arguments.encode(arguments)), "finances_v0.list_financial_event_groups")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_event_groups")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_event_groups}
-      def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil)
+      def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           financial_event_group_started_before: Arguments.string("financial_event_group_started_before", financial_event_group_started_before),
           financial_event_group_started_after: Arguments.string("financial_event_group_started_after", financial_event_group_started_after),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_v0.list_financial_event_groups").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_v0.list_financial_event_groups").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns financial events for the specified data range. Orders from the last 48 hours might not be included in
@@ -2392,26 +2505,28 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
+      def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events", Arguments.encode(arguments)), "finances_v0.list_financial_events")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events}
-      def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
+      def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_v0.list_financial_events").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_v0.list_financial_events").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be
@@ -2439,8 +2554,9 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
+      def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
@@ -2448,11 +2564,12 @@ module Peddler
           event_group_id: Arguments.segment("event_group_id", event_group_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", Arguments.encode(arguments)), "finances_v0.list_financial_events_by_group_id")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events_by_group_id")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_group_id}
-      def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil)
+      def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           posted_after: Arguments.string("posted_after", posted_after),
@@ -2460,7 +2577,7 @@ module Peddler
           event_group_id: Arguments.segment("event_group_id", event_group_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_v0.list_financial_events_by_group_id").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns all financial events for the specified order. Orders from the last 48 hours might not be included in
@@ -2476,24 +2593,26 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil)
+      def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", Arguments.encode(arguments)), "finances_v0.list_financial_events_by_order_id")
+        Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events_by_order_id")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_financial_events_by_order_id}
-      def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil)
+      def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           max_results_per_page: Arguments.integer("max_results_per_page", max_results_per_page),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_v0.list_financial_events_by_order_id").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_v0.list_financial_events_by_order_id").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2527,8 +2646,9 @@ module Peddler
       #   than 500 results available, the response will include a `nextToken` value. To get the next page of results,
       #   call the operation with this token and include the same arguments as the call that produced the token. Repeat
       #   this process until the `nextToken` value is null to retrieve all results.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_balances(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
+      def list_balances(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           balance_type: Arguments.string("balance_type", balance_type),
@@ -2536,11 +2656,12 @@ module Peddler
           as_of_date: Arguments.string("as_of_date", as_of_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", Arguments.encode(arguments)), "finances_2024_06_19.list_balances")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_balances")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_balances}
-      def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil)
+      def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           balance_type: Arguments.string("balance_type", balance_type),
@@ -2548,7 +2669,7 @@ module Peddler
           as_of_date: Arguments.string("as_of_date", as_of_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_2024_06_19.list_balances").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_2024_06_19.list_balances").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieve the financial summary for the specified time period or settlement period.
@@ -2571,8 +2692,9 @@ module Peddler
       #   results available, the response will include a `nextToken` value. To get the next page of results, call the
       #   operation with this token and include the same arguments as the call that produced the token. Repeat this
       #   process until the `nextToken` value is null to retrieve all results.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_summary(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
+      def list_summary(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           account_type: Arguments.string("account_type", account_type),
@@ -2582,11 +2704,12 @@ module Peddler
           period_end: Arguments.string("period_end", period_end),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", Arguments.encode(arguments)), "finances_2024_06_19.list_summary")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_summary")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_summary}
-      def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil)
+      def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           account_type: Arguments.string("account_type", account_type),
@@ -2596,7 +2719,7 @@ module Peddler
           period_end: Arguments.string("period_end", period_end),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_2024_06_19.list_summary").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_2024_06_19.list_summary").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
@@ -2630,8 +2753,9 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_transactions(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
+      def list_transactions(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
@@ -2641,11 +2765,12 @@ module Peddler
           related_identifier_value: Arguments.string("related_identifier_value", related_identifier_value),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", Arguments.encode(arguments)), "finances_2024_06_19.list_transactions")
+        Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_transactions")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_transactions}
-      def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil)
+      def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           posted_after: Arguments.string("posted_after", posted_after),
           posted_before: Arguments.string("posted_before", posted_before),
@@ -2655,7 +2780,7 @@ module Peddler
           related_identifier_value: Arguments.string("related_identifier_value", related_identifier_value),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("finances_2024_06_19.list_transactions").pages(@engine, arguments)
+        PAGINATIONS.fetch("finances_2024_06_19.list_transactions").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2678,13 +2803,14 @@ module Peddler
       #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param payment_method_types [Array<String>] A comma-separated list of the payment method types you want to
       #   include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_payment_methods(marketplace_id, payment_method_types: nil)
+      def get_payment_methods(marketplace_id, payment_method_types: nil, rate_limit: 0.5)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           payment_method_types: Arguments.array("payment_method_types", payment_method_types),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", Arguments.encode(arguments)), "transfers_2024_06_01.get_payment_methods")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.get_payment_methods", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.get_payment_methods")
       end
 
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
@@ -2693,12 +2819,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `initiatePayout` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def initiate_payout(body)
+      def initiate_payout(body, rate_limit: 0.017)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", Arguments.encode(arguments, "body")), "transfers_2024_06_01.initiate_payout")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.initiate_payout", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.initiate_payout")
       end
 
       # Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified
@@ -2714,24 +2841,26 @@ module Peddler
       #   page size. To get the next page of results, call the operation with this token and include the same arguments
       #   as the call that produced the token. To get a complete list, call this operation until `nextToken` is null.
       #   Note that this operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_expected_payouts(marketplace_ids: nil, account_type: nil, next_token: nil)
+      def list_expected_payouts(marketplace_ids: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", Arguments.encode(arguments)), "transfers_2024_06_01.list_expected_payouts")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.list_expected_payouts")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_expected_payouts}
-      def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil)
+      def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("transfers_2024_06_01.list_expected_payouts").pages(@engine, arguments)
+        PAGINATIONS.fetch("transfers_2024_06_01.list_expected_payouts").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`,
@@ -2757,8 +2886,9 @@ module Peddler
       #   To get the next page of results, call the operation with this token and include the same arguments as the call
       #   that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this
       #   operation can return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
+      def list_payouts(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           created_after: Arguments.string("created_after", created_after),
@@ -2767,11 +2897,12 @@ module Peddler
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", Arguments.encode(arguments)), "transfers_2024_06_01.list_payouts")
+        Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.list_payouts")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_payouts}
-      def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil)
+      def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
           created_after: Arguments.string("created_after", created_after),
@@ -2780,7 +2911,7 @@ module Peddler
           account_type: Arguments.string("account_type", account_type),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("transfers_2024_06_01.list_payouts").pages(@engine, arguments)
+        PAGINATIONS.fetch("transfers_2024_06_01.list_payouts").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2802,12 +2933,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_bill_of_lading(shipment_id)
+      def get_bill_of_lading(shipment_id, rate_limit: 2.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_bill_of_lading")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_bill_of_lading", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_bill_of_lading")
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -2834,8 +2966,9 @@ module Peddler
       #   parameter for Non-Partnered LTL Shipments. Max value:1000.
       # @param page_start_index [Integer] The page start index for paginating through the total packages' labels. This
       #   is a required parameter for Non-Partnered LTL Shipments.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil, number_of_pallets: nil, page_size: nil, page_start_index: nil)
+      def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil, number_of_pallets: nil, page_size: nil, page_start_index: nil, rate_limit: 2.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_type: Arguments.string("page_type", page_type, required: true),
@@ -2846,7 +2979,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           page_start_index: Arguments.integer("page_start_index", page_start_index),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_labels")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_labels")
       end
 
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
@@ -2867,14 +3000,15 @@ module Peddler
       #   the product catalog for at least one of the marketplaces that the seller participates in is returned in the
       #   InvalidASINList property in the response. You can find out which marketplaces a seller participates in by
       #   calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil)
+      def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil, rate_limit: 2.0)
         arguments = {
           ship_to_country_code: Arguments.string("ship_to_country_code", ship_to_country_code, required: true),
           seller_sku_list: Arguments.array("seller_sku_list", seller_sku_list),
           asin_list: Arguments.array("asin_list", asin_list),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_prep_instructions")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_prep_instructions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_prep_instructions")
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -2891,8 +3025,9 @@ module Peddler
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_items(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil)
+      def get_shipment_items(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           last_updated_after: Arguments.string("last_updated_after", last_updated_after),
           last_updated_before: Arguments.string("last_updated_before", last_updated_before),
@@ -2900,11 +3035,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipment_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_items}
-      def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil)
+      def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           last_updated_after: Arguments.string("last_updated_after", last_updated_after),
           last_updated_before: Arguments.string("last_updated_before", last_updated_before),
@@ -2912,7 +3048,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipment_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipment_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a list of items in a specified inbound shipment.
@@ -2920,13 +3056,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier used for selecting items in a specific inbound shipment.
       # @param marketplace_id [String] Deprecated. Do not use.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil)
+      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil, rate_limit: 2.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items_by_shipment_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_shipment_items_by_shipment_id")
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -2948,8 +3085,9 @@ module Peddler
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipments(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil)
+      def get_shipments(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           shipment_status_list: Arguments.array("shipment_status_list", shipment_status_list),
           shipment_id_list: Arguments.array("shipment_id_list", shipment_id_list),
@@ -2959,11 +3097,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", Arguments.encode(arguments)), "fulfillment_inbound_v0.get_shipments")
+        Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_shipments")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipments}
-      def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil)
+      def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           shipment_status_list: Arguments.array("shipment_status_list", shipment_status_list),
           shipment_id_list: Arguments.array("shipment_id_list", shipment_id_list),
@@ -2973,7 +3112,7 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipments").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_v0.get_shipments").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -2995,12 +3134,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_inbound_plan(inbound_plan_id)
+      def cancel_inbound_plan(inbound_plan_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_inbound_plan", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.cancel_inbound_plan")
       end
 
       # Cancels a self-ship appointment slot against a shipment. Only available in the following
@@ -3010,14 +3150,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `cancelSelfShipAppointment`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
+      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: nil)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.cancel_self_ship_appointment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.cancel_self_ship_appointment")
       end
 
       # Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be
@@ -3031,14 +3172,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to confirm the delivery window option for.
       # @param delivery_window_option_id [String] The id of the delivery window option to be confirmed.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id)
+      def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           delivery_window_option_id: Arguments.segment("delivery_window_option_id", delivery_window_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_delivery_window_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.confirm_delivery_window_options")
       end
 
       # Confirms the packing option for an inbound plan.
@@ -3046,13 +3188,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param packing_option_id [String] Identifier of a packing option.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_packing_option(inbound_plan_id, packing_option_id)
+      def confirm_packing_option(inbound_plan_id, packing_option_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_option_id: Arguments.segment("packing_option_id", packing_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_packing_option", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.confirm_packing_option")
       end
 
       # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
@@ -3061,13 +3204,14 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param placement_option_id [String] The identifier of a placement option. A placement option represents the
       #   shipment splits and destinations of SKUs.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_placement_option(inbound_plan_id, placement_option_id)
+      def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           placement_option_id: Arguments.segment("placement_option_id", placement_option_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_placement_option", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.confirm_placement_option")
       end
 
       # Confirm a shipment content update preview and accept the changes in transportation cost.
@@ -3076,14 +3220,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
+      def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.confirm_shipment_content_update_preview")
       end
 
       # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
@@ -3092,13 +3237,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash, Array, String] The body of the request to `confirmTransportationOptions`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_transportation_options(inbound_plan_id, body)
+      def confirm_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.confirm_transportation_options", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.confirm_transportation_options")
       end
 
       # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
@@ -3106,24 +3252,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The body of the request to `createInboundPlan`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_inbound_plan(body)
+      def create_inbound_plan(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.create_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_inbound_plan", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.create_inbound_plan")
       end
 
       # For a given marketplace - creates labels for a list of MSKUs.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The body of the request to `createMarketplaceItemLabels`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_marketplace_item_labels(body)
+      def create_marketplace_item_labels(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.create_marketplace_item_labels", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.create_marketplace_item_labels")
       end
 
       # Generates available delivery window options for a given shipment.
@@ -3131,25 +3279,27 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to generate delivery window options for.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_delivery_window_options(inbound_plan_id, shipment_id)
+      def generate_delivery_window_options(inbound_plan_id, shipment_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_delivery_window_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_delivery_window_options")
       end
 
       # Generates available packing options for the inbound plan.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_packing_options(inbound_plan_id)
+      def generate_packing_options(inbound_plan_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.generate_packing_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_packing_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_packing_options")
       end
 
       # Generates placement options for the inbound plan.
@@ -3157,13 +3307,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash, Array, String] The body of the request to `generatePlacementOptions`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_placement_options(inbound_plan_id, body)
+      def generate_placement_options(inbound_plan_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_placement_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_placement_options", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_placement_options")
       end
 
       # Initiates the process of generating the appointment slots list. Only available in the following
@@ -3173,14 +3324,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `generateSelfShipAppointmentSlots`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
+      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: nil)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_self_ship_appointment_slots")
       end
 
       # Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a
@@ -3191,14 +3343,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `generateShipmentContentUpdatePreviews`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
+      def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_shipment_content_update_previews")
       end
 
       # Generates available transportation options for a given placement option.
@@ -3206,13 +3359,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash, Array, String] The body of the request to `generateTransportationOptions`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_transportation_options(inbound_plan_id, body)
+      def generate_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.generate_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.generate_transportation_options", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.generate_transportation_options")
       end
 
       # Provide delivery challan document for PCP transportation in IN marketplace.
@@ -3220,37 +3374,40 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_delivery_challan_document(inbound_plan_id, shipment_id)
+      def get_delivery_challan_document(inbound_plan_id, shipment_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_delivery_challan_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_delivery_challan_document")
       end
 
       # Gets the status of the processing of an asynchronous API call.
       #
       # @note This operation can make a static sandbox call.
       # @param operation_id [String] Identifier of an asynchronous operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_operation_status(operation_id)
+      def get_inbound_operation_status(operation_id, rate_limit: 2.0)
         arguments = {
           operation_id: Arguments.segment("operation_id", operation_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_operation_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_inbound_operation_status")
       end
 
       # Fetches the top level information about an inbound plan.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_inbound_plan(inbound_plan_id)
+      def get_inbound_plan(inbound_plan_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_inbound_plan", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_inbound_plan")
       end
 
       # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only
@@ -3265,26 +3422,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: nil)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_self_ship_appointment_slots}
-      def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: nil)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside
@@ -3293,13 +3452,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment(inbound_plan_id, shipment_id)
+      def get_shipment(inbound_plan_id, shipment_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_shipment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_shipment")
       end
 
       # Retrieve a shipment content update preview which provides a summary of the requested shipment content changes
@@ -3310,14 +3470,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
+      def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           content_update_preview_id: Arguments.segment("content_update_preview_id", content_update_preview_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_shipment_content_update_preview", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_shipment_content_update_preview")
       end
 
       # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
@@ -3331,26 +3492,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_delivery_window_options}
-      def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_delivery_window_options").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_delivery_window_options").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a paginated list of box packages in an inbound plan.
@@ -3361,24 +3524,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_boxes}
-      def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a paginated list of item packages in an inbound plan.
@@ -3389,24 +3554,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_items}
-      def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the
@@ -3418,24 +3585,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plan_pallets}
-      def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a list of inbound plans with minimal information.
@@ -3448,8 +3617,9 @@ module Peddler
       # @param status [String] The status of an inbound plan.
       # @param sort_by [String] Sort by field.
       # @param sort_order [String] The sort order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
+      def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, rate_limit: 2.0)
         arguments = {
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
@@ -3457,11 +3627,12 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_inbound_plans}
-      def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
+      def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, rate_limit: 2.0)
         arguments = {
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
@@ -3469,7 +3640,7 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plans").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_inbound_plans").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # List the inbound compliance details for MSKUs in a given marketplace.
@@ -3488,13 +3659,14 @@ module Peddler
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_item_compliance_details(mskus, marketplace_id)
+      def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
         arguments = {
           mskus: Arguments.array("mskus", mskus, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_item_compliance_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_item_compliance_details")
       end
 
       # Retrieves a page of boxes from a given packing group. These boxes were previously provided through the
@@ -3508,26 +3680,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
+      def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_boxes}
-      def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
+      def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_boxes").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_boxes").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding
@@ -3540,26 +3714,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
+      def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_group_items}
-      def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil)
+      def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           packing_group_id: Arguments.segment("packing_group_id", packing_group_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_group_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the
@@ -3571,24 +3747,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_packing_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_packing_options}
-      def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_options").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_packing_options").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a list of all placement options for an inbound plan. Placement options must first be generated by the
@@ -3600,24 +3778,26 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_placement_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_placement_options}
-      def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil)
+      def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_placement_options").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_placement_options").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Get preparation details for a list of MSKUs in a specified marketplace.
@@ -3636,13 +3816,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_prep_details(marketplace_id, mskus)
+      def list_prep_details(marketplace_id, mskus, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           mskus: Arguments.array("mskus", mskus, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_prep_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_prep_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_prep_details")
       end
 
       # Provides a paginated list of box packages in a shipment.
@@ -3654,26 +3835,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_boxes}
-      def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_boxes").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_boxes").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update
@@ -3687,26 +3870,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_content_update_previews}
-      def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a paginated list of item packages in a shipment.
@@ -3718,26 +3903,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_items")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_items}
-      def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the
@@ -3750,26 +3937,28 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_shipment_pallets}
-      def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil)
+      def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           page_size: Arguments.integer("page_size", page_size),
           pagination_token: Arguments.string("pagination_token", pagination_token),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_pallets").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_shipment_pallets").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieves all transportation options for a shipment. Transportation options must first be generated by the
@@ -3786,8 +3975,9 @@ module Peddler
       #   `placementOptionId` or `shipmentId` must be specified.
       # @param shipment_id [String] The shipment to get transportation options for. Either `placementOptionId` or
       #   `shipmentId` must be specified.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
+      def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
@@ -3795,11 +3985,12 @@ module Peddler
           placement_option_id: Arguments.string("placement_option_id", placement_option_id),
           shipment_id: Arguments.string("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", Arguments.encode(arguments)), "fulfillment_inbound_2024_03_20.list_transportation_options")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_transportation_options}
-      def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil)
+      def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           page_size: Arguments.integer("page_size", page_size),
@@ -3807,7 +3998,7 @@ module Peddler
           placement_option_id: Arguments.string("placement_option_id", placement_option_id),
           shipment_id: Arguments.string("shipment_id", shipment_id),
         }
-        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_transportation_options").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_inbound_2024_03_20.list_transportation_options").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following
@@ -3818,15 +4009,16 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param slot_id [String] An identifier to a self-ship appointment slot.
       # @param body [Hash, Array, String] The body of the request to `scheduleSelfShipAppointment`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
+      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: nil)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           slot_id: Arguments.segment("slot_id", slot_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.schedule_self_ship_appointment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.schedule_self_ship_appointment")
       end
 
       # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
@@ -3835,25 +4027,27 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash, Array, String] The body of the request to `setPackingInformation`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def set_packing_information(inbound_plan_id, body)
+      def set_packing_information(inbound_plan_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.set_packing_information")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_packing_information", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.set_packing_information")
       end
 
       # Set the preparation details for a list of MSKUs in a specified marketplace.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The body of the request to `setPrepDetails`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def set_prep_details(body)
+      def set_prep_details(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.set_prep_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.set_prep_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.set_prep_details")
       end
 
       # Updates the name of an existing inbound plan.
@@ -3861,13 +4055,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash, Array, String] The body of the request to `updateInboundPlanName`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_inbound_plan_name(inbound_plan_id, body)
+      def update_inbound_plan_name(inbound_plan_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_inbound_plan_name", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.update_inbound_plan_name")
       end
 
       # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
@@ -3877,13 +4072,14 @@ module Peddler
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param body [Hash, Array, String] The body of the request to `updateItemComplianceDetails`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_item_compliance_details(marketplace_id, body)
+      def update_item_compliance_details(marketplace_id, body, rate_limit: 2.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_item_compliance_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.update_item_compliance_details")
       end
 
       # Updates the name of an existing shipment.
@@ -3892,14 +4088,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `updateShipmentName`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_name(inbound_plan_id, shipment_id, body)
+      def update_shipment_name(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_name")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_name", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.update_shipment_name")
       end
 
       # Updates the source address of an existing shipment. The shipment source address can only be updated prior to the
@@ -3911,14 +4108,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `updateShipmentSourceAddress`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_source_address(inbound_plan_id, shipment_id, body)
+      def update_shipment_source_address(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_source_address", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.update_shipment_source_address")
       end
 
       # Updates a shipment's tracking details.
@@ -3927,14 +4125,15 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash, Array, String] The body of the request to `updateShipmentTrackingDetails`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
+      def update_shipment_tracking_details(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         arguments = {
           inbound_plan_id: Arguments.segment("inbound_plan_id", inbound_plan_id),
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", Arguments.encode(arguments, "body")), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
+        Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.update_shipment_tracking_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.update_shipment_tracking_details")
       end
     end
 
@@ -3956,12 +4155,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_fulfillment_order(seller_fulfillment_order_id)
+      def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.cancel_fulfillment_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.cancel_fulfillment_order")
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -3969,12 +4169,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] CreateFulfillmentOrderRequest parameter
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_fulfillment_order(body)
+      def create_fulfillment_order(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_order", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.create_fulfillment_order")
       end
 
       # Creates a fulfillment return.
@@ -3984,13 +4185,14 @@ module Peddler
       # @param seller_fulfillment_order_id [String] An identifier the seller assigns to the fulfillment order at the
       #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
       #   based on the buyer's request to return items.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_fulfillment_return(body, seller_fulfillment_order_id)
+      def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.create_fulfillment_return", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.create_fulfillment_return")
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -3998,12 +4200,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] GetDeliveryOffersRequest parameter
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delivery_offers(body)
+      def delivery_offers(body, rate_limit: 5.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.delivery_offers")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.delivery_offers", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.delivery_offers")
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -4017,26 +4220,28 @@ module Peddler
       # @param query_start_date [String] A date that you can use to select inventory that has been updated since a
       #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
       #   in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
+      def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           feature_name: Arguments.segment("feature_name", feature_name, last: true),
           next_token: Arguments.string("next_token", next_token),
           query_start_date: Arguments.string("query_start_date", query_start_date),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_feature_inventory}
-      def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
+      def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           feature_name: Arguments.segment("feature_name", feature_name, last: true),
           next_token: Arguments.string("next_token", next_token),
           query_start_date: Arguments.string("query_start_date", query_start_date),
         }
-        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.get_feature_inventory").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.get_feature_inventory").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified
@@ -4049,14 +4254,15 @@ module Peddler
       # @param feature_name [String] The name of the feature.
       # @param seller_sku [String] Used to identify an item in the given marketplace. `sellerSku` is qualified by the
       #   seller's `sellerId`, which is included with every operation that you submit.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_feature_sku(marketplace_id, feature_name, seller_sku)
+      def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           feature_name: Arguments.segment("feature_name", feature_name),
           seller_sku: Arguments.segment("seller_sku", seller_sku, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_feature_sku")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_sku", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_feature_sku")
       end
 
       # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
@@ -4064,12 +4270,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the list of features.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_features(marketplace_id)
+      def get_features(marketplace_id, rate_limit: 2.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_features")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_features", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_features")
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -4077,24 +4284,26 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_fulfillment_order(seller_fulfillment_order_id)
+      def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_fulfillment_order")
       end
 
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] GetFulfillmentPreviewRequest parameter
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_fulfillment_preview(body)
+      def get_fulfillment_preview(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_fulfillment_preview", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_fulfillment_preview")
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -4103,12 +4312,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
       #   `getFulfillmentOrder` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_package_tracking_details(package_number)
+      def get_package_tracking_details(package_number, rate_limit: 2.0)
         arguments = {
           package_number: Arguments.integer("package_number", package_number, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_package_tracking_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_package_tracking_details")
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
@@ -4119,22 +4329,24 @@ module Peddler
       #   specified time. An update is defined as any change in fulfillment order status, including the creation of a
       #   new fulfillment order.
       # @param next_token [String] A string token returned in the response to your previous request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_all_fulfillment_orders(query_start_date: nil, next_token: nil)
+      def list_all_fulfillment_orders(query_start_date: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           query_start_date: Arguments.string("query_start_date", query_start_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_all_fulfillment_orders}
-      def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil)
+      def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
           query_start_date: Arguments.string("query_start_date", query_start_date),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
@@ -4149,15 +4361,16 @@ module Peddler
       #   wants return reason codes.
       # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
       #   response object should be translated into.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil)
+      def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil, rate_limit: 2.0)
         arguments = {
           seller_sku: Arguments.string("seller_sku", seller_sku, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id),
           seller_fulfillment_order_id: Arguments.string("seller_fulfillment_order_id", seller_fulfillment_order_id),
           language: Arguments.string("language", language),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", Arguments.encode(arguments)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_return_reason_codes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.list_return_reason_codes")
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -4171,13 +4384,14 @@ module Peddler
       #   fulfillment order was created.
       # @param body [Hash, Array, String] The identifier assigned to the item by the seller when the fulfillment order
       #   was created.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
+      def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body, rate_limit: nil)
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.submit_fulfillment_order_status_update")
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -4186,13 +4400,14 @@ module Peddler
       # @param body [Hash, Array, String] The request body of the `updateFulfillmentOrder` operation.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_fulfillment_order(body, seller_fulfillment_order_id)
+      def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         arguments = {
           seller_fulfillment_order_id: Arguments.segment("seller_fulfillment_order_id", seller_fulfillment_order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.update_fulfillment_order", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.update_fulfillment_order")
       end
     end
 
@@ -4213,13 +4428,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param order_id [String] The ID of the order that you want to cancel.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_order(order_id, x_amzn_fulfillment_service_id: nil)
+      def cancel_order(order_id, x_amzn_fulfillment_service_id: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.cancel_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.cancel_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.cancel_order")
       end
 
       # Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -4228,13 +4444,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param body [Hash, Array, String] The request body schema for the `createOrder` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_order(body, x_amzn_fulfillment_service_id: nil)
+      def create_order(body, x_amzn_fulfillment_service_id: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.create_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.create_order", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.create_order")
       end
 
       # Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -4243,13 +4460,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param body [Hash, Array, String] The request body schema for the `getOffers` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_offers(body, x_amzn_fulfillment_service_id: nil)
+      def get_offers(body, x_amzn_fulfillment_service_id: nil, rate_limit: 5.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.get_offers")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_offers", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.get_offers")
       end
 
       # Retrieve a fulfillment order.
@@ -4258,14 +4476,15 @@ module Peddler
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param order_id [String] The ID of the order you want to retrieve.
       # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil)
+      def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id, last: true),
           shipments: Arguments.string("shipments", shipments),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.get_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.get_order")
       end
 
       # Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
@@ -4273,13 +4492,14 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param body [Hash, Array, String] The request body schema for the `getOrderPreview` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_preview(body, x_amzn_fulfillment_service_id: nil)
+      def get_order_preview(body, x_amzn_fulfillment_service_id: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.get_order_preview")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.get_order_preview", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.get_order_preview")
       end
 
       # Retrieve a list of fulfillment orders that match the criteria you specify.
@@ -4293,26 +4513,28 @@ module Peddler
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `pageToken` is `null`.
       # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
+      def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           updated_after: Arguments.string("updated_after", updated_after),
           page_token: Arguments.string("page_token", page_token),
           shipments: Arguments.string("shipments", shipments),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", Arguments.encode(arguments)), "fulfillment_outbound_2026_07_04.list_orders")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_orders}
-      def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil)
+      def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           updated_after: Arguments.string("updated_after", updated_after),
           page_token: Arguments.string("page_token", page_token),
           shipments: Arguments.string("shipments", shipments),
         }
-        PAGINATIONS.fetch("fulfillment_outbound_2026_07_04.list_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("fulfillment_outbound_2026_07_04.list_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Update and/or request shipment for a fulfillment order with an order hold on it.
@@ -4321,14 +4543,15 @@ module Peddler
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param order_id [String] The ID of the order that you want to update and/or request shipment of.
       # @param body [Hash, Array, String] The request body schema for the `updateOrder` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_order(order_id, body, x_amzn_fulfillment_service_id: nil)
+      def update_order(order_id, body, x_amzn_fulfillment_service_id: nil, rate_limit: 2.0)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_order")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.update_order")
       end
 
       # Request that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -4341,14 +4564,15 @@ module Peddler
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param order_id [String] The ID of the order that you want to update.
       # @param body [Hash, Array, String] The new status of the fulfillment order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_order_status(order_id, body, x_amzn_fulfillment_service_id: nil)
+      def update_order_status(order_id, body, x_amzn_fulfillment_service_id: nil, rate_limit: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_order_status")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_order_status", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.update_order_status")
       end
 
       # Update package information for a specific package in a fulfillment order. This is a sandbox-only operation and
@@ -4362,15 +4586,16 @@ module Peddler
       # @param order_id [String] The ID of the order that contains the package that you want to update.
       # @param package_id [String] The ID of the package that you want to update.
       # @param body [Hash, Array, String] The new package information.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_package(order_id, package_id, body, x_amzn_fulfillment_service_id: nil)
+      def update_package(order_id, package_id, body, x_amzn_fulfillment_service_id: nil, rate_limit: nil)
         arguments = {
           x_amzn_fulfillment_service_id: Arguments.string("x_amzn_fulfillment_service_id", x_amzn_fulfillment_service_id),
           order_id: Arguments.segment("order_id", order_id),
           package_id: Arguments.segment("package_id", package_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", Arguments.encode(arguments, "body")), "fulfillment_outbound_2026_07_04.update_package")
+        Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.update_package", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.update_package")
       end
     end
 
@@ -4389,24 +4614,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Information required to create the government invoice.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_government_invoice(body)
+      def create_government_invoice(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", Arguments.encode(arguments, "body")), "invoices_2024_06_19.create_government_invoice")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_government_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.create_government_invoice")
       end
 
       # Creates an invoice export request.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Information required to create the export request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_invoices_export(body)
+      def create_invoices_export(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", Arguments.encode(arguments, "body")), "invoices_2024_06_19.create_invoices_export")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.create_invoices_export", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.create_invoices_export")
       end
 
       # Retrieve the URL of an invoice document.
@@ -4421,8 +4648,9 @@ module Peddler
       # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
       #   which the invoice will be created.
       # @param file_format [String] The file format of the invoice. The default is XML.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_government_invoice_document(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil, file_format: nil)
+      def get_government_invoice_document(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil, file_format: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           transaction_type: Arguments.string("transaction_type", transaction_type, required: true),
@@ -4431,7 +4659,7 @@ module Peddler
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id),
           file_format: Arguments.string("file_format", file_format),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", Arguments.encode(arguments)), "invoices_2024_06_19.get_government_invoice_document")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_government_invoice_document")
       end
 
       # Retrieve the status of an invoice generation request.
@@ -4445,8 +4673,9 @@ module Peddler
       #   options using the `getInvoicesAttributes` operation.
       # @param inbound_plan_id [String] The unique inbound plan identifier in which the shipment is contained and for
       #   which the invoice will be created.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_government_invoice_status(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil)
+      def get_government_invoice_status(marketplace_id, transaction_type, shipment_id, invoice_type, inbound_plan_id: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           transaction_type: Arguments.string("transaction_type", transaction_type, required: true),
@@ -4454,7 +4683,7 @@ module Peddler
           invoice_type: Arguments.string("invoice_type", invoice_type, required: true),
           inbound_plan_id: Arguments.string("inbound_plan_id", inbound_plan_id),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", Arguments.encode(arguments)), "invoices_2024_06_19.get_government_invoice_status")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_government_invoice_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_government_invoice_status")
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -4466,14 +4695,15 @@ module Peddler
       # @param invoice_id [String] The invoice identifier.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice(marketplace_id, invoice_id, warehouse_code: nil)
+      def get_invoice(marketplace_id, invoice_id, warehouse_code: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           invoice_id: Arguments.segment("invoice_id", invoice_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoice")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoice")
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -4510,8 +4740,9 @@ module Peddler
       # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
+      def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
           transaction_identifier_name: Arguments.string("transaction_identifier_name", transaction_identifier_name),
           page_size: Arguments.integer("page_size", page_size),
@@ -4529,11 +4760,12 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoices}
-      def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil)
+      def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
           transaction_identifier_name: Arguments.string("transaction_identifier_name", transaction_identifier_name),
           page_size: Arguments.integer("page_size", page_size),
@@ -4551,7 +4783,7 @@ module Peddler
           sort_by: Arguments.string("sort_by", sort_by),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices").pages(@engine, arguments)
+        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns marketplace-dependent schemas and their respective set of possible values.
@@ -4560,13 +4792,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace identifier.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_attributes(marketplace_id, warehouse_code: nil)
+      def get_invoices_attributes(marketplace_id, warehouse_code: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_attributes")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_attributes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices_attributes")
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -4576,13 +4809,14 @@ module Peddler
       # @param invoices_document_id [String] The export document identifier.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_document(invoices_document_id, warehouse_code: nil)
+      def get_invoices_document(invoices_document_id, warehouse_code: nil, rate_limit: nil)
         arguments = {
           invoices_document_id: Arguments.segment("invoices_document_id", invoices_document_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_document")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices_document")
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
@@ -4591,13 +4825,14 @@ module Peddler
       # @param export_id [String] The unique identifier for the export.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_export(export_id, warehouse_code: nil)
+      def get_invoices_export(export_id, warehouse_code: nil, rate_limit: nil)
         arguments = {
           export_id: Arguments.segment("export_id", export_id, last: true),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_export")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_export", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices_export")
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -4618,8 +4853,9 @@ module Peddler
       # @param status [String] Return exports matching the status specified.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
+      def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           date_start: Arguments.string("date_start", date_start),
@@ -4629,11 +4865,12 @@ module Peddler
           status: Arguments.string("status", status),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", Arguments.encode(arguments)), "invoices_2024_06_19.get_invoices_exports")
+        Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices_exports")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_invoices_exports}
-      def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil)
+      def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           date_start: Arguments.string("date_start", date_start),
@@ -4643,7 +4880,7 @@ module Peddler
           status: Arguments.string("status", status),
           warehouse_code: Arguments.string("warehouse_code", warehouse_code),
         }
-        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices_exports").pages(@engine, arguments)
+        PAGINATIONS.fetch("invoices_2024_06_19.get_invoices_exports").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -4676,15 +4913,16 @@ module Peddler
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
       #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
       #   when a localization is not available in the specified locale.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
+      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", Arguments.encode(arguments)), "listings_items_2020_09_01.delete_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.delete_listings_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_items_2020_09_01.delete_listings_item")
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -4702,8 +4940,9 @@ module Peddler
       #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
       #   when a localization is not available in the specified locale.
       # @param body [Hash, Array, String] The request body schema for the patchListingsItem operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
+      def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
@@ -4711,7 +4950,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", Arguments.encode(arguments, "body")), "listings_items_2020_09_01.patch_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.patch_listings_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "listings_items_2020_09_01.patch_listings_item")
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -4728,8 +4967,9 @@ module Peddler
       #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
       #   when a localization is not available in the specified locale.
       # @param body [Hash, Array, String] The request body schema for the putListingsItem operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
+      def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
@@ -4737,7 +4977,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", Arguments.encode(arguments, "body")), "listings_items_2020_09_01.put_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2020_09_01.put_listings_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "listings_items_2020_09_01.put_listings_item")
       end
     end
 
@@ -4765,15 +5005,16 @@ module Peddler
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
+      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           issue_locale: Arguments.string("issue_locale", issue_locale),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", Arguments.encode(arguments)), "listings_items_2021_08_01.delete_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.delete_listings_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.delete_listings_item")
       end
 
       # Returns details about a listings item for a selling partner.
@@ -4787,8 +5028,9 @@ module Peddler
       #   when localization is not available for the specified locale.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
       #   `summaries`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"])
+      def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"], rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
@@ -4796,7 +5038,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", Arguments.encode(arguments)), "listings_items_2021_08_01.get_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.get_listings_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.get_listings_item")
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -4813,8 +5055,9 @@ module Peddler
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
       # @param body [Hash, Array, String] The request body schema for the `patchListingsItem` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
+      def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
@@ -4824,7 +5067,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", Arguments.encode(arguments, "body")), "listings_items_2021_08_01.patch_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.patch_listings_item")
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -4840,8 +5083,9 @@ module Peddler
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
       # @param body [Hash, Array, String] The request body schema for the `putListingsItem` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil)
+      def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil, issue_locale: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id),
           sku: Arguments.segment("sku", sku, last: true),
@@ -4851,7 +5095,7 @@ module Peddler
           issue_locale: Arguments.string("issue_locale", issue_locale),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", Arguments.encode(arguments, "body")), "listings_items_2021_08_01.put_listings_item")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.put_listings_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.put_listings_item")
       end
 
       # Search for and return a list of selling partner listings items and their respective details.
@@ -4897,8 +5141,9 @@ module Peddler
       # @param page_size [Integer] The number of results that you want to include on each page.
       # @param page_token [String] A token that you can use to fetch a specific page when there are multiple pages of
       #   results.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_listings_items(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
+      def search_listings_items(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -4920,11 +5165,12 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           page_token: Arguments.string("page_token", page_token),
         }
-        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", Arguments.encode(arguments)), "listings_items_2021_08_01.search_listings_items")
+        Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.search_listings_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_listings_items}
-      def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil)
+      def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil, rate_limit: 5.0)
         arguments = {
           seller_id: Arguments.segment("seller_id", seller_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -4946,7 +5192,7 @@ module Peddler
           page_size: Arguments.integer("page_size", page_size),
           page_token: Arguments.string("page_token", page_token),
         }
-        PAGINATIONS.fetch("listings_items_2021_08_01.search_listings_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("listings_items_2021_08_01.search_listings_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -4977,8 +5223,9 @@ module Peddler
       #   "en_US" when a localization is not available in the specified locale.
       # @param product_type [String] The product type of the item. When provided with the brand name, the API evaluates
       #   GTIN exemption restrictions in addition to brand restrictions for the specified product type.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil, product_type: nil)
+      def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil, product_type: nil, rate_limit: 5.0)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
           condition_type: Arguments.string("condition_type", condition_type),
@@ -4987,7 +5234,7 @@ module Peddler
           reason_locale: Arguments.string("reason_locale", reason_locale),
           product_type: Arguments.string("product_type", product_type),
         }
-        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", Arguments.encode(arguments)), "listings_restrictions_2021_08_01.get_listings_restrictions")
+        Response.from_parts(@engine.operation("listings_restrictions_2021_08_01.get_listings_restrictions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_restrictions_2021_08_01.get_listings_restrictions")
       end
     end
 
@@ -5006,24 +5253,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment to cancel.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id)
+      def cancel_shipment(shipment_id, rate_limit: 1.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", Arguments.encode(arguments)), "merchant_fulfillment_v0.cancel_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.cancel_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "merchant_fulfillment_v0.cancel_shipment")
       end
 
       # Create a shipment with the information provided.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request schema for the `CreateShipment` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_shipment(body)
+      def create_shipment(body, rate_limit: 2.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.create_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.create_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "merchant_fulfillment_v0.create_shipment")
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -5031,36 +5280,39 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request schema for the `GetAdditionalSellerInputs` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_additional_seller_inputs(body)
+      def get_additional_seller_inputs(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.get_additional_seller_inputs")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_additional_seller_inputs", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "merchant_fulfillment_v0.get_additional_seller_inputs")
       end
 
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request schema for the `GetEligibleShipmentServices` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_eligible_shipment_services(body)
+      def get_eligible_shipment_services(body, rate_limit: 6.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", Arguments.encode(arguments, "body")), "merchant_fulfillment_v0.get_eligible_shipment_services")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_eligible_shipment_services", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "merchant_fulfillment_v0.get_eligible_shipment_services")
       end
 
       # Returns the shipment information for an existing shipment.
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id)
+      def get_shipment(shipment_id, rate_limit: 1.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", Arguments.encode(arguments)), "merchant_fulfillment_v0.get_shipment")
+        Response.from_parts(@engine.operation("merchant_fulfillment_v0.get_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "merchant_fulfillment_v0.get_shipment")
       end
     end
 
@@ -5086,14 +5338,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_customization_details(amazon_order_id, marketplace_ids, body)
+      def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", Arguments.encode(arguments, "body")), "messaging_v1.confirm_customization_details")
+        Response.from_parts(@engine.operation("messaging_v1.confirm_customization_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.confirm_customization_details")
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
@@ -5104,14 +5357,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body)
+      def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_delivery_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_delivery_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_confirm_delivery_details")
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
@@ -5122,14 +5376,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_confirm_order_details(amazon_order_id, marketplace_ids, body)
+      def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_order_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_order_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_confirm_order_details")
       end
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
@@ -5141,14 +5396,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_confirm_service_details(amazon_order_id, marketplace_ids, body)
+      def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", Arguments.encode(arguments, "body")), "messaging_v1.create_confirm_service_details")
+        Response.from_parts(@engine.operation("messaging_v1.create_confirm_service_details", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_confirm_service_details")
       end
 
       # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
@@ -5160,14 +5416,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_digital_access_key(amazon_order_id, marketplace_ids, body)
+      def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", Arguments.encode(arguments, "body")), "messaging_v1.create_digital_access_key")
+        Response.from_parts(@engine.operation("messaging_v1.create_digital_access_key", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_digital_access_key")
       end
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
@@ -5179,14 +5436,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_legal_disclosure(amazon_order_id, marketplace_ids, body)
+      def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", Arguments.encode(arguments, "body")), "messaging_v1.create_legal_disclosure")
+        Response.from_parts(@engine.operation("messaging_v1.create_legal_disclosure", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_legal_disclosure")
       end
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
@@ -5198,14 +5456,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_unexpected_problem(amazon_order_id, marketplace_ids, body)
+      def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", Arguments.encode(arguments, "body")), "messaging_v1.create_unexpected_problem")
+        Response.from_parts(@engine.operation("messaging_v1.create_unexpected_problem", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_unexpected_problem")
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -5216,14 +5475,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_warranty(amazon_order_id, marketplace_ids, body)
+      def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.create_warranty", Arguments.encode(arguments, "body")), "messaging_v1.create_warranty")
+        Response.from_parts(@engine.operation("messaging_v1.create_warranty", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.create_warranty")
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -5233,13 +5493,14 @@ module Peddler
       #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_attributes(amazon_order_id, marketplace_ids)
+      def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.get_attributes", Arguments.encode(arguments)), "messaging_v1.get_attributes")
+        Response.from_parts(@engine.operation("messaging_v1.get_attributes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "messaging_v1.get_attributes")
       end
 
       # Returns a list of message types that are available for an order that you specify. A message type is represented
@@ -5251,13 +5512,14 @@ module Peddler
       #   of available message types.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_messaging_actions_for_order(amazon_order_id, marketplace_ids)
+      def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", Arguments.encode(arguments)), "messaging_v1.get_messaging_actions_for_order")
+        Response.from_parts(@engine.operation("messaging_v1.get_messaging_actions_for_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "messaging_v1.get_messaging_actions_for_order")
       end
 
       # Sends a message providing the buyer an invoice
@@ -5268,14 +5530,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
       #   order was placed. You can only specify one marketplace.
       # @param body [Hash, Array, String] This contains the message body for a message.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def send_invoice(amazon_order_id, marketplace_ids, body)
+      def send_invoice(amazon_order_id, marketplace_ids, body, rate_limit: nil)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("messaging_v1.send_invoice", Arguments.encode(arguments, "body")), "messaging_v1.send_invoice")
+        Response.from_parts(@engine.operation("messaging_v1.send_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.send_invoice")
       end
     end
 
@@ -5301,12 +5564,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request schema for the `createDestination` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_destination(body)
+      def create_destination(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.create_destination", Arguments.encode(arguments, "body")), "notifications_v1.create_destination")
+        Response.from_parts(@engine.operation("notifications_v1.create_destination", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "notifications_v1.create_destination")
       end
 
       # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
@@ -5319,13 +5583,14 @@ module Peddler
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_subscription(body, notification_type)
+      def create_subscription(body, notification_type, rate_limit: 1.0)
         arguments = {
           notification_type: Arguments.segment("notification_type", notification_type, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.create_subscription", Arguments.encode(arguments, "body")), "notifications_v1.create_subscription")
+        Response.from_parts(@engine.operation("notifications_v1.create_subscription", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "notifications_v1.create_subscription")
       end
 
       # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
@@ -5334,12 +5599,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier for the destination that you want to delete.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_destination(destination_id)
+      def delete_destination(destination_id, rate_limit: 1.0)
         arguments = {
           destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.delete_destination", Arguments.encode(arguments)), "notifications_v1.delete_destination")
+        Response.from_parts(@engine.operation("notifications_v1.delete_destination", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.delete_destination")
       end
 
       # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
@@ -5354,13 +5620,14 @@ module Peddler
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_subscription_by_id(subscription_id, notification_type)
+      def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         arguments = {
           subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
           notification_type: Arguments.segment("notification_type", notification_type),
         }
-        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", Arguments.encode(arguments)), "notifications_v1.delete_subscription_by_id")
+        Response.from_parts(@engine.operation("notifications_v1.delete_subscription_by_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.delete_subscription_by_id")
       end
 
       # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
@@ -5370,12 +5637,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier generated when you created the destination.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_destination(destination_id)
+      def get_destination(destination_id, rate_limit: 1.0)
         arguments = {
           destination_id: Arguments.segment("destination_id", destination_id, last: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_destination", Arguments.encode(arguments)), "notifications_v1.get_destination")
+        Response.from_parts(@engine.operation("notifications_v1.get_destination", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_destination")
       end
 
       # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
@@ -5383,11 +5651,12 @@ module Peddler
       # Selling Partner API Developer Guide.
       #
       # @note This operation can make a static sandbox call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_destinations
+      def get_destinations(rate_limit: 1.0)
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("notifications_v1.get_destinations", Arguments.encode(arguments)), "notifications_v1.get_destinations")
+        Response.from_parts(@engine.operation("notifications_v1.get_destinations", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_destinations")
       end
 
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
@@ -5400,13 +5669,14 @@ module Peddler
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
       # @param payload_version [String] The version of the payload object to be used in the notification.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_subscription(notification_type, payload_version: nil)
+      def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
         arguments = {
           notification_type: Arguments.segment("notification_type", notification_type, last: true),
           payload_version: Arguments.string("payload_version", payload_version),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription", Arguments.encode(arguments)), "notifications_v1.get_subscription")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_subscription")
       end
 
       # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
@@ -5419,13 +5689,14 @@ module Peddler
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_subscription_by_id(subscription_id, notification_type)
+      def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         arguments = {
           subscription_id: Arguments.segment("subscription_id", subscription_id, last: true),
           notification_type: Arguments.segment("notification_type", notification_type),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", Arguments.encode(arguments)), "notifications_v1.get_subscription_by_id")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscription_by_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_subscription_by_id")
       end
 
       # Returns information about subscriptions of the specified notification type. You can use this API to retrieve all
@@ -5447,26 +5718,28 @@ module Peddler
       #   value is 100. Default is 30.
       # @param next_token [String] A token to retrieve the next page of results. If this field is not empty in a
       #   response, pass its value in the next request to retrieve the next page.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_subscriptions(notification_types, payload_version: nil, page_size: 30, next_token: nil)
+      def get_subscriptions(notification_types, payload_version: nil, page_size: 30, next_token: nil, rate_limit: 1.0)
         arguments = {
           notification_types: Arguments.array("notification_types", notification_types, required: true),
           payload_version: Arguments.string("payload_version", payload_version),
           page_size: Arguments.integer("page_size", page_size),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", Arguments.encode(arguments)), "notifications_v1.get_subscriptions")
+        Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_subscriptions")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_subscriptions}
-      def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil)
+      def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil, rate_limit: 1.0)
         arguments = {
           notification_types: Arguments.array("notification_types", notification_types, required: true),
           payload_version: Arguments.string("payload_version", payload_version),
           page_size: Arguments.integer("page_size", page_size),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("notifications_v1.get_subscriptions").pages(@engine, arguments)
+        PAGINATIONS.fetch("notifications_v1.get_subscriptions").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For
@@ -5477,13 +5750,14 @@ module Peddler
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def send_test_notification(body, notification_type)
+      def send_test_notification(body, notification_type, rate_limit: 1.0)
         arguments = {
           notification_type: Arguments.segment("notification_type", notification_type),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", Arguments.encode(arguments, "body")), "notifications_v1.send_test_notification")
+        Response.from_parts(@engine.operation("notifications_v1.send_test_notification", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "notifications_v1.send_test_notification")
       end
     end
 
@@ -5508,49 +5782,53 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash, Array, String] Request body of `confirmShipment`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def confirm_shipment(order_id, payload)
+      def confirm_shipment(order_id, payload, rate_limit: 2.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", Arguments.encode(arguments, "payload")), "orders_v0.confirm_shipment")
+        Response.from_parts(@engine.operation("orders_v0.confirm_shipment", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "orders_v0.confirm_shipment")
       end
 
       # Returns the order that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(order_id)
+      def get_order(order_id, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order", Arguments.encode(arguments)), "orders_v0.get_order")
+        Response.from_parts(@engine.operation("orders_v0.get_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order")
       end
 
       # Returns the shipping address for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_address(order_id)
+      def get_order_address(order_id, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_address", Arguments.encode(arguments)), "orders_v0.get_order_address")
+        Response.from_parts(@engine.operation("orders_v0.get_order_address", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_address")
       end
 
       # Returns buyer information for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_buyer_info(order_id)
+      def get_order_buyer_info(order_id, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", Arguments.encode(arguments)), "orders_v0.get_order_buyer_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_buyer_info", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_buyer_info")
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -5566,22 +5844,24 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_items(order_id, next_token: nil)
+      def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items", Arguments.encode(arguments)), "orders_v0.get_order_items")
+        Response.from_parts(@engine.operation("orders_v0.get_order_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_items")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items}
-      def get_order_items_pages(order_id, next_token: nil)
+      def get_order_items_pages(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments)
+        PAGINATIONS.fetch("orders_v0.get_order_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns buyer information for the order items in the order that you specify.
@@ -5589,34 +5869,37 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_items_buyer_info(order_id, next_token: nil)
+      def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", Arguments.encode(arguments)), "orders_v0.get_order_items_buyer_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_items_buyer_info")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_order_items_buyer_info}
-      def get_order_items_buyer_info_pages(order_id, next_token: nil)
+      def get_order_items_buyer_info_pages(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments)
+        PAGINATIONS.fetch("orders_v0.get_order_items_buyer_info").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns regulated information for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The Amazon order identifier in 3-7-7 format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_regulated_info(order_id)
+      def get_order_regulated_info(order_id, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", Arguments.encode(arguments)), "orders_v0.get_order_regulated_info")
+        Response.from_parts(@engine.operation("orders_v0.get_order_regulated_info", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_regulated_info")
       end
 
       # Returns orders that are created or updated during the specified time period. If you want to return specific
@@ -5711,8 +5994,9 @@ module Peddler
       # @param latest_delivery_date_after [String] Use this date to select orders with a latest delivery date after (or
       #   at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
       #   format.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
+      def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil, rate_limit: 0.0167)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
           created_before: Arguments.string("created_before", created_before),
@@ -5737,11 +6021,12 @@ module Peddler
           latest_delivery_date_before: Arguments.string("latest_delivery_date_before", latest_delivery_date_before),
           latest_delivery_date_after: Arguments.string("latest_delivery_date_after", latest_delivery_date_after),
         }
-        Response.from_parts(@engine.operation("orders_v0.get_orders", Arguments.encode(arguments)), "orders_v0.get_orders")
+        Response.from_parts(@engine.operation("orders_v0.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
-      def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil)
+      def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil, rate_limit: 0.0167)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
           created_before: Arguments.string("created_before", created_before),
@@ -5766,7 +6051,7 @@ module Peddler
           latest_delivery_date_before: Arguments.string("latest_delivery_date_before", latest_delivery_date_before),
           latest_delivery_date_after: Arguments.string("latest_delivery_date_after", latest_delivery_date_after),
         }
-        PAGINATIONS.fetch("orders_v0.get_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("orders_v0.get_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Update the shipment status for an order that you specify.
@@ -5774,13 +6059,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash, Array, String] The request body for the `updateShipmentStatus` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_shipment_status(order_id, payload)
+      def update_shipment_status(order_id, payload, rate_limit: 5.0)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", Arguments.encode(arguments, "payload")), "orders_v0.update_shipment_status")
+        Response.from_parts(@engine.operation("orders_v0.update_shipment_status", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "orders_v0.update_shipment_status")
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -5788,13 +6074,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The Amazon order identifier in 3-7-7 format.
       # @param payload [Hash, Array, String] The request body for the `updateVerificationStatus` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_verification_status(order_id, payload)
+      def update_verification_status(order_id, payload, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id),
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("orders_v0.update_verification_status", Arguments.encode(arguments, "payload")), "orders_v0.update_verification_status")
+        Response.from_parts(@engine.operation("orders_v0.update_verification_status", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "orders_v0.update_verification_status")
       end
     end
 
@@ -5818,13 +6105,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier.
       # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(order_id, included_data: nil)
+      def get_order(order_id, included_data: nil, rate_limit: 0.5)
         arguments = {
           order_id: Arguments.segment("order_id", order_id, last: true),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", Arguments.encode(arguments)), "orders_2026_01_01.get_order")
+        Response.from_parts(@engine.operation("orders_2026_01_01.get_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_2026_01_01.get_order")
       end
 
       # Returns orders created or updated during the time period that you specify. You can filter the response for
@@ -5865,8 +6153,9 @@ module Peddler
       #   you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not
       #   receive a `nextToken` value on the last page.
       # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
+      def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, rate_limit: 0.0056)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
           created_before: Arguments.string("created_before", created_before),
@@ -5879,11 +6168,12 @@ module Peddler
           pagination_token: Arguments.string("pagination_token", pagination_token),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", Arguments.encode(arguments)), "orders_2026_01_01.search_orders")
+        Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_2026_01_01.search_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_orders}
-      def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil)
+      def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, rate_limit: 0.0056)
         arguments = {
           created_after: Arguments.string("created_after", created_after),
           created_before: Arguments.string("created_before", created_before),
@@ -5896,7 +6186,7 @@ module Peddler
           pagination_token: Arguments.string("pagination_token", pagination_token),
           included_data: Arguments.array("included_data", included_data),
         }
-        PAGINATIONS.fetch("orders_2026_01_01.search_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("orders_2026_01_01.search_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -5930,13 +6220,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimate_for_asin(body, asin)
+      def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         arguments = {
           asin: Arguments.segment("asin", asin),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimate_for_asin")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_asin", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "product_fees_v0.get_my_fees_estimate_for_asin")
       end
 
       # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
@@ -5962,25 +6253,27 @@ module Peddler
       # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
       # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimate_for_sku(body, seller_sku)
+      def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         arguments = {
           seller_sku: Arguments.segment("seller_sku", seller_sku),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimate_for_sku")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimate_for_sku", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "product_fees_v0.get_my_fees_estimate_for_sku")
       end
 
       # Returns the estimated fees for a list of products.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body schema for the getMyFeesEstimates operation
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimates(body)
+      def get_my_fees_estimates(body, rate_limit: 0.5)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", Arguments.encode(arguments, "body")), "product_fees_v0.get_my_fees_estimates")
+        Response.from_parts(@engine.operation("product_fees_v0.get_my_fees_estimates", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "product_fees_v0.get_my_fees_estimates")
       end
     end
 
@@ -6014,8 +6307,9 @@ module Peddler
       #   provide in the Skus parameter. Possible values: Asin, Sku.
       # @param customer_type [String] Indicates whether to request pricing information from the point of view of
       #   Consumer or Business buyers. Default is Consumer.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil)
+      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asins: Arguments.array("asins", asins),
@@ -6023,7 +6317,7 @@ module Peddler
           item_type: Arguments.string("item_type", item_type, required: true),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", Arguments.encode(arguments)), "product_pricing_v0.get_competitive_pricing")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_competitive_pricing", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_competitive_pricing")
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
@@ -6035,15 +6329,16 @@ module Peddler
       #   values: New, Used, Collectible, Refurbished, Club.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil)
+      def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           item_condition: Arguments.string("item_condition", item_condition, required: true),
           asin: Arguments.segment("asin", asin),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", Arguments.encode(arguments)), "product_pricing_v0.get_item_offers")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_item_offers")
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -6051,12 +6346,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_item_offers_batch_request_body [Hash, Array, String] The request associated with the
       #   `getItemOffersBatch` API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_item_offers_batch(get_item_offers_batch_request_body)
+      def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         arguments = {
           body: Arguments.body("get_item_offers_batch_request_body", get_item_offers_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", Arguments.encode(arguments, "get_item_offers_batch_request_body")), "product_pricing_v0.get_item_offers_batch")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_item_offers_batch", Arguments.encode(arguments, "get_item_offers_batch_request_body"), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_item_offers_batch")
       end
 
       # Returns the lowest priced offers for a single SKU listing.
@@ -6073,15 +6369,16 @@ module Peddler
       # @param seller_sku [String] Identifies an item in the given marketplace. SellerSKU is qualified by the seller's
       #   SellerId, which is included with every operation that you submit.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil)
+      def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           item_condition: Arguments.string("item_condition", item_condition, required: true),
           seller_sku: Arguments.segment("seller_sku", seller_sku),
           customer_type: Arguments.string("customer_type", customer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", Arguments.encode(arguments)), "product_pricing_v0.get_listing_offers")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_listing_offers")
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -6089,12 +6386,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_listing_offers_batch_request_body [Hash, Array, String] The request associated with the
       #   `getListingOffersBatch` API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_listing_offers_batch(get_listing_offers_batch_request_body)
+      def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         arguments = {
           body: Arguments.body("get_listing_offers_batch_request_body", get_listing_offers_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", Arguments.encode(arguments, "get_listing_offers_batch_request_body")), "product_pricing_v0.get_listing_offers_batch")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_listing_offers_batch", Arguments.encode(arguments, "get_listing_offers_batch_request_body"), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_listing_offers_batch")
       end
 
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -6118,8 +6416,9 @@ module Peddler
       #   Collectible, Refurbished, Club.
       # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
       #   Default is B2C.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil)
+      def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil, rate_limit: 0.5)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           asins: Arguments.array("asins", asins),
@@ -6128,7 +6427,7 @@ module Peddler
           item_condition: Arguments.string("item_condition", item_condition),
           offer_type: Arguments.string("offer_type", offer_type),
         }
-        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", Arguments.encode(arguments)), "product_pricing_v0.get_pricing")
+        Response.from_parts(@engine.operation("product_pricing_v0.get_pricing", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_pricing_v0.get_pricing")
       end
     end
 
@@ -6151,12 +6450,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param requests [Hash, Array, String] The batch of `getCompetitiveSummary` requests.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_competitive_summary(requests)
+      def get_competitive_summary(requests, rate_limit: 0.033)
         arguments = {
           body: Arguments.body("requests", requests, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", Arguments.encode(arguments, "requests")), "product_pricing_2022_05_01.get_competitive_summary")
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_competitive_summary", Arguments.encode(arguments, "requests"), Arguments.rate_limit(rate_limit)), "product_pricing_2022_05_01.get_competitive_summary")
       end
 
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
@@ -6169,12 +6469,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_featured_offer_expected_price_batch_request_body [Hash, Array, String] The batch of
       #   `getFeaturedOfferExpectedPrice` requests.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body)
+      def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body, rate_limit: 0.033)
         arguments = {
           body: Arguments.body("get_featured_offer_expected_price_batch_request_body", get_featured_offer_expected_price_batch_request_body, required: true),
         }
-        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", Arguments.encode(arguments, "get_featured_offer_expected_price_batch_request_body")), "product_pricing_2022_05_01.get_featured_offer_expected_price_batch")
+        Response.from_parts(@engine.operation("product_pricing_2022_05_01.get_featured_offer_expected_price_batch", Arguments.encode(arguments, "get_featured_offer_expected_price_batch_request_body"), Arguments.rate_limit(rate_limit)), "product_pricing_2022_05_01.get_featured_offer_expected_price_batch")
       end
     end
 
@@ -6215,8 +6516,9 @@ module Peddler
       # @param parentage_level [String] The parentage level of the listing to retrieve a schema for. When provided, the
       #   schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in
       #   a smaller schema with fewer conditions.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil)
+      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil, rate_limit: 5.0)
         arguments = {
           product_type: Arguments.segment("product_type", product_type, last: true),
           seller_id: Arguments.string("seller_id", seller_id),
@@ -6227,7 +6529,7 @@ module Peddler
           locale: Arguments.string("locale", locale),
           parentage_level: Arguments.string("parentage_level", parentage_level),
         }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", Arguments.encode(arguments)), "product_type_definitions_2020_09_01.get_definitions_product_type")
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.get_definitions_product_type", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_type_definitions_2020_09_01.get_definitions_product_type")
       end
 
       # Search for and return a list of Amazon product types that have definitions available.
@@ -6241,8 +6543,9 @@ module Peddler
       # @param locale [String] Locale for display names in response. Defaults to primary locale of the marketplace.
       # @param search_locale [String] Language used for `keywords` or `itemName` parameters. Defaults to primary locale
       #   of the marketplace.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil, search_locale: nil)
+      def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil, search_locale: nil, rate_limit: 5.0)
         arguments = {
           keywords: Arguments.array("keywords", keywords),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
@@ -6250,7 +6553,7 @@ module Peddler
           locale: Arguments.string("locale", locale),
           search_locale: Arguments.string("search_locale", search_locale),
         }
-        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", Arguments.encode(arguments)), "product_type_definitions_2020_09_01.search_definitions_product_types")
+        Response.from_parts(@engine.operation("product_type_definitions_2020_09_01.search_definitions_product_types", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "product_type_definitions_2020_09_01.search_definitions_product_types")
       end
     end
 
@@ -6271,14 +6574,15 @@ module Peddler
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
       # @param locale [String] The locale of the promotion. Formatted as an ISO 639 language code, followed by an
       #   underscore, followed by an ISO 3166-1 alpha-2 country code.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_promotion(promotion_id, included_data: nil, locale: "en_US")
+      def get_promotion(promotion_id, included_data: nil, locale: "en_US", rate_limit: 0.1)
         arguments = {
           promotion_id: Arguments.segment("promotion_id", promotion_id, last: true),
           included_data: Arguments.array("included_data", included_data),
           locale: Arguments.string("locale", locale),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", Arguments.encode(arguments)), "promotions_2025_12_01.get_promotion")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_promotion", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "promotions_2025_12_01.get_promotion")
       end
 
       # Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports
@@ -6300,8 +6604,9 @@ module Peddler
       #   operation can return empty pages.
       # @param limit [Integer] The maximum number of response results per page.
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
+      def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
           promotion_id: Arguments.segment("promotion_id", promotion_id),
           selection_id: Arguments.segment("selection_id", selection_id, last: true),
@@ -6311,11 +6616,12 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", Arguments.encode(arguments)), "promotions_2025_12_01.get_selection")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "promotions_2025_12_01.get_selection")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_selection}
-      def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil)
+      def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
           promotion_id: Arguments.segment("promotion_id", promotion_id),
           selection_id: Arguments.segment("selection_id", selection_id, last: true),
@@ -6325,7 +6631,7 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        PAGINATIONS.fetch("promotions_2025_12_01.get_selection").pages(@engine, arguments)
+        PAGINATIONS.fetch("promotions_2025_12_01.get_selection").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Search and filter promotions based on various criteria. Returns a paginated list of promotion summaries.
@@ -6363,8 +6669,9 @@ module Peddler
       #   diverges.
       # @param limit [Integer] The maximum number of response results per page.
       # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
+      def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           locale: Arguments.string("locale", locale),
@@ -6383,11 +6690,12 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", Arguments.encode(arguments)), "promotions_2025_12_01.search_promotions")
+        Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "promotions_2025_12_01.search_promotions")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#search_promotions}
-      def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil)
+      def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           locale: Arguments.string("locale", locale),
@@ -6406,7 +6714,7 @@ module Peddler
           limit: Arguments.integer("limit", limit),
           included_data: Arguments.array("included_data", included_data),
         }
-        PAGINATIONS.fetch("promotions_2025_12_01.search_promotions").pages(@engine, arguments)
+        PAGINATIONS.fetch("promotions_2025_12_01.search_promotions").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -6429,36 +6737,39 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `getSellingPartnerMetrics` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_selling_partner_metrics(body: nil)
+      def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.get_selling_partner_metrics")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.get_selling_partner_metrics", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "replenishment_2022_11_07.get_selling_partner_metrics")
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `listOfferMetrics` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_offer_metrics(body: nil)
+      def list_offer_metrics(body: nil, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.list_offer_metrics")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offer_metrics", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "replenishment_2022_11_07.list_offer_metrics")
       end
 
       # Returns the details of a selling partner's replenishment program offers.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the `listOffers` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_offers(body: nil)
+      def list_offers(body: nil, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body),
         }
-        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", Arguments.encode(arguments, "body")), "replenishment_2022_11_07.list_offers")
+        Response.from_parts(@engine.operation("replenishment_2022_11_07.list_offers", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "replenishment_2022_11_07.list_offers")
       end
     end
 
@@ -6479,12 +6790,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_report(report_id)
+      def cancel_report(report_id, rate_limit: 0.0222)
         arguments = {
           report_id: Arguments.segment("report_id", report_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", Arguments.encode(arguments)), "reports_2021_06_30.cancel_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.cancel_report")
       end
 
       # Cancels the report schedule that you specify.
@@ -6492,24 +6804,26 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_report_schedule(report_schedule_id)
+      def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
         arguments = {
           report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", Arguments.encode(arguments)), "reports_2021_06_30.cancel_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.cancel_report_schedule", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.cancel_report_schedule")
       end
 
       # Creates a report.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Information required to create the report.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_report(body)
+      def create_report(body, rate_limit: 0.0167)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", Arguments.encode(arguments, "body")), "reports_2021_06_30.create_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.create_report")
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -6517,12 +6831,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Information required to create the report schedule.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_report_schedule(body)
+      def create_report_schedule(body, rate_limit: 0.0222)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", Arguments.encode(arguments, "body")), "reports_2021_06_30.create_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.create_report_schedule", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.create_report_schedule")
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
@@ -6530,12 +6845,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_report(report_id)
+      def get_report(report_id, rate_limit: 2.0)
         arguments = {
           report_id: Arguments.segment("report_id", report_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", Arguments.encode(arguments)), "reports_2021_06_30.get_report")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_report")
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -6545,13 +6861,14 @@ module Peddler
       # @param enable_content_encoding_url_header [Boolean] When `true`, the Content-Encoding header on the returned URL
       #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
       #   automatic decompression by HTTP clients.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_report_document(report_document_id, enable_content_encoding_url_header: nil)
+      def get_report_document(report_document_id, enable_content_encoding_url_header: nil, rate_limit: 0.0167)
         arguments = {
           report_document_id: Arguments.segment("report_document_id", report_document_id, last: true),
           enable_content_encoding_url_header: Arguments.boolean("enable_content_encoding_url_header", enable_content_encoding_url_header),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", Arguments.encode(arguments)), "reports_2021_06_30.get_report_document")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_document", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_report_document")
       end
 
       # Returns report schedule details for the report schedule that you specify.
@@ -6559,12 +6876,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_report_schedule(report_schedule_id)
+      def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         arguments = {
           report_schedule_id: Arguments.segment("report_schedule_id", report_schedule_id, last: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", Arguments.encode(arguments)), "reports_2021_06_30.get_report_schedule")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedule", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_report_schedule")
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -6572,12 +6890,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_types [Array<String>] A list of report types used to filter report schedules. Refer to [Report
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_report_schedules(report_types)
+      def get_report_schedules(report_types, rate_limit: 0.0222)
         arguments = {
           report_types: Arguments.array("report_types", report_types, required: true),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", Arguments.encode(arguments)), "reports_2021_06_30.get_report_schedules")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_report_schedules", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_report_schedules")
       end
 
       # Returns report details for the reports that match the filters that you specify.
@@ -6600,8 +6919,9 @@ module Peddler
       #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
       #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
       #   other parameters will cause the request to fail.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
+      def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
           report_types: Arguments.array("report_types", report_types),
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
@@ -6611,11 +6931,12 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", Arguments.encode(arguments)), "reports_2021_06_30.get_reports")
+        Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_reports")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_reports}
-      def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil)
+      def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
           report_types: Arguments.array("report_types", report_types),
           processing_statuses: Arguments.array("processing_statuses", processing_statuses),
@@ -6625,7 +6946,7 @@ module Peddler
           created_until: Arguments.string("created_until", created_until),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("reports_2021_06_30.get_reports").pages(@engine, arguments)
+        PAGINATIONS.fetch("reports_2021_06_30.get_reports").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -6681,8 +7002,9 @@ module Peddler
       # @param amazon_program [String] Filters the results by the Amazon program that you specify. Do not include this
       #   filter if you want the response to include order metrics for all programs. **Example:** `AmazonHaul` returns
       #   order metrics for the Amazon Haul program only.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All", fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil)
+      def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All", fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil, rate_limit: 0.5)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           interval: Arguments.string("interval", interval, required: true),
@@ -6695,7 +7017,7 @@ module Peddler
           sku: Arguments.string("sku", sku),
           amazon_program: Arguments.string("amazon_program", amazon_program),
         }
-        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", Arguments.encode(arguments)), "sales_v1.get_order_metrics")
+        Response.from_parts(@engine.operation("sales_v1.get_order_metrics", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "sales_v1.get_order_metrics")
       end
     end
 
@@ -6725,15 +7047,16 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_transaction(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
+      def create_transaction(body, dest_account_digital_signature, amount_digital_signature, marketplace_id, rate_limit: nil)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
           amount_digital_signature: Arguments.string("amount_digital_signature", amount_digital_signature, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.create_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transaction", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.create_transaction")
       end
 
       # Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
@@ -6745,15 +7068,16 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
+      def create_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id, rate_limit: nil)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
           amount_digital_signature: Arguments.string("amount_digital_signature", amount_digital_signature, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.create_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.create_transfer_schedule", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.create_transfer_schedule")
       end
 
       # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
@@ -6764,13 +7088,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_schedule_transaction(transfer_schedule_id, marketplace_id)
+      def delete_schedule_transaction(transfer_schedule_id, marketplace_id, rate_limit: nil)
         arguments = {
           transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", Arguments.encode(arguments)), "seller_wallet_2024_03_01.delete_schedule_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.delete_schedule_transaction", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.delete_schedule_transaction")
       end
 
       # Retrieve a Seller Wallet bank account by Amazon account identifier.
@@ -6780,13 +7105,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_account(account_id, marketplace_id)
+      def get_account(account_id, marketplace_id, rate_limit: nil)
         arguments = {
           account_id: Arguments.segment("account_id", account_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_account")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_account", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.get_account")
       end
 
       # Find a transaction by the Amazon transaction identifier.
@@ -6796,13 +7122,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transaction(transaction_id, marketplace_id)
+      def get_transaction(transaction_id, marketplace_id, rate_limit: nil)
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transaction")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transaction", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.get_transaction")
       end
 
       # Retrieve a list of potential fees on a transaction.
@@ -6817,8 +7144,9 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transfer_preview(source_country_code, source_currency_code, destination_country_code, destination_currency_code, base_amount, marketplace_id)
+      def get_transfer_preview(source_country_code, source_currency_code, destination_country_code, destination_currency_code, base_amount, marketplace_id, rate_limit: nil)
         arguments = {
           source_country_code: Arguments.string("source_country_code", source_country_code, required: true),
           source_currency_code: Arguments.string("source_currency_code", source_currency_code, required: true),
@@ -6827,7 +7155,7 @@ module Peddler
           base_amount: Arguments.number("base_amount", base_amount, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transfer_preview")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_preview", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.get_transfer_preview")
       end
 
       # Find a particular Amazon Seller Wallet account transfer schedule.
@@ -6837,13 +7165,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transfer_schedule(transfer_schedule_id, marketplace_id)
+      def get_transfer_schedule(transfer_schedule_id, marketplace_id, rate_limit: nil)
         arguments = {
           transfer_schedule_id: Arguments.segment("transfer_schedule_id", transfer_schedule_id, last: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", Arguments.encode(arguments)), "seller_wallet_2024_03_01.get_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.get_transfer_schedule", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.get_transfer_schedule")
       end
 
       # Retrieve the balance in a given Seller Wallet bank account.
@@ -6853,13 +7182,14 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_account_balances(account_id, marketplace_id)
+      def list_account_balances(account_id, marketplace_id, rate_limit: nil)
         arguments = {
           account_id: Arguments.segment("account_id", account_id),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_account_balances")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_balances", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_account_balances")
       end
 
       # Retrieve a list of transactions for a given Seller Wallet bank account.
@@ -6873,24 +7203,26 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_account_transactions(account_id, marketplace_id, next_page_token: nil)
+      def list_account_transactions(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_account_transactions")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_account_transactions}
-      def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil)
+      def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_account_transactions").pages(@engine, arguments)
+        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_account_transactions").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Get Seller Wallet accounts for a seller.
@@ -6899,12 +7231,13 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_accounts(marketplace_id)
+      def list_accounts(marketplace_id, rate_limit: nil)
         arguments = {
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_accounts")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_accounts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_accounts")
       end
 
       # Retrieve transfer schedules of a Seller Wallet bank account.
@@ -6919,24 +7252,26 @@ module Peddler
       #   results, call the operation with this token and include the same arguments as the call that produced the
       #   token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can
       #   return empty pages.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_transfer_schedules(account_id, marketplace_id, next_page_token: nil)
+      def list_transfer_schedules(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", Arguments.encode(arguments)), "seller_wallet_2024_03_01.list_transfer_schedules")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_transfer_schedules}
-      def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil)
+      def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
           account_id: Arguments.string("account_id", account_id, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
         }
-        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_transfer_schedules").pages(@engine, arguments)
+        PAGINATIONS.fetch("seller_wallet_2024_03_01.list_transfer_schedules").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Update transfer schedule information. Returns a transfer belonging to the updated scheduled transfer request.
@@ -6948,15 +7283,16 @@ module Peddler
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id)
+      def update_transfer_schedule(body, dest_account_digital_signature, amount_digital_signature, marketplace_id, rate_limit: nil)
         arguments = {
           dest_account_digital_signature: Arguments.string("dest_account_digital_signature", dest_account_digital_signature, required: true),
           amount_digital_signature: Arguments.string("amount_digital_signature", amount_digital_signature, required: true),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", Arguments.encode(arguments, "body")), "seller_wallet_2024_03_01.update_transfer_schedule")
+        Response.from_parts(@engine.operation("seller_wallet_2024_03_01.update_transfer_schedule", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.update_transfer_schedule")
       end
     end
 
@@ -6980,22 +7316,24 @@ module Peddler
       # Returns information about a seller account and its marketplaces.
       #
       # @note This operation can make a static sandbox call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_account
+      def get_account(rate_limit: 0.016)
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_account", Arguments.encode(arguments)), "sellers_v1.get_account")
+        Response.from_parts(@engine.operation("sellers_v1.get_account", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "sellers_v1.get_account")
       end
 
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
       #
       # @note This operation can make a static sandbox call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_marketplace_participations
+      def get_marketplace_participations(rate_limit: 0.016)
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", Arguments.encode(arguments)), "sellers_v1.get_marketplace_participations")
+        Response.from_parts(@engine.operation("sellers_v1.get_marketplace_participations", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "sellers_v1.get_marketplace_participations")
       end
     end
 
@@ -7015,13 +7353,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param body [Hash, Array, String] Add appointment operation input details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
+      def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body")), "services_v1.add_appointment_for_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.add_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.add_appointment_for_service_job_by_service_job_id")
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -7031,14 +7370,15 @@ module Peddler
       #   `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash, Array, String] Input containing the resource details to be assigned to the appointment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def assign_appointment_resources(service_job_id, appointment_id, body)
+      def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", Arguments.encode(arguments, "body")), "services_v1.assign_appointment_resources")
+        Response.from_parts(@engine.operation("services_v1.assign_appointment_resources", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.assign_appointment_resources")
       end
 
       # Cancel a reservation.
@@ -7046,13 +7386,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param reservation_id [String] Reservation Identifier
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_reservation(reservation_id, marketplace_ids)
+      def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0)
         arguments = {
           reservation_id: Arguments.segment("reservation_id", reservation_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.cancel_reservation", Arguments.encode(arguments)), "services_v1.cancel_reservation")
+        Response.from_parts(@engine.operation("services_v1.cancel_reservation", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.cancel_reservation")
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -7061,25 +7402,27 @@ module Peddler
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
       #   job.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code)
+      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           cancellation_reason_code: Arguments.string("cancellation_reason_code", cancellation_reason_code, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.cancel_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.cancel_service_job_by_service_job_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.cancel_service_job_by_service_job_id")
       end
 
       # Completes the service job indicated by the service job identifier specified.
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def complete_service_job_by_service_job_id(service_job_id)
+      def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
         }
-        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.complete_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.complete_service_job_by_service_job_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.complete_service_job_by_service_job_id")
       end
 
       # Create a reservation.
@@ -7087,25 +7430,27 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Reservation details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_reservation(body, marketplace_ids)
+      def create_reservation(body, marketplace_ids, rate_limit: 5.0)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.create_reservation", Arguments.encode(arguments, "body")), "services_v1.create_reservation")
+        Response.from_parts(@engine.operation("services_v1.create_reservation", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.create_reservation")
       end
 
       # Creates an upload destination.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Upload document operation input details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_service_document_upload_destination(body)
+      def create_service_document_upload_destination(body, rate_limit: 5.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", Arguments.encode(arguments, "body")), "services_v1.create_service_document_upload_destination")
+        Response.from_parts(@engine.operation("services_v1.create_service_document_upload_destination", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.create_service_document_upload_destination")
       end
 
       # Gets appointment slots as per the service context specified.
@@ -7120,8 +7465,9 @@ module Peddler
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil)
+      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0)
         arguments = {
           asin: Arguments.string("asin", asin, required: true),
           store_id: Arguments.string("store_id", store_id, required: true),
@@ -7129,7 +7475,7 @@ module Peddler
           start_time: Arguments.string("start_time", start_time),
           end_time: Arguments.string("end_time", end_time),
         }
-        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", Arguments.encode(arguments)), "services_v1.get_appointment_slots")
+        Response.from_parts(@engine.operation("services_v1.get_appointment_slots", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_appointment_slots")
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -7143,15 +7489,16 @@ module Peddler
       # @param end_time [String] A time up to which the appointment slots will be retrieved. The specified time must be
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil)
+      def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           start_time: Arguments.string("start_time", start_time),
           end_time: Arguments.string("end_time", end_time),
         }
-        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", Arguments.encode(arguments)), "services_v1.get_appointmment_slots_by_job_id")
+        Response.from_parts(@engine.operation("services_v1.get_appointmment_slots_by_job_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_appointmment_slots_by_job_id")
       end
 
       # Provides capacity in fixed-size slots.
@@ -7161,26 +7508,28 @@ module Peddler
       # @param body [Hash, Array, String] Request body.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param next_page_token [String] Next page token returned in the response of your previous request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
           resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", Arguments.encode(arguments, "body")), "services_v1.get_fixed_slot_capacity")
+        Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.get_fixed_slot_capacity")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_fixed_slot_capacity}
-      def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
           resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        PAGINATIONS.fetch("services_v1.get_fixed_slot_capacity").pages(@engine, arguments)
+        PAGINATIONS.fetch("services_v1.get_fixed_slot_capacity").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Provides capacity slots in a format similar to availability records.
@@ -7190,38 +7539,41 @@ module Peddler
       # @param body [Hash, Array, String] Request body.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param next_page_token [String] Next page token returned in the response of your previous request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
           resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", Arguments.encode(arguments, "body")), "services_v1.get_range_slot_capacity")
+        Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.get_range_slot_capacity")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_range_slot_capacity}
-      def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
           resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           next_page_token: Arguments.string("next_page_token", next_page_token),
           body: Arguments.body("body", body, required: true),
         }
-        PAGINATIONS.fetch("services_v1.get_range_slot_capacity").pages(@engine, arguments)
+        PAGINATIONS.fetch("services_v1.get_range_slot_capacity").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] A service job identifier.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_service_job_by_service_job_id(service_job_id)
+      def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id, last: true),
         }
-        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", Arguments.encode(arguments)), "services_v1.get_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.get_service_job_by_service_job_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_service_job_by_service_job_id")
       end
 
       # Gets service job details for the specified filter query.
@@ -7261,8 +7613,9 @@ module Peddler
       #   supported is 20.
       # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
       #   is 50.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil)
+      def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
           product_order_ids: Arguments.array("product_order_ids", product_order_ids),
@@ -7283,11 +7636,12 @@ module Peddler
           required_skills: Arguments.array("required_skills", required_skills),
           store_ids: Arguments.array("store_ids", store_ids),
         }
-        Response.from_parts(@engine.operation("services_v1.get_service_jobs", Arguments.encode(arguments)), "services_v1.get_service_jobs")
+        Response.from_parts(@engine.operation("services_v1.get_service_jobs", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_service_jobs")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_service_jobs}
-      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil)
+      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
           product_order_ids: Arguments.array("product_order_ids", product_order_ids),
@@ -7308,7 +7662,7 @@ module Peddler
           required_skills: Arguments.array("required_skills", required_skills),
           store_ids: Arguments.array("store_ids", store_ids),
         }
-        PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments)
+        PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -7317,14 +7671,15 @@ module Peddler
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param appointment_id [String] An existing appointment identifier for the Service Job.
       # @param body [Hash, Array, String] Reschedule appointment operation input details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
+      def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           appointment_id: Arguments.segment("appointment_id", appointment_id, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body")), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
+        Response.from_parts(@engine.operation("services_v1.reschedule_appointment_for_service_job_by_service_job_id", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.reschedule_appointment_for_service_job_by_service_job_id")
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -7334,14 +7689,15 @@ module Peddler
       #   `getServiceJobs` operation of the Services API.
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash, Array, String] Appointment fulfillment data collection details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
+      def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
         arguments = {
           service_job_id: Arguments.segment("service_job_id", service_job_id),
           appointment_id: Arguments.segment("appointment_id", appointment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", Arguments.encode(arguments, "body")), "services_v1.set_appointment_fulfillment_data")
+        Response.from_parts(@engine.operation("services_v1.set_appointment_fulfillment_data", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.set_appointment_fulfillment_data")
       end
 
       # Update a reservation.
@@ -7350,14 +7706,15 @@ module Peddler
       # @param reservation_id [String] Reservation Identifier
       # @param body [Hash, Array, String] Reservation details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_reservation(reservation_id, body, marketplace_ids)
+      def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0)
         arguments = {
           reservation_id: Arguments.segment("reservation_id", reservation_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.update_reservation", Arguments.encode(arguments, "body")), "services_v1.update_reservation")
+        Response.from_parts(@engine.operation("services_v1.update_reservation", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.update_reservation")
       end
 
       # Update the schedule of the given resource.
@@ -7366,14 +7723,15 @@ module Peddler
       # @param resource_id [String] Resource (store) Identifier
       # @param body [Hash, Array, String] Schedule details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_schedule(resource_id, body, marketplace_ids)
+      def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0)
         arguments = {
           resource_id: Arguments.segment("resource_id", resource_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("services_v1.update_schedule", Arguments.encode(arguments, "body")), "services_v1.update_schedule")
+        Response.from_parts(@engine.operation("services_v1.update_schedule", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.update_schedule")
       end
     end
 
@@ -7392,12 +7750,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The shipment identifier for the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_invoice_status(shipment_id)
+      def get_invoice_status(shipment_id, rate_limit: 1.133)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", Arguments.encode(arguments)), "shipment_invoicing_v0.get_invoice_status")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_invoice_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipment_invoicing_v0.get_invoice_status")
       end
 
       # Returns the shipment details required to issue an invoice for the specified shipment.
@@ -7407,12 +7766,13 @@ module Peddler
       #   notification. For information about subscribing to notifications, see the
       #   {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
       #   Guide}.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_details(shipment_id)
+      def get_shipment_details(shipment_id, rate_limit: 1.133)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", Arguments.encode(arguments)), "shipment_invoicing_v0.get_shipment_details")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.get_shipment_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipment_invoicing_v0.get_shipment_details")
       end
 
       # Submits a shipment invoice document for a given shipment.
@@ -7420,13 +7780,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The identifier for the shipment.
       # @param body [Hash, Array, String]
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_invoice(shipment_id, body)
+      def submit_invoice(shipment_id, body, rate_limit: 1.133)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", Arguments.encode(arguments, "body")), "shipment_invoicing_v0.submit_invoice")
+        Response.from_parts(@engine.operation("shipment_invoicing_v0.submit_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipment_invoicing_v0.submit_invoice")
       end
     end
 
@@ -7448,70 +7809,76 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] Shipment Id to cancel a shipment
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id)
+      def cancel_shipment(shipment_id, rate_limit: 5.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
         }
-        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", Arguments.encode(arguments)), "shipping_v1.cancel_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.cancel_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v1.cancel_shipment")
       end
 
       # Create a new shipment.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] CreateShipmentRequest Body
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_shipment(body)
+      def create_shipment(body, rate_limit: 5.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.create_shipment", Arguments.encode(arguments, "body")), "shipping_v1.create_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.create_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v1.create_shipment")
       end
 
       # Verify if the current account is valid.
       #
       # @note This operation can make a static sandbox call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_account
+      def get_account(rate_limit: 5.0)
         # @type var arguments: Hash[Symbol, untyped]
         arguments = {}
-        Response.from_parts(@engine.operation("shipping_v1.get_account", Arguments.encode(arguments)), "shipping_v1.get_account")
+        Response.from_parts(@engine.operation("shipping_v1.get_account", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v1.get_account")
       end
 
       # Get service rates.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] GetRatesRequest body
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_rates(body)
+      def get_rates(body, rate_limit: 5.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_rates", Arguments.encode(arguments, "body")), "shipping_v1.get_rates")
+        Response.from_parts(@engine.operation("shipping_v1.get_rates", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v1.get_rates")
       end
 
       # Return the entire shipment object for the shipmentId.
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] Shipment id to return the entire shipment object
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id)
+      def get_shipment(shipment_id, rate_limit: 5.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_shipment", Arguments.encode(arguments)), "shipping_v1.get_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.get_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v1.get_shipment")
       end
 
       # Return the tracking information of a shipment.
       #
       # @note This operation can make a static sandbox call.
       # @param tracking_id [String] Tracking Id
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_tracking_information(tracking_id)
+      def get_tracking_information(tracking_id, rate_limit: 1.0)
         arguments = {
           tracking_id: Arguments.segment("tracking_id", tracking_id, last: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", Arguments.encode(arguments)), "shipping_v1.get_tracking_information")
+        Response.from_parts(@engine.operation("shipping_v1.get_tracking_information", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v1.get_tracking_information")
       end
 
       # Purchase shipping labels based on a given rate.
@@ -7519,25 +7886,27 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] Shipment id for purchase shipping label
       # @param body [Hash, Array, String] PurchaseShippingLabelRequest body
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def purchase_labels(shipment_id, body)
+      def purchase_labels(shipment_id, body, rate_limit: 5.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", Arguments.encode(arguments, "body")), "shipping_v1.purchase_labels")
+        Response.from_parts(@engine.operation("shipping_v1.purchase_labels", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v1.purchase_labels")
       end
 
       # Purchase shipping labels.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] PurchaseShipmentRequest body
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def purchase_shipment(body)
+      def purchase_shipment(body, rate_limit: 5.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v1.purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v1.purchase_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v1.purchase_shipment")
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -7546,14 +7915,15 @@ module Peddler
       # @param shipment_id [String] Shipment Id to retreive label
       # @param tracking_id [String] Tracking Id
       # @param body [Hash, Array, String] RetrieveShippingLabelRequest body
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def retrieve_shipping_label(shipment_id, tracking_id, body)
+      def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           tracking_id: Arguments.segment("tracking_id", tracking_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", Arguments.encode(arguments, "body")), "shipping_v1.retrieve_shipping_label")
+        Response.from_parts(@engine.operation("shipping_v1.retrieve_shipping_label", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v1.retrieve_shipping_label")
       end
     end
 
@@ -7575,13 +7945,14 @@ module Peddler
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil)
+      def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", Arguments.encode(arguments)), "shipping_v2.cancel_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.cancel_shipment", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.cancel_shipment")
       end
 
       # This API will be used to create claim for single eligible shipment.
@@ -7590,13 +7961,14 @@ module Peddler
       # @param body [Hash, Array, String] Request body for the createClaim operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_claim(body, x_amzn_shipping_business_id: nil)
+      def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.create_claim", Arguments.encode(arguments, "body")), "shipping_v2.create_claim")
+        Response.from_parts(@engine.operation("shipping_v2.create_claim", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.create_claim")
       end
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
@@ -7611,15 +7983,16 @@ module Peddler
       #   designation. This does not support additional subtags beyond the primary and secondary language subtags.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil)
+      def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
           locale: Arguments.string("locale", locale),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v2.direct_purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.direct_purchase_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.direct_purchase_shipment")
       end
 
       # This API Call to generate the collection form.
@@ -7629,14 +8002,15 @@ module Peddler
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
+      def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", Arguments.encode(arguments, "body")), "shipping_v2.generate_collection_form")
+        Response.from_parts(@engine.operation("shipping_v2.generate_collection_form", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.generate_collection_form")
       end
 
       # Returns a list of access points in proximity of input postal code.
@@ -7647,15 +8021,16 @@ module Peddler
       # @param postal_code [String] postal code for access point
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil)
+      def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           access_point_types: Arguments.array("access_point_types", access_point_types, required: true),
           country_code: Arguments.string("country_code", country_code, required: true),
           postal_code: Arguments.string("postal_code", postal_code, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_access_points", Arguments.encode(arguments)), "shipping_v2.get_access_points")
+        Response.from_parts(@engine.operation("shipping_v2.get_access_points", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_access_points")
       end
 
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
@@ -7668,26 +8043,28 @@ module Peddler
       #   getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil)
+      def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           request_token: Arguments.string("request_token", request_token, required: true),
           rate_id: Arguments.string("rate_id", rate_id, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", Arguments.encode(arguments)), "shipping_v2.get_additional_inputs")
+        Response.from_parts(@engine.operation("shipping_v2.get_additional_inputs", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_additional_inputs")
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
       #
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil)
+      def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", Arguments.encode(arguments)), "shipping_v2.get_carrier_account_form_inputs")
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_account_form_inputs", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_carrier_account_form_inputs")
       end
 
       # This API will return Get all carrier accounts for a merchant.
@@ -7695,13 +8072,14 @@ module Peddler
       # @param body [Hash, Array, String] GetCarrierAccountsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_carrier_accounts(body, x_amzn_shipping_business_id: nil)
+      def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", Arguments.encode(arguments, "body")), "shipping_v2.get_carrier_accounts")
+        Response.from_parts(@engine.operation("shipping_v2.get_carrier_accounts", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.get_carrier_accounts")
       end
 
       # This API reprint a collection form.
@@ -7709,13 +8087,14 @@ module Peddler
       # @param collection_form_id [String] collection form Id to reprint a collection.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil)
+      def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           collection_form_id: Arguments.segment("collection_form_id", collection_form_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", Arguments.encode(arguments)), "shipping_v2.get_collection_form")
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_collection_form")
       end
 
       # This API Call to get the history of the previously generated collection forms.
@@ -7723,13 +8102,14 @@ module Peddler
       # @param body [Hash, Array, String] GetCollectionFormHistoryRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_collection_form_history(body, x_amzn_shipping_business_id: nil)
+      def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", Arguments.encode(arguments, "body")), "shipping_v2.get_collection_form_history")
+        Response.from_parts(@engine.operation("shipping_v2.get_collection_form_history", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.get_collection_form_history")
       end
 
       # Returns the available shipping service offerings.
@@ -7738,13 +8118,14 @@ module Peddler
       # @param body [Hash, Array, String] GetRatesRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_rates(body, x_amzn_shipping_business_id: nil)
+      def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_rates", Arguments.encode(arguments, "body")), "shipping_v2.get_rates")
+        Response.from_parts(@engine.operation("shipping_v2.get_rates", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.get_rates")
       end
 
       # Returns the shipping documents associated with a package in a shipment.
@@ -7759,8 +8140,9 @@ module Peddler
       #   one of the supported resolutions returned in the response to the getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil, x_amzn_shipping_business_id: nil)
+      def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           shipment_id: Arguments.segment("shipment_id", shipment_id),
           package_client_reference_id: Arguments.string("package_client_reference_id", package_client_reference_id, required: true),
@@ -7768,7 +8150,7 @@ module Peddler
           dpi: Arguments.number("dpi", dpi),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", Arguments.encode(arguments)), "shipping_v2.get_shipment_documents")
+        Response.from_parts(@engine.operation("shipping_v2.get_shipment_documents", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_shipment_documents")
       end
 
       # Returns tracking information for a purchased shipment.
@@ -7780,14 +8162,15 @@ module Peddler
       #   rate.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil)
+      def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           tracking_id: Arguments.string("tracking_id", tracking_id, required: true),
           carrier_id: Arguments.string("carrier_id", carrier_id, required: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_tracking", Arguments.encode(arguments)), "shipping_v2.get_tracking")
+        Response.from_parts(@engine.operation("shipping_v2.get_tracking", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "shipping_v2.get_tracking")
       end
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
@@ -7796,13 +8179,14 @@ module Peddler
       # @param body [Hash, Array, String] GetUmanifestedShipmentsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil)
+      def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", Arguments.encode(arguments, "body")), "shipping_v2.get_unmanifested_shipments")
+        Response.from_parts(@engine.operation("shipping_v2.get_unmanifested_shipments", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.get_unmanifested_shipments")
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -7812,14 +8196,15 @@ module Peddler
       # @param body [Hash, Array, String] LinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
+      def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
         arguments = {
           carrier_id: Arguments.segment("carrier_id", carrier_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", Arguments.encode(arguments, "body")), "shipping_v2.link_carrier_account")
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.link_carrier_account")
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -7828,14 +8213,15 @@ module Peddler
       # @param body [Hash, Array, String] LinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def link_carrier_account_put(carrier_id, body, x_amzn_shipping_business_id: nil)
+      def link_carrier_account_put(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           carrier_id: Arguments.segment("carrier_id", carrier_id, last: true),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", Arguments.encode(arguments, "body")), "shipping_v2.link_carrier_account_put")
+        Response.from_parts(@engine.operation("shipping_v2.link_carrier_account_put", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.link_carrier_account_put")
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
@@ -7844,13 +8230,14 @@ module Peddler
       # @param body [Hash, Array, String] OneClickShipmentRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def one_click_shipment(body, x_amzn_shipping_business_id: nil)
+      def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", Arguments.encode(arguments, "body")), "shipping_v2.one_click_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.one_click_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.one_click_shipment")
       end
 
       # Purchases a shipping service and returns purchase related details and documents.
@@ -7865,14 +8252,15 @@ module Peddler
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
+      def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_idempotency_key: Arguments.string("x_amzn_idempotency_key", x_amzn_idempotency_key),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", Arguments.encode(arguments, "body")), "shipping_v2.purchase_shipment")
+        Response.from_parts(@engine.operation("shipping_v2.purchase_shipment", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.purchase_shipment")
       end
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
@@ -7881,13 +8269,14 @@ module Peddler
       # @param body [Hash, Array, String] Request body for ndrFeedback operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil)
+      def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", Arguments.encode(arguments, "body")), "shipping_v2.submit_ndr_feedback")
+        Response.from_parts(@engine.operation("shipping_v2.submit_ndr_feedback", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.submit_ndr_feedback")
       end
 
       # This API Unlink the specified carrier account with the merchant.
@@ -7896,14 +8285,15 @@ module Peddler
       # @param body [Hash, Array, String] UnlinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
+      def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         arguments = {
           carrier_id: Arguments.segment("carrier_id", carrier_id),
           x_amzn_shipping_business_id: Arguments.string("x_amzn_shipping_business_id", x_amzn_shipping_business_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", Arguments.encode(arguments, "body")), "shipping_v2.unlink_carrier_account")
+        Response.from_parts(@engine.operation("shipping_v2.unlink_carrier_account", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "shipping_v2.unlink_carrier_account")
       end
     end
 
@@ -7930,13 +8320,14 @@ module Peddler
       #   sent.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids)
+      def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", Arguments.encode(arguments)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
+        Response.from_parts(@engine.operation("solicitations_v1.create_product_review_and_seller_feedback_solicitation", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "solicitations_v1.create_product_review_and_seller_feedback_solicitation")
       end
 
       # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
@@ -7949,13 +8340,14 @@ module Peddler
       #   of available solicitation types.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids)
+      def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         arguments = {
           amazon_order_id: Arguments.segment("amazon_order_id", amazon_order_id, last: true),
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
         }
-        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", Arguments.encode(arguments)), "solicitations_v1.get_solicitation_actions_for_order")
+        Response.from_parts(@engine.operation("solicitations_v1.get_solicitation_actions_for_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "solicitations_v1.get_solicitation_actions_for_order")
       end
     end
 
@@ -7973,36 +8365,39 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def archive_supply_source(supply_source_id)
+      def archive_supply_source(supply_source_id, rate_limit: nil)
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", Arguments.encode(arguments)), "supply_sources_2020_07_01.archive_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.archive_supply_source", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.archive_supply_source")
       end
 
       # Create a new supply source.
       #
       # @note This operation can make a static sandbox call.
       # @param payload [Hash, Array, String] A request to create a supply source.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_supply_source(payload)
+      def create_supply_source(payload, rate_limit: nil)
         arguments = {
           body: Arguments.body("payload", payload, required: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.create_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.create_supply_source", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.create_supply_source")
       end
 
       # Retrieve a supply source.
       #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_supply_source(supply_source_id)
+      def get_supply_source(supply_source_id, rate_limit: nil)
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", Arguments.encode(arguments)), "supply_sources_2020_07_01.get_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_source", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.get_supply_source")
       end
 
       # The path to retrieve paginated supply sources.
@@ -8010,22 +8405,24 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param next_page_token [String] The pagination token to retrieve a specific page of results.
       # @param page_size [Integer, Float] The number of supply sources to return per paginated request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_supply_sources(next_page_token: nil, page_size: 10)
+      def get_supply_sources(next_page_token: nil, page_size: 10, rate_limit: nil)
         arguments = {
           next_page_token: Arguments.string("next_page_token", next_page_token),
           page_size: Arguments.number("page_size", page_size),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", Arguments.encode(arguments)), "supply_sources_2020_07_01.get_supply_sources")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_supply_sources}
-      def get_supply_sources_pages(next_page_token: nil, page_size: 10)
+      def get_supply_sources_pages(next_page_token: nil, page_size: 10, rate_limit: nil)
         arguments = {
           next_page_token: Arguments.string("next_page_token", next_page_token),
           page_size: Arguments.number("page_size", page_size),
         }
-        PAGINATIONS.fetch("supply_sources_2020_07_01.get_supply_sources").pages(@engine, arguments)
+        PAGINATIONS.fetch("supply_sources_2020_07_01.get_supply_sources").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Update the configuration and capabilities of a supply source.
@@ -8033,13 +8430,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identitier of a supply source.
       # @param payload [Hash, Array, String]
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_supply_source(supply_source_id, payload: nil)
+      def update_supply_source(supply_source_id, payload: nil, rate_limit: nil)
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id, last: true),
           body: Arguments.body("payload", payload),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.update_supply_source")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.update_supply_source")
       end
 
       # Update the status of a supply source.
@@ -8047,13 +8445,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @param payload [Hash, Array, String]
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def update_supply_source_status(supply_source_id, payload: nil)
+      def update_supply_source_status(supply_source_id, payload: nil, rate_limit: nil)
         arguments = {
           supply_source_id: Arguments.segment("supply_source_id", supply_source_id),
           body: Arguments.body("payload", payload),
         }
-        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", Arguments.encode(arguments, "payload")), "supply_sources_2020_07_01.update_supply_source_status")
+        Response.from_parts(@engine.operation("supply_sources_2020_07_01.update_supply_source_status", Arguments.encode(arguments, "payload"), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.update_supply_source_status")
       end
     end
 
@@ -8071,32 +8470,35 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param case_id [String] The case identifier.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_case(case_id)
+      def get_case(case_id, rate_limit: nil)
         arguments = {
           case_id: Arguments.segment("case_id", case_id, last: true),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.get_case", Arguments.encode(arguments)), "support_2025_02_01.get_case")
+        Response.from_parts(@engine.operation("support_2025_02_01.get_case", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "support_2025_02_01.get_case")
       end
 
       # Retrieve support cases for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body for the listCases operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_cases(body)
+      def list_cases(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", Arguments.encode(arguments, "body")), "support_2025_02_01.list_cases")
+        Response.from_parts(@engine.operation("support_2025_02_01.list_cases", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "support_2025_02_01.list_cases")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_cases}
-      def list_cases_pages(body)
+      def list_cases_pages(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(@engine, arguments)
+        PAGINATIONS.fetch("support_2025_02_01.list_cases").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Retrieve contacts for a specific support case.
@@ -8109,26 +8511,28 @@ module Peddler
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @param sort_order [String] Sort the returned contacts by `createdDate` in either ascending or descending order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
+      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
         arguments = {
           case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", Arguments.encode(arguments)), "support_2025_02_01.list_contacts")
+        Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "support_2025_02_01.list_contacts")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#list_contacts}
-      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
+      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
         arguments = {
           case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
           next_token: Arguments.string("next_token", next_token),
           sort_order: Arguments.string("sort_order", sort_order),
         }
-        PAGINATIONS.fetch("support_2025_02_01.list_contacts").pages(@engine, arguments)
+        PAGINATIONS.fetch("support_2025_02_01.list_contacts").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -8156,12 +8560,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The restricted data token request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_restricted_data_token(body)
+      def create_restricted_data_token(body, rate_limit: 1.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", Arguments.encode(arguments, "body")), "tokens_2021_03_01.create_restricted_data_token")
+        Response.from_parts(@engine.operation("tokens_2021_03_01.create_restricted_data_token", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "tokens_2021_03_01.create_restricted_data_token")
       end
     end
 
@@ -8189,8 +8594,9 @@ module Peddler
       # @param carrier_tracking_carrier_code [String] The carrier code associated with the carrier tracking number.
       # @param accept_language [String] The preferred natural language and locale of the client, in POSIX locale format.
       #   Currently supports `en-US` only.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_tracking(id: nil, acsin: nil, aftn: nil, container_number: nil, house_bill_of_lading_number: nil, pro_number: nil, carrier_tracking_tracking_number: nil, carrier_tracking_carrier_code: nil, accept_language: nil)
+      def get_shipment_tracking(id: nil, acsin: nil, aftn: nil, container_number: nil, house_bill_of_lading_number: nil, pro_number: nil, carrier_tracking_tracking_number: nil, carrier_tracking_carrier_code: nil, accept_language: nil, rate_limit: nil)
         arguments = {
           id: Arguments.string("id", id),
           acsin: Arguments.string("acsin", acsin),
@@ -8202,7 +8608,7 @@ module Peddler
           carrier_tracking_carrier_code: Arguments.string("carrier_tracking_carrier_code", carrier_tracking_carrier_code),
           accept_language: Arguments.string("accept_language", accept_language),
         }
-        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", Arguments.encode(arguments)), "tracking_2026_01_30.get_shipment_tracking")
+        Response.from_parts(@engine.operation("tracking_2026_01_30.get_shipment_tracking", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "tracking_2026_01_30.get_shipment_tracking")
       end
     end
 
@@ -8233,15 +8639,16 @@ module Peddler
       #   `aplus/2020-11-01/contentDocuments` and the path would be
       #   `/uploads/2020-11-01/uploadDestinations/aplus/2020-11-01/contentDocuments`.
       # @param content_type [String] The content type of the file you upload. This parameter is required for A+ content.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil)
+      def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil, rate_limit: 10.0)
         arguments = {
           marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
           content_md5: Arguments.string("content_md5", content_md5, required: true),
           resource: Arguments.segment("resource", resource, last: true),
           content_type: Arguments.string("content_type", content_type),
         }
-        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", Arguments.encode(arguments)), "uploads_2020_11_01.create_upload_destination_for_resource")
+        Response.from_parts(@engine.operation("uploads_2020_11_01.create_upload_destination_for_resource", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "uploads_2020_11_01.create_upload_destination_for_resource")
       end
     end
 
@@ -8264,26 +8671,28 @@ module Peddler
       # @param vehicle_type [String] An identifier for vehicle type.
       # @param updated_after [String] Date in ISO 8601 format, if provided only vehicles which are modified/added to
       #   Amazon's catalog after this date will be returned.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_vehicles(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
+      def get_vehicles(marketplace_id, vehicle_type, page_token: nil, updated_after: nil, rate_limit: nil)
         arguments = {
           page_token: Arguments.string("page_token", page_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           vehicle_type: Arguments.string("vehicle_type", vehicle_type, required: true),
           updated_after: Arguments.string("updated_after", updated_after),
         }
-        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", Arguments.encode(arguments)), "vehicles_2024_11_01.get_vehicles")
+        Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vehicles_2024_11_01.get_vehicles")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_vehicles}
-      def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil)
+      def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil, rate_limit: nil)
         arguments = {
           page_token: Arguments.string("page_token", page_token),
           marketplace_id: Arguments.string("marketplace_id", marketplace_id, required: true),
           vehicle_type: Arguments.string("vehicle_type", vehicle_type, required: true),
           updated_after: Arguments.string("updated_after", updated_after),
         }
-        PAGINATIONS.fetch("vehicles_2024_11_01.get_vehicles").pages(@engine, arguments)
+        PAGINATIONS.fetch("vehicles_2024_11_01.get_vehicles").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
     end
 
@@ -8303,13 +8712,14 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body containing the inventory update data to submit.
       # @param warehouse_id [String] Identifier for the warehouse for which to update inventory.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_inventory_update(body, warehouse_id)
+      def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         arguments = {
           warehouse_id: Arguments.segment("warehouse_id", warehouse_id),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_inventory_v1.submit_inventory_update", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_inventory_v1.submit_inventory_update")
       end
     end
 
@@ -8329,12 +8739,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(purchase_order_number)
+      def get_order(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_v1.get_order")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_v1.get_order")
       end
 
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
@@ -8358,8 +8769,9 @@ module Peddler
       #   The token value is returned in the previous API call.
       # @param include_details [Boolean] When true, returns the complete purchase order details. Otherwise, only
       #   purchase order numbers are returned.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
+      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           status: Arguments.string("status", status),
@@ -8370,11 +8782,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_v1.get_orders")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
-      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
+      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           status: Arguments.string("status", status),
@@ -8385,19 +8798,20 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_v1.get_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_v1.get_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body containing the acknowledgement to an order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_acknowledgement(body)
+      def submit_acknowledgement(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_orders_v1.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -8417,12 +8831,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order(purchase_order_number)
+      def get_order(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_2021_12_28.get_order")
       end
 
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
@@ -8446,8 +8861,9 @@ module Peddler
       #   The token value is returned in the previous API call.
       # @param include_details [Boolean] When true, returns the complete purchase order details. Otherwise, only
       #   purchase order numbers are returned.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
+      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           status: Arguments.string("status", status),
@@ -8458,11 +8874,12 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", Arguments.encode(arguments)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_orders}
-      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true)
+      def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           status: Arguments.string("status", status),
@@ -8473,19 +8890,20 @@ module Peddler
           next_token: Arguments.string("next_token", next_token),
           include_details: Arguments.boolean("include_details", include_details),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_2021_12_28.get_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_orders_2021_12_28.get_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] The request body containing the acknowledgement to an order
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_acknowledgement(body)
+      def submit_acknowledgement(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_2021_12_28.submit_acknowledgement")
       end
     end
 
@@ -8504,12 +8922,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body containing one or more invoices for vendor orders.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_invoice(body)
+      def submit_invoice(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_payments_v1.submit_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_payments_v1.submit_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_payments_v1.submit_invoice")
       end
     end
 
@@ -8529,12 +8948,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] The request payload containing parameters for generating test order data
       #   scenarios.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_order_scenarios(body)
+      def generate_order_scenarios(body, rate_limit: nil)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.generate_order_scenarios")
       end
 
       # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
@@ -8543,12 +8963,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
       #   operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_scenarios(transaction_id)
+      def get_order_scenarios(transaction_id, rate_limit: nil)
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", Arguments.encode(arguments)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_sandbox_test_data_2021_10_28.get_order_scenarios")
       end
     end
 
@@ -8567,12 +8988,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_customer_invoice(purchase_order_number)
+      def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoice")
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -8590,8 +9012,9 @@ module Peddler
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
+      def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8600,11 +9023,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
-      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
+      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8613,19 +9037,20 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_customer_invoices").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_customer_invoices").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The purchaseOrderNumber for the packing slip you want.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_packing_slip(purchase_order_number)
+      def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slip", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_packing_slip")
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -8642,8 +9067,9 @@ module Peddler
       # @param sort_order [String] Sort ASC or DESC by packing slip creation date.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8652,11 +9078,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
-      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8665,7 +9092,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_packing_slips").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_packing_slips").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -8673,12 +9100,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
       #   It should be the same purchaseOrderNumber as received in the order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipping_label(purchase_order_number)
+      def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_label", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_shipping_label")
       end
 
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
@@ -8696,8 +9124,9 @@ module Peddler
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
       #   limit. The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8706,11 +9135,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
-      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8719,19 +9149,20 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_shipping_labels").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_v1.get_shipping_labels").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits one or more shipment confirmations for vendor orders.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Request body containing the shipment confirmations data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipment_confirmations(body)
+      def submit_shipment_confirmations(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_confirmations")
       end
 
       # This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment
@@ -8740,24 +9171,26 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Request body containing the shipment status update data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipment_status_updates(body)
+      def submit_shipment_status_updates(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.submit_shipment_status_updates")
       end
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Request body containing one or more shipping labels data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipping_label_request(body)
+      def submit_shipping_label_request(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.submit_shipping_label_request")
       end
     end
 
@@ -8775,12 +9208,13 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] Request body containing the container label data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_container_label(body)
+      def create_container_label(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_container_label", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.create_container_label")
       end
 
       # Creates shipping labels for a purchase order and returns the labels.
@@ -8789,25 +9223,27 @@ module Peddler
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
       #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
       # @param body [Hash, Array, String] The request payload that contains the parameters for creating shipping labels.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_shipping_labels(purchase_order_number, body)
+      def create_shipping_labels(purchase_order_number, body, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.create_shipping_labels")
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_customer_invoice(purchase_order_number)
+      def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoice")
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -8825,8 +9261,9 @@ module Peddler
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
+      def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8835,11 +9272,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_customer_invoices}
-      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil)
+      def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8848,19 +9286,20 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The `purchaseOrderNumber` for the packing slip that you want.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_packing_slip(purchase_order_number)
+      def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slip")
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -8877,8 +9316,9 @@ module Peddler
       # @param sort_order [String] The packing slip creation dates, which are sorted by ascending or descending order.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8887,11 +9327,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_packing_slips}
-      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8900,7 +9341,7 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns a shipping label for the `purchaseOrderNumber` that you specify.
@@ -8908,12 +9349,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
       #   It should be the same `purchaseOrderNumber` that you received in the order.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipping_label(purchase_order_number)
+      def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_label")
       end
 
       # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
@@ -8933,8 +9375,9 @@ module Peddler
       #   (`DESC`) sort order.
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
       #   limit. The token value is returned in the previous API call.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8943,11 +9386,12 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", Arguments.encode(arguments)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipping_labels}
-      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil)
+      def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
           ship_from_party_id: Arguments.string("ship_from_party_id", ship_from_party_id),
           limit: Arguments.integer("limit", limit),
@@ -8956,19 +9400,20 @@ module Peddler
           sort_order: Arguments.string("sort_order", sort_order),
           next_token: Arguments.string("next_token", next_token),
         }
-        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits one or more shipment confirmations for vendor orders.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] Request body containing the shipment confirmations data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipment_confirmations(body)
+      def submit_shipment_confirmations(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_confirmations")
       end
 
       # This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment
@@ -8977,24 +9422,26 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] Request body containing the shipment status update data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipment_status_updates(body)
+      def submit_shipment_status_updates(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipment_status_updates")
       end
 
       # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash, Array, String] The request body that contains the shipping labels data.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipping_label_request(body)
+      def submit_shipping_label_request(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", Arguments.encode(arguments, "body")), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.submit_shipping_label_request")
       end
     end
 
@@ -9014,12 +9461,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
       #   transaction.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transaction_status(transaction_id)
+      def get_transaction_status(transaction_id, rate_limit: 10.0)
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", Arguments.encode(arguments)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_v1.get_transaction_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_transactions_v1.get_transaction_status")
       end
     end
 
@@ -9039,12 +9487,13 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
       #   transaction.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transaction_status(transaction_id)
+      def get_transaction_status(transaction_id, rate_limit: 10.0)
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", Arguments.encode(arguments)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
+        Response.from_parts(@engine.operation("vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_transactions_2021_12_28.get_transaction_status")
       end
     end
 
@@ -9062,12 +9511,13 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] The request body containing the invoice data to submit.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_invoices(body)
+      def submit_invoices(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", Arguments.encode(arguments, "body")), "vendor_invoices_v1.submit_invoices")
+        Response.from_parts(@engine.operation("vendor_invoices_v1.submit_invoices", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_invoices_v1.submit_invoices")
       end
     end
 
@@ -9086,12 +9536,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_purchase_order(purchase_order_number)
+      def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         arguments = {
           purchase_order_number: Arguments.segment("purchase_order_number", purchase_order_number, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_order")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_order", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.get_purchase_order")
       end
 
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
@@ -9126,8 +9577,9 @@ module Peddler
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
       #   application are returned.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
+      def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           created_after: Arguments.string("created_after", created_after),
@@ -9142,11 +9594,12 @@ module Peddler
           purchase_order_state: Arguments.string("purchase_order_state", purchase_order_state),
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_orders")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.get_purchase_orders")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders}
-      def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil)
+      def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           created_after: Arguments.string("created_after", created_after),
@@ -9161,7 +9614,7 @@ module Peddler
           purchase_order_state: Arguments.string("purchase_order_state", purchase_order_state),
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
         }
-        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
@@ -9198,8 +9651,9 @@ module Peddler
       #   providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order.
       #   If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor
       #   group purchase orders.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
+      def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9215,11 +9669,12 @@ module Peddler
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
           ship_to_party_id: Arguments.string("ship_to_party_id", ship_to_party_id),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", Arguments.encode(arguments)), "vendor_orders_v1.get_purchase_orders_status")
+        Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_purchase_orders_status}
-      def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil)
+      def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9235,19 +9690,20 @@ module Peddler
           ordering_vendor_code: Arguments.string("ordering_vendor_code", ordering_vendor_code),
           ship_to_party_id: Arguments.string("ship_to_party_id", ship_to_party_id),
         }
-        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders_status").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_orders_v1.get_purchase_orders_status").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] Submits acknowledgements for one or more purchase orders from a vendor.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_acknowledgement(body)
+      def submit_acknowledgement(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body")), "vendor_orders_v1.submit_acknowledgement")
+        Response.from_parts(@engine.operation("vendor_orders_v1.submit_acknowledgement", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.submit_acknowledgement")
       end
     end
 
@@ -9308,8 +9764,9 @@ module Peddler
       #   same as 'shipToParty.partyId' in the Shipment.
       # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
       #   same as 'sellingParty.partyId' in the Shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
+      def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9336,11 +9793,12 @@ module Peddler
           buyer_warehouse_code: Arguments.string("buyer_warehouse_code", buyer_warehouse_code),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", Arguments.encode(arguments)), "vendor_shipments_v1.get_shipment_details")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.get_shipment_details")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_details}
-      def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil)
+      def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9367,7 +9825,7 @@ module Peddler
           buyer_warehouse_code: Arguments.string("buyer_warehouse_code", buyer_warehouse_code),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_details").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_details").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Returns small parcel shipment labels based on the filters that you specify.
@@ -9387,8 +9845,9 @@ module Peddler
       # @param vendor_shipment_identifier [String] Get Shipment labels by passing vendor shipment identifier.
       # @param seller_warehouse_code [String] Get Shipping labels based on vendor warehouse code. This value must be
       #   same as the `sellingParty.partyId` in the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
+      def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9399,11 +9858,12 @@ module Peddler
           vendor_shipment_identifier: Arguments.string("vendor_shipment_identifier", vendor_shipment_identifier),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", Arguments.encode(arguments)), "vendor_shipments_v1.get_shipment_labels")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.get_shipment_labels")
       end
 
+      # @param rate_limit [Float] Requests per second
       # @return [Enumerator<Peddler::Response>] each page of {#get_shipment_labels}
-      def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil)
+      def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
           limit: Arguments.integer("limit", limit),
           sort_order: Arguments.string("sort_order", sort_order),
@@ -9414,30 +9874,32 @@ module Peddler
           vendor_shipment_identifier: Arguments.string("vendor_shipment_identifier", vendor_shipment_identifier),
           seller_warehouse_code: Arguments.string("seller_warehouse_code", seller_warehouse_code),
         }
-        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_labels").pages(@engine, arguments)
+        PAGINATIONS.fetch("vendor_shipments_v1.get_shipment_labels").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
 
       # Submits one or more shipment confirmations for vendor orders.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash, Array, String] A request to submit shipment confirmation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipment_confirmations(body)
+      def submit_shipment_confirmations(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body")), "vendor_shipments_v1.submit_shipment_confirmations")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipment_confirmations", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.submit_shipment_confirmations")
       end
 
       # Submits one or more shipment request for vendor Orders.
       #
       # @param body [Hash, Array, String] A request to submit shipment request.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_shipments(body)
+      def submit_shipments(body, rate_limit: 10.0)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
-        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", Arguments.encode(arguments, "body")), "vendor_shipments_v1.submit_shipments")
+        Response.from_parts(@engine.operation("vendor_shipments_v1.submit_shipments", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.submit_shipments")
       end
     end
 
@@ -9456,12 +9918,13 @@ module Peddler
       #
       # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
       #   request of a specific transaction.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_transaction(transaction_id)
+      def get_transaction(transaction_id, rate_limit: 10.0)
         arguments = {
           transaction_id: Arguments.segment("transaction_id", transaction_id, last: true),
         }
-        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", Arguments.encode(arguments)), "vendor_transaction_status_v1.get_transaction")
+        Response.from_parts(@engine.operation("vendor_transaction_status_v1.get_transaction", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_transaction_status_v1.get_transaction")
       end
     end
   end

@@ -21,6 +21,9 @@ fn regex(pattern: &str) -> Regex {
     Regex::with_flags(&pattern.replace("\\s", SPACE), "u").expect("valid pattern")
 }
 
+/// v5's line for the keyword every method takes last.
+const RATE_LIMIT: &str = "# @param rate_limit [Float] Requests per second";
+
 /// The comment above an operation's method: its description, a note on the sandbox,
 /// each argument and what it returns.
 pub(crate) fn operation(op: &Operation) -> String {
@@ -43,6 +46,7 @@ pub(crate) fn operation(op: &Operation) -> String {
             accepts(p)
         )));
     }
+    lines.push(RATE_LIMIT.into());
     lines.extend(tag("@return [Peddler::Response] The API response"));
     indent(&lines, METHOD)
 }
@@ -53,7 +57,7 @@ pub(crate) fn pages(op: &Operation) -> String {
         "# @return [Enumerator<Peddler::Response>] each page of {{#{}}}",
         op.name
     );
-    indent(&[line], METHOD)
+    indent(&[RATE_LIMIT.into(), line], METHOD)
 }
 
 /// The comment above an API's class, as v5 wrote it: the spec's title, its description

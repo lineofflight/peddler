@@ -267,6 +267,37 @@ class ArgumentsTest < NativeTest
     )
   end
 
+  # v5 divided 1.0 by it once a call was throttled, so it took any number. What is not a positive, finite one is
+  # refused here before anything is sent, and before a token source is asked.
+  def test_a_rate_limit_that_is_not_a_positive_finite_number_is_refused_by_name
+    values = [
+      0, 0.0, -1, -0.5, Float::NAN, Float::INFINITY, -Float::INFINITY, Rational(-1, 2), Complex(1, 1),
+      "5", SENTINEL, SENTINEL.to_sym, true, false, [1.0], { SENTINEL => 1 }, Object.new,
+    ]
+    asked = 0
+    source = -> { (asked += 1) && "token" }
+    messages = refused(*values.flat_map do |value|
+      [
+        ->(client) { client.orders_v0.get_orders("UK", rate_limit: value) },
+        ->(client) { client.orders_v0.get_orders_pages("UK", rate_limit: value) },
+        ->(client) { client.with_access_token(source).sellers_v1.get_marketplace_participations(rate_limit: value) },
+      ]
+    end)
+
+    assert_equal(["rate_limit must be a positive number of requests per second"], messages.uniq)
+    assert_equal(0, asked)
+  end
+
+  def test_a_rate_limit_is_any_positive_number
+    requests = sent do |client|
+      [1, 0.5, Rational(1, 2), 1e-300, Float::MAX].each do |rate|
+        client.sellers_v1.get_marketplace_participations(rate_limit: rate)
+      end
+    end
+
+    assert_equal(["GET /sellers/v1/marketplaceParticipations"] * 5, requests)
+  end
+
   def test_pages_methods_take_the_same_forms
     requests = sent { |client| client.orders_v0.get_orders_pages("ATVPDKIKX0DER", max_results_per_page: "5").first }
 

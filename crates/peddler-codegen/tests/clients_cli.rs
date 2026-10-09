@@ -110,8 +110,9 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     )
     .unwrap();
     // v5's signature: required arguments positional in the spec's order, the body under
-    // the spec's name, optional ones as keywords. Each goes through its coercion, and a
-    // path argument through the check of a segment, the one that ends the path as such.
+    // the spec's name, optional ones as keywords, and `rate_limit:` last, the documented
+    // rate by default. Each goes through its coercion, and a path argument through the
+    // check of a segment, the one that ends the path as such.
     // Above it, v5's comment: the description up to its usage plan, links as YARD's, a
     // note in a paragraph of its own, and lines of at most 120 columns.
     let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
@@ -129,8 +130,9 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      # @param patch_request [Hash, Array, String]\n",
         "      # @param sku [String] The seller's identifier for the listing, which is a {https://example.com/sku SKU}. It is\n",
         "      #   **unique** to the seller.\n",
+        "      # @param rate_limit [Float] Requests per second\n",
         "      # @return [Peddler::Response] The API response\n",
-        "      def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"])\n",
+        "      def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"], rate_limit: 5.0)\n",
         "        arguments = {\n",
         "          seller_id: Arguments.segment(\"seller_id\", seller_id),\n",
         "          marketplace_ids: Arguments.array(\"marketplace_ids\", marketplace_ids, required: true),\n",
@@ -138,6 +140,7 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "          sku: Arguments.segment(\"sku\", sku, last: true),\n",
         "          body: Arguments.body(\"patch_request\", patch_request, required: true),\n",
         "        }\n",
+        "        Response.from_parts(@engine.operation(\"listings_items_2021_08_01.patch_listings_item\", Arguments.encode(arguments, \"patch_request\"), Arguments.rate_limit(rate_limit)), \"listings_items_2021_08_01.patch_listings_item\")\n",
     )));
     // Its class has v5's comment, and the accessor of `Client` names the API and links it.
     assert!(ruby.contains(concat!(
@@ -152,9 +155,10 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "    # @return [Peddler::Native::ListingsItems20210801] Synthetic API, version 1\n",
         "    def listings_items_2021_08_01\n",
     )));
-    // A default is text, never code: Ruby would interpolate "#{exit}".
+    // A default is text, never code: Ruby would interpolate "#{exit}". An operation
+    // without a usage plan takes `rate_limit:` too, and has no rate by default.
     assert!(ruby.contains(
-        "      def get_catalog_item(asin, marketplace_ids, included_data: [\"\\#{exit}\"])\n"
+        "      def get_catalog_item(asin, marketplace_ids, included_data: [\"\\#{exit}\"], rate_limit: nil)\n"
     ));
     // The rate of the usage plan goes to the client with the request, and into the
     // inventory. An operation without a usage plan has none.
@@ -188,7 +192,7 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     assert_eq!(rates.iter().filter(|(_, rate)| rate.is_some()).count(), 1);
     let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
     assert!(rbs.contains(
-        "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?) -> Response"
+        "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response"
     ));
     for (path, content) in &rendered {
         if path.extension().is_some_and(|ext| ext == "rs") {

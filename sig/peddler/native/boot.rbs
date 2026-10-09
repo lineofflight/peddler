@@ -33,7 +33,7 @@ module Peddler
       def with_token_source: (_TokenSource source) -> Engine
       def inspect: () -> String
       def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
-      def operation: (String operation, String arguments) -> response_parts
+      def operation: (String operation, String arguments, Float? rate_limit) -> response_parts
     end
 
     class LwaEngine
