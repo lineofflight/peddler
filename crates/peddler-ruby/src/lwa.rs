@@ -13,7 +13,7 @@ const LWA_ENDPOINT: &str =
 type Tokens = (String, Option<String>, String, u64, Option<String>);
 
 #[magnus::wrap(class = "Peddler::Native::LwaEngine", free_immediately)]
-struct LwaEngine(ForkOwned<(&'static Shared, LwaClient)>);
+pub(super) struct LwaEngine(ForkOwned<(&'static Shared, LwaClient)>);
 
 fn auth_error(ruby: &Ruby, error: AuthError) -> Error {
     let message = error.to_string();

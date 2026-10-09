@@ -347,6 +347,13 @@ type Call = (Client, &'static Shared, Option<Responder>);
 
 #[magnus::init(name = "peddler_native")]
 fn init(ruby: &Ruby) -> Result<(), Error> {
+    // Every method defined below may be called from any Ractor. A handle belongs to the
+    // Ractor that made it, as any object that isn't shareable does. What the handles of
+    // several Ractors share is `SHARED` and what it holds, the runtime and the pool,
+    // which are `Sync`. A class or a constant is looked up in Ruby on each use, but for
+    // the 4 classes that magnus keeps, at the end of this function.
+    // SAFETY: called while the extension loads, before it defines a method.
+    unsafe { rb_sys::rb_ext_ractor_safe(true) };
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
     native.define_singleton_method("status_reason", function!(status_reason, 1))?;
@@ -361,6 +368,13 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     workflows::init(engine)?;
     lwa::init(ruby, native)?;
     hook::init(native)?;
+    // magnus looks the class of a wrapped type up once and keeps it behind a lock. That
+    // happens here, in the main Ractor, so that no two Ractors meet at the lock later:
+    // one waiting there could not stop for a garbage collection the other began.
+    <Engine as magnus::TypedData>::class(ruby);
+    <documents::Document as magnus::TypedData>::class(ruby);
+    <documents::Upload as magnus::TypedData>::class(ruby);
+    <lwa::LwaEngine as magnus::TypedData>::class(ruby);
     Ok(())
 }
 
