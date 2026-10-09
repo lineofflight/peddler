@@ -113,11 +113,22 @@ async fn ask(question: Question) -> Option<Answer> {
     answer.await.ok()
 }
 
+/// Gives the timeouts around the work their turn before it sends a request with what Ruby
+/// answered. Ruby may have answered after the deadline of the attempt, and a timeout polls
+/// its work before its timer: without this pause the work would take the late answer and
+/// hand the request to the HTTP client, and only then be dropped.
+async fn pause() {
+    tokio::task::yield_now().await;
+}
+
 /// The token source of a client that has no token of its own: Ruby is asked before
 /// every attempt. A client nothing answers for has no token to send and fails closed.
 pub(super) async fn token() -> Result<String, AuthError> {
     match ask(Question::Token).await {
-        Some(Answer::Token(token)) => Ok(token),
+        Some(Answer::Token(token)) => {
+            pause().await;
+            Ok(token)
+        }
         _ => Err(AuthError::InvalidConfig),
     }
 }
@@ -137,6 +148,7 @@ impl Interceptor for Hook {
                 Some(Answer::Reply(response)) => Ok(response),
                 Some(Answer::TimedOut) => Err(Failure::Timeout),
                 Some(Answer::Proceed) => {
+                    pause().await;
                     let response = real.await?;
                     match ask(Question::Completed(response)).await {
                         Some(Answer::Reply(response)) => Ok(response),

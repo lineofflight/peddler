@@ -74,19 +74,25 @@ class TokenSourceTest < NativeTest
   end
 
   # Asking is part of the attempt, as it is in the core. Ruby can't interrupt a source, so a slow one is waited
-  # for, and the attempt has then timed out.
+  # for, and the attempt has then timed out: its token came too late, and nothing is sent with it. The connection
+  # the first call left idle is neither written to nor closed, so the last call finds it.
   def test_timeout_limits_an_attempt_with_the_time_its_source_takes
-    serve_keep_alive do |url, *|
+    serve_keep_alive do |url, accepted, requests|
       slow = lambda do
         sleep(0.15)
         "token"
       end
 
       assert_equal(200, Peddler::Client.new(base_url: url, access_token: slow, timeout: 5).request("GET", "/").status)
+      requests.pop
       instance = Peddler::Client.new(base_url: url, access_token: slow, timeout: 0.05)
-      error = assert_raises(Peddler::TimeoutError) { instance.request("GET", "/") }
+      error = assert_raises(Peddler::TimeoutError) { instance.request("POST", "/late", body: {}) }
 
       assert_equal("request timed out", error.message)
+      assert_empty(requests)
+      assert_equal(200, client(url).request("GET", "/after").status)
+      assert_equal(["/after"], Array.new(requests.size) { requests.pop }.map { |_, target, *| target })
+      assert_equal(1, accepted.size)
     end
   end
 

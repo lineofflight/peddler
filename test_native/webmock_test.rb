@@ -21,13 +21,15 @@ class WebMockTestCase < NativeTest
   UK = Peddler::Marketplace.id("UK")
   JSON_TYPE = { "Content-Type" => "application/json" }.freeze
 
-  # WebMock's callbacks are global, and VCR's are among them, so one that is registered once here reports to the
-  # test that wants it.
+  # WebMock's callbacks and global stubs are global, and VCR's are among them, so one of each that is registered
+  # once here reports to the test that wants it.
   @observer = nil
+  @global_stub = nil
   class << self
-    attr_accessor :observer
+    attr_accessor :observer, :global_stub
   end
   WebMock.after_request { |signature, response| WebMockTestCase.observer&.call(signature, response) }
+  WebMock.globally_stub_request { |request| WebMockTestCase.global_stub&.call(request) }
 
   def setup
     super
@@ -37,6 +39,7 @@ class WebMockTestCase < NativeTest
 
   def teardown
     WebMockTestCase.observer = nil
+    WebMockTestCase.global_stub = nil
     WebMock.reset!
     WebMock.disable!
     super
@@ -218,6 +221,28 @@ class WebMockTest < WebMockTestCase
         ],
         seen,
       )
+    end
+  end
+
+  # WebMock may take longer than the timeout to let a request through, as a global stub that looks something up
+  # does. The attempt has then timed out, and the request is not sent after all.
+  def test_a_request_that_webmock_lets_through_too_late_is_not_sent
+    serve_keep_alive do |url, accepted, requests|
+      WebMock.disable_net_connect!(allow_localhost: true)
+      WebMockTestCase.global_stub = lambda do |request|
+        sleep(0.15) if request.uri.path == "/late"
+        nil
+      end
+
+      assert_equal(200, client(url).request("GET", "/").status)
+      requests.pop
+      error = assert_raises(Peddler::TimeoutError) { client(url, timeout: 0.05).request("POST", "/late", body: {}) }
+
+      assert_equal("request timed out", error.message)
+      assert_empty(requests)
+      assert_equal(200, client(url).request("GET", "/after").status)
+      assert_equal(["/after"], Array.new(requests.size) { requests.pop }.map { |_, target, *| target })
+      assert_equal(1, accepted.size)
     end
   end
 
