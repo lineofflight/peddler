@@ -5,5 +5,7 @@ target :shipped do
   signature "sig"
   check "lib"
   ignore "lib/generator.rb", "lib/generator"
+  # It is written against WebMock, which has no signatures.
+  ignore "lib/peddler/webmock.rb"
   library("delegate", "json", "socket", "time", "uri")
 end
