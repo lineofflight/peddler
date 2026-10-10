@@ -14,7 +14,7 @@ module Peddler
   # Example of a token source, asked before every attempt of a call:
   #
   #     client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
-  #       Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
+  #       Rails.cache.fetch(key, expires_in: 50.minutes) { lwa.refresh(refresh_token: token).access_token }
   #     })
   class Client
     # @rbs @engine: Native::Engine
