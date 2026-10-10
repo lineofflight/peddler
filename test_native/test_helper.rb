@@ -161,9 +161,14 @@ class NativeTest < Minitest::Test
   end
 
   # The output of a script in a Ruby of its own, with this one's load path, where nothing is loaded yet. A script
-  # that fails, or that runs past the deadline, raises with what it printed.
-  def run_ruby(script, deadline: 30)
-    Open3.popen2e(RbConfig.ruby, *$LOAD_PATH.flat_map { |path| ["-I", path] }, "-e", script) do |input, out, thread|
+  # that fails, or that runs past the deadline, raises with what it printed. `without` names a feature the script
+  # can't require, as where its gem is not installed: the directories that hold it are off the load path, and so
+  # are RubyGems and Bundler, which would find it.
+  def run_ruby(script, deadline: 30, without: nil)
+    paths = $LOAD_PATH
+    paths = paths.reject { |path| File.exist?(File.join(path, "#{without}.rb")) } if without
+    command = [RbConfig.ruby, *("--disable-gems" if without), *paths.flat_map { |path| ["-I", path] }, "-e", script]
+    Open3.popen2e(without ? { "RUBYOPT" => nil } : {}, *command) do |input, out, thread|
       input.close
       finished = thread.join(deadline)
       Process.kill("KILL", thread.pid) unless finished

@@ -344,6 +344,55 @@ class WebMockAutoloadTest < NativeTest
     )
   end
 
+  # A load of the adapter that fails sends nothing, and the next call tries again. An autoload for WebMock that
+  # nothing touched is not WebMock loaded: a call does not load it, and finds WebMock once something else has.
+  def test_a_load_that_fails_sends_nothing_and_an_autoload_is_left_alone
+    absent = <<~RUBY
+      require "peddler"
+      module WebMock; end
+      client, lwa = clients(base)
+      print [outcome { client.request("GET", "/raw") }, outcome { lwa.refresh(refresh_token: "r") }, adapter, hooked].inspect
+    RUBY
+    # Raises once, when the adapter has registered itself with WebMock and has not set the hook.
+    halfway = <<~RUBY
+      require "peddler"
+      client, = clients(base)
+      require "webmock"
+      WebMock.enable!
+      WebMock.disable_net_connect!
+      raised = false
+      trace = TracePoint.new(:return) do |point|
+        next if raised || point.method_id != :adapter_for
+
+        raised = true
+        raise IOError, "halfway"
+      end
+      trace.enable
+      first = [outcome { client.request("GET", "/raw") }, adapter, hooked]
+      print [first, outcome { client.request("GET", "/raw") }, adapter, hooked].inspect
+    RUBY
+    autoload = <<~RUBY
+      require "peddler"
+      client, = clients(base)
+      Object.autoload(:WebMock, "webmock")
+      first = [outcome { client.request("GET", "/raw") }, Object.autoload?(:WebMock), $LOADED_FEATURES.grep(/webmock/i).size]
+      WebMock.enable!
+      WebMock.disable_net_connect!
+      print [first, outcome { client.request("GET", "/raw") }, adapter, hooked].inspect
+    RUBY
+    results = fresh({ "another WebMock, the gem absent" => absent }, without: "webmock")
+    results.merge!(fresh("the adapter raises halfway" => halfway, "an autoload" => autoload))
+
+    assert_equal(
+      {
+        "another WebMock, the gem absent" => [["LoadError", "LoadError", 0, false].inspect, 0],
+        "the adapter raises halfway" => [[["IOError", 0, false], REFUSED, 1, true].inspect, 0],
+        "an autoload" => [[["sent", "webmock", 0], REFUSED, 1, true].inspect, 1],
+      },
+      results,
+    )
+  end
+
   # Ruby answers `const_defined?` for an autoload from the loaded features, which the main Ractor changes as it
   # loads code: asked in 8 Ractors meanwhile, it ended the process with a signal or hung it. A call asks
   # `const_source_location`. A Ractor can't tell an autoload from WebMock loaded and is refused, and the main
@@ -417,11 +466,12 @@ class WebMockAutoloadTest < NativeTest
 
   # Runs each script in a Ruby of its own, all at once, each against a server of its own. Returns what each printed
   # and how many requests reached its server. A script starts with PRELUDE and the URL of its server as `base`.
-  def fresh(scripts)
+  # The options are those of `run_ruby`.
+  def fresh(scripts, options = {})
     scripts.map do |name, body|
       Thread.new do
         serve_keep_alive(responder: RESPONDER) do |url, _accepted, requests|
-          [name, [run_ruby(script(url, body)), requests.size]]
+          [name, [run_ruby(script(url, body), **options), requests.size]]
         end
       end
     end.to_h(&:value)
