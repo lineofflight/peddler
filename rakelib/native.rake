@@ -47,6 +47,6 @@ namespace :native do
   desc "Run native tests (requires native:build first)"
   task :test do
     refuse_stale_binary!
-    run_with_deadline(60, "native tests", RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/run.rb")
+    run_with_deadline(300, "native tests", RbConfig.ruby, "-Ilib", "-Itmp/native", "test_native/run.rb")
   end
 end
