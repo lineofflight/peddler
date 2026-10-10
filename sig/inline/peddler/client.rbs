@@ -21,7 +21,7 @@ module Peddler
     # Asking the source is part of the attempt, and the time it takes counts against `timeout:`. Ruby can't
     # interrupt a source: one that takes longer than the timeout is waited for, and the attempt has then timed out.
     #
-    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    # Raises ArgumentError if an option breaks its rule. The message names the option and the rule.
     #
     # - access_token: a Login with Amazon access token or a restricted data token, or its source
     # - region: the AWS region of the selling region, unless base_url is given
@@ -34,16 +34,17 @@ module Peddler
     #
     # Use it for another seller, a rotated token, or a restricted data token for a few calls.
     #
-    # @example
-    #   rdt = client.tokens.create_restricted_data_token({ restrictedResources: resources }).parse
-    #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(id)
+    # Example:
     #
-    # - access_token: a token or its source, as in {#initialize}
+    #     rdt = client.tokens.create_restricted_data_token({ restrictedResources: resources }).parse
+    #     client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(id)
+    #
+    # - access_token: a token or its source, as in Client.new
     def with_access_token: (String | Native::_TokenSource access_token) -> Client
 
     # A view of this client that calls Amazon's sandbox for its region
     #
-    # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
+    # https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
     def sandbox: () -> Client
 
     def sandbox?: () -> bool
@@ -52,19 +53,21 @@ module Peddler
     #
     # The request carries the client's access token and keeps its timeout and retries, as an operation's method
     # does. Amazon documents no rate for it, so a retry after a 429 waits as one after a 503 does. The response has
-    # no typed model, so {Peddler::Response#parse} returns the Hash.
+    # no typed model, so Peddler::Response#parse returns the Hash.
     #
-    # @example
-    #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
-    # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
-    # @raise [Peddler::Error] if the response is outside 2xx
-    # @raise [Peddler::TimeoutError] if the last attempt takes longer than the client's timeout
-    # @raise [Peddler::TransportError] if the request can't be sent or the response can't be read
-    # @raise [Peddler::ForkError] if the client was built before the process forked
+    # Example:
+    #
+    #     client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
+    #
+    # Raises ArgumentError if an argument breaks its rule. The message names the argument.
+    # Raises Peddler::Error if the response is outside 2xx.
+    # Raises Peddler::TimeoutError if the last attempt takes longer than the client's timeout.
+    # Raises Peddler::TransportError if the request can't be sent or the response can't be read.
+    # Raises Peddler::ForkError if the client was built before the process forked.
     #
     # - method: the HTTP method, such as "GET", in any case
     # - path: the absolute path, percent-encoded, without a query
-    # - params: the query. A value is sent as an operation's argument is: a {Peddler::Marketplace} as its ID, an Array joined with commas.
+    # - params: the query. A value is sent as an operation's argument is: a Peddler::Marketplace as its ID, an Array joined with commas.
     # - body: sent as JSON. A String holds the JSON already.
     def request: (String method, String path, ?params: Hash[String | Symbol, untyped], ?body: String | Hash[untyped, untyped] | Array[untyped] | nil) -> Response
 

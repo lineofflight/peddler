@@ -32,12 +32,13 @@ module Peddler
 
     # Supports pattern matching on status and code
     #
-    # @example
-    #   case error
-    #   in status: 429 then backoff
-    #   in code: "QuotaExceeded" then backoff
-    #   in status: 500.. then retry_later
-    #   end
+    # Example:
+    #
+    #     case error
+    #     in status: 429 then backoff
+    #     in code: "QuotaExceeded" then backoff
+    #     in status: 500.. then retry_later
+    #     end
     #
     #: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
     def deconstruct_keys(keys)

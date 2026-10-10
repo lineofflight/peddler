@@ -57,7 +57,7 @@ module Peddler
         @pairs.any? { |key, _| key.casecmp?(name.to_s) }
       end
 
-      # The same as include?
+      # Whether the response has the header, as #include? answers
       #: (String | Symbol name) -> bool
       def key?(name) = include?(name)
 
@@ -84,12 +84,9 @@ module Peddler
     # The bytes as they arrived
     attr_reader :body #: String
 
-    # Builds the response of an API call or a signed-URL transfer, raising if it is an HTTP error
-    #
-    # @!visibility private
-    # @raise [Peddler::Error]
+    # Builds the response of an API call or a signed-URL transfer, raising Peddler::Error if it is an HTTP error
     #: (Native::response_parts parts, ?String? operation) -> Response
-    def self.from_parts(parts, operation = nil)
+    def self.from_parts(parts, operation = nil) # :nodoc:
       status, headers, body, metadata = parts
       new(status, headers, body, metadata, operation: operation).raise_for_status!
     end
@@ -105,7 +102,7 @@ module Peddler
 
     # The metadata only supplies Amazon's code, request ID and message. Without it they are nil.
     #
-    # @raise [Peddler::Error] if the status is outside 2xx
+    # Raises Peddler::Error if the status is outside 2xx.
     #: () -> self
     def raise_for_status!
       return self if status.success?

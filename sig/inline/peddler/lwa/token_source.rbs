@@ -23,14 +23,14 @@ module Peddler
       # - grant: returns new tokens from Login with Amazon
       def initialize: () { () -> Tokens } -> void
 
-      # @raise [Peddler::AuthenticationError] if Login with Amazon rejects the refresh
+      # Raises Peddler::AuthenticationError if Login with Amazon rejects the refresh.
       #
       # - return: the access token
       def call: () -> String
 
       def inspect: () -> String
 
-      # The same as inspect
+      # The name of the class, with nothing of the token
       def to_s: () -> String
 
       private

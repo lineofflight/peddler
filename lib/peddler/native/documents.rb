@@ -141,16 +141,17 @@ module Peddler
   # A document that is read as it downloads, so that a large one doesn't have to fit in memory
   #
   # `open_report_document`, `open_feed_document` and `open_query_document` on the API views open one by its ID,
-  # and {Peddler::Client#download_document} by its signed URL. A document Amazon compressed is decompressed.
+  # and Peddler::Client#download_document by its signed URL. A document Amazon compressed is decompressed.
   #
-  # A document is read once, in one way: {#each_tsv}, {#each_jsonl}, {#each_chunk} or {#json}. Reading it closes
+  # A document is read once, in one way: #each_tsv, #each_jsonl, #each_chunk or #json. Reading it closes
   # it, also when the block breaks or raises. A document that is closed, or already read another way, raises
-  # {Peddler::DocumentError}.
+  # Peddler::DocumentError.
   #
-  # @example
-  #   client.reports.open_report_document(report.report_document_id) do |document|
-  #     document.each_tsv { |row| puts row.first }
-  #   end
+  # Example:
+  #
+  #     client.reports.open_report_document(report.report_document_id) do |document|
+  #       document.each_tsv { |row| puts row.first }
+  #     end
   class Document
     # @rbs @handle: Native::DocumentHandle
 
@@ -158,9 +159,8 @@ module Peddler
     JSON_OPTIONS = { decimal_class: BigDecimal, max_nesting: false, allow_duplicate_key: true }.freeze #: Hash[Symbol, untyped]
     private_constant :JSON_OPTIONS
 
-    # @!visibility private
     #: (Native::DocumentHandle handle) -> void
-    def initialize(handle)
+    def initialize(handle) # :nodoc:
       @handle = handle
     end
 
@@ -184,8 +184,8 @@ module Peddler
     #
     # Without a block it returns an Enumerator.
     #
-    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
-    # @raise [Peddler::DocumentError] if the transfer breaks or the document is larger than `max_bytes`
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks or the document is larger than `max_bytes`.
     #: () { (String chunk) -> void } -> Document
     #: () -> Enumerator[String, Document]
     def each_chunk(&block)
@@ -199,12 +199,12 @@ module Peddler
     # A number with a fraction parses as a BigDecimal. A line of whitespace is skipped. Without a block it returns
     # an Enumerator.
     #
-    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
-    # @raise [Peddler::DocumentError] if the transfer breaks, a line is not JSON or one is larger than
-    #   `max_record_bytes`
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, a line is not JSON or one is larger than
+    # `max_record_bytes`.
     #: () { (untyped row) -> void } -> Document
     #: () -> Enumerator[untyped, Document]
-    def each_jsonl
+    def each_jsonl # :yields: row
       return enum_for(:each_jsonl) unless block_given?
 
       each_row("jsonl") { |record| yield JSON.parse(record, **JSON_OPTIONS) }
@@ -216,9 +216,9 @@ module Peddler
     # `charset:` to decode from another, when Amazon labels the document wrongly. Without a block it returns an
     # Enumerator.
     #
-    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
-    # @raise [Peddler::DocumentError] if the transfer breaks, the charset is unknown, the text is not in it or a
-    #   row is larger than `max_record_bytes`
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, the charset is unknown, the text is not in it or a
+    # row is larger than `max_record_bytes`.
     #: (?charset: String?) { (Array[String] row) -> void } -> Document
     #: (?charset: String?) -> Enumerator[Array[String], Document]
     def each_tsv(charset: nil, &block)
@@ -231,9 +231,9 @@ module Peddler
     #
     # @rbs max_bytes: Integer -- the most the document may hold, since all of it is kept in memory
     # @rbs return: untyped
-    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
-    # @raise [Peddler::DocumentError] if the transfer breaks, the document is larger than `max_bytes` or it is
-    #   not JSON
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, the document is larger than `max_bytes` or it is
+    # not JSON.
     def json(max_bytes:)
       JSON.parse(@handle.json(Native::TransferConfig.limit(:max_bytes, max_bytes)), **JSON_OPTIONS)
     ensure
@@ -267,14 +267,16 @@ module Peddler
     # Without a block it returns the document. With one it yields the document, closes it when the block returns,
     # and returns what the block returned.
     #
-    # @example
-    #   client.download_document(url, timeout: 120) do |document|
-    #     document.each_tsv { |row| puts row.first }
-    #   end
-    # @raise [ArgumentError] if the URL or an option breaks its rule. The message names it.
-    # @raise [Peddler::Error] if the URL answers outside 2xx
-    # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
-    # @raise [Peddler::DocumentError] if the request can't be sent
+    # Example:
+    #
+    #     client.download_document(url, timeout: 120) do |document|
+    #       document.each_tsv { |row| puts row.first }
+    #     end
+    #
+    # Raises ArgumentError if the URL or an option breaks its rule. The message names it.
+    # Raises Peddler::Error if the URL answers outside 2xx.
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the request can't be sent.
     #: [T] (String url, **untyped transfer_options) { (Document document) -> T } -> T
     #: (String url, **untyped transfer_options) -> Document
     def download_document(url, **transfer_options, &block)
@@ -289,10 +291,12 @@ module Peddler
     # do, are sent with their length. Give `content_length:` for another source whose length you know. Without one
     # the body goes out chunked.
     #
-    # @example
-    #   File.open("feed.json", "rb") do |file|
-    #     client.upload_document(url, file, content_type: "application/json; charset=UTF-8")
-    #   end
+    # Example:
+    #
+    #     File.open("feed.json", "rb") do |file|
+    #       client.upload_document(url, file, content_type: "application/json; charset=UTF-8")
+    #     end
+    #
     # @rbs url: String -- the signed URL
     # @rbs source: String | (_DocumentIO & Object) -- the content, or what returns it from `read(length)`
     # @rbs content_type: String -- the content type the URL was signed for
@@ -301,11 +305,11 @@ module Peddler
     # @rbs **transfer_options: untyped -- `timeout:` in seconds for the whole upload (30) and `max_bytes:` for what
     #   is sent
     # @rbs return: Response
-    # @raise [ArgumentError] if an argument or an option breaks its rule. The message names it.
-    # @raise [Peddler::Error] if the URL answers outside 2xx
-    # @raise [Peddler::DocumentTimeoutError] if the upload runs past its timeout
-    # @raise [Peddler::DocumentError] if the upload can't be sent, the source fails or its length is not the one
-    #   declared
+    # Raises ArgumentError if an argument or an option breaks its rule. The message names it.
+    # Raises Peddler::Error if the URL answers outside 2xx.
+    # Raises Peddler::DocumentTimeoutError if the upload runs past its timeout.
+    # Raises Peddler::DocumentError if the upload can't be sent, the source fails or its length is not the one
+    # declared.
     def upload_document(url, source, content_type:, headers: {}, content_length: nil, **transfer_options)
       Native::Uploads.put(@engine, url, source, content_type, headers, content_length, transfer_options)
     end

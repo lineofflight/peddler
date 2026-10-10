@@ -3,7 +3,9 @@
 require "json"
 
 module Peddler
-  # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
+  # Amazon's marketplaces, by country code
+  #
+  # https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
   MARKETPLACE_IDS = Ractor.make_shareable({
     "CA" => { id: "A2EUQ1WTGCTBG2", country_name: "Canada", selling_region: "North America" },
     "US" => { id: "ATVPDKIKX0DER", country_name: "United States", selling_region: "North America" },
@@ -30,19 +32,10 @@ module Peddler
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
   }) #: Hash[String, Hash[Symbol, String]]
 
-  # @!parse
-  #   # Wraps an Amazon marketplace
-  #   #
-  #   # @api public
-  #   #
-  #   # @!attribute [r] id
-  #   # @!attribute [r] country_code
-  #   # @!attribute [r] country_name
-  #   # @!attribute [r] selling_region
-  #   class Peddler::Marketplace < Data; end
   # @rbs skip
-  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region)
+  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) # :nodoc:
 
+  # An Amazon marketplace: its `id`, its `country_code`, its `country_name` and its `selling_region`
   class Marketplace
     # Finds the marketplace for the given country code
     #
@@ -96,7 +89,7 @@ module Peddler
       Endpoint.find_by_selling_region(selling_region)
     end
 
-    # @note So HTTP can encode
+    # Its ID, so a marketplace is its ID wherever a String is taken
     #: () -> String
     def to_str
       id

@@ -31,10 +31,11 @@ require "peddler/native/boot"
 module Peddler
   private_constant :LOADER
 
-  # Builds a client: short for {Peddler::Client#initialize Peddler::Client.new}, with the same arguments
+  # Builds a client: short for Peddler::Client.new, with the same arguments
   #
-  # @example
-  #   client = Peddler.new(region: "us-east-1", access_token: token)
+  # Example:
+  #
+  #     client = Peddler.new(region: "us-east-1", access_token: token)
   #: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Integer | Float, ?retries: Integer) -> Client
   def self.new(...)
     Client.new(...)
@@ -45,7 +46,7 @@ module Peddler
   # Ruby 3.3 loads code in the main Ractor only. Call this there before another Ractor parses a response, a
   # notification, a report, a feed or a Data Kiosk document. From Ruby 3.4 a Ractor loads a model on first use.
   #
-  # @raise [Ractor::IsolationError] in a Ractor other than the main one
+  # Raises Ractor::IsolationError in a Ractor other than the main one.
   #: () -> void
   def self.eager_load!
     unless Ractor.current.equal?(Ractor.main)

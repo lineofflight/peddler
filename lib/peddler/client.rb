@@ -6,15 +6,18 @@ module Peddler
   # The Selling Partner API client
   #
   # The client sends the access token it is given. It never requests, refreshes or caches one: get tokens from
-  # {Peddler::LWA} and keep them where your application can share them.
+  # Peddler::LWA and keep them where your application can share them.
   #
-  # @example
-  #   client = Peddler::Client.new(region: "eu-west-1", access_token: token)
-  #   client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"))
-  # @example A token source, asked before every attempt of a call
-  #   client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
-  #     Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
-  #   })
+  # Example:
+  #
+  #     client = Peddler::Client.new(region: "eu-west-1", access_token: token)
+  #     client.orders_v0.get_orders(Peddler::Marketplace.ids("UK"))
+  #
+  # Example of a token source, asked before every attempt of a call:
+  #
+  #     client = Peddler::Client.new(region: "eu-west-1", access_token: -> {
+  #       Rails.cache.fetch(key, expires_in: 55.minutes) { lwa.refresh(refresh_token: token).access_token }
+  #     })
   class Client
     # @rbs @engine: Native::Engine
     # @rbs @endpoint: Endpoint?
@@ -39,7 +42,7 @@ module Peddler
     # @rbs timeout: Integer | Float -- seconds for each attempt of a call. The waits between retries are not counted.
     # @rbs retries: Integer -- how often to retry a throttled request, or a GET that failed, from 0 to 10
     # @rbs return: void
-    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    # Raises ArgumentError if an option breaks its rule. The message names the option and the rule.
     def initialize(access_token:, region: nil, base_url: nil, timeout: 30, retries: 0)
       raise ArgumentError, "provide either region or base_url" unless region.nil? ^ base_url.nil?
       unless retries.is_a?(Integer) && retries.between?(0, 10)
@@ -66,10 +69,12 @@ module Peddler
     #
     # Use it for another seller, a rotated token, or a restricted data token for a few calls.
     #
-    # @example
-    #   rdt = client.tokens.create_restricted_data_token({ restrictedResources: resources }).parse
-    #   client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(id)
-    # @rbs access_token: String | Native::_TokenSource -- a token or its source, as in {#initialize}
+    # Example:
+    #
+    #     rdt = client.tokens.create_restricted_data_token({ restrictedResources: resources }).parse
+    #     client.with_access_token(rdt.restricted_data_token).orders_v0.get_order_address(id)
+    #
+    # @rbs access_token: String | Native::_TokenSource -- a token or its source, as in Client.new
     # @rbs return: Client
     def with_access_token(access_token)
       source = Native.token_source(access_token)
@@ -78,7 +83,7 @@ module Peddler
 
     # A view of this client that calls Amazon's sandbox for its region
     #
-    # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
+    # https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
     #: () -> Client
     def sandbox
       return self if @sandbox
@@ -98,22 +103,24 @@ module Peddler
     #
     # The request carries the client's access token and keeps its timeout and retries, as an operation's method
     # does. Amazon documents no rate for it, so a retry after a 429 waits as one after a 503 does. The response has
-    # no typed model, so {Peddler::Response#parse} returns the Hash.
+    # no typed model, so Peddler::Response#parse returns the Hash.
     #
-    # @example
-    #   client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
+    # Example:
+    #
+    #     client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: "ATVPDKIKX0DER" }).to_h
+    #
     # @rbs method: String -- the HTTP method, such as "GET", in any case
     # @rbs path: String -- the absolute path, percent-encoded, without a query
     # @rbs params: Hash[String | Symbol, untyped] -- the query. A value is sent as an operation's argument is: a
-    #   {Peddler::Marketplace} as its ID, an Array joined with commas.
+    #   Peddler::Marketplace as its ID, an Array joined with commas.
     # @rbs body: String | Hash[untyped, untyped] | Array[untyped] | nil -- sent as JSON. A String holds the JSON
     #   already.
     # @rbs return: Response
-    # @raise [ArgumentError] if an argument breaks its rule. The message names the argument.
-    # @raise [Peddler::Error] if the response is outside 2xx
-    # @raise [Peddler::TimeoutError] if the last attempt takes longer than the client's timeout
-    # @raise [Peddler::TransportError] if the request can't be sent or the response can't be read
-    # @raise [Peddler::ForkError] if the client was built before the process forked
+    # Raises ArgumentError if an argument breaks its rule. The message names the argument.
+    # Raises Peddler::Error if the response is outside 2xx.
+    # Raises Peddler::TimeoutError if the last attempt takes longer than the client's timeout.
+    # Raises Peddler::TransportError if the request can't be sent or the response can't be read.
+    # Raises Peddler::ForkError if the client was built before the process forked.
     def request(method, path, params: {}, body: nil)
       raise ArgumentError, "method must be a String" unless method.is_a?(String)
       raise ArgumentError, "path must be a String" unless path.is_a?(String)

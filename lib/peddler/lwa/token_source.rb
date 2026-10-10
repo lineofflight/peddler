@@ -4,14 +4,14 @@ module Peddler
   class LWA
     # Keeps one access token in this process and refreshes it a little before it expires
     #
-    # Build one with {Peddler::LWA#token_source} and pass it to {Peddler::Client} as `access_token:`. It refreshes
+    # Build one with Peddler::LWA#token_source and pass it to Peddler::Client as `access_token:`. It refreshes
     # only when called, on the calling thread, and callers that arrive during a refresh wait for it and share its
     # result. A failed refresh is not kept: the callers waiting on it raise the same error, each an object of its
     # own, and the next call tries again.
     #
     # It is in-process only. Several processes each refresh for themselves, so pass the client a source of your own,
     # such as a lambda around a shared cache, when they should share a token. Create it after `fork`: one created
-    # before raises {Peddler::ForkError} in the child.
+    # before raises Peddler::ForkError in the child.
     class TokenSource
       # @rbs @grant: ^() -> Tokens
       # @rbs @pid: Integer
@@ -41,7 +41,7 @@ module Peddler
       end
 
       # @rbs return: String -- the access token
-      # @raise [Peddler::AuthenticationError] if Login with Amazon rejects the refresh
+      # Raises Peddler::AuthenticationError if Login with Amazon rejects the refresh.
       def call
         raise ForkError, "create a new token source after fork" unless Process.pid == @pid
 
@@ -65,7 +65,7 @@ module Peddler
       #: () -> String
       def inspect = "#<Peddler::LWA::TokenSource>"
 
-      # The same as inspect
+      # The name of the class, with nothing of the token
       #: () -> String
       def to_s = inspect
 

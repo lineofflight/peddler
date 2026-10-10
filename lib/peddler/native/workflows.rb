@@ -59,19 +59,18 @@ module Peddler
       Response.from_parts(parts, WAIT_OPERATIONS.fetch(kind))
     end
 
-    # What Peddler adds to the Reports, Feeds and Data Kiosk APIs, beside their operations: v5's document helpers,
-    # and what waits for a job and streams or uploads its document.
+    # What Peddler adds to the Reports API, beside its operations: v5's document helper, and what waits for a report
+    # and streams its document.
     #
-    # The download_* and upload_* helpers of v5 return the whole body in a response and allow 600 seconds for the
-    # whole call. The open_* methods stream instead and take a timeout. Every one raises Peddler::Error when a
-    # request is rejected, Peddler::TimeoutError when the request that looks a document up or creates it takes
-    # too long, and Peddler::DocumentTimeoutError when the transfer does.
-
+    # download_report_document, the helper of v5, returns the whole body in a response and allows 600 seconds for the
+    # whole call. open_report_document streams instead and takes a timeout. Both raise Peddler::Error when a request
+    # is rejected, Peddler::TimeoutError when the request that looks the document up takes too long, and
+    # Peddler::DocumentTimeoutError when the transfer does.
     class Reports20210630
       # Downloads a report by its document ID or URL
       #
       # A report Amazon compresses is decompressed, so the body is the report content. For a report that takes more
-      # than 600 seconds, use {#open_report_document} with a `timeout:`.
+      # than 600 seconds, use #open_report_document with a `timeout:`.
       #
       # @rbs report_document_id_or_url: String -- the report document identifier or download URL
       # @rbs return: Response -- the response containing the report content
@@ -86,11 +85,13 @@ module Peddler
       # it returns the document. With one it yields the document, closes it when the block returns, and returns
       # what the block returned.
       #
-      # @example
-      #   client.reports.open_report_document(report.report_document_id) do |document|
-      #     document.each_tsv { |row| puts row.first }
-      #   end
-      # @raise [ArgumentError] if the ID or an option breaks its rule. The message names it.
+      # Example:
+      #
+      #     client.reports.open_report_document(report.report_document_id) do |document|
+      #       document.each_tsv { |row| puts row.first }
+      #     end
+      #
+      # Raises ArgumentError if the ID or an option breaks its rule. The message names it.
       #: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
       #: (String document_id, **untyped transfer_options) -> Document
       def open_report_document(document_id, **transfer_options, &block)
@@ -99,21 +100,30 @@ module Peddler
 
       # Polls `get_report` until the report is DONE, CANCELLED or FATAL
       #
-      # @example
-      #   report = client.reports.wait_for_report(report_id).parse
-      #   report.processing_status # => "DONE"
+      # Example:
+      #
+      #     report = client.reports.wait_for_report(report_id).parse
+      #     report.processing_status # => "DONE"
+      #
       # @rbs report_id: String -- the report identifier
       # @rbs interval: Integer | Float -- seconds between polls
       # @rbs timeout: Integer | Float -- seconds for the whole wait
       # @rbs return: Response -- the response of the last poll, so check its processing status
-      # @raise [Peddler::WorkflowTimeoutError] if the report is still in progress when the timeout ends
-      # @raise [Peddler::WorkflowError] if Amazon answers with a status Peddler doesn't know
-      # @raise [Peddler::Error] if a poll is rejected
+      # Raises Peddler::WorkflowTimeoutError if the report is still in progress when the timeout ends.
+      # Raises Peddler::WorkflowError if Amazon answers with a status Peddler doesn't know.
+      # Raises Peddler::Error if a poll is rejected.
       def wait_for_report(report_id, interval: 5, timeout: 300)
         Native.wait_for(@engine, "report", "report_id", report_id, interval, timeout)
       end
     end
 
+    # What Peddler adds to the Feeds API, beside its operations: v5's document helpers, and what waits for a feed,
+    # streams its result and uploads its document.
+    #
+    # upload_feed_document and download_result_feed_document, the helpers of v5, return the whole body in a response
+    # and allow 600 seconds for the whole call. open_feed_document streams instead and takes a timeout. Every one
+    # raises Peddler::Error when a request is rejected, Peddler::TimeoutError when the request that looks a document
+    # up or creates it takes too long, and Peddler::DocumentTimeoutError when the transfer does.
     class Feeds20210630
       # Uploads feed content to the signed URL that `create_feed_document` returned
       #
@@ -129,7 +139,7 @@ module Peddler
 
       # Downloads the result of a processed feed from the signed URL that `get_feed_document` returned
       #
-      # For a result that takes more than 600 seconds, use {#open_feed_document} with a `timeout:`.
+      # For a result that takes more than 600 seconds, use #open_feed_document with a `timeout:`.
       #
       # @rbs download_url: String -- the signed URL from the `get_feed_document` response
       # @rbs return: Response -- the response containing the feed result document
@@ -140,10 +150,10 @@ module Peddler
       # Opens the result of a processed feed by its document ID, to read it as it arrives
       #
       # It takes the feed document identifier, such as a feed's `result_feed_document_id`, and the options
-      # {Reports20210630#open_report_document} takes. Without a block it returns the document. With one it yields
+      # Reports20210630#open_report_document takes. Without a block it returns the document. With one it yields
       # the document, closes it when the block returns, and returns what the block returned.
       #
-      # @raise [ArgumentError] if the ID or an option breaks its rule. The message names it.
+      # Raises ArgumentError if the ID or an option breaks its rule. The message names it.
       #: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
       #: (String document_id, **untyped transfer_options) -> Document
       def open_feed_document(document_id, **transfer_options, &block)
@@ -156,9 +166,9 @@ module Peddler
       # @rbs interval: Integer | Float -- seconds between polls
       # @rbs timeout: Integer | Float -- seconds for the whole wait
       # @rbs return: Response -- the response of the last poll, so check its processing status
-      # @raise [Peddler::WorkflowTimeoutError] if the feed is still in progress when the timeout ends
-      # @raise [Peddler::WorkflowError] if Amazon answers with a status Peddler doesn't know
-      # @raise [Peddler::Error] if a poll is rejected
+      # Raises Peddler::WorkflowTimeoutError if the feed is still in progress when the timeout ends.
+      # Raises Peddler::WorkflowError if Amazon answers with a status Peddler doesn't know.
+      # Raises Peddler::Error if a poll is rejected.
       def wait_for_feed(feed_id, interval: 5, timeout: 300)
         Native.wait_for(@engine, "feed", "feed_id", feed_id, interval, timeout)
       end
@@ -169,19 +179,21 @@ module Peddler
       # A String, and a source that answers `size`, as a File and a StringIO do, are sent with their length. Give
       # `content_length:` for another source whose length you know. Without one the body goes out chunked.
       #
-      # @example
-      #   feed_document_id = File.open("feed.json", "rb") do |file|
-      #     client.feeds.create_and_upload_feed_document(file, content_type: "application/json; charset=UTF-8")
-      #   end
+      # Example:
+      #
+      #     feed_document_id = File.open("feed.json", "rb") do |file|
+      #       client.feeds.create_and_upload_feed_document(file, content_type: "application/json; charset=UTF-8")
+      #     end
+      #
       # @rbs source: String | (_DocumentIO & Object) -- the content, or what returns it from `read(length)`
       # @rbs content_type: String -- the content type of the feed, sent to both requests
       # @rbs content_length: Integer? -- the bytes the source holds
       # @rbs **transfer_options: untyped -- `timeout:` in seconds for both requests (30) and `max_bytes:` for what is
       #   sent
       # @rbs return: String -- the feed document ID
-      # @raise [ArgumentError] if an argument or an option breaks its rule. The message names it.
-      # @raise [Peddler::Error] if Amazon rejects the document or its signed URL rejects the upload
-      # @raise [Peddler::DocumentError] if the source is larger than `max_bytes:`, before a document is created
+      # Raises ArgumentError if an argument or an option breaks its rule. The message names it.
+      # Raises Peddler::Error if Amazon rejects the document or its signed URL rejects the upload.
+      # Raises Peddler::DocumentError if the source is larger than `max_bytes:`, before a document is created.
       def create_and_upload_feed_document(source, content_type:, content_length: nil, **transfer_options)
         unless Native.valid_identifier?(content_type)
           raise ArgumentError, "content_type must be a UTF-8 String that is not empty"
@@ -201,10 +213,17 @@ module Peddler
       end
     end
 
+    # What Peddler adds to the Data Kiosk API, beside its operations: v5's document helper, and what waits for a
+    # query and streams its document.
+    #
+    # download_query_document, the helper of v5, returns the whole body in a response and allows 600 seconds for the
+    # whole call. open_query_document streams instead and takes a timeout. Both raise Peddler::Error when a request
+    # is rejected, Peddler::TimeoutError when the request that looks the document up takes too long, and
+    # Peddler::DocumentTimeoutError when the transfer does.
     class DataKiosk20231115
       # Downloads a Data Kiosk document by its document ID or URL
       #
-      # For a document that takes more than 600 seconds, use {#open_query_document} with a `timeout:`.
+      # For a document that takes more than 600 seconds, use #open_query_document with a `timeout:`.
       #
       # @rbs document_id_or_url: String -- the document identifier or download URL
       # @rbs return: Response -- the response containing the document content
@@ -215,14 +234,16 @@ module Peddler
       # Opens a Data Kiosk document by its ID, to read it as it arrives
       #
       # It takes the document identifier, such as a query's `data_document_id`, and the options
-      # {Reports20210630#open_report_document} takes. Without a block it returns the document. With one it yields
+      # Reports20210630#open_report_document takes. Without a block it returns the document. With one it yields
       # the document, closes it when the block returns, and returns what the block returned.
       #
-      # @example
-      #   client.data_kiosk.open_query_document(query.data_document_id) do |document|
-      #     document.each_jsonl { |record| puts record }
-      #   end
-      # @raise [ArgumentError] if the ID or an option breaks its rule. The message names it.
+      # Example:
+      #
+      #     client.data_kiosk.open_query_document(query.data_document_id) do |document|
+      #       document.each_jsonl { |record| puts record }
+      #     end
+      #
+      # Raises ArgumentError if the ID or an option breaks its rule. The message names it.
       #: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
       #: (String document_id, **untyped transfer_options) -> Document
       def open_query_document(document_id, **transfer_options, &block)
@@ -235,9 +256,9 @@ module Peddler
       # @rbs interval: Integer | Float -- seconds between polls
       # @rbs timeout: Integer | Float -- seconds for the whole wait
       # @rbs return: Response -- the response of the last poll, so check its processing status
-      # @raise [Peddler::WorkflowTimeoutError] if the query is still in progress when the timeout ends
-      # @raise [Peddler::WorkflowError] if Amazon answers with a status Peddler doesn't know
-      # @raise [Peddler::Error] if a poll is rejected
+      # Raises Peddler::WorkflowTimeoutError if the query is still in progress when the timeout ends.
+      # Raises Peddler::WorkflowError if Amazon answers with a status Peddler doesn't know.
+      # Raises Peddler::Error if a poll is rejected.
       def wait_for_query(query_id, interval: 5, timeout: 300)
         Native.wait_for(@engine, "query", "query_id", query_id, interval, timeout)
       end

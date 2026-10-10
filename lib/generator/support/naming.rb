@@ -5,20 +5,15 @@ module Generator
   # Handles class names, attribute names, and acronym transformations
   module Naming
     class << self
-      # Convert a string to a Ruby class name with proper acronym handling
-      # @param name [String] the name to convert (e.g., "api_client", "SKUInfo")
-      # @return [String] PascalCase class name with acronyms applied
+      # Convert a name (e.g., "api_client", "SKUInfo") to a PascalCase Ruby class name with acronyms applied
       def class_name(name)
         camelized = name.camelize
         Peddler::Acronyms.apply(camelized)
       end
 
-      # Convert a property name to a Ruby attribute name
+      # Convert a property name to a snake_case Ruby attribute name
       # - Underscores the name
-      # - Strips "is_" prefix from boolean attributes for idiomatic Ruby
-      # @param prop_name [String] the property name
-      # @param prop_def [Hash] the property definition (to check type)
-      # @return [String] snake_case attribute name
+      # - Strips "is_" prefix from boolean attributes for idiomatic Ruby. The property definition tells the type.
       def attribute_name(prop_name, prop_def = nil)
         underscored = prop_name.underscore
         return underscored unless prop_def

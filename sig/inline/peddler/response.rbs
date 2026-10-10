@@ -40,7 +40,7 @@ module Peddler
       # - return: whether the response has the header
       def include?: (String | Symbol name) -> bool
 
-      # The same as include?
+      # Whether the response has the header, as #include? answers
       def key?: (String | Symbol name) -> bool
 
       # Yields each name and value
@@ -57,17 +57,14 @@ module Peddler
     # The bytes as they arrived
     attr_reader body: String
 
-    # Builds the response of an API call or a signed-URL transfer, raising if it is an HTTP error
-    #
-    # @!visibility private
-    # @raise [Peddler::Error]
+    # Builds the response of an API call or a signed-URL transfer, raising Peddler::Error if it is an HTTP error
     def self.from_parts: (Native::response_parts parts, ?String? operation) -> Response
 
     def initialize: (Integer status, Array[[ String, String ]] headers, String body, ?Native::error_metadata? metadata, ?operation: String?) -> void
 
     # The metadata only supplies Amazon's code, request ID and message. Without it they are nil.
     #
-    # @raise [Peddler::Error] if the status is outside 2xx
+    # Raises Peddler::Error if the status is outside 2xx.
     def raise_for_status!: () -> self
 
     # - return: the status code

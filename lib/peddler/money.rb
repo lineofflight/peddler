@@ -2,8 +2,9 @@
 
 module Peddler
   # @rbs skip
-  Money = Data.define(:amount, :currency_code)
+  Money = Data.define(:amount, :currency_code) # :nodoc:
 
+  # An amount of money in a typed model: its `amount`, a String that holds a decimal, and its `currency_code`
   class Money
     #: (untyped value) -> Money?
     def self.parse(value)

@@ -9,12 +9,12 @@ module Peddler
   # The message never holds a URL, a token or an argument.
   class TransportError < StandardError; end
 
-  # A request that took longer than the timeout of the client, or of {Peddler::LWA}
+  # A request that took longer than the timeout of the client, or of Peddler::LWA
   #
   # The request that looks a document up by its ID, or creates a feed document, raises this too.
   class TimeoutError < TransportError; end
 
-  # A client, a {Peddler::LWA} or a token source that was created before the process forked and is used in the
+  # A client, a Peddler::LWA or a token source that was created before the process forked and is used in the
   # child
   #
   # Create them again in the child. The message names which.
@@ -22,12 +22,13 @@ module Peddler
 
   # A token that Login with Amazon didn't grant, or a token source that failed
   #
-  # @example
-  #   begin
-  #     lwa.refresh(refresh_token: seller.refresh_token)
-  #   rescue Peddler::AuthenticationError => error
-  #     seller.disconnect! if error.code == "invalid_grant"
-  #   end
+  # Example:
+  #
+  #     begin
+  #       lwa.refresh(refresh_token: seller.refresh_token)
+  #     rescue Peddler::AuthenticationError => error
+  #       seller.disconnect! if error.code == "invalid_grant"
+  #     end
   class AuthenticationError < StandardError
     # @rbs @status: Integer?
     # @rbs @code: String?
@@ -47,11 +48,12 @@ module Peddler
 
     # Supports pattern matching on status and code
     #
-    # @example
-    #   case error
-    #   in code: "invalid_grant" then reauthorize
-    #   in status: 500.. then retry_later
-    #   end
+    # Example:
+    #
+    #     case error
+    #     in code: "invalid_grant" then reauthorize
+    #     in status: 500.. then retry_later
+    #     end
     #: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
     def deconstruct_keys(keys)
       hash = { status: status, code: code }
@@ -60,9 +62,9 @@ module Peddler
   end
 
   # A document that couldn't be transferred or read: a broken transfer, invalid compression or content, a limit
-  # the document is larger than, or a {Peddler::Document} that is closed or already read
+  # the document is larger than, or a Peddler::Document that is closed or already read
   #
-  # A signed URL that answers outside 2xx raises {Peddler::Error}, not this.
+  # A signed URL that answers outside 2xx raises Peddler::Error, not this.
   class DocumentError < StandardError; end
 
   # A download or an upload that ran past its `timeout:`
@@ -74,7 +76,7 @@ module Peddler
 
   # A `wait_for_report`, `wait_for_feed` or `wait_for_query` that ran past its own `timeout:`
   #
-  # Nothing else raises it. A poll that takes longer than the client's timeout raises {Peddler::TimeoutError}.
+  # Nothing else raises it. A poll that takes longer than the client's timeout raises Peddler::TimeoutError.
   class WorkflowTimeoutError < WorkflowError; end
 
   # Raised after the last good page when a following page can't be requested.

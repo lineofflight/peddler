@@ -1,7 +1,9 @@
 # Generated from lib/peddler/marketplace.rb by rake rbs:export. Do not edit.
 
 module Peddler
-  # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
+  # Amazon's marketplaces, by country code
+  #
+  # https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
   MARKETPLACE_IDS: Hash[String, Hash[Symbol, String]]
 
   class Marketplace
@@ -19,7 +21,7 @@ module Peddler
 
     def endpoint: () -> Endpoint
 
-    # @note So HTTP can encode
+    # Its ID, so a marketplace is its ID wherever a String is taken
     def to_str: () -> String
 
     # Its ID as JSON, so a marketplace anywhere inside a request body is sent as its ID

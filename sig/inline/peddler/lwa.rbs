@@ -29,18 +29,18 @@ module Peddler
       # - return: whether the other holds the same values
       def ==: (untyped other) -> bool
 
-      # The same as ==, so two with the same values are one key of a Hash
+      # Whether the other holds the same values, so two with the same values are one key of a Hash
       def eql?: (untyped other) -> bool
 
       def hash: () -> Integer
 
       def inspect: () -> String
 
-      # The same as inspect, so nothing of a token shows in text either
+      # The name of the class and "[redacted]", so nothing of a token shows in text either
       def to_s: () -> String
     end
 
-    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    # Raises ArgumentError if an option breaks its rule. The message names the option and the rule.
     #
     # - client_id: defaults to LWA_CLIENT_ID in the environment
     # - client_secret: defaults to LWA_CLIENT_SECRET in the environment
@@ -53,14 +53,15 @@ module Peddler
 
     # Requests an access token for grantless operations
     #
-    # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
+    # https://developer-docs.amazon.com/sp-api/docs/grantless-operations
     def client_credentials: (scope: String) -> Tokens
 
     # An optional source of access tokens that keeps one in this process and refreshes it shortly before it expires
     #
-    # @example
-    #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
-    #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    # Example:
+    #
+    #     source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
+    #     client = Peddler::Client.new(region: "us-east-1", access_token: source)
     #
     # - refresh_token: a seller's refresh token, or
     # - scope: the scope of grantless operations
@@ -72,7 +73,7 @@ module Peddler
 
     def inspect: () -> String
 
-    # The same as inspect
+    # The name of the class, with nothing of the credentials
     def to_s: () -> String
 
     private

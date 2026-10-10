@@ -4,10 +4,13 @@ require "uri"
 
 module Peddler
   # @rbs skip
-  Endpoint = Data.define(:aws_region, :selling_region, :host)
+  Endpoint = Data.define(:aws_region, :selling_region, :host) # :nodoc:
 
+  # A Selling Partner API endpoint: the `host` that serves a `selling_region`, and the `aws_region` it is in
   class Endpoint
-    # @see https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints
+    # Amazon's endpoints, by AWS region
+    #
+    # https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints
     REGIONS = Ractor.make_shareable({
       "us-east-1" => {
         selling_region: "North America",

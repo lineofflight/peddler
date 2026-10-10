@@ -4,15 +4,17 @@ module Peddler
   # Requests Login with Amazon (LWA) tokens
   #
   # Every grant makes one request and keeps nothing. Application code owns consent, state verification, token storage
-  # and when to ask for a new access token; {#token_source} is an optional in-process helper for the last. A rejection
-  # raises {Peddler::AuthenticationError}, whose `code` is what Amazon names as the problem, such as "invalid_client" or
+  # and when to ask for a new access token; #token_source is an optional in-process helper for the last. A rejection
+  # raises Peddler::AuthenticationError, whose `code` is what Amazon names as the problem, such as "invalid_client" or
   # "invalid_grant".
   #
-  # @example
-  #   lwa = Peddler::LWA.new
-  #   tokens = lwa.refresh(refresh_token: seller.refresh_token)
-  #   Rails.cache.write(key, tokens.access_token, expires_in: tokens.expires_in)
-  # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
+  # Example:
+  #
+  #     lwa = Peddler::LWA.new
+  #     tokens = lwa.refresh(refresh_token: seller.refresh_token)
+  #     Rails.cache.write(key, tokens.access_token, expires_in: tokens.expires_in)
+  #
+  # https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   class LWA
     # @rbs @engine: Native::LwaEngine
 
@@ -22,9 +24,10 @@ module Peddler
     #
     # Two with the same values are equal. Nothing of a token shows when one is inspected.
     #
-    # @example
-    #   tokens = lwa.refresh(refresh_token: seller.refresh_token)
-    #   client = Peddler::Client.new(region: "eu-west-1", access_token: tokens.access_token)
+    # Example:
+    #
+    #     tokens = lwa.refresh(refresh_token: seller.refresh_token)
+    #     client = Peddler::Client.new(region: "eu-west-1", access_token: tokens.access_token)
     class Tokens
       # The token a client sends to the Selling Partner API
       attr_reader :access_token #: String
@@ -62,7 +65,7 @@ module Peddler
         other.class == self.class && other.to_h == to_h
       end
 
-      # The same as ==, so two with the same values are one key of a Hash
+      # Whether the other holds the same values, so two with the same values are one key of a Hash
       #: (untyped other) -> bool
       def eql?(other) = self == other
 
@@ -72,7 +75,7 @@ module Peddler
       #: () -> String
       def inspect = "#<Peddler::LWA::Tokens [redacted]>"
 
-      # The same as inspect, so nothing of a token shows in text either
+      # The name of the class and "[redacted]", so nothing of a token shows in text either
       #: () -> String
       def to_s = inspect
     end
@@ -82,7 +85,7 @@ module Peddler
     # @rbs timeout: Integer | Float -- seconds for one request
     # @rbs lwa_endpoint: String -- the token endpoint, for a proxy or a test
     # @rbs return: void
-    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    # Raises ArgumentError if an option breaks its rule. The message names the option and the rule.
     def initialize(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], timeout: 30,
       lwa_endpoint: DEFAULT_ENDPOINT)
       raise ArgumentError, "missing client_id: pass client_id: or set LWA_CLIENT_ID" unless client_id && client_id != ""
@@ -105,7 +108,7 @@ module Peddler
 
     # Requests an access token for grantless operations
     #
-    # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
+    # https://developer-docs.amazon.com/sp-api/docs/grantless-operations
     #: (scope: String) -> Tokens
     def client_credentials(scope:)
       tokens(@engine.client_credentials(present("scope", scope)))
@@ -113,9 +116,11 @@ module Peddler
 
     # An optional source of access tokens that keeps one in this process and refreshes it shortly before it expires
     #
-    # @example
-    #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
-    #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    # Example:
+    #
+    #     source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
+    #     client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    #
     # @rbs refresh_token: String? -- a seller's refresh token, or
     # @rbs scope: String? -- the scope of grantless operations
     # @rbs return: TokenSource
@@ -145,7 +150,7 @@ module Peddler
     #: () -> String
     def inspect = "#<Peddler::LWA>"
 
-    # The same as inspect
+    # The name of the class, with nothing of the credentials
     #: () -> String
     def to_s = inspect
 

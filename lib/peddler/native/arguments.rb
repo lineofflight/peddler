@@ -8,7 +8,7 @@ module Peddler
     # through here. An error names the argument and what it should be, never its value.
     #
     # An object that converts itself to a String with `to_str` is that String wherever a String is taken, as a
-    # {Peddler::Marketplace} is its ID.
+    # Peddler::Marketplace is its ID.
     module Arguments
       INTEGER = /\A-?\d+\z/ #: Regexp
       DECIMAL = /\A-?\d+\.\d+\z/ #: Regexp

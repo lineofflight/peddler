@@ -25,11 +25,12 @@ module Peddler
 
     # Supports pattern matching on status and code
     #
-    # @example
-    #   case error
-    #   in code: "invalid_grant" then reauthorize
-    #   in status: 500.. then retry_later
-    #   end
+    # Example:
+    #
+    #     case error
+    #     in code: "invalid_grant" then reauthorize
+    #     in status: 500.. then retry_later
+    #     end
     def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
   end
 

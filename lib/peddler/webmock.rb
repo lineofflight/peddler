@@ -9,7 +9,7 @@ module WebMock
     #
     # Peddler's requests are made by its native extension, where WebMock's other adapters don't see them. Require
     # this file after WebMock, and while WebMock is enabled every exchange Peddler makes goes through it: the
-    # operations and {Peddler::Client#request}, the grants of {Peddler::LWA}, and the downloads and uploads of signed
+    # operations and Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed
     # URLs. `stub_request`, `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` then
     # work as they do for any HTTP library.
     #
@@ -19,8 +19,8 @@ module WebMock
     # network.
     #
     # Only the exchange is replaced. A stubbed response is retried, paginated, parsed and raised on as one from
-    # Amazon is. `to_timeout` raises what a timeout does: {Peddler::TimeoutError}, or
-    # {Peddler::DocumentTimeoutError} for a signed URL. `to_raise` raises the error itself.
+    # Amazon is. `to_timeout` raises what a timeout does: Peddler::TimeoutError, or
+    # Peddler::DocumentTimeoutError for a signed URL. `to_raise` raises the error itself.
     #
     # A document isn't streamed while WebMock is enabled: an upload is read to its end before it is sent, and a
     # download arrives whole before its first row is read.
@@ -28,31 +28,28 @@ module WebMock
     # WebMock works in the main Ractor only: its stubs live there. While it is enabled, a call Peddler makes in
     # another Ractor raises `Ractor::IsolationError` and sends nothing.
     #
-    # @example
-    #   require "webmock/minitest"
-    #   require "peddler/webmock"
+    # Example:
     #
-    #   stub_request(:get, %r{/orders/v0/orders}).to_return(status: 200, body: '{"payload":{"Orders":[]}}')
+    #     require "webmock/minitest"
+    #     require "peddler/webmock"
+    #
+    #     stub_request(:get, %r{/orders/v0/orders}).to_return(status: 200, body: '{"payload":{"Orders":[]}}')
     class PeddlerAdapter < HttpLibAdapter
       adapter_for :peddler
 
       class << self
-        # @!visibility private
-        def enable!
+        def enable! # :nodoc:
           ::Peddler::Native.exchange_hook = self
         end
 
-        # @!visibility private
-        def disable!
+        def disable! # :nodoc:
           ::Peddler::Native.exchange_hook = nil
         end
 
         # What the native layer does with a request it is about to send: answer it with `[status, headers, body]`,
-        # time it out with `:timeout`, or send it and report the response to {.completed} with the signature
+        # time it out with `:timeout`, or send it and report the response to `completed` with the signature
         # returned here
-        #
-        # @!visibility private
-        def call(method, url, headers, body)
+        def call(method, url, headers, body) # :nodoc:
           signature = RequestSignature.new(method.downcase.to_sym, url, headers: named(headers), body: text(body))
           RequestRegistry.instance.requested_signatures.put(signature)
           response = StubRegistry.instance.response_for_request(signature)
@@ -69,9 +66,7 @@ module WebMock
         end
 
         # Reports the response of a request that went to the network, so that VCR records it
-        #
-        # @!visibility private
-        def completed(signature, status, headers, body)
+        def completed(signature, status, headers, body) # :nodoc:
           return unless CallbackRegistry.any_callbacks?
 
           reason = ::Peddler::Native.status_reason(status).to_s

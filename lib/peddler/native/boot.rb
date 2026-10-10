@@ -75,7 +75,7 @@ module Peddler
 
     # Identifies the gem to the Selling Partner API. LWA and signed URLs get the same without the host name.
     #
-    # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
+    # https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
     #: () -> String
     def self.user_agent
       "Peddler/#{VERSION} (Language=Ruby; #{Socket.gethostname.gsub(/[^\x20-\x7E]/, "")})"
