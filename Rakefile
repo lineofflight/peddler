@@ -2,9 +2,6 @@
 
 require "bundler/gem_tasks"
 require "minitest/test_task"
-require "pathname"
-require "rbs"
-require "rbs/sorter"
 require "rbconfig"
 require "rubocop/rake_task"
 require "shellwords"
@@ -27,14 +24,6 @@ Rake::Task[:test].clear_actions.enhance(["native:build"]) do
 end
 RuboCop::RakeTask.new
 Steep::RakeTask.new
-
-desc "Sort manually written RBS signature files"
-task "rbs:sort" do
-  manual_rbs_files = Dir.glob("sig/peddler/*.rbs")
-  manual_rbs_files.each do |file|
-    RBS::Sorter.new(Pathname(file)).run
-  end
-end
 
 # The generated Ruby carries its types inline, so the export follows it.
 desc "Generate all code from specs"
