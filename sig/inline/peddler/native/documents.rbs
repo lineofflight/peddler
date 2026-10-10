@@ -52,8 +52,10 @@ module Peddler
     # @!visibility private
     def initialize: (Native::DocumentHandle handle) -> void
 
+    # - return: the headers of the download, as a response answers them
     def headers: () -> Response::Headers
 
+    # - return: the charset parameter of the document's Content-Type, as Amazon sent it
     def charset: () -> String?
 
     def closed?: () -> bool
@@ -100,6 +102,8 @@ module Peddler
     # @raise [Peddler::DocumentTimeoutError] if the download runs past its timeout
     # @raise [Peddler::DocumentError] if the transfer breaks, the document is larger than `max_bytes` or it is
     #   not JSON
+    #
+    # - max_bytes: the most the document may hold, since all of it is kept in memory
     def json: (max_bytes: Integer) -> untyped
 
     private
@@ -145,6 +149,13 @@ module Peddler
     # @raise [Peddler::DocumentTimeoutError] if the upload runs past its timeout
     # @raise [Peddler::DocumentError] if the upload can't be sent, the source fails or its length is not the one
     #   declared
+    #
+    # - url: the signed URL
+    # - source: the content, or what returns it from `read(length)`
+    # - content_type: the content type the URL was signed for
+    # - headers: more headers the URL was signed with
+    # - content_length: the bytes the source holds
+    # - transfer_options: `timeout:` in seconds for the whole upload (30) and `max_bytes:` for what is sent
     def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Response
   end
 end

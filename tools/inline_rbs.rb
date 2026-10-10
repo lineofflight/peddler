@@ -21,6 +21,10 @@ module InlineRBS
   Ruby = RBS::AST::Ruby
   Declarations = RBS::AST::Declarations
   Members = RBS::AST::Members
+  # The annotations of a method that may describe what they type
+  DESCRIBED = [:Param, :SplatParam, :DoubleSplatParam, :BlockParam, :Return].map do |kind|
+    Ruby::Annotations.const_get("#{kind}TypeAnnotation")
+  end.freeze
 
   class << self
     # The Ruby files the Steepfile checks inline, relative to the root
@@ -104,7 +108,7 @@ module InlineRBS
       when Ruby::Members::DefMember
         Members::MethodDefinition.new(
           name: member.name, kind: member.kind, overloads: member.overloads, annotations: [], location: nil,
-          comment: member.leading_comment&.as_comment, overloading: member.overloading?, visibility: nil,
+          comment: comment(member.leading_comment), overloading: member.overloading?, visibility: nil,
         )
       when Ruby::Members::IncludeMember then mixin(Members::Include, member)
       when Ruby::Members::ExtendMember then mixin(Members::Extend, member)
@@ -123,6 +127,23 @@ module InlineRBS
       when Ruby::Members::ModuleSelfMember then nil
       else raise "unknown inline member: #{member.class}"
       end
+    end
+
+    # The comment above a method. The parser's own leaves the `@rbs` lines out, so what they say of a parameter or
+    # of the return follows the prose as a list, and an application's hover shows it. The types stay in the
+    # signature.
+    def comment(block)
+      return unless block
+
+      list = block.each_paragraph([]).filter_map do |annotation|
+        next unless DESCRIBED.include?(annotation.class) && annotation.comment_location
+
+        name = annotation.is_a?(Ruby::Annotations::ReturnTypeAnnotation) ? "return" : annotation.name_location&.source
+        # A description that runs on keeps the `#` of each line it takes.
+        "- #{name}: #{annotation.comment_location.source.delete_prefix("--").gsub(/\s*\n\s*#\s*/, " ").strip}"
+      end
+      string = [block.as_comment&.string&.rstrip, list.join("\n")].compact.reject(&:empty?).join("\n\n")
+      RBS::AST::Comment.new(string: string, location: nil) unless string.empty?
     end
 
     def mixin(kind, member)

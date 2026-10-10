@@ -10,6 +10,7 @@ module Peddler
     # "Urls" => "URLs").
     def self.apply: (String word) -> String
 
+    # - return: Array of uppercase acronyms
     def self.values: () -> Array[String]
   end
 end

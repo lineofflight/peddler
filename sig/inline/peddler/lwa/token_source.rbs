@@ -20,9 +20,12 @@ module Peddler
       # A token is refreshed this many seconds early, or by a tenth of its lifetime when that is shorter.
       MARGIN: ::Integer
 
+      # - grant: returns new tokens from Login with Amazon
       def initialize: () { () -> Tokens } -> void
 
       # @raise [Peddler::AuthenticationError] if Login with Amazon rejects the refresh
+      #
+      # - return: the access token
       def call: () -> String
 
       def inspect: () -> String

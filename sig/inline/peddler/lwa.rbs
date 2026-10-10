@@ -26,6 +26,7 @@ module Peddler
 
       def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
 
+      # - return: whether the other holds the same values
       def ==: (untyped other) -> bool
 
       # The same as ==, so two with the same values are one key of a Hash
@@ -40,6 +41,11 @@ module Peddler
     end
 
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    #
+    # - client_id: defaults to LWA_CLIENT_ID in the environment
+    # - client_secret: defaults to LWA_CLIENT_SECRET in the environment
+    # - timeout: seconds for one request
+    # - lwa_endpoint: the token endpoint, for a proxy or a test
     def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Integer | Float, ?lwa_endpoint: String) -> void
 
     # Requests an access token for a seller
@@ -55,6 +61,9 @@ module Peddler
     # @example
     #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
     #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    #
+    # - refresh_token: a seller's refresh token, or
+    # - scope: the scope of grantless operations
     def token_source: (?refresh_token: String?, ?scope: String?) -> TokenSource
 
     # Omit redirect_uri only for SDK-originated grants; otherwise provide the
