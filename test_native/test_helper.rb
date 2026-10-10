@@ -2,6 +2,8 @@
 
 require "minitest/autorun"
 require "minitest/mock"
+require "open3"
+require "rbconfig"
 require "securerandom"
 require "socket"
 require "stringio"
@@ -156,5 +158,20 @@ class NativeTest < Minitest::Test
 
   def client(url, **options)
     Peddler::Client.new(base_url: url, access_token: "local-secret", **options)
+  end
+
+  # The output of a script in a Ruby of its own, with this one's load path, where nothing is loaded yet. A script
+  # that fails, or that runs past the deadline, raises with what it printed.
+  def run_ruby(script, deadline: 30)
+    Open3.popen2e(RbConfig.ruby, *$LOAD_PATH.flat_map { |path| ["-I", path] }, "-e", script) do |input, out, thread|
+      input.close
+      finished = thread.join(deadline)
+      Process.kill("KILL", thread.pid) unless finished
+      output = out.read
+      raise "a child process ran past #{deadline} seconds: #{output}" unless finished
+      raise "a child process failed: #{output}" unless thread.value.success?
+
+      output
+    end
   end
 end

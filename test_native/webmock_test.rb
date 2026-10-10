@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
-require "open3"
-require "rbconfig"
 require "tmpdir"
 require "vcr"
 require "peddler/webmock"
@@ -329,10 +327,8 @@ class WebMockTest < WebMockTestCase
       results << hook.call.equal?(WebMock::HttpLibAdapters::PeddlerAdapter)
       print results.all? ? "ok" : results.inspect
     RUBY
-    output, status = Open3.capture2e(RbConfig.ruby, "-W0", *$LOAD_PATH.flat_map { |path| ["-I", path] }, "-e", script)
 
-    assert_equal("ok", output)
-    assert_predicate(status, :success?)
+    assert_equal("ok", run_ruby(script))
   end
 end
 

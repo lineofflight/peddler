@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
-require "open3"
-require "rbconfig"
 require "peddler/webmock"
 
 # A Ractor other than the main one builds its own client and uses all of Peddler. Each scenario runs whole in a
@@ -561,10 +559,10 @@ class RactorTest < NativeTest
     skip("structure #{Gem.loaded_specs.fetch("structure").version} defines models for the main Ractor only")
   end
 
-  # The output of a script in a Ruby of its own, with this one's load path, where nothing is loaded yet but
-  # Peddler. An error a Ractor raised prints as its class and message.
+  # A script in a Ruby of its own where nothing is loaded yet but Peddler. An error a Ractor raised prints as its
+  # class and message.
   def run_ruby(script)
-    prelude = <<~RUBY
+    super(<<~RUBY + script, deadline: DEADLINE)
       Warning[:experimental] = false
       Thread.report_on_exception = false
       require "peddler"
@@ -574,16 +572,6 @@ class RactorTest < NativeTest
         "\#{error.cause.class}: \#{error.cause.message}"
       end
     RUBY
-    Open3.popen2e(RbConfig.ruby, *$LOAD_PATH.flat_map { |path| ["-I", path] }, "-e", prelude + script) do |input, out, thread|
-      input.close
-      finished = thread.join(DEADLINE)
-      Process.kill("KILL", thread.pid) unless finished
-      output = out.read
-      raise "a child process ran past #{DEADLINE} seconds: #{output}" unless finished
-      raise "a child process failed: #{output}" unless thread.value.success?
-
-      output
-    end
   end
 end
 # rubocop:enable Minitest/MultipleAssertions
