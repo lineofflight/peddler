@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
+require "prism"
 require "generator/builders/type"
 
 module Generator
@@ -432,6 +433,51 @@ module Generator
       type = Type.new("T", definition, API_NAME, { "definitions" => {} })
 
       assert_equal('attribute?(:active, :boolean, from: "isActive")', type.attribute_declaration_for("isActive", { "type" => "boolean" }))
+    end
+
+    # A property name is data. Whatever it holds, the file reads it back as the same symbol and the same string:
+    # it parses, and loading it defines the attribute and runs nothing.
+    HOSTILE_NAME = "Evil\"\#{raise %q(the name ran)}\n\\"
+
+    def test_a_property_name_never_breaks_the_file
+      assert_empty(Prism.parse(hostile_source).errors, hostile_source)
+    end
+
+    def test_a_property_name_is_written_as_a_symbol_and_a_string
+      calls = calls_in(Prism.parse(hostile_source).value)
+      symbol, _type, keywords = calls.last.arguments.arguments
+      key = keywords.elements.first.value
+
+      assert_equal([:require, :new, :attribute?], calls.map(&:name), hostile_source)
+      assert_equal([Prism::SymbolNode, HOSTILE_NAME.underscore], [symbol.class, symbol.unescaped])
+      assert_equal([Prism::StringNode, HOSTILE_NAME], [key.class, key.unescaped])
+    end
+
+    def test_a_property_name_loads_as_the_attribute_and_nothing_else
+      eval(hostile_source, TOPLEVEL_BINDING.dup, "hostile_name.rb")
+      model = Peddler::APIs::TestAPI::HostileName
+      attribute = HOSTILE_NAME.underscore.to_sym
+
+      assert_equal([attribute], model.members)
+      assert_equal("x", model.parse({ HOSTILE_NAME => "x" }).public_send(attribute))
+    ensure
+      Peddler::APIs.send(:remove_const, :TestAPI) if Peddler::APIs.const_defined?(:TestAPI, false)
+    end
+
+    private
+
+    # The file of a model whose 1 property has the hostile name
+    def hostile_source
+      definition = { "type" => "object", "properties" => { HOSTILE_NAME => { "type" => "string" } } }
+
+      Type.new("HostileName", definition, API_NAME, { "definitions" => {} }).send(:render)
+    end
+
+    # Every call in the source, in the order it is written
+    def calls_in(node, found = [])
+      found << node if node.is_a?(Prism::CallNode)
+      node.compact_child_nodes.each { |child| calls_in(child, found) }
+      found
     end
   end
 end

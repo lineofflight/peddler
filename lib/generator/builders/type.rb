@@ -56,9 +56,11 @@ module Generator
       required = required_properties.include?(prop_name)
       nullable = Array(prop_def["type"]).include?("null")
 
-      parts = [":#{name}", type]
+      # A name comes from the spec, and a spec is data: the symbol and the string are written as Ruby reads them
+      # back, whatever the name holds.
+      parts = [name.to_sym.inspect, type]
       parts << "null: false" if required ? !nullable : prop_def["x-non-null"]
-      parts << "from: \"#{prop_name}\"" if name != prop_name
+      parts << "from: #{prop_name.dump}" if name != prop_name
 
       "#{required ? "attribute" : "attribute?"}(#{parts.join(", ")})"
     end
