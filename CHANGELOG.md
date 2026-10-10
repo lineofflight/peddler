@@ -27,7 +27,6 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Cancel a call and close its connection, or end its wait before a retry, when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running and a wait no shorter
 - Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need Rust 1.88 or later; see [native extension](README.md#native-extension)
 - Ship `THIRD_PARTY_LICENSES.html` in each precompiled gem: every Rust crate linked into its extension, with its version, its license and the license's text, and the notices of the Rust standard library
-- Add `require "peddler/webmock"`, an adapter that puts WebMock, and VCR through it, between Peddler and the network: stubs, `assert_requested`, `to_timeout`, `to_raise`, `WebMock.disable_net_connect!` and cassettes work for operations, token requests and signed URLs; see [testing](README.md#testing)
 - Run in Ractors other than the main one ([#279](https://github.com/lineofflight/peddler/issues/279)): build the client in the Ractor that uses it. A response crosses to another Ractor as a copy or made shareable, and a frozen one still parses its body; see [Ractors](README.md#ractors)
 - Add `Peddler.eager_load!`, which loads every typed model at once. Ruby 3.3 needs it in the main Ractor before another Ractor uses one
 - Add Amazon's description of each parameter to the shipped signatures of the operations, so an editor that reads RBS shows it on hover
@@ -37,7 +36,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 - Send requests through the native extension in place of the `http` gem. All clients in a process share 1 connection pool. After `fork`, create clients and a `Peddler::LWA` in the child: one created before the fork raises `Peddler::ForkError` there
 - Load the client, responses, errors, `Peddler::LWA`, marketplaces and `Peddler::Money` with `require "peddler"`. 5.x loaded them on first use, as the typed models still are
-- Reach WebMock and VCR through an adapter of Peddler's own, since requests no longer pass Ruby's HTTP libraries. A test suite that uses either adds `require "peddler/webmock"`; see [tests](UPGRADING.md#6-tests)
+- Reach WebMock and VCR through an adapter that Peddler loads by itself. Requests no longer pass Ruby's HTTP libraries, and both see them all the same; see [tests](UPGRADING.md#6-tests)
 - Send requests through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host. 5.x ignored them
 - Raise the same `Peddler::Error` for every HTTP error. Tell errors apart by `code`, which replaces the class per Amazon error code. A body without a message gives `request failed with status 500`, with its status
 - Raise `Peddler::Error` for any status outside 2xx. 5.x raised from 400 up and returned a 3xx as a response
