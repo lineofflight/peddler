@@ -10,7 +10,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 - Add `Peddler::Client`, a single client for every API: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, or `client.orders` for the latest version
 - Add `Peddler.new`, short for `Peddler::Client.new`, which takes the same arguments
-- Accept a callable as `access_token:`, such as a lambda around your cache. The client calls it once before each call, including each page of a `*_pages` enumerator, and keeps nothing it returns. A call that is retried sends that token on every attempt
+- Accept a callable as `access_token:`, such as a lambda around your cache. The client calls it before every attempt of a call, a retry and each page of a `*_pages` enumerator included, and keeps nothing it returns. The time it takes counts against `timeout:`
 - Add `Client#with_access_token`, a view of a client that sends another token over the same connections, for another seller or a restricted data token
 - Add `Peddler::LWA#refresh`, `#client_credentials` and `#exchange_authorization_code`, which return `Peddler::LWA::Tokens`. Tokens with the same values are equal, as they were as `LWAToken`
 - Add `Peddler::LWA#token_source`, an optional token source for 1 process: it keeps 1 access token, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask
@@ -27,19 +27,24 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Cancel a call and close its connection, or end its wait before a retry, when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running and a wait no shorter
 - Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu` and `x86_64-linux-gnu`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need Rust 1.88 or later; see [native extension](README.md#native-extension)
 - Ship `THIRD_PARTY_LICENSES.html` in each precompiled gem: every Rust crate linked into its extension, with its version, its license and the license's text, and the notices of the Rust standard library
+- Add `require "peddler/webmock"`, an adapter that puts WebMock, and VCR through it, between Peddler and the network: stubs, `assert_requested`, `to_timeout`, `to_raise`, `WebMock.disable_net_connect!` and cassettes work for operations, token requests and signed URLs; see [testing](README.md#testing)
+- Run in Ractors other than the main one ([#279](https://github.com/lineofflight/peddler/issues/279)): build the client in the Ractor that uses it. A response crosses to another Ractor as a copy or made shareable, and a frozen one still parses its body; see [Ractors](README.md#ractors)
+- Add `Peddler.eager_load!`, which loads every typed model at once. Ruby 3.3 needs it in the main Ractor before another Ractor uses one
+- Add Amazon's description of each parameter to the shipped signatures of the operations, so an editor that reads RBS shows it on hover
 - Publish the core as the [`peddler` Rust crate](crates/peddler/README.md)
 
 ### Changed
 
 - Send requests through the native extension in place of the `http` gem. All clients in a process share 1 connection pool. After `fork`, create clients and a `Peddler::LWA` in the child: one created before the fork raises `Peddler::ForkError` there
-- Hide requests from WebMock and VCR, which patch Ruby's HTTP libraries. In a test, point the client at a local server with `base_url:`; see [tests](UPGRADING.md#6-tests)
+- Load the client, responses, errors, `Peddler::LWA`, marketplaces and `Peddler::Money` with `require "peddler"`. 5.x loaded them on first use, as the typed models still are
+- Reach WebMock and VCR through an adapter of Peddler's own, since requests no longer pass Ruby's HTTP libraries. A test suite that uses either adds `require "peddler/webmock"`; see [tests](UPGRADING.md#6-tests)
 - Send requests through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host. 5.x ignored them
 - Raise the same `Peddler::Error` for every HTTP error. Tell errors apart by `code`, which replaces the class per Amazon error code. A body without a message gives `request failed with status 500`, with its status
 - Raise `Peddler::Error` for any status outside 2xx. 5.x raised from 400 up and returned a 3xx as a response
 - Return a new client from `sandbox` and leave the one it is called on in production
 - Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
 - Retry only a GET after a 500, 502, 503 or 504, a failed connection or a timeout. 5.x sent a request that changes data again after these, which could submit a feed or an order twice. A 429 is still retried whatever the method, and the waits before a retry are those of 5.x. `retries:` takes 0 to 10
-- End retrying when a wait would be longer than 900 seconds, by the operation's rate or by `Retry-After`: the last response raises `Peddler::Error`. 5.x waited however long that was. An operation limited to 1 request a minute is retried 4 times at most
+- Take `rate_limit:` on every operation method, also one Amazon documents no rate for, where its default is `nil`. A value that is not a positive number raises `ArgumentError` before anything is sent
 - Ignore a `Retry-After` header that is neither a number of seconds nor a date. 5.x retried at once
 - Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
 - Allow each attempt of a call 30 seconds by default. 5.x had no timeout
@@ -56,6 +61,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Give header names in lowercase from `headers.to_h` and `headers.each`. `headers[]` still finds a name in any case
 - Wrap the status of a response in a class of Peddler's own. It compares and calculates as the Integer it holds, but is no longer an instance of `Integer`; `code` is one
 - Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models
+- Ship the signatures of the client, the operations and the other hand-written classes in `sig/inline`, exported from inline RBS in the Ruby files. Those of the typed models stay in `sig/peddler`, and `sig/peddler.rbs` is gone. An application's type checker finds both under `sig/`, as before
 - Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
 - Add runtime dependencies on `bigdecimal` and `rb_sys`
@@ -67,10 +73,11 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Remove the API classes and their accessors: `Peddler.orders_v0.new(aws_region, access_token)`, `Peddler::APIs::OrdersV0.new` and `Peddler::API`, with its `http:` option and its `access_token`, `retries`, `endpoint` and `endpoint_uri` readers. Use `Peddler::Client`
 - Remove `Peddler::LWA.request` and `Peddler::LWAToken`
 - Remove `Peddler::Errors` and the error classes named after Amazon's codes; rescue `Peddler::Error` and match on `code`
-- Remove the `rate_limit:` argument of operation methods. A retry after a 429 still waits by the rate Amazon documents for the operation, which was the argument's default
 - Remove the sandbox guards (`Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
 - Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model. Remove `Response.wrap` and `Response#parser` too
 - Remove the `Peddler::Helpers` modules. Their methods are on the API views, where they were called
+- Remove the instance methods of `Peddler::Acronyms`: call `Peddler::Acronyms.apply` and `Peddler::Acronyms.values`
+- Remove `Marketplace#to_s` from the signatures. The class never defined it
 - Remove the `http` and `nokogiri` dependencies
 
 ### Models
@@ -101,8 +108,8 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - **Removed**: Notifications: `FulfillmentOrderStatusNotification`, `FulfillmentShipment`, `FulfillmentShipmentPackage`, and `FulfillmentReturnItem` types from Fulfillment Order Status
 - **Added**: A+ Content 2020-11-01: `create_media`, `get_media`, and `update_media` operations; Premium and Brand Story modules on `ContentModule`
 - **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
-- **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
-- **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so the retry of a 429 waits 0.5 seconds, then 1, then 2
+- **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so their `rate_limit:` defaults to `nil` and the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
+- **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so their `rate_limit:` defaults to 2.0 and the retry of a 429 waits 0.5 seconds, then 1, then 2
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
