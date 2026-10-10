@@ -80,6 +80,11 @@ class WebMockAutoloadTest < NativeTest
   LOAD = "WebMock is loaded, and its adapter for Peddler loads in the main Ractor only: require \"peddler/webmock\" " \
     "there before a call from another Ractor"
   CALL = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor"
+  # Features of every Ruby, half of them new to a process that has loaded Peddler, for a main Ractor that loads code
+  FEATURES = [
+    "set", "json", "time", "uri", "digest", "tempfile", "fileutils", "securerandom", "open3", "optparse", "pp",
+    "prettyprint", "shellwords", "stringio", "tmpdir", "yaml", "zlib",
+  ].freeze
 
   def test_webmock_loaded_after_a_client_is_built_stops_every_kind_of_exchange
     scripts = EXCHANGES.transform_values do |call|
@@ -337,6 +342,35 @@ class WebMockAutoloadTest < NativeTest
       },
       fresh(scripts),
     )
+  end
+
+  # Ruby answers `const_defined?` for an autoload from the loaded features, which the main Ractor changes as it
+  # loads code: asked in 8 Ractors meanwhile, it ended the process with a signal or hung it. A call asks
+  # `const_source_location`. A Ractor can't tell an autoload from WebMock loaded and is refused, and the main
+  # Ractor's call is sent.
+  def test_ractors_call_with_an_autoload_for_webmock_while_the_main_ractor_loads_code
+    script = <<~RUBY
+      require "peddler"
+      Object.autoload(:WebMock, "webmock")
+      ractors = Array.new(8) do
+        Ractor.new(base) do |base|
+          client, = clients(base)
+          told = Array.new(2_000) do
+            client.request("GET", "/ractor")
+            "sent"
+          rescue Ractor::IsolationError => error
+            error.message
+          end
+          told.tally.to_a
+        end
+      end
+      %w[#{FEATURES.join(" ")}].each { |feature| require feature }
+      told = ractors.map { |ractor| ractor.respond_to?(:value) ? ractor.value : ractor.take }.uniq
+      main = outcome { clients(base).first.request("GET", "/main") }
+      print [told, main, Object.autoload?(:WebMock), $LOADED_FEATURES.grep(/webmock/i).size].inspect
+    RUBY
+
+    assert_equal({ "8 Ractors" => [[[[[LOAD, 2_000]]], "sent", "webmock", 0].inspect, 1] }, fresh("8 Ractors" => script))
   end
 
   # A suite as an application has it: WebMock's glue for Minitest and Peddler, in either order, and nothing else.

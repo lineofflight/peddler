@@ -213,6 +213,12 @@ static ADAPTED: AtomicBool = AtomicBool::new(false);
 /// sets the hook as it loads if WebMock is enabled, and the call that loaded it finds
 /// the hook set. Without WebMock this is a constant lookup.
 ///
+/// The lookup is `const_source_location`, which is nil where there is no constant.
+/// `const_defined?` asks the loaded features about a constant that is an autoload, and
+/// those are the main Ractor's to change: asked in another Ractor while the main one
+/// loads code, it ends the process. In the main Ractor a `WebMock` that is still an
+/// autoload is not WebMock loaded, and the call does not load it.
+///
 /// A Ractor other than the main one is refused until the adapter is loaded. Ruby 3.3
 /// loads code in the main Ractor only, and on any Ruby only the main Ractor reads
 /// whether WebMock is enabled, so a call sent on from here could pass an enabled one.
@@ -221,11 +227,22 @@ fn adapt(ruby: &Ruby) -> Result<(), Error> {
         return Ok(());
     }
     let object = ruby.class_object();
-    if !object.funcall::<_, _, bool>("const_defined?", (ruby.sym_new(WEBMOCK), false))? {
+    let name = ruby.sym_new(WEBMOCK);
+    if object
+        .funcall::<_, _, Value>("const_source_location", (name, false))?
+        .is_nil()
+    {
         return Ok(());
     }
     if !main_ractor(ruby)? {
         return Err(isolation_error(ruby, LOAD));
+    }
+    // Asked here only: it reads the loaded features, as `const_defined?` does.
+    if !object
+        .funcall::<_, _, Value>("autoload?", (name, false))?
+        .is_nil()
+    {
+        return Ok(());
     }
     ruby.require(ADAPTER)?;
     ADAPTED.store(true, Ordering::Release);
