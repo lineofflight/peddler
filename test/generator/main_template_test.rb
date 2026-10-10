@@ -3,6 +3,8 @@
 require "helper"
 require "erb"
 require "tempfile"
+require "tmpdir"
+require "generator/data_kiosk"
 require "generator/feed"
 require "generator/notification"
 require "generator/report"
@@ -21,6 +23,23 @@ module Generator
           ["# \\:include: /etc/passwd exit 1", "#", "# \\:stopdoc:", "# exit 2"],
           comment,
         )
+      end
+    end
+
+    # The module that file opens is named after the schema's file, and so are the modules of its types. The name
+    # of a file is data as the schema is: one that would be anything but a constant is refused, and nothing is
+    # written. This one would open `module X;exit 1;y`.
+    { DataKiosk => ".graphql", Feed => ".json", Notification => ".json", Report => ".json" }.each do |generator, extension|
+      define_method("test_a_#{generator.name.split("::").last.downcase}_named_after_a_hostile_file_is_refused") do
+        Dir.mktmpdir do |dir|
+          path = File.join(dir, "x;exit 1;y#{extension}")
+          File.write(path, extension == ".json" ? "{}" : "type Query { a: String }")
+          instance = generator.new(path)
+          instance.define_singleton_method(:write_file) { |*| raise "a file was written" }
+
+          assert_raises(ArgumentError) { instance.class_name }
+          assert_raises(ArgumentError) { instance.generate_main_file! }
+        end
       end
     end
 

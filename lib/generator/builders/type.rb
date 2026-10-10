@@ -44,10 +44,11 @@ module Generator
       NAMESPACES[prefix]
     end
 
+    # The module of the schema a type belongs to, named after the schema's file as the schema's own `class_name` is
     def namespace_name
       return unless namespace
 
-      api_name.split("/", 2).last.camelize
+      Naming.constant(api_name.split("/", 2).last.camelize)
     end
 
     def attribute_declaration_for(prop_name, prop_def)

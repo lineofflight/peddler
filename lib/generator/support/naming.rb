@@ -6,13 +6,17 @@ module Generator
   module Naming
     class << self
       # Convert a name (e.g., "api_client", "SKUInfo") to a PascalCase Ruby class name with acronyms applied
-      # The name comes from a spec, and goes into code as a constant and into the name of a file. A spec is data: a
-      # name that would be anything but a constant is refused.
       def class_name(name)
-        class_name = Peddler::Acronyms.apply(name.camelize)
-        raise ArgumentError, "#{name.inspect} is no name for a class" unless class_name.match?(/\A[A-Z][A-Za-z0-9_]*\z/)
+        constant(Peddler::Acronyms.apply(name.camelize), name)
+      end
 
-        class_name
+      # A name as the constant it must be. It comes from a spec, or from the name of a spec's file or directory, and
+      # goes into code as a class or a module and into the name of a file. All of that is data: a name that would be
+      # anything but a constant is refused. `source` is what the error shows, when the name was made of something.
+      def constant(name, source = name)
+        raise ArgumentError, "#{source.inspect} is no name for a constant" unless name.match?(/\A[A-Z][A-Za-z0-9_]*\z/)
+
+        name
       end
 
       # Convert a property name to a snake_case Ruby attribute name

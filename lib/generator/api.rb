@@ -130,7 +130,7 @@ module Generator
     end
 
     def class_name
-      name_with_version.camelize
+      Naming.constant(name_with_version.camelize)
     end
 
     def name

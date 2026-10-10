@@ -3,6 +3,7 @@
 require "helper"
 require "generator/api"
 require "tempfile"
+require "tmpdir"
 
 module Generator
   class APITest < Minitest::Test
@@ -92,6 +93,17 @@ module Generator
       assert_raises(ArgumentError) { API.new(file.path).name_with_version }
     ensure
       file.close!
+    end
+
+    # An API is named after the directory of its spec, and that name goes into code as a module. It is data too.
+    def test_an_api_named_after_a_hostile_directory_is_refused
+      Dir.mktmpdir do |dir|
+        file = File.join(dir, "x;exit 1;y-api-model", "spec.json")
+        FileUtils.mkdir_p(File.dirname(file))
+        File.write(file, @test_spec.to_json)
+
+        assert_raises(ArgumentError) { API.new(file).class_name }
+      end
     end
 
     def test_name_with_version

@@ -83,7 +83,7 @@ module Generator
     # Class name for the notification (e.g., "AnyOfferChanged")
     def class_name
       # Underscore first to ensure ActiveSupport::Inflector applies acronym rules correctly
-      notification_name.underscore.camelize
+      Naming.constant(notification_name.underscore.camelize)
     end
 
     # Extract payload version from the schema examples or filename

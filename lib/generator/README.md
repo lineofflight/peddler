@@ -120,7 +120,7 @@ What this generator does that a general one won't:
 
 ### Templates and signatures
 
-- **`templates/`**: ERB templates for Ruby files, and for RBS under `templates/rbs/`
+- **`templates/`**: ERB templates for Ruby files
 - **`rbs/`**: RBS generation
   - `unified.rb`: an API's lookup and types
   - `types.rb`: types only, for notifications, reports, feeds and Data Kiosk

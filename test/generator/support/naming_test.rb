@@ -17,5 +17,13 @@ module Generator
 
       names.each { |name| assert_raises(ArgumentError, name.inspect) { Naming.class_name(name) } }
     end
+
+    # The same check, for a name that is camelized already: a module named after the file of a schema.
+    def test_constant_returns_a_constant_and_refuses_anything_else
+      assert_equal("SalesAndTraffic20240424", Naming.constant("SalesAndTraffic20240424"))
+      ["X;exit 1;y", "..", "x", "X y", "X\n", ""].each do |name|
+        assert_raises(ArgumentError, name.inspect) { Naming.constant(name) }
+      end
+    end
   end
 end

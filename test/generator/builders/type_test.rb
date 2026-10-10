@@ -472,6 +472,16 @@ module Generator
       assert_raises(ArgumentError) { type.send(:render) }
     end
 
+    # A type of a feed, a notification or a report opens the module of its schema, which is named after the
+    # schema's file. That name is data too: the type is refused before its file is written.
+    def test_a_namespace_that_is_no_constant_is_refused
+      definition = { "type" => "object", "properties" => { "id" => { "type" => "string" } } }
+      type = Type.new("Report", definition, "reports/x;exit 1;y", { "definitions" => {} })
+      type.define_singleton_method(:write_file) { |*| raise "a file was written" }
+
+      assert_raises(ArgumentError) { type.generate }
+    end
+
     private
 
     # The file of a model whose 1 property has the hostile name

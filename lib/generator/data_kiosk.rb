@@ -57,7 +57,7 @@ module Generator
     end
 
     def class_name
-      schema_name.underscore.camelize
+      Naming.constant(schema_name.underscore.camelize)
     end
 
     # Alias for schema_generator pattern (expects schema_type.singularize + "_name")
