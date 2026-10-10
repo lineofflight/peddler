@@ -708,7 +708,7 @@ Tests that replay recorded responses show more:
 - **Reports API**: [test/peddler/apis/reports_2021_06_30_test.rb](test/peddler/apis/reports_2021_06_30_test.rb)
 - **Notifications**: [lib/peddler/notifications/](lib/peddler/notifications/) (type-safe parsing)
 
-The operations of every API are documented in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb), and their signatures are in [sig/peddler/native/apis.rbs](sig/peddler/native/apis.rbs). The typed models are under [lib/peddler/apis/](lib/peddler/apis/).
+The operations of every API are documented in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb), and their signatures are in [sig/inline/peddler/native/apis.rbs](sig/inline/peddler/native/apis.rbs). The typed models are under [lib/peddler/apis/](lib/peddler/apis/).
 
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
 

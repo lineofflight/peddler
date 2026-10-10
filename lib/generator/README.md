@@ -20,7 +20,7 @@ Entry point: `lib/generator.rb`
 | `lib/peddler/apis/<api>.rb` | the module of an API version, with the typed model of each operation's response |
 | `lib/peddler/apis/<api>/` | the types of that API |
 | `lib/peddler/{notifications,reports,feeds,data_kiosk}/` | the types of the other schemas |
-| `sig/peddler.rbs` and `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/` | their RBS signatures |
+| `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/` | the RBS signatures of those types. The entry point carries its own as inline RBS. |
 
 Every Ruby file it writes carries a comment that starts `# This file is generated.`
 

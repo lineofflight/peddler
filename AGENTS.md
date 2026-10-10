@@ -7,12 +7,14 @@ Peddler is a Ruby library for Amazon's Selling Partner API (SP-API), using code 
 Never edit generated code; changes will be overwritten:
 - `lib/peddler/{apis,notifications,reports,feeds,data_kiosk}/`
 - `lib/peddler.rb`, `lib/peddler/native/apis.rb`
-- `sig/peddler.rbs`, `sig/peddler/native/apis.rbs`, `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/*`
+- `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/*`
+- `sig/inline/` (`rake rbs:export` writes it from the inline RBS of the Ruby files)
 - `crates/peddler/src/{apis,reports,feeds,notifications,data_kiosk}/`
 - `crates/peddler-codegen/operation-inventory.json`
 
 Safe to edit:
-- Core: `lib/peddler/*.rb`, and `lib/peddler/native/*.rb` except `apis.rb`
+- Core: `lib/peddler/*.rb`, `lib/peddler/lwa/`, and `lib/peddler/native/*.rb` except `apis.rb`
+- Hand-kept signatures: `sig/peddler/*.rbs`, `sig/peddler/native/*.rbs`
 - Rust core and extension: `crates/peddler/src/*.rs`, `crates/peddler-ruby/`
 - Generators: `lib/generator/` (typed Ruby models), `crates/peddler-codegen/` (Rust code and the Ruby operation methods)
 - Tests: `test/`, `test_native/`
@@ -25,7 +27,7 @@ Safe to edit:
 - Rust: `cargo test -p peddler --locked`, `cargo clippy -p peddler --all-targets --locked -- -D warnings`
 - Lint: `bundle exec rubocop <path>.rb -A`
 - Types: `bundle exec steep check`
-- Generate: `bundle exec rake generate` (both generators); `bundle exec rake generate:verify` fails if generated files drift
+- Generate: `bundle exec rake generate` (both generators, then `rbs:export`); `bundle exec rake generate:verify` fails if generated files or `sig/inline` drift
 
 Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:reports`, `generate:feeds`, `generate:data_kiosk`, `generate:rust`
 
@@ -39,16 +41,19 @@ Run above in background, some commands may takes minutes.
 
 ## Inline RBS
 
-Hand-written Ruby moves from `sig/peddler/*.rbs` to inline RBS, file by file. Steep reads a file inline when it has a `#:` or `# @rbs` line (see `Steepfile`). `rake rbs:export` writes `sig/inline` from those files; it is committed and `rake rbs:verify` fails when stale. Never edit `sig/inline`.
+Hand-written Ruby and the generated operation methods carry their types as inline RBS. Steep reads `lib/peddler.rb`, `lib/peddler/*.rb`, `lib/peddler/lwa/` and `lib/peddler/native/` inline (see `Steepfile`). `rake rbs:export` writes `sig/inline` from those files, for applications; it is committed and `rake rbs:verify` fails when stale. Never edit `sig/inline`.
+
+A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: members of `Data.define` and `Struct.new` classes, interfaces, type aliases, what the extension defines, delegated and dynamic methods. The typed models keep their generated `.rbs`. `lib/peddler/webmock.rb` is not checked: WebMock has no signatures.
 
 - A leading annotation ends on the line directly above its `def`, `attr_*` or constant. A blank line detaches it.
 - A trailing `#:` sits on the last line of the node.
 - A comment line starts an annotation when it begins with `# @rbs` or `#:` (no space). Indented lines continue it.
 - `# @rbs @name: Type` for instance variables only counts before the first statement of a class body, with a blank line after, or after its last statement.
-- Doc style (`# @rbs name: Type -- text`) takes required and optional from the Ruby parameter. It cannot say overloads or type parameters. An unlisted parameter is `untyped`; a line naming no parameter is an error.
-- A class may be declared in Ruby and in a `.rbs` file, if each member is declared once. An unannotated `def` in an inline file is `(?) -> untyped`, so delete the `.rbs` entry when converting.
+- Doc style (`# @rbs name: Type -- text`) takes required and optional from the Ruby parameter. It cannot say overloads or type parameters. An unlisted parameter is `untyped`; a line naming no parameter is an error. The export keeps the text, as a list under the method's comment.
+- A class may be declared in Ruby and in a `.rbs` file, if each member is declared once. An unannotated `def` in an inline file is `(?) -> untyped`, so every `def` takes an annotation and none is declared in a `.rbs` file as well.
 - Annotation mistakes fail `steep check` and `# steep:ignore` does not silence them.
 - Use `def self.x`, not `class << self`: Steep reads the latter as instance methods. RuboCop enforces it on these paths.
+- Steep reads no alias: write a one-line `def` with its own `#:` line.
 - Never run `steep check` on one file: it reports false unknown constants and skips the duplicate-declaration check. Check the whole project.
 - `steep check --steepfile=Steepfile.shipped` checks `lib` against the signatures an application gets.
 
