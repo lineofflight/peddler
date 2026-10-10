@@ -95,7 +95,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -555,7 +555,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -863,7 +863,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -922,7 +922,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -950,7 +950,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -987,7 +987,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1079,7 +1079,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1185,7 +1185,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1331,7 +1331,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1455,7 +1455,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1519,7 +1519,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1661,7 +1661,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1692,7 +1692,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1722,7 +1722,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -1820,7 +1820,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2075,7 +2075,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2111,7 +2111,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2245,7 +2245,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2389,7 +2389,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2476,7 +2476,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2575,7 +2575,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2768,7 +2768,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -2942,7 +2942,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -3080,7 +3080,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -3291,7 +3291,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -4362,7 +4362,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -4652,7 +4652,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -4860,7 +4860,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5162,7 +5162,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5264,7 +5264,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5486,7 +5486,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5528,7 +5528,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5616,7 +5616,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -5858,7 +5858,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6091,7 +6091,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6427,7 +6427,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6534,7 +6534,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6627,7 +6627,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6793,7 +6793,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6848,7 +6848,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -6925,7 +6925,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7097,7 +7097,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7154,7 +7154,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7342,7 +7342,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7419,7 +7419,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7715,7 +7715,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -7755,7 +7755,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8173,7 +8173,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8237,7 +8237,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8383,7 +8383,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8771,7 +8771,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8825,7 +8825,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -8939,7 +8939,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9031,7 +9031,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9064,7 +9064,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9110,7 +9110,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9154,7 +9154,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9202,7 +9202,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9233,7 +9233,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9331,7 +9331,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9429,7 +9429,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9458,7 +9458,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9503,7 +9503,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -9735,7 +9735,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10001,7 +10001,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10031,7 +10031,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10060,7 +10060,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10088,7 +10088,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10282,7 +10282,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 
@@ -10482,7 +10482,7 @@ module Peddler
       # @rbs @engine: engine
 
       #: (engine engine) -> void
-      def initialize(engine)
+      def initialize(engine) # :nodoc:
         @engine = engine
       end
 

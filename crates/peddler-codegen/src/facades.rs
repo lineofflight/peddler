@@ -562,10 +562,11 @@ pub(crate) fn ruby(
         let class = pascal(api.module);
         ruby.push_str(&docs::class(api, &specs[api.module]["info"]));
         // An instance variable's type is read before the first statement of the class
-        // only, with a blank line after it.
+        // only, with a blank line after it. `Client` builds the class and no application
+        // does, so RDoc leaves `new` off its page.
         writeln!(
             ruby,
-            "    class {class}\n      # @rbs @engine: engine\n\n      #: (engine engine) -> void\n      def initialize(engine)\n        @engine = engine\n      end\n"
+            "    class {class}\n      # @rbs @engine: engine\n\n      #: (engine engine) -> void\n      def initialize(engine) # :nodoc:\n        @engine = engine\n      end\n"
         )
         .unwrap();
         for op in operations {

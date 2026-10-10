@@ -144,8 +144,9 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "        }\n",
         "        Response.from_parts(@engine.operation(\"listings_items_2021_08_01.patch_listings_item\", Arguments.encode(arguments, \"patch_request\"), Arguments.rate_limit(rate_limit)), \"listings_items_2021_08_01.patch_listings_item\")\n",
     )));
-    // Its class has v5's comment and the type of what it keeps. The accessor of `Client`
-    // names the API, and the latest version of a family is a method of its own.
+    // Its class has v5's comment and the type of what it keeps. `Client` builds it and no
+    // application does, so RDoc is told to leave `new` off its page. The accessor of
+    // `Client` names the API, and the latest version of a family is a method of its own.
     assert!(ruby.contains(concat!(
         "    # Synthetic API.\n",
         "    #\n",
@@ -156,7 +157,7 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      # @rbs @engine: engine\n",
         "\n",
         "      #: (engine engine) -> void\n",
-        "      def initialize(engine)\n",
+        "      def initialize(engine) # :nodoc:\n",
     )));
     assert!(ruby.contains(concat!(
         "    # Synthetic API, version 1\n",
