@@ -456,7 +456,7 @@ fn ruby_default(value: &Value) -> Result<String, GenerationError> {
     })
 }
 /// The words Peddler writes in capitals, as `lib/peddler/acronyms.rb` has them for the
-/// models. A test in Ruby holds the name of every API's class to that file.
+/// models. A test in Ruby holds this list to that file, entry for entry.
 const ACRONYMS: [(&str, &str); 16] = [
     ("Api", "API"),
     ("Apis", "APIs"),
