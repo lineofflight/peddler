@@ -170,8 +170,7 @@ module Generator
 
       comment = obj.format_property_comment(prop_def)
 
-      assert_includes(comment, "@return [String]")
-      assert_includes(comment, "The unique order identifier")
+      assert_equal("# The unique order identifier", comment)
     end
 
     def test_format_property_comment_without_description
@@ -182,8 +181,7 @@ module Generator
 
       comment = obj.format_property_comment(prop_def)
 
-      assert_includes(comment, "@return [Integer]")
-      refute_includes(comment, "An explanation")
+      assert_nil(comment)
     end
 
     def test_format_property_comment_with_generic_placeholder
@@ -195,10 +193,8 @@ module Generator
         "description" => "An explanation about the purpose of this instance.",
       }
 
-      comment = obj.format_property_comment(prop_def)
-      # Should not include the generic placeholder
-      refute_includes(comment, "An explanation about the purpose")
-      assert_includes(comment, "@return [String]")
+      # The generic placeholder says nothing of the property
+      assert_nil(obj.format_property_comment(prop_def))
     end
 
     def test_ruby_type_for_delegates_to_type_resolver
@@ -212,22 +208,6 @@ module Generator
       type = obj.ruby_type_for({ "type" => "string" })
 
       assert_equal("String", type)
-    end
-
-    def test_ruby_type_for_with_for_comment_option
-      schema = {
-        "properties" => {
-          "items" => {
-            "type" => "array",
-            "items" => { "type" => "string" },
-          },
-        },
-      }
-      obj = TestClass.new(schema, "Test", "test_api")
-
-      type = obj.ruby_type_for({ "type" => "array", "items" => { "type" => "string" } }, for_comment: true)
-
-      assert_equal("Array<String>", type)
     end
 
     def test_type_resolver_is_memoized

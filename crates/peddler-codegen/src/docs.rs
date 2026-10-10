@@ -1,6 +1,6 @@
 //! The comment of a generated Ruby method, from the spec fields v5 read and wrapped
-//! as v5 wrapped it, with the method's types as inline RBS. `lib/generator` on `main`
-//! has the Ruby the text follows.
+//! as v5 wrapped it, with the method's types as inline RBS. The text is Markdown, which
+//! RDoc reads. `lib/generator` on `main` has the Ruby the text follows.
 use crate::{
     clients::{Operation, Parameter, snake},
     manifest::ModelSpec,
@@ -31,9 +31,8 @@ pub(crate) fn operation(op: &Operation) -> String {
     let mut lines = prose(&description(&op.description), METHOD);
     lines.push("#".into());
     if let Some(kind) = op.sandbox {
-        lines.extend(tag(&format!(
-            "@note This operation can make a {kind} sandbox call."
-        )));
+        lines.push(format!("# This operation can make a {kind} sandbox call."));
+        lines.push("#".into());
     }
     let mut parameters: Vec<&Parameter> = op.parameters.iter().collect();
     parameters.sort_by_key(|p| p.position);
@@ -43,7 +42,7 @@ pub(crate) fn operation(op: &Operation) -> String {
         let description = links(&SPACES.replace_all(description, " "));
         let name = snake(&p.wire_name);
         let ty = rbs_type(p);
-        lines.extend(tag(&if description.is_empty() {
+        lines.extend(annotation(&if description.is_empty() {
             format!("@rbs {name}: {ty}")
         } else {
             format!("@rbs {name}: {ty} -- {description}")
@@ -59,10 +58,12 @@ pub(crate) fn operation(op: &Operation) -> String {
 /// The comment above the method that enumerates an operation's pages. It takes its
 /// whole type in 1 line: a line for each argument would leave any it missed untyped.
 pub(crate) fn pages(op: &Operation, types: &str) -> String {
-    let lines = [
-        format!("# Each page of {{#{}}}", op.name),
-        format!("#: ({types}) -> Enumerator[Response, void]"),
-    ];
+    let text = format!(
+        "Each page of #{}. `rate_limit` applies to every page.",
+        op.name
+    );
+    let mut lines = prose(&text, METHOD);
+    lines.push(format!("#: ({types}) -> Enumerator[Response, void]"));
     indent(&lines, METHOD)
 }
 
@@ -75,7 +76,7 @@ pub(crate) fn class(api: &ModelSpec, info: &Value) -> String {
     lines.extend(prose(&links(text("description")), CLASS));
     lines.push("#".into());
     lines.push(format!(
-        "# @see https://github.com/amzn/selling-partner-api-models/blob/main/models/{}",
+        "# https://github.com/amzn/selling-partner-api-models/blob/main/models/{}",
         api.source
     ));
     indent(&lines, CLASS)
@@ -101,7 +102,7 @@ pub(crate) fn accessor(class: &str, info: &Value) -> String {
 /// The comment above the method of `Client` that returns the latest version of an API.
 pub(crate) fn latest(class: &str, module: &str) -> String {
     let lines = [
-        format!("# The latest version: {{#{module}}}"),
+        format!("# The latest version: #{module}"),
         format!("#: () -> Native::{class}"),
     ];
     indent(&lines, CLASS)
@@ -151,19 +152,19 @@ fn description(text: &str) -> String {
     links(&SECTION.replace_all(strip(&text), "$1\n\n$2"))
 }
 
-/// Amazon's links as YARD's, and its bold spelled one way.
+/// Amazon's links as Markdown's, and its bold spelled one way.
 fn links(text: &str) -> String {
     static QUOTED: LazyLock<Regex> =
         LazyLock::new(|| regex(r#"<a href=['"]([^'"]+)['"]>([^<]+)</a>"#));
     static BARE: LazyLock<Regex> = LazyLock::new(|| regex(r"<a href=([^\s>]+)>([^<]+)</a>"));
     static BOLD: LazyLock<Regex> = LazyLock::new(|| regex(r"__([^\n]*?)__"));
     static DOC: LazyLock<Regex> = LazyLock::new(|| regex(r"\[([^\[\]]+)\]\(doc:([^()\s]+)\)"));
-    let text = QUOTED.replace_all(text, "{$1 $2}");
-    let text = BARE.replace_all(&text, "{$1 $2}");
+    let text = QUOTED.replace_all(text, "[$2]($1)");
+    let text = BARE.replace_all(&text, "[$2]($1)");
     let text = BOLD.replace_all(&text, "**$1**");
     DOC.replace_all(
         &text,
-        "{https://developer-docs.amazon.com/sp-api/docs/$2 $1}",
+        "[$1](https://developer-docs.amazon.com/sp-api/docs/$2)",
     )
 }
 
@@ -172,9 +173,9 @@ fn strip(text: &str) -> &str {
     text.trim_matches(|c: char| c.is_ascii_whitespace() || matches!(c, '\x0B' | '\0'))
 }
 
-/// A tag's lines above a method. Those after the first are indented under it, which
-/// is how an annotation goes on.
-fn tag(text: &str) -> Vec<String> {
+/// An annotation's lines above a method. Those after the first are indented under it,
+/// which is how an annotation goes on.
+fn annotation(text: &str) -> Vec<String> {
     wrap(text, METHOD, 2)
 }
 
@@ -318,6 +319,18 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn the_comment_of_a_pages_method_says_what_the_rate_applies_to() {
+        let (_, op) = described("Lists things.", "list_things");
+        assert_eq!(
+            pages(&op, "String id"),
+            concat!(
+                "      # Each page of #list_things. `rate_limit` applies to every page.\n",
+                "      #: (String id) -> Enumerator[Response, void]\n",
+            )
+        );
     }
 
     #[test]

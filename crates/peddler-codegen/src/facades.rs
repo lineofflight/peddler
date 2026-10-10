@@ -718,7 +718,7 @@ mod tests {
         let resolved = pagination::resolve(&source, &clients, &specs).unwrap();
         let ruby = ruby(&clients, &resolved, &specs).unwrap();
         assert!(ruby.contains(concat!(
-            "      # Each page of {#list_items}\n",
+            "      # Each page of #list_items. `rate_limit` applies to every page.\n",
             "      #: (String seller_id, Array[String] marketplace_ids, ?next_token: String?, ?max_results: Integer?, ?with_stock: bool?, ?min_price: (Float | Integer)?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]\n",
             "      def list_items_pages(seller_id, marketplace_ids, next_token: nil, max_results: 10, with_stock: nil, min_price: nil, rate_limit: nil)\n",
         )), "{ruby}");

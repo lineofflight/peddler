@@ -86,20 +86,6 @@ module Generator
       assert_equal("[SimpleType]", type.ruby_type_for(array_prop))
     end
 
-    def test_ruby_type_for_array_of_objects_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = {
-        "definitions" => {
-          "SimpleType" => { "type" => "object", "properties" => {} },
-        },
-      }
-      type = Type.new("ComplexType", definition, API_NAME, specification)
-
-      array_prop = { "type" => "array", "items" => { "$ref" => "#/definitions/SimpleType" } }
-
-      assert_equal("Array<SimpleType>", type.ruby_type_for(array_prop, for_comment: true))
-    end
-
     def test_ruby_type_for_array_of_strings
       definition = { "type" => "object", "properties" => {} }
       specification = { "definitions" => {} }
@@ -108,16 +94,6 @@ module Generator
       string_array = { "type" => "array", "items" => { "type" => "string" } }
 
       assert_equal("[String]", type.ruby_type_for(string_array))
-    end
-
-    def test_ruby_type_for_array_of_strings_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("ComplexType", definition, API_NAME, specification)
-
-      string_array = { "type" => "array", "items" => { "type" => "string" } }
-
-      assert_equal("Array<String>", type.ruby_type_for(string_array, for_comment: true))
     end
 
     def test_money_type_handling
@@ -190,32 +166,6 @@ module Generator
       }
 
       assert_equal("[:self]", type.ruby_type_for(children_prop))
-    end
-
-    def test_array_with_self_reference_comment
-      definition = {
-        "type" => "object",
-        "properties" => {
-          "name" => { "type" => "string" },
-          "children" => {
-            "type" => "array",
-            "items" => { "$ref" => "#/definitions/TreeNode" },
-          },
-        },
-      }
-      specification = {
-        "definitions" => {
-          "TreeNode" => definition,
-        },
-      }
-      type = Type.new("TreeNode", definition, API_NAME, specification)
-
-      children_prop = {
-        "type" => "array",
-        "items" => { "$ref" => "#/definitions/TreeNode" },
-      }
-
-      assert_equal("Array<self>", type.ruby_type_for(children_prop, for_comment: true))
     end
 
     def test_type_dependencies
@@ -371,24 +321,6 @@ module Generator
       assert_equal("[SimpleType]", type.ruby_type_for(array_type_ref))
     end
 
-    def test_handle_ref_with_array_type_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = {
-        "definitions" => {
-          "SimpleType" => { "type" => "object", "properties" => {} },
-          "ArrayType" => {
-            "type" => "array",
-            "items" => { "$ref" => "#/definitions/SimpleType" },
-          },
-        },
-      }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      array_type_ref = { "$ref" => "#/definitions/ArrayType" }
-
-      assert_equal("Array<SimpleType>", type.ruby_type_for(array_type_ref, for_comment: true))
-    end
-
     def test_format_property_comment_with_description
       definition = { "type" => "object", "properties" => {} }
       specification = { "definitions" => {} }
@@ -397,7 +329,7 @@ module Generator
       prop_with_desc = { "type" => "string", "description" => "The name of the item" }
       comment = type.send(:format_property_comment, prop_with_desc)
 
-      assert_match(/@return \[String\] The name of the item/, comment)
+      assert_equal("        # The name of the item", comment)
     end
 
     def test_format_property_comment_without_description
@@ -408,7 +340,7 @@ module Generator
       prop_without_desc = { "type" => "integer" }
       comment = type.send(:format_property_comment, prop_without_desc)
 
-      assert_equal("        # @return [Integer]", comment)
+      assert_nil(comment)
     end
 
     def test_required_properties

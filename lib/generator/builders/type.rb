@@ -89,25 +89,23 @@ module Generator
       "#{base}/#{filename}"
     end
 
-    def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
-      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs, prop_name: prop_name)
+    def ruby_type_for(prop_def, for_rbs: false, prop_name: nil)
+      resolved_type = type_resolver.resolve(prop_def, for_rbs: for_rbs, prop_name: prop_name)
 
       # Handle self-references properly
       return resolved_type if resolved_type == ":self"
 
       # Only use string class names for the specific edges that cause cycles
-      unless for_comment
-        if resolved_type.is_a?(String) &&
-            resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
-            resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
-            resolved_type != "Money" && resolved_type != ":boolean"
-          return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
-        end
+      if resolved_type.is_a?(String) &&
+          resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
+          resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
+          resolved_type != "Money" && resolved_type != ":boolean"
+        return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
+      end
 
-        if resolved_type.is_a?(String)
-          inner_type = array_inner_type(resolved_type)
-          return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
-        end
+      if resolved_type.is_a?(String)
+        inner_type = array_inner_type(resolved_type)
+        return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
       end
 
       resolved_type
@@ -255,21 +253,14 @@ module Generator
     end
 
     def format_property_comment(prop_def)
-      return_type = ruby_type_for(prop_def, for_comment: true)
-      if prop_def["description"] && !generic_placeholder?(prop_def["description"])
-        description = convert_html_links_to_yard(prop_def["description"])
-        description = convert_doc_links_to_full_url(description)
-        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8, wrap_indent: 2)
-      else
-        "        # @return [#{return_type}]"
-      end
+      super(prop_def, base_indent: 8)
     end
 
     def class_description
       return unless definition["description"]
       return if generic_placeholder?(definition["description"])
 
-      description = convert_html_links_to_yard(definition["description"])
+      description = convert_html_links_to_markdown(definition["description"])
       description = convert_doc_links_to_full_url(description)
       split_long_comment_line(description, base_indent: 6)
     end

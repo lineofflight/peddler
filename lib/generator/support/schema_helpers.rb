@@ -59,24 +59,22 @@ module Generator
       extracted_types.keys.map(&:underscore).sort
     end
 
-    # Format property comment with description
+    # The comment above a property: its description, or nil when the schema has none worth repeating. The
+    # declaration under it and the signature say the type.
     # base_indent can be overridden by subclasses
     def format_property_comment(prop_def, base_indent: 0)
-      return_type = ruby_type_for(prop_def, for_comment: true)
-      if prop_def["description"] && !prop_def["description"].empty? && !generic_placeholder?(prop_def["description"])
-        description = convert_html_links_to_yard(prop_def["description"])
-        description = convert_doc_links_to_full_url(description)
-        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: base_indent, wrap_indent: 2)
-      else
-        indent = " " * base_indent
-        "#{indent}# @return [#{return_type}]"
-      end
+      description = prop_def["description"]
+      return if description.nil? || description.strip.empty? || generic_placeholder?(description)
+
+      description = convert_html_links_to_markdown(description)
+      description = convert_doc_links_to_full_url(description)
+      split_long_comment_line(description, base_indent: base_indent)
     end
 
     # Convert JSON Schema type to Ruby type
     # This method requires type_resolver to be available
-    def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
-      type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs, prop_name: prop_name)
+    def ruby_type_for(prop_def, for_rbs: false, prop_name: nil)
+      type_resolver.resolve(prop_def, for_rbs: for_rbs, prop_name: prop_name)
     end
 
     # Build type resolver - this should be overridden by subclasses if needed

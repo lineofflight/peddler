@@ -119,7 +119,7 @@ module Generator
 
     def description
       description = model["info"]["description"]
-      description = convert_html_links_to_yard(description)
+      description = convert_html_links_to_markdown(description)
       description = convert_doc_links_to_full_url(description)
 
       split_long_comment_line(description, base_indent: 4)

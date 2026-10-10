@@ -113,23 +113,24 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     // the spec's name, optional ones as keywords, and `rate_limit:` last, the documented
     // rate by default. Each goes through its coercion, and a path argument through the
     // check of a segment, the one that ends the path as such.
-    // Above it, v5's comment: the description up to its usage plan, links as YARD's, a
-    // note in a paragraph of its own, and lines of at most 120 columns. Then the types,
-    // as inline RBS: a line for each argument, with what the spec says of it.
+    // Above it, v5's comment as Markdown: the description up to its usage plan, links
+    // as Markdown's, a note in a paragraph of its own, and lines of at most 120 columns.
+    // Then the types, as inline RBS: a line for each argument, with what the spec says
+    // of it.
     let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
     assert!(ruby.contains(concat!(
-        "      # Updates part of a listing. Refer to the\n",
-        "      # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide Listings Items\n",
-        "      # guide}.\n",
+        "      # Updates part of a listing. Refer to the [Listings Items\n",
+        "      # guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).\n",
         "      #\n",
         "      # **Note:** Only the fields that you send change.\n",
         "      #\n",
-        "      # @note This operation can make a static sandbox call.\n",
+        "      # This operation can make a static sandbox call.\n",
+        "      #\n",
         "      # @rbs seller_id: String\n",
         "      # @rbs marketplace_ids: Array[String]\n",
         "      # @rbs included_data: Array[String]?\n",
         "      # @rbs patch_request: untyped\n",
-        "      # @rbs sku: String -- The seller's identifier for the listing, which is a {https://example.com/sku SKU}. It is\n",
+        "      # @rbs sku: String -- The seller's identifier for the listing, which is a [SKU](https://example.com/sku). It is\n",
         "      #   **unique** to the seller.\n",
         "      # @rbs rate_limit: (Float | Integer)? -- Requests per second\n",
         "      # @rbs return: Response\n",
@@ -148,9 +149,9 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     assert!(ruby.contains(concat!(
         "    # Synthetic API.\n",
         "    #\n",
-        "    # Reads and updates listings. See the {https://example.com/guide guide}.\n",
+        "    # Reads and updates listings. See the [guide](https://example.com/guide).\n",
         "    #\n",
-        "    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json\n",
+        "    # https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json\n",
         "    class ListingsItems20210801\n",
         "      # @rbs @engine: engine\n",
         "\n",
@@ -164,7 +165,7 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      Native::ListingsItems20210801.new(@engine)\n",
         "    end\n",
         "\n",
-        "    # The latest version: {#listings_items_2021_08_01}\n",
+        "    # The latest version: #listings_items_2021_08_01\n",
         "    #: () -> Native::ListingsItems20210801\n",
         "    def listings_items = listings_items_2021_08_01\n",
     )));
