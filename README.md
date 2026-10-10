@@ -100,7 +100,7 @@ Most applications run several processes. Give the client a callable that reads t
 client = Peddler.new(
   region: "eu-west-1",
   access_token: -> {
-    Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
+    Rails.cache.fetch("lwa/#{seller.id}", expires_in: 50.minutes) do
       lwa.refresh(refresh_token: seller.refresh_token).access_token
     end
   },
@@ -144,6 +144,8 @@ lwa = Peddler::LWA.new(
   client_secret: "<YOUR_CLIENT_SECRET>",
 )
 ```
+
+`Peddler::LWA.new` also takes `timeout:`, the number of seconds each of its requests may take, 30 by default.
 
 `Peddler::LWA` makes 1 request per call and keeps nothing. The tokens it returns have `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
 
@@ -430,7 +432,7 @@ With `retries:` set, a stubbed 429 waits as a real one does: a minute for `get_o
 
 A request without a stub raises `WebMock::NetConnectNotAllowedError` when connections are disabled. The message is WebMock's and shows the request with its headers, the access token among them.
 
-A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole.
+A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole. An upload is held in memory several times over, about 8 times its size at the peak.
 
 WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20. [Tests](UPGRADING.md#6-tests) in the upgrade guide has the setting that shows them all.
 
@@ -613,7 +615,7 @@ participations = ractor.value # ractor.take before Ruby 4.0
 
 - Build the client in the Ractor that uses it. A client, a `Peddler::LWA` and a `Peddler::Document` can't be copied, moved or made shareable. Building one is cheap: clients in every Ractor share the 1 connection pool.
 - A callable token source belongs to the Ractor that made it, and is asked there before every attempt. So does `lwa.token_source`: each Ractor that builds one refreshes for itself. To share a token, pass each Ractor a String, or a source that reads a store outside the process.
-- A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3, where it arrives without its body.
+- A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3 or 3.4: it arrives empty on 3.3, and with a corrupted body on 3.4.
 - An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another that uses a typed model. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
 - Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
