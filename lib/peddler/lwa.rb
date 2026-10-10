@@ -14,6 +14,8 @@ module Peddler
   #   Rails.cache.write(key, tokens.access_token, expires_in: tokens.expires_in)
   # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   class LWA
+    # @rbs @engine: Native::LwaEngine
+
     DEFAULT_ENDPOINT = "https://api.amazon.com/auth/o2/token"
 
     # What a grant returns
@@ -24,21 +26,22 @@ module Peddler
     #   tokens = lwa.refresh(refresh_token: seller.refresh_token)
     #   client = Peddler::Client.new(region: "eu-west-1", access_token: tokens.access_token)
     class Tokens
-      # @return [String] the token a client sends to the Selling Partner API
-      attr_reader :access_token
+      # The token a client sends to the Selling Partner API
+      attr_reader :access_token #: String
 
-      # @return [String, nil] nil when LWA sends none, as for a grantless token
-      attr_reader :refresh_token
+      # nil when LWA sends none, as for a grantless token
+      attr_reader :refresh_token #: String?
 
-      # @return [String] "bearer"
-      attr_reader :token_type
+      # "bearer"
+      attr_reader :token_type #: String
 
-      # @return [Integer] the seconds the access token lasts
-      attr_reader :expires_in
+      # The seconds the access token lasts
+      attr_reader :expires_in #: Integer
 
-      # @return [String, nil] the scope granted, which LWA sends with a grantless token
-      attr_reader :scope
+      # The scope granted, which LWA sends with a grantless token
+      attr_reader :scope #: String?
 
+      #: (String access_token, String? refresh_token, String token_type, Integer expires_in, ?String? scope) -> void
       def initialize(access_token, refresh_token, token_type, expires_in, scope = nil)
         @access_token = access_token
         @refresh_token = refresh_token
@@ -47,29 +50,38 @@ module Peddler
         @scope = scope
       end
 
-      # @return [Hash{Symbol => String, Integer, nil}]
+      #: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
       def to_h
         { access_token: access_token, refresh_token: refresh_token, token_type: token_type, expires_in: expires_in,
           scope: scope, }
       end
 
-      # @return [Boolean] whether the other holds the same values
+      # @rbs other: untyped
+      # @rbs return: bool -- whether the other holds the same values
       def ==(other)
         other.class == self.class && other.to_h == to_h
       end
-      alias_method :eql?, :==
 
-      # @return [Integer]
+      # The same as ==, so two with the same values are one key of a Hash
+      #: (untyped other) -> bool
+      def eql?(other) = self == other
+
+      #: () -> Integer
       def hash = [self.class, to_h].hash
 
+      #: () -> String
       def inspect = "#<Peddler::LWA::Tokens [redacted]>"
-      alias_method :to_s, :inspect
+
+      # The same as inspect, so nothing of a token shows in text either
+      #: () -> String
+      def to_s = inspect
     end
 
-    # @param [String] client_id defaults to LWA_CLIENT_ID in the environment
-    # @param [String] client_secret defaults to LWA_CLIENT_SECRET in the environment
-    # @param [Integer, Float] timeout seconds for one request
-    # @param [String] lwa_endpoint the token endpoint, for a proxy or a test
+    # @rbs client_id: String? -- defaults to LWA_CLIENT_ID in the environment
+    # @rbs client_secret: String? -- defaults to LWA_CLIENT_SECRET in the environment
+    # @rbs timeout: Integer | Float -- seconds for one request
+    # @rbs lwa_endpoint: String -- the token endpoint, for a proxy or a test
+    # @rbs return: void
     # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
     def initialize(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], timeout: 30,
       lwa_endpoint: DEFAULT_ENDPOINT)
@@ -86,8 +98,7 @@ module Peddler
     end
 
     # Requests an access token for a seller
-    #
-    # @return [Tokens]
+    #: (refresh_token: String) -> Tokens
     def refresh(refresh_token:)
       tokens(@engine.refresh(present("refresh_token", refresh_token)))
     end
@@ -95,7 +106,7 @@ module Peddler
     # Requests an access token for grantless operations
     #
     # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
-    # @return [Tokens]
+    #: (scope: String) -> Tokens
     def client_credentials(scope:)
       tokens(@engine.client_credentials(present("scope", scope)))
     end
@@ -105,9 +116,9 @@ module Peddler
     # @example
     #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
     #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
-    # @param [String] refresh_token a seller's refresh token, or
-    # @param [String] scope the scope of grantless operations
-    # @return [Peddler::LWA::TokenSource]
+    # @rbs refresh_token: String? -- a seller's refresh token, or
+    # @rbs scope: String? -- the scope of grantless operations
+    # @rbs return: TokenSource
     def token_source(refresh_token: nil, scope: nil)
       raise ArgumentError, "provide either refresh_token or scope" unless refresh_token.nil? ^ scope.nil?
 
@@ -122,8 +133,7 @@ module Peddler
 
     # Omit redirect_uri only for SDK-originated grants; otherwise provide the
     # exact URI used during authorization. Authorization codes aren't retried.
-    #
-    # @return [Tokens]
+    #: (code: String, ?redirect_uri: String?) -> Tokens
     def exchange_authorization_code(code:, redirect_uri: nil)
       unless redirect_uri.nil? || Native.utf8_text?(redirect_uri)
         raise ArgumentError, "redirect_uri must be a UTF-8 String"
@@ -132,18 +142,24 @@ module Peddler
       tokens(@engine.exchange_authorization_code(present("code", code), redirect_uri))
     end
 
+    #: () -> String
     def inspect = "#<Peddler::LWA>"
-    alias_method :to_s, :inspect
+
+    # The same as inspect
+    #: () -> String
+    def to_s = inspect
 
     private
 
     # The value of an argument that must be text, or the error that names it and never shows it
+    #: (String name, untyped value) -> String
     def present(name, value)
       raise ArgumentError, "#{name} must be a UTF-8 String that is not blank" unless Native.present_text?(value)
 
       value
     end
 
+    #: (Native::tokens parts) -> Tokens
     def tokens(parts)
       access_token, refresh_token, token_type, expires_in, scope = parts
       Tokens.new(access_token, refresh_token, token_type, expires_in, scope)

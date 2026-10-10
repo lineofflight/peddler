@@ -13,13 +13,23 @@ module Peddler
     # such as a lambda around a shared cache, when they should share a token. Create it after `fork`: one created
     # before raises {Peddler::ForkError} in the child.
     class TokenSource
+      # @rbs @grant: ^() -> Tokens
+      # @rbs @pid: Integer
+      # @rbs @mutex: Thread::Mutex
+      # @rbs @finished: Thread::ConditionVariable
+      # @rbs @token: String?
+      # @rbs @refresh_at: Float
+      # @rbs @refresh: Refresh?
+
       # A token is refreshed this many seconds early, or by a tenth of its lifetime when that is shorter.
       MARGIN = 60
 
+      # @rbs skip
       Refresh = Struct.new(:done, :token, :refresh_at, :error)
       private_constant :Refresh
 
-      # @yieldreturn [Peddler::LWA::Tokens] new tokens from Login with Amazon
+      # @rbs &grant: () -> Tokens -- returns new tokens from Login with Amazon
+      # @rbs return: void
       def initialize(&grant)
         @grant = grant
         @pid = Process.pid
@@ -30,7 +40,7 @@ module Peddler
         @refresh = nil
       end
 
-      # @return [String] the access token
+      # @rbs return: String -- the access token
       # @raise [Peddler::AuthenticationError] if Login with Amazon rejects the refresh
       def call
         raise ForkError, "create a new token source after fork" unless Process.pid == @pid
@@ -52,12 +62,17 @@ module Peddler
         end
       end
 
+      #: () -> String
       def inspect = "#<Peddler::LWA::TokenSource>"
-      alias_method :to_s, :inspect
+
+      # The same as inspect
+      #: () -> String
+      def to_s = inspect
 
       private
 
       # The lifetime counts from the start of the request, on the monotonic clock.
+      #: (Refresh refresh) -> String
       def lead(refresh)
         started = now
         tokens = Thread.handle_interrupt(Object => :immediate) { @grant.call }
@@ -77,6 +92,7 @@ module Peddler
         end
       end
 
+      #: (Refresh refresh) -> String
       def follow(refresh)
         @mutex.synchronize { @finished.wait(@mutex) until refresh.done }
         error = refresh.error
@@ -87,6 +103,7 @@ module Peddler
       end
 
       # A waiter raises an error of its own, so its backtrace and cause are its own and nobody else's change.
+      #: (StandardError error) -> StandardError
       def replica(error)
         case error
         when AuthenticationError then error.class.new(error.message, error.status, code: error.code)
@@ -94,6 +111,7 @@ module Peddler
         end
       end
 
+      #: () -> Float
       def now
         Process.clock_gettime(Process::CLOCK_MONOTONIC)
       end

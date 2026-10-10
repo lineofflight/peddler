@@ -1,0 +1,46 @@
+# Generated from lib/peddler/lwa/token_source.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class LWA
+    class TokenSource
+      @grant: ^() -> Tokens
+
+      @pid: Integer
+
+      @mutex: Thread::Mutex
+
+      @finished: Thread::ConditionVariable
+
+      @token: String?
+
+      @refresh_at: Float
+
+      @refresh: Refresh?
+
+      # A token is refreshed this many seconds early, or by a tenth of its lifetime when that is shorter.
+      MARGIN: ::Integer
+
+      def initialize: () { () -> Tokens } -> void
+
+      # @raise [Peddler::AuthenticationError] if Login with Amazon rejects the refresh
+      def call: () -> String
+
+      def inspect: () -> String
+
+      # The same as inspect
+      def to_s: () -> String
+
+      private
+
+      # The lifetime counts from the start of the request, on the monotonic clock.
+      def lead: (Refresh refresh) -> String
+
+      def follow: (Refresh refresh) -> String
+
+      # A waiter raises an error of its own, so its backtrace and cause are its own and nobody else's change.
+      def replica: (StandardError error) -> StandardError
+
+      def now: () -> Float
+    end
+  end
+end

@@ -1,0 +1,76 @@
+# Generated from lib/peddler/lwa.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class LWA
+    @engine: Native::LwaEngine
+
+    DEFAULT_ENDPOINT: ::String
+
+    class Tokens
+      # The token a client sends to the Selling Partner API
+      attr_reader access_token: String
+
+      # nil when LWA sends none, as for a grantless token
+      attr_reader refresh_token: String?
+
+      # "bearer"
+      attr_reader token_type: String
+
+      # The seconds the access token lasts
+      attr_reader expires_in: Integer
+
+      # The scope granted, which LWA sends with a grantless token
+      attr_reader scope: String?
+
+      def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in, ?String? scope) -> void
+
+      def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
+
+      def ==: (untyped other) -> bool
+
+      # The same as ==, so two with the same values are one key of a Hash
+      def eql?: (untyped other) -> bool
+
+      def hash: () -> Integer
+
+      def inspect: () -> String
+
+      # The same as inspect, so nothing of a token shows in text either
+      def to_s: () -> String
+    end
+
+    # @raise [ArgumentError] if an option breaks its rule. The message names the option and the rule.
+    def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Integer | Float, ?lwa_endpoint: String) -> void
+
+    # Requests an access token for a seller
+    def refresh: (refresh_token: String) -> Tokens
+
+    # Requests an access token for grantless operations
+    #
+    # @see https://developer-docs.amazon.com/sp-api/docs/grantless-operations
+    def client_credentials: (scope: String) -> Tokens
+
+    # An optional source of access tokens that keeps one in this process and refreshes it shortly before it expires
+    #
+    # @example
+    #   source = Peddler::LWA.new.token_source(refresh_token: seller.refresh_token)
+    #   client = Peddler::Client.new(region: "us-east-1", access_token: source)
+    def token_source: (?refresh_token: String?, ?scope: String?) -> TokenSource
+
+    # Omit redirect_uri only for SDK-originated grants; otherwise provide the
+    # exact URI used during authorization. Authorization codes aren't retried.
+    def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> Tokens
+
+    def inspect: () -> String
+
+    # The same as inspect
+    def to_s: () -> String
+
+    private
+
+    # The value of an argument that must be text, or the error that names it and never shows it
+    def present: (String name, untyped value) -> String
+
+    def tokens: (Native::tokens parts) -> Tokens
+  end
+end

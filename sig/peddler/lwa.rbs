@@ -1,27 +1,6 @@
 module Peddler
   class LWA
-    DEFAULT_ENDPOINT: String
-
-    @engine: Native::LwaEngine
-
-    class Tokens
-      attr_reader access_token: String
-      attr_reader refresh_token: String?
-      attr_reader token_type: String
-      attr_reader expires_in: Integer
-      attr_reader scope: String?
-      def initialize: (String access_token, String? refresh_token, String token_type, Integer expires_in, ?String? scope) -> void
-      def to_h: () -> { access_token: String, refresh_token: String?, token_type: String, expires_in: Integer, scope: String? }
-      def ==: (untyped other) -> bool
-      alias eql? ==
-      def hash: () -> Integer
-      def inspect: () -> String
-      def to_s: () -> String
-    end
-
     class TokenSource
-      MARGIN: Integer
-
       class Refresh < Struct[untyped]
         attr_accessor done: bool?
         attr_accessor token: String?
@@ -29,39 +8,6 @@ module Peddler
         attr_accessor error: StandardError?
         def self.new: () -> Refresh
       end
-
-      @grant: ^() -> Tokens
-      @pid: Integer
-      @mutex: Thread::Mutex
-      @finished: Thread::ConditionVariable
-      @token: String?
-      @refresh_at: Float
-      @refresh: Refresh?
-
-      def initialize: () { () -> Tokens } -> void
-      def call: () -> String
-      def inspect: () -> String
-      def to_s: () -> String
-
-      private
-
-      def lead: (Refresh refresh) -> String
-      def follow: (Refresh refresh) -> String
-      def replica: (StandardError error) -> StandardError
-      def now: () -> Float
     end
-
-    def initialize: (?client_id: String?, ?client_secret: String?, ?timeout: Integer | Float, ?lwa_endpoint: String) -> void
-    def token_source: (?refresh_token: String?, ?scope: String?) -> TokenSource
-    def refresh: (refresh_token: String) -> Tokens
-    def client_credentials: (scope: String) -> Tokens
-    def exchange_authorization_code: (code: String, ?redirect_uri: String?) -> Tokens
-    def inspect: () -> String
-    def to_s: () -> String
-
-    private
-
-    def present: (String name, untyped value) -> String
-    def tokens: (Native::tokens parts) -> Tokens
   end
 end
