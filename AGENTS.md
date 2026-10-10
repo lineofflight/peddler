@@ -67,7 +67,7 @@ Comments are Markdown, and RDoc builds the site from them with the signatures. N
 - An error is a sentence: "Raises Peddler::Error if ...". Several, 1 to a line, become a list on the site.
 - A class or a method is named as it is, and RDoc links it: `Peddler::Client#request`, `#sandbox`, `Client.new`. Don't start a line with `#name`: it breaks the paragraph.
 - A link is `[text](url)`, or the URL alone in a paragraph of its own.
-- A tag of HTML is left out of the site, in a comment and in a document. An image is `![text](url)`.
+- HTML is no markup on the site: a tag shows as the text it is, in a comment and in a document. RDoc formats only its own `<b>`, `<em>`, `<i>`, `<tt>`, `<code>`, `<s>` and `<br>` in a sentence. An image is `![text](url)`.
 - `# :nodoc:` at the end of a `def` line, or of a constant's, hides it. On a line above, it hides the rest of the class too.
 - A reader that `Data.define` makes has no `def`: give it `##`, `# :attr_reader: name` and a line of description in the class body. RDoc takes its type from `sig/peddler`.
 - A line that starts with `:word:` is a directive to RDoc, and `\:word:` is the text. Both generators escape it in what a spec says.

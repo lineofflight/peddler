@@ -65,19 +65,31 @@ module RDocRBS
     end
   end
 
-  # RDoc documents no way to add such names, so TypeNames goes in front of a method of its own. Were a release to
-  # drop or rename it, the site would build and every one of those links be gone. The docs task calls this first.
-  def self.verify!
-    return if RDoc::Store.instance_method(:type_name_lookup).super_method
+  # What a formatter of HTML does with a block of raw HTML
+  module InertHTML
+    def accept_raw(raw)
+      @res << "\n<p>#{CGI.escapeHTML(raw.parts.join("\n"))}</p>\n"
+    end
+  end
 
-    raise "tools/rdoc_rbs.rb links the types of a signature through RDoc::Store#type_name_lookup, and RDoc " \
-      "#{RDoc::VERSION} has no such method. Find what took its place, or the signatures lose their links."
+  # RDoc documents no way to add such names, nor to keep a block of HTML out of a page, so TypeNames and InertHTML
+  # each go in front of a method of its own. Were a release to drop or rename one, the site would build, with every
+  # one of those links gone or a block of HTML live again. The docs task calls this first.
+  def self.verify!
+    unless RDoc::Store.instance_method(:type_name_lookup).super_method
+      raise "tools/rdoc_rbs.rb links the types of a signature through RDoc::Store#type_name_lookup, and RDoc " \
+        "#{RDoc::VERSION} has no such method. Find what took its place, or the signatures lose their links."
+    end
+    return if RDoc::Markup::ToHtml.instance_method(:accept_raw).super_method
+
+    raise "tools/rdoc_rbs.rb shows a block of raw HTML as text through RDoc::Markup::ToHtml#accept_raw, and RDoc " \
+      "#{RDoc::VERSION} has no such method. Find what took its place, or a tag in a comment is live on the site."
   end
 end
 
-# Markdown passes HTML through as it is, and most of the text is Amazon's. Without the extension a tag in it is
-# left out, so nothing a spec says reaches a page as markup.
-RDoc::Markdown::DEFAULT_EXTENSIONS.delete(:html)
+# Markdown hands a paragraph that starts with a tag to the page as it is, and most of the text is Amazon's. The
+# page shows such a paragraph as the text it is, as RDoc shows a tag inside one: nothing a spec says is markup.
+RDoc::Markup::ToHtml.prepend(RDocRBS::InertHTML)
 RDoc::Markup::PreProcess.post_process do |comment, _code_object|
   comment.text = RDocRBS.prose(comment.text) if comment.is_a?(RDoc::Comment)
 end
