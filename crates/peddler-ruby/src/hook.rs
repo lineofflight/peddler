@@ -232,8 +232,12 @@ pub(super) struct Responder {
 impl Responder {
     /// None for a call that asks Ruby nothing: no token source and no exchange hook.
     pub(super) fn new(ruby: &Ruby, source: Option<Value>) -> Result<Option<Self>, Error> {
+        // The flag is read once. Read again for the refusal, it could be clear by then and
+        // set once more before the hook is read, and a Ractor would reach the hook.
         let hook = if hooked() {
-            guard(ruby)?;
+            if !main_ractor(ruby)? {
+                return Err(isolation_error(ruby, CALL));
+            }
             peddler_const::<RModule>(ruby, "Native")?.ivar_get::<_, Option<Value>>(HOOK)?
         } else {
             None
