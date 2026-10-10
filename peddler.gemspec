@@ -34,5 +34,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency("structure", "~> 4.2")
   gem.add_dependency("zeitwerk", "~> 2.6")
 
+  # The site that .github/workflows/build-docs.yml deploys. Without this RubyGems links to rubydoc.info, which
+  # builds with YARD and knows nothing of the inline RBS.
+  gem.metadata["documentation_uri"] = "https://lineofflight.github.io/peddler/"
   gem.metadata["rubygems_mfa_required"] = "true"
 end

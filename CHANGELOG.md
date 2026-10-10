@@ -60,6 +60,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
 - Add runtime dependencies on `bigdecimal` and `rb_sys`
 - Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and the anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
+- Link the gem's page on RubyGems to the [documentation site](https://lineofflight.github.io/peddler/) in place of rubydoc.info
 
 ### Removed
 
