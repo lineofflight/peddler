@@ -160,6 +160,54 @@ class WebMockAutoloadTest < NativeTest
     )
   end
 
+  # WebMock keeps no record of `enable!` and `disable!`: it tells the adapters it has. One that loads later reads
+  # Net::HTTP, which `WebMock.disable!` restores. So a suite that turns WebMock off before the first request of its
+  # process, as for a live test, reaches the server as it did in v5, whatever rule and stub it left in WebMock.
+  def test_a_disable_before_the_first_request_holds_with_a_rule_and_a_stub_left
+    suite = <<~RUBY
+      WebMock.disable_net_connect!
+      stub = WebMock.stub_request(:get, base + "/raw").to_return(body: '{"stubbed":true}')
+      WebMock.disable!
+      client, = clients(base)
+      first = client.request("GET", "/raw")
+      WebMock.assert_not_requested(stub)
+      results = [first.status.code, first.dig("stubbed"), adapter, hooked]
+      WebMock.enable!
+      results << client.request("GET", "/raw").dig("stubbed") << hooked
+      print results.inspect
+    RUBY
+    scripts = {
+      "WebMock after Peddler" => "require \"peddler\"\nrequire \"webmock/minitest\"\n#{suite}",
+      "WebMock before Peddler" => "require \"webmock/minitest\"\nrequire \"peddler\"\n#{suite}",
+    }
+    expected = [[200, nil, 1, false, true, true].inspect, 1]
+
+    assert_equal(scripts.transform_values { expected }, fresh(scripts))
+  end
+
+  # The documented limit of that reading. `WebMock.enable!(except: [:net_http])` leaves Net::HTTP as
+  # `WebMock.disable!` does, so an adapter that loads after it takes WebMock for disabled: the request is sent and
+  # the stub is not hit. The cure is to load the adapter before that line, with `require "peddler/webmock"` after
+  # WebMock. It is then told with the other adapters.
+  def test_a_selective_enable_before_the_adapter_loads_is_read_as_disabled
+    selective = <<~RUBY
+      WebMock.enable!(except: [:net_http])
+      WebMock.disable_net_connect!
+      stub = WebMock.stub_request(:get, base + "/raw").to_return(body: '{"stubbed":true}')
+      response = clients(base).first.request("GET", "/raw")
+      print [response.dig("stubbed"), adapter, hooked].inspect
+    RUBY
+    scripts = {
+      "the limit" => "require \"peddler\"\nrequire \"webmock/minitest\"\n#{selective}",
+      "the cure" => "require \"peddler\"\nrequire \"webmock/minitest\"\nrequire \"peddler/webmock\"\n#{selective}",
+    }
+
+    assert_equal(
+      { "the limit" => [[nil, 1, false].inspect, 1], "the cure" => [[true, 1, true].inspect, 0] },
+      fresh(scripts),
+    )
+  end
+
   def test_without_webmock_nothing_is_loaded_and_every_exchange_is_sent
     script = <<~RUBY
       require "peddler"
@@ -257,6 +305,8 @@ class WebMockAutoloadTest < NativeTest
       "enabled" => "WebMock.enable!\nWebMock.disable_net_connect!",
       "disabled" => "WebMock.enable!\nWebMock.disable!",
       "never enabled" => "",
+      # Read as disabled once the adapter loads: the limit of the test above
+      "selectively enabled" => "WebMock.enable!(except: [:net_http])\nWebMock.disable_net_connect!",
     }
     scripts = states.transform_values do |state|
       <<~RUBY
@@ -282,6 +332,7 @@ class WebMockAutoloadTest < NativeTest
         "enabled" => [[[[LOAD], 0], REFUSED, 1, [CALL]].inspect, 0],
         "disabled" => [[[[LOAD], 0], "sent", 1, ["sent"]].inspect, 1 + requests_of_every_exchange],
         "never enabled" => [[[[LOAD], 0], "sent", 1, ["sent"]].inspect, 1 + requests_of_every_exchange],
+        "selectively enabled" => [[[[LOAD], 0], "sent", 1, ["sent"]].inspect, 1 + requests_of_every_exchange],
         "the adapter required" => [[[["sent"], 1], [CALL]].inspect, requests_of_every_exchange],
       },
       fresh(scripts),
