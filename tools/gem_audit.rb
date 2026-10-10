@@ -23,6 +23,9 @@ INLINE = %r{\Alib/(peddler|peddler/[^/]+|peddler/(?:lwa|native)/.+)\.rb\z}
 # The WebMock adapter has no types: WebMock has no signatures.
 UNTYPED = ["lib/peddler/webmock.rb"].freeze
 SIGNATURES = %r{\Asig/(inline|peddler)/.+\.rbs\z}
+# Names the libraries the signatures need. Without it `rbs collection` leaves them out, and an application's check
+# of what they type is blind.
+MANIFEST = "sig/manifest.yaml"
 
 # A file of a gem, or nil if the gem has none of that name
 def content(path, name)
@@ -44,7 +47,8 @@ problems = ARGV.flat_map do |path|
   exported = (files - UNTYPED).grep(INLINE) { "sig/inline/#{Regexp.last_match(1)}.rbs" }
   found.concat((exported - files).map { |file| "#{path}: lacks #{file}" })
   found.concat((files.grep(%r{\Asig/inline/}) - exported).map { |file| "#{path}: #{file} has no Ruby file" })
-  found.concat(files.grep(%r{\Asig/}).grep_v(SIGNATURES).map { |file| "#{path}: forbidden #{file}" })
+  found.concat((files.grep(%r{\Asig/}) - [MANIFEST]).grep_v(SIGNATURES).map { |file| "#{path}: forbidden #{file}" })
+  found << "#{path}: lacks #{MANIFEST}" unless files.include?(MANIFEST)
   found << "#{path}: lacks the signatures of the typed models" if files.grep(%r{\Asig/peddler/apis/}).empty?
   found << "#{path}: license is not MIT" unless spec.licenses == ["MIT"] && files.include?("LICENSE")
   if spec.platform == Gem::Platform::RUBY

@@ -1,0 +1,6 @@
+# The libraries that the signatures name. `rbs collection` loads them for an application that depends on the gem.
+dependencies:
+  - name: bigdecimal
+  - name: date
+  - name: delegate
+  - name: uri
