@@ -223,24 +223,25 @@ After a 429, the client waits by the rate Amazon documents for the operation: 1 
 
 Each generated function carries the rate of its operation, read from the usage plan in Amazon's model. `operation-inventory.json` in `peddler-codegen` lists them. The client doesn't read the limit that the headers of a response carry.
 
-After a 5xx, a failed connection or a timeout, the client waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of an operation without a documented rate, and of a `Request` sent with `execute`.
+If Amazon gave a seller another limit, `with_rate_limit` returns a view of the client that waits by the rate you give, in requests per second.
+
+```rust
+use peddler::apis::orders_v0;
+
+let fast = client.with_rate_limit(Some(0.5))?;
+let params = orders_v0::GetOrdersParams::new(vec!["A1F83G8C2ARO7P".into()]);
+let response = orders_v0::get_orders(&fast, params).await?;
+```
+
+The view's rate replaces the documented one for every call made through it, and gives one to a `Request` sent with `execute`. `None` is no rate, also for an operation that has one. Nothing is paced: the rate sets the wait after a 429 and nothing else. A rate that is not a positive, finite number is refused with `Error::InvalidRequest`.
+
+After a 5xx, a failed connection or a timeout, the client waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of a call without a rate: an operation Amazon documents none for, and a `Request` sent with `execute`.
 
 If the response has a `Retry-After` header, the client waits as long as it asks instead. A value that is neither seconds nor a date is ignored.
 
-A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer one, the client stops retrying and returns that response, as when the retries run out. So the rate of an operation sets how many retries its 429 can use. One limited to 1 request a minute waits 60, 120, 240 and 480 seconds and is not retried a fifth time.
+No wait has a ceiling. An operation limited to 1 request a minute waits 512 minutes before its tenth retry.
 
-| Requests a second | Retries of a 429 |
-| --- | --- |
-| 0.0056 to 0.0083 | 3 |
-| 0.016 to 0.017 | 4 |
-| 0.0222 to 0.033 | 5 |
-| 0.1 | 7 |
-| 0.5 | 9 |
-| 1 or more | 10 |
-
-52 operations are limited to less than 1 request a second, so none of them can use 10 retries. Every operation can use 3.
-
-The timeout limits each attempt: asking a token source, the request and reading the body. The waits between attempts are not counted, so a call can take far longer than the timeout: 23 minutes for 5 retries at 0.0222 requests a second, and 150 minutes if `Retry-After` asks for 900 seconds 10 times. Choose `max_retries` by how long a call may take, or put the call in `tokio::time::timeout`. Dropping the future ends a wait as it ends a request.
+The timeout limits each attempt: asking a token source, the request and reading the body. The waits between attempts are not counted, so a call can take far longer than the timeout: 7 minutes for 3 retries at 1 request a minute, and 17 hours for 10. Choose `max_retries` by how long a call may take, or put the call in `tokio::time::timeout`. Dropping the future ends a wait as it ends a request.
 
 When the retries run out, the call returns the last response, or `Error::Timeout` or `Error::Transport` if the last attempt got none.
 
@@ -349,7 +350,7 @@ if let Some(document_id) = report.report_document_id {
 }
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait. A poll that is told to wait more than 900 seconds is not retried: it is `WorkflowError::Http` with the 429, at once.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait.
 
 `download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup, with its retries and the waits before them, and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
 
