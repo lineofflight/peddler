@@ -4,7 +4,7 @@ This guide covers upgrading from v5.x to v6.0, and from v4.x to v5.0.
 
 ## From v5.x to v6.0
 
-Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens, how you rescue errors and how your tests stand in for Amazon. Your operation calls stay as they are.
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens and how you rescue errors, and your tests require an adapter for WebMock. Your operation calls stay as they are.
 
 ### What to change
 
@@ -94,7 +94,7 @@ rescue Peddler::AuthenticationError => e
 end
 ```
 
-The client still sends the token you give it and requests none itself. What is new is that the token may be a callable. Keep the cache you have, and the client asks it once before every call.
+The client still sends the token you give it and requests none itself. What is new is that the token may be a callable. Keep the cache you have, and the client asks it before every attempt of a call, a retry included.
 
 **Before (v5):**
 ```ruby
@@ -235,46 +235,78 @@ client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00
 
 `Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox` are gone. Peddler no longer checks whether an operation supports the sandbox. Amazon answers such a call with an error, which raises `Peddler::Error`.
 
-#### 5. `rate_limit:`
+#### 5. Retries
 
-Operations no longer take `rate_limit:`. Passing it raises `ArgumentError`. Remove it.
+`rate_limit:` and `retries:` stay, and a call that passes them needs no change.
 
-**Before (v5):**
 ```ruby
-api.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z", rate_limit: 0.5)
+client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z", rate_limit: 0.5)
 ```
 
-**After (v6):**
-```ruby
-client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00Z")
-```
+`rate_limit:` still sets the wait after a 429 and paces nothing. Its default is still the rate Amazon documents for the operation. Every operation takes it now, also one without a documented rate, where the default is `nil`. A value that is not a positive number raises `ArgumentError` before anything is sent. v5 checked nothing.
 
-Each operation keeps the rate that `rate_limit:` had by default, from Amazon's API models, and you can no longer give another.
+`retries:` waits as it did. After a 429 it waits 1 / rate seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx or a failed connection it waits up to 1 second, then 1 to 2, then 3 to 4. If the response has a `Retry-After` header, it waits as long as that asks instead. No wait has a ceiling.
 
-`retries:` stays, and waits as it did. After a 429 it waits 1 / rate seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx or a failed connection it waits up to 1 second, then 1 to 2, then 3 to 4. If the response has a `Retry-After` header, it waits as long as that asks instead.
+It differs in 2 ways.
 
-It differs in 3 ways.
-
-- **What it retries after a failure.** After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
-- **`timeout:`.** It limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
-- **A wait of more than 15 minutes.** When the rate or `Retry-After` asks for a wait of more than 900 seconds, v6 stops retrying and the last response raises. v5 waited however long that was. With `retries: 3` every operation waits as it did: the slowest waits 179, 357 and 714 seconds. With more retries, an operation limited to 1 request a minute is retried 4 times at most. The [README](README.md#rate-limiting) has the number for each rate.
+- After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
+- `timeout:` limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
 
 `retries:` takes 0 to 10.
 
 #### 6. Tests
 
-WebMock and VCR no longer see Peddler's requests. They patch Ruby's HTTP libraries, and the requests now leave through the native extension. A stub is never hit, a cassette records nothing, and `WebMock.disable_net_connect!` doesn't stop a call: it reaches Amazon.
-
-Start a local server in the test and point the client at it with `base_url:`. `Peddler::LWA` takes `lwa_endpoint:` in the same way.
+Peddler's requests now leave through the native extension, where WebMock's own adapters don't see them. Require Peddler's adapter, and stubs, `assert_requested`, `WebMock.disable_net_connect!` and VCR work as they did.
 
 **Before (v5):**
 ```ruby
+require "webmock/minitest"
+
 stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123-1234567-1234567")
   .to_return(body: JSON.generate(payload: { AmazonOrderId: "123-1234567-1234567" }))
 api = Peddler.orders_v0.new("eu-west-1", "token")
 ```
 
 **After (v6):**
+```ruby
+require "webmock/minitest"
+require "peddler/webmock"
+
+stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123-1234567-1234567")
+  .to_return(body: JSON.generate(payload: { AmazonOrderId: "123-1234567-1234567" }))
+client = Peddler::Client.new(region: "eu-west-1", access_token: "token")
+```
+
+Without that line a stub is never hit, a cassette records nothing, and `WebMock.disable_net_connect!` doesn't stop a call: it reaches Amazon. Put the line before a selective `WebMock.enable!(except: ...)`. Required after one that leaves `Net::HTTP` out, the adapter stays off.
+
+A stubbed response is handled as one from Amazon is, so the changes above show in a test too.
+
+- `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL.
+- A stubbed status outside 2xx raises `Peddler::Error`. With `retries:` set, a stubbed 429 waits by the operation's rate, a minute for `get_orders`: give the stub a `Retry-After: 0` header, or the call a fast `rate_limit:`.
+- A request without a stub raises `WebMock::NetConnectNotAllowedError`, as before. Its message shows the request with its headers, the access token among them.
+- A document is not streamed while WebMock is enabled: an upload is read to its end before it is sent, and a download arrives whole.
+
+Cassettes recorded with v5 replay, the token request in them too. 2 operations need more: `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20 now repeat `mskus`, where the cassette holds 1 value with commas. WebMock keeps only the last value of a repeated parameter unless it is told otherwise. Tell it, and match a URI by its values.
+
+```ruby
+WebMock::Config.instance.query_values_notation = :flat_array
+
+VCR.configure do |config|
+  config.hook_into(:webmock)
+  config.register_request_matcher(:uri_with_lists) do |recorded, sent|
+    recorded, sent = [recorded, sent].map do |request|
+      uri = URI(request.uri)
+      pairs = URI.decode_www_form(uri.query.to_s).flat_map { |name, value| value.split(",").map { |item| [name, item] } }
+      [uri.host, uri.path, pairs.sort]
+    end
+    recorded == sent
+  end
+  config.default_cassette_options = { match_requests_on: [:method, :uri_with_lists] }
+end
+```
+
+A test can also start a local server and point the client at it with `base_url:`. `Peddler::LWA` takes `lwa_endpoint:` in the same way.
+
 ```ruby
 client = Peddler::Client.new(base_url: "http://127.0.0.1:#{port}", access_token: "token")
 lwa = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "http://127.0.0.1:#{port}/auth/o2/token")
@@ -286,7 +318,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 
 ### What keeps working
 
-- Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
+- Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names, `rate_limit:` among them.
 - The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
 - A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too, and so does one inside a request body.
 - The documentation of every operation and API class, in the comments above them.
@@ -356,6 +388,9 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - The client has no readers for `access_token`, `retries`, `endpoint` or `base_url`.
 - The modules under `Peddler::Helpers` are gone. Their methods are on the API views, where you called them. `Peddler::API::TRANSIENT_STATUSES` is gone with `Peddler::API`.
 - `Peddler::REGIONS` is now `Peddler::Endpoint::REGIONS`. It and `Peddler::MARKETPLACE_IDS` are frozen.
+- `Peddler::Acronyms` has no instance methods any more. Call `Peddler::Acronyms.apply` and `Peddler::Acronyms.values`.
+- `require "peddler"` loads the client, responses, errors, `Peddler::LWA`, marketplaces and `Peddler::Money`. v5 loaded them on first use, as the typed models still are.
+- The RBS signatures of the client and the operations are in `sig/inline`, written from inline RBS in the Ruby files, and `sig/peddler.rbs` is gone. A type checker finds them under `sig/` as before. `Marketplace#to_s` left them: the class never defined it.
 - Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details` send `mskus` as a repeated parameter, as Amazon specifies. v5 joined the values with commas.
 
 ### Dependency changes
@@ -376,6 +411,8 @@ These need no change to existing code. The [README](README.md#usage) describes e
 - `base_url:` in place of `region:`, to point a client at a local mock or a proxy
 - Pattern matching on errors, by `status` and `code`
 - `client.request`, the call for an endpoint Peddler has no method for yet
+- Ractors: a client built in a Ractor other than the main one works there ([#279](https://github.com/lineofflight/peddler/issues/279)). `Peddler.eager_load!` loads the typed models ahead, which Ruby 3.3 needs
+- Amazon's description of each parameter in the RBS signatures of the operations, which an editor shows on hover
 
 ## From v4.x to v5.0
 
