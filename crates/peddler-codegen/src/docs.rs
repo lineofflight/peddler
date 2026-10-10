@@ -237,7 +237,7 @@ fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
         };
         // A paragraph that is a comment already loses its marker.
         let unmarked = strip(paragraph).strip_prefix('#').map(strip);
-        for word in unmarked.unwrap_or(paragraph).split_ascii_whitespace() {
+        for word in split_words(unmarked.unwrap_or(paragraph)) {
             let length = words
                 .iter()
                 .map(|word| word.chars().count() + 1)
@@ -258,6 +258,14 @@ fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
         lines.push("#".into());
     }
     lines
+}
+
+/// The words of a text, parted wherever Ruby's `\s` matches. That takes the vertical tab,
+/// which Rust leaves out of ASCII whitespace. RDoc drops what `\s` matches from the start
+/// of a line before it looks for a directive, so no word may begin with any of it.
+fn split_words(text: &str) -> impl Iterator<Item = &str> {
+    let words = text.split(|c: char| c.is_ascii_whitespace() || c == '\x0B');
+    words.filter(|word| !word.is_empty())
 }
 
 /// A line of a spec's text as RDoc must read it: as text. RDoc takes a line that starts
@@ -380,6 +388,40 @@ mod tests {
             "      #   \\:include:secret.txt :include:secret.txt",
         ] {
             assert!(operation.contains(escaped), "{escaped:?} in {operation}");
+        }
+    }
+
+    #[test]
+    fn whitespace_before_a_directive_never_hides_it() {
+        // RDoc drops what Ruby's `\s` matches from the start of a line before it looks
+        // for a directive. Each of those characters stands here before one that a wrap
+        // begins a line with. Rust does not count the vertical tab as whitespace.
+        static DIRECTIVE: LazyLock<Regex> = LazyLock::new(|| regex(r"^#[\s]*:[\w-]+:"));
+        let api = &crate::manifest::ALL_APIS[0];
+        let filler = ["word"; 22].join(" ");
+        for space in [' ', '\t', '\r', '\n', '\x0C', '\x0B'] {
+            let hostile = format!("{filler} {space}:include: secret.txt");
+            let (info, op) = described(&hostile, "get_thing");
+            let comments = [
+                class(api, &info),
+                accessor("Thing", &info),
+                operation(&op),
+                pages(&op, "String id"),
+            ];
+            for comment in &comments {
+                for line in comment.lines() {
+                    assert!(
+                        DIRECTIVE.find(line.trim_start()).is_none(),
+                        "{line:?} after {space:?}"
+                    );
+                }
+            }
+            // The wrap begins a line with it, behind the backslash that makes it text.
+            let operation = &comments[2];
+            assert!(
+                operation.contains("      # \\:include: secret.txt\n"),
+                "after {space:?} in {operation}"
+            );
         }
     }
 

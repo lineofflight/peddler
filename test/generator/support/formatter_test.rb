@@ -47,6 +47,19 @@ module Generator
       wrapped.each_line { |line| assert_match(/\A    # \\:include:secret\.txt/, line) }
     end
 
+    # RDoc drops what `\s` matches from the start of a line before it looks for a directive. `String#split` parts
+    # the words at each of those characters, the vertical tab among them, so none stands before a directive that a
+    # wrap begins a line with.
+    def test_whitespace_before_a_directive_never_hides_it
+      filler = (["word"] * 22).join(" ")
+      [" ", "\t", "\r", "\n", "\f", "\v"].each do |space|
+        lines = split_long_comment_line("#{filler} #{space}:include: secret.txt").lines(chomp: true)
+
+        assert_empty(lines.grep(/\A#\s*:[\w-]+:/), space.inspect)
+        assert_includes(lines, "# \\:include: secret.txt", space.inspect)
+      end
+    end
+
     def test_convert_doc_links_to_full_url
       text = "Refer to [API Documentation](doc:api-doc)."
       expected = "Refer to [API Documentation](https://developer-docs.amazon.com/sp-api/docs/api-doc)."
