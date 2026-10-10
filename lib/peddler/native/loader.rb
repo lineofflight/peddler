@@ -13,45 +13,45 @@ module Peddler
     # A build for another Ruby minor is never loaded.
     module Loader
       EXTENSION = "peddler_native"
-      DIR = File.expand_path("../..", __FILE__)
+      DIR = File.expand_path("../..", __FILE__) #: String
 
-      class << self
-        def require_extension(dir: DIR, abi: RUBY_VERSION[/\A\d+\.\d+/], dlext: RbConfig::CONFIG["DLEXT"],
-          requirer: Kernel.method(:require))
-          versioned = File.join(dir, abi, "#{EXTENSION}.#{dlext}")
-          return requirer.call(versioned) if File.file?(versioned)
+      #: (?dir: String, ?abi: String, ?dlext: String, ?requirer: ^(String) -> untyped) -> untyped
+      def self.require_extension(dir: DIR, abi: RUBY_VERSION[/\A\d+\.\d+/], dlext: RbConfig::CONFIG["DLEXT"],
+        requirer: Kernel.method(:require))
+        versioned = File.join(dir, abi, "#{EXTENSION}.#{dlext}")
+        return requirer.call(versioned) if File.file?(versioned)
 
-          packaged = packaged_abis(dir)
-          unless packaged.empty?
-            raise LoadError, "This peddler gem contains native extensions for Ruby #{packaged.join(", ")} " \
-              "(file type .#{dlext}), but this is Ruby #{abi} on #{RbConfig::CONFIG["arch"]}. " \
-              "Use a matching Ruby and platform, or install the source gem " \
-              "(gem install peddler --platform ruby), which needs a Rust toolchain."
-          end
-
-          plain = File.join(dir, "#{EXTENSION}.#{dlext}")
-          return requirer.call(plain) if File.file?(plain)
-
-          begin
-            requirer.call(EXTENSION)
-          rescue LoadError => error
-            raise unless error.path == EXTENSION
-
-            raise LoadError, "No peddler native extension found for Ruby #{abi}. Install a platform gem or the " \
-              "source gem, or build one with `rake compile`."
-          end
+        packaged = packaged_abis(dir)
+        unless packaged.empty?
+          raise LoadError, "This peddler gem contains native extensions for Ruby #{packaged.join(", ")} " \
+            "(file type .#{dlext}), but this is Ruby #{abi} on #{RbConfig::CONFIG["arch"]}. " \
+            "Use a matching Ruby and platform, or install the source gem " \
+            "(gem install peddler --platform ruby), which needs a Rust toolchain."
         end
 
-        private
+        plain = File.join(dir, "#{EXTENSION}.#{dlext}")
+        return requirer.call(plain) if File.file?(plain)
 
-        def packaged_abis(dir)
-          return [] unless File.directory?(dir)
+        begin
+          requirer.call(EXTENSION)
+        rescue LoadError => error
+          raise unless error.path == EXTENSION
 
-          Dir.children(dir).select do |name|
-            name.match?(/\A\d+\.\d+\z/) && !Dir.glob(File.join(dir, name, "#{EXTENSION}.*")).empty?
-          end.sort_by { |name| name.split(".").map(&:to_i) }
+          raise LoadError, "No peddler native extension found for Ruby #{abi}. Install a platform gem or the " \
+            "source gem, or build one with `rake compile`."
         end
       end
+
+      #: (String dir) -> Array[String]
+      def self.packaged_abis(dir)
+        return [] unless File.directory?(dir)
+
+        Dir.children(dir).select do |name|
+          name.match?(/\A\d+\.\d+\z/) && !Dir.glob(File.join(dir, name, "#{EXTENSION}.*")).empty?
+        end.sort_by { |name| name.split(".").map(&:to_i) }
+      end
+
+      private_class_method :packaged_abis
     end
   end
 end
