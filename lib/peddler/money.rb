@@ -6,6 +6,14 @@ module Peddler
 
   # An amount of money in a typed model: its `amount`, a String that holds a decimal, and its `currency_code`
   class Money
+    ##
+    # :attr_reader: amount
+    # The amount as a String that holds a decimal, such as "10.00"
+
+    ##
+    # :attr_reader: currency_code
+    # The ISO 4217 code of the currency, such as "USD"
+
     #: (untyped value) -> Money?
     def self.parse(value)
       return unless value

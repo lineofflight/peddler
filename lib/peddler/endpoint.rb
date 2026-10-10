@@ -8,6 +8,18 @@ module Peddler
 
   # A Selling Partner API endpoint: the `host` that serves a `selling_region`, and the `aws_region` it is in
   class Endpoint
+    ##
+    # :attr_reader: aws_region
+    # The AWS region it is in, such as "us-east-1"
+
+    ##
+    # :attr_reader: selling_region
+    # The selling region it serves: "North America", "Europe" or "Far East"
+
+    ##
+    # :attr_reader: host
+    # The host of production, such as "sellingpartnerapi-na.amazon.com"
+
     # Amazon's endpoints, by AWS region
     #
     # https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints

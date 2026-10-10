@@ -37,6 +37,22 @@ module Peddler
 
   # An Amazon marketplace: its `id`, its `country_code`, its `country_name` and its `selling_region`
   class Marketplace
+    ##
+    # :attr_reader: id
+    # Amazon's identifier of the marketplace, such as "ATVPDKIKX0DER"
+
+    ##
+    # :attr_reader: country_code
+    # The code of its country, such as "US"
+
+    ##
+    # :attr_reader: country_name
+    # The name of its country, such as "United States"
+
+    ##
+    # :attr_reader: selling_region
+    # The selling region it is in: "North America", "Europe" or "Far East"
+
     # Finds the marketplace for the given country code
     #
     #: (String country_code) -> Marketplace
