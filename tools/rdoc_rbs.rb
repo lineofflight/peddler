@@ -64,6 +64,15 @@ module RDocRBS
       end
     end
   end
+
+  # RDoc documents no way to add such names, so TypeNames goes in front of a method of its own. Were a release to
+  # drop or rename it, the site would build and every one of those links be gone. The docs task calls this first.
+  def self.verify!
+    return if RDoc::Store.instance_method(:type_name_lookup).super_method
+
+    raise "tools/rdoc_rbs.rb links the types of a signature through RDoc::Store#type_name_lookup, and RDoc " \
+      "#{RDoc::VERSION} has no such method. Find what took its place, or the signatures lose their links."
+  end
 end
 
 RDoc::Markup::PreProcess.post_process do |comment, _code_object|

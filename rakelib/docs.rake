@@ -17,6 +17,7 @@ RDoc::Task.new do |rdoc|
   rdoc.markup = "markdown"
   rdoc.options << "--autolink-excluded-words=#{PLAIN_WORDS.join(",")}"
   rdoc.rdoc_files.include("README.md", "UPGRADING.md", "CHANGELOG.md", "lib/peddler.rb", "lib/peddler/**/*.rb")
+  rdoc.before_running_rdoc { RDocRBS.verify! }
 end
 
 # The README and the guides link to each other and to files of the repository. RDoc writes such a link as the page
