@@ -34,3 +34,12 @@ Rake::Task["doc/created.rid"].enhance do
     File.write(page, html.gsub("<img ", '<img style="max-width: 100%" '))
   end
 end
+
+# RDocRBS makes a list of the `@rbs` lines of a comment. RDoc calls it for every comment and promises no such call:
+# were a release to stop, the site would build with the lines as they are written.
+Rake::Task[:rdoc].enhance do
+  raw = Dir["doc/**/*.html"].select { |page| File.read(page).include?("@rbs ") }
+  next if raw.empty?
+
+  abort("#{raw.size} pages of the site show a raw @rbs line, #{raw.first} among them: see tools/rdoc_rbs.rb.")
+end
