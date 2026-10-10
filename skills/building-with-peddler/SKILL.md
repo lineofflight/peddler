@@ -173,7 +173,9 @@ stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/#{o
   .to_return(body: JSON.generate(payload: { AmazonOrderId: order_id }))
 ```
 
-A stub answers operations, `client.request`, `Peddler::LWA` token requests and signed URLs. Its response is retried, paginated, parsed and raised on as Amazon's is: a status outside 2xx raises `Peddler::Error`, and `to_timeout` raises `Peddler::TimeoutError`. With `retries:` set, a stubbed `429` waits by the operation's rate, so give the stub a `Retry-After: 0` header. VCR works once it hooks into WebMock.
+A stub answers operations, `client.request`, `Peddler::LWA` token requests and signed URLs. Its response is retried, paginated, parsed and raised on as Amazon's is: a status outside 2xx raises `Peddler::Error`, and `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL. With `retries:` set, a stubbed `429` waits by the operation's rate, so give the stub a `Retry-After: 0` header. VCR works once it hooks into WebMock.
+
+WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20: `UPGRADING.md` in the gem, under Tests, has the setting that shows them all.
 
 ## Ractors
 
