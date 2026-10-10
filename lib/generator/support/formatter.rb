@@ -75,16 +75,23 @@ module Generator
           if (current_line + [word]).join(" ").size <= max_width
             current_line << word
           else
-            lines << " " * base_indent + "# " + current_line.join(" ")
+            lines << " " * base_indent + "# " + escape_rdoc_directive(current_line.join(" "))
             current_line = [word]
           end
         end
-        lines << " " * base_indent + "# " + current_line.join(" ") unless current_line.empty?
+        lines << " " * base_indent + "# " + escape_rdoc_directive(current_line.join(" ")) unless current_line.empty?
 
         all_lines.concat(lines)
       end
 
       all_lines.empty? ? " " * base_indent + "#" : all_lines.join("\n")
+    end
+
+    # A line of a spec's text as RDoc must read it: as text. RDoc takes a line that starts with `:word:` for a
+    # directive, wherever in a comment it stands, and `:include: file` puts that file on the built page. `call-seq:`
+    # and `Document-method:` are directives without the colon in front. A backslash makes each of them text again.
+    def escape_rdoc_directive(line)
+      line.sub(/\A(?=:[\w-]+:)/) { "\\" }.sub(/\A(call-seq|Document-method):/) { "#{Regexp.last_match(1)}\\:" }
     end
 
     def convert_doc_links_to_full_url(text)

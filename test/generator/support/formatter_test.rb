@@ -24,6 +24,29 @@ module Generator
       assert_equal(expected, split_long_comment_line(line))
     end
 
+    # What RDoc reads as a directive: a line that starts with `:word:`, or with `call-seq:` or `Document-method:`.
+    # `:include:` would put a file on the built page, and `:stopdoc:` hide the rest of a class. A spec is data.
+    def test_a_spec_never_writes_a_directive
+      text = ":include: /etc/passwd.\n:stopdoc:\ncall-seq: hijacked(a).\n\nDocument-method: x.\nSee :nodoc: here."
+      expected = [
+        "# \\:include: /etc/passwd.",
+        "# \\:stopdoc:",
+        "# call-seq\\: hijacked(a).",
+        "#",
+        "# Document-method\\: x.",
+        "# See :nodoc: here.",
+      ].join("\n")
+
+      assert_equal(expected, split_long_comment_line(text))
+    end
+
+    def test_a_line_that_a_wrap_begins_is_no_directive_either
+      wrapped = split_long_comment_line(":include:secret.txt " * 8, base_indent: 4, max_line_length: 50)
+
+      assert_operator(wrapped.lines.size, :>, 1)
+      wrapped.each_line { |line| assert_match(/\A    # \\:include:secret\.txt/, line) }
+    end
+
     def test_convert_doc_links_to_full_url
       text = "Refer to [API Documentation](doc:api-doc)."
       expected = "Refer to [API Documentation](https://developer-docs.amazon.com/sp-api/docs/api-doc)."

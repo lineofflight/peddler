@@ -180,7 +180,8 @@ fn annotation(text: &str) -> Vec<String> {
 }
 
 /// A spec's text as comment lines. A line that starts with `@rbs` is an annotation
-/// to Steep, and a spec is data: none of its lines starts with it.
+/// to Steep, and a spec is data: none of its lines starts with it. `wrap` keeps what
+/// RDoc would read as a directive out of every line.
 fn prose(text: &str, depth: usize) -> Vec<String> {
     let lines = wrap(text, depth, 0).into_iter();
     lines
@@ -230,7 +231,7 @@ fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
         let mut first = true;
         let mut flush = |words: &mut Vec<&str>, first: bool| {
             let margin = if first { 0 } else { hanging };
-            let line = format!("# {}{}", " ".repeat(margin), words.join(" "));
+            let line = format!("# {}{}", " ".repeat(margin), literal(&words.join(" ")));
             lines.push(line.trim_end().to_owned());
             words.clear();
         };
@@ -257,6 +258,26 @@ fn wrap(text: &str, depth: usize, hanging: usize) -> Vec<String> {
         lines.push("#".into());
     }
     lines
+}
+
+/// A line of a spec's text as RDoc must read it: as text. RDoc takes a line that starts
+/// with `:word:` for a directive, wherever in a comment it stands, and `:include: file`
+/// puts that file on the page. `call-seq:` and `Document-method:` are directives without
+/// the colon in front. A backslash makes each of them text again.
+fn literal(line: &str) -> String {
+    static DIRECTIVE: LazyLock<Regex> = LazyLock::new(|| regex(r"^:[\w-]+:"));
+    if DIRECTIVE.find(line).is_some() {
+        return format!("\\{line}");
+    }
+    for name in ["call-seq", "Document-method"] {
+        let rest = line
+            .strip_prefix(name)
+            .and_then(|rest| rest.strip_prefix(':'));
+        if let Some(rest) = rest {
+            return format!("{name}\\:{rest}");
+        }
+    }
+    line.to_owned()
 }
 
 #[cfg(test)]
@@ -318,6 +339,47 @@ mod tests {
                     "{line:?} in {comment:?}"
                 );
             }
+        }
+    }
+
+    #[test]
+    fn a_spec_never_writes_a_directive() {
+        // What RDoc reads as a directive: a line that starts with `:word:`, or with
+        // `call-seq:` or `Document-method:`. `:include:` would put a file on the built
+        // page and `:stopdoc:` hide the rest of a class. Here each starts the text, a
+        // paragraph, a line after a note, and every line a wrap begins.
+        let hostile = format!(
+            ":include: /etc/passwd.\n:stopdoc:\ncall-seq: hijacked(a).\n**Note:** x\n\n:nodoc: all.\nDocument-method: x.\n{}",
+            ":include:secret.txt ".repeat(40)
+        );
+        let (info, op) = described(&hostile, "get_thing");
+        let api = &crate::manifest::ALL_APIS[0];
+        let comments = [
+            class(api, &info),
+            accessor("Thing", &info),
+            operation(&op),
+            pages(&op, "String id"),
+        ];
+        static DIRECTIVE: LazyLock<Regex> =
+            LazyLock::new(|| regex(r"^#[\s]*(:[\w-]+:|call-seq:|Document-method:)"));
+        for comment in &comments {
+            for line in comment.lines() {
+                assert!(DIRECTIVE.find(line.trim_start()).is_none(), "{line:?}");
+            }
+        }
+        // The text is all there, each line behind the backslash that makes RDoc print it.
+        let operation = operation(&op);
+        for escaped in [
+            "      # \\:include: /etc/passwd.\n",
+            "      # \\:stopdoc:\n",
+            "      # call-seq\\: hijacked(a).\n",
+            "      # \\:nodoc: all.\n",
+            "      # Document-method\\: x.\n",
+            // A line a wrap begins, in the description and under the annotation.
+            "      # \\:include:secret.txt :include:secret.txt",
+            "      #   \\:include:secret.txt :include:secret.txt",
+        ] {
+            assert!(operation.contains(escaped), "{escaped:?} in {operation}");
         }
     }
 
