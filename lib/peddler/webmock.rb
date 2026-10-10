@@ -25,7 +25,8 @@ module WebMock
     # Peddler::DocumentTimeoutError for a signed URL. `to_raise` raises the error itself.
     #
     # A document isn't streamed while WebMock is enabled: an upload is read to its end before it is sent, and a
-    # download arrives whole before its first row is read.
+    # download arrives whole before its first row is read. An upload is held in memory several times over, by
+    # Peddler and by WebMock: about 8 times its size at the peak.
     #
     # WebMock works in the main Ractor only: its stubs live there, and the adapter loads there. A call Peddler makes
     # in another Ractor raises `Ractor::IsolationError` and sends nothing while WebMock is enabled, and while WebMock

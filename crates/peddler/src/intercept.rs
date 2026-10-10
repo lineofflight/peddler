@@ -9,7 +9,7 @@
 //! attempt, timeouts, retries, decoding and errors.
 //!
 //! An intercepted exchange is buffered: an upload is read to its end before it is
-//! handed over, and a download arrives whole before its first byte is read.
+//! handed over, as a copy, and a download arrives whole before its first byte is read.
 //!
 //! It is hidden from the documentation because the crate doesn't promise to keep it.
 
@@ -88,6 +88,7 @@ impl Pool {
             method: request.method().as_str().to_owned(),
             url: request.url().as_str().to_owned(),
             headers: self.sent(request.headers()),
+            // A copy: the request keeps its body for `real`, and lends it only.
             body: request
                 .body()
                 .and_then(reqwest::Body::as_bytes)
