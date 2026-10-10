@@ -42,14 +42,15 @@ Style/Alias:
   Enabled: true
   Include: *generated
 
-# Steep reads a method inside `class << self` as an instance method when it checks inline RBS. Applies to the files
-# that carry annotations, found as the Steepfile finds them; until the last file is converted, the others keep
-# `class << self`. The fallback path keeps an empty list from meaning every file.
+# Steep reads a method inside `class << self` as an instance method when it checks inline RBS, so the files it
+# checks inline take `def self.`.
 Style/ClassMethodsDefinitions:
   EnforcedStyle: def_self
   Include:
-<% inline = Dir["lib/peddler.rb", "lib/peddler/*.rb", "lib/peddler/{lwa,native}/**/*.rb"].select { |path| File.read(path).match?(/^\s*#(:| @rbs\b)/) } %>
-<%= (inline.empty? ? ["lib/peddler/none.rb"] : inline).map { |path| "    - #{path}" }.join("\n") %>
+    - lib/peddler.rb
+    - lib/peddler/*.rb
+    - lib/peddler/lwa/**/*
+    - lib/peddler/native/**/*
 
 # These tests assert that generated code contains literal `#{...}` text; the
 # cop's autocorrect would turn it into live interpolation.
