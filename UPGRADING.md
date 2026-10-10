@@ -377,8 +377,8 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - Any status outside 2xx raises `Peddler::Error`, from an API call and from a signed URL in the document helpers. v5 raised from 400 up and returned a 3xx as a response.
 - A `Retry-After` header that is neither a number of seconds nor a date is ignored, and the retry waits as it would without one. v5 retried at once.
 - The document helpers allow 600 seconds for a call. v5 had no limit. Past it, the transfer raises `Peddler::DocumentTimeoutError`. The request that looks a document up by its ID is a request like any other: it raises `Peddler::TimeoutError` when it takes longer than that, or than the client's `timeout:`. For a longer transfer, use `client.reports.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
-- Given a document ID, `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`. Given a URL, it decompresses only when the reply says `Content-Encoding: gzip`, so a report whose metadata says `GZIP` still arrives compressed.
-- `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other named predicates are gone. In RBS, `status` is a `Peddler::Response::Status` where v5 declared an `Integer`: it compares as one, and `code` is the `Integer`.
+- Given a document ID, `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`. Given a URL, it decompresses only when the reply says `Content-Encoding: gzip`, so a report whose metadata says `GZIP` still arrives compressed. Read it with `Zlib.gunzip(response.body)`: a response is no longer a stream.
+- `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other predicates named after a status are gone. `informational?`, `success?`, `redirect?`, `client_error?` and `server_error?` stay. In RBS, `status` is a `Peddler::Response::Status` where v5 declared an `Integer`: it compares as one, and `code` is the `Integer`.
 - `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]`, `headers.include?("Name")` and `headers.key?("Name")` find a header whatever its case. `headers.get` and `headers.keys` are gone.
 - `response.body` is a String. The other readers of the `http` gem's response, such as `content_type`, `mime_type`, `uri` and `request`, are gone. `Response#parsable?` and `Response#parser` are gone too.
 - `response.inspect` is the class and the status, `#<Peddler::Response 200>`. A body can hold a token.
@@ -386,7 +386,8 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - `error.response` is a `Peddler::Response`. It was the `http` gem's response.
 - An HTTP error whose body carries no message has the message `request failed with status 500`, with its status. v5 used the status line.
 - A signed URL that rejects a transfer raises a plain `Peddler::Error` with its `status`. Its `code` is `nil` and its XML reply is in `error.response.body`. v5 raised a class named after the XML code, such as `Peddler::Errors::AccessDenied`.
-- The client has no readers for `access_token`, `retries`, `endpoint` or `base_url`.
+- The client has no readers for `access_token`, `retries`, `endpoint`, `endpoint_uri` or `base_url`.
+- A direct `marketplace.to_json` is its ID. v5 gave its inspect text, or its attributes under ActiveSupport, where `{ m: marketplace }.to_json` still gives them.
 - The modules under `Peddler::Helpers` are gone. Their methods are on the API views, where you called them. `Peddler::API::TRANSIENT_STATUSES` is gone with `Peddler::API`.
 - `Peddler::REGIONS` is now `Peddler::Endpoint::REGIONS`. It and `Peddler::MARKETPLACE_IDS` are frozen.
 - `Peddler::Acronyms` has no instance methods any more. Call `Peddler::Acronyms.apply` and `Peddler::Acronyms.values`.
@@ -397,7 +398,8 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 ### Dependency changes
 
 - The `http` and `nokogiri` gems are no longer dependencies. If your application used either through Peddler, add it to your Gemfile.
-- `bigdecimal` and `rb_sys` are new dependencies.
+- `bigdecimal` is a new dependency, and `rb_sys` for the source gem.
+- `zeitwerk` 2.7 or later is required.
 - Peddler includes a native extension. Precompiled gems cover macOS and glibc Linux on Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
 
 ### New in v6
