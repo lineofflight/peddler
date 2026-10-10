@@ -44,11 +44,11 @@ module Peddler
       # where it can't become the cause.
       def self.encode: (Hash[Symbol, untyped] arguments, ?String? body) -> String
 
-      def self.missing: (String name, bool required) -> nil
+      private def self.missing: (String name, bool required) -> nil
 
       # What an object converts itself to with `to_str`. Without one it is itself, and so it is when its `to_str`
       # raises or returns no String. That error is not raised: it is the caller's own and may hold anything.
-      def self.plain: (untyped value) -> untyped
+      private def self.plain: (untyped value) -> untyped
 
       # An argument as text, or nil if it has none. A String is itself. nil, a boolean, a Hash and an Array have
       # none, nor has an object whose `to_str` fails. Anything else is its `to_s`, as v5 sent it, unless that is an
@@ -56,12 +56,12 @@ module Peddler
       #
       # Text that is not valid UTF-8 is refused by the argument's name. The encoder would refuse it too, in an
       # error that quotes it.
-      def self.text: (String name, untyped value) -> String?
+      private def self.text: (String name, untyped value) -> String?
 
-      def self.scalar: (String name, untyped value) -> String
+      private def self.scalar: (String name, untyped value) -> String
 
       # Whether the value is a String that spells a number. One that is not valid UTF-8 can't be matched.
-      def self.numeral?: (untyped value, Regexp pattern) -> bool
+      private def self.numeral?: (untyped value, Regexp pattern) -> bool
     end
   end
 end

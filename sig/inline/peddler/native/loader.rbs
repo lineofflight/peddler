@@ -9,7 +9,7 @@ module Peddler
 
       def self.require_extension: (?dir: String, ?abi: String, ?dlext: String, ?requirer: ^(String) -> untyped) -> untyped
 
-      def self.packaged_abis: (String dir) -> Array[String]
+      private def self.packaged_abis: (String dir) -> Array[String]
     end
   end
 end

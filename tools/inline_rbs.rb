@@ -10,13 +10,22 @@
 require "pathname"
 require "prism"
 require "rbs"
-require "steep"
 require "stringio"
 
 module InlineRBS
   ROOT = Pathname(__dir__).parent
   OUTPUT = ROOT / "sig/inline"
   VISIBILITIES = [:private, :public].freeze
+  # Calls in the body of a class that the export has no rule for, and what to write in their place. Written out as
+  # the rest is, each would give a signature that is wrong: a method of another visibility or kind, or none.
+  UNHANDLED = {
+    protected: "RBS has no such visibility",
+    module_function: "write `def self.`",
+    alias_method: "write a def with its own annotation",
+  }.freeze
+
+  # Ruby that the export has no rule for, with the line it is on
+  class Unhandled < StandardError; end
 
   Ruby = RBS::AST::Ruby
   Declarations = RBS::AST::Declarations
@@ -29,6 +38,7 @@ module InlineRBS
   class << self
     # The Ruby files the Steepfile checks inline, relative to the root
     def sources
+      require "steep"
       project = Steep::Project.new(steepfile_path: ROOT / "Steepfile")
       Steep::Project::DSL.parse(project, (ROOT / "Steepfile").read)
       patterns = project.targets.map(&:inline_source_pattern)
@@ -42,8 +52,8 @@ module InlineRBS
       end
     end
 
-    def rbs(path)
-      source = (ROOT / path).read
+    # The signatures of a Ruby file. Aborts, by the file and the line, on what it can't write a right signature for.
+    def rbs(path, source = (ROOT / path).read)
       parsed = Prism.parse(source)
       # What is read of a file that does not parse is not what Ruby would run.
       abort(parsed.errors.map { |e| "#{path}:#{e.location.start_line}: #{e.message}" }.join("\n")) if parsed.failure?
@@ -55,6 +65,8 @@ module InlineRBS
       out.puts("# Generated from #{path} by rake rbs:export. Do not edit.", "")
       RBS::Writer.new(out: out).write(result.declarations.filter_map { |decl| declaration(decl) })
       out.string
+    rescue Unhandled => error
+      abort("#{path}:#{error.message}")
     end
 
     private
@@ -83,9 +95,17 @@ module InlineRBS
       end
     end
 
-    # The inline parser doesn't read visibility, so a bare `private` or `public` in the body is read here.
+    # The inline parser doesn't read visibility, so a bare `private` or `public` in the body is read here, and
+    # `private_class_method` with the names of methods of the body.
     def members(decl)
       statements = decl.node.body.is_a?(Prism::StatementsNode) ? decl.node.body.body : []
+      hidden = statements.flat_map { |node| hidden_by(node) }
+      defs = decl.members.grep(Ruby::Members::DefMember).group_by { |member| [member.kind, member.name] }
+      twice = defs.each_value.find { |same| same.size > 1 }
+      unhandled(twice.last, "#{twice.last.name} is defined twice") if twice
+      stray = hidden.find { |name, _| !defs.key?([:singleton, name]) }
+      unhandled(stray.last, "`private_class_method` names #{stray.first}, which is not defined here") if stray
+
       switches = statements.filter_map do |node|
         next unless node.is_a?(Prism::CallNode) && node.receiver.nil? && node.arguments.nil?
 
@@ -101,17 +121,45 @@ module InlineRBS
           visibility = name
           found << (name == :private ? Members::Private : Members::Public).new(location: nil)
         end
-        found.concat(Array(member(member)))
+        found.concat(Array(member(member, hidden.map(&:first))))
       end
     end
 
-    def member(member)
+    # The singleton methods that a statement of a class body makes private, each with the statement. Raises for a
+    # statement the export has no rule for.
+    def hidden_by(node)
+      case node
+      when Prism::SingletonClassNode then unhandled(node, "`class << self`: write `def self.`")
+      when Prism::AliasMethodNode then unhandled(node, "`alias`: #{UNHANDLED.fetch(:alias_method)}")
+      when Prism::CallNode
+        return [] if node.receiver
+
+        arguments = node.arguments&.arguments.to_a
+        if UNHANDLED.key?(node.name)
+          unhandled(node, "`#{node.name}`: #{UNHANDLED.fetch(node.name)}")
+        elsif VISIBILITIES.include?(node.name) && !arguments.empty?
+          unhandled(node, "`#{node.name}` with arguments: put the method under a bare `#{node.name}`")
+        elsif node.name == :private_class_method
+          unhandled(node, "`private_class_method` takes the names of methods") unless arguments.all?(Prism::SymbolNode)
+          return arguments.map { |name| [name.unescaped.to_sym, node] }
+        end
+      end
+      []
+    end
+
+    # Raises for a node or a member, by its line
+    def unhandled(found, message)
+      raise Unhandled, "#{found.location.start_line}: #{message}"
+    end
+
+    def member(member, hidden = [])
       case member
       when Ruby::Declarations::Base then declaration(member)
       when Ruby::Members::DefMember
         Members::MethodDefinition.new(
           name: member.name, kind: member.kind, overloads: member.overloads, annotations: [], location: nil,
-          comment: comment(member.leading_comment), overloading: member.overloading?, visibility: nil,
+          comment: comment(member.leading_comment), overloading: member.overloading?,
+          visibility: (:private if member.kind == :singleton && hidden.include?(member.name)),
         )
       when Ruby::Members::IncludeMember then mixin(Members::Include, member)
       when Ruby::Members::ExtendMember then mixin(Members::Extend, member)

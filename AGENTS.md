@@ -55,6 +55,7 @@ A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: member
 - Annotation mistakes fail `steep check` and `# steep:ignore` does not silence them.
 - Use `def self.x`, not `class << self`: Steep reads the latter as instance methods. RuboCop enforces it on these paths.
 - Steep reads no alias: write a one-line `def` with its own `#:` line.
+- `rake rbs:export` aborts, by the file and the line, on what it can't export: `private`, `public` or `protected` with arguments, `private def`, a bare `protected`, `alias`, `alias_method`, `module_function`, `class << self`, 2 definitions of 1 name. A bare `private` and `private_class_method :name` are exported.
 - Never run `steep check` on one file: it reports false unknown constants and skips the duplicate-declaration check. Check the whole project.
 - `steep check --steepfile=Steepfile.shipped` checks `lib` against the signatures an application gets.
 
