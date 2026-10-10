@@ -305,6 +305,8 @@ VCR.configure do |config|
 end
 ```
 
+The notation is for the whole suite: set it before the first request. Under it `with(query: hash_including(...))` no longer matches, so give such a stub the whole query.
+
 A test can also start a local server and point the client at it with `base_url:`. `Peddler::LWA` takes `lwa_endpoint:` in the same way.
 
 ```ruby
@@ -318,7 +320,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 
 ### What keeps working
 
-- Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names, `rate_limit:` among them.
+- Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
 - The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
 - A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too, and so does one inside a request body.
 - The documentation of every operation and API class, in the comments above them.
