@@ -64,7 +64,8 @@ module WebMock
 
           response.raise_error_if_any
           CallbackRegistry.invoke_callbacks({ lib: :peddler }, signature, response)
-          [response.status.first.to_i, pairs(response.headers), response.body]
+          # WebMock takes the parts of a body too, as an Array.
+          [response.status.first.to_i, pairs(response.headers), Array(response.body).join]
         end
 
         # Reports the response of a request that went to the network, so that VCR records it

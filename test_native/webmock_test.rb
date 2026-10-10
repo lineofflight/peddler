@@ -107,6 +107,37 @@ class WebMockTest < WebMockTestCase
     assert_equal("plain", seller.request("GET", "/any", params: { a: 1, b: "x y" }).body)
   end
 
+  # WebMock takes a body as a String, as the parts of one, as a file to read and as what a Proc or a block returns.
+  # VCR refuses the parts, for any library, and this suite hooks it into WebMock: the stubs are in a process
+  # without it.
+  def test_a_stubbed_body_takes_every_form_that_webmock_takes
+    Dir.mktmpdir do |dir|
+      path = File.join(dir, "body.json")
+      File.write(path, '{"form":"file"}')
+      output = run_ruby(<<~RUBY)
+        require "webmock"
+        require "peddler"
+        include WebMock::API
+        WebMock.enable!
+        WebMock.disable_net_connect!
+        named = ->(request) { JSON.generate(form: request.uri.path.delete_prefix("/")) }
+        forms = {
+          "string" => '{"form":"string"}',
+          "array" => ['{"form":', '"array"}'],
+          "file" => File.new(#{path.inspect}),
+          "pathname" => Pathname(#{path.inspect}),
+          "proc" => named,
+        }
+        forms.each { |name, body| stub_request(:get, "#{EU}/\#{name}").to_return(body: body) }
+        stub_request(:get, "#{EU}/block").to_return { |request| { body: named.call(request) } }
+        client = Peddler.new(region: "eu-west-1", access_token: "token")
+        puts [*forms.keys, "block"].map { |name| client.request("GET", "/\#{name}").to_h.fetch("form") }.join(" ")
+      RUBY
+
+      assert_equal("string array file file proc block\n", output)
+    end
+  end
+
   def test_a_throttled_stub_is_retried_and_every_attempt_is_a_request_with_the_token_of_its_own
     url = "#{EU}/orders/v0/orders/1"
     stub_request(:get, url).to_return({ status: 429, headers: { "Retry-After" => "0" } }, { status: 200, body: "{}" })
