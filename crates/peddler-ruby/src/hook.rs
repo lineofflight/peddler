@@ -219,9 +219,12 @@ static ADAPTED: AtomicBool = AtomicBool::new(false);
 /// loads code, it ends the process. In the main Ractor a `WebMock` that is still an
 /// autoload is not WebMock loaded, and the call does not load it.
 ///
-/// A Ractor other than the main one is refused until the adapter is loaded. Ruby 3.3
-/// loads code in the main Ractor only, and on any Ruby only the main Ractor reads
-/// whether WebMock is enabled, so a call sent on from here could pass an enabled one.
+/// A Ractor other than the main one is refused while WebMock is loaded and the adapter
+/// is not, whether WebMock is enabled or not. It can't load the adapter: Ruby 3.3 loads
+/// code in the main Ractor only, and the hook is set there. It could read whether
+/// `Net::HTTP` is swapped, as the adapter does, though not `WebMock::Config`. But that
+/// reading stays the adapter's, and until it is made the call is refused. An autoload
+/// refuses it too: only the main Ractor may tell one from WebMock loaded.
 fn adapt(ruby: &Ruby) -> Result<(), Error> {
     if ADAPTED.load(Ordering::Acquire) {
         return Ok(());
