@@ -63,10 +63,12 @@ A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: member
 Comments are Markdown, and RDoc builds the site from them with the signatures. No YARD tags.
 
 - An example is a line "Example:", a blank comment line and a block indented by 4 spaces.
-- An error is a sentence: "Raises Peddler::Error if ...".
+- An error is a sentence: "Raises Peddler::Error if ...". Several, 1 to a line, become a list on the site.
 - A class or a method is named as it is, and RDoc links it: `Peddler::Client#request`, `#sandbox`, `Client.new`. Don't start a line with `#name`: it breaks the paragraph.
 - A link is `[text](url)`, or the URL alone in a paragraph of its own.
 - `# :nodoc:` at the end of a `def` line, or of a constant's, hides it. On a line above, it hides the rest of the class too.
+- A reader that `Data.define` makes has no `def`: give it `##`, `# :attr_reader: name` and a line of description in the class body. RDoc takes its type from `sig/peddler`.
+- A line that starts with `:word:` is a directive to RDoc, and `\:word:` is the text. Both generators escape it in what a spec says.
 - The order is the description, the example, the `@rbs` lines, then what it raises. The site lists the parameters where the `@rbs` lines stand.
 
 ## Generator Workflow
