@@ -28,6 +28,8 @@ jobs:
       - run: bundle exec rake steep
       - run: bundle exec rake rbs:verify
       - run: bundle exec steep check --steepfile=Steepfile.shipped
+      # The site that build-docs.yml deploys from main, so that a comment that breaks it fails a pull request
+      - run: bundle exec rake rdoc
 
   test:
     strategy:
