@@ -11,7 +11,5 @@ module Peddler
     attr_reader id: String
 
     attr_reader selling_region: String
-
-    alias to_s to_str
   end
 end
