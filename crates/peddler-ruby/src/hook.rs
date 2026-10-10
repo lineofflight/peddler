@@ -168,7 +168,7 @@ impl Interceptor for Hook {
 /// Whether an exchange hook is set, so that a call without one doesn't look for it.
 static HOOKED: AtomicBool = AtomicBool::new(false);
 /// The instance variable of `Peddler::Native` that holds the hook.
-const HOOK: &str = "@exchange_hook";
+pub(super) const HOOK: &str = "@exchange_hook";
 
 pub(super) fn hooked() -> bool {
     HOOKED.load(Ordering::Acquire)

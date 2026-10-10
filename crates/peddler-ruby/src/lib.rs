@@ -355,6 +355,13 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     // the 4 classes that magnus keeps, at the end of this function.
     // SAFETY: called while the extension loads, before it defines a method.
     unsafe { rb_sys::rb_ext_ractor_safe(true) };
+    // The names of the instance variables that only this extension uses are interned
+    // here, in the main Ractor. Ruby 3.3 and 3.4 can give a name 2 IDs when 2 Ractors are
+    // the first to intern it, at once, and a source set under one is not found under the
+    // other. Every other name the extension looks up is a constant or a method that Ruby
+    // code defined before the extension could look it up.
+    ruby.intern(TOKEN_SOURCE);
+    ruby.intern(hook::HOOK);
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
     native.define_singleton_method("status_reason", function!(status_reason, 1))?;

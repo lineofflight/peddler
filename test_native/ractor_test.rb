@@ -16,6 +16,8 @@ class RactorTest < NativeTest
     scope: "a::scope").freeze
   ITEM = JSON.generate(asin: "B01", summaries: [{ marketplaceId: "A1F83G8C2ARO7P", itemName: "A book" }]).freeze
   PROBLEM = JSON.generate(errors: [{ code: "QuotaExceeded", message: "Slow down" }]).freeze
+  # Processes in which Ractors use a name for the first time
+  FIRST_ROUNDS = Integer(ENV.fetch("FIRST_ROUNDS", "6"))
   # What a Ractor other than the main one is told of the exchange hook, which WebMock sets
   HOOK_SET = "the exchange hook is set and cleared in the main Ractor only"
   HOOK_CALL = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor"
@@ -198,6 +200,30 @@ class RactorTest < NativeTest
         ],
         sent,
       )
+    end
+  end
+
+  # The extension keeps a source under a name that nothing else uses, and Ruby 3.3 and 3.4 can give a name 2 IDs when
+  # 2 Ractors are the first to intern it, at once. The source was then set under one and looked for under the other.
+  # A name is new once in a process, so every round is a process of its own, in which 8 Ractors build their first
+  # client with a source at the same moment.
+  def test_first_source_clients_built_in_ractors_at_once_find_their_sources
+    responder = ->(_method, _target, headers, _body) { [200, JSON.generate(token: headers["x-amz-access-token"])] }
+    serve_keep_alive(responder: responder) do |url, *|
+      rounds = Array.new(FIRST_ROUNDS) do
+        run_ruby(<<~RUBY)
+          start = Process.clock_gettime(Process::CLOCK_MONOTONIC) + 0.05
+          ractors = Array.new(8) do |number|
+            Ractor.new(#{url.inspect}, number, start) do |base, index, at|
+              nil while Process.clock_gettime(Process::CLOCK_MONOTONIC) < at
+              Peddler.new(base_url: base, access_token: -> { "token-\#{index}" }).request("GET", "/").to_h.fetch("token")
+            end
+          end
+          puts ractors.map { |ractor| take(ractor) }.join(" ")
+        RUBY
+      end
+
+      assert_equal(["#{Array.new(8) { |index| "token-#{index}" }.join(" ")}\n"] * FIRST_ROUNDS, rounds)
     end
   end
 
