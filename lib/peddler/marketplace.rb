@@ -30,7 +30,7 @@ module Peddler
     "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
     "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
-  }) #: Hash[String, Hash[Symbol, String]]
+  }) #: Hash[String, { id: String, country_name: String, selling_region: String }]
 
   # @rbs skip
   Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) # :nodoc:
@@ -57,9 +57,8 @@ module Peddler
     #
     #: (String country_code) -> Marketplace
     def self.find(country_code)
-      values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
-        raise ArgumentError, "#{country_code} not found"
-      end
+      values = MARKETPLACE_IDS[country_code == "GB" ? "UK" : country_code] ||
+        raise(ArgumentError, "#{country_code} not found")
 
       new(**values, country_code: country_code)
     end

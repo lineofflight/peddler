@@ -4,7 +4,7 @@ module Peddler
   # Amazon's marketplaces, by country code
   #
   # https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
-  MARKETPLACE_IDS: Hash[String, Hash[Symbol, String]]
+  MARKETPLACE_IDS: Hash[String, { id: String, country_name: String, selling_region: String }]
 
   class Marketplace
     # Finds the marketplace for the given country code
