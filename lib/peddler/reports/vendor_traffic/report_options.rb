@@ -9,7 +9,7 @@ module Peddler
     module VendorTraffic
       # Report options specifying parameters such as reportPeriod.
       ReportOptions = Structure.new do
-        # @return [String] The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
+        # The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
         attribute(:report_period, String, null: false, from: "reportPeriod")
       end
     end

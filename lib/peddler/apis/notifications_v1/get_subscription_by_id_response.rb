@@ -9,10 +9,10 @@ module Peddler
     module NotificationsV1
       # The response schema for the `getSubscriptionById` operation.
       GetSubscriptionByIdResponse = Structure.new do
-        # @return [Array<Error>] An unexpected condition occurred during the `getSubscriptionById` operation.
+        # An unexpected condition occurred during the `getSubscriptionById` operation.
         attribute?(:errors, [Error])
 
-        # @return [Subscription] The payload for the `getSubscriptionById` operation.
+        # The payload for the `getSubscriptionById` operation.
         attribute?(:payload, Subscription)
       end
     end

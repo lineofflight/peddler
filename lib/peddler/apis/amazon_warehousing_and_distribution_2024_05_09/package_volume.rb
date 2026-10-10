@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Represents the volume of the package with a unit of measurement.
       PackageVolume = Structure.new do
-        # @return [String] Unit of measurement for the package volume.
+        # Unit of measurement for the package volume.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
-        # @return [Float] The package volume value.
+        # The package volume value.
         attribute(:volume, Float, null: false)
       end
     end

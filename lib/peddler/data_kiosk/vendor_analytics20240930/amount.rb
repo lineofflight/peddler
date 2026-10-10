@@ -9,10 +9,10 @@ module Peddler
     module VendorAnalytics20240930
       # Monetary amount with the corresponding currency code.
       Amount = Structure.new do
-        # @return [Float] The amount.
+        # The amount.
         attribute?(:amount, Float, null: false)
 
-        # @return [String] Currency code of the amount in ISO 4217 format.
+        # Currency code of the amount in ISO 4217 format.
         attribute?(:currency_code, String, null: false, from: "currencyCode")
       end
     end

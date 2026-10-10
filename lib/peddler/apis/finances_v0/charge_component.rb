@@ -81,10 +81,10 @@ module Peddler
       #
       # * `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.
       ChargeComponent = Structure.new do
-        # @return [Money] The amount of the charge.
+        # The amount of the charge.
         attribute?(:charge_amount, Money, from: "ChargeAmount")
 
-        # @return [String] The type of charge.
+        # The type of charge.
         attribute?(:charge_type, String, from: "ChargeType")
       end
     end

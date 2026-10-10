@@ -10,7 +10,7 @@ module Peddler
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
     module FulfillmentOutbound20260704
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

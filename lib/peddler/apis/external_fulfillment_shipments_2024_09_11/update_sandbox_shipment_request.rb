@@ -11,10 +11,9 @@ module Peddler
       # `SHIPMENT_STATUS_CHANGE` and `TRANSPORT_CAPACITY_CHANGE` update types, and must not be provided for
       # `INVOICE_AVAILABILITY_CHANGE`.
       UpdateSandboxShipmentRequest = Structure.new do
-        # @return [String] The type of update to apply to the shipment.
+        # The type of update to apply to the shipment.
         attribute(:update_type, String, null: false, from: "updateType")
 
-        # @return [SandboxShipmentUpdates]
         attribute?(:updates, SandboxShipmentUpdates)
       end
     end

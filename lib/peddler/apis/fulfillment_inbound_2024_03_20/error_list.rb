@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentInbound20240320
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>] List of errors.
+        # List of errors.
         attribute(:errors, [Error], null: false)
       end
     end

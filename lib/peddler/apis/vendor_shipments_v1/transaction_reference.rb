@@ -9,8 +9,8 @@ module Peddler
     module VendorShipmentsV1
       # The response payload for the SubmitShipmentConfirmations operation.
       TransactionReference = Structure.new do
-        # @return [String] GUID assigned by Buyer to identify this transaction. This value can be used with the
-        #   Transaction Status API to return the status of this transaction.
+        # GUID assigned by Buyer to identify this transaction. This value can be used with the Transaction Status API to
+        # return the status of this transaction.
         attribute?(:transaction_id, String, from: "transactionId")
       end
     end

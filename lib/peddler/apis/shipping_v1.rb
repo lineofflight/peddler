@@ -8,11 +8,11 @@ module Peddler
     #
     # Provides programmatic access to Amazon Shipping APIs.
     #
-    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of
-    # {https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference Amazon Shipping API (v2)} on the
-    # {https://developer-docs.amazon.com/amazon-shipping/ Amazon Shipping Developer Documentation} site.
+    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of [Amazon Shipping API
+    # (v2)](https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference) on the [Amazon Shipping
+    # Developer Documentation](https://developer-docs.amazon.com/amazon-shipping/) site.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
     module ShippingV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

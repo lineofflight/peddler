@@ -10,10 +10,10 @@ module Peddler
       # Additional information about a constraint violation, providing the specific type of detail and its corresponding
       # value that caused the violation.
       ConstraintDetail = Structure.new do
-        # @return [String] The type of the constraint detail.
+        # The type of the constraint detail.
         attribute(:type, String, null: false)
 
-        # @return [String] The value of the constraint detail.
+        # The value of the constraint detail.
         attribute(:value, String, null: false)
       end
     end

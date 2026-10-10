@@ -9,10 +9,8 @@ module Peddler
     module VendorDirectFulfillmentShippingV1
       # Response payload with the list of Packing Slips.
       GetPackingSlipListResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [PackingSlipList]
         attribute?(:payload, PackingSlipList)
       end
     end

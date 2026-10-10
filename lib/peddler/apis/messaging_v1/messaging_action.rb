@@ -9,7 +9,7 @@ module Peddler
     module MessagingV1
       # A simple object containing the name of the template.
       MessagingAction = Structure.new do
-        # @return [String] The name of the template.
+        # The name of the template.
         attribute(:name, String, null: false)
       end
     end

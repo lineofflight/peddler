@@ -14,7 +14,7 @@ module Peddler
     # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
     # response).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     module OrdersV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

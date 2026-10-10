@@ -9,10 +9,9 @@ module Peddler
     module Replenishment20221107
       # Use these parameters to sort the response.
       ListOfferMetricsRequestSort = Structure.new do
-        # @return [String]
         attribute(:key, String, null: false)
 
-        # @return [String] The sort order.
+        # The sort order.
         attribute(:order, String, null: false)
       end
     end

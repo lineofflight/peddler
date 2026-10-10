@@ -10,7 +10,7 @@ module Peddler
     # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
     # rates, create shipments, cancel shipments, and track shipments.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     module ShippingV2
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

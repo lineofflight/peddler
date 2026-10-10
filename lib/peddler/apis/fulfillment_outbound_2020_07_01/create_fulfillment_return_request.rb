@@ -11,7 +11,6 @@ module Peddler
       # `createFulfillmentOrder` operation. For calls to `createFulfillmentReturn`, you must include `returnReasonCode`
       # values returned by a previous call to the `listReturnReasonCodes` operation.
       CreateFulfillmentReturnRequest = Structure.new do
-        # @return [Array<CreateReturnItem>]
         attribute(:items, [CreateReturnItem], null: false)
       end
     end

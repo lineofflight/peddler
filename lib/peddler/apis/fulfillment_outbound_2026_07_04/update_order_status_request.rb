@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20260704
       # The request body schema for the `updateOrderStatus` operation.
       UpdateOrderStatusRequest = Structure.new do
-        # @return [String] The status of the fulfillment order to apply.
+        # The status of the fulfillment order to apply.
         attribute(:status, String, null: false)
       end
     end

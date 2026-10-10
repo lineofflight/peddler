@@ -9,13 +9,13 @@ module Peddler
     module FulfillmentOutbound20260704
       # Services selected for a fulfillment order.
       OrderServices = Structure.new do
-        # @return [Hash] Additional services for the fulfillment order.
+        # Additional services for the fulfillment order.
         attribute?(:additional, Hash)
 
-        # @return [DeliveryService] Delivery settings for the fulfillment order.
+        # Delivery settings for the fulfillment order.
         attribute?(:delivery, DeliveryService)
 
-        # @return [PackagingService] The packaging settings for the fulfillment order.
+        # The packaging settings for the fulfillment order.
         attribute?(:packaging, PackagingService)
       end
     end

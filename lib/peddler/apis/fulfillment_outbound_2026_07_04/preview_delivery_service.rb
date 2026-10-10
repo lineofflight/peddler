@@ -9,8 +9,8 @@ module Peddler
     module FulfillmentOutbound20260704
       # Delivery settings for a fulfillment preview.
       PreviewDeliveryService = Structure.new do
-        # @return [String] Indicates whether to include payment on delivery pricing in the preview. Only present when
-        #   `includePaymentOnDelivery` is `true` on the request. Possible values: `ENABLED`, `DISABLED`.
+        # Indicates whether to include payment on delivery pricing in the preview. Only present when
+        # `includePaymentOnDelivery` is `true` on the request. Possible values: `ENABLED`, `DISABLED`.
         attribute?(:payment_on_delivery, String, from: "paymentOnDelivery")
       end
     end

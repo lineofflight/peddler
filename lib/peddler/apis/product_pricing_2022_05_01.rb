@@ -12,7 +12,7 @@ module Peddler
     # For more information, refer to the [Product Pricing v2022-05-01 Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
     module ProductPricing20220501
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

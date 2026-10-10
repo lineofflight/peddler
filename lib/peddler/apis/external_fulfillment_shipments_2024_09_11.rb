@@ -10,7 +10,7 @@ module Peddler
     # Amazon's external fulfillment network. Use this API to get shipment details, monitor status changes, and access
     # fulfillment requirements.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
     module ExternalFulfillmentShipments20240911
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

@@ -9,16 +9,16 @@ module Peddler
     module VendorInvoicesV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
-        # @return [Money] Total monetary amount related to this charge.
+        # Total monetary amount related to this charge.
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # @return [String] Type of the charge applied.
+        # Type of the charge applied.
         attribute(:type, String, null: false)
 
-        # @return [String] Description of the charge.
+        # Description of the charge.
         attribute?(:description, String)
 
-        # @return [Array<TaxDetails>] Tax amount details applied on this charge.
+        # Tax amount details applied on this charge.
         attribute?(:tax_details, [TaxDetails], from: "taxDetails")
       end
     end

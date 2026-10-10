@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Product instance attribute that is not described at the SKU level in the catalog.
       ProductAttribute = Structure.new do
-        # @return [String] Product attribute name.
+        # Product attribute name.
         attribute?(:name, String)
 
-        # @return [String] Product attribute value.
+        # Product attribute value.
         attribute?(:value, String)
       end
     end

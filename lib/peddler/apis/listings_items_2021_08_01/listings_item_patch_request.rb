@@ -9,10 +9,10 @@ module Peddler
     module ListingsItems20210801
       # The request body schema for the `patchListingsItem` operation.
       ListingsItemPatchRequest = Structure.new do
-        # @return [Array<PatchOperation>] One or more JSON Patch operations to perform on the listings item.
+        # One or more JSON Patch operations to perform on the listings item.
         attribute(:patches, [PatchOperation], null: false)
 
-        # @return [String] The Amazon product type of the listings item.
+        # The Amazon product type of the listings item.
         attribute(:product_type, String, null: false, from: "productType")
       end
     end

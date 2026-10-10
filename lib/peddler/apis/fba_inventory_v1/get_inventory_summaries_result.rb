@@ -9,10 +9,8 @@ module Peddler
     module FBAInventoryV1
       # The payload schema for the getInventorySummaries operation.
       GetInventorySummariesResult = Structure.new do
-        # @return [Granularity]
         attribute(:granularity, Granularity, null: false)
 
-        # @return [Array<InventorySummary>]
         attribute(:inventory_summaries, [InventorySummary], null: false, from: "inventorySummaries")
       end
     end

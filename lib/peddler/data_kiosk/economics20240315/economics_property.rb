@@ -9,10 +9,10 @@ module Peddler
     module Economics20240315
       # The properties used in economics calculation.
       EconomicsProperty = Structure.new do
-        # @return [String] Property name
+        # Property name
         attribute?(:property_name, String, null: false, from: "propertyName")
 
-        # @return [String] Property value
+        # Property value
         attribute?(:property_value, String, null: false, from: "propertyValue")
       end
     end

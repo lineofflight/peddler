@@ -9,10 +9,10 @@ module Peddler
     module Replenishment20221107
       # The response schema for the `listOffers` operation.
       ListOffersResponse = Structure.new do
-        # @return [Array<ListOffersResponseOffer>] A list of offers.
+        # A list of offers.
         attribute?(:offers, [ListOffersResponseOffer])
 
-        # @return [PaginationResponse] Use these parameters to paginate through the response.
+        # Use these parameters to paginate through the response.
         attribute?(:pagination, PaginationResponse)
       end
     end

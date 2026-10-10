@@ -10,7 +10,6 @@ module Peddler
       # A filter you can use to select the aggregation time period at which to send notifications (for example, limit to
       # one notification every five minutes for high frequency notifications).
       AggregationFilter = Structure.new do
-        # @return [AggregationSettings]
         attribute?(:aggregation_settings, AggregationSettings, from: "aggregationSettings")
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module AccountHealthReport20201118
       # Seller's corresponding account status for 1 requested marketplace.
       AccountStatus = Structure.new do
-        # @return [String] A requested marketplace ID.
+        # A requested marketplace ID.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] Seller's account status for a requested marketplace.
+        # Seller's account status for a requested marketplace.
         attribute(:status, String, null: false)
       end
     end

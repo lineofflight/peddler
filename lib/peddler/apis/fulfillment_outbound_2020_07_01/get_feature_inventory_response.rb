@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentOutbound20200701
       # The breakdown of eligibility inventory by feature.
       GetFeatureInventoryResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the getFeatureInventory operation.
+        # One or more unexpected errors occurred during the getFeatureInventory operation.
         attribute?(:errors, [Error])
 
-        # @return [GetFeatureInventoryResult]
         attribute?(:payload, GetFeatureInventoryResult)
       end
     end

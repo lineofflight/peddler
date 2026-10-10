@@ -9,7 +9,6 @@ module Peddler
     module ShippingV1
       # The payload schema for the getRates operation.
       GetRatesResult = Structure.new do
-        # @return [Array<ServiceRate>]
         attribute(:service_rates, [ServiceRate], null: false, from: "serviceRates")
       end
     end

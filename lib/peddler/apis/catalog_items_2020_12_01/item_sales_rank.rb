@@ -9,13 +9,13 @@ module Peddler
     module CatalogItems20201201
       # Sales rank of an Amazon catalog item.
       ItemSalesRank = Structure.new do
-        # @return [Integer] Sales rank value.
+        # Sales rank value.
         attribute(:rank, Integer, null: false)
 
-        # @return [String] Title, or name, of the sales rank.
+        # Title, or name, of the sales rank.
         attribute(:title, String, null: false)
 
-        # @return [String] Corresponding Amazon retail website link, or URL, for the sales rank.
+        # Corresponding Amazon retail website link, or URL, for the sales rank.
         attribute?(:link, String)
       end
     end

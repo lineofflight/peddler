@@ -9,13 +9,11 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Quantity details for a SKU as part of a shipment
       SKUQuantity = Structure.new do
-        # @return [InventoryQuantity]
         attribute(:expected_quantity, InventoryQuantity, null: false, from: "expectedQuantity")
 
-        # @return [String] The merchant stock keeping unit
+        # The merchant stock keeping unit
         attribute(:sku, String, null: false)
 
-        # @return [InventoryQuantity]
         attribute?(:received_quantity, InventoryQuantity, from: "receivedQuantity")
       end
     end

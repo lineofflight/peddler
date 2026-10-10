@@ -9,7 +9,7 @@ module Peddler
     module Promotions20251201
       # Additional details specific to the `BRAND` segments type.
       BrandSegmentDetails = Structure.new do
-        # @return [String] Brand identifier.
+        # Brand identifier.
         attribute(:brand_id, String, null: false, from: "brandId")
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     module VendorDirectFulfillmentInventoryV1
       # The request body for the submitInventoryUpdate operation.
       SubmitInventoryUpdateRequest = Structure.new do
-        # @return [InventoryUpdate] Inventory details required to update some or all items for the requested warehouse.
+        # Inventory details required to update some or all items for the requested warehouse.
         attribute?(:inventory, InventoryUpdate)
       end
     end

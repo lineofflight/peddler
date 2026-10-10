@@ -9,10 +9,8 @@ module Peddler
     module Uploads20201101
       # The response schema for the createUploadDestination operation.
       CreateUploadDestinationResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [UploadDestination]
         attribute?(:payload, UploadDestination)
       end
     end

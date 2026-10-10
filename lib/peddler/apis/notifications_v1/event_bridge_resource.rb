@@ -9,16 +9,14 @@ module Peddler
     module NotificationsV1
       # The Amazon EventBridge destination.
       EventBridgeResource = Structure.new do
-        # @return [String] The identifier for the AWS account that is responsible for charges related to receiving
-        #   notifications.
+        # The identifier for the AWS account that is responsible for charges related to receiving notifications.
         attribute(:account_id, String, null: false, from: "accountId")
 
-        # @return [String] The name of the partner event source associated with the destination.
+        # The name of the partner event source associated with the destination.
         attribute(:name, String, null: false)
 
-        # @return [String] The AWS region in which you receive the notifications. For AWS regions that Amazon
-        #   EventBridge supports, refer to [Amazon EventBridge endpoints and
-        #   quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html).
+        # The AWS region in which you receive the notifications. For AWS regions that Amazon EventBridge supports, refer
+        # to [Amazon EventBridge endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html).
         attribute(:region, String, null: false)
       end
     end

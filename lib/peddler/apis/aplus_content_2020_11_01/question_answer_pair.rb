@@ -9,10 +9,8 @@ module Peddler
     module AplusContent20201101
       # A single question and answer pair.
       QuestionAnswerPair = Structure.new do
-        # @return [ParagraphComponent]
         attribute(:answer, ParagraphComponent, null: false)
 
-        # @return [TextComponent]
         attribute(:question, TextComponent, null: false)
       end
     end

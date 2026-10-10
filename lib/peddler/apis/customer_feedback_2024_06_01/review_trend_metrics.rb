@@ -9,7 +9,7 @@ module Peddler
     module CustomerFeedback20240601
       # The item review trend metrics.
       ReviewTrendMetrics = Structure.new do
-        # @return [Float] The percentage of reviews that mention the topic.
+        # The percentage of reviews that mention the topic.
         attribute(:occurrence_percentage, Float, null: false, from: "occurrencePercentage")
       end
     end

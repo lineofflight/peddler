@@ -10,7 +10,7 @@ module Peddler
     module Orders20260101
       # The inputs used to calculate a promise date.
       PromiseCalculationInputs = Structure.new do
-        # @return [TransitTimeInput] The transit time used to calculate the promise date.
+        # The transit time used to calculate the promise date.
         attribute?(:transit_time, TransitTimeInput, from: "transitTime")
       end
     end

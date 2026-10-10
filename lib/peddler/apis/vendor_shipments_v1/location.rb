@@ -9,13 +9,13 @@ module Peddler
     module VendorShipmentsV1
       # Location identifier.
       Location = Structure.new do
-        # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
+        # The two digit country code. In ISO 3166-1 alpha-2 format.
         attribute?(:country_code, String, from: "countryCode")
 
-        # @return [String] Location code.
+        # Location code.
         attribute?(:location_code, String, from: "locationCode")
 
-        # @return [String] Type of location identification.
+        # Type of location identification.
         attribute?(:type, String)
       end
     end

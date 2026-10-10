@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentInbound20240320
       # The `updateItemComplianceDetails` response.
       UpdateItemComplianceDetailsResponse = Structure.new do
-        # @return [String] UUID for the given operation.
+        # UUID for the given operation.
         attribute(:operation_id, String, null: false, from: "operationId")
       end
     end

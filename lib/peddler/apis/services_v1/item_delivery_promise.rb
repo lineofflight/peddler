@@ -10,10 +10,10 @@ module Peddler
     module ServicesV1
       # Promised delivery information for the item.
       ItemDeliveryPromise = Structure.new do
-        # @return [Time] The date and time of the end of the promised delivery window in ISO 8601 format.
+        # The date and time of the end of the promised delivery window in ISO 8601 format.
         attribute?(:end_time, Time, from: "endTime")
 
-        # @return [Time] The date and time of the start of the promised delivery window in ISO 8601 format.
+        # The date and time of the start of the promised delivery window in ISO 8601 format.
         attribute?(:start_time, Time, from: "startTime")
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     # With the Services API, you can build applications that help service providers get and modify their service orders
     # and manage their resources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     module ServicesV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

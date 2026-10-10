@@ -9,10 +9,10 @@ module Peddler
     module FulfillmentOutbound20260704
       # A component of the total price.
       RollupPrice = Structure.new do
-        # @return [String] The type of price.
+        # The type of price.
         attribute(:type, String, null: false)
 
-        # @return [Money] The total value of a price type.
+        # The total value of a price type.
         attribute(:value, Money, null: false)
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module FBAInventoryV1
       # The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
       ResearchingQuantityEntry = Structure.new do
-        # @return [String] The duration of the research.
+        # The duration of the research.
         attribute(:name, String, null: false)
 
-        # @return [Integer] The number of units.
+        # The number of units.
         attribute(:quantity, Integer, null: false)
       end
     end

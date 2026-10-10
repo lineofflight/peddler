@@ -9,11 +9,10 @@ module Peddler
     module ProductPricingV0
       # Amazon Prime information.
       PrimeInformationType = Structure.new do
-        # @return [:boolean] Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace
-        #   where it is listed.
+        # Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
         attribute(:national_prime, :boolean, null: false, from: "IsNationalPrime")
 
-        # @return [:boolean] Indicates whether the offer is an Amazon Prime offer.
+        # Indicates whether the offer is an Amazon Prime offer.
         attribute(:prime, :boolean, null: false, from: "IsPrime")
       end
     end

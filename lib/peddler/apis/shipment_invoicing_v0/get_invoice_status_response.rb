@@ -9,10 +9,9 @@ module Peddler
     module ShipmentInvoicingV0
       # The response schema for the getInvoiceStatus operation.
       GetInvoiceStatusResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [ShipmentInvoiceStatusResponse] The payload for the getInvoiceStatus operation.
+        # The payload for the getInvoiceStatus operation.
         attribute?(:payload, ShipmentInvoiceStatusResponse)
       end
     end

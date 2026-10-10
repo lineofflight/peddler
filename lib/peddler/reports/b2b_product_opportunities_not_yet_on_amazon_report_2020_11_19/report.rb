@@ -11,7 +11,7 @@ module Peddler
       # factors for products not yet listed on Amazon. The recommendations are personalized to the seller based on past
       # sales activity.
       Report = Structure.new do
-        # @return [Array<Object>] A list of B2B product opportunity recommendation objects.
+        # A list of B2B product opportunity recommendation objects.
         attribute(:recommendations, Array, null: false)
       end
     end

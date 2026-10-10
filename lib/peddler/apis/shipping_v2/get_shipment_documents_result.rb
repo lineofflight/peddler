@@ -9,13 +9,10 @@ module Peddler
     module ShippingV2
       # The payload for the getShipmentDocuments operation.
       GetShipmentDocumentsResult = Structure.new do
-        # @return [PackageDocumentDetail]
         attribute(:package_document_detail, PackageDocumentDetail, null: false, from: "packageDocumentDetail")
 
-        # @return [String]
         attribute(:shipment_id, String, null: false, from: "shipmentId")
 
-        # @return [Benefits]
         attribute?(:benefits, Benefits)
       end
     end

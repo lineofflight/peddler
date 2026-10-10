@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentOutbound20260704
       # The destination of the fulfillment.
       OfferDestination = Structure.new do
-        # @return [VariablePrecisionAddress]
         attribute?(:delivery_address, VariablePrecisionAddress, from: "deliveryAddress")
 
-        # @return [String] The IP address of the customer.
+        # The IP address of the customer.
         attribute?(:ip_address, String, from: "ipAddress")
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module Orders20260101
       # Details about the carrier and shipping service used to calculate the transit time.
       TransitTimeInputDetails = Structure.new do
-        # @return [String] The carrier name. For example, `Correios`.
+        # The carrier name. For example, `Correios`.
         attribute?(:carrier, String)
 
-        # @return [String] The shipping service. For example, `SEDEX`.
+        # The shipping service. For example, `SEDEX`.
         attribute?(:shipping_service, String, from: "shippingService")
       end
     end

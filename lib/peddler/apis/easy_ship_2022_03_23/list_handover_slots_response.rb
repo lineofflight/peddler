@@ -10,10 +10,8 @@ module Peddler
     module EasyShip20220323
       # The response schema for the `listHandoverSlots` operation.
       ListHandoverSlotsResponse = Structure.new do
-        # @return [String]
         attribute(:amazon_order_id, String, null: false, from: "amazonOrderId")
 
-        # @return [Array<TimeSlot>]
         attribute(:time_slots, [TimeSlot], null: false, from: "timeSlots")
       end
     end

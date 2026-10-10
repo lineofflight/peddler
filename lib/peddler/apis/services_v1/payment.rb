@@ -9,10 +9,10 @@ module Peddler
     module ServicesV1
       # Payment information for the service job.
       Payment = Structure.new do
-        # @return [MoneyAmount] The payment amount.
+        # The payment amount.
         attribute?(:amount, MoneyAmount)
 
-        # @return [String] The payment instrument used for the transaction.
+        # The payment instrument used for the transaction.
         attribute?(:instrument, String)
       end
     end

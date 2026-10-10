@@ -9,13 +9,12 @@ module Peddler
     module Invoices20240619
       # Success.
       GovernmentInvoiceStatusResponse = Structure.new do
-        # @return [Array<InvoiceError>] The errors that occurred during invoice creation.
+        # The errors that occurred during invoice creation.
         attribute?(:invoice_errors, [InvoiceError], from: "invoiceErrors")
 
-        # @return [String] The Government Invoice ID of a successfully authorized invoice.
+        # The Government Invoice ID of a successfully authorized invoice.
         attribute?(:invoice_external_document_id, String, from: "invoiceExternalDocumentId")
 
-        # @return [String]
         attribute?(:status, String)
       end
     end

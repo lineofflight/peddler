@@ -9,28 +9,28 @@ module Peddler
     module Invoices20240619
       # Additional information about a carrier.
       CarrierDetailsContext = Structure.new do
-        # @return [String] The address of the carrier, as registered with state and federal tax authorities.
+        # The address of the carrier, as registered with state and federal tax authorities.
         attribute?(:address, String)
 
-        # @return [String] The type of additional information.
+        # The type of additional information.
         attribute?(:context_type, String, from: "contextType")
 
-        # @return [String] The tax identification number of the carrier.
+        # The tax identification number of the carrier.
         attribute?(:federal_tax_id, String, from: "federalTaxId")
 
-        # @return [String] The name of the carrier, as registered with state and federal tax authorities.
+        # The name of the carrier, as registered with state and federal tax authorities.
         attribute?(:name, String)
 
-        # @return [String] The code of the federal subdivision in which the carrier is registered.
+        # The code of the federal subdivision in which the carrier is registered.
         attribute?(:region_code, String, from: "regionCode")
 
-        # @return [String] The regional tax registration number of the carrier.
+        # The regional tax registration number of the carrier.
         attribute?(:region_tax_id, String, from: "regionTaxId")
 
-        # @return [String] The identifier for the carrier vehicle, as printed on its registration plate.
+        # The identifier for the carrier vehicle, as printed on its registration plate.
         attribute?(:vehicle_license_plate, String, from: "vehicleLicensePlate")
 
-        # @return [String] The code of the federal subdivision in which the carrier vehicle is registered.
+        # The code of the federal subdivision in which the carrier vehicle is registered.
         attribute?(:vehicle_registration_region_code, String, from: "vehicleRegistrationRegionCode")
       end
     end

@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentOutbound20260704
       # Fulfillment configuration for preview request.
       PreviewFulfillmentConfiguration = Structure.new do
-        # @return [PreviewServiceLevel]
         attribute?(:service_level, PreviewServiceLevel, from: "serviceLevel")
 
-        # @return [PreviewServices] Services for the preview.
+        # Services for the preview.
         attribute?(:services, PreviewServices)
       end
     end

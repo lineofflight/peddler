@@ -9,7 +9,7 @@ module Peddler
     module AplusContent20201101
       # The error response for when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>] A list of error responses returned when a request is unsuccessful.
+        # A list of error responses returned when a request is unsuccessful.
         attribute(:errors, [Error], null: false)
       end
     end

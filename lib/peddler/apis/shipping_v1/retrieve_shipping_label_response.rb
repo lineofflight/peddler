@@ -9,10 +9,10 @@ module Peddler
     module ShippingV1
       # The response schema for the retrieveShippingLabel operation.
       RetrieveShippingLabelResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the operation.
+        # Encountered errors for the operation.
         attribute?(:errors, [Error])
 
-        # @return [RetrieveShippingLabelResult] The payload for retrieveShippingLabel operation
+        # The payload for retrieveShippingLabel operation
         attribute?(:payload, RetrieveShippingLabelResult)
       end
     end

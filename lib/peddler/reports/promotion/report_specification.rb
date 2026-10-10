@@ -9,14 +9,13 @@ module Peddler
     module Promotion
       # Summarizes the original report request.
       ReportSpecification = Structure.new do
-        # @return [Array<String>] The marketplace IDs specified in the report request.
+        # The marketplace IDs specified in the report request.
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
-        # @return [ReportOptions] Report options specifying the parameters promotionStartDateFrom and
-        #   promotionStartDateTo.
+        # Report options specifying the parameters promotionStartDateFrom and promotionStartDateTo.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type.
+        # The report type.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

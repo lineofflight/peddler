@@ -9,14 +9,14 @@ module Peddler
     module VendorDirectFulfillmentOrders20211228
       # Name, address and tax details of a party.
       PartyIdentification = Structure.new do
-        # @return [String] Assigned identification for the party. For example, warehouse code or vendor code. Please
-        #   refer to specific party for more details.
+        # Assigned identification for the party. For example, warehouse code or vendor code. Please refer to specific
+        # party for more details.
         attribute(:party_id, String, null: false, from: "partyId")
 
-        # @return [Address] Address details of the party.
+        # Address details of the party.
         attribute?(:address, Address)
 
-        # @return [TaxRegistrationDetails] Tax registration details of the entity.
+        # Tax registration details of the entity.
         attribute?(:tax_info, TaxRegistrationDetails, from: "taxInfo")
       end
     end

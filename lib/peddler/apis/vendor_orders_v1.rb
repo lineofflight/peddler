@@ -8,7 +8,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
     module VendorOrdersV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

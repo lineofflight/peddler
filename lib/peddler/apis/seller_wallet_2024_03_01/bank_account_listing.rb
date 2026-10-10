@@ -9,7 +9,7 @@ module Peddler
     module SellerWallet20240301
       # A list of bank accounts.
       BankAccountListing = Structure.new do
-        # @return [Array<BankAccount>] A list of bank accounts.
+        # A list of bank accounts.
         attribute(:accounts, [BankAccount], null: false)
       end
     end

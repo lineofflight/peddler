@@ -90,7 +90,7 @@ module Peddler
     # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
     # about AWD shipments and inventory.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509
       # @rbs @engine: engine
 
@@ -101,7 +101,8 @@ module Peddler
 
       # Cancels an AWD Inbound order and its associated shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The ID of the inbound order you want to cancel.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -115,7 +116,8 @@ module Peddler
       # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
       # ineligible packages.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Represents the packages you want to inbound.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -128,7 +130,8 @@ module Peddler
 
       # Confirms an AWD inbound order in `DRAFT` status.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The ID of the inbound order that you want to confirm.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -142,7 +145,8 @@ module Peddler
       # Confirms an AWD outbound order for a set of shipments that contain items that must be outbound to a destination
       # node. You can confirm the order only if it's in an`ELIGIBLE` state.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- ID for the outbound order you want to confirm.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -170,7 +174,8 @@ module Peddler
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Payload for creating an inbound order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -185,7 +190,8 @@ module Peddler
       # created order and starts an async validation check on the outbound products. After the validation check, the
       # order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Payload for creating an outbound order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -201,7 +207,8 @@ module Peddler
       # products to e.
       # The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Payload for creating a replenishment order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -214,7 +221,8 @@ module Peddler
 
       # Retrieves an AWD inbound order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The ID of the inbound order that you want to retrieve.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -227,7 +235,8 @@ module Peddler
 
       # Retrieves an AWD inbound shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- ID for the shipment. A shipment contains the cases being inbounded.
       # @rbs sku_quantities: String? -- If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
@@ -244,7 +253,8 @@ module Peddler
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
       # status is `GENERATED`, then the label URL is available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- ID for the shipment.
       # @rbs page_type: String? -- Page type for the generated labels. The default is `PLAIN_PAPER`.
       # @rbs format_type: String? -- The format type of the output file that contains your labels. The default format
@@ -263,7 +273,8 @@ module Peddler
       # Retrieves the available label page types for a shipment ID that you specify. This is an asynchronous operation.
       # If the label status is `GENERATED`, then the pageTypes are available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- ID for the shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -279,7 +290,8 @@ module Peddler
       # returns the order ID for the newly created order and starts an async validation check on the outbound products.
       # After the validation check, the order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- ID for the outbound order to be retrieved.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -293,7 +305,8 @@ module Peddler
       # Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be
       # replenished into an FBA node.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- ID of the replenishment order to be retrieved.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -307,15 +320,16 @@ module Peddler
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
       # optional filters.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs sort_by: String? -- Field to sort results by. By default, the response will be sorted by UPDATED_AT.
       # @rbs sort_order: String? -- Sort the response in ASCENDING or DESCENDING order. By default, the response will be
       #   sorted in DESCENDING order.
       # @rbs shipment_status: String? -- Filter by inbound shipment status.
       # @rbs updated_after: String? -- List the inbound shipments that were updated after a certain time (inclusive).
-      #   The date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs updated_before: String? -- List the inbound shipments that were updated before a certain time (inclusive).
-      #   The date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs max_results: Integer? -- Maximum number of results to return.
       # @rbs next_token: String? -- A token that is used to retrieve the next page of results. The response includes
       #   `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of
@@ -337,7 +351,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments")
       end
 
-      # Each page of {#list_inbound_shipments}
+      # Each page of #list_inbound_shipments. `rate_limit` applies to every page.
       #: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inbound_shipments_pages(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil, updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
@@ -354,7 +368,8 @@ module Peddler
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs sku: String? -- Filter by seller or merchant SKU for the item.
       # @rbs sort_order: String? -- Sort the response in `ASCENDING` or `DESCENDING` order.
       # @rbs details: String? -- Set to `SHOW` to return summaries with additional inventory details. Defaults to
@@ -378,7 +393,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_inventory", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_inventory")
       end
 
-      # Each page of {#list_inventory}
+      # Each page of #list_inventory. `rate_limit` applies to every page.
       #: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inventory_pages(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         arguments = {
@@ -394,11 +409,12 @@ module Peddler
       # Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are
       # sorted by the `updatedAt` attribute in descending order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs updated_after: String? -- Get the outbound orders updated after a certain time (inclusive). The date must
-      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs updated_before: String? -- Get the outbound orders updated before a certain time (inclusive). The date must
-      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs sort_order: String? -- Sort the response in `ASCENDING` or `DESCENDING` order.
       # @rbs max_results: Integer? -- Maximum number of results to return.
       # @rbs next_token: String? -- A token that is used to retrieve the next page of results. The response includes
@@ -419,7 +435,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_outbounds", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_outbounds")
       end
 
-      # Each page of {#list_outbounds}
+      # Each page of #list_outbounds. `rate_limit` applies to every page.
       #: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_outbounds_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         arguments = {
@@ -435,7 +451,8 @@ module Peddler
       # Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
       # API by default will sort orders by updatedAt attribute in descending order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs updated_after: String? -- Get the replenishment orders updated after certain time (Inclusive) Date should
       #   be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
       # @rbs updated_before: String? -- Get the replenishment orders updated before certain time (Inclusive) Date should
@@ -461,7 +478,7 @@ module Peddler
         Response.from_parts(@engine.operation("amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders")
       end
 
-      # Each page of {#list_replenishment_orders}
+      # Each page of #list_replenishment_orders. `rate_limit` applies to every page.
       #: (?updated_after: String?, ?updated_before: String?, ?sort_order: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_replenishment_orders_pages(updated_after: nil, updated_before: nil, sort_order: nil, max_results: 25, next_token: nil, rate_limit: nil)
         arguments = {
@@ -477,7 +494,8 @@ module Peddler
       # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
       # `packagesToInbound`, `originAddress` and `preferences` attributes.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The ID of the inbound order that you want to update.
       # @rbs body: untyped -- Represents an AWD inbound order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -492,7 +510,8 @@ module Peddler
 
       # Updates transport details for an AWD shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The shipment ID.
       # @rbs body: untyped -- Transportation details for the shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -509,7 +528,8 @@ module Peddler
       # `productsToOutbound` and `orderPreferences` attributes only. Any updates will restart the outbound order
       # validation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- ID for the outbound order to be updated.
       # @rbs body: untyped -- Represents an AWD outbound order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -530,7 +550,7 @@ module Peddler
     # buyers make informed purchasing decisions. Selling partners assemble content by choosing from content modules and
     # adding images and text.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     class AplusContent20201101
       # @rbs @engine: engine
 
@@ -563,7 +583,8 @@ module Peddler
       # request that references an asset by `uploadDestinationId` and a subsequent request that uses the resulting
       # `mediaId` are treated as referring to the same identity.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs create_media_request: untyped -- The media creation request details.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -598,7 +619,8 @@ module Peddler
       # When `associatedMediaId` is provided, `relatedMedia` is filtered to the specific pairing. When omitted, all
       # related media are returned.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs media_id: String -- The unique identifier for the media asset.
       # @rbs associated_media_id: String? -- When provided, returns only the specific association. When omitted, returns
       #   all associated media.
@@ -640,7 +662,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.list_content_document_asin_relations", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.list_content_document_asin_relations")
       end
 
-      # Each page of {#list_content_document_asin_relations}
+      # Each page of #list_content_document_asin_relations. `rate_limit` applies to every page.
       #: (String content_reference_key, String marketplace_id, ?included_data_set: Array[String]?, ?asin_set: Array[String]?, ?page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_content_document_asin_relations_pages(content_reference_key, marketplace_id, included_data_set: nil, asin_set: nil, page_token: nil, rate_limit: 10.0)
         arguments = {
@@ -727,7 +749,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_documents", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.search_content_documents")
       end
 
-      # Each page of {#search_content_documents}
+      # Each page of #search_content_documents. `rate_limit` applies to every page.
       #: (String marketplace_id, ?page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_content_documents_pages(marketplace_id, page_token: nil, rate_limit: 10.0)
         arguments = {
@@ -757,7 +779,7 @@ module Peddler
         Response.from_parts(@engine.operation("aplus_content_2020_11_01.search_content_publish_records", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "aplus_content_2020_11_01.search_content_publish_records")
       end
 
-      # Each page of {#search_content_publish_records}
+      # Each page of #search_content_publish_records. `rate_limit` applies to every page.
       #: (String marketplace_id, String asin, ?page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_content_publish_records_pages(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
         arguments = {
@@ -797,7 +819,8 @@ module Peddler
       # contains only the specified pairing. When `associatedMediaId` is absent, `relatedMedia` contains all affected
       # pairings.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs media_id: String -- The unique identifier for the media asset to update.
       # @rbs associated_media_id: String? -- When provided, identifies the specific video-image pairing for title
       #   updates. Required when updating a pairing title.
@@ -835,7 +858,7 @@ module Peddler
     # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
     # notifications in Seller Central.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
     class ApplicationIntegrations20240401
       # @rbs @engine: engine
 
@@ -846,7 +869,8 @@ module Peddler
 
       # Create a notification for sellers in Seller Central.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body for the `createNotification` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -859,7 +883,8 @@ module Peddler
 
       # Remove your application's notifications from the Appstore notifications dashboard.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body for the `deleteNotifications` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -872,7 +897,8 @@ module Peddler
 
       # Records the seller's response to a notification.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs notification_id: String -- A `notificationId` uniquely identifies a notification.
       # @rbs body: untyped -- The request body for the `recordActionFeedback` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -891,7 +917,7 @@ module Peddler
     # The Selling Partner API for Application Management lets you programmatically update the client secret on
     # registered applications.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
     class ApplicationManagement20231130
       # @rbs @engine: engine
 
@@ -919,7 +945,7 @@ module Peddler
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
     class CatalogItemsV0
       # @rbs @engine: engine
 
@@ -930,7 +956,8 @@ module Peddler
 
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace for the item.
       # @rbs asin: String? -- The Amazon Standard Identification Number (ASIN) of the item.
       # @rbs seller_sku: String? -- Used to identify items in the given marketplace. SellerSKU is qualified by the
@@ -952,11 +979,10 @@ module Peddler
     # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
     # catalog.
     #
-    # For more information, see the
-    # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
-    # Case Guide}.
+    # For more information, see the [Catalog Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
     class CatalogItems20201201
       # @rbs @engine: engine
 
@@ -967,7 +993,8 @@ module Peddler
 
       # Retrieves details for an item in the Amazon catalog.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) of the item.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers. Data sets in
       #   the response contain data only for the specified marketplaces.
@@ -989,7 +1016,8 @@ module Peddler
 
       # Search for and return a list of Amazon catalog items and associated information.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs keywords: Array[String] -- A comma-delimited list of words or item identifiers to search the Amazon catalog
       #   for.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -1021,7 +1049,7 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2020_12_01.search_catalog_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2020_12_01.search_catalog_items")
       end
 
-      # Each page of {#search_catalog_items}
+      # Each page of #search_catalog_items. `rate_limit` applies to every page.
       #: (Array[String] keywords, Array[String] marketplace_ids, ?included_data: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_catalog_items_pages(keywords, marketplace_ids, included_data: ["summaries"], brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0)
         arguments = {
@@ -1046,7 +1074,7 @@ module Peddler
     # For more information, refer to the [Catalog Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/:catalog-items-api-v2022-04-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2022-04-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2022-04-01.json
     class CatalogItems20220401
       # @rbs @engine: engine
 
@@ -1057,7 +1085,8 @@ module Peddler
 
       # Retrieves details for an item in the Amazon catalog.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) of the item.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers. To find the ID
       #   for your marketplace, refer to [Marketplace
@@ -1080,7 +1109,8 @@ module Peddler
       # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
       # keywords.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs identifiers: Array[String]? -- A comma-delimited list of product identifiers that you can use to search the
       #   Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
       # @rbs identifiers_type: String? -- The type of product identifiers that you can use to search the Amazon catalog.
@@ -1124,7 +1154,7 @@ module Peddler
         Response.from_parts(@engine.operation("catalog_items_2022_04_01.search_catalog_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "catalog_items_2022_04_01.search_catalog_items")
       end
 
-      # Each page of {#search_catalog_items}
+      # Each page of #search_catalog_items. `rate_limit` applies to every page.
       #: (Array[String] marketplace_ids, ?identifiers: Array[String]?, ?identifiers_type: String?, ?included_data: Array[String]?, ?locale: String?, ?seller_id: String?, ?keywords: Array[String]?, ?brand_names: Array[String]?, ?classification_ids: Array[String]?, ?page_size: Integer?, ?page_token: String?, ?keywords_locale: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_catalog_items_pages(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         arguments = {
@@ -1150,7 +1180,7 @@ module Peddler
     # The Selling Partner API for Customer Feedback (Customer Feedback API) provides information about customer reviews
     # and returns at both the item and browse node level.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
     class CustomerFeedback20240601
       # @rbs @engine: engine
 
@@ -1161,7 +1191,8 @@ module Peddler
 
       # Retrieve the topics that customers mention when they return items in a browse node.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs browse_node_id: String -- A browse node ID is a unique identifier for a browse node. A browse node is a
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1178,7 +1209,8 @@ module Peddler
 
       # Retrieve the trends of topics that customers mention when they return items in a browse node.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs browse_node_id: String -- A browse node ID is a unique identifier of a browse node. A browse node is a
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1195,7 +1227,8 @@ module Peddler
 
       # Retrieve a browse node's ten most positive and ten most negative review topics.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs browse_node_id: String -- The ID of a browse node. A browse node is a named location in a browse tree that
       #   is used for navigation, product classification, and website content.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1214,7 +1247,8 @@ module Peddler
 
       # Retrieve the positive and negative review trends of items in a browse node for the past six months.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs browse_node_id: String -- A browse node ID is a unique identifier of a browse node. A browse node is a
       #   named location in a browse tree that is used for navigation, product classification, and website content.
       # @rbs marketplace_id: String -- The marketplace ID is the globally unique identifier of a marketplace. For more
@@ -1232,7 +1266,8 @@ module Peddler
       # This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree
       # that is used for navigation, product classification, and website content on the Amazon retail website.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
       #   within a marketplace.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1249,7 +1284,8 @@ module Peddler
 
       # Retrieve an item's ten most positive and ten most negative review topics.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
       #   within a marketplace. The value must be a child ASIN.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1268,7 +1304,8 @@ module Peddler
 
       # Retrieve an item's positive and negative review trends for the past six months.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) is the unique identifier of a product
       #   within a marketplace. This API takes child ASIN as an input.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
@@ -1289,7 +1326,7 @@ module Peddler
     # The Selling Partner API for Data Kiosk lets you submit GraphQL queries from a variety of schemas to help selling
     # partners manage their businesses.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
     class DataKiosk20231115
       # @rbs @engine: engine
 
@@ -1303,7 +1340,8 @@ module Peddler
       # `CANCELLED` will no-op. Cancelled queries are returned in subsequent calls to the `getQuery` and `getQueries`
       # operations.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs query_id: String -- The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1322,7 +1360,8 @@ module Peddler
       # query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The
       # retention of a query's resulting documents always matches the retention of the query.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The body of the request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1336,7 +1375,8 @@ module Peddler
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
       # operation for details about document retention.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs document_id: String -- The identifier for the Data Kiosk document.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1350,7 +1390,8 @@ module Peddler
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter queries.
       # @rbs page_size: Integer? -- The maximum number of queries to return in a single call.
       # @rbs created_since: String? -- The earliest query creation date and time for queries to include in the response,
@@ -1375,7 +1416,7 @@ module Peddler
         Response.from_parts(@engine.operation("data_kiosk_2023_11_15.get_queries", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "data_kiosk_2023_11_15.get_queries")
       end
 
-      # Each page of {#get_queries}
+      # Each page of #get_queries. `rate_limit` applies to every page.
       #: (?processing_statuses: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_queries_pages(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil, pagination_token: nil, rate_limit: 0.0222)
         arguments = {
@@ -1391,7 +1432,8 @@ module Peddler
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
       # details about query retention.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs query_id: String -- The query identifier.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1408,7 +1450,7 @@ module Peddler
     # The Selling Partner API for Delivery Shipment Invoicing helps you programmatically retrieve shipment invoice
     # information in the Brazil Amazon store for a selling partner’s orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json
     class DeliveryByAmazon20220701
       # @rbs @engine: engine
 
@@ -1421,7 +1463,8 @@ module Peddler
       # `shipmentId`, or `invoiceId` as a query parameter. If multiple parameters are supplied, `orderId` takes
       # precedence over `shipmentId`, which takes precedence over `invoiceId`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String? -- The order identifier.
       # @rbs shipment_id: String? -- The shipment identifier.
       # @rbs invoice_id: String? -- The invoice access key (NF-e access key for Brazilian invoices). Use this to
@@ -1446,7 +1489,8 @@ module Peddler
       # Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId`
       # as query parameter. If both parameters are supplied, `orderId` takes precedence over `shipmentId`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String? -- The identifier for the order.
       # @rbs shipment_id: String? -- The identifier for the shipment.
       # @rbs body: untyped -- The request body that specifies invoice, program and `marketplaceId` values.
@@ -1470,7 +1514,7 @@ module Peddler
     # to [Marketplace
     # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     class EasyShip20220323
       # @rbs @engine: engine
 
@@ -1488,18 +1532,18 @@ module Peddler
       # * Updates the Easy Ship order status.
       #
       # * Generates a shipping label and an invoice. Calling `createScheduledPackage` also generates a warranty document
-      # if you specify a `SerialNumber` value. To get these documents, see
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide How to get invoice,
-      # shipping label, and warranty documents}.
+      # if you specify a `SerialNumber` value. To get these documents, see [How to get invoice, shipping label, and
+      # warranty documents](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide).
       #
       # * Shows the status of Easy Ship orders when you call the `getOrders` operation of the Selling Partner API for
       # Orders and examine the `EasyShipShipmentStatus` property in the response body.
       #
-      # See the **Shipping Label**, **Invoice**, and **Warranty** columns in the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # Marketplace Support Table} to see which documents are supported in each marketplace.
+      # See the **Shipping Label**, **Invoice**, and **Warranty** columns in the [Marketplace Support
+      # Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table)
+      # to see which documents are supported in each marketplace.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs create_scheduled_package_request: untyped -- The request schema for the `createScheduledPackage` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1512,8 +1556,8 @@ module Peddler
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
       # associated shipping labels, along with other compliance documents according to the marketplace (refer to the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # marketplace document support table}).
+      # [marketplace document support
+      # table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table)).
       #
       # Developers calling this operation may optionally assign a `packageDetails` object, allowing them to input a
       # preferred time slot for each order in ther request. In this case, Amazon will try to schedule the respective
@@ -1531,7 +1575,8 @@ module Peddler
       #
       # The table below displays the supported request and burst maximum rates:
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs create_scheduled_packages_request: untyped -- The request schema for the `createScheduledPackageBulk`
       #   operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1546,7 +1591,8 @@ module Peddler
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
       # and item information, and status.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon-defined order identifier. Identifies the order that the seller wants
       #   to deliver using Amazon Easy Ship.
       # @rbs marketplace_id: String -- An identifier for the marketplace in which the seller is selling.
@@ -1564,16 +1610,15 @@ module Peddler
       # that the seller specifies.
       #
       # This operation is available for scheduled and unscheduled orders based on marketplace support. See **Get Time
-      # Slots** in the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # Marketplace Support Table}.
+      # Slots** in the [Marketplace Support
+      # Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
       #
       # This operation can return time slots that have either pickup or drop-off handover methods - see **Supported
-      # Handover Methods** in the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # Marketplace Support Table}.
+      # Handover Methods** in the [Marketplace Support
+      # Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs list_handover_slots_request: untyped? -- The request schema for the `listHandoverSlots` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1588,11 +1633,12 @@ module Peddler
       # the new `slotId` value for the time slot by calling the `listHandoverSlots` operation before making another
       # `patch` call.
       #
-      # See the **Update Package** column in the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # Marketplace Support Table} to see which marketplaces this operation is supported in.
+      # See the **Update Package** column in the [Marketplace Support
+      # Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table)
+      # to see which marketplaces this operation is supported in.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs update_scheduled_packages_request: untyped? -- The request schema for the `updateScheduledPackages`
       #   operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1610,7 +1656,7 @@ module Peddler
     # You can use the Amazon External Fulfillment Inventory API to manage inventory operations in Amazon's External
     # Fulfillment network, including batch inventory updates and retrievals.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentInventory_2024-09-11.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentInventory_2024-09-11.json
     class ExternalFulfillmentInventory20240911
       # @rbs @engine: engine
 
@@ -1623,7 +1669,8 @@ module Peddler
       # response for each successful request in the set includes the inventory count for the provided `sku` and
       # `locationId` pair.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- A list of inventory requests.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1640,7 +1687,7 @@ module Peddler
     # You can use the External Fulfillment Location API to manage locations in the sandbox environment for end-to-end
     # testing. This API is available only in the sandbox environment.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentLocation_2026-07-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentLocation_2026-07-30.json
     class ExternalFulfillmentLocation20260730
       # @rbs @engine: engine
 
@@ -1652,7 +1699,8 @@ module Peddler
       # Creates a sandbox location and merchant in the test environment. This operation is available only in the sandbox
       # environment and is used for onboarding test locations. Idempotency is ensured on locationName.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body for creating a sandbox location.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1669,7 +1717,7 @@ module Peddler
     # You can use the Amazon External Fulfillment Return Item Processing API to retrieve, track, and process return
     # items through Amazon's External Fulfillment returns management system.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentReturns_2024-09-11.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentReturns_2024-09-11.json
     class ExternalFulfillmentReturns20240911
       # @rbs @engine: engine
 
@@ -1680,7 +1728,8 @@ module Peddler
 
       # Retrieve the return item with the specified ID.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs return_id: String -- The ID of the return item you want.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1693,7 +1742,8 @@ module Peddler
 
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs return_location_id: String? -- The SmartConnect location ID of the location from which you want to retrieve
       #   return items.
       # @rbs rma_id: String? -- The RMA ID of the return items you want to list.
@@ -1738,7 +1788,7 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_returns_2024_09_11.list_returns", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_returns_2024_09_11.list_returns")
       end
 
-      # Each page of {#list_returns}
+      # Each page of #list_returns. `rate_limit` applies to every page.
       #: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_returns_pages(return_location_id: nil, rma_id: nil, status: nil, reverse_tracking_id: nil, created_since: nil, created_until: nil, last_updated_since: nil, last_updated_until: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, next_token: nil, rate_limit: nil)
         arguments = {
@@ -1765,7 +1815,7 @@ module Peddler
     # Amazon's external fulfillment network. Use this API to get shipment details, monitor status changes, and access
     # fulfillment requirements.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
     class ExternalFulfillmentShipments20240911
       # @rbs @engine: engine
 
@@ -1776,7 +1826,8 @@ module Peddler
 
       # Provide details about the packages in the specified shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment.
       # @rbs body: untyped -- A list of packages in the shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1793,7 +1844,8 @@ module Peddler
       # in the sandbox environment. The shipment is created with the specified configuration including shipping type and
       # order type.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body for creating a sandbox shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1806,7 +1858,8 @@ module Peddler
 
       # Get invoices for the shipment you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment whose invoice you want.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1819,7 +1872,8 @@ module Peddler
 
       # Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @rbs shipping_option_id: String? -- The ID of the shipping option whose shipping labels you want.
       # @rbs operation: String -- Specify whether you want to generate or regenerate a label.
@@ -1838,7 +1892,8 @@ module Peddler
 
       # Get a single shipment with the ID you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment you want to retrieve.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1852,7 +1907,8 @@ module Peddler
       # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
       # based on the fulfillment node or the time of the shipments' last update.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs location_id: String? -- The Amazon channel location identifier for the shipments you want to retrieve.
       # @rbs marketplace_id: String? -- The marketplace ID associated with the location. To find the ID for your
       #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -1884,7 +1940,7 @@ module Peddler
         Response.from_parts(@engine.operation("external_fulfillment_shipments_2024_09_11.get_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "external_fulfillment_shipments_2024_09_11.get_shipments")
       end
 
-      # Each page of {#get_shipments}
+      # Each page of #get_shipments. `rate_limit` applies to every page.
       #: (String status, ?location_id: String?, ?marketplace_id: String?, ?channel_name: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipments_pages(status, location_id: nil, marketplace_id: nil, channel_name: nil, last_updated_after: nil, last_updated_before: nil, max_results: nil, pagination_token: nil, rate_limit: nil)
         arguments = {
@@ -1902,7 +1958,8 @@ module Peddler
 
       # Confirm or reject the specified shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment you want to confirm or reject.
       # @rbs operation: String -- The status of the shipment.
       # @rbs body: untyped? -- Information about the shipment and its line items.
@@ -1919,7 +1976,8 @@ module Peddler
 
       # Retrieve invoices for the shipment you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment whose invoice you want to retrieve.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1933,7 +1991,8 @@ module Peddler
       # Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the
       # marketplace and channel have a pre-determined shipping option, then this operation returns an empty response.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment to which the package belongs.
       # @rbs package_id: String -- The ID of the package for which you want to retrieve shipping options.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1948,7 +2007,8 @@ module Peddler
 
       # Updates the details about the packages that will be used to fulfill the specified shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment to which the package belongs.
       # @rbs package_id: String -- The ID of the package whose information you want to update.
       # @rbs body: untyped -- The body of the request.
@@ -1965,7 +2025,8 @@ module Peddler
 
       # Updates the status of the packages.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The ID of the shipment to which the package belongs.
       # @rbs package_id: String -- The ID of the package whose status you want to update.
       # @rbs status: String? -- **This field is only used for the Seller Flex program**. For the Self Delivery program,
@@ -1986,7 +2047,8 @@ module Peddler
       # Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport
       # capacity updates.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The unique identifier of the shipment to update.
       # @rbs body: untyped -- The request body for updating a sandbox shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -2008,7 +2070,7 @@ module Peddler
     # is eligible for using the manufacturer barcode for FBA inventory tracking. Sellers can use this information to
     # inform their decisions about which items to ship Amazon's fulfillment centers.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     class FbaInboundEligibilityV1
       # @rbs @engine: engine
 
@@ -2021,7 +2083,8 @@ module Peddler
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
       # you want to determine the item's eligibility.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String]? -- The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.
       # @rbs asin: String -- The ASIN of the item for which you want an eligibility preview.
@@ -2043,7 +2106,7 @@ module Peddler
     # The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in
     # Amazon's fulfillment network.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
     class FbaInventoryV1
       # @rbs @engine: engine
 
@@ -2057,7 +2120,8 @@ module Peddler
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_idempotency_token: String -- A unique token/requestId provided with each call to ensure idempotency.
       # @rbs add_inventory_request_body: untyped -- List of items to add to Sandbox inventory.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -2074,7 +2138,8 @@ module Peddler
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs create_inventory_item_request_body: untyped -- CreateInventoryItem Request Body Parameter.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2089,7 +2154,8 @@ module Peddler
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs seller_sku: String -- A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @rbs marketplace_id: String -- The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -2120,7 +2186,8 @@ module Peddler
       # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs details: bool? -- true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
       # @rbs granularity_type: String -- The granularity type for the inventory aggregation level.
@@ -2152,7 +2219,7 @@ module Peddler
         Response.from_parts(@engine.operation("fba_inventory_v1.get_inventory_summaries", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fba_inventory_v1.get_inventory_summaries")
       end
 
-      # Each page of {#get_inventory_summaries}
+      # Each page of #get_inventory_summaries. `rate_limit` applies to every page.
       #: (String granularity_type, String granularity_id, Array[String] marketplace_ids, ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_inventory_summaries_pages(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
@@ -2173,7 +2240,7 @@ module Peddler
     #
     # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
     class Feeds20210630
       # @rbs @engine: engine
 
@@ -2186,7 +2253,8 @@ module Peddler
       # are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed)
       # and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs feed_id: String -- The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -2200,7 +2268,8 @@ module Peddler
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Information required to create the feed.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2215,7 +2284,8 @@ module Peddler
       # the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call
       # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Specifies the content type for the createFeedDocument operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2228,7 +2298,8 @@ module Peddler
 
       # Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs feed_id: String -- The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -2242,7 +2313,8 @@ module Peddler
 
       # Returns the information required for retrieving a feed document's contents.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs feed_document_id: String -- The identifier of the feed document.
       # @rbs enable_content_encoding_url_header: bool? -- When `true`, the Content-Encoding header on the returned URL
       #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
@@ -2259,7 +2331,8 @@ module Peddler
 
       # Returns feed details for the feeds that match the filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs feed_types: Array[String]? -- A list of feed types used to filter feeds. When feedTypes is provided, the
       #   other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
       #   be provided. Either feedTypes or nextToken is required.
@@ -2290,7 +2363,7 @@ module Peddler
         Response.from_parts(@engine.operation("feeds_2021_06_30.get_feeds", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "feeds_2021_06_30.get_feeds")
       end
 
-      # Each page of {#get_feeds}
+      # Each page of #get_feeds. `rate_limit` applies to every page.
       #: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_feeds_pages(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
@@ -2311,7 +2384,7 @@ module Peddler
     # The Selling Partner API for Finance Remittance provides programmatic access to selling partner payment remittance
     # data, including remittance summaries and detailed line items.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finance-remittance-api-model/financeRemittance-2026-03-17.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finance-remittance-api-model/financeRemittance-2026-03-17.json
     class FinanceRemittance20260317
       # @rbs @engine: engine
 
@@ -2322,7 +2395,8 @@ module Peddler
 
       # Returns detailed line items for a specific remittance. Results are paginated.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs unique_payment_id: String -- The unique identifier for the payment.
       # @rbs marketplace_id: String -- The `marketplaceId` is a globally unique identifier used to specify which Amazon
       #   store a request is targeting. For more information, refer to [Store
@@ -2340,7 +2414,7 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finance_remittance_2026_03_17.get_remittance")
       end
 
-      # Each page of {#get_remittance}
+      # Each page of #get_remittance. `rate_limit` applies to every page.
       #: (String unique_payment_id, String marketplace_id, ?next_token_for_line_items: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_remittance_pages(unique_payment_id, marketplace_id, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
@@ -2354,7 +2428,8 @@ module Peddler
       # Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are
       # paginated.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The `marketplaceId` is a globally unique identifier used to specify which Amazon
       #   store a request is targeting. For more information, refer to [Store
       #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
@@ -2378,7 +2453,7 @@ module Peddler
         Response.from_parts(@engine.operation("finance_remittance_2026_03_17.get_remittance_headers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finance_remittance_2026_03_17.get_remittance_headers")
       end
 
-      # Each page of {#get_remittance_headers}
+      # Each page of #get_remittance_headers. `rate_limit` applies to every page.
       #: (String marketplace_id, ?start_date: String?, ?end_date: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_remittance_headers_pages(marketplace_id, start_date: nil, end_date: nil, next_token: nil, rate_limit: nil)
         arguments = {
@@ -2396,7 +2471,7 @@ module Peddler
     # The Selling Partner API for Invoices enables you to retrieve invoice data and streamline your bookkeeping
     # processes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesInvoices_2026-06-25.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesInvoices_2026-06-25.json
     class FinancesInvoices20260625
       # @rbs @engine: engine
 
@@ -2407,7 +2482,8 @@ module Peddler
 
       # Returns invoice details, including header and line items, for the specified invoice.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace ID of the marketplace of the invoice. The marketplace ID is a
       #   globally unique identifier used to specify an Amazon marketplace. For more information, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -2428,7 +2504,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_invoices_2026_06_25.get_invoice")
       end
 
-      # Each page of {#get_invoice}
+      # Each page of #get_invoice. `rate_limit` applies to every page.
       #: (String marketplace_id, String invoice_identifier, ?next_token_for_line_items: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_invoice_pages(marketplace_id, invoice_identifier, next_token_for_line_items: nil, rate_limit: nil)
         arguments = {
@@ -2441,7 +2517,8 @@ module Peddler
 
       # Returns invoice headers for all invoices matching filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs next_token: String? -- The response includes `nextToken` when the number of invoices exceeds the default
       #   page size value (100). To get the next page of results, call the operation with this token and include the
       #   same arguments as the call that produced the token. To get a complete list, call this operation until
@@ -2473,7 +2550,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_invoices_2026_06_25.get_invoice_headers", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_invoices_2026_06_25.get_invoice_headers")
       end
 
-      # Each page of {#get_invoice_headers}
+      # Each page of #get_invoice_headers. `rate_limit` applies to every page.
       #: (String marketplace_id, ?next_token: String?, ?from_issue_date: String?, ?to_issue_date: String?, ?invoices_modified_after: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_invoice_headers_pages(marketplace_id, next_token: nil, from_issue_date: nil, to_issue_date: nil, invoices_modified_after: nil, rate_limit: nil)
         arguments = {
@@ -2493,7 +2570,7 @@ module Peddler
     # can obtain financial events for a given order, financial event group, or date range without having to wait until a
     # statement period closes. You can also obtain financial event groups for a given date range.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
     class FinancesV0
       # @rbs @engine: engine
 
@@ -2505,7 +2582,8 @@ module Peddler
       # Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in
       # financial events.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs max_results_per_page: Integer? -- The maximum number of results per page. If the response exceeds the
       #   maximum number of transactions or 10 MB, the response is `InvalidInput`.
       # @rbs financial_event_group_started_before: String? -- A date that selects financial event groups that opened
@@ -2533,7 +2611,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_event_groups", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_event_groups")
       end
 
-      # Each page of {#list_financial_event_groups}
+      # Each page of #list_financial_event_groups. `rate_limit` applies to every page.
       #: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_financial_event_groups_pages(max_results_per_page: 10, financial_event_group_started_before: nil, financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2550,7 +2628,8 @@ module Peddler
       #
       # **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs max_results_per_page: Integer? -- The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
       # @rbs posted_after: String? -- The response includes financial events posted after (or on) this date. This date
@@ -2578,7 +2657,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events")
       end
 
-      # Each page of {#list_financial_events}
+      # Each page of #list_financial_events. `rate_limit` applies to every page.
       #: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_financial_events_pages(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2598,7 +2677,8 @@ module Peddler
       # **Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more
       # than two years produces an empty response.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs max_results_per_page: Integer? -- The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
       # @rbs posted_after: String? -- The response includes financial events posted after (or on) this date. This date
@@ -2628,7 +2708,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_group_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events_by_group_id")
       end
 
-      # Each page of {#list_financial_events_by_group_id}
+      # Each page of #list_financial_events_by_group_id. `rate_limit` applies to every page.
       #: (String event_group_id, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_financial_events_by_group_id_pages(event_group_id, max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2646,7 +2726,8 @@ module Peddler
       #
       # **Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs max_results_per_page: Integer? -- The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the response is `InvalidInput`.
@@ -2665,7 +2746,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_v0.list_financial_events_by_order_id", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_v0.list_financial_events_by_order_id")
       end
 
-      # Each page of {#list_financial_events_by_order_id}
+      # Each page of #list_financial_events_by_order_id. `rate_limit` applies to every page.
       #: (String order_id, ?max_results_per_page: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_financial_events_by_order_id_pages(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2682,7 +2763,7 @@ module Peddler
     # The Selling Partner API for Finances provides financial information relevant to a seller's business. You can
     # obtain financial events for a given order or date range without having to wait until a statement period closes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/finances_2024-06-19.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/finances_2024-06-19.json
     class Finances20240619
       # @rbs @engine: engine
 
@@ -2694,7 +2775,8 @@ module Peddler
       # Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances
       # are listed by account type and marketplace.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String]? -- The marketplaces from which to retrieve balances. If omitted, balances
       #   from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to
       #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -2723,7 +2805,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_balances", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_balances")
       end
 
-      # Each page of {#list_balances}
+      # Each page of #list_balances. `rate_limit` applies to every page.
       #: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_balances_pages(marketplace_ids: nil, balance_type: nil, account_type: nil, as_of_date: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2738,7 +2820,8 @@ module Peddler
 
       # Retrieve the financial summary for the specified time period or settlement period.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String]? -- The marketplaces from which to retrieve summaries. If omitted, summaries
       #   from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to
       #   [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -2771,7 +2854,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_summary", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_summary")
       end
 
-      # Each page of {#list_summary}
+      # Each page of #list_summary. `rate_limit` applies to every page.
       #: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_summary_pages(marketplace_ids: nil, account_type: nil, related_identifier_name: nil, related_identifier_value: nil, period_start: nil, period_end: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2790,7 +2873,8 @@ module Peddler
       #
       # **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs posted_after: String? -- The response includes financial events posted on or after this date. This date
       #   must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time
       #   must be more than two minutes before the time of the request. This field is required if you do not specify a
@@ -2832,7 +2916,7 @@ module Peddler
         Response.from_parts(@engine.operation("finances_2024_06_19.list_transactions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "finances_2024_06_19.list_transactions")
       end
 
-      # Each page of {#list_transactions}
+      # Each page of #list_transactions. `rate_limit` applies to every page.
       #: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_transactions_pages(posted_after: nil, posted_before: nil, marketplace_id: nil, transaction_status: nil, related_identifier_name: nil, related_identifier_value: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2853,7 +2937,7 @@ module Peddler
     # The Selling Partner API for Transfers enables selling partners to retrieve payment methods and initiate payouts
     # for their seller accounts. This API supports the following marketplaces: DE, FR, IT, ES, SE, NL, PL, and BE.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     class Transfers20240601
       # @rbs @engine: engine
 
@@ -2864,7 +2948,8 @@ module Peddler
 
       # Returns the list of payment methods for the seller, which can be filtered by method type.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The identifier of the Amazon store from which you want to retrieve payment
       #   methods. For the list of store identifiers, refer to [Store
       #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -2884,7 +2969,8 @@ module Peddler
       # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace
       # and account type within a 24-hour period.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body for the `initiatePayout` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2898,7 +2984,8 @@ module Peddler
       # Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified
       # parameters.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String]? -- The Amazon stores from which to retrieve payouts. The Amazon store ID is
       #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
       #   applicable stores. To find the Amazon store ID for your region, refer to [Store
@@ -2919,7 +3006,7 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_expected_payouts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.list_expected_payouts")
       end
 
-      # Each page of {#list_expected_payouts}
+      # Each page of #list_expected_payouts. `rate_limit` applies to every page.
       #: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_expected_payouts_pages(marketplace_ids: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2936,7 +3023,8 @@ module Peddler
       # account groups. Within each account group results are sorted by their creation date, with the most recent
       # appearing first.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String]? -- The Amazon stores from which to retrieve payouts. The Amazon store ID is
       #   a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all
       #   applicable stores. To find the Amazon store ID for your region, refer to [Store
@@ -2967,7 +3055,7 @@ module Peddler
         Response.from_parts(@engine.operation("transfers_2024_06_01.list_payouts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "transfers_2024_06_01.list_payouts")
       end
 
-      # Each page of {#list_payouts}
+      # Each page of #list_payouts. `rate_limit` applies to every page.
       #: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_payouts_pages(marketplace_ids: nil, created_after: nil, created_before: nil, payout_id: nil, account_type: nil, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -2987,7 +3075,7 @@ module Peddler
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     class FulfillmentInboundV0
       # @rbs @engine: engine
 
@@ -3000,7 +3088,8 @@ module Peddler
       # operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than
       # Truckload/Full Truckload (LTL/FTL) inbound shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3014,7 +3103,8 @@ module Peddler
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @rbs page_type: String -- The page type to use to print the labels. Submitting a PageType value that is not
@@ -3055,7 +3145,8 @@ module Peddler
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs ship_to_country_code: String -- The country code of the country to which the items will be shipped. Note
       #   that labeling requirements and item preparation instructions can vary by country.
       # @rbs seller_sku_list: Array[String]? -- A list of SellerSKU values. Used to identify items for which you want
@@ -3084,7 +3175,8 @@ module Peddler
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
       # time frame.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs last_updated_after: String? -- A date used for selecting inbound shipment items that were last updated
       #   after (or at) a specified time. The selection includes updates made by Amazon and by the seller.
       # @rbs last_updated_before: String? -- A date used for selecting inbound shipment items that were last updated
@@ -3108,7 +3200,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipment_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_shipment_items")
       end
 
-      # Each page of {#get_shipment_items}
+      # Each page of #get_shipment_items. `rate_limit` applies to every page.
       #: (String query_type, String marketplace_id, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipment_items_pages(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3123,7 +3215,8 @@ module Peddler
 
       # Returns a list of items in a specified inbound shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- A shipment identifier used for selecting items in a specific inbound shipment.
       # @rbs marketplace_id: String? -- Deprecated. Do not use.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3138,7 +3231,8 @@ module Peddler
 
       # Returns a list of inbound shipments based on criteria that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_status_list: Array[String]? -- A list of ShipmentStatus values. Used to select shipments with a
       #   current status that matches the status values that you specify.
       # @rbs shipment_id_list: Array[String]? -- A list of shipment IDs used to select the shipments that you want. If
@@ -3170,7 +3264,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_v0.get_shipments", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_v0.get_shipments")
       end
 
-      # Each page of {#get_shipments}
+      # Each page of #get_shipments. `rate_limit` applies to every page.
       #: (String query_type, String marketplace_id, ?shipment_status_list: Array[String]?, ?shipment_id_list: Array[String]?, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipments_pages(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil, last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3192,7 +3286,7 @@ module Peddler
     # workflows to create, manage, and send shipments into Amazon's fulfillment network. The API has interoperability
     # with the Send-to-Amazon user interface.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
     class FulfillmentInbound20240320
       # @rbs @engine: engine
 
@@ -3205,7 +3299,8 @@ module Peddler
       # for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload
       # (LTL) carrier shipments.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3219,7 +3314,8 @@ module Peddler
       # Cancels a self-ship appointment slot against a shipment. Only available in the following
       # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `cancelSelfShipAppointment`.
@@ -3241,7 +3337,8 @@ module Peddler
       # `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed prior to transportation option
       # confirmation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- The shipment to confirm the delivery window option for.
       # @rbs delivery_window_option_id: String -- The id of the delivery window option to be confirmed.
@@ -3258,7 +3355,8 @@ module Peddler
 
       # Confirms the packing option for an inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs packing_option_id: String -- Identifier of a packing option.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3273,7 +3371,8 @@ module Peddler
 
       # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs placement_option_id: String -- The identifier of a placement option. A placement option represents the
       #   shipment splits and destinations of SKUs.
@@ -3289,7 +3388,8 @@ module Peddler
 
       # Confirm a shipment content update preview and accept the changes in transportation cost.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs content_update_preview_id: String -- Identifier of a content update preview.
@@ -3307,7 +3407,8 @@ module Peddler
       # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
       # of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs body: untyped -- The body of the request to `confirmTransportationOptions`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3323,7 +3424,8 @@ module Peddler
       # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
       # fufillment network.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The body of the request to `createInboundPlan`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3336,7 +3438,8 @@ module Peddler
 
       # For a given marketplace - creates labels for a list of MSKUs.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The body of the request to `createMarketplaceItemLabels`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3349,7 +3452,8 @@ module Peddler
 
       # Generates available delivery window options for a given shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- The shipment to generate delivery window options for.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3364,7 +3468,8 @@ module Peddler
 
       # Generates available packing options for the inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3377,7 +3482,8 @@ module Peddler
 
       # Generates placement options for the inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs body: untyped -- The body of the request to `generatePlacementOptions`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3393,7 +3499,8 @@ module Peddler
       # Initiates the process of generating the appointment slots list. Only available in the following
       # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `generateSelfShipAppointmentSlots`.
@@ -3412,7 +3519,8 @@ module Peddler
       # confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents
       # prior to confirmation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `generateShipmentContentUpdatePreviews`.
@@ -3429,7 +3537,8 @@ module Peddler
 
       # Generates available transportation options for a given placement option.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs body: untyped -- The body of the request to `generateTransportationOptions`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3444,7 +3553,8 @@ module Peddler
 
       # Provide delivery challan document for PCP transportation in IN marketplace.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3459,7 +3569,8 @@ module Peddler
 
       # Gets the status of the processing of an asynchronous API call.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs operation_id: String -- Identifier of an asynchronous operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3472,7 +3583,8 @@ module Peddler
 
       # Fetches the top level information about an inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -3487,7 +3599,8 @@ module Peddler
       # available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX,
       # BR, EG, SA, AE, IN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs page_size: Integer? -- The number of self ship appointment slots to return in the response matching the
@@ -3507,7 +3620,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots")
       end
 
-      # Each page of {#get_self_ship_appointment_slots}
+      # Each page of #get_self_ship_appointment_slots. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_self_ship_appointment_slots_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: nil)
         arguments = {
@@ -3522,7 +3635,8 @@ module Peddler
       # Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside
       # `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -3539,7 +3653,8 @@ module Peddler
       # along with the transportation cost implications of the change that can only be confirmed prior to the expiry
       # date specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs content_update_preview_id: String -- Identifier of a content update preview.
@@ -3557,7 +3672,8 @@ module Peddler
       # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
       # `generateDeliveryWindowOptions` operation before becoming available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- The shipment to get delivery window options for.
       # @rbs page_size: Integer? -- The number of delivery window options to return in the response matching the given
@@ -3577,7 +3693,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_delivery_window_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_delivery_window_options")
       end
 
-      # Each page of {#list_delivery_window_options}
+      # Each page of #list_delivery_window_options. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_delivery_window_options_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3591,7 +3707,8 @@ module Peddler
 
       # Provides a paginated list of box packages in an inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of boxes to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
@@ -3608,7 +3725,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes")
       end
 
-      # Each page of {#list_inbound_plan_boxes}
+      # Each page of #list_inbound_plan_boxes. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inbound_plan_boxes_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3621,7 +3738,8 @@ module Peddler
 
       # Provides a paginated list of item packages in an inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of items to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
@@ -3638,7 +3756,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_items")
       end
 
-      # Each page of {#list_inbound_plan_items}
+      # Each page of #list_inbound_plan_items. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inbound_plan_items_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3652,7 +3770,8 @@ module Peddler
       # Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the
       # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of pallets to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
@@ -3669,7 +3788,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plan_pallets", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets")
       end
 
-      # Each page of {#list_inbound_plan_pallets}
+      # Each page of #list_inbound_plan_pallets. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inbound_plan_pallets_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3682,7 +3801,8 @@ module Peddler
 
       # Provides a list of inbound plans with minimal information.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs page_size: Integer? -- The number of inbound plans to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
       #   results. The value of this token is fetched from the `pagination` returned in the API response. In the absence
@@ -3703,7 +3823,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_inbound_plans", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_inbound_plans")
       end
 
-      # Each page of {#list_inbound_plans}
+      # Each page of #list_inbound_plans. `rate_limit` applies to every page.
       #: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_inbound_plans_pages(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, rate_limit: 2.0)
         arguments = {
@@ -3728,7 +3848,8 @@ module Peddler
       # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
       # encoded as `test%252Cmsku`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs mskus: Array[String] -- A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @rbs marketplace_id: String -- The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -3746,7 +3867,8 @@ module Peddler
       # `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon
       # determines shipment splits.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs packing_group_id: String -- Identifier of a packing group.
       # @rbs page_size: Integer? -- The number of packing group boxes to return in the response matching the given
@@ -3766,7 +3888,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_group_boxes")
       end
 
-      # Each page of {#list_packing_group_boxes}
+      # Each page of #list_packing_group_boxes. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_packing_group_boxes_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3781,7 +3903,8 @@ module Peddler
       # Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding
       # operation before packing group items can be listed.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs packing_group_id: String -- Identifier of a packing group.
       # @rbs page_size: Integer? -- The number of packing group items to return in the response matching the given
@@ -3801,7 +3924,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_group_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_group_items")
       end
 
-      # Each page of {#list_packing_group_items}
+      # Each page of #list_packing_group_items. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String packing_group_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_packing_group_items_pages(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3816,7 +3939,8 @@ module Peddler
       # Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the
       # corresponding operation before becoming available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of packing options to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
@@ -3833,7 +3957,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_packing_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_packing_options")
       end
 
-      # Each page of {#list_packing_options}
+      # Each page of #list_packing_options. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_packing_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3847,7 +3971,8 @@ module Peddler
       # Provides a list of all placement options for an inbound plan. Placement options must first be generated by the
       # corresponding operation before becoming available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of placement options to return in the response matching the given query.
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
@@ -3864,7 +3989,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_placement_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_placement_options")
       end
 
-      # Each page of {#list_placement_options}
+      # Each page of #list_placement_options. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_placement_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3887,7 +4012,8 @@ module Peddler
       # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
       # encoded as `test%252Cmsku`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @rbs mskus: Array[String] -- A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
@@ -3903,7 +4029,8 @@ module Peddler
 
       # Provides a paginated list of box packages in a shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs page_size: Integer? -- The number of boxes to return in the response matching the given query.
@@ -3922,7 +4049,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_boxes", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_boxes")
       end
 
-      # Each page of {#list_shipment_boxes}
+      # Each page of #list_shipment_boxes. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_shipment_boxes_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3938,7 +4065,8 @@ module Peddler
       # preview is a summary of the requested shipment content changes along with the transportation cost implications
       # of the change that can only be confirmed prior to the expiry date specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs page_size: Integer? -- The number of content update previews to return.
@@ -3957,7 +4085,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_content_update_previews", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews")
       end
 
-      # Each page of {#list_shipment_content_update_previews}
+      # Each page of #list_shipment_content_update_previews. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_shipment_content_update_previews_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -3971,7 +4099,8 @@ module Peddler
 
       # Provides a paginated list of item packages in a shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs page_size: Integer? -- The number of items to return in the response matching the given query.
@@ -3990,7 +4119,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_items")
       end
 
-      # Each page of {#list_shipment_items}
+      # Each page of #list_shipment_items. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_shipment_items_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -4005,7 +4134,8 @@ module Peddler
       # Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the
       # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs page_size: Integer? -- The number of pallets to return in the response matching the given query.
@@ -4024,7 +4154,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_shipment_pallets", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_shipment_pallets")
       end
 
-      # Each page of {#list_shipment_pallets}
+      # Each page of #list_shipment_pallets. `rate_limit` applies to every page.
       #: (String inbound_plan_id, String shipment_id, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_shipment_pallets_pages(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         arguments = {
@@ -4039,7 +4169,8 @@ module Peddler
       # Retrieves all transportation options for a shipment. Transportation options must first be generated by the
       # `generateTransportationOptions` operation before becoming available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs page_size: Integer? -- The number of transportation options to return in the response matching the given
       #   query.
@@ -4063,7 +4194,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_inbound_2024_03_20.list_transportation_options", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_inbound_2024_03_20.list_transportation_options")
       end
 
-      # Each page of {#list_transportation_options}
+      # Each page of #list_transportation_options. `rate_limit` applies to every page.
       #: (String inbound_plan_id, ?page_size: Integer?, ?pagination_token: String?, ?placement_option_id: String?, ?shipment_id: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_transportation_options_pages(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil, shipment_id: nil, rate_limit: 2.0)
         arguments = {
@@ -4079,7 +4210,8 @@ module Peddler
       # Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following
       # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs slot_id: String -- An identifier to a self-ship appointment slot.
@@ -4099,7 +4231,8 @@ module Peddler
       # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
       # the box level information required for planning and transportation estimates.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs body: untyped -- The body of the request to `setPackingInformation`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -4114,7 +4247,8 @@ module Peddler
 
       # Set the preparation details for a list of MSKUs in a specified marketplace.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The body of the request to `setPrepDetails`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4127,7 +4261,8 @@ module Peddler
 
       # Updates the name of an existing inbound plan.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs body: untyped -- The body of the request to `updateInboundPlanName`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -4143,7 +4278,8 @@ module Peddler
       # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
       # A21TJRUUN4KGV) marketplace compliance validation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @rbs body: untyped -- The body of the request to `updateItemComplianceDetails`.
@@ -4159,7 +4295,8 @@ module Peddler
 
       # Updates the name of an existing shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `updateShipmentName`.
@@ -4179,7 +4316,8 @@ module Peddler
       # options will be invalidated and will need to be regenerated to capture the potential difference in
       # transportation options and quotes due to the new source address.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `updateShipmentSourceAddress`.
@@ -4196,7 +4334,8 @@ module Peddler
 
       # Updates a shipment's tracking details.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs inbound_plan_id: String -- Identifier of an inbound plan.
       # @rbs shipment_id: String -- Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @rbs body: untyped -- The body of the request to `updateShipmentTrackingDetails`.
@@ -4218,7 +4357,7 @@ module Peddler
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701
       # @rbs @engine: engine
 
@@ -4230,7 +4369,8 @@ module Peddler
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
       # identifier.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs seller_fulfillment_order_id: String -- The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -4245,7 +4385,8 @@ module Peddler
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
       # address.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- CreateFulfillmentOrderRequest parameter
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4258,7 +4399,8 @@ module Peddler
 
       # Creates a fulfillment return.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body of the `createFulfillmentReturn` operation.
       # @rbs seller_fulfillment_order_id: String -- An identifier the seller assigns to the fulfillment order at the
       #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
@@ -4276,7 +4418,8 @@ module Peddler
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- GetDeliveryOffersRequest parameter
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4289,7 +4432,8 @@ module Peddler
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace for which to return a list of the inventory that is eligible for
       #   the specified feature.
       # @rbs feature_name: String -- The name of the feature for which to return a list of eligible inventory.
@@ -4310,7 +4454,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.get_feature_inventory", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.get_feature_inventory")
       end
 
-      # Each page of {#get_feature_inventory}
+      # Each page of #get_feature_inventory. `rate_limit` applies to every page.
       #: (String marketplace_id, String feature_name, ?next_token: String?, ?query_start_date: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_feature_inventory_pages(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
         arguments = {
@@ -4327,7 +4471,8 @@ module Peddler
       # parameters for this operation may contain special characters that require URL encoding. To avoid errors with
       # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace for which to return the count.
       # @rbs feature_name: String -- The name of the feature.
       # @rbs seller_sku: String -- Used to identify an item in the given marketplace. `sellerSku` is qualified by the
@@ -4346,7 +4491,8 @@ module Peddler
       # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
       # whether the seller for which you made the call is enrolled for each feature.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace for which to return the list of features.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4359,7 +4505,8 @@ module Peddler
 
       # Returns the fulfillment order indicated by the specified order identifier.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs seller_fulfillment_order_id: String -- The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -4373,7 +4520,8 @@ module Peddler
 
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- GetFulfillmentPreviewRequest parameter
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4387,7 +4535,8 @@ module Peddler
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
       # order.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs package_number: Integer -- The unencrypted package identifier. You can obtain this value from the
       #   `getFulfillmentOrder` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -4402,7 +4551,8 @@ module Peddler
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
       # `nextToken` parameter.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs query_start_date: String? -- A date used to select fulfillment orders that were last updated after (or at)
       #   a specified time. An update is defined as any change in fulfillment order status, including the creation of a
       #   new fulfillment order.
@@ -4417,7 +4567,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2020_07_01.list_all_fulfillment_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders")
       end
 
-      # Each page of {#list_all_fulfillment_orders}
+      # Each page of #list_all_fulfillment_orders. `rate_limit` applies to every page.
       #: (?query_start_date: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_all_fulfillment_orders_pages(query_start_date: nil, next_token: nil, rate_limit: 2.0)
         arguments = {
@@ -4431,7 +4581,8 @@ module Peddler
       # may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to
       # [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs seller_sku: String -- The seller SKU for which return reason codes are required.
       # @rbs marketplace_id: String? -- The marketplace for which the seller wants return reason codes.
       # @rbs seller_fulfillment_order_id: String? -- The identifier assigned to the item by the seller when the
@@ -4457,7 +4608,8 @@ module Peddler
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs seller_fulfillment_order_id: String -- The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @rbs body: untyped -- The identifier assigned to the item by the seller when the fulfillment order was created.
@@ -4473,7 +4625,8 @@ module Peddler
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body of the `updateFulfillmentOrder` operation.
       # @rbs seller_fulfillment_order_id: String -- The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
@@ -4494,7 +4647,7 @@ module Peddler
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json
     class FulfillmentOutbound20260704
       # @rbs @engine: engine
 
@@ -4505,7 +4658,8 @@ module Peddler
 
       # Request that Amazon stop attempting to fulfill a fulfillment order.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order that you want to cancel.
@@ -4522,7 +4676,8 @@ module Peddler
       # Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
       # address.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs body: untyped -- The request body schema for the `createOrder` operation.
@@ -4539,7 +4694,8 @@ module Peddler
       # Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs body: untyped -- The request body schema for the `getOffers` operation.
@@ -4555,7 +4711,8 @@ module Peddler
 
       # Retrieve a fulfillment order.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order you want to retrieve.
@@ -4573,7 +4730,8 @@ module Peddler
 
       # Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs body: untyped -- The request body schema for the `getOrderPreview` operation.
@@ -4589,7 +4747,8 @@ module Peddler
 
       # Retrieve a list of fulfillment orders that match the criteria you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs updated_after: String? -- The response includes orders updated after this time. Must be in [ISO
@@ -4611,7 +4770,7 @@ module Peddler
         Response.from_parts(@engine.operation("fulfillment_outbound_2026_07_04.list_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "fulfillment_outbound_2026_07_04.list_orders")
       end
 
-      # Each page of {#list_orders}
+      # Each page of #list_orders. `rate_limit` applies to every page.
       #: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_orders_pages(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, rate_limit: 2.0)
         arguments = {
@@ -4625,7 +4784,8 @@ module Peddler
 
       # Update and/or request shipment for a fulfillment order with an order hold on it.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order that you want to update and/or request shipment of.
@@ -4647,7 +4807,8 @@ module Peddler
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order that you want to update.
@@ -4669,7 +4830,8 @@ module Peddler
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order that contains the package that you want to update.
@@ -4693,7 +4855,7 @@ module Peddler
     # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
     # partners manage their bookkeeping processes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     class Invoices20240619
       # @rbs @engine: engine
 
@@ -4704,7 +4866,8 @@ module Peddler
 
       # Submit an asynchronous request to create a government invoice.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Information required to create the government invoice.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4717,7 +4880,8 @@ module Peddler
 
       # Creates an invoice export request.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Information required to create the export request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -4730,7 +4894,8 @@ module Peddler
 
       # Retrieve the URL of an invoice document.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace of the invoice.
       # @rbs transaction_type: String -- The marketplace-specific classification of the transaction type that originated
       #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
@@ -4756,7 +4921,8 @@ module Peddler
 
       # Retrieve the status of an invoice generation request.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace of the invoice request.
       # @rbs transaction_type: String -- The marketplace-specific classification of the transaction type that originated
       #   the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
@@ -4782,7 +4948,8 @@ module Peddler
       # to the response definition to get all the possible attributes.
       # To get the full invoice, use the `createInvoicesExport` operation to start an export request.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace from which you want the invoice.
       # @rbs invoice_id: String -- The invoice identifier.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
@@ -4800,7 +4967,8 @@ module Peddler
 
       # Returns invoice details for the invoices that match the filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs transaction_identifier_name: String? -- The name of the transaction identifier filter. If you provide a
       #   value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the
       #   `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
@@ -4855,7 +5023,7 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices")
       end
 
-      # Each page of {#get_invoices}
+      # Each page of #get_invoices. `rate_limit` applies to every page.
       #: (String marketplace_id, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_invoices_pages(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil, transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil, sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
@@ -4880,7 +5048,8 @@ module Peddler
 
       # Returns marketplace-dependent schemas and their respective set of possible values.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace identifier.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
@@ -4897,7 +5066,8 @@ module Peddler
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
       # from the corresponding `createInvoicesExport` request.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs invoices_document_id: String -- The export document identifier.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
@@ -4913,7 +5083,8 @@ module Peddler
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs export_id: String -- The unique identifier for the export.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
@@ -4929,7 +5100,8 @@ module Peddler
 
       # Returns invoice exports details for exports that match the filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The returned exports match the specified marketplace.
       # @rbs date_start: String? -- The earliest export creation date and time for exports that you want to include in
       #   the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
@@ -4960,7 +5132,7 @@ module Peddler
         Response.from_parts(@engine.operation("invoices_2024_06_19.get_invoices_exports", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "invoices_2024_06_19.get_invoices_exports")
       end
 
-      # Each page of {#get_invoices_exports}
+      # Each page of #get_invoices_exports. `rate_limit` applies to every page.
       #: (String marketplace_id, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_invoices_exports_pages(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil, status: nil, warehouse_code: nil, rate_limit: nil)
         arguments = {
@@ -4982,11 +5154,10 @@ module Peddler
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
     # you use to retrieve the information about Amazon product types needed to use the Listings Items API.
     #
-    # For more information, see the
-    # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
-    # Case Guide}.
+    # For more information, see the [Listing Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
     class ListingsItems20200901
       # @rbs @engine: engine
 
@@ -5001,7 +5172,8 @@ module Peddler
       # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -5027,7 +5199,8 @@ module Peddler
       # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -5054,7 +5227,8 @@ module Peddler
       # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -5085,7 +5259,7 @@ module Peddler
     # For more information, refer to the [Listings Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801
       # @rbs @engine: engine
 
@@ -5096,7 +5270,8 @@ module Peddler
 
       # Delete a listings item for a selling partner.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
@@ -5117,7 +5292,8 @@ module Peddler
 
       # Returns details about a listings item for a selling partner.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
@@ -5142,7 +5318,8 @@ module Peddler
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
       # patched. Patching nested attributes is not supported.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
@@ -5170,7 +5347,8 @@ module Peddler
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
@@ -5198,7 +5376,8 @@ module Peddler
 
       # Search for and return a list of selling partner listings items and their respective details.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
       # @rbs issue_locale: String? -- A locale that is used to localize issues. When not provided, the default language
@@ -5266,7 +5445,7 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.search_listings_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.search_listings_items")
       end
 
-      # Each page of {#search_listings_items}
+      # Each page of #search_listings_items. `rate_limit` applies to every page.
       #: (String seller_id, Array[String] marketplace_ids, ?issue_locale: String?, ?included_data: Array[String]?, ?identifiers: Array[String]?, ?identifiers_type: String?, ?variation_parent_sku: String?, ?package_hierarchy_sku: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?with_issue_severity: Array[String]?, ?with_status: Array[String]?, ?without_status: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_listings_items_pages(seller_id, marketplace_ids, issue_locale: nil, included_data: ["summaries"], identifiers: nil, identifiers_type: nil, variation_parent_sku: nil, package_hierarchy_sku: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC", page_size: 10, page_token: nil, rate_limit: 5.0)
         arguments = {
@@ -5299,11 +5478,10 @@ module Peddler
     # The Selling Partner API for Listings Restrictions provides programmatic access to restrictions on Amazon catalog
     # listings.
     #
-    # For more information, see the
-    # {https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide Listings
-    # Restrictions API Use Case Guide}.
+    # For more information, see the [Listings Restrictions API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
     class ListingsRestrictions20210801
       # @rbs @engine: engine
 
@@ -5314,7 +5492,8 @@ module Peddler
 
       # Returns listing restrictions for an item in the Amazon Catalog.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) of the item.
       # @rbs condition_type: String? -- The condition used to filter restrictions.
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account.
@@ -5344,7 +5523,7 @@ module Peddler
     # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
     # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     class MerchantFulfillmentV0
       # @rbs @engine: engine
 
@@ -5355,7 +5534,8 @@ module Peddler
 
       # Cancel the shipment indicated by the specified shipment identifier.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The Amazon-defined shipment identifier for the shipment to cancel.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5368,7 +5548,8 @@ module Peddler
 
       # Create a shipment with the information provided.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `CreateShipment` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5382,7 +5563,8 @@ module Peddler
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
       # shipping.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `GetAdditionalSellerInputs` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5395,7 +5577,8 @@ module Peddler
 
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `GetEligibleShipmentServices` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5408,7 +5591,8 @@ module Peddler
 
       # Returns the shipment information for an existing shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The Amazon-defined shipment identifier for the shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5424,10 +5608,10 @@ module Peddler
     #
     # With the Messaging API you can build applications that send messages to buyers. You can get a list of message
     # types that are available for an order that you specify, then call an operation that sends a message to the buyer
-    # for that order. The Messaging API returns responses that are formed according to the
-    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    # for that order. The Messaging API returns responses that are formed according to the [JSON Hypertext Application
+    # Language](https://tools.ietf.org/html/draft-kelly-json-hal-08) (HAL) standard.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
     class MessagingV1
       # @rbs @engine: engine
 
@@ -5439,7 +5623,8 @@ module Peddler
       # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
       # initials, etc.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5458,7 +5643,8 @@ module Peddler
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5477,7 +5663,8 @@ module Peddler
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5497,7 +5684,8 @@ module Peddler
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
       # service call.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5517,7 +5705,8 @@ module Peddler
       # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
       # order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5537,7 +5726,8 @@ module Peddler
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
       # This message should only be used to deliver documents that are required by law.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5557,7 +5747,8 @@ module Peddler
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
       # order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5576,7 +5767,8 @@ module Peddler
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5595,7 +5787,8 @@ module Peddler
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5614,7 +5807,8 @@ module Peddler
       # by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to
       # call an operation that sends a message.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This specifies the order for which you want a list
       #   of available message types.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5631,7 +5825,8 @@ module Peddler
 
       # Sends a message providing the buyer an invoice
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This identifies the order for which a message is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This identifies the marketplace in which the
@@ -5658,7 +5853,7 @@ module Peddler
     # For more information, refer to the [Notifications Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1
       # @rbs @engine: engine
 
@@ -5672,7 +5867,8 @@ module Peddler
       # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
       # Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `createDestination` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5688,7 +5884,8 @@ module Peddler
       # notification type that you specify supports multiple payload versions, you can use this operation to subscribe
       # to a different payload version if you already have an existing subscription for a different payload version.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `createSubscription` operation.
       # @rbs notification_type: String -- The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
@@ -5707,7 +5904,8 @@ module Peddler
       # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
       # Selling Partner API Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs destination_id: String -- The identifier for the destination that you want to delete.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5725,7 +5923,8 @@ module Peddler
       # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
       # Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs subscription_id: String -- The identifier for the subscription that you want to delete.
       # @rbs notification_type: String -- The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
@@ -5745,7 +5944,8 @@ module Peddler
       # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
       # Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs destination_id: String -- The identifier generated when you created the destination.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5760,7 +5960,8 @@ module Peddler
       # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
       # Selling Partner API Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_destinations(rate_limit: 1.0)
@@ -5774,7 +5975,8 @@ module Peddler
       # version subscription's information. You can use this API to get subscription information when you do not have a
       # subscription identifier.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs notification_type: String -- The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
       #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
@@ -5794,7 +5996,8 @@ module Peddler
       # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
       # Developer Guide.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs subscription_id: String -- The identifier for the subscription that you want to get.
       # @rbs notification_type: String -- The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
@@ -5818,7 +6021,8 @@ module Peddler
       # `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns
       # subscriptions across all payload versions.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs notification_types: Array[String] -- A list of notification types to retrieve subscriptions for. Currently
       #   limited to a single notification type per request. For more information about notification types, refer to the
       #   [Notifications API v1 Use Case
@@ -5840,7 +6044,7 @@ module Peddler
         Response.from_parts(@engine.operation("notifications_v1.get_subscriptions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "notifications_v1.get_subscriptions")
       end
 
-      # Each page of {#get_subscriptions}
+      # Each page of #get_subscriptions. `rate_limit` applies to every page.
       #: (Array[String] notification_types, ?payload_version: String?, ?page_size: Integer?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_subscriptions_pages(notification_types, payload_version: nil, page_size: 30, next_token: nil, rate_limit: 1.0)
         arguments = {
@@ -5855,7 +6059,8 @@ module Peddler
       # Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For
       # more information, see "Grantless operations" in the Selling Partner API Developer Guide.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request schema for the `sendTestNotification` operation.
       # @rbs notification_type: String -- The type of notification. For more information about notification types, refer
       #   to the [Notifications API v1 Use Case
@@ -5881,7 +6086,7 @@ module Peddler
     # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
     # response).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     class OrdersV0
       # @rbs @engine: engine
 
@@ -5892,7 +6097,8 @@ module Peddler
 
       # Updates the shipment confirmation status for a specified order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs payload: untyped -- Request body of `confirmShipment`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -5907,7 +6113,8 @@ module Peddler
 
       # Returns the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5920,7 +6127,8 @@ module Peddler
 
       # Returns the shipping address for the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The Amazon order identifier in 3-7-7 format.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5933,7 +6141,8 @@ module Peddler
 
       # Returns buyer information for the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The Amazon order identifier in 3-7-7 format.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -5954,7 +6163,8 @@ module Peddler
       # returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in
       # the order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs next_token: String? -- A string token returned in the response of your previous request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -5967,7 +6177,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_items")
       end
 
-      # Each page of {#get_order_items}
+      # Each page of #get_order_items. `rate_limit` applies to every page.
       #: (String order_id, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_order_items_pages(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -5979,7 +6189,8 @@ module Peddler
 
       # Returns buyer information for the order items in the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs next_token: String? -- A string token returned in the response of your previous request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -5992,7 +6203,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_order_items_buyer_info", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_order_items_buyer_info")
       end
 
-      # Each page of {#get_order_items_buyer_info}
+      # Each page of #get_order_items_buyer_info. `rate_limit` applies to every page.
       #: (String order_id, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_order_items_buyer_info_pages(order_id, next_token: nil, rate_limit: 0.5)
         arguments = {
@@ -6004,7 +6215,8 @@ module Peddler
 
       # Returns regulated information for the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The Amazon order identifier in 3-7-7 format.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6019,7 +6231,8 @@ module Peddler
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
       # in your request; it only impacts the pagination for the filtered orders response.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs created_after: String? -- Use this date to select orders created after (or at) a specified time. Only
       #   orders placed after the specified time are returned. The date must be in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: Either the `CreatedAfter`
@@ -6137,7 +6350,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_v0.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_v0.get_orders")
       end
 
-      # Each page of {#get_orders}
+      # Each page of #get_orders. `rate_limit` applies to every page.
       #: (Array[String] marketplace_ids, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_orders_pages(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil, earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil, latest_delivery_date_after: nil, rate_limit: 0.0167)
         arguments = {
@@ -6169,7 +6382,8 @@ module Peddler
 
       # Update the shipment status for an order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier, in 3-7-7 format.
       # @rbs payload: untyped -- The request body for the `updateShipmentStatus` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6184,7 +6398,8 @@ module Peddler
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- The Amazon order identifier in 3-7-7 format.
       # @rbs payload: untyped -- The request body for the `updateVerificationStatus` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6207,7 +6422,7 @@ module Peddler
     # This API does not display order data that is more than two years old, except in the JP, AU, and SG marketplaces,
     # for which data from 2016 and after is available.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
     class Orders20260101
       # @rbs @engine: engine
 
@@ -6218,7 +6433,8 @@ module Peddler
 
       # Returns the order that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs order_id: String -- An Amazon-defined order identifier.
       # @rbs included_data: Array[String]? -- A list of datasets to include in the response.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6234,7 +6450,8 @@ module Peddler
       # Returns orders created or updated during the time period that you specify. You can filter the response for
       # specific types of orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs created_after: String? -- The response includes orders created at or after this time. The date must be in
       #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide exactly
       #   one of `createdAfter` and `lastUpdatedAfter` in your request. If `createdAfter` is provided, neither
@@ -6288,7 +6505,7 @@ module Peddler
         Response.from_parts(@engine.operation("orders_2026_01_01.search_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "orders_2026_01_01.search_orders")
       end
 
-      # Each page of {#search_orders}
+      # Each page of #search_orders. `rate_limit` applies to every page.
       #: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_orders_pages(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, rate_limit: 0.0056)
         arguments = {
@@ -6312,7 +6529,7 @@ module Peddler
     # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
     # then account for those fees in your pricing.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     class ProductFeesV0
       # @rbs @engine: engine
 
@@ -6337,7 +6554,8 @@ module Peddler
       # different. This is because these estimates use the item's catalog size, which might not always match the actual
       # size of the item sent to Amazon.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body schema for the getMyFeesEstimates operation
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) of the item.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6369,7 +6587,8 @@ module Peddler
       # **Note:** When sellers use the `getMyFeesEstimateForSKU` operation with their `SellerSKU`, they get accurate
       # fees based on real item measurements, but only after they've sent their items to Amazon.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body schema for the getMyFeesEstimates operation
       # @rbs seller_sku: String -- Used to identify an item in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
@@ -6385,7 +6604,8 @@ module Peddler
 
       # Returns the estimated fees for a list of products.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body schema for the getMyFeesEstimates operation
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6402,7 +6622,7 @@ module Peddler
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     class ProductPricingV0
       # @rbs @engine: engine
 
@@ -6417,7 +6637,8 @@ module Peddler
       # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @rbs asins: Array[String]? -- A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
@@ -6445,7 +6666,8 @@ module Peddler
 
       # Returns the lowest priced offers for a single item based on ASIN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @rbs item_condition: String -- Filters the offer listings to be considered based on item condition. Possible
@@ -6466,7 +6688,8 @@ module Peddler
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs get_item_offers_batch_request_body: untyped -- The request associated with the `getItemOffersBatch` API
       #   call.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6484,7 +6707,8 @@ module Peddler
       # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @rbs item_condition: String -- Filters the offer listings based on item condition. Possible values: New, Used,
@@ -6506,7 +6730,8 @@ module Peddler
 
       # Returns the lowest priced offers for a batch of listings by SKU.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs get_listing_offers_batch_request_body: untyped -- The request associated with the `getListingOffersBatch`
       #   API call.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6524,7 +6749,8 @@ module Peddler
       # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @rbs asins: Array[String]? -- A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
@@ -6562,7 +6788,7 @@ module Peddler
     # For more information, refer to the [Product Pricing v2022-05-01 Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
     class ProductPricing20220501
       # @rbs @engine: engine
 
@@ -6574,7 +6800,8 @@ module Peddler
       # Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId`
       # combination.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs requests: untyped -- The batch of `getCompetitiveSummary` requests.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6592,7 +6819,8 @@ module Peddler
       # change. Other offers might be featured based on factors such as fulfillment capabilities to a specific customer.
       # The response to an unsuccessful request includes the available error text.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs get_featured_offer_expected_price_batch_request_body: untyped -- The batch of
       #   `getFeaturedOfferExpectedPrice` requests.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6612,10 +6840,10 @@ module Peddler
     # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
     # Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).
     #
-    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide
-    # Product Type Definitions API Use Case Guide}.
+    # For more information, see the [Product Type Definitions API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901
       # @rbs @engine: engine
 
@@ -6626,7 +6854,8 @@ module Peddler
 
       # Retrieve an Amazon product type definition.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs product_type: String -- The Amazon product type name.
       # @rbs seller_id: String? -- A selling partner identifier. When provided, seller-specific requirements and values
       #   are populated within the product type definition schema, such as brand names associated with the selling
@@ -6663,7 +6892,8 @@ module Peddler
 
       # Search for and return a list of Amazon product types that have definitions available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs keywords: Array[String]? -- A comma-delimited list of keywords to search product types. **Note:** Cannot be
       #   used with `itemName`.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -6690,7 +6920,7 @@ module Peddler
     #
     # The Selling Partner API for Promotions enables selling partners to create and manage promotions.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/promotions-api-model/promotions_2025-12-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/promotions-api-model/promotions_2025-12-01.json
     class Promotions20251201
       # @rbs @engine: engine
 
@@ -6701,7 +6931,8 @@ module Peddler
 
       # Retrieve details of a specified promotion.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs promotion_id: String -- The ID of the promotion.
       # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
       # @rbs locale: String? -- The locale of the promotion. Formatted as an ISO 639 language code, followed by an
@@ -6721,7 +6952,8 @@ module Peddler
       # items found in `SelectionType.ITEMS`. Items found in `SelectionType.CATALOG` are not supported. Selection
       # objects always include `selectionDetails` with item information.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs promotion_id: String -- The ID of the promotion.
       # @rbs selection_id: String -- The ID of the selection.
       # @rbs revision_id: Integer -- The revision identifier for the selection. Use the `revisionId` from the
@@ -6751,7 +6983,7 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.get_selection", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "promotions_2025_12_01.get_selection")
       end
 
-      # Each page of {#get_selection}
+      # Each page of #get_selection. `rate_limit` applies to every page.
       #: (String promotion_id, String selection_id, Integer revision_id, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_selection_pages(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
@@ -6768,7 +7000,8 @@ module Peddler
 
       # Search and filter promotions based on various criteria. Returns a paginated list of promotion summaries.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String] -- The Amazon stores from which to retrieve promotions. Refer to [Store
       #   Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers) for a list of Amazon store values.
       # @rbs locale: String? -- The locale from which to retrieve promotions. Formatted as an ISO 639 language code,
@@ -6825,7 +7058,7 @@ module Peddler
         Response.from_parts(@engine.operation("promotions_2025_12_01.search_promotions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "promotions_2025_12_01.search_promotions")
       end
 
-      # Each page of {#search_promotions}
+      # Each page of #search_promotions. `rate_limit` applies to every page.
       #: (Array[String] marketplace_ids, ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def search_promotions_pages(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, rate_limit: 0.1)
         arguments = {
@@ -6859,7 +7092,7 @@ module Peddler
     # The Replenishment API is available worldwide wherever Amazon Subscribe & Save is available or is supported. The
     # API is available to vendors and FBA selling partners.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     class Replenishment20221107
       # @rbs @engine: engine
 
@@ -6870,7 +7103,8 @@ module Peddler
 
       # Returns aggregated replenishment program metrics for a selling partner.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped? -- The request body for the `getSellingPartnerMetrics` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6883,7 +7117,8 @@ module Peddler
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped? -- The request body for the `listOfferMetrics` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6896,7 +7131,8 @@ module Peddler
 
       # Returns the details of a selling partner's replenishment program offers.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped? -- The request body for the `listOffers` operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6913,7 +7149,7 @@ module Peddler
     # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
     # partners manage their businesses.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
     class Reports20210630
       # @rbs @engine: engine
 
@@ -6925,7 +7161,8 @@ module Peddler
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
       # reports are returned in subsequent calls to the `getReport` and `getReports` operations.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_id: String -- The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6939,7 +7176,8 @@ module Peddler
 
       # Cancels the report schedule that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_schedule_id: String -- The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6953,7 +7191,8 @@ module Peddler
 
       # Creates a report.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Information required to create the report.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6967,7 +7206,8 @@ module Peddler
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
       # will be cancelled and replaced with this one.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Information required to create the report schedule.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -6980,7 +7220,8 @@ module Peddler
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_id: String -- The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6994,7 +7235,8 @@ module Peddler
 
       # Returns the information required for retrieving a report document's contents.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_document_id: String -- The identifier for the report document.
       # @rbs enable_content_encoding_url_header: bool? -- When `true`, the Content-Encoding header on the returned URL
       #   is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows
@@ -7011,7 +7253,8 @@ module Peddler
 
       # Returns report schedule details for the report schedule that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_schedule_id: String -- The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7025,7 +7268,8 @@ module Peddler
 
       # Returns report schedule details that match the filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_types: Array[String] -- A list of report types used to filter report schedules. Refer to [Report
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7039,7 +7283,8 @@ module Peddler
 
       # Returns report details for the reports that match the filters that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs report_types: Array[String]? -- A list of report types used to filter reports. Refer to [Report Type
       #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
       #   reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince,
@@ -7049,10 +7294,10 @@ module Peddler
       #   returned will match at least one of the marketplaces that you specify.
       # @rbs page_size: Integer? -- The maximum number of reports to return in a single call.
       # @rbs created_since: String? -- The earliest report creation date and time for reports to include in the
-      #   response, in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default
+      #   response, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. The default
       #   is 90 days ago. Reports are retained for a maximum of 90 days.
       # @rbs created_until: String? -- The latest report creation date and time for reports to include in the response,
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is now.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. The default is now.
       # @rbs next_token: String? -- A string token returned in the response to your previous request. `nextToken` is
       #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
       #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
@@ -7072,7 +7317,7 @@ module Peddler
         Response.from_parts(@engine.operation("reports_2021_06_30.get_reports", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "reports_2021_06_30.get_reports")
       end
 
-      # Each page of {#get_reports}
+      # Each page of #get_reports. `rate_limit` applies to every page.
       #: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_reports_pages(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10, created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         arguments = {
@@ -7092,7 +7337,7 @@ module Peddler
     #
     # The Selling Partner API for Sales provides APIs related to sales performance.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales-api-model/sales.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/sales-api-model/sales.json
     class SalesV1
       # @rbs @engine: engine
 
@@ -7103,7 +7348,8 @@ module Peddler
 
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified. For example, ATVPDKIKX0DER indicates the US
       #   marketplace.
@@ -7168,7 +7414,7 @@ module Peddler
     # seller's Seller Wallet account. You can obtain financial events, balances, and transfer schedules for Seller
     # Wallet accounts. You can also schedule and initiate transactions.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     class SellerWallet20240301
       # @rbs @engine: engine
 
@@ -7179,7 +7425,8 @@ module Peddler
 
       # Create a transaction request from a Seller Wallet account to another customer-provided account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The payload of the request
       # @rbs dest_account_digital_signature: String -- Digital signature for the destination bank account details. For
       #   more information, refer to [Third-Party Provider Signature
@@ -7205,7 +7452,8 @@ module Peddler
 
       # Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The payload of the request.
       # @rbs dest_account_digital_signature: String -- Digital signature for the destination bank account details.
       # @rbs amount_digital_signature: String -- Digital signature for the source currency transaction amount.
@@ -7227,7 +7475,8 @@ module Peddler
       # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
       # account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs transfer_schedule_id: String -- A unique reference ID for a scheduled transfer.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7244,7 +7493,8 @@ module Peddler
 
       # Retrieve a Seller Wallet bank account by Amazon account identifier.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs account_id: String -- The ID of the Amazon Seller Wallet account.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7261,7 +7511,8 @@ module Peddler
 
       # Find a transaction by the Amazon transaction identifier.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs transaction_id: String -- The ID of the Amazon Seller Wallet transaction.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7278,7 +7529,8 @@ module Peddler
 
       # Retrieve a list of potential fees on a transaction.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs source_country_code: String -- Country code of the source transaction account in ISO 3166 format.
       # @rbs source_currency_code: String -- Currency code of the source transaction country in ISO 4217 format.
       # @rbs destination_country_code: String -- Country code of the destination transaction account in ISO 3166 format.
@@ -7304,7 +7556,8 @@ module Peddler
 
       # Find a particular Amazon Seller Wallet account transfer schedule.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs transfer_schedule_id: String -- The schedule ID of the Amazon Seller Wallet transfer.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7321,7 +7574,8 @@ module Peddler
 
       # Retrieve the balance in a given Seller Wallet bank account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs account_id: String -- The ID of the Amazon Seller Wallet account.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7338,7 +7592,8 @@ module Peddler
 
       # Retrieve a list of transactions for a given Seller Wallet bank account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs account_id: String -- The ID of the Amazon Seller Wallet account.
       # @rbs next_page_token: String? -- A token that you use to retrieve the next page of results. The response
       #   includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the
@@ -7359,7 +7614,7 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_account_transactions", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_account_transactions")
       end
 
-      # Each page of {#list_account_transactions}
+      # Each page of #list_account_transactions. `rate_limit` applies to every page.
       #: (String account_id, String marketplace_id, ?next_page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_account_transactions_pages(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
@@ -7372,7 +7627,8 @@ module Peddler
 
       # Get Seller Wallet accounts for a seller.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -7387,7 +7643,8 @@ module Peddler
 
       # Retrieve transfer schedules of a Seller Wallet bank account.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs account_id: String -- The ID of the Amazon Seller Wallet account.
       # @rbs marketplace_id: String -- The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -7408,7 +7665,7 @@ module Peddler
         Response.from_parts(@engine.operation("seller_wallet_2024_03_01.list_transfer_schedules", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "seller_wallet_2024_03_01.list_transfer_schedules")
       end
 
-      # Each page of {#list_transfer_schedules}
+      # Each page of #list_transfer_schedules. `rate_limit` applies to every page.
       #: (String account_id, String marketplace_id, ?next_page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_transfer_schedules_pages(account_id, marketplace_id, next_page_token: nil, rate_limit: nil)
         arguments = {
@@ -7421,7 +7678,8 @@ module Peddler
 
       # Update transfer schedule information. Returns a transfer belonging to the updated scheduled transfer request.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The payload of the scheduled transfer request that is to be updated.
       # @rbs dest_account_digital_signature: String -- Digital signature for the destination bank account details.
       # @rbs amount_digital_signature: String -- Digital signature for the source currency transaction amount.
@@ -7452,7 +7710,7 @@ module Peddler
     # Refer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for
     # details about this API's operations, data types, and schemas.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     class SellersV1
       # @rbs @engine: engine
 
@@ -7463,7 +7721,8 @@ module Peddler
 
       # Returns information about a seller account and its marketplaces.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_account(rate_limit: 0.016)
@@ -7475,7 +7734,8 @@ module Peddler
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_marketplace_participations(rate_limit: 0.016)
@@ -7490,7 +7750,7 @@ module Peddler
     # With the Services API, you can build applications that help service providers get and modify their service orders
     # and manage their resources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     class ServicesV1
       # @rbs @engine: engine
 
@@ -7501,7 +7761,8 @@ module Peddler
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon defined service job identifier.
       # @rbs body: untyped -- Add appointment operation input details.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7516,7 +7777,8 @@ module Peddler
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon-defined service job identifier. Get this value by calling the
       #   `getServiceJobs` operation of the Services API.
       # @rbs appointment_id: String -- An Amazon-defined identifier of active service job appointment.
@@ -7534,7 +7796,8 @@ module Peddler
 
       # Cancel a reservation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs reservation_id: String -- Reservation Identifier
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7549,7 +7812,8 @@ module Peddler
 
       # Cancels the service job indicated by the service job identifier specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon defined service job identifier.
       # @rbs cancellation_reason_code: String -- A cancel reason code that specifies the reason for cancelling a service
       #   job.
@@ -7565,7 +7829,8 @@ module Peddler
 
       # Completes the service job indicated by the service job identifier specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon defined service job identifier.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7578,7 +7843,8 @@ module Peddler
 
       # Create a reservation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Reservation details
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7593,7 +7859,8 @@ module Peddler
 
       # Creates an upload destination.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Upload document operation input details.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7606,7 +7873,8 @@ module Peddler
 
       # Gets appointment slots as per the service context specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs asin: String -- ASIN associated with the service.
       # @rbs store_id: String -- Store identifier defining the region scope to retrive appointment slots.
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace for which appointment slots are queried
@@ -7631,7 +7899,8 @@ module Peddler
 
       # Gets appointment slots for the service associated with the service job id specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- A service job identifier to retrive appointment slots for associated service.
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
       # @rbs start_time: String? -- A time from which the appointment slots will be retrieved. The specified time must
@@ -7654,7 +7923,8 @@ module Peddler
 
       # Provides capacity in fixed-size slots.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs resource_id: String -- Resource Identifier.
       # @rbs body: untyped -- Request body.
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
@@ -7671,7 +7941,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_fixed_slot_capacity", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.get_fixed_slot_capacity")
       end
 
-      # Each page of {#get_fixed_slot_capacity}
+      # Each page of #get_fixed_slot_capacity. `rate_limit` applies to every page.
       #: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_fixed_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
@@ -7685,7 +7955,8 @@ module Peddler
 
       # Provides capacity slots in a format similar to availability records.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs resource_id: String -- Resource Identifier.
       # @rbs body: untyped -- Request body.
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
@@ -7702,7 +7973,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_range_slot_capacity", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "services_v1.get_range_slot_capacity")
       end
 
-      # Each page of {#get_range_slot_capacity}
+      # Each page of #get_range_slot_capacity. `rate_limit` applies to every page.
       #: (String resource_id, untyped body, Array[String] marketplace_ids, ?next_page_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_range_slot_capacity_pages(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         arguments = {
@@ -7716,7 +7987,8 @@ module Peddler
 
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- A service job identifier.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7729,7 +8001,8 @@ module Peddler
 
       # Gets service job details for the specified filter query.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_order_ids: Array[String]? -- List of service order ids for the query you want to perform.Max values
       #   supported 20.
       # @rbs product_order_ids: Array[String]? -- A list of up to 20 associated product order IDs. You can use these IDs
@@ -7790,7 +8063,7 @@ module Peddler
         Response.from_parts(@engine.operation("services_v1.get_service_jobs", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_service_jobs")
       end
 
-      # Each page of {#get_service_jobs}
+      # Each page of #get_service_jobs. `rate_limit` applies to every page.
       #: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
         arguments = {
@@ -7818,7 +8091,8 @@ module Peddler
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon defined service job identifier.
       # @rbs appointment_id: String -- An existing appointment identifier for the Service Job.
       # @rbs body: untyped -- Reschedule appointment operation input details.
@@ -7835,7 +8109,8 @@ module Peddler
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs service_job_id: String -- An Amazon-defined service job identifier. Get this value by calling the
       #   `getServiceJobs` operation of the Services API.
       # @rbs appointment_id: String -- An Amazon-defined identifier of active service job appointment.
@@ -7853,7 +8128,8 @@ module Peddler
 
       # Update a reservation.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs reservation_id: String -- Reservation Identifier
       # @rbs body: untyped -- Reservation details
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
@@ -7870,7 +8146,8 @@ module Peddler
 
       # Update the schedule of the given resource.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs resource_id: String -- Resource (store) Identifier
       # @rbs body: untyped -- Schedule details
       # @rbs marketplace_ids: Array[String] -- An identifier for the marketplace in which the resource operates.
@@ -7891,7 +8168,7 @@ module Peddler
     # The Selling Partner API for Shipment Invoicing helps you programmatically retrieve shipment invoice information in
     # the Brazil marketplace for a selling partner’s Fulfillment by Amazon (FBA) orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
     class ShipmentInvoicingV0
       # @rbs @engine: engine
 
@@ -7902,7 +8179,8 @@ module Peddler
 
       # Returns the invoice status for the shipment you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The shipment identifier for the shipment.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7915,11 +8193,11 @@ module Peddler
 
       # Returns the shipment details required to issue an invoice for the specified shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus
-      #   notification. For information about subscribing to notifications, see the
-      #   {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
-      #   Guide}.
+      #   notification. For information about subscribing to notifications, see the [Notifications API Use Case
+      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_shipment_details(shipment_id, rate_limit: 1.133)
@@ -7931,7 +8209,8 @@ module Peddler
 
       # Submits a shipment invoice document for a given shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- The identifier for the shipment.
       # @rbs body: untyped
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -7949,11 +8228,11 @@ module Peddler
     #
     # Provides programmatic access to Amazon Shipping APIs.
     #
-    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of
-    # {https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference Amazon Shipping API (v2)} on the
-    # {https://developer-docs.amazon.com/amazon-shipping/ Amazon Shipping Developer Documentation} site.
+    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of [Amazon Shipping API
+    # (v2)](https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference) on the [Amazon Shipping
+    # Developer Documentation](https://developer-docs.amazon.com/amazon-shipping/) site.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
     class ShippingV1
       # @rbs @engine: engine
 
@@ -7964,7 +8243,8 @@ module Peddler
 
       # Cancel a shipment by the given shipmentId.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- Shipment Id to cancel a shipment
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7977,7 +8257,8 @@ module Peddler
 
       # Create a new shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- CreateShipmentRequest Body
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -7990,7 +8271,8 @@ module Peddler
 
       # Verify if the current account is valid.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_account(rate_limit: 5.0)
@@ -8001,7 +8283,8 @@ module Peddler
 
       # Get service rates.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- GetRatesRequest body
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8014,7 +8297,8 @@ module Peddler
 
       # Return the entire shipment object for the shipmentId.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- Shipment id to return the entire shipment object
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8027,7 +8311,8 @@ module Peddler
 
       # Return the tracking information of a shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs tracking_id: String -- Tracking Id
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8040,7 +8325,8 @@ module Peddler
 
       # Purchase shipping labels based on a given rate.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- Shipment id for purchase shipping label
       # @rbs body: untyped -- PurchaseShippingLabelRequest body
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8055,7 +8341,8 @@ module Peddler
 
       # Purchase shipping labels.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- PurchaseShipmentRequest body
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8068,7 +8355,8 @@ module Peddler
 
       # Retrieve shipping label based on the shipment id and tracking id.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs shipment_id: String -- Shipment Id to retreive label
       # @rbs tracking_id: String -- Tracking Id
       # @rbs body: untyped -- RetrieveShippingLabelRequest body
@@ -8090,7 +8378,7 @@ module Peddler
     # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
     # rates, create shipments, cancel shipments, and track shipments.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     class ShippingV2
       # @rbs @engine: engine
 
@@ -8101,7 +8389,8 @@ module Peddler
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The shipment identifier originally returned by the purchaseShipment operation.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -8117,7 +8406,8 @@ module Peddler
 
       # This API will be used to create claim for single eligible shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- Request body for the createClaim operation
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -8134,7 +8424,8 @@ module Peddler
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
       # details and documents.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- DirectPurchaseRequest body
       # @rbs x_amzn_idempotency_key: String? -- A unique value which the server uses to recognize subsequent retries of
       #   the same request.
@@ -8175,7 +8466,8 @@ module Peddler
 
       # Returns a list of access points in proximity of input postal code.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs access_point_types: Array[String] -- Access point types
       # @rbs country_code: String -- Country code for access point
       # @rbs postal_code: String -- postal code for access point
@@ -8197,7 +8489,8 @@ module Peddler
       # the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
       # additional inputs are required for the rate (shipping offering) that you want to purchase.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs request_token: String -- The request token returned in the response to the getRates operation.
       # @rbs rate_id: String -- The rate identifier for the shipping offering (rate) returned in the response to the
       #   getRates operation.
@@ -8274,7 +8567,8 @@ module Peddler
 
       # Returns the available shipping service offerings.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- GetRatesRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -8290,7 +8584,8 @@ module Peddler
 
       # Returns the shipping documents associated with a package in a shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs shipment_id: String -- The shipment identifier originally returned by the purchaseShipment operation.
       # @rbs package_client_reference_id: String -- The package client reference identifier originally provided in the
       #   request body parameter for the getRates operation.
@@ -8315,7 +8610,8 @@ module Peddler
 
       # Returns tracking information for a purchased shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs tracking_id: String -- A carrier-generated tracking identifier originally returned by the purchaseShipment
       #   operation.
       # @rbs carrier_id: String -- A carrier identifier originally returned by the getRates operation for the selected
@@ -8351,7 +8647,8 @@ module Peddler
 
       # This API associates/links the specified carrier account with the merchant.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs carrier_id: String -- An identifier for the carrier with which the seller's account is being linked.
       # @rbs body: untyped -- LinkCarrierAccountRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
@@ -8386,7 +8683,8 @@ module Peddler
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- OneClickShipmentRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -8406,7 +8704,8 @@ module Peddler
       # make the request after the 10 minutes have expired, you will receive an error response with the error code equal
       # to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- PurchaseShipmentRequest body
       # @rbs x_amzn_idempotency_key: String? -- A unique value which the server uses to recognize subsequent retries of
       #   the same request.
@@ -8425,7 +8724,8 @@ module Peddler
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- Request body for ndrFeedback operation
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -8463,10 +8763,10 @@ module Peddler
     # a list of solicitation types that are available for an order that you specify, then call an operation that sends a
     # solicitation to the buyer for that order. Buyers cannot respond to solicitations sent by this API, and these
     # solicitations do not appear in the Messaging section of Seller Central or in the recipient's Message Center. The
-    # Solicitations API returns responses that are formed according to the
-    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    # Solicitations API returns responses that are formed according to the [JSON Hypertext Application
+    # Language](https://tools.ietf.org/html/draft-kelly-json-hal-08) (HAL) standard.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     class SolicitationsV1
       # @rbs @engine: engine
 
@@ -8478,7 +8778,8 @@ module Peddler
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
       # only one productReviewAndSellerFeedback or free form proactive message per order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This specifies the order for which a solicitation is
       #   sent.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This specifies the marketplace in which the
@@ -8498,7 +8799,8 @@ module Peddler
       # parameter(s) to call an operation that sends a solicitation. Currently only the
       # productReviewAndSellerFeedbackSolicitation solicitation type is available.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs amazon_order_id: String -- An Amazon order identifier. This specifies the order for which you want a list
       #   of available solicitation types.
       # @rbs marketplace_ids: Array[String] -- A marketplace identifier. This specifies the marketplace in which the
@@ -8518,7 +8820,7 @@ module Peddler
     #
     # Manage configurations and capabilities of seller supply sources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     class SupplySources20200701
       # @rbs @engine: engine
 
@@ -8529,7 +8831,8 @@ module Peddler
 
       # Archive a supply source, making it inactive. Cannot be undone.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs supply_source_id: String -- The unique identifier of a supply source.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8542,7 +8845,8 @@ module Peddler
 
       # Create a new supply source.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs payload: untyped -- A request to create a supply source.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8555,7 +8859,8 @@ module Peddler
 
       # Retrieve a supply source.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs supply_source_id: String -- The unique identifier of a supply source.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8568,7 +8873,8 @@ module Peddler
 
       # The path to retrieve paginated supply sources.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs next_page_token: String? -- The pagination token to retrieve a specific page of results.
       # @rbs page_size: (Float | Integer)? -- The number of supply sources to return per paginated request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8581,7 +8887,7 @@ module Peddler
         Response.from_parts(@engine.operation("supply_sources_2020_07_01.get_supply_sources", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "supply_sources_2020_07_01.get_supply_sources")
       end
 
-      # Each page of {#get_supply_sources}
+      # Each page of #get_supply_sources. `rate_limit` applies to every page.
       #: (?next_page_token: String?, ?page_size: (Float | Integer)?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_supply_sources_pages(next_page_token: nil, page_size: 10, rate_limit: nil)
         arguments = {
@@ -8593,7 +8899,8 @@ module Peddler
 
       # Update the configuration and capabilities of a supply source.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs supply_source_id: String -- The unique identitier of a supply source.
       # @rbs payload: untyped?
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8608,7 +8915,8 @@ module Peddler
 
       # Update the status of a supply source.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs supply_source_id: String -- The unique identifier of a supply source.
       # @rbs payload: untyped?
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8626,7 +8934,7 @@ module Peddler
     #
     # The Selling Partner API for Support provides programmatic access to information about Selling Partner support.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/support-api-model/support_2025-02-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/support-api-model/support_2025-02-01.json
     class Support20250201
       # @rbs @engine: engine
 
@@ -8637,7 +8945,8 @@ module Peddler
 
       # Retrieve a specific support case.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs case_id: String -- The case identifier.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8650,7 +8959,8 @@ module Peddler
 
       # Retrieve support cases for a selling partner.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body for the listCases operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8661,7 +8971,7 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_cases", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "support_2025_02_01.list_cases")
       end
 
-      # Each page of {#list_cases}
+      # Each page of #list_cases. `rate_limit` applies to every page.
       #: (untyped body, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_cases_pages(body, rate_limit: nil)
         arguments = {
@@ -8672,7 +8982,8 @@ module Peddler
 
       # Retrieve contacts for a specific support case.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs case_id: String -- The case identifier.
       # @rbs max_results: Integer? -- The maximum number of results to include in the response.
       # @rbs next_token: String? -- A token to retrieve the next page of results. The response includes `nextToken` when
@@ -8692,7 +9003,7 @@ module Peddler
         Response.from_parts(@engine.operation("support_2025_02_01.list_contacts", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "support_2025_02_01.list_contacts")
       end
 
-      # Each page of {#list_contacts}
+      # Each page of #list_contacts. `rate_limit` applies to every page.
       #: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
         arguments = {
@@ -8712,10 +9023,10 @@ module Peddler
     # resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the
     # restricted resources that you specified.
     #
-    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide Tokens API
-    # Use Case Guide}.
+    # For more information, see the [Tokens API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
     class Tokens20210301
       # @rbs @engine: engine
 
@@ -8730,7 +9041,8 @@ module Peddler
       # Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent
       # calls to the corresponding restricted operations.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The restricted data token request details.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -8747,7 +9059,7 @@ module Peddler
     # The Tracking Selling Partner API allows users to track shipments to and from Amazon-owned storage warehouses,
     # fulfillment centers, and external warehouses.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tracking-api-model/tracking_2026-01-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/tracking-api-model/tracking_2026-01-30.json
     class Tracking20260130
       # @rbs @engine: engine
 
@@ -8758,7 +9070,8 @@ module Peddler
 
       # Returns tracking information for a shipment.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs id: String? -- The unique tracking request identifier.
       # @rbs acsin: String? -- The Air Cargo Shipment Identification Number.
       # @rbs aftn: String? -- The Amazon Fulfillment Tracking Number.
@@ -8792,7 +9105,7 @@ module Peddler
     # The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such
     # as the A+ Content API and the Messaging API.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
     class Uploads20201101
       # @rbs @engine: engine
 
@@ -8836,7 +9149,7 @@ module Peddler
     # The Selling Partner API for Automotive provides programmatic access to information needed by selling partners to
     # provide compatibility information about their listed products.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles-api-model/vehicles_2024-11-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles-api-model/vehicles_2024-11-01.json
     class Vehicles20241101
       # @rbs @engine: engine
 
@@ -8847,7 +9160,8 @@ module Peddler
 
       # Get the latest collection of vehicles
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs page_token: String? -- A token to fetch a certain page when there are multiple pages worth of results.
       # @rbs marketplace_id: String -- An identifier for the marketplace in which the resource operates.
       # @rbs vehicle_type: String -- An identifier for vehicle type.
@@ -8865,7 +9179,7 @@ module Peddler
         Response.from_parts(@engine.operation("vehicles_2024_11_01.get_vehicles", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vehicles_2024_11_01.get_vehicles")
       end
 
-      # Each page of {#get_vehicles}
+      # Each page of #get_vehicles. `rate_limit` applies to every page.
       #: (String marketplace_id, String vehicle_type, ?page_token: String?, ?updated_after: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_vehicles_pages(marketplace_id, vehicle_type, page_token: nil, updated_after: nil, rate_limit: nil)
         arguments = {
@@ -8883,7 +9197,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Inventory Updates provides programmatic access to a direct
     # fulfillment vendor's inventory updates.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1
       # @rbs @engine: engine
 
@@ -8894,7 +9208,8 @@ module Peddler
 
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body containing the inventory update data to submit.
       # @rbs warehouse_id: String -- Identifier for the warehouse for which to update inventory.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8913,7 +9228,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
     # vendor's order data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json
     class VendorDirectFulfillmentOrdersV1
       # @rbs @engine: engine
 
@@ -8924,7 +9239,8 @@ module Peddler
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs purchase_order_number: String -- The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -8942,7 +9258,8 @@ module Peddler
       # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
       # order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @rbs status: String? -- Returns only the purchase orders that match the specified status. If not specified, the
@@ -8973,7 +9290,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_v1.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_v1.get_orders")
       end
 
-      # Each page of {#get_orders}
+      # Each page of #get_orders. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
@@ -8991,7 +9308,8 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body containing the acknowledgement to an order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9008,7 +9326,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
     # vendor's order data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
     class VendorDirectFulfillmentOrders20211228
       # @rbs @engine: engine
 
@@ -9019,7 +9337,8 @@ module Peddler
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs purchase_order_number: String -- The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9037,7 +9356,8 @@ module Peddler
       # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
       # order.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @rbs status: String? -- Returns only the purchase orders that match the specified status. If not specified, the
@@ -9068,7 +9388,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_orders_2021_12_28.get_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_orders_2021_12_28.get_orders")
       end
 
-      # Each page of {#get_orders}
+      # Each page of #get_orders. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_orders_pages(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil, next_token: nil, include_details: true, rate_limit: 10.0)
         arguments = {
@@ -9086,7 +9406,8 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body containing the acknowledgement to an order
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9103,7 +9424,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Payments provides programmatic access to a direct fulfillment
     # vendor's invoice data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json
     class VendorDirectFulfillmentPaymentsV1
       # @rbs @engine: engine
 
@@ -9114,7 +9435,8 @@ module Peddler
 
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body containing one or more invoices for vendor orders.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9131,7 +9453,7 @@ module Peddler
     # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     class VendorDirectFulfillmentSandboxTestData20211028
       # @rbs @engine: engine
 
@@ -9142,7 +9464,8 @@ module Peddler
 
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request payload containing parameters for generating test order data scenarios.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9156,7 +9479,8 @@ module Peddler
       # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
       # successful, also returns the requested test order data.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs transaction_id: String -- The transaction identifier returned in the response to the generateOrderScenarios
       #   operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9174,7 +9498,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Shipping provides programmatic access to a direct fulfillment
     # vendor's shipping data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1
       # @rbs @engine: engine
 
@@ -9185,7 +9509,8 @@ module Peddler
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs purchase_order_number: String -- Purchase order number of the shipment for which to return the invoice.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9200,7 +9525,8 @@ module Peddler
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must be no more than 7 days.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @rbs limit: Integer? -- The limit to the number of records returned
@@ -9225,7 +9551,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_customer_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_customer_invoices")
       end
 
-      # Each page of {#get_customer_invoices}
+      # Each page of #get_customer_invoices. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9241,7 +9567,8 @@ module Peddler
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs purchase_order_number: String -- The purchaseOrderNumber for the packing slip you want.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9255,7 +9582,8 @@ module Peddler
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
       # must not be more than 7 days.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouseId for order fulfillment. If not specified the result
       #   will contain orders for all warehouses.
       # @rbs limit: Integer? -- The limit to the number of records returned
@@ -9280,7 +9608,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_packing_slips", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_packing_slips")
       end
 
-      # Each page of {#get_packing_slips}
+      # Each page of #get_packing_slips. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9296,7 +9624,8 @@ module Peddler
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs purchase_order_number: String -- The purchase order number for which you want to return the shipping label.
       #   It should be the same purchaseOrderNumber as received in the order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9312,7 +9641,8 @@ module Peddler
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must not be more than 7 days.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @rbs limit: Integer? -- The limit to the number of records returned.
@@ -9337,7 +9667,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_v1.get_shipping_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_v1.get_shipping_labels")
       end
 
-      # Each page of {#get_shipping_labels}
+      # Each page of #get_shipping_labels. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9353,7 +9683,8 @@ module Peddler
 
       # Submits one or more shipment confirmations for vendor orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Request body containing the shipment confirmations data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9368,7 +9699,8 @@ module Peddler
       # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
       # order, when the package is outside of Amazon Network visibility.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Request body containing the shipment status update data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9381,7 +9713,8 @@ module Peddler
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Request body containing one or more shipping labels data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9397,7 +9730,7 @@ module Peddler
     #
     # Use the Selling Partner API for Direct Fulfillment Shipping to access a direct fulfillment vendor's shipping data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
     class VendorDirectFulfillmentShipping20211228
       # @rbs @engine: engine
 
@@ -9408,7 +9741,8 @@ module Peddler
 
       # Creates a container (pallet) label for the associated shipment package.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- Request body containing the container label data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9421,7 +9755,8 @@ module Peddler
 
       # Creates shipping labels for a purchase order and returns the labels.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs purchase_order_number: String -- The purchase order number for which you want to return the shipping
       #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
       # @rbs body: untyped -- The request payload that contains the parameters for creating shipping labels.
@@ -9437,7 +9772,8 @@ module Peddler
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs purchase_order_number: String -- Purchase order number of the shipment for which to return the invoice.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9452,7 +9788,8 @@ module Peddler
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must be no more than 7 days.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @rbs limit: Integer? -- The limit to the number of records returned
@@ -9477,7 +9814,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices")
       end
 
-      # Each page of {#get_customer_invoices}
+      # Each page of #get_customer_invoices. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_customer_invoices_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil, next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9493,7 +9830,8 @@ module Peddler
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs purchase_order_number: String -- The `purchaseOrderNumber` for the packing slip that you want.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9507,7 +9845,8 @@ module Peddler
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
       # must not be more than 7 days.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   contains orders for all warehouses.
       # @rbs limit: Integer? -- The maximum number of records to return.
@@ -9532,7 +9871,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips")
       end
 
-      # Each page of {#get_packing_slips}
+      # Each page of #get_packing_slips. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_packing_slips_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9548,7 +9887,8 @@ module Peddler
 
       # Returns a shipping label for the `purchaseOrderNumber` that you specify.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs purchase_order_number: String -- The purchase order number for which you want to return the shipping label.
       #   It should be the same `purchaseOrderNumber` that you received in the order.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9564,7 +9904,8 @@ module Peddler
       # `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to
       # search must not be more than seven days.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs ship_from_party_id: String? -- The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   contains orders for all warehouses.
       # @rbs limit: Integer? -- The limit to the number of records returned.
@@ -9591,7 +9932,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels")
       end
 
-      # Each page of {#get_shipping_labels}
+      # Each page of #get_shipping_labels. `rate_limit` applies to every page.
       #: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipping_labels_pages(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC", next_token: nil, rate_limit: 10.0)
         arguments = {
@@ -9607,7 +9948,8 @@ module Peddler
 
       # Submits one or more shipment confirmations for vendor orders.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- Request body containing the shipment confirmations data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9622,7 +9964,8 @@ module Peddler
       # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
       # order, when the package is outside of Amazon Network visibility.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- Request body containing the shipment status update data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9635,7 +9978,8 @@ module Peddler
 
       # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs body: untyped -- The request body that contains the shipping labels data.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9652,7 +9996,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json
     class VendorDirectFulfillmentTransactionsV1
       # @rbs @engine: engine
 
@@ -9663,7 +10007,8 @@ module Peddler
 
       # Returns the status of the transaction indicated by the specified transactionId.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs transaction_id: String -- Previously returned in the response to the POST request of a specific
       #   transaction.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9681,7 +10026,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
     class VendorDirectFulfillmentTransactions20211228
       # @rbs @engine: engine
 
@@ -9692,7 +10037,8 @@ module Peddler
 
       # Returns the status of the transaction indicated by the specified transactionId.
       #
-      # @note This operation can make a dynamic sandbox call.
+      # This operation can make a dynamic sandbox call.
+      #
       # @rbs transaction_id: String -- Previously returned in the response to the POST request of a specific
       #   transaction.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9709,7 +10055,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
     class VendorInvoicesV1
       # @rbs @engine: engine
 
@@ -9720,7 +10066,8 @@ module Peddler
 
       # Submit new invoices to Amazon.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- The request body containing the invoice data to submit.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9736,7 +10083,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
     class VendorOrdersV1
       # @rbs @engine: engine
 
@@ -9747,7 +10094,8 @@ module Peddler
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs purchase_order_number: String -- The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9765,7 +10113,8 @@ module Peddler
       # purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation
       # to receive details for a specific purchase order.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs limit: Integer? -- The limit to the number of records returned. Default value is 100 records.
       # @rbs created_after: String? -- Purchase orders that became available after this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
@@ -9811,7 +10160,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.get_purchase_orders")
       end
 
-      # Each page of {#get_purchase_orders}
+      # Each page of #get_purchase_orders. `rate_limit` applies to every page.
       #: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_purchase_orders_pages(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil, ordering_vendor_code: nil, rate_limit: 10.0)
         arguments = {
@@ -9835,7 +10184,8 @@ module Peddler
       # than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase
       # order status by providing the purchase order number.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs limit: Integer? -- The limit to the number of records returned. Default value is 100 records.
       # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date.
       # @rbs next_token: String? -- Used for pagination when there are more purchase orders than the specified result
@@ -9886,7 +10236,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_orders_v1.get_purchase_orders_status", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_orders_v1.get_purchase_orders_status")
       end
 
-      # Each page of {#get_purchase_orders_status}
+      # Each page of #get_purchase_orders_status. `rate_limit` applies to every page.
       #: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?updated_after: String?, ?updated_before: String?, ?purchase_order_number: String?, ?purchase_order_status: String?, ?item_confirmation_status: String?, ?item_receive_status: String?, ?ordering_vendor_code: String?, ?ship_to_party_id: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_purchase_orders_status_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, rate_limit: 10.0)
         arguments = {
@@ -9909,7 +10259,8 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- Submits acknowledgements for one or more purchase orders from a vendor.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -9926,7 +10277,7 @@ module Peddler
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
     class VendorShipmentsV1
       # @rbs @engine: engine
 
@@ -9943,37 +10294,37 @@ module Peddler
       # @rbs next_token: String? -- Used for pagination when there are more shipments than the specified result size
       #   limit.
       # @rbs created_after: String? -- Get Shipment Details that became available after this timestamp will be included
-      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs created_before: String? -- Get Shipment Details that became available before this timestamp will be
-      #   included in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   included in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs shipment_confirmed_before: String? -- Get Shipment Details by passing Shipment confirmed create Date
-      #   Before. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   Before. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs shipment_confirmed_after: String? -- Get Shipment Details by passing Shipment confirmed create Date After.
-      #   Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs package_label_created_before: String? -- Get Shipment Details by passing Package label create Date by
-      #   buyer. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   buyer. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs package_label_created_after: String? -- Get Shipment Details by passing Package label create Date After by
-      #   buyer. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
-      # @rbs shipped_before: String? -- Get Shipment Details by passing Shipped Date Before. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
-      # @rbs shipped_after: String? -- Get Shipment Details by passing Shipped Date After. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   buyer. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @rbs shipped_before: String? -- Get Shipment Details by passing Shipped Date Before. Must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+      # @rbs shipped_after: String? -- Get Shipment Details by passing Shipped Date After. Must be in [ISO
+      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs estimated_delivery_before: String? -- Get Shipment Details by passing Estimated Delivery Date Before. Must
-      #   be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs estimated_delivery_after: String? -- Get Shipment Details by passing Estimated Delivery Date After. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs shipment_delivery_before: String? -- Get Shipment Details by passing Shipment Delivery Date Before. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs shipment_delivery_after: String? -- Get Shipment Details by passing Shipment Delivery Date After. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs requested_pick_up_before: String? -- Get Shipment Details by passing Before Requested pickup date. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs requested_pick_up_after: String? -- Get Shipment Details by passing After Requested pickup date. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs scheduled_pick_up_before: String? -- Get Shipment Details by passing Before scheduled pickup date. Must be
-      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs scheduled_pick_up_after: String? -- Get Shipment Details by passing After Scheduled pickup date. Must be in
-      #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
+      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs current_shipment_status: String? -- Get Shipment Details by passing Current shipment status.
       # @rbs vendor_shipment_identifier: String? -- Get Shipment Details by passing Vendor Shipment ID
       # @rbs buyer_reference_number: String? -- Get Shipment Details by passing buyer Reference ID
@@ -10013,7 +10364,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_details", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.get_shipment_details")
       end
 
-      # Each page of {#get_shipment_details}
+      # Each page of #get_shipment_details. `rate_limit` applies to every page.
       #: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?shipment_confirmed_before: String?, ?shipment_confirmed_after: String?, ?package_label_created_before: String?, ?package_label_created_after: String?, ?shipped_before: String?, ?shipped_after: String?, ?estimated_delivery_before: String?, ?estimated_delivery_after: String?, ?shipment_delivery_before: String?, ?shipment_delivery_after: String?, ?requested_pick_up_before: String?, ?requested_pick_up_after: String?, ?scheduled_pick_up_before: String?, ?scheduled_pick_up_after: String?, ?current_shipment_status: String?, ?vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?buyer_warehouse_code: String?, ?seller_warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipment_details_pages(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil, package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil, estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil, requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil, scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil, buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
@@ -10078,7 +10429,7 @@ module Peddler
         Response.from_parts(@engine.operation("vendor_shipments_v1.get_shipment_labels", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "vendor_shipments_v1.get_shipment_labels")
       end
 
-      # Each page of {#get_shipment_labels}
+      # Each page of #get_shipment_labels. `rate_limit` applies to every page.
       #: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?label_created_after: String?, ?label_created_before: String?, ?buyer_reference_number: String?, ?vendor_shipment_identifier: String?, ?seller_warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
       def get_shipment_labels_pages(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil, label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         arguments = {
@@ -10096,7 +10447,8 @@ module Peddler
 
       # Submits one or more shipment confirmations for vendor orders.
       #
-      # @note This operation can make a static sandbox call.
+      # This operation can make a static sandbox call.
+      #
       # @rbs body: untyped -- A request to submit shipment confirmation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -10125,7 +10477,7 @@ module Peddler
     # The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status
     # information on specific asynchronous POST transactions for vendors.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-transaction-status-api-model/vendorTransactionStatus.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-transaction-status-api-model/vendorTransactionStatus.json
     class VendorTransactionStatusV1
       # @rbs @engine: engine
 
@@ -10156,7 +10508,7 @@ module Peddler
       Native::AmazonWarehousingAndDistribution20240509.new(@engine)
     end
 
-    # The latest version: {#amazon_warehousing_and_distribution_2024_05_09}
+    # The latest version: #amazon_warehousing_and_distribution_2024_05_09
     #: () -> Native::AmazonWarehousingAndDistribution20240509
     def amazon_warehousing_and_distribution = amazon_warehousing_and_distribution_2024_05_09
 
@@ -10166,7 +10518,7 @@ module Peddler
       Native::AplusContent20201101.new(@engine)
     end
 
-    # The latest version: {#aplus_content_2020_11_01}
+    # The latest version: #aplus_content_2020_11_01
     #: () -> Native::AplusContent20201101
     def aplus_content = aplus_content_2020_11_01
 
@@ -10176,7 +10528,7 @@ module Peddler
       Native::ApplicationIntegrations20240401.new(@engine)
     end
 
-    # The latest version: {#application_integrations_2024_04_01}
+    # The latest version: #application_integrations_2024_04_01
     #: () -> Native::ApplicationIntegrations20240401
     def application_integrations = application_integrations_2024_04_01
 
@@ -10186,7 +10538,7 @@ module Peddler
       Native::ApplicationManagement20231130.new(@engine)
     end
 
-    # The latest version: {#application_management_2023_11_30}
+    # The latest version: #application_management_2023_11_30
     #: () -> Native::ApplicationManagement20231130
     def application_management = application_management_2023_11_30
 
@@ -10208,7 +10560,7 @@ module Peddler
       Native::CatalogItems20220401.new(@engine)
     end
 
-    # The latest version: {#catalog_items_2022_04_01}
+    # The latest version: #catalog_items_2022_04_01
     #: () -> Native::CatalogItems20220401
     def catalog_items = catalog_items_2022_04_01
 
@@ -10218,7 +10570,7 @@ module Peddler
       Native::CustomerFeedback20240601.new(@engine)
     end
 
-    # The latest version: {#customer_feedback_2024_06_01}
+    # The latest version: #customer_feedback_2024_06_01
     #: () -> Native::CustomerFeedback20240601
     def customer_feedback = customer_feedback_2024_06_01
 
@@ -10228,7 +10580,7 @@ module Peddler
       Native::DataKiosk20231115.new(@engine)
     end
 
-    # The latest version: {#data_kiosk_2023_11_15}
+    # The latest version: #data_kiosk_2023_11_15
     #: () -> Native::DataKiosk20231115
     def data_kiosk = data_kiosk_2023_11_15
 
@@ -10238,7 +10590,7 @@ module Peddler
       Native::DeliveryByAmazon20220701.new(@engine)
     end
 
-    # The latest version: {#delivery_by_amazon_2022_07_01}
+    # The latest version: #delivery_by_amazon_2022_07_01
     #: () -> Native::DeliveryByAmazon20220701
     def delivery_by_amazon = delivery_by_amazon_2022_07_01
 
@@ -10248,7 +10600,7 @@ module Peddler
       Native::EasyShip20220323.new(@engine)
     end
 
-    # The latest version: {#easy_ship_2022_03_23}
+    # The latest version: #easy_ship_2022_03_23
     #: () -> Native::EasyShip20220323
     def easy_ship = easy_ship_2022_03_23
 
@@ -10258,7 +10610,7 @@ module Peddler
       Native::ExternalFulfillmentInventory20240911.new(@engine)
     end
 
-    # The latest version: {#external_fulfillment_inventory_2024_09_11}
+    # The latest version: #external_fulfillment_inventory_2024_09_11
     #: () -> Native::ExternalFulfillmentInventory20240911
     def external_fulfillment_inventory = external_fulfillment_inventory_2024_09_11
 
@@ -10268,7 +10620,7 @@ module Peddler
       Native::ExternalFulfillmentLocation20260730.new(@engine)
     end
 
-    # The latest version: {#external_fulfillment_location_2026_07_30}
+    # The latest version: #external_fulfillment_location_2026_07_30
     #: () -> Native::ExternalFulfillmentLocation20260730
     def external_fulfillment_location = external_fulfillment_location_2026_07_30
 
@@ -10278,7 +10630,7 @@ module Peddler
       Native::ExternalFulfillmentReturns20240911.new(@engine)
     end
 
-    # The latest version: {#external_fulfillment_returns_2024_09_11}
+    # The latest version: #external_fulfillment_returns_2024_09_11
     #: () -> Native::ExternalFulfillmentReturns20240911
     def external_fulfillment_returns = external_fulfillment_returns_2024_09_11
 
@@ -10288,7 +10640,7 @@ module Peddler
       Native::ExternalFulfillmentShipments20240911.new(@engine)
     end
 
-    # The latest version: {#external_fulfillment_shipments_2024_09_11}
+    # The latest version: #external_fulfillment_shipments_2024_09_11
     #: () -> Native::ExternalFulfillmentShipments20240911
     def external_fulfillment_shipments = external_fulfillment_shipments_2024_09_11
 
@@ -10298,7 +10650,7 @@ module Peddler
       Native::FbaInboundEligibilityV1.new(@engine)
     end
 
-    # The latest version: {#fba_inbound_eligibility_v1}
+    # The latest version: #fba_inbound_eligibility_v1
     #: () -> Native::FbaInboundEligibilityV1
     def fba_inbound_eligibility = fba_inbound_eligibility_v1
 
@@ -10308,7 +10660,7 @@ module Peddler
       Native::FbaInventoryV1.new(@engine)
     end
 
-    # The latest version: {#fba_inventory_v1}
+    # The latest version: #fba_inventory_v1
     #: () -> Native::FbaInventoryV1
     def fba_inventory = fba_inventory_v1
 
@@ -10318,7 +10670,7 @@ module Peddler
       Native::Feeds20210630.new(@engine)
     end
 
-    # The latest version: {#feeds_2021_06_30}
+    # The latest version: #feeds_2021_06_30
     #: () -> Native::Feeds20210630
     def feeds = feeds_2021_06_30
 
@@ -10328,7 +10680,7 @@ module Peddler
       Native::FinanceRemittance20260317.new(@engine)
     end
 
-    # The latest version: {#finance_remittance_2026_03_17}
+    # The latest version: #finance_remittance_2026_03_17
     #: () -> Native::FinanceRemittance20260317
     def finance_remittance = finance_remittance_2026_03_17
 
@@ -10338,7 +10690,7 @@ module Peddler
       Native::FinancesInvoices20260625.new(@engine)
     end
 
-    # The latest version: {#finances_invoices_2026_06_25}
+    # The latest version: #finances_invoices_2026_06_25
     #: () -> Native::FinancesInvoices20260625
     def finances_invoices = finances_invoices_2026_06_25
 
@@ -10354,7 +10706,7 @@ module Peddler
       Native::Finances20240619.new(@engine)
     end
 
-    # The latest version: {#finances_2024_06_19}
+    # The latest version: #finances_2024_06_19
     #: () -> Native::Finances20240619
     def finances = finances_2024_06_19
 
@@ -10364,7 +10716,7 @@ module Peddler
       Native::Transfers20240601.new(@engine)
     end
 
-    # The latest version: {#transfers_2024_06_01}
+    # The latest version: #transfers_2024_06_01
     #: () -> Native::Transfers20240601
     def transfers = transfers_2024_06_01
 
@@ -10380,7 +10732,7 @@ module Peddler
       Native::FulfillmentInbound20240320.new(@engine)
     end
 
-    # The latest version: {#fulfillment_inbound_2024_03_20}
+    # The latest version: #fulfillment_inbound_2024_03_20
     #: () -> Native::FulfillmentInbound20240320
     def fulfillment_inbound = fulfillment_inbound_2024_03_20
 
@@ -10396,7 +10748,7 @@ module Peddler
       Native::FulfillmentOutbound20260704.new(@engine)
     end
 
-    # The latest version: {#fulfillment_outbound_2026_07_04}
+    # The latest version: #fulfillment_outbound_2026_07_04
     #: () -> Native::FulfillmentOutbound20260704
     def fulfillment_outbound = fulfillment_outbound_2026_07_04
 
@@ -10406,7 +10758,7 @@ module Peddler
       Native::Invoices20240619.new(@engine)
     end
 
-    # The latest version: {#invoices_2024_06_19}
+    # The latest version: #invoices_2024_06_19
     #: () -> Native::Invoices20240619
     def invoices = invoices_2024_06_19
 
@@ -10422,7 +10774,7 @@ module Peddler
       Native::ListingsItems20210801.new(@engine)
     end
 
-    # The latest version: {#listings_items_2021_08_01}
+    # The latest version: #listings_items_2021_08_01
     #: () -> Native::ListingsItems20210801
     def listings_items = listings_items_2021_08_01
 
@@ -10432,7 +10784,7 @@ module Peddler
       Native::ListingsRestrictions20210801.new(@engine)
     end
 
-    # The latest version: {#listings_restrictions_2021_08_01}
+    # The latest version: #listings_restrictions_2021_08_01
     #: () -> Native::ListingsRestrictions20210801
     def listings_restrictions = listings_restrictions_2021_08_01
 
@@ -10442,7 +10794,7 @@ module Peddler
       Native::MerchantFulfillmentV0.new(@engine)
     end
 
-    # The latest version: {#merchant_fulfillment_v0}
+    # The latest version: #merchant_fulfillment_v0
     #: () -> Native::MerchantFulfillmentV0
     def merchant_fulfillment = merchant_fulfillment_v0
 
@@ -10452,7 +10804,7 @@ module Peddler
       Native::MessagingV1.new(@engine)
     end
 
-    # The latest version: {#messaging_v1}
+    # The latest version: #messaging_v1
     #: () -> Native::MessagingV1
     def messaging = messaging_v1
 
@@ -10462,7 +10814,7 @@ module Peddler
       Native::NotificationsV1.new(@engine)
     end
 
-    # The latest version: {#notifications_v1}
+    # The latest version: #notifications_v1
     #: () -> Native::NotificationsV1
     def notifications = notifications_v1
 
@@ -10478,7 +10830,7 @@ module Peddler
       Native::Orders20260101.new(@engine)
     end
 
-    # The latest version: {#orders_2026_01_01}
+    # The latest version: #orders_2026_01_01
     #: () -> Native::Orders20260101
     def orders = orders_2026_01_01
 
@@ -10488,7 +10840,7 @@ module Peddler
       Native::ProductFeesV0.new(@engine)
     end
 
-    # The latest version: {#product_fees_v0}
+    # The latest version: #product_fees_v0
     #: () -> Native::ProductFeesV0
     def product_fees = product_fees_v0
 
@@ -10504,7 +10856,7 @@ module Peddler
       Native::ProductPricing20220501.new(@engine)
     end
 
-    # The latest version: {#product_pricing_2022_05_01}
+    # The latest version: #product_pricing_2022_05_01
     #: () -> Native::ProductPricing20220501
     def product_pricing = product_pricing_2022_05_01
 
@@ -10514,7 +10866,7 @@ module Peddler
       Native::ProductTypeDefinitions20200901.new(@engine)
     end
 
-    # The latest version: {#product_type_definitions_2020_09_01}
+    # The latest version: #product_type_definitions_2020_09_01
     #: () -> Native::ProductTypeDefinitions20200901
     def product_type_definitions = product_type_definitions_2020_09_01
 
@@ -10524,7 +10876,7 @@ module Peddler
       Native::Promotions20251201.new(@engine)
     end
 
-    # The latest version: {#promotions_2025_12_01}
+    # The latest version: #promotions_2025_12_01
     #: () -> Native::Promotions20251201
     def promotions = promotions_2025_12_01
 
@@ -10534,7 +10886,7 @@ module Peddler
       Native::Replenishment20221107.new(@engine)
     end
 
-    # The latest version: {#replenishment_2022_11_07}
+    # The latest version: #replenishment_2022_11_07
     #: () -> Native::Replenishment20221107
     def replenishment = replenishment_2022_11_07
 
@@ -10544,7 +10896,7 @@ module Peddler
       Native::Reports20210630.new(@engine)
     end
 
-    # The latest version: {#reports_2021_06_30}
+    # The latest version: #reports_2021_06_30
     #: () -> Native::Reports20210630
     def reports = reports_2021_06_30
 
@@ -10554,7 +10906,7 @@ module Peddler
       Native::SalesV1.new(@engine)
     end
 
-    # The latest version: {#sales_v1}
+    # The latest version: #sales_v1
     #: () -> Native::SalesV1
     def sales = sales_v1
 
@@ -10564,7 +10916,7 @@ module Peddler
       Native::SellerWallet20240301.new(@engine)
     end
 
-    # The latest version: {#seller_wallet_2024_03_01}
+    # The latest version: #seller_wallet_2024_03_01
     #: () -> Native::SellerWallet20240301
     def seller_wallet = seller_wallet_2024_03_01
 
@@ -10574,7 +10926,7 @@ module Peddler
       Native::SellersV1.new(@engine)
     end
 
-    # The latest version: {#sellers_v1}
+    # The latest version: #sellers_v1
     #: () -> Native::SellersV1
     def sellers = sellers_v1
 
@@ -10584,7 +10936,7 @@ module Peddler
       Native::ServicesV1.new(@engine)
     end
 
-    # The latest version: {#services_v1}
+    # The latest version: #services_v1
     #: () -> Native::ServicesV1
     def services = services_v1
 
@@ -10594,7 +10946,7 @@ module Peddler
       Native::ShipmentInvoicingV0.new(@engine)
     end
 
-    # The latest version: {#shipment_invoicing_v0}
+    # The latest version: #shipment_invoicing_v0
     #: () -> Native::ShipmentInvoicingV0
     def shipment_invoicing = shipment_invoicing_v0
 
@@ -10610,7 +10962,7 @@ module Peddler
       Native::ShippingV2.new(@engine)
     end
 
-    # The latest version: {#shipping_v2}
+    # The latest version: #shipping_v2
     #: () -> Native::ShippingV2
     def shipping = shipping_v2
 
@@ -10620,7 +10972,7 @@ module Peddler
       Native::SolicitationsV1.new(@engine)
     end
 
-    # The latest version: {#solicitations_v1}
+    # The latest version: #solicitations_v1
     #: () -> Native::SolicitationsV1
     def solicitations = solicitations_v1
 
@@ -10630,7 +10982,7 @@ module Peddler
       Native::SupplySources20200701.new(@engine)
     end
 
-    # The latest version: {#supply_sources_2020_07_01}
+    # The latest version: #supply_sources_2020_07_01
     #: () -> Native::SupplySources20200701
     def supply_sources = supply_sources_2020_07_01
 
@@ -10640,7 +10992,7 @@ module Peddler
       Native::Support20250201.new(@engine)
     end
 
-    # The latest version: {#support_2025_02_01}
+    # The latest version: #support_2025_02_01
     #: () -> Native::Support20250201
     def support = support_2025_02_01
 
@@ -10650,7 +11002,7 @@ module Peddler
       Native::Tokens20210301.new(@engine)
     end
 
-    # The latest version: {#tokens_2021_03_01}
+    # The latest version: #tokens_2021_03_01
     #: () -> Native::Tokens20210301
     def tokens = tokens_2021_03_01
 
@@ -10660,7 +11012,7 @@ module Peddler
       Native::Tracking20260130.new(@engine)
     end
 
-    # The latest version: {#tracking_2026_01_30}
+    # The latest version: #tracking_2026_01_30
     #: () -> Native::Tracking20260130
     def tracking = tracking_2026_01_30
 
@@ -10670,7 +11022,7 @@ module Peddler
       Native::Uploads20201101.new(@engine)
     end
 
-    # The latest version: {#uploads_2020_11_01}
+    # The latest version: #uploads_2020_11_01
     #: () -> Native::Uploads20201101
     def uploads = uploads_2020_11_01
 
@@ -10680,7 +11032,7 @@ module Peddler
       Native::Vehicles20241101.new(@engine)
     end
 
-    # The latest version: {#vehicles_2024_11_01}
+    # The latest version: #vehicles_2024_11_01
     #: () -> Native::Vehicles20241101
     def vehicles = vehicles_2024_11_01
 
@@ -10690,7 +11042,7 @@ module Peddler
       Native::VendorDirectFulfillmentInventoryV1.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_inventory_v1}
+    # The latest version: #vendor_direct_fulfillment_inventory_v1
     #: () -> Native::VendorDirectFulfillmentInventoryV1
     def vendor_direct_fulfillment_inventory = vendor_direct_fulfillment_inventory_v1
 
@@ -10706,7 +11058,7 @@ module Peddler
       Native::VendorDirectFulfillmentOrders20211228.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_orders_2021_12_28}
+    # The latest version: #vendor_direct_fulfillment_orders_2021_12_28
     #: () -> Native::VendorDirectFulfillmentOrders20211228
     def vendor_direct_fulfillment_orders = vendor_direct_fulfillment_orders_2021_12_28
 
@@ -10716,7 +11068,7 @@ module Peddler
       Native::VendorDirectFulfillmentPaymentsV1.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_payments_v1}
+    # The latest version: #vendor_direct_fulfillment_payments_v1
     #: () -> Native::VendorDirectFulfillmentPaymentsV1
     def vendor_direct_fulfillment_payments = vendor_direct_fulfillment_payments_v1
 
@@ -10726,7 +11078,7 @@ module Peddler
       Native::VendorDirectFulfillmentSandboxTestData20211028.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_sandbox_test_data_2021_10_28}
+    # The latest version: #vendor_direct_fulfillment_sandbox_test_data_2021_10_28
     #: () -> Native::VendorDirectFulfillmentSandboxTestData20211028
     def vendor_direct_fulfillment_sandbox_test_data = vendor_direct_fulfillment_sandbox_test_data_2021_10_28
 
@@ -10742,7 +11094,7 @@ module Peddler
       Native::VendorDirectFulfillmentShipping20211228.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_shipping_2021_12_28}
+    # The latest version: #vendor_direct_fulfillment_shipping_2021_12_28
     #: () -> Native::VendorDirectFulfillmentShipping20211228
     def vendor_direct_fulfillment_shipping = vendor_direct_fulfillment_shipping_2021_12_28
 
@@ -10758,7 +11110,7 @@ module Peddler
       Native::VendorDirectFulfillmentTransactions20211228.new(@engine)
     end
 
-    # The latest version: {#vendor_direct_fulfillment_transactions_2021_12_28}
+    # The latest version: #vendor_direct_fulfillment_transactions_2021_12_28
     #: () -> Native::VendorDirectFulfillmentTransactions20211228
     def vendor_direct_fulfillment_transactions = vendor_direct_fulfillment_transactions_2021_12_28
 
@@ -10768,7 +11120,7 @@ module Peddler
       Native::VendorInvoicesV1.new(@engine)
     end
 
-    # The latest version: {#vendor_invoices_v1}
+    # The latest version: #vendor_invoices_v1
     #: () -> Native::VendorInvoicesV1
     def vendor_invoices = vendor_invoices_v1
 
@@ -10778,7 +11130,7 @@ module Peddler
       Native::VendorOrdersV1.new(@engine)
     end
 
-    # The latest version: {#vendor_orders_v1}
+    # The latest version: #vendor_orders_v1
     #: () -> Native::VendorOrdersV1
     def vendor_orders = vendor_orders_v1
 
@@ -10788,7 +11140,7 @@ module Peddler
       Native::VendorShipmentsV1.new(@engine)
     end
 
-    # The latest version: {#vendor_shipments_v1}
+    # The latest version: #vendor_shipments_v1
     #: () -> Native::VendorShipmentsV1
     def vendor_shipments = vendor_shipments_v1
 
@@ -10798,7 +11150,7 @@ module Peddler
       Native::VendorTransactionStatusV1.new(@engine)
     end
 
-    # The latest version: {#vendor_transaction_status_v1}
+    # The latest version: #vendor_transaction_status_v1
     #: () -> Native::VendorTransactionStatusV1
     def vendor_transaction_status = vendor_transaction_status_v1
   end

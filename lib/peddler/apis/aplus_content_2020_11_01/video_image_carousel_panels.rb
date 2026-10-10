@@ -9,7 +9,6 @@ module Peddler
     module AplusContent20201101
       # A wrapper object for a single video/image carousel panel.
       VideoImageCarouselPanels = Structure.new do
-        # @return [VideoImageCarouselPanel]
         attribute(:video_carousel_panel, VideoImageCarouselPanel, null: false, from: "videoCarouselPanel")
       end
     end

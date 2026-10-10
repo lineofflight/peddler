@@ -10,7 +10,7 @@ module Peddler
     # can obtain financial events for a given order, financial event group, or date range without having to wait until a
     # statement period closes. You can also obtain financial event groups for a given date range.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
     module FinancesV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

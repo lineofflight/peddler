@@ -9,7 +9,6 @@ module Peddler
     module ProductPricingV0
       # The response associated with the `getListingOffersBatch` API call.
       GetListingOffersBatchResponse = Structure.new do
-        # @return [Array<ListingOffersResponse>]
         attribute?(:responses, [ListingOffersResponse])
       end
     end

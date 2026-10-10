@@ -9,10 +9,10 @@ module Peddler
     module VendorDirectFulfillmentPaymentsV1
       # Details of item quantity.
       ItemQuantity = Structure.new do
-        # @return [Integer] Quantity of units available for a specific item.
+        # Quantity of units available for a specific item.
         attribute(:amount, Integer, null: false)
 
-        # @return [String] Unit of measure for the available quantity.
+        # Unit of measure for the available quantity.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
       end
     end

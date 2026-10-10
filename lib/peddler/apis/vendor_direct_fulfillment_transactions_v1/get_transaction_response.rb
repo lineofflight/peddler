@@ -9,10 +9,8 @@ module Peddler
     module VendorDirectFulfillmentTransactionsV1
       # The response schema for the getTransactionStatus operation.
       GetTransactionResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [TransactionStatus]
         attribute?(:payload, TransactionStatus)
       end
     end

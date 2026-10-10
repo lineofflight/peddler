@@ -9,7 +9,6 @@ module Peddler
     module B2BAnyOfferChanged
       # Notification payload data
       Payload = Structure.new do
-        # @return [B2BAnyOfferChangedNotification]
         attribute(:b2b_any_offer_changed_notification, B2BAnyOfferChangedNotification, null: false, from: "B2BAnyOfferChangedNotification")
       end
     end

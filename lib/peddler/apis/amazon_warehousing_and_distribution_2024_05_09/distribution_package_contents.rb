@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Represents the contents inside a package, which can be products or a nested package.
       DistributionPackageContents = Structure.new do
-        # @return [Array<DistributionPackageQuantity>] This is required only when `DistributionPackageType=PALLET`.
+        # This is required only when `DistributionPackageType=PALLET`.
         attribute?(:packages, [DistributionPackageQuantity])
 
-        # @return [Array<ProductQuantity>] This is required only when `DistributionPackageType=CASE`.
+        # This is required only when `DistributionPackageType=CASE`.
         attribute?(:products, [ProductQuantity])
       end
     end

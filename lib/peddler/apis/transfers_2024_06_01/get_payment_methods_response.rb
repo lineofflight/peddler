@@ -9,7 +9,6 @@ module Peddler
     module Transfers20240601
       # The response schema for the `getPaymentMethods` operation.
       GetPaymentMethodsResponse = Structure.new do
-        # @return [Array<PaymentMethodDetails>]
         attribute?(:payment_methods, [PaymentMethodDetails], from: "paymentMethods")
       end
     end

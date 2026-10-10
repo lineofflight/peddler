@@ -9,16 +9,15 @@ module Peddler
     module TaxInvoiceExportStatusChange
       # Notification payload data
       Payload = Structure.new do
-        # @return [String] The identifier for the export request. This value is returned by the `createInvoicesExport`
-        #   operation.
+        # The identifier for the export request. This value is returned by the `createInvoicesExport` operation.
         attribute(:export_id, String, null: false, from: "exportId")
 
-        # @return [String] The identifier for the store where the invoice applies.
+        # The identifier for the store where the invoice applies.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The status of the export request. Possible values: REQUESTED - The export has been received.
-        #   PROCESSING - The export is being generated. DONE - The export is complete and available for download. ERROR
-        #   - The export failed.
+        # The status of the export request. Possible values: REQUESTED - The export has been received. PROCESSING - The
+        # export is being generated. DONE - The export is complete and available for download. ERROR - The export
+        # failed.
         attribute(:status, String, null: false)
       end
     end

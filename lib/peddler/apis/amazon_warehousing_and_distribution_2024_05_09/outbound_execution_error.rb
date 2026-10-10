@@ -10,13 +10,13 @@ module Peddler
       # Execution errors associated with the outbound order. This field will be populated if the order failed
       # validation.
       OutboundExecutionError = Structure.new do
-        # @return [String] Failure code details for the error.
+        # Failure code details for the error.
         attribute(:failure_code, String, null: false, from: "failureCode")
 
-        # @return [Array<String>] Failure reasons for the error.
+        # Failure reasons for the error.
         attribute(:failure_reasons, [String], null: false, from: "failureReasons")
 
-        # @return [String] MSKU associated with the error.
+        # MSKU associated with the error.
         attribute?(:sku, String)
       end
     end

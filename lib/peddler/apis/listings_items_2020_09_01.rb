@@ -10,11 +10,10 @@ module Peddler
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
     # you use to retrieve the information about Amazon product types needed to use the Listings Items API.
     #
-    # For more information, see the
-    # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
-    # Case Guide}.
+    # For more information, see the [Listing Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
     module ListingsItems20200901
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

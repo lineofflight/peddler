@@ -9,10 +9,9 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Represents a distribution package with its respective quantity.
       DistributionPackageQuantity = Structure.new do
-        # @return [Integer] Number of cases or pallets with the same package configuration.
+        # Number of cases or pallets with the same package configuration.
         attribute(:count, Integer, null: false)
 
-        # @return [DistributionPackage]
         attribute(:distribution_package, "DistributionPackage", null: false, from: "distributionPackage")
       end
     end

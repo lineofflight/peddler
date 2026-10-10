@@ -9,7 +9,6 @@ module Peddler
     module MessagingV1
       # The response schema for the createConfirmDeliveryDetails operation.
       CreateConfirmDeliveryDetailsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

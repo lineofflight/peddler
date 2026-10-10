@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentOutbound20200701
       # The payload for the `getFeatures` operation.
       GetFeaturesResult = Structure.new do
-        # @return [Array<Feature>]
         attribute(:features, [Feature], null: false)
       end
     end

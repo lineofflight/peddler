@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The response schema for the createClaim operation.
       CreateClaimResponse = Structure.new do
-        # @return [String]
         attribute?(:claim_id, String, from: "claimId")
       end
     end

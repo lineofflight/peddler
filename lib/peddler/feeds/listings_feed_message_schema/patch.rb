@@ -9,14 +9,14 @@ module Peddler
     module ListingsFeedMessageSchema
       # Individual JSON Patch operation.
       Patch = Structure.new do
-        # @return [String] Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge,
-        #   and delete. See https://tools.ietf.org/html/rfc6902.
+        # Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See
+        # https://tools.ietf.org/html/rfc6902.
         attribute(:op, String, null: false)
 
-        # @return [String] JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
+        # JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
         attribute(:path, String, null: false)
 
-        # @return [Array<Object>] JSON value to add, replace, or delete.
+        # JSON value to add, replace, or delete.
         attribute?(:value, Array)
       end
     end

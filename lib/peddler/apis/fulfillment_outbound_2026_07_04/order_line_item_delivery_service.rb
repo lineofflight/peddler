@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20260704
       # Delivery settings for the line item.
       OrderLineItemDeliveryService = Structure.new do
-        # @return [OrderLineItemPaymentOnDelivery] Payment On Delivery costs. Currently only available in India.
+        # Payment On Delivery costs. Currently only available in India.
         attribute?(:payment_on_delivery, OrderLineItemPaymentOnDelivery, from: "paymentOnDelivery")
       end
     end

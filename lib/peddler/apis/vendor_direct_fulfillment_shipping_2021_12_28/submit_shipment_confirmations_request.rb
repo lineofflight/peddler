@@ -9,8 +9,8 @@ module Peddler
     module VendorDirectFulfillmentShipping20211228
       # The request schema for the submitShipmentConfirmations operation.
       SubmitShipmentConfirmationsRequest = Structure.new do
-        # @return [Array<ShipmentConfirmation>] Array of `ShipmentConfirmation` objects. Each `ShipmentConfirmation`
-        #   object represents the confirmation details for a specific shipment.
+        # Array of `ShipmentConfirmation` objects. Each `ShipmentConfirmation` object represents the confirmation
+        # details for a specific shipment.
         attribute?(:shipment_confirmations, [ShipmentConfirmation], from: "shipmentConfirmations")
       end
     end

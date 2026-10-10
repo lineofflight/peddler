@@ -13,7 +13,7 @@ module Peddler
     # The Replenishment API is available worldwide wherever Amazon Subscribe & Save is available or is supported. The
     # API is available to vendors and FBA selling partners.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     module Replenishment20221107
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

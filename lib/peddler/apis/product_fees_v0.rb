@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
     # then account for those fees in your pricing.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     module ProductFeesV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

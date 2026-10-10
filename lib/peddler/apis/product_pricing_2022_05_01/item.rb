@@ -9,7 +9,7 @@ module Peddler
     module ProductPricing20220501
       # A similar item for the specified ASIN `marketplaceId` combination.
       Item = Structure.new do
-        # @return [String] The Amazon identifier for the item.
+        # The Amazon identifier for the item.
         attribute(:asin, String, null: false)
       end
     end

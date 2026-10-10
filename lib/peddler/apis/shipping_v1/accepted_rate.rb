@@ -9,16 +9,14 @@ module Peddler
     module ShippingV1
       # The specific rate purchased for the shipment, or null if unpurchased.
       AcceptedRate = Structure.new do
-        # @return [Weight] The weight that was used to calculate the totalCharge.
+        # The weight that was used to calculate the totalCharge.
         attribute?(:billed_weight, Weight, from: "billedWeight")
 
-        # @return [ShippingPromiseSet]
         attribute?(:promise, ShippingPromiseSet)
 
-        # @return [String]
         attribute?(:service_type, String, from: "serviceType")
 
-        # @return [Money] The total charge that will be billed for the rate.
+        # The total charge that will be billed for the rate.
         attribute?(:total_charge, Money, from: "totalCharge")
       end
     end

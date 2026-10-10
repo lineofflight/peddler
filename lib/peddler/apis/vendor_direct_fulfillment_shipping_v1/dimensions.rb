@@ -9,16 +9,16 @@ module Peddler
     module VendorDirectFulfillmentShippingV1
       # Physical dimensional measurements of a container.
       Dimensions = Structure.new do
-        # @return [String] The height of the container.
+        # The height of the container.
         attribute(:height, String, null: false)
 
-        # @return [String] The length of the container.
+        # The length of the container.
         attribute(:length, String, null: false)
 
-        # @return [String] The unit of measure for dimensions.
+        # The unit of measure for dimensions.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
-        # @return [String] The width of the container.
+        # The width of the container.
         attribute(:width, String, null: false)
       end
     end

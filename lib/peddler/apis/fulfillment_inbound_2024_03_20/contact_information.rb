@@ -9,13 +9,13 @@ module Peddler
     module FulfillmentInbound20240320
       # The seller's contact information.
       ContactInformation = Structure.new do
-        # @return [String] The contact's name.
+        # The contact's name.
         attribute(:name, String, null: false)
 
-        # @return [String] The phone number.
+        # The phone number.
         attribute(:phone_number, String, null: false, from: "phoneNumber")
 
-        # @return [String] The email address.
+        # The email address.
         attribute?(:email, String)
       end
     end

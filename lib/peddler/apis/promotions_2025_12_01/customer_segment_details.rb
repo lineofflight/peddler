@@ -9,7 +9,7 @@ module Peddler
     module Promotions20251201
       # Additional segment type-specific details. Use the appropriate property based on `segmentType`.
       CustomerSegmentDetails = Structure.new do
-        # @return [BrandSegmentDetails] Brand segment details. This field is required when `segmentType` is `BRAND`.
+        # Brand segment details. This field is required when `segmentType` is `BRAND`.
         attribute?(:brand_segment_details, BrandSegmentDetails, from: "brandSegmentDetails")
       end
     end

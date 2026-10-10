@@ -9,23 +9,21 @@ module Peddler
     module OrderChange
       # Nested notification data
       OrderChangeNotification = Structure.new do
-        # @return [String] The Amazon order identifier, in 3-7-7 format.
+        # The Amazon order identifier, in 3-7-7 format.
         attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
-        # @return [String] The notification level of current notification.
+        # The notification level of current notification.
         attribute(:notification_level, String, null: false, from: "NotificationLevel")
 
-        # @return [OrderChangeTrigger]
         attribute(:order_change_trigger, OrderChangeTrigger, null: false, from: "OrderChangeTrigger")
 
-        # @return [String] Change type of this notification. The possible values include BuyerRequestedChange,
-        #   DeliveryTipChange, OrderStatusChange.
+        # Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange,
+        # OrderStatusChange.
         attribute(:order_change_type, String, null: false, from: "OrderChangeType")
 
-        # @return [String] The selling partner identifier.
+        # The selling partner identifier.
         attribute(:seller_id, String, null: false, from: "SellerId")
 
-        # @return [Summary]
         attribute(:summary, Summary, null: false, from: "Summary")
       end
     end

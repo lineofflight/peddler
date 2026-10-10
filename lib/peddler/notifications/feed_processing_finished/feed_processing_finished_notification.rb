@@ -9,24 +9,24 @@ module Peddler
     module FeedProcessingFinished
       # Nested notification data
       FeedProcessingFinishedNotification = Structure.new do
-        # @return [String] The merchant customer identifier or vendor group identifier of the selling partner account on
-        #   whose behalf the feed was submitted.
+        # The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the
+        # feed was submitted.
         attribute(:account_id, String, null: false, from: "accountId")
 
-        # @return [String] The feed identifier.
+        # The feed identifier.
         attribute(:feed_id, String, null: false, from: "feedId")
 
-        # @return [String] The feed type.
+        # The feed type.
         attribute(:feed_type, String, null: false, from: "feedType")
 
-        # @return [String] The processing status of the feed.
+        # The processing status of the feed.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
-        # @return [String] The feed document identifier. This identifier is unique only in combination with a seller ID.
+        # The feed document identifier. This identifier is unique only in combination with a seller ID.
         attribute?(:result_feed_document_id, String, from: "resultFeedDocumentId")
 
-        # @return [String] The merchant customer identifier of the selling partner account on whose behalf the feed was
-        #   submitted. This field will be null when the feed was submitted on behalf of a vendor group identifier.
+        # The merchant customer identifier of the selling partner account on whose behalf the feed was submitted. This
+        # field will be null when the feed was submitted on behalf of a vendor group identifier.
         attribute?(:seller_id, String, from: "sellerId")
       end
     end

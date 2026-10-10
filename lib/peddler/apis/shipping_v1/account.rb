@@ -9,7 +9,6 @@ module Peddler
     module ShippingV1
       # The account related data.
       Account = Structure.new do
-        # @return [String]
         attribute(:account_id, String, null: false, from: "accountId")
       end
     end

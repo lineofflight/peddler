@@ -9,10 +9,10 @@ module Peddler
     module FulfillmentOutbound20200701
       # A quantity based on the specified unit of measurement.
       Amount = Structure.new do
-        # @return [String] The unit of measure for the amount.
+        # The unit of measure for the amount.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
-        # @return [String] The amount of a product in the associated unit of measurement.
+        # The amount of a product in the associated unit of measurement.
         attribute(:value, String, null: false)
       end
     end

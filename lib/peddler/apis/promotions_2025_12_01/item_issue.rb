@@ -9,16 +9,16 @@ module Peddler
     module Promotions20251201
       # An item-level validation issue.
       ItemIssue = Structure.new do
-        # @return [String] Issue code identifier.
+        # Issue code identifier.
         attribute(:code, String, null: false)
 
-        # @return [ItemIdentifier] Identifier of the item associated with this issue.
+        # Identifier of the item associated with this issue.
         attribute(:identifier, ItemIdentifier, null: false)
 
-        # @return [String] Issue description.
+        # Issue description.
         attribute(:message, String, null: false)
 
-        # @return [String] Issue severity level.
+        # Issue severity level.
         attribute(:severity, String, null: false)
       end
     end

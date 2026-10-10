@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentInboundV0
       # Download URL for a label
       LabelDownloadURL = Structure.new do
-        # @return [String] URL to download the label for the package. Note: The URL will only be valid for 15 seconds
+        # URL to download the label for the package. Note: The URL will only be valid for 15 seconds
         attribute?(:download_url, String, from: "DownloadURL")
       end
     end

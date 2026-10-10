@@ -10,10 +10,10 @@ module Peddler
     module ShippingV1
       # The promised delivery time and pickup time.
       ShippingPromiseSet = Structure.new do
-        # @return [TimeRange] The time window in which the shipment will be delivered.
+        # The time window in which the shipment will be delivered.
         attribute?(:delivery_window, TimeRange, from: "deliveryWindow")
 
-        # @return [TimeRange] The time window in which Amazon Shipping will pick up the shipment.
+        # The time window in which Amazon Shipping will pick up the shipment.
         attribute?(:receive_window, TimeRange, from: "receiveWindow")
       end
     end

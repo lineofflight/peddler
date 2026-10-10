@@ -9,8 +9,7 @@ module Peddler
     module SellingPartnerSearchTerms
       # Report options specifying parameters such as reportPeriod.
       ReportOptions = Structure.new do
-        # @return [String] Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK,
-        #   MONTH, QUARTER.
+        # Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
         attribute(:report_period, String, null: false, from: "reportPeriod")
       end
     end

@@ -9,10 +9,8 @@ module Peddler
     module Vehicles20241101
       # Represents a month in a specific year.
       MonthAndYear = Structure.new do
-        # @return [Float]
         attribute?(:month, Float)
 
-        # @return [Float]
         attribute?(:year, Float)
       end
     end

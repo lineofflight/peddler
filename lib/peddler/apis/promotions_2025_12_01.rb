@@ -8,7 +8,7 @@ module Peddler
     #
     # The Selling Partner API for Promotions enables selling partners to create and manage promotions.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/promotions-api-model/promotions_2025-12-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/promotions-api-model/promotions_2025-12-01.json
     module Promotions20251201
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

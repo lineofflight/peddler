@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The Response for the GetUnmanifestedShipmentsResponse operation.
       GetUnmanifestedShipmentsResponse = Structure.new do
-        # @return [Array<UnmanifestedCarrierInformation>]
         attribute?(:unmanifested_carrier_information_list, [UnmanifestedCarrierInformation], from: "unmanifestedCarrierInformationList")
       end
     end

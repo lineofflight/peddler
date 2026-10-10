@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The response schema for the directPurchaseShipment operation.
       DirectPurchaseResponse = Structure.new do
-        # @return [DirectPurchaseResult]
         attribute?(:payload, DirectPurchaseResult)
       end
     end

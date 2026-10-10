@@ -9,7 +9,7 @@ module Peddler
     module ExternalFulfillmentShipments20240911
       # The response of the `generateInvoice` operation.
       InvoiceResponse = Structure.new do
-        # @return [Document] The invoice.
+        # The invoice.
         attribute(:document, Document, null: false)
       end
     end

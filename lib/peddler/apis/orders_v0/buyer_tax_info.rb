@@ -9,13 +9,13 @@ module Peddler
     module OrdersV0
       # Tax information about the buyer.
       BuyerTaxInfo = Structure.new do
-        # @return [String] The legal name of the company.
+        # The legal name of the company.
         attribute?(:company_legal_name, String, from: "CompanyLegalName")
 
-        # @return [Array<TaxClassification>] A list of tax classifications that apply to the order.
+        # A list of tax classifications that apply to the order.
         attribute?(:tax_classifications, [TaxClassification], from: "TaxClassifications")
 
-        # @return [String] The country or region imposing the tax.
+        # The country or region imposing the tax.
         attribute?(:taxing_region, String, from: "TaxingRegion")
       end
     end

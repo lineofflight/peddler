@@ -10,7 +10,6 @@ module Peddler
       # An event filter you can use to customize your subscription to receive shipment tracking milestone notifications
       # for a specific tracking identifier.
       TrackingFilter = Structure.new do
-        # @return [TrackingIdentifier]
         attribute?(:tracking_identifier, TrackingIdentifier, from: "trackingIdentifier")
       end
     end

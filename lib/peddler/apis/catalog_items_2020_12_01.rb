@@ -9,11 +9,10 @@ module Peddler
     # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
     # catalog.
     #
-    # For more information, see the
-    # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
-    # Case Guide}.
+    # For more information, see the [Catalog Items API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
     module CatalogItems20201201
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

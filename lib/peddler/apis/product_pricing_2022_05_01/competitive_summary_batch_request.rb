@@ -9,7 +9,7 @@ module Peddler
     module ProductPricing20220501
       # The `competitiveSummary` batch request data.
       CompetitiveSummaryBatchRequest = Structure.new do
-        # @return [Array<CompetitiveSummaryRequest>] A batched list of `competitiveSummary` requests.
+        # A batched list of `competitiveSummary` requests.
         attribute(:requests, [CompetitiveSummaryRequest], null: false)
       end
     end

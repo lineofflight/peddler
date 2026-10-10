@@ -12,7 +12,7 @@ module Peddler
       # in the subsequent request. When there are no more pages to retrieve, the `Pagination` key will be absent from
       # the response. When a `Pagination` object is present, it contains `nextToken` as non-null value
       Pagination = Structure.new do
-        # @return [String] A token that can be used to retrieve the next page from the current page of results.
+        # A token that can be used to retrieve the next page from the current page of results.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

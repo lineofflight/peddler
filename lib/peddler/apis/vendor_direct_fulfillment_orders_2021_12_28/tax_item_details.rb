@@ -9,7 +9,7 @@ module Peddler
     module VendorDirectFulfillmentOrders20211228
       # Total tax details for the line item.
       TaxItemDetails = Structure.new do
-        # @return [Array<TaxDetails>] Tax details.
+        # Tax details.
         attribute?(:tax_line_item, [TaxDetails], from: "taxLineItem")
       end
     end

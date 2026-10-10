@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The amount to collect on delivery.
       CollectOnDelivery = Structure.new do
-        # @return [Money]
         attribute(:amount, Money, null: false)
       end
     end

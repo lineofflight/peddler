@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentInbound20240320
       # The `getDeliveryChallanDocumentResponse` response.
       GetDeliveryChallanDocumentResponse = Structure.new do
-        # @return [DocumentDownload]
         attribute(:document_download, DocumentDownload, null: false, from: "documentDownload")
       end
     end

@@ -9,10 +9,9 @@ module Peddler
     module ShippingV2
       # The type and amount of a charge applied on a package.
       ChargeComponent = Structure.new do
-        # @return [Money]
         attribute?(:amount, Money)
 
-        # @return [String] The type of charge.
+        # The type of charge.
         attribute?(:charge_type, String, from: "chargeType")
       end
     end

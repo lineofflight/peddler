@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentInbound20240320
       # The `listDeliveryWindowOptions` response.
       ListDeliveryWindowOptionsResponse = Structure.new do
-        # @return [Array<DeliveryWindowOption>] Delivery window options generated for the placement option.
+        # Delivery window options generated for the placement option.
         attribute(:delivery_window_options, [DeliveryWindowOption], null: false, from: "deliveryWindowOptions")
 
-        # @return [Pagination]
         attribute?(:pagination, Pagination)
       end
     end

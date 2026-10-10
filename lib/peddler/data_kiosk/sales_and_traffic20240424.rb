@@ -6,7 +6,7 @@ module Peddler
   module DataKiosk
     module SalesAndTraffic20240424
       class << self
-        # @return [Hash] GraphQL schema introspection data
+        # GraphQL schema introspection data
         def schema
           path = File.expand_path("sales_and_traffic20240424.json", __dir__.to_s)
           JSON.load_file(path)

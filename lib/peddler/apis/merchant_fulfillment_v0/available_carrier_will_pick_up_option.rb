@@ -9,10 +9,9 @@ module Peddler
     module MerchantFulfillmentV0
       # Indicates whether the carrier will pick up the package, and what fee is charged, if any.
       AvailableCarrierWillPickUpOption = Structure.new do
-        # @return [String]
         attribute(:carrier_will_pick_up_option, String, null: false, from: "CarrierWillPickUpOption")
 
-        # @return [Money] The fee charged.
+        # The fee charged.
         attribute(:charge, Money, null: false, from: "Charge")
       end
     end

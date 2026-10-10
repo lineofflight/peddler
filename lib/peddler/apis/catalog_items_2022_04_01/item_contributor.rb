@@ -9,10 +9,9 @@ module Peddler
     module CatalogItems20220401
       # Individual contributor to the creation of an item, such as an author or actor.
       ItemContributor = Structure.new do
-        # @return [ItemContributorRole]
         attribute(:role, ItemContributorRole, null: false)
 
-        # @return [String] Name of the contributor, such as `Jane Austen`.
+        # Name of the contributor, such as `Jane Austen`.
         attribute(:value, String, null: false)
       end
     end

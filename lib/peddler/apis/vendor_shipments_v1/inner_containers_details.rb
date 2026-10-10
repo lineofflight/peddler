@@ -9,10 +9,10 @@ module Peddler
     module VendorShipmentsV1
       # Details of the innerContainersDetails.
       InnerContainersDetails = Structure.new do
-        # @return [Integer] Total containers as part of the shipment
+        # Total containers as part of the shipment
         attribute?(:container_count, Integer, from: "containerCount")
 
-        # @return [Array<ContainerSequenceNumbers>] Container sequence numbers that are involved in this shipment.
+        # Container sequence numbers that are involved in this shipment.
         attribute?(:container_sequence_numbers, [ContainerSequenceNumbers], from: "containerSequenceNumbers")
       end
     end

@@ -9,22 +9,22 @@ module Peddler
     module DeliveryByAmazon20220701
       # The response schema for the getInvoiceStatus operation.
       GetInvoiceStatusResponse = Structure.new do
-        # @return [String] The Amazon-defined order identifier.
+        # The Amazon-defined order identifier.
         attribute?(:amazon_order_id, String, from: "amazonOrderId")
 
-        # @return [String] The Amazon-defined shipment identifier.
+        # The Amazon-defined shipment identifier.
         attribute?(:amazon_shipment_id, String, from: "amazonShipmentId")
 
-        # @return [Array<Error>] A list of errors returned by this API.
+        # A list of errors returned by this API.
         attribute?(:errors, [Error])
 
-        # @return [String] The current processing status of a shipment invoice.
+        # The current processing status of a shipment invoice.
         attribute?(:invoice_status, String, from: "invoiceStatus")
 
-        # @return [Array<InvoiceStatus>] List of individual invoice statuses for the order.
+        # List of individual invoice statuses for the order.
         attribute?(:invoices, [InvoiceStatus])
 
-        # @return [String] The invoicing status of the order, considering the aggregated results of all invoices sent.
+        # The invoicing status of the order, considering the aggregated results of all invoices sent.
         attribute?(:order_invoicing_status, String, from: "orderInvoicingStatus")
       end
     end

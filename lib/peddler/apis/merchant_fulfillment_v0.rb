@@ -9,7 +9,7 @@ module Peddler
     # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
     # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     module MerchantFulfillmentV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

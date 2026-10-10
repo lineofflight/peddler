@@ -9,7 +9,7 @@ module Peddler
     module ServicesV1
       # Response schema for the `completeServiceJobByServiceJobId` operation.
       CompleteServiceJobByServiceJobIdResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the `completeServiceJobByServiceJobId` operation.
+        # Encountered errors for the `completeServiceJobByServiceJobId` operation.
         attribute?(:errors, [Error])
       end
     end

@@ -9,7 +9,6 @@ module Peddler
     module AplusContent20201101
       # A wrapper object for a single comparison product.
       ComparisonProducts = Structure.new do
-        # @return [ComparisonProduct]
         attribute(:comparison_product, ComparisonProduct, null: false, from: "comparisonProduct")
       end
     end

@@ -9,14 +9,13 @@ module Peddler
     module VendorTransactionStatusV1
       # The transaction status.
       Transaction = Structure.new do
-        # @return [String] Current processing status of the transaction.
+        # Current processing status of the transaction.
         attribute(:status, String, null: false)
 
-        # @return [String] The unique identifier returned in the 'transactionId' field in response to the post request
-        #   of a specific transaction.
+        # The unique identifier returned in the 'transactionId' field in response to the post request of a specific
+        # transaction.
         attribute(:transaction_id, String, null: false, from: "transactionId")
 
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

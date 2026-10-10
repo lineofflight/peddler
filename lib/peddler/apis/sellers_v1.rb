@@ -15,7 +15,7 @@ module Peddler
     # Refer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for
     # details about this API's operations, data types, and schemas.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     module SellersV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

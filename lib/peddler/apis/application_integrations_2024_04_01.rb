@@ -9,7 +9,7 @@ module Peddler
     # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
     # notifications in Seller Central.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
     module ApplicationIntegrations20240401
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

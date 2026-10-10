@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentOutbound20260704
       # The response schema for `getOrder`.
       GetOrderResponse = Structure.new do
-        # @return [FulfillmentOrder]
         attribute(:order, FulfillmentOrder, null: false)
       end
     end

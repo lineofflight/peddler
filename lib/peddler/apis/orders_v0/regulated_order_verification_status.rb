@@ -9,35 +9,31 @@ module Peddler
     module OrdersV0
       # The verification status of the order, along with associated approval or rejection metadata.
       RegulatedOrderVerificationStatus = Structure.new do
-        # @return [:boolean] When true, the regulated information provided in the order requires a review by the
-        #   merchant.
+        # When true, the regulated information provided in the order requires a review by the merchant.
         attribute(:requires_merchant_action, :boolean, null: false, from: "RequiresMerchantAction")
 
-        # @return [String] The verification status of the order.
+        # The verification status of the order.
         attribute(:status, String, null: false, from: "Status")
 
-        # @return [Array<RejectionReason>] A list of valid rejection reasons that may be used to reject the order's
-        #   regulated information.
+        # A list of valid rejection reasons that may be used to reject the order's regulated information.
         attribute(:valid_rejection_reasons, [RejectionReason], null: false, from: "ValidRejectionReasons")
 
-        # @return [String] The identifier for the order's regulated information reviewer.
+        # The identifier for the order's regulated information reviewer.
         attribute?(:external_reviewer_id, String, from: "ExternalReviewerId")
 
-        # @return [RejectionReason] The reason for rejecting the order's regulated information. Not present if the order
-        #   isn't rejected.
+        # The reason for rejecting the order's regulated information. Not present if the order isn't rejected.
         attribute?(:rejection_reason, RejectionReason, from: "RejectionReason")
 
-        # @return [String] The date the order was reviewed. In [ISO
-        #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
+        # The date the order was reviewed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date
+        # time format.
         attribute?(:review_date, String, from: "ReviewDate")
 
-        # @return [Array<ValidInterimStatusCode>] Valid interim status codes that may be used when populating
-        #   `InterimStatusDetail`. Each element contains a `StatusCode` identifier and its customer-facing
-        #   `StatusDescription`.
+        # Valid interim status codes that may be used when populating `InterimStatusDetail`. Each element contains a
+        # `StatusCode` identifier and its customer-facing `StatusDescription`.
         attribute?(:valid_interim_status_codes, [ValidInterimStatusCode], from: "ValidInterimStatusCodes")
 
-        # @return [Array<ValidVerificationDetail>] A list of valid verification details that may be provided and the
-        #   criteria required for when the verification detail can be provided.
+        # A list of valid verification details that may be provided and the criteria required for when the verification
+        # detail can be provided.
         attribute?(:valid_verification_details, [ValidVerificationDetail], from: "ValidVerificationDetails")
       end
     end

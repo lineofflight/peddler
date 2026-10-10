@@ -12,7 +12,7 @@ module Peddler
       # the same arguments as the call that produced the token. To get a complete list, call this operation until
       # `nextToken` is `null`.
       Pagination = Structure.new do
-        # @return [String] A token that can be used to fetch the next page of results.
+        # A token that can be used to fetch the next page of results.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

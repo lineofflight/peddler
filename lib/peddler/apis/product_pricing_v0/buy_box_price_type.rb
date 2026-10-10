@@ -9,34 +9,33 @@ module Peddler
     module ProductPricingV0
       # Schema for an individual buybox price.
       BuyBoxPriceType = Structure.new do
-        # @return [Money] The value calculated by adding ListingPrice + Shipping - Points.
+        # The value calculated by adding ListingPrice + Shipping - Points.
         attribute(:landed_price, Money, null: false, from: "LandedPrice")
 
-        # @return [Money] The price of the item.
+        # The price of the item.
         attribute(:listing_price, Money, null: false, from: "ListingPrice")
 
-        # @return [Money] The shipping cost.
+        # The shipping cost.
         attribute(:shipping, Money, null: false, from: "Shipping")
 
-        # @return [String] Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or
-        #   Club.
+        # Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
         attribute(:condition, String, null: false)
 
-        # @return [Points] The number of Amazon Points offered with the purchase of an item.
+        # The number of Amazon Points offered with the purchase of an item.
         attribute?(:points, Points, from: "Points")
 
-        # @return [String] Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C
-        #   in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that
-        #   quantity, not because they have a quantity discount on the ASIN.
+        # Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity
+        # discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because
+        # they have a quantity discount on the ASIN.
         attribute?(:offer_type, String, from: "offerType")
 
-        # @return [String] Indicates the type of quantity discount this price applies to.
+        # Indicates the type of quantity discount this price applies to.
         attribute?(:quantity_discount_type, String, from: "quantityDiscountType")
 
-        # @return [Integer] Indicates at what quantity this price becomes active.
+        # Indicates at what quantity this price becomes active.
         attribute?(:quantity_tier, Integer, from: "quantityTier")
 
-        # @return [String] The seller identifier for the offer.
+        # The seller identifier for the offer.
         attribute?(:seller_id, String, from: "sellerId")
       end
     end

@@ -9,10 +9,9 @@ module Peddler
     module MerchantFulfillmentV0
       # Maps the additional seller input to the definition. The key to the map is the field name.
       AdditionalInputs = Structure.new do
-        # @return [String] The field name.
+        # The field name.
         attribute?(:additional_input_field_name, String, from: "AdditionalInputFieldName")
 
-        # @return [SellerInputDefinition]
         attribute?(:seller_input_definition, SellerInputDefinition, from: "SellerInputDefinition")
       end
     end

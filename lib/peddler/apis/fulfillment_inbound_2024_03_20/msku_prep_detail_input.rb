@@ -9,13 +9,12 @@ module Peddler
     module FulfillmentInbound20240320
       # An MSKU and its related prep details.
       MskuPrepDetailInput = Structure.new do
-        # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
+        # The merchant SKU, a merchant-supplied identifier for a specific SKU.
         attribute(:msku, String, null: false)
 
-        # @return [String]
         attribute(:prep_category, String, null: false, from: "prepCategory")
 
-        # @return [Array<PrepType>] A list of preparation types associated with a preparation category.
+        # A list of preparation types associated with a preparation category.
         attribute(:prep_types, Array, null: false, from: "prepTypes")
       end
     end

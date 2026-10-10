@@ -9,10 +9,10 @@ module Peddler
     module FulfillmentOutbound20200701
       # The request body schema for the `getDeliveryOffers` operation.
       GetDeliveryOffersRequest = Structure.new do
-        # @return [GetDeliveryOffersProduct] The product details for the delivery offer.
+        # The product details for the delivery offer.
         attribute(:product, GetDeliveryOffersProduct, null: false)
 
-        # @return [GetDeliveryOffersTerms] The terms for the delivery offer.
+        # The terms for the delivery offer.
         attribute(:terms, GetDeliveryOffersTerms, null: false)
       end
     end

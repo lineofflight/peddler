@@ -9,13 +9,13 @@ module Peddler
     module VendorDirectFulfillmentShippingV1
       # Packing slip information.
       PackingSlip = Structure.new do
-        # @return [String] A Base64encoded string of the packing slip PDF.
+        # A Base64encoded string of the packing slip PDF.
         attribute(:content, String, null: false)
 
-        # @return [String] Purchase order number of the shipment that corresponds to the packing slip.
+        # Purchase order number of the shipment that corresponds to the packing slip.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # @return [String] The format of the file such as PDF, JPEG etc.
+        # The format of the file such as PDF, JPEG etc.
         attribute?(:content_type, String, from: "contentType")
       end
     end

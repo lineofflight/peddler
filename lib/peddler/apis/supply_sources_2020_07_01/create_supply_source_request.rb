@@ -9,13 +9,10 @@ module Peddler
     module SupplySources20200701
       # A request to create a supply source.
       CreateSupplySourceRequest = Structure.new do
-        # @return [Address]
         attribute(:address, Address, null: false)
 
-        # @return [String]
         attribute(:alias, String, null: false)
 
-        # @return [String]
         attribute(:supply_source_code, String, null: false, from: "supplySourceCode")
       end
     end

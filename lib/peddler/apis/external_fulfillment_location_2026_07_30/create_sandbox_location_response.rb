@@ -9,7 +9,6 @@ module Peddler
     module ExternalFulfillmentLocation20260730
       # The response object for creating a sandbox location.
       CreateSandboxLocationResponse = Structure.new do
-        # @return [LocationIdMap]
         attribute?(:location_ids, LocationIdMap, from: "locationIds")
       end
     end

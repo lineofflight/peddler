@@ -9,10 +9,8 @@ module Peddler
     module FulfillmentOutbound20200701
       # The response schema for the `getFeatureSKU` operation.
       GetFeatureSKUResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [GetFeatureSKUResult]
         attribute?(:payload, GetFeatureSKUResult)
       end
     end

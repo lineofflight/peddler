@@ -14,10 +14,10 @@ module Peddler
       # day. For marketplaces and product categories where the seller does not have a meaningful presence (40 units
       # sold), the report will not return any data.
       Report = Structure.new do
-        # @return [Array<MarketplaceAsinPageViewMetrics>] A list of ASIN page view metrics.
+        # A list of ASIN page view metrics.
         attribute(:marketplace_asin_page_view_metrics, [MarketplaceASINPageViewMetrics], null: false, from: "marketplaceAsinPageViewMetrics")
 
-        # @return [Hash] Summarizes the report request.
+        # Summarizes the report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

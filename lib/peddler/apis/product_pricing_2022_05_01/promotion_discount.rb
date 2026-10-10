@@ -9,14 +9,13 @@ module Peddler
     module ProductPricing20220501
       # Discount details applied by the promotion.
       PromotionDiscount = Structure.new do
-        # @return [Money] The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
+        # The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
         attribute?(:amount_off, Money, from: "amountOff")
 
-        # @return [Float] The percentage discount applied to the original price (1-100). Only valid when type is
-        #   PERCENTAGE_OFF.
+        # The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.
         attribute?(:percent_off, Float, from: "percentOff")
 
-        # @return [String] The type of discount off, categorized by the customer-facing experience.
+        # The type of discount off, categorized by the customer-facing experience.
         attribute?(:type, String)
       end
     end

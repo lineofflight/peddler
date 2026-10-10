@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     module VendorDirectFulfillmentSandboxTestData20211028
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

@@ -8,13 +8,10 @@ module Peddler
   module APIs
     module SolicitationsV1
       GetSchemaResponse = Structure.new do
-        # @return [Hash]
         attribute?(:_links, Hash)
 
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [Hash]
         attribute?(:payload, Hash)
       end
     end

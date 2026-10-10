@@ -11,10 +11,10 @@ module Peddler
       # basis from which the seller has to select one shipping option while they retrieve the shipping label. If the
       # particular marketplace channel does not support scheduled shipping options, then this response will be empty.
       ShippingOptionsResponse = Structure.new do
-        # @return [ShippingOptions] The recommended shipping options that a marketplace channel provides to the seller.
+        # The recommended shipping options that a marketplace channel provides to the seller.
         attribute?(:recommended_shipping_option, ShippingOptions, from: "recommendedShippingOption")
 
-        # @return [Array<ShippingOptions>] A list of shipping options.
+        # A list of shipping options.
         attribute?(:shipping_options, [ShippingOptions], from: "shippingOptions")
       end
     end

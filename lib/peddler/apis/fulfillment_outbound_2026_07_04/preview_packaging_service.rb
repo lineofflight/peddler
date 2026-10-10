@@ -9,10 +9,10 @@ module Peddler
     module FulfillmentOutbound20260704
       # Packaging requirements for a fulfillment preview.
       PreviewPackagingService = Structure.new do
-        # @return [String] Whether to require an overbox for the shipment. Possible values: `REQUIRED`, `NOT_REQUIRED`.
+        # Whether to require an overbox for the shipment. Possible values: `REQUIRED`, `NOT_REQUIRED`.
         attribute?(:overbox, String)
 
-        # @return [String] The packaging option to use for fulfillment. Possible values: `UNBRANDED`, `ANY`.
+        # The packaging option to use for fulfillment. Possible values: `UNBRANDED`, `ANY`.
         attribute?(:packaging_option, String, from: "packagingOption")
       end
     end

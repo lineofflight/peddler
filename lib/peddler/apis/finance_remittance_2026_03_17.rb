@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Finance Remittance provides programmatic access to selling partner payment remittance
     # data, including remittance summaries and detailed line items.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finance-remittance-api-model/financeRemittance-2026-03-17.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/finance-remittance-api-model/financeRemittance-2026-03-17.json
     module FinanceRemittance20260317
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

@@ -12,7 +12,7 @@ module Peddler
     # is eligible for using the manufacturer barcode for FBA inventory tracking. Sellers can use this information to
     # inform their decisions about which items to ship Amazon's fulfillment centers.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     module FBAInboundEligibilityV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

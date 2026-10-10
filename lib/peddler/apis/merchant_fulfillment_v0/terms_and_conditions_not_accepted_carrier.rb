@@ -9,7 +9,7 @@ module Peddler
     module MerchantFulfillmentV0
       # A carrier whose terms and conditions have not been accepted by the seller.
       TermsAndConditionsNotAcceptedCarrier = Structure.new do
-        # @return [String] The name of the carrier.
+        # The name of the carrier.
         attribute(:carrier_name, String, null: false, from: "CarrierName")
       end
     end

@@ -9,22 +9,22 @@ module Peddler
     module FeedProcessingFinished
       # The root schema comprises the entire JSON document.
       Notification = Structure.new do
-        # @return [String] The timestamp of the event, formatted as ISO 8601 date-time.
+        # The timestamp of the event, formatted as ISO 8601 date-time.
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        # @return [Hash] The metadata of the notification.
+        # The metadata of the notification.
         attribute(:notification_metadata, Hash, null: false, from: "notificationMetadata")
 
-        # @return [String] The type of the notification.
+        # The type of the notification.
         attribute(:notification_type, String, null: false, from: "notificationType")
 
-        # @return [String] The version of the notification.
+        # The version of the notification.
         attribute(:notification_version, String, null: false, from: "notificationVersion")
 
-        # @return [Payload] The details of this notification.
+        # The details of this notification.
         attribute(:payload, Payload, null: false)
 
-        # @return [String] The version of the payload.
+        # The version of the payload.
         attribute(:payload_version, String, null: false, from: "payloadVersion")
       end
     end

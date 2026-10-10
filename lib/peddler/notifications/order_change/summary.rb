@@ -9,68 +9,65 @@ module Peddler
     module OrderChange
       # Information about order and order items that had the change.
       Summary = Structure.new do
-        # @return [String] The destination postal code. It will be null when there is no related information.
+        # The destination postal code. It will be null when there is no related information.
         attribute(:destination_postal_code, String, from: "DestinationPostalCode")
 
-        # @return [String] Fulfillment type of the affected order, MFN or AFN.
+        # Fulfillment type of the affected order, MFN or AFN.
         attribute(:fulfillment_type, String, null: false, from: "FulfillmentType")
 
-        # @return [String] The Amazon marketplace identifier of the order.
+        # The Amazon marketplace identifier of the order.
         attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
-        # @return [Array<OrderItem>] Information about order items included in this order. For OrderItemLevel
-        #   notification, one payload include one item, while for OrderLevel notification, one payload include all
-        #   items.
+        # Information about order items included in this order. For OrderItemLevel notification, one payload include one
+        # item, while for OrderLevel notification, one payload include all items.
         attribute(:order_items, [OrderItem], null: false, from: "OrderItems")
 
-        # @return [String] The current order status.
+        # The current order status.
         attribute(:order_status, String, null: false, from: "OrderStatus")
 
-        # @return [String] The type of the order.
+        # The type of the order.
         attribute(:order_type, String, null: false, from: "OrderType")
 
-        # @return [String] The purchase date of the order, presented in ISO-8601 date/time format. It will be null when
-        #   there is no related information.
+        # The purchase date of the order, presented in ISO-8601 date/time format. It will be null when there is no
+        # related information.
         attribute(:purchase_date, String, from: "PurchaseDate")
 
-        # @return [String] The end of the time period which you cancel notify for the order, presented in ISO-8601
-        #   date/time format.
+        # The end of the time period which you cancel notify for the order, presented in ISO-8601 date/time format.
         attribute?(:cancel_notify_date, String, from: "CancelNotifyDate")
 
-        # @return [String] The start of the time period within which you have committed to fulfill the order, presented
-        #   in ISO-8601 date/time format. Returned only for seller-fulfilled orders.
+        # The start of the time period within which you have committed to fulfill the order, presented in ISO-8601
+        # date/time format. Returned only for seller-fulfilled orders.
         attribute?(:earliest_delivery_date, String, from: "EarliestDeliveryDate")
 
-        # @return [String] The start of the time period within which you have committed to ship the order, presented in
-        #   ISO-8601 date/time format.
+        # The start of the time period within which you have committed to ship the order, presented in ISO-8601
+        # date/time format.
         attribute?(:earliest_ship_date, String, from: "EarliestShipDate")
 
-        # @return [String] The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship
-        #   orders.
+        # The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders.
         attribute?(:easy_ship_shipment_status, String, from: "EasyShipShipmentStatus")
 
-        # @return [String] The status of the electronic invoice.
+        # The status of the electronic invoice.
         attribute?(:electronic_invoice_status, String, from: "ElectronicInvoiceStatus")
 
-        # @return [String] The end of the time period within which you have committed to fulfill the order, presented in
-        #   ISO-8601 date/time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability,
-        #   Pending, or Canceled status.
+        # The end of the time period within which you have committed to fulfill the order, presented in ISO-8601
+        # date/time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability, Pending,
+        # or Canceled status.
         attribute?(:latest_delivery_date, String, from: "LatestDeliveryDate")
 
-        # @return [String] The end of the time period within which you have committed to ship the order, presented in
-        #   ISO-8601 date/time format.
+        # The end of the time period within which you have committed to ship the order, presented in ISO-8601 date/time
+        # format.
         attribute?(:latest_ship_date, String, from: "LatestShipDate")
 
-        # @return [Integer] The number of items shipped.
+        # The number of items shipped.
         attribute?(:number_of_items_shipped, Integer, from: "NumberOfItemsShipped")
 
-        # @return [Integer] The number of items unshipped.
+        # The number of items unshipped.
         attribute?(:number_of_items_unshipped, Integer, from: "NumberOfItemsUnshipped")
 
-        # @return [Array<String>] The order programs, if any, in which this order participates.
+        # The order programs, if any, in which this order participates.
         attribute?(:order_programs, [String], from: "OrderPrograms")
 
-        # @return [Array<String>] The shipping programs, if any, in which this order participates.
+        # The shipping programs, if any, in which this order participates.
         attribute?(:shipping_programs, [String], from: "ShippingPrograms")
       end
     end

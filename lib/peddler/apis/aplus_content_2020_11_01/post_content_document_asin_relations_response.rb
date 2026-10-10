@@ -8,7 +8,6 @@ module Peddler
   module APIs
     module AplusContent20201101
       PostContentDocumentASINRelationsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:warnings, [Error])
       end
     end

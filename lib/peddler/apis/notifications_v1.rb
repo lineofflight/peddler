@@ -13,7 +13,7 @@ module Peddler
     # For more information, refer to the [Notifications Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     module NotificationsV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

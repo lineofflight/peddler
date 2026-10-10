@@ -9,13 +9,12 @@ module Peddler
     module FulfillmentOutbound20260704
       # Package information to update for a specific package in a fulfillment order.
       UpdatePackageRequest = Structure.new do
-        # @return [String]
         attribute(:status, String, null: false)
 
-        # @return [String] The estimated delivery date and time of the package, in ISO 8601 date time format.
+        # The estimated delivery date and time of the package, in ISO 8601 date time format.
         attribute?(:delivery_time, String, from: "deliveryTime")
 
-        # @return [Tracking] Tracking information for the package.
+        # Tracking information for the package.
         attribute?(:tracking, Tracking)
       end
     end

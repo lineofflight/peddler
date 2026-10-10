@@ -9,8 +9,7 @@ module Peddler
     module Replenishment20221107
       # Offer preferences that you can include in the result filter criteria.
       Preference = Structure.new do
-        # @return [Array<AutoEnrollmentPreference>] Filters the results to only include offers with the auto-enrollment
-        #   preference specified.
+        # Filters the results to only include offers with the auto-enrollment preference specified.
         attribute?(:auto_enrollment, Array, from: "autoEnrollment")
       end
     end

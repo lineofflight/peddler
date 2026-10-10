@@ -11,10 +11,10 @@ module Peddler
     # resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the
     # restricted resources that you specified.
     #
-    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide Tokens API
-    # Use Case Guide}.
+    # For more information, see the [Tokens API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
     module Tokens20210301
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

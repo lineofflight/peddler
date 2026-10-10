@@ -9,10 +9,9 @@ module Peddler
     module AplusContent20201101
       # A list of question-and-answer pairs with a configurable background color scheme of light or dark.
       PremiumFaqModule = Structure.new do
-        # @return [Array<Faqs>] The collection of FAQ entries, which must contain between 2 and 5 FAQs.
+        # The collection of FAQ entries, which must contain between 2 and 5 FAQs.
         attribute(:faqs, [Faqs], null: false)
 
-        # @return [String]
         attribute?(:color_type, String, from: "colorType")
       end
     end

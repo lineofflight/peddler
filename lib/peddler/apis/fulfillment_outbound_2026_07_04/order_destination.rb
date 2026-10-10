@@ -9,13 +9,12 @@ module Peddler
     module FulfillmentOutbound20260704
       # The destination of the fulfillment order.
       OrderDestination = Structure.new do
-        # @return [Address]
         attribute(:delivery_address, Address, null: false, from: "deliveryAddress")
 
-        # @return [String] Delivery notes for the fulfillment order.
+        # Delivery notes for the fulfillment order.
         attribute?(:delivery_notes, String, from: "deliveryNotes")
 
-        # @return [OrderDropOffLocation] Drop-off location for the fulfillment order.
+        # Drop-off location for the fulfillment order.
         attribute?(:drop_off_location, OrderDropOffLocation, from: "dropOffLocation")
       end
     end

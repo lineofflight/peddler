@@ -9,7 +9,6 @@ module Peddler
     module VendorDirectFulfillmentSandboxTestData20211028
       # The payload for the getOrderScenarios operation.
       TransactionStatus = Structure.new do
-        # @return [Transaction]
         attribute?(:transaction_status, Transaction, from: "transactionStatus")
       end
     end

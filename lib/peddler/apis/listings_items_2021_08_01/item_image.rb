@@ -9,13 +9,13 @@ module Peddler
     module ListingsItems20210801
       # The listings item's image.
       ItemImage = Structure.new do
-        # @return [Integer] The image's height, in pixels.
+        # The image's height, in pixels.
         attribute(:height, Integer, null: false)
 
-        # @return [String] The image's link or URL.
+        # The image's link or URL.
         attribute(:link, String, null: false)
 
-        # @return [Integer] The image's width, in pixels.
+        # The image's width, in pixels.
         attribute(:width, Integer, null: false)
       end
     end

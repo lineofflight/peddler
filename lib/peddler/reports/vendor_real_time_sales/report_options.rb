@@ -9,7 +9,7 @@ module Peddler
     module VendorRealTimeSales
       # Report options specifying parameters such as currencyCode.
       ReportOptions = Structure.new do
-        # @return [String] Currency code of the amount. In ISO 4217 format.
+        # Currency code of the amount. In ISO 4217 format.
         attribute(:currency_code, String, null: false, from: "currencyCode")
       end
     end

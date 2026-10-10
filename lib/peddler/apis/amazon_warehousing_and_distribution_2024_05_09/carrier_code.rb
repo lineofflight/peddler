@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Identifies the carrier that will deliver the shipment.
       CarrierCode = Structure.new do
-        # @return [String] Denotes the carrier type.
+        # Denotes the carrier type.
         attribute?(:carrier_code_type, String, from: "carrierCodeType")
 
-        # @return [String] Value of the carrier code.
+        # Value of the carrier code.
         attribute?(:carrier_code_value, String, from: "carrierCodeValue")
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     module ProductPricingV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

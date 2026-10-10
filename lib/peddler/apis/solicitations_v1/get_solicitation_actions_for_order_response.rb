@@ -9,13 +9,10 @@ module Peddler
     module SolicitationsV1
       # The response schema for the getSolicitationActionsForOrder operation.
       GetSolicitationActionsForOrderResponse = Structure.new do
-        # @return [Hash]
         attribute?(:_embedded, Hash)
 
-        # @return [Hash]
         attribute?(:_links, Hash)
 
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

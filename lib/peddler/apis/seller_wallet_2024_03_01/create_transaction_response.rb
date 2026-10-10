@@ -9,11 +9,10 @@ module Peddler
     module SellerWallet20240301
       # The transaction response and historical details related to it.
       CreateTransactionResponse = Structure.new do
-        # @return [String] The callback URL for the transaction which the user have to click to approve/consent the
-        #   transaction
+        # The callback URL for the transaction which the user have to click to approve/consent the transaction
         attribute(:call_back_url, String, null: false, from: "callBackURL")
 
-        # @return [Transaction] The transaction response details.
+        # The transaction response details.
         attribute(:transaction, Transaction, null: false)
       end
     end

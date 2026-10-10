@@ -9,7 +9,7 @@ module Peddler
     module ExternalFulfillmentShipments20240911
       # The request schema of the `createPackages` operation.
       Packages = Structure.new do
-        # @return [Array<Package>] A list of packages.
+        # A list of packages.
         attribute(:packages, [Package], null: false)
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     module Orders20260101
       # Details about any discounts, coupons, or promotional offers applied to this item.
       ItemPromotion = Structure.new do
-        # @return [Array<ItemPromotionBreakdown>] A list of promotions applied to the order item.
+        # A list of promotions applied to the order item.
         attribute?(:breakdowns, [ItemPromotionBreakdown])
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Application Management lets you programmatically update the client secret on
     # registered applications.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
     module ApplicationManagement20231130
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = {}.freeze # steep:ignore UnannotatedEmptyCollection

@@ -10,10 +10,9 @@ module Peddler
       # This structure represents the payload for creating an AFN Replenishment Order.
       # By default, all replenishment orders created support Partial order preferences.
       ReplenishmentOrderCreationData = Structure.new do
-        # @return [ReplenishmentPreferences]
         attribute?(:preferences, ReplenishmentPreferences)
 
-        # @return [Array<DistributionProduct>] Requested amount of single product units to be replenished.
+        # Requested amount of single product units to be replenished.
         attribute?(:products, [DistributionProduct])
       end
     end

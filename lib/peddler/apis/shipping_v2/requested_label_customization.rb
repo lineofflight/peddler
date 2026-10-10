@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # Object contains customised data requested by a shipper to be printed on a shipping label.
       RequestedLabelCustomization = Structure.new do
-        # @return [Array<LabelAttribute>]
         attribute?(:request_attributes, Array, from: "requestAttributes")
       end
     end

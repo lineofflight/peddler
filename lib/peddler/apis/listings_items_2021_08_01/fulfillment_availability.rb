@@ -9,10 +9,10 @@ module Peddler
     module ListingsItems20210801
       # The listings item's fulfillment availability details.
       FulfillmentAvailability = Structure.new do
-        # @return [String] Designates which fulfillment network is used.
+        # Designates which fulfillment network is used.
         attribute(:fulfillment_channel_code, String, null: false, from: "fulfillmentChannelCode")
 
-        # @return [Integer] The item quantity that you're making available for sale.
+        # The item quantity that you're making available for sale.
         attribute?(:quantity, Integer)
       end
     end

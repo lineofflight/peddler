@@ -9,7 +9,7 @@ module Peddler
     module NotificationsV1
       # The response schema for the `deleteDestination` operation.
       DeleteDestinationResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `deleteDestination` operation.
+        # One or more unexpected errors occurred during the `deleteDestination` operation.
         attribute?(:errors, [Error])
       end
     end

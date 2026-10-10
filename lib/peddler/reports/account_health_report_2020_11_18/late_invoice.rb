@@ -9,10 +9,9 @@ module Peddler
     module AccountHealthReport20201118
       # Total late invoice count in the time window.
       LateInvoice = Structure.new do
-        # @return [Integer] Late invoice defects count.
+        # Late invoice defects count.
         attribute(:count, Integer, null: false)
 
-        # @return [String]
         attribute(:status, String, null: false)
       end
     end

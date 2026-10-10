@@ -9,7 +9,7 @@ module Peddler
     module ExternalFulfillmentReturns20240911
       # Provides details about the replanned returns.
       ReplanningDetails = Structure.new do
-        # @return [Array<TrackingInfo>] A list of all the previous tracking information for the return.
+        # A list of all the previous tracking information for the return.
         attribute?(:previous_tracking_info, [TrackingInfo], from: "previousTrackingInfo")
       end
     end

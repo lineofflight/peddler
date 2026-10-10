@@ -8,10 +8,8 @@ module Peddler
   module Notifications
     module FeePromotion
       FeeAmount = Structure.new do
-        # @return [Integer]
         attribute(:amount, Integer, null: false, from: "Amount")
 
-        # @return [String]
         attribute(:currency_code, String, null: false, from: "CurrencyCode")
       end
     end

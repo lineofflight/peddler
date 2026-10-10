@@ -8,7 +8,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
     module VendorInvoicesV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

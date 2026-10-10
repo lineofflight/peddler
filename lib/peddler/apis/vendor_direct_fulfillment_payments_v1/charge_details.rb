@@ -9,13 +9,12 @@ module Peddler
     module VendorDirectFulfillmentPaymentsV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
-        # @return [Money]
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # @return [String] Type of charge applied.
+        # Type of charge applied.
         attribute(:type, String, null: false)
 
-        # @return [Array<TaxDetail>] Individual tax details per line item.
+        # Individual tax details per line item.
         attribute?(:tax_details, [TaxDetail], from: "taxDetails")
       end
     end

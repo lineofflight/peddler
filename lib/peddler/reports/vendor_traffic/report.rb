@@ -11,14 +11,11 @@ module Peddler
       # level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available for different
       # date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
       Report = Structure.new do
-        # @return [Hash] The report summary including the specified reporting date range and the last updated date in
-        #   the input.
+        # The report summary including the specified reporting date range and the last updated date in the input.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
 
-        # @return [Array<TrafficAggregate>]
         attribute(:traffic_aggregate, [TrafficAggregate], null: false, from: "trafficAggregate")
 
-        # @return [Array<TrafficByAsin>]
         attribute(:traffic_by_asin, [TrafficByASIN], null: false, from: "trafficByAsin")
       end
     end

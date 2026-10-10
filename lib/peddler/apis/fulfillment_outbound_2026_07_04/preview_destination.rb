@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentOutbound20260704
       # The destination of the fulfillment.
       PreviewDestination = Structure.new do
-        # @return [Address]
         attribute(:delivery_address, Address, null: false, from: "deliveryAddress")
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module ExternalFulfillmentReturns20240911
       # The marketplace and channel name.
       MarketplaceChannel = Structure.new do
-        # @return [String] The name of the channel within the marketplace.
+        # The name of the channel within the marketplace.
         attribute?(:channel_name, String, from: "channelName")
 
-        # @return [String] The name of the marketplace.
+        # The name of the marketplace.
         attribute?(:marketplace_name, String, from: "marketplaceName")
       end
     end

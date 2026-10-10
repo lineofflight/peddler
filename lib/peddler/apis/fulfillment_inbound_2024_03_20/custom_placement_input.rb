@@ -9,10 +9,10 @@ module Peddler
     module FulfillmentInbound20240320
       # Provide units going to the warehouse.
       CustomPlacementInput = Structure.new do
-        # @return [Array<ItemInput>] Items included while creating Inbound Plan.
+        # Items included while creating Inbound Plan.
         attribute(:items, [ItemInput], null: false)
 
-        # @return [String] Warehouse Id.
+        # Warehouse Id.
         attribute(:warehouse_id, String, null: false, from: "warehouseId")
       end
     end

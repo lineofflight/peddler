@@ -9,10 +9,10 @@ module Peddler
     module Vehicles20241101
       # Engine power output of vehicle.
       EngineOutput = Structure.new do
-        # @return [String] Unit for measuring engine power.
+        # Unit for measuring engine power.
         attribute(:unit, String, null: false)
 
-        # @return [Float] Engine power value in specified unit.
+        # Engine power value in specified unit.
         attribute(:value, Float, null: false)
       end
     end

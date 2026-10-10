@@ -9,7 +9,7 @@ module Peddler
     module ListingsItems20210801
       # The listings item's vendor procurement information.
       ItemProcurement = Structure.new do
-        # @return [Money] The price (numeric value) that you want Amazon to pay you for this product.
+        # The price (numeric value) that you want Amazon to pay you for this product.
         attribute(:cost_price, Money, null: false, from: "costPrice")
       end
     end

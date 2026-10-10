@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
     # about AWD shipments and inventory.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     module AmazonWarehousingAndDistribution20240509
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

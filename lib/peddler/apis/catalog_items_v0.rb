@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
     module CatalogItemsV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

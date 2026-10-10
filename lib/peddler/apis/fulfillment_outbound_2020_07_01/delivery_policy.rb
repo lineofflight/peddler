@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20200701
       # The policy for a delivery offering.
       DeliveryPolicy = Structure.new do
-        # @return [DeliveryMessage] Localized messaging for a delivery offering.
+        # Localized messaging for a delivery offering.
         attribute?(:message, DeliveryMessage)
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json
     module VendorDirectFulfillmentTransactionsV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

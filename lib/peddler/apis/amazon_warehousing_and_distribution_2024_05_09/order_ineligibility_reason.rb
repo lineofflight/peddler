@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Represents one ineligibility reason for the order (there can be multiple reasons).
       OrderIneligibilityReason = Structure.new do
-        # @return [String] Code for the order ineligibility.
+        # Code for the order ineligibility.
         attribute(:code, String, null: false)
 
-        # @return [String] Description detailing the ineligibility reason of the order.
+        # Description detailing the ineligibility reason of the order.
         attribute(:description, String, null: false)
       end
     end

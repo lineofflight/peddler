@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     module FulfillmentInboundV0
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

@@ -9,7 +9,6 @@ module Peddler
     module AplusContent20201101
       # The response for the updateMedia operation. Returns the full unified Media shape.
       UpdateMediaResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:warnings, [Error])
       end
     end

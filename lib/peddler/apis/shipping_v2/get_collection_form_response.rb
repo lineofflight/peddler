@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The Response for the GetCollectionFormResponse operation.
       GetCollectionFormResponse = Structure.new do
-        # @return [CollectionsFormDocument]
         attribute?(:collections_form_document, CollectionsFormDocument, from: "collectionsFormDocument")
       end
     end

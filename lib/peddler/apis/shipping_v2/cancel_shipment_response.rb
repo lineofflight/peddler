@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # Response schema for the cancelShipment operation.
       CancelShipmentResponse = Structure.new do
-        # @return [Hash]
         attribute?(:payload, Hash)
       end
     end

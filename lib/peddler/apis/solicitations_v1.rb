@@ -10,10 +10,10 @@ module Peddler
     # a list of solicitation types that are available for an order that you specify, then call an operation that sends a
     # solicitation to the buyer for that order. Buyers cannot respond to solicitations sent by this API, and these
     # solicitations do not appear in the Messaging section of Seller Central or in the recipient's Message Center. The
-    # Solicitations API returns responses that are formed according to the
-    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    # Solicitations API returns responses that are formed according to the [JSON Hypertext Application
+    # Language](https://tools.ietf.org/html/draft-kelly-json-hal-08) (HAL) standard.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     module SolicitationsV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

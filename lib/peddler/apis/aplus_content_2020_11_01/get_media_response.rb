@@ -9,7 +9,6 @@ module Peddler
     module AplusContent20201101
       # The response for the `getMedia` operation. Returns the full unified Media shape.
       GetMediaResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:warnings, [Error])
       end
     end

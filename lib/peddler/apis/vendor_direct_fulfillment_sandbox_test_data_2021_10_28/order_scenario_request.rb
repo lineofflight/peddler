@@ -9,10 +9,10 @@ module Peddler
     module VendorDirectFulfillmentSandboxTestData20211028
       # The party identifiers required to generate the test data.
       OrderScenarioRequest = Structure.new do
-        # @return [PartyIdentification] The identifier of the selling party or vendor.
+        # The identifier of the selling party or vendor.
         attribute(:selling_party, PartyIdentification, null: false, from: "sellingParty")
 
-        # @return [PartyIdentification] The warehouse code of the vendor.
+        # The warehouse code of the vendor.
         attribute(:ship_from_party, PartyIdentification, null: false, from: "shipFromParty")
       end
     end

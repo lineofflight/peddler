@@ -9,17 +9,15 @@ module Peddler
     module ProductPricingV0
       # List of request parameters can be accepted by `ItemOffersRequests` operation
       ItemOffersRequest = Structure.new do
-        # @return [String] Filters the offer listings to be considered based on item condition. Possible values: New,
-        #   Used, Collectible, Refurbished, Club.
+        # Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible,
+        # Refurbished, Club.
         attribute(:item_condition, String, null: false, from: "ItemCondition")
 
-        # @return [String]
         attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
-        # @return [String]
         attribute(:method, String, null: false)
 
-        # @return [String] The resource path of the operation you are calling in batch without any query parameters.
+        # The resource path of the operation you are calling in batch without any query parameters.
         #
         # If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
         #
@@ -30,10 +28,9 @@ module Peddler
         # **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
         attribute(:uri, String, null: false)
 
-        # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+        # Indicates whether to request Consumer or Business offers. Default is Consumer.
         attribute?(:customer_type, String, from: "CustomerType")
 
-        # @return [Hash]
         attribute?(:headers, Hash)
       end
     end

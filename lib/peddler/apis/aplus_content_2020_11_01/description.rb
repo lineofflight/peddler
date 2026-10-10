@@ -9,10 +9,10 @@ module Peddler
     module AplusContent20201101
       # An accessibility description for a specific locale.
       Description = Structure.new do
-        # @return [String] A locale identifier (for example, `en-US`, `de-DE`).
+        # A locale identifier (for example, `en-US`, `de-DE`).
         attribute(:locale, String, null: false)
 
-        # @return [String] The accessibility description text for the locale.
+        # The accessibility description text for the locale.
         attribute(:value, String, null: false)
       end
     end

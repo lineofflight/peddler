@@ -10,10 +10,9 @@ module Peddler
       # Two images displayed side by side with a single headline above. Each image has its own subheadline and body
       # text.
       PremiumDualImageTextModule = Structure.new do
-        # @return [Array<ImageColumns>] The collection of image columns, which must contain exactly 2 columns.
+        # The collection of image columns, which must contain exactly 2 columns.
         attribute(:columns, [ImageColumns], null: false)
 
-        # @return [TextComponent]
         attribute?(:headline, TextComponent)
       end
     end

@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The response schema for the purchaseShipment operation.
       PurchaseShipmentResponse = Structure.new do
-        # @return [PurchaseShipmentResult]
         attribute?(:payload, PurchaseShipmentResult)
       end
     end

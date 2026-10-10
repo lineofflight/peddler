@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20260704
       # The request body schema for the `updateOrder` operation.
       UpdateOrderRequest = Structure.new do
-        # @return [UpdateOrderFulfillmentConfiguration] Fulfillment configuration to update.
+        # Fulfillment configuration to update.
         attribute?(:fulfillment_configuration, UpdateOrderFulfillmentConfiguration, from: "fulfillmentConfiguration")
       end
     end

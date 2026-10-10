@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentInbound20240320
       # The `listInboundPlanBoxes` response.
       ListInboundPlanBoxesResponse = Structure.new do
-        # @return [Array<Box>] A list of boxes in an inbound plan.
+        # A list of boxes in an inbound plan.
         attribute(:boxes, [Box], null: false)
 
-        # @return [Pagination]
         attribute?(:pagination, Pagination)
       end
     end

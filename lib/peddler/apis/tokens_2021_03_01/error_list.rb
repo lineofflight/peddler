@@ -9,7 +9,6 @@ module Peddler
     module Tokens20210301
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

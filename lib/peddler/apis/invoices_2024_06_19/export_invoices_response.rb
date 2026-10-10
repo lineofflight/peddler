@@ -9,7 +9,7 @@ module Peddler
     module Invoices20240619
       # Success.
       ExportInvoicesResponse = Structure.new do
-        # @return [String] The export identifier.
+        # The export identifier.
         attribute?(:export_id, String, from: "exportId")
       end
     end

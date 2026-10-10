@@ -9,10 +9,10 @@ module Peddler
     module ServicesV1
       # A technician who is assigned to perform the service job in part or in full.
       Technician = Structure.new do
-        # @return [String] The name of the technician.
+        # The name of the technician.
         attribute?(:name, String)
 
-        # @return [String] The technician identifier.
+        # The technician identifier.
         attribute?(:technician_id, String, from: "technicianId")
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
     # partners manage their bookkeeping processes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     module Invoices20240619
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

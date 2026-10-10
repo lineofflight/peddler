@@ -9,10 +9,8 @@ module Peddler
     module ShippingV1
       # The payload schema for the createShipment operation.
       CreateShipmentResult = Structure.new do
-        # @return [Array<Rate>]
         attribute(:eligible_rates, [Rate], null: false, from: "eligibleRates")
 
-        # @return [String]
         attribute(:shipment_id, String, null: false, from: "shipmentId")
       end
     end

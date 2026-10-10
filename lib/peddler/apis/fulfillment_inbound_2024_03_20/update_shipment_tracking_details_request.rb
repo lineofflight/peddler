@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentInbound20240320
       # The `updateShipmentTrackingDetails` request.
       UpdateShipmentTrackingDetailsRequest = Structure.new do
-        # @return [TrackingDetailsInput]
         attribute(:tracking_details, TrackingDetailsInput, null: false, from: "trackingDetails")
       end
     end

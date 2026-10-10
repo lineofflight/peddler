@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentInbound20240320
       # The requirements for a box in the packing option.
       BoxRequirements = Structure.new do
-        # @return [WeightRange]
         attribute(:weight, WeightRange, null: false)
       end
     end

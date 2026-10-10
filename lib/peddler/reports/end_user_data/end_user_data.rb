@@ -9,16 +9,16 @@ module Peddler
     module EndUserData
       # Contains end user contact information, page view and GMS metrics.
       EndUserData = Structure.new do
-        # @return [Array<AsinMetrics>] A list of Asin Page View and GMS metrics of an end user.
+        # A list of Asin Page View and GMS metrics of an end user.
         attribute(:asin_metrics, [ASINMetrics], null: false, from: "asinMetrics")
 
-        # @return [String] Full Name of the end user.
+        # Full Name of the end user.
         attribute(:full_name, String, null: false, from: "fullName")
 
-        # @return [Hash] Mailing address of the end user.
+        # Mailing address of the end user.
         attribute(:mailing_address, Hash, null: false, from: "mailingAddress")
 
-        # @return [String] Primary email of the end user.
+        # Primary email of the end user.
         attribute(:primary_email, String, null: false, from: "primaryEmail")
       end
     end

@@ -9,16 +9,15 @@ module Peddler
     module FulfillmentInbound20240320
       # Contains details about cost related modifications to the placement cost.
       Incentive = Structure.new do
-        # @return [String] Description of the incentive.
+        # Description of the incentive.
         attribute(:description, String, null: false)
 
-        # @return [String] Target of the incentive. Possible values: 'Placement Services', 'Fulfillment Fee Discount'.
+        # Target of the incentive. Possible values: 'Placement Services', 'Fulfillment Fee Discount'.
         attribute(:target, String, null: false)
 
-        # @return [String] Type of incentive. Possible values: `FEE`, `DISCOUNT`.
+        # Type of incentive. Possible values: `FEE`, `DISCOUNT`.
         attribute(:type, String, null: false)
 
-        # @return [Money]
         attribute(:value, Money, null: false)
       end
     end

@@ -9,13 +9,12 @@ module Peddler
     module FinancesInvoices20260625
       # The response to the `getInvoice` operation.
       GetInvoiceResponse = Structure.new do
-        # @return [InvoiceHeader]
         attribute?(:invoice_header, InvoiceHeader, from: "invoiceHeader")
 
-        # @return [Array<InvoiceItem>] A list of invoice line items.
+        # A list of invoice line items.
         attribute?(:invoice_items, [InvoiceItem], from: "invoiceItems")
 
-        # @return [String] A token you can use to retrieve the next page of line items.
+        # A token you can use to retrieve the next page of line items.
         attribute?(:next_token_for_line_items, String, from: "nextTokenForLineItems")
       end
     end

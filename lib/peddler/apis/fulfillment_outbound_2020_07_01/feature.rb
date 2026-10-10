@@ -9,13 +9,13 @@ module Peddler
     module FulfillmentOutbound20200701
       # A Multi-Channel Fulfillment feature.
       Feature = Structure.new do
-        # @return [String] The feature description.
+        # The feature description.
         attribute(:feature_description, String, null: false, from: "featureDescription")
 
-        # @return [String] The feature name.
+        # The feature name.
         attribute(:feature_name, String, null: false, from: "featureName")
 
-        # @return [:boolean] When true, indicates that the seller is eligible to use the feature.
+        # When true, indicates that the seller is eligible to use the feature.
         attribute?(:seller_eligible, :boolean, from: "sellerEligible")
       end
     end

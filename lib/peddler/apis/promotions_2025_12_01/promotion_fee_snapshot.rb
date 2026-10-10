@@ -13,7 +13,6 @@ module Peddler
       # recorded, which indicates that either a promotion type or a marketplace does not currently support promotion
       # fees.
       PromotionFeeSnapshot = Structure.new do
-        # @return [PreviewedFeeRates]
         attribute?(:previewed_fee_rates, PreviewedFeeRates, from: "previewedFeeRates")
       end
     end

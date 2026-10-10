@@ -9,13 +9,10 @@ module Peddler
     module OrdersV0
       # The request body for the `updateShipmentStatus` operation.
       UpdateShipmentStatusRequest = Structure.new do
-        # @return [String]
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String]
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
-        # @return [Array<Object>]
         attribute?(:order_items, Array, from: "orderItems")
       end
     end

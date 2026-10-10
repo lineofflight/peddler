@@ -9,10 +9,8 @@ module Peddler
     module EasyShip20220323
       # The request schema for the `updateScheduledPackages` operation.
       UpdateScheduledPackagesRequest = Structure.new do
-        # @return [String]
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<UpdatePackageDetails>]
         attribute(:update_package_details_list, [UpdatePackageDetails], null: false, from: "updatePackageDetailsList")
       end
     end

@@ -10,12 +10,12 @@ module Peddler
       # Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and DISCOUNT
       # proceeds types.
       ItemProceedsDetailedBreakdown = Structure.new do
-        # @return [String] Specific classification of the further granular breakdown.
+        # Specific classification of the further granular breakdown.
         #
         # **Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `OTHER`, `DISCOUNT`
         attribute?(:subtype, String)
 
-        # @return [Money] Monetary amount for the further granular breakdown.
+        # Monetary amount for the further granular breakdown.
         attribute?(:value, Money)
       end
     end

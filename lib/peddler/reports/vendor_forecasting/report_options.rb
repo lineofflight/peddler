@@ -9,7 +9,7 @@ module Peddler
     module VendorForecasting
       # Report options specifying parameters such as sellingProgram.
       ReportOptions = Structure.new do
-        # @return [String] The selling program.
+        # The selling program.
         attribute(:selling_program, String, null: false, from: "sellingProgram")
       end
     end

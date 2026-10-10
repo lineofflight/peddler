@@ -8,7 +8,7 @@ module Peddler
     #
     # The Selling Partner API for Support provides programmatic access to information about Selling Partner support.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/support-api-model/support_2025-02-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/support-api-model/support_2025-02-01.json
     module Support20250201
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

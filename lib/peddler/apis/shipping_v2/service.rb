@@ -9,10 +9,8 @@ module Peddler
     module ShippingV2
       # Service Related Info
       Service = Structure.new do
-        # @return [String]
         attribute(:id, String, null: false)
 
-        # @return [String]
         attribute(:name, String, null: false)
       end
     end

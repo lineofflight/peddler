@@ -14,7 +14,7 @@ module Peddler
       # `includedData`, which can be modified between calls. The token will expire after 24 hours. When there are no
       # other pages to fetch, the `pagination` field will be absent from the response.
       Pagination = Structure.new do
-        # @return [String] A token that can be used to fetch the next page of results.
+        # A token that can be used to fetch the next page of results.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

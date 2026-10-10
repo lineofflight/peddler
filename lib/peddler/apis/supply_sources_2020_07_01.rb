@@ -8,7 +8,7 @@ module Peddler
     #
     # Manage configurations and capabilities of seller supply sources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     module SupplySources20200701
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

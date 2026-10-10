@@ -10,7 +10,7 @@ module Peddler
     # workflows to create, manage, and send shipments into Amazon's fulfillment network. The API has interoperability
     # with the Send-to-Amazon user interface.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
     module FulfillmentInbound20240320
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

@@ -8,7 +8,7 @@ module Peddler
     #
     # Use the Selling Partner API for Direct Fulfillment Shipping to access a direct fulfillment vendor's shipping data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
     module VendorDirectFulfillmentShipping20211228
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

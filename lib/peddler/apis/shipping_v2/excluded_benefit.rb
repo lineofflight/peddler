@@ -9,10 +9,9 @@ module Peddler
     module ShippingV2
       # Object representing a benefit that is excluded for a shipping offer or rate.
       ExcludedBenefit = Structure.new do
-        # @return [String] benefit
+        # benefit
         attribute(:benefit, String, null: false)
 
-        # @return [Array<String>]
         attribute?(:reason_codes, [String], from: "reasonCodes")
       end
     end

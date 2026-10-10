@@ -9,10 +9,10 @@ module Peddler
     module FinanceRemittance20260317
       # A sub-component of a monetary amount.
       Breakdown = Structure.new do
-        # @return [Money] The monetary amount of the sub-component.
+        # The monetary amount of the sub-component.
         attribute(:breakdown_amount, Money, null: false, from: "breakdownAmount")
 
-        # @return [String] The type of sub-component.
+        # The type of sub-component.
         #
         # **Possible values for `totalAmountBreakdown`:**
         #

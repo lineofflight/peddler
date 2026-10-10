@@ -9,10 +9,10 @@ module Peddler
     module Promotions20251201
       # The key identifiers of an item.
       ItemIdentifier = Structure.new do
-        # @return [String] Amazon Standard Identification Number (ASIN).
+        # Amazon Standard Identification Number (ASIN).
         attribute?(:asin, String)
 
-        # @return [String] Stock Keeping Unit (SKU).
+        # Stock Keeping Unit (SKU).
         attribute?(:sku, String)
       end
     end

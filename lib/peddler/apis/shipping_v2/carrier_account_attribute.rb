@@ -9,13 +9,13 @@ module Peddler
     module ShippingV2
       # Attribute Properties required by carrier
       CarrierAccountAttribute = Structure.new do
-        # @return [String] Attribute Name .
+        # Attribute Name .
         attribute?(:attribute_name, String, from: "attributeName")
 
-        # @return [String] Property Group.
+        # Property Group.
         attribute?(:property_group, String, from: "propertyGroup")
 
-        # @return [String] Value .
+        # Value .
         attribute?(:value, String)
       end
     end

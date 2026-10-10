@@ -8,10 +8,10 @@ module Peddler
     #
     # With the Messaging API you can build applications that send messages to buyers. You can get a list of message
     # types that are available for an order that you specify, then call an operation that sends a message to the buyer
-    # for that order. The Messaging API returns responses that are formed according to the
-    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
+    # for that order. The Messaging API returns responses that are formed according to the [JSON Hypertext Application
+    # Language](https://tools.ietf.org/html/draft-kelly-json-hal-08) (HAL) standard.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
     module MessagingV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

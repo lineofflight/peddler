@@ -9,10 +9,9 @@ module Peddler
     module VendorDirectFulfillmentShippingV1
       # Represents a list of customer invoices, potentially paginated.
       CustomerInvoiceList = Structure.new do
-        # @return [Array<CustomerInvoice>] Represents a customer invoice within the CustomerInvoiceList.
+        # Represents a customer invoice within the CustomerInvoiceList.
         attribute?(:customer_invoices, [CustomerInvoice], from: "customerInvoices")
 
-        # @return [Pagination]
         attribute?(:pagination, Pagination)
       end
     end

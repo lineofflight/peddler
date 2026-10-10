@@ -9,7 +9,6 @@ module Peddler
     module ShippingV2
       # The response schema for the getAdditionalInputs operation.
       GetAdditionalInputsResponse = Structure.new do
-        # @return [Hash]
         attribute?(:payload, Hash)
       end
     end

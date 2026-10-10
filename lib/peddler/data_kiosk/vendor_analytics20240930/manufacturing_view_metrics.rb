@@ -9,28 +9,28 @@ module Peddler
     module VendorAnalytics20240930
       # Metrics broken down by metric groups, e.g., Product availability, Orders, Costs, Customer satisfaction.
       ManufacturingViewMetrics = Structure.new do
-        # @return [Costs] Costs metric group.
+        # Costs metric group.
         attribute?(:costs, Costs)
 
-        # @return [CustomerSatisfaction] Customer satisfaction metric group.
+        # Customer satisfaction metric group.
         attribute?(:customer_satisfaction, CustomerSatisfaction, from: "customerSatisfaction")
 
-        # @return [Array<ForecastedDemandWeekly>] Forecasting metric group.
+        # Forecasting metric group.
         attribute?(:forecasting, [ForecastedDemandWeekly])
 
-        # @return [Orders] Orders metric group.
+        # Orders metric group.
         attribute?(:orders, Orders)
 
-        # @return [ProductAvailability] Product availability metric group.
+        # Product availability metric group.
         attribute?(:product_availability, ProductAvailability, from: "productAvailability")
 
-        # @return [ShippedOrders] Shipped orders metric group.
+        # Shipped orders metric group.
         attribute?(:shipped_orders, ShippedOrders, from: "shippedOrders")
 
-        # @return [Sourcing] Sourcing metric group.
+        # Sourcing metric group.
         attribute?(:sourcing, Sourcing)
 
-        # @return [Traffic] Traffic metric group.
+        # Traffic metric group.
         attribute?(:traffic, Traffic)
       end
     end

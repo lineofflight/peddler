@@ -13,7 +13,7 @@ module Peddler
     # This API does not display order data that is more than two years old, except in the JP, AU, and SG marketplaces,
     # for which data from 2016 and after is available.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/orders_2026-01-01.json
     module Orders20260101
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

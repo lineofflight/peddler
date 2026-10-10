@@ -9,7 +9,6 @@ module Peddler
     module FulfillmentOutbound20260704
       # Fulfillment configuration for offers request.
       OfferFulfillmentConfiguration = Structure.new do
-        # @return [PreviewServiceLevel]
         attribute?(:service_level, PreviewServiceLevel, from: "serviceLevel")
       end
     end

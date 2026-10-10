@@ -8,13 +8,11 @@ module Peddler
   module Notifications
     module PricingHealth
       OfferCount = Structure.new do
-        # @return [String]
         attribute(:condition, String, null: false)
 
-        # @return [String]
         attribute(:fulfillment_type, String, null: false, from: "fulfillmentType")
 
-        # @return [Integer] The total number of offers for the specified condition and fulfillment channel
+        # The total number of offers for the specified condition and fulfillment channel
         attribute(:offer_count, Integer, null: false, from: "offerCount")
       end
     end

@@ -9,7 +9,6 @@ module Peddler
     module SolicitationsV1
       # The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
       CreateProductReviewAndSellerFeedbackSolicitationResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

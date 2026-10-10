@@ -9,13 +9,13 @@ module Peddler
     module ApplicationIntegrations20240401
       # The request for the `createNotification` operation.
       CreateNotificationRequest = Structure.new do
-        # @return [Hash] The parameters specified in the template you used to onboard your application.
+        # The parameters specified in the template you used to onboard your application.
         attribute(:notification_parameters, Hash, null: false, from: "notificationParameters")
 
-        # @return [String] The unique identifier of the notification template you used to onboard your application.
+        # The unique identifier of the notification template you used to onboard your application.
         attribute(:template_id, String, null: false, from: "templateId")
 
-        # @return [String] An encrypted marketplace identifier for the posted notification.
+        # An encrypted marketplace identifier for the posted notification.
         attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end

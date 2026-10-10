@@ -9,8 +9,7 @@ module Peddler
     module VendorDirectFulfillmentShipping20211228
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>] An array of Error objects representing individual errors encountered during the
-        #   request.
+        # An array of Error objects representing individual errors encountered during the request.
         attribute(:errors, [Error], null: false)
       end
     end

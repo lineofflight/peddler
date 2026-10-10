@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentInbound20240320
       # The `updateItemComplianceDetails` request.
       UpdateItemComplianceDetailsRequest = Structure.new do
-        # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
+        # The merchant SKU, a merchant-supplied identifier for a specific SKU.
         attribute(:msku, String, null: false)
 
-        # @return [TaxDetails]
         attribute(:tax_details, TaxDetails, null: false, from: "taxDetails")
       end
     end

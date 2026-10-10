@@ -10,16 +10,13 @@ module Peddler
       # A single column within a multi-column premium image module, containing an image, an optional headline, and an
       # optional description.
       ImageColumn = Structure.new do
-        # @return [ImageComponent]
         attribute(:image, ImageComponent, null: false)
 
-        # @return [Integer] Location of the column within the module.
+        # Location of the column within the module.
         attribute(:position, Integer, null: false)
 
-        # @return [ParagraphComponent]
         attribute?(:description, ParagraphComponent)
 
-        # @return [TextComponent]
         attribute?(:headline, TextComponent)
       end
     end

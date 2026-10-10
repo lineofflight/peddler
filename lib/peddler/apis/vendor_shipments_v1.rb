@@ -9,7 +9,7 @@ module Peddler
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
     module VendorShipmentsV1
       # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
       PARSERS = Ractor.make_shareable({

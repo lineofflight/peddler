@@ -9,10 +9,9 @@ module Peddler
     module FulfillmentInboundV0
       # The response schema for the getLabels operation.
       GetLabelsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [LabelDownloadURL] The payload for the getLabels operation.
+        # The payload for the getLabels operation.
         attribute?(:payload, LabelDownloadURL)
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module DeliveryByAmazon20220701
       # Individual invoice status entry.
       InvoiceStatus = Structure.new do
-        # @return [String] The unique invoice identifier (NF-e access key for Brazilian invoices).
+        # The unique invoice identifier (NF-e access key for Brazilian invoices).
         attribute(:id, String, null: false)
 
-        # @return [String] The current status of this invoice.
+        # The current status of this invoice.
         attribute(:status, String, null: false)
       end
     end

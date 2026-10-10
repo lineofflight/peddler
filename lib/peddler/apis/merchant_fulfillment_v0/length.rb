@@ -9,10 +9,9 @@ module Peddler
     module MerchantFulfillmentV0
       # The length.
       Length = Structure.new do
-        # @return [String]
         attribute?(:unit, String)
 
-        # @return [Float] The value in units.
+        # The value in units.
         attribute?(:value, Float)
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module OrdersV0
       # Information about withheld taxes.
       TaxCollection = Structure.new do
-        # @return [String] The tax collection model applied to the item.
+        # The tax collection model applied to the item.
         attribute?(:model, String, from: "Model")
 
-        # @return [String] The party responsible for withholding the taxes and remitting them to the taxing authority.
+        # The party responsible for withholding the taxes and remitting them to the taxing authority.
         attribute?(:responsible_party, String, from: "ResponsibleParty")
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module ServicesV1
       # The monetary amount and type of currency.
       MoneyAmount = Structure.new do
-        # @return [String] The currency code in ISO 4217 format.
+        # The currency code in ISO 4217 format.
         attribute(:currency, String, null: false)
 
-        # @return [Float] The monetary value.
+        # The monetary value.
         attribute(:value, Float, null: false)
       end
     end

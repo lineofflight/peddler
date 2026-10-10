@@ -9,13 +9,13 @@ module Peddler
     module FinancesV0
       # An EBT refund reimbursement event.
       EBTRefundReimbursementOnlyEvent = Structure.new do
-        # @return [Money] The amount reimbursed during this event.
+        # The amount reimbursed during this event.
         attribute?(:amount, Money, from: "Amount")
 
-        # @return [String] The identifier of an order.
+        # The identifier of an order.
         attribute?(:order_id, String, from: "OrderId")
 
-        # @return [String] The date and time when the financial event was posted.
+        # The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
       end
     end

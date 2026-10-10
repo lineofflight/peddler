@@ -9,22 +9,22 @@ module Peddler
     module FulfillmentOutbound20200701
       # The payload for the `getFeatureSKU` operation.
       GetFeatureSKUResult = Structure.new do
-        # @return [String] The name of the feature.
+        # The name of the feature.
         attribute(:feature_name, String, null: false, from: "featureName")
 
-        # @return [:boolean] When true, the seller SKU is eligible for the requested feature.
+        # When true, the seller SKU is eligible for the requested feature.
         attribute(:eligible, :boolean, null: false, from: "isEligible")
 
-        # @return [String] The requested marketplace.
+        # The requested marketplace.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
+        # The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String)
 
-        # @return [String] The unique SKU used by Amazon's fulfillment network.
+        # The unique SKU used by Amazon's fulfillment network.
         attribute?(:fn_sku, String, from: "fnSku")
 
-        # @return [Array<String>] A list of one or more reasons that the seller SKU is ineligible for the feature.
+        # A list of one or more reasons that the seller SKU is ineligible for the feature.
         #
         # Possible values:
         # * `MERCHANT_NOT_ENROLLED`: The merchant isn't enrolled for the feature.
@@ -32,11 +32,11 @@ module Peddler
         # * `INVALID_SKU`: There is an issue with the SKU provided.
         attribute?(:ineligible_reasons, [String], from: "ineligibleReasons")
 
-        # @return [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's
-        #   SellerId, which is included with every operation that you submit.
+        # Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is
+        # included with every operation that you submit.
         attribute?(:seller_sku, String, from: "sellerSku")
 
-        # @return [Float] The number of SKUs available for this service.
+        # The number of SKUs available for this service.
         attribute?(:sku_count, Float, from: "skuCount")
       end
     end

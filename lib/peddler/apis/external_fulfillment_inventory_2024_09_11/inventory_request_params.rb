@@ -9,14 +9,13 @@ module Peddler
     module ExternalFulfillmentInventory20240911
       # The parameters for an individual request.
       InventoryRequestParams = Structure.new do
-        # @return [Integer] The latest sequence number for the inventory update operation. You find this value in the
-        #   `clientSequenceNumber` property in the response to the `batchInventory` operation.
+        # The latest sequence number for the inventory update operation. You find this value in the
+        # `clientSequenceNumber` property in the response to the `batchInventory` operation.
         attribute?(:client_sequence_number, Integer, from: "clientSequenceNumber")
 
-        # @return [MarketplaceAttributes]
         attribute?(:marketplace_attributes, MarketplaceAttributes, from: "marketplaceAttributes")
 
-        # @return [Integer] The absolute inventory quantity.
+        # The absolute inventory quantity.
         attribute?(:quantity, Integer)
       end
     end
