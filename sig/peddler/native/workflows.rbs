@@ -1,8 +1,5 @@
 module Peddler
   module Native
-    WAIT_OPERATIONS: Hash[String, String]
-    HELPER_TIMEOUT: Integer
-
     class Engine
       def download_workflow_document: (String kind, String id, String config) -> DocumentHandle
       def wait_for: (String kind, String id, Float interval, Float timeout) -> response_parts
@@ -11,34 +8,6 @@ module Peddler
 
     class UploadHandle
       def document_id: () -> String?
-    end
-
-    def self.valid_identifier?: (untyped value) -> bool
-    def self.read_document: (Engine engine, String? kind, String name, untyped id_or_url) -> Response
-    def self.open_workflow_document: [T] (Engine engine, String kind, untyped document_id, Hash[Symbol, untyped] transfer_options) ?{ (Document document) -> T } -> (T | Document)
-    def self.wait_for: (Engine engine, String kind, String name, untyped id, untyped interval, untyped timeout) -> Response
-
-    class Reports20210630
-      def download_report_document: (String report_document_id_or_url) -> Response
-      def open_report_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                              | (String document_id, **untyped transfer_options) -> Document
-      def wait_for_report: (String report_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
-    end
-
-    class Feeds20210630
-      def upload_feed_document: (String upload_url, String | (_DocumentIO & Object) feed_content, String content_type) -> Response
-      def download_result_feed_document: (String download_url) -> Response
-      def open_feed_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                            | (String document_id, **untyped transfer_options) -> Document
-      def wait_for_feed: (String feed_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
-      def create_and_upload_feed_document: (String | (_DocumentIO & Object) source, content_type: String, ?content_length: Integer?, **untyped transfer_options) -> String
-    end
-
-    class DataKiosk20231115
-      def download_query_document: (String document_id_or_url) -> Response
-      def open_query_document: [T] (String document_id, **untyped transfer_options) { (Document document) -> T } -> T
-                             | (String document_id, **untyped transfer_options) -> Document
-      def wait_for_query: (String query_id, ?interval: Integer | Float, ?timeout: Integer | Float) -> Response
     end
   end
 end
