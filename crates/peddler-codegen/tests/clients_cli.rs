@@ -305,6 +305,29 @@ fn refused(root: &Path) -> String {
     String::from_utf8_lossy(&output.stderr).into_owned()
 }
 
+/// An argument named after a keyword of Ruby would be written as Ruby that does not
+/// parse. The run is refused whole, by the spec file and the operation.
+#[test]
+fn a_name_ruby_cant_use_is_refused_before_writing() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    let api = &ALL_APIS[0];
+    let mut hostile = spec("getCatalogItem");
+    hostile["paths"]["/items/{asin}"]["get"]["parameters"][1]["name"] = json!("end");
+    fs::write(
+        checkout.join("models").join(api.source),
+        hostile.to_string(),
+    )
+    .unwrap();
+    commit(root.path());
+    let refusal = format!(
+        "{}: getCatalogItem: Ruby can't name an argument end",
+        api.source
+    );
+    let printed = refused(root.path());
+    assert!(printed.contains(&refusal), "{printed}");
+}
+
 #[test]
 fn mismatched_revision_is_rejected_before_writing() {
     let root = repository();

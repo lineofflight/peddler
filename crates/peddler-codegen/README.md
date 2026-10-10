@@ -83,7 +83,7 @@ A description that mentions a usage plan or a burst without such a table fails g
 
 An operation with 1 successful response returns `TypedResponse<T>`. One with several returns a type with a decoder for each status, such as `json_200` and `json_202`. One without a model returns the raw `Response`.
 
-A Ruby method takes the required parameters in order and the optional ones as keywords, under the names Peddler 5 used. It passes each argument through `Peddler::Native::Arguments`, which takes the forms Peddler 5 took and names the argument in what it raises.
+A Ruby method takes the required parameters in order and the optional ones as keywords, under the names Peddler 5 used. A keyword of Rust is such a name too: a parameter `type` is `type:` in Ruby and `type_` in Rust. A method or a parameter named after a keyword of Ruby is refused, and so is a method named `initialize`. It passes each argument through `Peddler::Native::Arguments`, which takes the forms Peddler 5 took and names the argument in what it raises.
 
 Each Ruby method and API class has the comment Peddler 5 gave it: the model's description and a note where the operation can run in the sandbox. Under it are the method's types as inline RBS: a `# @rbs` line for each parameter, with the model's description of it, and 1 for what it returns. A `*_pages` method and an API's method on the client have 1 line of text and their whole type in a `#:` line. The latest version of an API is a method of its own, since Steep reads no alias.
 

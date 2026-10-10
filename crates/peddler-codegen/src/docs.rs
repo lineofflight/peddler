@@ -2,7 +2,7 @@
 //! as v5 wrapped it, with the method's types as inline RBS. The text is Markdown, which
 //! RDoc reads. `lib/generator` on `main` has the Ruby the text follows.
 use crate::{
-    clients::{Operation, Parameter, snake},
+    clients::{Operation, Parameter},
     manifest::ModelSpec,
 };
 use regress::Regex;
@@ -40,7 +40,7 @@ pub(crate) fn operation(op: &Operation) -> String {
         static SPACES: LazyLock<Regex> = LazyLock::new(|| regex(r"[\s]+"));
         let description = p.description.as_deref().unwrap_or_default();
         let description = links(&SPACES.replace_all(description, " "));
-        let name = snake(&p.wire_name);
+        let name = p.ruby_name();
         let ty = rbs_type(p);
         lines.extend(annotation(&if description.is_empty() {
             format!("@rbs {name}: {ty}")
@@ -60,7 +60,7 @@ pub(crate) fn operation(op: &Operation) -> String {
 pub(crate) fn pages(op: &Operation, types: &str) -> String {
     let text = format!(
         "Each page of #{}. `rate_limit` applies to every page.",
-        op.name
+        op.ruby_name()
     );
     let mut lines = prose(&text, METHOD);
     lines.push(format!("#: ({types}) -> Enumerator[Response, void]"));

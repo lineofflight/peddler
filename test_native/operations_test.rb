@@ -196,5 +196,17 @@ class OperationsTest < NativeTest
     assert_instance_of(Peddler::Native::CatalogItems20220401, client("http://127.0.0.1:1").catalog_items)
     assert_instance_of(Peddler::Native::SellersV1, client("http://127.0.0.1:1").sellers)
   end
+
+  # An API's class is an Object, and an operation named `class`, `send` or `freeze` would replace the method every
+  # Object has. `initialize` is the constructor the generator writes.
+  def test_no_generated_method_replaces_a_method_of_object
+    taken = Object.instance_methods + Object.private_instance_methods - [:initialize]
+    replaced = APIS.flat_map do |api|
+      view = Peddler::Native.const_get(api.fetch("ruby_class"))
+      ((view.instance_methods(false) + view.private_instance_methods(false)) & taken).map { |name| "#{view}##{name}" }
+    end
+
+    assert_empty(replaced)
+  end
 end
 # rubocop:enable Minitest/MultipleAssertions

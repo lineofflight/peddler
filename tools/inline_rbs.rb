@@ -44,7 +44,10 @@ module InlineRBS
 
     def rbs(path)
       source = (ROOT / path).read
-      result = RBS::InlineParser.parse(RBS::Buffer.new(name: Pathname(path), content: source), Prism.parse(source))
+      parsed = Prism.parse(source)
+      # What is read of a file that does not parse is not what Ruby would run.
+      abort(parsed.errors.map { |e| "#{path}:#{e.location.start_line}: #{e.message}" }.join("\n")) if parsed.failure?
+      result = RBS::InlineParser.parse(RBS::Buffer.new(name: Pathname(path), content: source), parsed)
       problems = result.diagnostics.map { |d| "#{path}:#{d.location.start_line}: #{d.message}" }
       abort(problems.join("\n")) unless problems.empty?
 

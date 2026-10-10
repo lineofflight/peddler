@@ -455,6 +455,14 @@ fn ruby_default(value: &Value) -> Result<String, GenerationError> {
         }
     })
 }
+/// Ruby's keywords. A method named after one can't be called as the others are, and an
+/// argument named after one can't be read: the file would not parse.
+const RUBY_KEYWORDS: [&str; 35] = [
+    "alias", "and", "begin", "break", "case", "class", "def", "do", "else", "elsif", "end",
+    "ensure", "false", "for", "if", "in", "module", "next", "nil", "not", "or", "redo", "rescue",
+    "retry", "return", "self", "super", "then", "true", "undef", "unless", "until", "when",
+    "while", "yield",
+];
 /// The parts of an operation's Ruby method that its `*_pages` twin shares.
 struct RubyMethod {
     /// Its parameter list, in parentheses
@@ -468,14 +476,22 @@ impl RubyMethod {
     fn of(op: &Operation) -> Result<Self, GenerationError> {
         // v5's signature: required arguments are positional and optional ones keywords,
         // each in the spec's order. A body goes by the name the spec gives it.
-        let name = |p: &Parameter| crate::clients::snake(&p.wire_name);
+        let name = Parameter::ruby_name;
         let mut ordered: Vec<&Parameter> = op.parameters.iter().collect();
         ordered.sort_by_key(|p| (!p.required, p.position));
+        // What is refused of an operation names it. The caller names the file.
+        let refuse = |what: String| Err(GenerationError(format!("{}: {what}", op.id)));
         if ordered.iter().any(|p| name(p) == "rate_limit") {
-            return Err(GenerationError(format!(
-                "{}: a parameter is named rate_limit",
-                op.name
-            )));
+            return refuse("a parameter is named rate_limit".into());
+        }
+        // `initialize` would replace the constructor of the API's class.
+        let method = op.ruby_name();
+        if RUBY_KEYWORDS.contains(&method) || method == "initialize" {
+            return refuse(format!("Ruby can't name its method {method}"));
+        }
+        let keyword = |p: &&Parameter| RUBY_KEYWORDS.contains(&name(p).as_str());
+        if let Some(p) = ordered.iter().copied().find(keyword) {
+            return refuse(format!("Ruby can't name an argument {}", name(p)));
         }
         // v5's last keyword: the rate for the wait after a 429, the documented one by
         // default. Every method takes it, so a call keeps working when Amazon adds or
@@ -574,20 +590,21 @@ pub(crate) fn ruby(
                 parameters,
                 arguments,
                 types,
-            } = RubyMethod::of(op)?;
+            } = RubyMethod::of(op)
+                .map_err(|error| GenerationError(format!("{}: {error}", api.source)))?;
             let key = format!("{}.{}", api.module, op.name);
             // What can't be encoded is in a body, so the error names it.
-            let body = op.body().map(|p| crate::clients::snake(&p.wire_name));
+            let body = op.body().map(Parameter::ruby_name);
             let body = body.map_or(String::new(), |name| format!(", {name:?}"));
             // The response carries its operation key so Ruby can resolve the typed model.
             ruby.push_str(&docs::operation(op));
-            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, Arguments.encode(arguments{body}), Arguments.rate_limit(rate_limit)), {key:?})\n      end\n",op.name).unwrap();
+            writeln!(ruby,"      def {}{parameters}\n{arguments}        Response.from_parts(@engine.operation({key:?}, Arguments.encode(arguments{body}), Arguments.rate_limit(rate_limit)), {key:?})\n      end\n",op.ruby_name()).unwrap();
             if let Some(mapped) = resolved
                 .iter()
                 .find(|r| r.module == api.module && r.name == op.name)
             {
                 ruby.push_str(&docs::pages(op, &types));
-                writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments, Arguments.rate_limit(rate_limit))\n      end\n",op.name,mapped.key).unwrap();
+                writeln!(ruby,"      def {}_pages{parameters}\n{arguments}        PAGINATIONS.fetch({:?}).pages(@engine, arguments, Arguments.rate_limit(rate_limit))\n      end\n",op.ruby_name(),mapped.key).unwrap();
             }
         }
         ruby.truncate(ruby.trim_end().len());
@@ -723,6 +740,70 @@ mod tests {
             "      #: (String seller_id, Array[String] marketplace_ids, ?next_token: String?, ?max_results: Integer?, ?with_stock: bool?, ?min_price: (Float | Integer)?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]\n",
             "      def list_items_pages(seller_id, marketplace_ids, next_token: nil, max_results: 10, with_stock: nil, min_price: nil, rate_limit: nil)\n",
         )), "{ruby}");
+    }
+
+    /// The Ruby of a spec with 1 operation, or why it is refused.
+    fn ruby_of(id: &str, parameters: Value) -> Result<String, String> {
+        let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
+            "/things":{"get":{"operationId":id,"parameters":parameters,"responses":{"200":{"description":"ok"}}}}
+        }});
+        let api = &crate::manifest::ALL_APIS[0];
+        let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
+        let specs = BTreeMap::from([(api.module, spec)]);
+        ruby(&clients, &[], &specs).map_err(|error| error.0)
+    }
+
+    /// A name from a spec that Ruby can't use is refused, by its file and its operation.
+    /// Written out, the file would not parse, or would replace the constructor.
+    #[test]
+    fn a_name_that_ruby_cant_use_is_refused() {
+        let source = crate::manifest::ALL_APIS[0].source;
+        let query = |name: &str, required: bool| json!([{"name":name,"in":"query","type":"string","required":required}]);
+        for keyword in RUBY_KEYWORDS {
+            for required in [false, true] {
+                assert_eq!(
+                    ruby_of("getThing", query(keyword, required)).unwrap_err(),
+                    format!("{source}: getThing: Ruby can't name an argument {keyword}")
+                );
+            }
+            assert_eq!(
+                ruby_of(keyword, json!([])).unwrap_err(),
+                format!("{source}: {keyword}: Ruby can't name its method {keyword}")
+            );
+        }
+        // A name is a keyword after it is put in snake case, not before.
+        assert_eq!(
+            ruby_of("getThing", query("End", false)).unwrap_err(),
+            format!("{source}: getThing: Ruby can't name an argument end")
+        );
+        assert_eq!(
+            ruby_of("initialize", json!([])).unwrap_err(),
+            format!("{source}: initialize: Ruby can't name its method initialize")
+        );
+        assert_eq!(
+            ruby_of("getThing", query("rateLimit", false)).unwrap_err(),
+            format!("{source}: getThing: a parameter is named rate_limit")
+        );
+        assert!(ruby_of("getThing", query("ending", false)).is_ok());
+    }
+
+    /// A keyword of Rust takes a `_` in Rust, and in what the core is sent. In Ruby it is
+    /// the name v5 gave it.
+    #[test]
+    fn a_keyword_of_rust_keeps_its_name_in_ruby() {
+        let parameters = json!([{"name":"type","in":"query","type":"string"},{"name":"match","in":"query","type":"string","required":true}]);
+        let ruby = ruby_of("move", parameters).unwrap();
+        let module = crate::manifest::ALL_APIS[0].module;
+        for line in [
+            "      # @rbs type: String?\n".to_owned(),
+            "      # @rbs match: String\n".to_owned(),
+            "      def move(match, type: nil, rate_limit: nil)\n".to_owned(),
+            "          type_: Arguments.string(\"type\", type),\n".to_owned(),
+            "          match_: Arguments.string(\"match\", match, required: true),\n".to_owned(),
+            format!("@engine.operation(\"{module}.move_\", "),
+        ] {
+            assert!(ruby.contains(&line), "{line}{ruby}");
+        }
     }
 
     /// Each literal reads back in Ruby as the spec's text and runs nothing.

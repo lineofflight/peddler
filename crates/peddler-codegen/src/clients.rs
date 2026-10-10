@@ -33,7 +33,18 @@ impl Operation {
     pub fn body(&self) -> Option<&Parameter> {
         self.parameters.iter().find(|p| p.location == "body")
     }
+    /// Its method in Ruby, where a keyword of Rust is a name like any other
+    pub(crate) fn ruby_name(&self) -> &str {
+        self.name.trim_end_matches('_')
+    }
 }
+impl Parameter {
+    /// Its argument in Ruby, where a keyword of Rust is a name like any other
+    pub(crate) fn ruby_name(&self) -> String {
+        self.wire_name.to_snake_case()
+    }
+}
+/// A name as Rust writes it: a keyword takes a `_`.
 pub(crate) fn snake(name: &str) -> String {
     let result = name.to_snake_case();
     if typify::accept_as_ident(&result) {
