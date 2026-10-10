@@ -508,6 +508,16 @@ class RactorTest < NativeTest
     end
   end
 
+  def test_eager_load_is_the_main_ractors_to_call
+    refused = in_ractor do
+      Peddler.eager_load!
+    rescue Ractor::IsolationError => error
+      error.message
+    end
+
+    assert_equal("Peddler.eager_load! works in the main Ractor only: call it there before starting another", refused)
+  end
+
   # Everything but the typed models is loaded by `require "peddler"`, on every Ruby.
   def test_a_ractor_needs_no_loading_call_for_the_client
     output = run_ruby(<<~RUBY)

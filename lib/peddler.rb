@@ -44,7 +44,13 @@ module Peddler
     # notification, a report, a feed or a Data Kiosk document. From Ruby 3.4 a Ractor loads a model on first use.
     #
     # @return [void]
+    # @raise [Ractor::IsolationError] in a Ractor other than the main one
     def eager_load!
+      unless Ractor.current.equal?(Ractor.main)
+        raise Ractor::IsolationError, "Peddler.eager_load! works in the main Ractor only: call it there before " \
+          "starting another"
+      end
+
       LOADER.eager_load
     end
   end
