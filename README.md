@@ -402,11 +402,10 @@ local = Peddler::Client.new(base_url: "http://localhost:9001", access_token: "te
 
 ### Testing
 
-Peddler's requests leave through the native extension, where WebMock's own adapters don't see them. Require Peddler's adapter, and WebMock sees them. So does VCR, through WebMock.
+Once WebMock is loaded, Peddler's requests go through it: Peddler loads an adapter of its own before the next one. A test suite requires nothing of Peddler's.
 
 ```ruby
 require "webmock/minitest"
-require "peddler/webmock"
 
 class OrderTest < Minitest::Test
   def test_gets_an_order
@@ -423,7 +422,7 @@ class OrderTest < Minitest::Test
 end
 ```
 
-While WebMock is enabled, every exchange goes through it: operations and `request`, the token requests of `Peddler::LWA`, and the downloads and uploads of signed URLs. Without the `require`, a stub is never hit and `WebMock.disable_net_connect!` stops nothing.
+While WebMock is enabled, every exchange goes through it: operations and `request`, the token requests of `Peddler::LWA`, and the downloads and uploads of signed URLs.
 
 Only the exchange is replaced. A stubbed response is retried, paginated, parsed and raised on as one from Amazon is, and every attempt is a request to `assert_requested`. `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL. `to_raise` raises the error you give it.
 
@@ -435,13 +434,12 @@ A document is not streamed while WebMock is enabled. An upload is read to its en
 
 WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20. [Tests](UPGRADING.md#6-tests) in the upgrade guide has the setting that shows them all.
 
-Require the adapter before a selective `WebMock.enable!(except: ...)`. Required after one that leaves `Net::HTTP` out, it stays off, and requests reach the network.
+`require "peddler/webmock"` loads the adapter early, which only 2 kinds of program need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent. The other is a call from another Ractor, under [Ractors](#ractors).
 
 VCR records and replays Peddler's requests once it hooks into WebMock.
 
 ```ruby
 require "vcr"
-require "peddler/webmock"
 
 VCR.configure do |config|
   config.hook_into(:webmock)
@@ -619,7 +617,7 @@ participations = ractor.value # ractor.take before Ruby 4.0
 - An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another that uses a typed model. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
 - Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
-- WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing.
+- WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing. So does one made while WebMock is loaded and Peddler's adapter is not: `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs most such children and crashes some, with or without Peddler.
 
 How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, 4 Ractors together parse less than 1 does alone: about half as many typed responses. On Ruby 4.0 they parse 2 to 3 times as many.
