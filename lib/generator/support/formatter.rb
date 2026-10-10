@@ -4,7 +4,7 @@ module Generator
   module Formatter
     MAX_LINE_LENGTH = 120
 
-    def split_long_comment_line(line, base_indent: 0, wrap_indent: 0, max_line_length: MAX_LINE_LENGTH)
+    def split_long_comment_line(line, base_indent: 0, max_line_length: MAX_LINE_LENGTH)
       max_width = max_line_length - base_indent - 2 # Account for the space and `#`
 
       # Split into lines and process them intelligently:
@@ -71,21 +71,15 @@ module Generator
         # Word wrap this paragraph
         current_line = []
         lines = []
-        first_line = true
         paragraph.split.each do |word|
-          if first_line && (current_line + [word]).join(" ").size <= max_width
-            current_line << word
-          elsif !first_line && (current_line + [word]).join(" ").size <= max_width - wrap_indent
+          if (current_line + [word]).join(" ").size <= max_width
             current_line << word
           else
-            lines << " " * base_indent + "# " + " " * (first_line ? 0 : wrap_indent) + current_line.join(" ")
-            first_line = false
+            lines << " " * base_indent + "# " + current_line.join(" ")
             current_line = [word]
           end
         end
-        unless current_line.empty?
-          lines << " " * base_indent + "# " + " " * (first_line ? 0 : wrap_indent) + current_line.join(" ")
-        end
+        lines << " " * base_indent + "# " + current_line.join(" ") unless current_line.empty?
 
         all_lines.concat(lines)
       end
