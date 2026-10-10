@@ -24,41 +24,6 @@ module Generator
       description.match?(/^An explanation about the purpose of this instance\.?$/i)
     end
 
-    # Check if any types use Money
-    def needs_money?(extracted_types = nil)
-      # If extracted_types provided, check them directly
-      if extracted_types
-        return extracted_types.any? do |_type_name, type_def|
-          type_def["properties"]&.any? do |_prop_name, prop_def|
-            prop_def["$ref"] == "#/definitions/Money" ||
-                (prop_def["items"].is_a?(Hash) && prop_def["items"]["$ref"] == "#/definitions/Money")
-          end
-        end
-      end
-
-      # Otherwise check properties (for Type class)
-      return false unless respond_to?(:properties)
-
-      properties.any? do |_prop_name, prop_def|
-        if prop_def["$ref"]
-          type_name = prop_def["$ref"].split("/").last
-          MoneyDetector.money_type?(type_name)
-        else
-          false
-        end
-      end
-    end
-
-    # Get list of all nested type file names for requiring
-    # This method requires schema and a name method to be available
-    def nested_type_files
-      extractor = JsonSchemaExtractor.new(schema, send(:name))
-      extracted_types = extractor.extract_types
-
-      # Return list of underscored type names for requiring
-      extracted_types.keys.map(&:underscore).sort
-    end
-
     # The comment above a property: its description, or nil when the schema has none worth repeating. The
     # declaration under it and the signature say the type.
     # base_indent can be overridden by subclasses

@@ -62,13 +62,6 @@ module Generator
       temp_file.unlink
     end
 
-    def test_nested_type_files_returns_array
-      files = @listings_feed.nested_type_files
-
-      assert_instance_of(Array, files)
-      assert(files.all?(String))
-    end
-
     def test_feed_type_definition_structure
       type_def = @listings_feed.send(:feed_type_definition)
 

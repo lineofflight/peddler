@@ -129,29 +129,6 @@ module Generator
       end.uniq
     end
 
-    def uses_string_class_names?
-      properties.any? do |_prop_name, prop_def|
-        resolved_type = type_resolver.resolve(prop_def)
-
-        if resolved_type == class_name || resolved_type == "[#{class_name}]"
-          return true
-        end
-
-        # Check for cycle-causing edges
-        if resolved_type.is_a?(String)
-          if resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
-              resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
-              resolved_type != "Money" && resolved_type != ":boolean"
-            return true if cycle_edge?(resolved_type)
-          end
-
-          return true if cycle_edge?(array_inner_type(resolved_type))
-        end
-
-        false
-      end
-    end
-
     # Returns just the class definition without module wrapping
     # Used for consolidated RBS generation
     def rbs_class_definition

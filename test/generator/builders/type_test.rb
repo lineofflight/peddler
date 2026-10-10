@@ -116,8 +116,6 @@ module Generator
         },
       }
       type = Type.new("TypeWithMoney", definition, API_NAME, specification)
-
-      assert_predicate(type, :needs_money?)
       money_prop = { "$ref" => "#/definitions/Money" }
 
       assert_equal("Money", type.ruby_type_for(money_prop))

@@ -86,34 +86,6 @@ module Generator
       Naming.constant(notification_name.underscore.camelize)
     end
 
-    # Extract payload version from the schema examples or filename
-    def payload_version
-      # Try to get from examples first
-      examples = schema.dig("examples")
-      if examples&.first
-        return examples.first["payloadVersion"] || examples.first["PayloadVersion"]
-      end
-
-      # Fall back to filename-based version (e.g., "_2023-12-13")
-      if file_path =~ /_(\d{4}-\d{2}-\d{2})\.json$/
-        matched = ::Regexp.last_match(1)
-        return matched if matched
-      end
-
-      # Default to 1.0 if no version found
-      "1.0"
-    end
-
-    # Properties from the wrapper level (notificationVersion, notificationType, etc.)
-    def wrapper_properties
-      sorted_properties(schema["properties"] || {})
-    end
-
-    # Required properties from the wrapper level
-    def wrapper_required_properties
-      schema["required"] || []
-    end
-
     # Class description from schema (no leading spaces - template handles indentation)
     # Raw description from schema (will be formatted by Type class)
     def raw_description
