@@ -6,7 +6,7 @@ Peddler is automatically generated from the latest Open API models provided by A
 
 Peddler covers all SP-API endpoints, reports, notifications, and feeds. Requests run on a Rust core that ships with the gem as a native extension. The same core is available to Rust programs as the [`peddler` crate](crates/peddler/README.md).
 
-<p><img src="https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 100%" /></p>
+![Peddler](https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true)
 
 Coming from Peddler 5? See [UPGRADING.md](UPGRADING.md).
 

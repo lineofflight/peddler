@@ -75,6 +75,9 @@ module RDocRBS
   end
 end
 
+# Markdown passes HTML through as it is, and most of the text is Amazon's. Without the extension a tag in it is
+# left out, so nothing a spec says reaches a page as markup.
+RDoc::Markdown::DEFAULT_EXTENSIONS.delete(:html)
 RDoc::Markup::PreProcess.post_process do |comment, _code_object|
   comment.text = RDocRBS.prose(comment.text) if comment.is_a?(RDoc::Comment)
 end

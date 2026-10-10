@@ -22,7 +22,7 @@ end
 
 # The README and the guides link to each other and to files of the repository. RDoc writes such a link as the page
 # it would make of the file. The README is the home page, though, and the site holds no other file: those links go
-# to the home page and to GitHub.
+# to the home page and to GitHub. An image of theirs is wider than a page, and Markdown gives it no width.
 Rake::Task["doc/created.rid"].enhance do
   Dir["doc/{index,*_md}.html"].each do |page|
     html = File.read(page).gsub(/(?<=<a href=")[^"#]+/) do |path|
@@ -31,6 +31,6 @@ Rake::Task["doc/created.rid"].enhance do
 
       "https://github.com/lineofflight/peddler/blob/main/#{path.sub(/_(md|rb)\.html\z/, '.\1')}"
     end
-    File.write(page, html)
+    File.write(page, html.gsub("<img ", '<img style="max-width: 100%" '))
   end
 end
