@@ -32,8 +32,8 @@ module Peddler
     # retry minutes later sends a fresh token. It is called from whichever thread makes the call, so it must be
     # thread-safe.
     #
-    # Asking the source is part of the attempt, and the time it takes counts against `timeout:`. Ruby can't
-    # interrupt a source: one that takes longer than the timeout is waited for, and the attempt has then timed out.
+    # Asking the source is part of the attempt, and the time it takes counts against `timeout:`. The timeout can't
+    # cut a source short, so one slower than it is waited for, and the attempt has then timed out.
     #
     # @rbs access_token: String | Native::_TokenSource -- a Login with Amazon access token or a restricted data token,
     #   or its source
