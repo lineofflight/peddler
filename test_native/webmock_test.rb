@@ -305,7 +305,9 @@ class WebMockTest < WebMockTestCase
     assert_equal(403, assert_raises(Peddler::Error) { client.feeds.upload_feed_document(feed, "<feed/>", type) }.status)
   end
 
-  def test_the_adapter_follows_webmock_when_it_loads_and_nothing_loads_it_but_a_require
+  # An application may still require the adapter, any number of times. See webmock_autoload_test.rb for what loads
+  # it otherwise.
+  def test_the_adapter_follows_webmock_when_it_is_required_and_zeitwerk_leaves_it_alone
     # Zeitwerk would autoload the file as a constant of Peddler, and load it with everything else in production.
     name = Peddler::Inflector.new(File.expand_path("../lib/peddler.rb", __dir__)).camelize("webmock", nil)
 
@@ -316,7 +318,7 @@ class WebMockTest < WebMockTestCase
       results = [defined?(WebMock).nil?, $LOADED_FEATURES.grep(/webmock/).empty?]
       hook = -> { Peddler::Native.instance_variable_get(:@exchange_hook) }
       require "webmock"
-      require "peddler/webmock"
+      results << require("peddler/webmock") << !require("peddler/webmock")
       results << hook.call.nil?
       WebMock.enable!
       results << hook.call.equal?(WebMock::HttpLibAdapters::PeddlerAdapter)

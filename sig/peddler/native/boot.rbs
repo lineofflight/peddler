@@ -5,7 +5,8 @@ module Peddler
 
     def self.status_reason: (Integer code) -> String?
 
-    # What the native layer hands every HTTP exchange to, or nil for none. The WebMock adapter sets it.
+    # What the native layer hands every HTTP exchange to, or nil for none. The WebMock adapter sets or clears it as
+    # it loads, and the native layer, which loads the adapter once WebMock is loaded, then looks for WebMock no more.
     def self.exchange_hook=: (untyped hook) -> untyped
 
     type tokens = [String, String?, String, Integer, String?]

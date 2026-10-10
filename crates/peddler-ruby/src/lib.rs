@@ -377,10 +377,13 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     // The names of the instance variables that only this extension uses are interned
     // here, in the main Ractor. Ruby 3.3 and 3.4 can give a name 2 IDs when 2 Ractors are
     // the first to intern it, at once, and a source set under one is not found under the
-    // other. Every other name the extension looks up is a constant or a method that Ruby
-    // code defined before the extension could look it up.
+    // other. So is `WebMock`, which a call looks for before anything defines it: looked
+    // for under an ID of its own, it would not be found once it is loaded. Every other
+    // name the extension looks up is a constant or a method that Ruby code defined before
+    // the extension could look it up.
     ruby.intern(TOKEN_SOURCE);
     ruby.intern(hook::HOOK);
+    ruby.intern(hook::WEBMOCK);
     let peddler = ruby.define_module("Peddler")?;
     let native = peddler.define_module("Native")?;
     native.define_singleton_method("status_reason", function!(status_reason, 1))?;

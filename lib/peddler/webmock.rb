@@ -7,16 +7,17 @@ module WebMock
   module HttpLibAdapters
     # Puts WebMock between Peddler and the network
     #
-    # Peddler's requests are made by its native extension, where WebMock's other adapters don't see them. Require
-    # this file after WebMock, and while WebMock is enabled every exchange Peddler makes goes through it: the
-    # operations and Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed
-    # URLs. `stub_request`, `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` then
-    # work as they do for any HTTP library.
+    # Peddler's requests are made by its native extension, where WebMock's other adapters don't see them. This one
+    # does, and an application requires nothing: Peddler loads it before the first request it makes with WebMock
+    # loaded. While WebMock is enabled every exchange Peddler makes goes through it: the operations and
+    # Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed URLs.
+    # `stub_request`, `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` then work as
+    # they do for any HTTP library.
     #
     # WebMock doesn't say whether it is enabled, so the adapter tells when it loads, by whether Net::HTTP is
-    # swapped. Require this file before a selective `WebMock.enable!(except: ...)`, which then enables it with the
-    # rest. Required after one that leaves Net::HTTP out, the adapter stays off, and Peddler's requests reach the
-    # network.
+    # swapped. Loaded after a selective `WebMock.enable!(except: ...)` that leaves Net::HTTP out, the adapter stays
+    # off, and Peddler's requests reach the network. Require this file before one, which then enables it with the
+    # rest.
     #
     # Only the exchange is replaced. A stubbed response is retried, paginated, parsed and raised on as one from
     # Amazon is. `to_timeout` raises what a timeout does: Peddler::TimeoutError, or
@@ -25,13 +26,13 @@ module WebMock
     # A document isn't streamed while WebMock is enabled: an upload is read to its end before it is sent, and a
     # download arrives whole before its first row is read.
     #
-    # WebMock works in the main Ractor only: its stubs live there. While it is enabled, a call Peddler makes in
-    # another Ractor raises `Ractor::IsolationError` and sends nothing.
+    # WebMock works in the main Ractor only: its stubs live there, and the adapter loads there. A call Peddler makes
+    # in another Ractor raises `Ractor::IsolationError` and sends nothing while WebMock is enabled, and while WebMock
+    # is loaded and the adapter is not yet.
     #
     # Example:
     #
     #     require "webmock/minitest"
-    #     require "peddler/webmock"
     #
     #     stub_request(:get, %r{/orders/v0/orders}).to_return(status: 200, body: '{"payload":{"Orders":[]}}')
     class PeddlerAdapter < HttpLibAdapter
@@ -98,8 +99,9 @@ module WebMock
       end
 
       # WebMock doesn't say whether it is enabled, but its Net::HTTP adapter swaps the constant while it is. See the
-      # comment of the class for the `enable!` this misreads.
-      enable! unless ::Net::HTTP.equal?(NetHttpAdapter::OriginalNetHTTP)
+      # comment of the class for the `enable!` this misreads. Either way the native layer is told, and stops looking
+      # for WebMock before a request.
+      ::Net::HTTP.equal?(NetHttpAdapter::OriginalNetHTTP) ? disable! : enable!
     end
   end
 end

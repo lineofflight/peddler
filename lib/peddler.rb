@@ -18,7 +18,8 @@ end
 # The native layer loads eagerly below. Compiled extensions ship in lib/peddler/<ruby minor>/.
 loader.ignore("#{__dir__}/peddler/native")
 loader.ignore("#{__dir__}/peddler/[0-9]*")
-# The WebMock adapter loads only when an application requires it.
+# The WebMock adapter needs WebMock, so it is not Zeitwerk's to load. The native layer loads it, before the first
+# request it makes with WebMock loaded.
 webmock = "#{__dir__}/peddler/webmock.rb"
 loader.ignore(webmock)
 loader.setup

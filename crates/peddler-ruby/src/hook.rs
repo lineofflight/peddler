@@ -12,6 +12,9 @@
 //!
 //! A token source is its Ractor's own and is asked there. The exchange hook is the main
 //! Ractor's: only it sets one, and while one is set a call of another Ractor is refused.
+//!
+//! Nothing has to require the WebMock adapter. A call looks for WebMock before it sends
+//! anything and loads the adapter the first time it finds it (see `adapt`).
 
 use super::{ACCESS_TOKEN, argument_error, peddler_const};
 use magnus::{
@@ -179,6 +182,7 @@ pub(super) fn hooked() -> bool {
 /// it is not shareable either.
 const SET: &str = "the exchange hook is set and cleared in the main Ractor only";
 const CALL: &str = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor";
+const LOAD: &str = "WebMock is loaded, and its adapter for Peddler loads in the main Ractor only: require \"peddler/webmock\" there before a call from another Ractor";
 
 fn main_ractor(ruby: &Ruby) -> Result<bool, Error> {
     let ractor: RClass = ruby.class_object().const_get("Ractor")?;
@@ -197,10 +201,42 @@ fn isolation_error(ruby: &Ruby, message: &'static str) -> Error {
     }
 }
 
+/// The constant that tells WebMock is loaded, and the feature that holds its adapter.
+pub(super) const WEBMOCK: &str = "WebMock";
+const ADAPTER: &str = "peddler/webmock";
+/// Whether the WebMock adapter is loaded. It tells by setting or clearing the hook, which
+/// it does as it loads, and a call then looks for WebMock no more.
+static ADAPTED: AtomicBool = AtomicBool::new(false);
+
+/// Loads the WebMock adapter before the first exchange of a process that has WebMock
+/// loaded, so that no request passes WebMock unseen for want of a `require`. The adapter
+/// sets the hook as it loads if WebMock is enabled, and the call that loaded it finds
+/// the hook set. Without WebMock this is a constant lookup.
+///
+/// A Ractor other than the main one is refused until the adapter is loaded. Ruby 3.3
+/// loads code in the main Ractor only, and on any Ruby only the main Ractor reads
+/// whether WebMock is enabled, so a call sent on from here could pass an enabled one.
+fn adapt(ruby: &Ruby) -> Result<(), Error> {
+    if ADAPTED.load(Ordering::Acquire) {
+        return Ok(());
+    }
+    let object = ruby.class_object();
+    if !object.funcall::<_, _, bool>("const_defined?", (ruby.sym_new(WEBMOCK), false))? {
+        return Ok(());
+    }
+    if !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, LOAD));
+    }
+    ruby.require(ADAPTER)?;
+    ADAPTED.store(true, Ordering::Release);
+    Ok(())
+}
+
 /// Refuses a call of a Ractor other than the main one while a hook is set. It can't be
 /// asked there, and a request sent on without asking would reach the network from a
 /// test that believes it stubbed.
 pub(super) fn guard(ruby: &Ruby) -> Result<(), Error> {
+    adapt(ruby)?;
     if hooked() && !main_ractor(ruby)? {
         return Err(isolation_error(ruby, CALL));
     }
@@ -210,13 +246,15 @@ pub(super) fn guard(ruby: &Ruby) -> Result<(), Error> {
 /// `Peddler::Native.exchange_hook = hook`, or nil for none. The hook answers
 /// `call(method, url, headers, body)` with `[status, headers, body]` for a response,
 /// `:timeout`, or anything else to let the request go out, which it gets back in
-/// `completed(ticket, status, headers, body)` with the real response.
+/// `completed(ticket, status, headers, body)` with the real response. Whoever sets or
+/// clears the hook answers for it from then on, and no call loads the WebMock adapter.
 fn set(ruby: &Ruby, native: RModule, hook: Value) -> Result<Value, Error> {
     if !main_ractor(ruby)? {
         return Err(isolation_error(ruby, SET));
     }
     native.ivar_set(HOOK, hook)?;
     HOOKED.store(!hook.is_nil(), Ordering::Release);
+    ADAPTED.store(true, Ordering::Release);
     Ok(hook)
 }
 
@@ -232,6 +270,7 @@ pub(super) struct Responder {
 impl Responder {
     /// None for a call that asks Ruby nothing: no token source and no exchange hook.
     pub(super) fn new(ruby: &Ruby, source: Option<Value>) -> Result<Option<Self>, Error> {
+        adapt(ruby)?;
         // The flag is read once. Read again for the refusal, it could be clear by then and
         // set once more before the hook is read, and a Ractor would reach the hook.
         let hook = if hooked() {
