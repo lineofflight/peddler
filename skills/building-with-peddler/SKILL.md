@@ -163,17 +163,18 @@ Prefer reports or Data Kiosk over deep endpoint pagination for historical or bul
 
 ## Testing
 
-WebMock and VCR see Peddler's requests only through its adapter. Add `require "peddler/webmock"`, before a selective `WebMock.enable!(except: ...)` if there is one. Without it a stub is never hit and `WebMock.disable_net_connect!` stops nothing.
+Once WebMock is loaded, Peddler's requests go through it: Peddler loads an adapter of its own before the next one. Add no `require` of Peddler's.
 
 ```ruby
 require "webmock/minitest"
-require "peddler/webmock"
 
 stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/#{order_id}")
   .to_return(body: JSON.generate(payload: { AmazonOrderId: order_id }))
 ```
 
 A stub answers operations, `client.request`, `Peddler::LWA` token requests and signed URLs. Its response is retried, paginated, parsed and raised on as Amazon's is: a status outside 2xx raises `Peddler::Error`, and `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL. With `retries:` set, a stubbed `429` waits by the operation's rate, so give the stub a `Retry-After: 0` header. VCR works once it hooks into WebMock.
+
+`require "peddler/webmock"` loads the adapter early, which only 2 cases need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call: after `WebMock.enable!(except: [:net_http])` the request is otherwise sent. The other is a call from another Ractor, below.
 
 WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20: `UPGRADING.md` in the gem, under Tests, has the setting that shows them all.
 
@@ -186,7 +187,7 @@ Peddler works in a Ractor other than the main one, by these rules:
 - A response crosses to another Ractor as a copy. An error arrives as the `cause` of a `Ractor::RemoteError`.
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before starting another that uses a typed model.
 - Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
-- WebMock is for the main Ractor only: while it is enabled, a call from another Ractor raises `Ractor::IsolationError`.
+- WebMock is for the main Ractor only: a call from another Ractor raises `Ractor::IsolationError` while WebMock is enabled, and while it is loaded and Peddler's adapter is not. `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run.
 
 Ractors pay off from Ruby 4.0, where 4 of them parse 2 to 3 times what 1 does. On Ruby 3.3 and 3.4 they parse less than 1 does alone.
