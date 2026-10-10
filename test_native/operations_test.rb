@@ -197,6 +197,19 @@ class OperationsTest < NativeTest
     assert_instance_of(Peddler::Native::SellersV1, client("http://127.0.0.1:1").sellers)
   end
 
+  # The models of an API are named through Peddler's inflector, with Peddler's acronyms. The generator of the API's
+  # class keeps a list of them of its own.
+  def test_an_apis_class_is_named_as_its_models_are
+    inflector = Peddler::Inflector.new(File.expand_path("../lib/peddler.rb", __dir__))
+    APIS.each do |api|
+      name = api.fetch("ruby_class")
+
+      assert_equal(Peddler::Acronyms.apply(name), name)
+      assert_equal(inflector.camelize(api.fetch("module"), ""), name)
+    end
+    assert_instance_of(Peddler::Native::FBAInventoryV1, client("http://127.0.0.1:1").fba_inventory_v1)
+  end
+
   # An API's class is an Object, and an operation named `class`, `send` or `freeze` would replace the method every
   # Object has. `initialize` is the constructor the generator writes.
   def test_no_generated_method_replaces_a_method_of_object

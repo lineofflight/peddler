@@ -3916,7 +3916,7 @@
           ]
         }
       ],
-      "ruby_class": "FbaInboundEligibilityV1",
+      "ruby_class": "FBAInboundEligibilityV1",
       "source": "fba-inbound-eligibility-api-model/fbaInbound.json",
       "version": "v1"
     },
@@ -4145,7 +4145,7 @@
           ]
         }
       ],
-      "ruby_class": "FbaInventoryV1",
+      "ruby_class": "FBAInventoryV1",
       "source": "fba-inventory-api-model/fbaInventory.json",
       "version": "v1"
     },

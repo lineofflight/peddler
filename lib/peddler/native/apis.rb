@@ -2071,7 +2071,7 @@ module Peddler
     # inform their decisions about which items to ship Amazon's fulfillment centers.
     #
     # https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
-    class FbaInboundEligibilityV1
+    class FBAInboundEligibilityV1
       # @rbs @engine: engine
 
       #: (engine engine) -> void
@@ -2107,7 +2107,7 @@ module Peddler
     # Amazon's fulfillment network.
     #
     # https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
-    class FbaInventoryV1
+    class FBAInventoryV1
       # @rbs @engine: engine
 
       #: (engine engine) -> void
@@ -10645,23 +10645,23 @@ module Peddler
     def external_fulfillment_shipments = external_fulfillment_shipments_2024_09_11
 
     # Selling Partner API for FBA Inbound Eligibilty, version v1
-    #: () -> Native::FbaInboundEligibilityV1
+    #: () -> Native::FBAInboundEligibilityV1
     def fba_inbound_eligibility_v1
-      Native::FbaInboundEligibilityV1.new(@engine)
+      Native::FBAInboundEligibilityV1.new(@engine)
     end
 
     # The latest version: #fba_inbound_eligibility_v1
-    #: () -> Native::FbaInboundEligibilityV1
+    #: () -> Native::FBAInboundEligibilityV1
     def fba_inbound_eligibility = fba_inbound_eligibility_v1
 
     # Selling Partner API for FBA Inventory, version v1
-    #: () -> Native::FbaInventoryV1
+    #: () -> Native::FBAInventoryV1
     def fba_inventory_v1
-      Native::FbaInventoryV1.new(@engine)
+      Native::FBAInventoryV1.new(@engine)
     end
 
     # The latest version: #fba_inventory_v1
-    #: () -> Native::FbaInventoryV1
+    #: () -> Native::FBAInventoryV1
     def fba_inventory = fba_inventory_v1
 
     # Selling Partner API for Feeds, version 2021-06-30

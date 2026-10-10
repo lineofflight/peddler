@@ -455,6 +455,34 @@ fn ruby_default(value: &Value) -> Result<String, GenerationError> {
         }
     })
 }
+/// The words Peddler writes in capitals, as `lib/peddler/acronyms.rb` has them for the
+/// models. A test in Ruby holds the name of every API's class to that file.
+const ACRONYMS: [(&str, &str); 16] = [
+    ("Api", "API"),
+    ("Apis", "APIs"),
+    ("Asin", "ASIN"),
+    ("B2b", "B2B"),
+    ("Cgst", "CGST"),
+    ("Cod", "COD"),
+    ("Ebt", "EBT"),
+    ("Fba", "FBA"),
+    ("Igst", "IGST"),
+    ("Lwa", "LWA"),
+    ("Safet", "SAFET"),
+    ("Sgst", "SGST"),
+    ("Sku", "SKU"),
+    ("Tds", "TDS"),
+    ("Url", "URL"),
+    ("Urls", "URLs"),
+];
+/// The name of an API's class in Ruby, which is that of its models' namespace: `FBAInventoryV1`.
+/// A word is an acronym before a capital or at the end, so that `Cod` leaves `Code` alone.
+fn ruby_class(module: &str) -> String {
+    ACRONYMS.iter().fold(pascal(module), |name, (from, to)| {
+        let word = regress::Regex::new(&format!("{from}(?=[A-Z]|$)")).expect("valid pattern");
+        word.replace_all(&name, to)
+    })
+}
 /// Ruby's keywords. A method named after one can't be called as the others are, and an
 /// argument named after one can't be read: the file would not parse.
 const RUBY_KEYWORDS: [&str; 35] = [
@@ -575,7 +603,7 @@ pub(crate) fn ruby(
     // The type of a constant that spans lines is read from its last one.
     ruby.push_str("    }.freeze #: Hash[String, Pagination]\n\n");
     for (api, operations) in clients {
-        let class = pascal(api.module);
+        let class = ruby_class(api.module);
         ruby.push_str(&docs::class(api, &specs[api.module]["info"]));
         // An instance variable's type is read before the first statement of the class
         // only, with a blank line after it. `Client` builds the class and no application
@@ -613,7 +641,7 @@ pub(crate) fn ruby(
     ruby.truncate(ruby.trim_end().len());
     ruby.push_str("\n  end\n\n  class Client\n");
     for (api, _) in clients {
-        let class = pascal(api.module);
+        let class = ruby_class(api.module);
         ruby.push_str(&docs::accessor(&class, &specs[api.module]["info"]));
         writeln!(
             ruby,
@@ -650,7 +678,7 @@ pub(crate) fn inventory(
                 "family": api.family,
                 "version": api.version,
                 "latest": api.latest,
-                "ruby_class": pascal(api.module),
+                "ruby_class": ruby_class(api.module),
                 "operations": operations,
             })
         })
@@ -803,6 +831,23 @@ mod tests {
             format!("@engine.operation(\"{module}.move_\", "),
         ] {
             assert!(ruby.contains(&line), "{line}{ruby}");
+        }
+    }
+
+    /// As `Peddler::Acronyms.apply` names them in Ruby.
+    #[test]
+    fn a_class_is_named_with_peddlers_acronyms() {
+        for (module, class) in [
+            ("fba_inventory_v1", "FBAInventoryV1"),
+            ("orders_v0", "OrdersV0"),
+            ("apis_v1", "APIsV1"),
+            ("api_urls", "APIURLs"),
+            ("b2b_sku_v1", "B2BSKUV1"),
+            ("sku_2024_01_01", "Sku20240101"),
+            ("code_v1", "CodeV1"),
+            ("cod_v1", "CODV1"),
+        ] {
+            assert_eq!(ruby_class(module), class);
         }
     }
 

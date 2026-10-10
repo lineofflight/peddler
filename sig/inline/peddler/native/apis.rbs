@@ -982,7 +982,7 @@ module Peddler
       def update_sandbox_shipment: (String shipment_id, untyped body, ?rate_limit: (Float | Integer)?) -> Response
     end
 
-    class FbaInboundEligibilityV1
+    class FBAInboundEligibilityV1
       @engine: engine
 
       def initialize: (engine engine) -> void
@@ -1000,7 +1000,7 @@ module Peddler
       def get_item_eligibility_preview: (String asin, String program, ?marketplace_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
     end
 
-    class FbaInventoryV1
+    class FBAInventoryV1
       @engine: engine
 
       def initialize: (engine engine) -> void
@@ -4954,16 +4954,16 @@ module Peddler
     def external_fulfillment_shipments: () -> Native::ExternalFulfillmentShipments20240911
 
     # Selling Partner API for FBA Inbound Eligibilty, version v1
-    def fba_inbound_eligibility_v1: () -> Native::FbaInboundEligibilityV1
+    def fba_inbound_eligibility_v1: () -> Native::FBAInboundEligibilityV1
 
     # The latest version: #fba_inbound_eligibility_v1
-    def fba_inbound_eligibility: () -> Native::FbaInboundEligibilityV1
+    def fba_inbound_eligibility: () -> Native::FBAInboundEligibilityV1
 
     # Selling Partner API for FBA Inventory, version v1
-    def fba_inventory_v1: () -> Native::FbaInventoryV1
+    def fba_inventory_v1: () -> Native::FBAInventoryV1
 
     # The latest version: #fba_inventory_v1
-    def fba_inventory: () -> Native::FbaInventoryV1
+    def fba_inventory: () -> Native::FBAInventoryV1
 
     # Selling Partner API for Feeds, version 2021-06-30
     def feeds_2021_06_30: () -> Native::Feeds20210630
