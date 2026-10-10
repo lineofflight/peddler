@@ -506,8 +506,8 @@ class RactorTest < NativeTest
     end
   end
 
-  # zeitwerk 2.6 lost them on Ruby 3.3 and 3.4, so the gem requires 2.7. A namespace is first used once in a
-  # process, so this is a process of its own.
+  # zeitwerk 2.6 lost them on Ruby 3.3 and 3.4, so the gem requires 2.7. It lost them once the Ractor was collected,
+  # which the script sees to. A namespace is first used once in a process, so this is a process of its own.
   def test_a_model_namespace_first_used_after_a_ractor_ran_finds_its_children
     names = [
       "Peddler::Notifications::OrderChange::Notification",
@@ -517,6 +517,7 @@ class RactorTest < NativeTest
     ]
     output = run_ruby(<<~RUBY)
       take(Ractor.new { Peddler::Marketplace.us.id })
+      GC.start
       puts #{names.inspect}.map { |name| Object.const_get(name).name }
     RUBY
 
