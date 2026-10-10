@@ -1,5 +1,6 @@
-//! The YARD comment of a generated Ruby method, from the spec fields v5 read and
-//! wrapped as v5 wrapped it. `lib/generator` on `main` has the Ruby this follows.
+//! The comment of a generated Ruby method, from the spec fields v5 read and wrapped
+//! as v5 wrapped it, with the method's types as inline RBS. `lib/generator` on `main`
+//! has the Ruby the text follows.
 use crate::{
     clients::{Operation, Parameter, snake},
     manifest::ModelSpec,
@@ -21,13 +22,13 @@ fn regex(pattern: &str) -> Regex {
     Regex::with_flags(&pattern.replace("\\s", SPACE), "u").expect("valid pattern")
 }
 
-/// v5's line for the keyword every method takes last.
-const RATE_LIMIT: &str = "# @param rate_limit [Float] Requests per second";
+/// What the keyword every method takes last accepts, in RBS.
+pub(crate) const RATE_LIMIT: &str = "(Float | Integer)?";
 
 /// The comment above an operation's method: its description, a note on the sandbox,
 /// each argument and what it returns.
 pub(crate) fn operation(op: &Operation) -> String {
-    let mut lines = wrap(&description(&op.description), METHOD, 0);
+    let mut lines = prose(&description(&op.description), METHOD);
     lines.push("#".into());
     if let Some(kind) = op.sandbox {
         lines.extend(tag(&format!(
@@ -41,32 +42,37 @@ pub(crate) fn operation(op: &Operation) -> String {
         let description = p.description.as_deref().unwrap_or_default();
         let description = links(&SPACES.replace_all(description, " "));
         let name = snake(&p.wire_name);
-        lines.extend(tag(&format!(
-            "@param {name} [{}] {description}",
-            accepts(p)
-        )));
+        let ty = rbs_type(p);
+        lines.extend(tag(&if description.is_empty() {
+            format!("@rbs {name}: {ty}")
+        } else {
+            format!("@rbs {name}: {ty} -- {description}")
+        }));
     }
-    lines.push(RATE_LIMIT.into());
-    lines.extend(tag("@return [Peddler::Response] The API response"));
+    lines.push(format!(
+        "# @rbs rate_limit: {RATE_LIMIT} -- Requests per second"
+    ));
+    lines.push("# @rbs return: Response".into());
     indent(&lines, METHOD)
 }
 
-/// The comment above the method that enumerates an operation's pages.
-pub(crate) fn pages(op: &Operation) -> String {
-    let line = format!(
-        "# @return [Enumerator<Peddler::Response>] each page of {{#{}}}",
-        op.name
-    );
-    indent(&[RATE_LIMIT.into(), line], METHOD)
+/// The comment above the method that enumerates an operation's pages. It takes its
+/// whole type in 1 line: a line for each argument would leave any it missed untyped.
+pub(crate) fn pages(op: &Operation, types: &str) -> String {
+    let lines = [
+        format!("# Each page of {{#{}}}", op.name),
+        format!("#: ({types}) -> Enumerator[Response, void]"),
+    ];
+    indent(&lines, METHOD)
 }
 
 /// The comment above an API's class, as v5 wrote it: the spec's title, its description
 /// and a link to the spec.
 pub(crate) fn class(api: &ModelSpec, info: &Value) -> String {
     let text = |key: &str| info[key].as_str().unwrap_or_default();
-    let mut lines = wrap(text("title"), CLASS, 0);
+    let mut lines = prose(text("title"), CLASS);
     lines.push("#".into());
-    lines.extend(wrap(&links(text("description")), CLASS, 0));
+    lines.extend(prose(&links(text("description")), CLASS));
     lines.push("#".into());
     lines.push(format!(
         "# @see https://github.com/amzn/selling-partner-api-models/blob/main/models/{}",
@@ -75,19 +81,30 @@ pub(crate) fn class(api: &ModelSpec, info: &Value) -> String {
     indent(&lines, CLASS)
 }
 
-/// The comment above the method of `Client` that returns an API: the class, the
-/// spec's title and its version.
+/// The comment above the method of `Client` that returns an API: the spec's title,
+/// its version and the class.
 pub(crate) fn accessor(class: &str, info: &Value) -> String {
     let words = |key: &str| {
         let text = info[key].as_str().unwrap_or_default();
         text.split_whitespace().collect::<Vec<_>>().join(" ")
     };
-    let line = format!(
-        "# @return [Peddler::Native::{class}] {}, version {}",
+    let text = format!(
+        "{}, version {}",
         words("title").trim_end_matches('.'),
         words("version")
     );
-    indent(&[line], CLASS)
+    let mut lines = prose(&text, CLASS);
+    lines.push(format!("#: () -> Native::{class}"));
+    indent(&lines, CLASS)
+}
+
+/// The comment above the method of `Client` that returns the latest version of an API.
+pub(crate) fn latest(class: &str, module: &str) -> String {
+    let lines = [
+        format!("# The latest version: {{#{module}}}"),
+        format!("#: () -> Native::{class}"),
+    ];
+    indent(&lines, CLASS)
 }
 
 /// Comment lines as Ruby source. A spec is data: whatever it holds, a line break in it
@@ -100,17 +117,23 @@ fn indent(lines: &[String], depth: usize) -> String {
     lines.collect()
 }
 
-/// What `Peddler::Native::Arguments` takes for a parameter.
-fn accepts(p: &Parameter) -> &'static str {
-    if p.location == "body" {
-        return "Hash, Array, String";
-    }
-    match p.schema["type"].as_str() {
-        Some("array") => "Array<String>",
-        Some("boolean") => "Boolean",
-        Some("integer") => "Integer",
-        Some("number") => "Integer, Float",
-        _ => "String",
+/// What a method takes for a parameter, in RBS. An optional one may be nil.
+pub(crate) fn rbs_type(p: &Parameter) -> String {
+    let ty = if p.location == "body" {
+        "untyped"
+    } else {
+        match p.schema["type"].as_str() {
+            Some("array") => "Array[String]",
+            Some("boolean") => "bool",
+            Some("integer") => "Integer",
+            Some("number") => "Float | Integer",
+            _ => "String",
+        }
+    };
+    match ty {
+        _ if p.required => ty.into(),
+        _ if ty.contains('|') => format!("({ty})?"),
+        _ => format!("{ty}?"),
     }
 }
 
@@ -149,9 +172,22 @@ fn strip(text: &str) -> &str {
     text.trim_matches(|c: char| c.is_ascii_whitespace() || matches!(c, '\x0B' | '\0'))
 }
 
-/// A tag's lines above a method. Those after the first are indented under it.
+/// A tag's lines above a method. Those after the first are indented under it, which
+/// is how an annotation goes on.
 fn tag(text: &str) -> Vec<String> {
     wrap(text, METHOD, 2)
+}
+
+/// A spec's text as comment lines. A line that starts with `@rbs` is an annotation
+/// to Steep, and a spec is data: none of its lines starts with it.
+fn prose(text: &str, depth: usize) -> Vec<String> {
+    let lines = wrap(text, depth, 0).into_iter();
+    lines
+        .map(|line| match line.strip_prefix("# @rbs") {
+            Some(rest) => format!("# `@rbs{rest}"),
+            None => line,
+        })
+        .collect()
 }
 
 /// Text as comment lines no wider than a line of Ruby may be. A blank line stays a
@@ -227,6 +263,33 @@ mod tests {
     use super::*;
     use serde_json::json;
 
+    /// An operation that takes 1 argument, with the same text wherever a spec has any.
+    fn described(text: &str, name: &str) -> (Value, Operation) {
+        let info = json!({"title": text, "description": text, "version": text});
+        let parameter = Parameter {
+            name: "id".into(),
+            wire_name: "id".into(),
+            position: 0,
+            location: "query".into(),
+            description: Some(text.into()),
+            required: true,
+            schema: json!({"type": "string"}),
+            csv: false,
+        };
+        let op = Operation {
+            id: "getThing".into(),
+            name: name.into(),
+            method: "GET".into(),
+            path: "/things".into(),
+            description: text.into(),
+            rate: None,
+            sandbox: Some("static"),
+            parameters: vec![parameter],
+            successes: Vec::new(),
+        };
+        (info, op)
+    }
+
     #[test]
     fn a_line_break_in_a_spec_never_ends_a_comment() {
         // Line breaks of every kind, the bytes Ruby ends a script at, and what starts a
@@ -237,34 +300,14 @@ mod tests {
             "b\0exit 10\u{4}exit 11\u{1a}exit 12\n__END__\n=begin\nexit 13\n=end\n",
             "c\\nexit 14"
         );
-        let info = json!({"title": hostile, "description": hostile, "version": hostile});
-        let parameter = Parameter {
-            name: "id".into(),
-            wire_name: "id".into(),
-            position: 0,
-            location: "query".into(),
-            description: Some(hostile.into()),
-            required: true,
-            schema: json!({"type": "string"}),
-            csv: false,
-        };
-        let op = Operation {
-            id: "getThing".into(),
-            name: "get_thing\nexit 15".into(),
-            method: "GET".into(),
-            path: "/things".into(),
-            description: hostile.into(),
-            rate: None,
-            sandbox: Some("static"),
-            parameters: vec![parameter],
-            successes: Vec::new(),
-        };
+        let (info, op) = described(hostile, "get_thing\nexit 15");
         let api = &crate::manifest::ALL_APIS[0];
         let comments = [
             class(api, &info),
             accessor("Thing", &info),
+            latest("Thing", "thing_v1"),
             operation(&op),
-            pages(&op),
+            pages(&op, "String id"),
         ];
         for comment in comments {
             assert!(comment.ends_with('\n') && !comment.contains('\r'));
@@ -275,5 +318,49 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn a_spec_never_writes_an_annotation() {
+        // What Steep reads as an annotation: a line that starts with `@rbs`. Here it
+        // starts the text, a paragraph, a comment and every line a wrap begins.
+        let hostile = format!(
+            "@rbs return: untyped.\n@rbs skip.\n# @rbs id: untyped.\n**Note:** x\n@rbs!\n{}",
+            "@rbs ".repeat(60)
+        );
+        let (info, op) = described(&hostile, "get_thing");
+        let api = &crate::manifest::ALL_APIS[0];
+        // Each line that starts an annotation, up to its description.
+        let annotations = |comment: &str| -> Vec<String> {
+            let lines = comment.lines().map(str::trim_start);
+            lines
+                .filter(|line| {
+                    let text = line.strip_prefix("# ").or(line.strip_prefix('#'));
+                    line.starts_with("#:") || text.is_some_and(|text| text.starts_with("@rbs"))
+                })
+                .map(|line| line.split(" -- ").next().unwrap_or_default().to_owned())
+                .collect()
+        };
+        assert!(class(api, &info).contains(
+            "    # `@rbs return: untyped.\n    # `@rbs skip.\n    # `@rbs id: untyped.\n"
+        ));
+        assert_eq!(annotations(&class(api, &info)), [""; 0]);
+        assert_eq!(
+            annotations(&accessor("Thing", &info)),
+            ["#: () -> Native::Thing"]
+        );
+        assert_eq!(
+            annotations(&pages(&op, "String id")),
+            ["#: (String id) -> Enumerator[Response, void]"]
+        );
+        // The argument's description goes on under its own annotation, indented.
+        assert_eq!(
+            annotations(&operation(&op)),
+            [
+                "# @rbs id: String",
+                "# @rbs rate_limit: (Float | Integer)?",
+                "# @rbs return: Response"
+            ]
+        );
     }
 }

@@ -3,7 +3,6 @@
 # What the Rust generator writes, for the git gate in generate:verify
 RUST_GENERATED_PATHS = [
   "lib/peddler/native/apis.rb",
-  "sig/peddler/native/apis.rbs",
   "crates/peddler/src/apis",
   "crates/peddler/src/data_kiosk",
   "crates/peddler/src/feeds",

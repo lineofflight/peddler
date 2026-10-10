@@ -114,7 +114,8 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     // rate by default. Each goes through its coercion, and a path argument through the
     // check of a segment, the one that ends the path as such.
     // Above it, v5's comment: the description up to its usage plan, links as YARD's, a
-    // note in a paragraph of its own, and lines of at most 120 columns.
+    // note in a paragraph of its own, and lines of at most 120 columns. Then the types,
+    // as inline RBS: a line for each argument, with what the spec says of it.
     let ruby = &rendered[Path::new("lib/peddler/native/apis.rb")];
     assert!(ruby.contains(concat!(
         "      # Updates part of a listing. Refer to the\n",
@@ -124,14 +125,14 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      # **Note:** Only the fields that you send change.\n",
         "      #\n",
         "      # @note This operation can make a static sandbox call.\n",
-        "      # @param seller_id [String]\n",
-        "      # @param marketplace_ids [Array<String>]\n",
-        "      # @param included_data [Array<String>]\n",
-        "      # @param patch_request [Hash, Array, String]\n",
-        "      # @param sku [String] The seller's identifier for the listing, which is a {https://example.com/sku SKU}. It is\n",
+        "      # @rbs seller_id: String\n",
+        "      # @rbs marketplace_ids: Array[String]\n",
+        "      # @rbs included_data: Array[String]?\n",
+        "      # @rbs patch_request: untyped\n",
+        "      # @rbs sku: String -- The seller's identifier for the listing, which is a {https://example.com/sku SKU}. It is\n",
         "      #   **unique** to the seller.\n",
-        "      # @param rate_limit [Float] Requests per second\n",
-        "      # @return [Peddler::Response] The API response\n",
+        "      # @rbs rate_limit: (Float | Integer)? -- Requests per second\n",
+        "      # @rbs return: Response\n",
         "      def patch_listings_item(seller_id, marketplace_ids, patch_request, sku, included_data: [\"issues\"], rate_limit: 5.0)\n",
         "        arguments = {\n",
         "          seller_id: Arguments.segment(\"seller_id\", seller_id),\n",
@@ -142,7 +143,8 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "        }\n",
         "        Response.from_parts(@engine.operation(\"listings_items_2021_08_01.patch_listings_item\", Arguments.encode(arguments, \"patch_request\"), Arguments.rate_limit(rate_limit)), \"listings_items_2021_08_01.patch_listings_item\")\n",
     )));
-    // Its class has v5's comment, and the accessor of `Client` names the API and links it.
+    // Its class has v5's comment and the type of what it keeps. The accessor of `Client`
+    // names the API, and the latest version of a family is a method of its own.
     assert!(ruby.contains(concat!(
         "    # Synthetic API.\n",
         "    #\n",
@@ -150,11 +152,30 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "    #\n",
         "    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json\n",
         "    class ListingsItems20210801\n",
+        "      # @rbs @engine: engine\n",
+        "\n",
+        "      #: (engine engine) -> void\n",
+        "      def initialize(engine)\n",
     )));
     assert!(ruby.contains(concat!(
-        "    # @return [Peddler::Native::ListingsItems20210801] Synthetic API, version 1\n",
+        "    # Synthetic API, version 1\n",
+        "    #: () -> Native::ListingsItems20210801\n",
         "    def listings_items_2021_08_01\n",
+        "      Native::ListingsItems20210801.new(@engine)\n",
+        "    end\n",
+        "\n",
+        "    # The latest version: {#listings_items_2021_08_01}\n",
+        "    #: () -> Native::ListingsItems20210801\n",
+        "    def listings_items = listings_items_2021_08_01\n",
     )));
+    // The types are in the Ruby alone: no signature file is written for it.
+    assert!(ruby.contains("    }.freeze #: Hash[String, Pagination]\n"));
+    assert!(!ruby.contains("alias_method"));
+    assert!(
+        rendered
+            .keys()
+            .all(|path| path.extension() != Some("rbs".as_ref()))
+    );
     // A default is text, never code: Ruby would interpolate "#{exit}". An operation
     // without a usage plan takes `rate_limit:` too, and has no rate by default.
     assert!(ruby.contains(
@@ -190,10 +211,6 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
     assert!(rates.contains(&("patchListingsItem", Some(5.0))));
     assert!(rates.contains(&("getCatalogItem", None)));
     assert_eq!(rates.iter().filter(|(_, rate)| rate.is_some()).count(), 1);
-    let rbs = &rendered[Path::new("sig/peddler/native/apis.rbs")];
-    assert!(rbs.contains(
-        "def patch_listings_item: (String seller_id, Array[String] marketplace_ids, untyped patch_request, String sku, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response"
-    ));
     for (path, content) in &rendered {
         if path.extension().is_some_and(|ext| ext == "rs") {
             // No source carries the revision, so a pin move changes only what the specs changed.

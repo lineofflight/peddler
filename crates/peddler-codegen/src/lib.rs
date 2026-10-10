@@ -137,9 +137,10 @@ pub fn generate(
             facades::pagination_table(&resolved)?
         ),
     );
-    let (ruby, rbs) = facades::ruby(&clients, &resolved, &specs)?;
-    output.insert(PathBuf::from("lib/peddler/native/apis.rb"), ruby);
-    output.insert(PathBuf::from("sig/peddler/native/apis.rbs"), rbs);
+    output.insert(
+        PathBuf::from("lib/peddler/native/apis.rb"),
+        facades::ruby(&clients, &resolved, &specs)?,
+    );
     output.insert(
         PathBuf::from("crates/peddler-codegen/operation-inventory.json"),
         facades::inventory(&clients, revision, &resolved, &source)?,
