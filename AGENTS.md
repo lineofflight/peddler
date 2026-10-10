@@ -27,6 +27,7 @@ Safe to edit:
 - Rust: `cargo test -p peddler --locked`, `cargo clippy -p peddler --all-targets --locked -- -D warnings`
 - Lint: `bundle exec rubocop <path>.rb -A`
 - Types: `bundle exec steep check`
+- Docs: `bundle exec rake rdoc` (the site, into `doc/`; `rake rerdoc` builds it again from nothing)
 - Generate: `bundle exec rake generate` (both generators, then `rbs:export`); `bundle exec rake generate:verify` fails if generated files or `sig/inline` drift
 
 Targeted generation: `rake generate:apis`, `generate:notifications`, `generate:reports`, `generate:feeds`, `generate:data_kiosk`, `generate:rust`
@@ -56,6 +57,17 @@ A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: member
 - Steep reads no alias: write a one-line `def` with its own `#:` line.
 - Never run `steep check` on one file: it reports false unknown constants and skips the duplicate-declaration check. Check the whole project.
 - `steep check --steepfile=Steepfile.shipped` checks `lib` against the signatures an application gets.
+
+## Comments
+
+Comments are Markdown, and RDoc builds the site from them with the signatures. No YARD tags.
+
+- An example is a line "Example:", a blank comment line and a block indented by 4 spaces.
+- An error is a sentence: "Raises Peddler::Error if ...".
+- A class or a method is named as it is, and RDoc links it: `Peddler::Client#request`, `#sandbox`, `Client.new`. Don't start a line with `#name`: it breaks the paragraph.
+- A link is `[text](url)`, or the URL alone in a paragraph of its own.
+- `# :nodoc:` at the end of a `def` line, or of a constant's, hides it. On a line above, it hides the rest of the class too.
+- The order is the description, the example, the `@rbs` lines, then what it raises. The site lists the parameters where the `@rbs` lines stand.
 
 ## Generator Workflow
 

@@ -33,7 +33,7 @@ This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws
 - Call an endpoint that has no method yet, with parameter values as an operation takes them:
   `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: marketplace_ids })`
 - Operation documentation and signatures:
-  YARD comments in `lib/peddler/native/apis.rb` and `sig/inline/peddler/native/apis.rbs` in the gem
+  the comments in `lib/peddler/native/apis.rb` and `sig/inline/peddler/native/apis.rbs` in the gem
 
 ## Authorization & token caching
 

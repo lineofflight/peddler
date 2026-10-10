@@ -289,7 +289,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 - Method names and signatures. Required arguments are positional, in the same order, and optional ones are keywords with the same names.
 - The forms an argument may take, listed under [Argument forms](#argument-forms): a String for a list, a String that holds JSON for a body, a number where a String is expected and a numeric String where a number is.
 - A list of `Peddler::Marketplace` objects where a list of IDs goes, and any other object that converts itself with `to_str`. A single `Peddler::Marketplace` in place of its ID now works too, and so does one inside a request body.
-- The documentation of every operation and API class, as YARD comments.
+- The documentation of every operation and API class, in the comments above them.
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `headers.include?("Name")`, `charset` and `to_s` on a response. A response is still its text where a String is taken, as in `JSON.parse(response)`.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.

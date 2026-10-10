@@ -59,6 +59,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
 - Add runtime dependencies on `bigdecimal` and `rb_sys`
+- Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and the anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
 
 ### Removed
 

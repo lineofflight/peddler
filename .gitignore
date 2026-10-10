@@ -1,7 +1,6 @@
 Gemfile.lock
 .bundle
 .gem_rbs_collection
-.yardoc
 doc
 pkg
 rbs_collection.lock.yaml

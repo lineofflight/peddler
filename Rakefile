@@ -9,7 +9,6 @@ require "rbconfig"
 require "rubocop/rake_task"
 require "shellwords"
 require "steep/rake_task"
-require "yard"
 
 # Bundler's release task tags, then pushes the source gem alone, and every user would compile Rust. A release is
 # 4 platform gems, the source gem and the crate: see RELEASING.md.
@@ -28,7 +27,6 @@ Rake::Task[:test].clear_actions.enhance(["native:build"]) do
 end
 RuboCop::RakeTask.new
 Steep::RakeTask.new
-YARD::Rake::YardocTask.new
 
 desc "Sort manually written RBS signature files"
 task "rbs:sort" do
