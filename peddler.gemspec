@@ -32,7 +32,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency("bigdecimal", ">= 3.1", "< 5")
   gem.add_dependency("rb_sys", "~> 0.9.130")
   gem.add_dependency("structure", "~> 4.2")
-  gem.add_dependency("zeitwerk", "~> 2.6")
+  # 2.6 loses the children of a model namespace that the main Ractor first uses after another Ractor ran.
+  gem.add_dependency("zeitwerk", "~> 2.7")
 
   # The site that .github/workflows/build-docs.yml deploys. Without this RubyGems links to rubydoc.info, which
   # builds with YARD and knows nothing of the inline RBS.

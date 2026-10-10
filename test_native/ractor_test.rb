@@ -506,6 +506,23 @@ class RactorTest < NativeTest
     end
   end
 
+  # zeitwerk 2.6 lost them on Ruby 3.3 and 3.4, so the gem requires 2.7. A namespace is first used once in a
+  # process, so this is a process of its own.
+  def test_a_model_namespace_first_used_after_a_ractor_ran_finds_its_children
+    names = [
+      "Peddler::Notifications::OrderChange::Notification",
+      "Peddler::Notifications::AnyOfferChanged::Notification",
+      "Peddler::Reports::VendorSales::Report",
+      "Peddler::APIs::OrdersV0::Order",
+    ]
+    output = run_ruby(<<~RUBY)
+      take(Ractor.new { Peddler::Marketplace.us.id })
+      puts #{names.inspect}.map { |name| Object.const_get(name).name }
+    RUBY
+
+    assert_equal(names, output.split("\n"))
+  end
+
   def test_eager_load_is_the_main_ractors_to_call
     refused = in_ractor do
       Peddler.eager_load!
