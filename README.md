@@ -111,7 +111,7 @@ client = Peddler.new(
 
 The client calls it before every attempt of a call, on the thread that makes the call: each operation, each page of a `*_pages` enumerator, each poll of a `wait_for_*` method, and each [retry](#rate-limiting) of those. So a retry minutes later sends a fresh token. Keep it thread-safe.
 
-The time it takes counts against `timeout:`. Ruby can't interrupt it, so a source slower than the timeout is waited for, and the attempt has then timed out.
+The time it takes counts against `timeout:`. The timeout can't cut a source short, so one slower than it is waited for, and the attempt has then timed out.
 
 In a single process, `token_source` does the same without a cache of your own. It keeps 1 access token in memory, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask.
 
@@ -291,7 +291,7 @@ No wait has a ceiling. An operation limited to 1 request a minute waits 512 minu
 
 `timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 7 minutes for 3 retries at 1 request a minute, and 17 hours for 10. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
 
-A token source is asked again before every retry, so a retry sends a fresh token however long the wait was. A token given as a String is sent on every attempt: give a call that may wait for minutes one that outlives it.
+A token given as a String is sent on every attempt: give a call that may wait for minutes one that outlives it, or a token source.
 
 When Peddler stops retrying, the last response raises `Peddler::Error` like any other. If the last attempt got no response, it raises `Peddler::TransportError` or `Peddler::TimeoutError`.
 
@@ -432,6 +432,8 @@ With `retries:` set, a stubbed 429 waits as a real one does: a minute for `get_o
 A request without a stub raises `WebMock::NetConnectNotAllowedError` when connections are disabled. The message is WebMock's and shows the request with its headers, the access token among them.
 
 A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole.
+
+WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20. [Tests](UPGRADING.md#6-tests) in the upgrade guide has the setting that shows them all.
 
 Require the adapter before a selective `WebMock.enable!(except: ...)`. Required after one that leaves `Net::HTTP` out, it stays off, and requests reach the network.
 
@@ -615,10 +617,10 @@ participations = ractor.value # ractor.take before Ruby 4.0
 - A callable token source belongs to the Ractor that made it, and is asked there before every attempt. So does `lwa.token_source`: each Ractor that builds one refreshes for itself. To share a token, pass each Ractor a String, or a source that reads a store outside the process.
 - A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3, where it arrives without its body.
 - An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
-- On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
+- On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another that uses a typed model. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
 - Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
 - WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing.
-- On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs such a child, with or without Peddler.
+- On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs most such children and crashes some, with or without Peddler.
 
 How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, 4 Ractors together parse less than 1 does alone: about half as many typed responses. On Ruby 4.0 they parse 2 to 3 times as many.
 
