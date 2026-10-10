@@ -213,7 +213,7 @@ let address = orders_v0::get_order_address(&restricted, params).await?;
 
 A client makes 1 attempt and allows it 30 seconds, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
 
-`RetryPolicy { max_retries }` is all there is to configure: how often a call is retried, 10 times at most. What is retried and how long each wait is are fixed, and are those of Peddler 5 for Ruby.
+`RetryPolicy { max_retries }` is all there is to configure: how often a call is retried, 10 times at most. What is retried and how long each wait is are fixed. The waits are those of Peddler 5 for Ruby.
 
 The client retries a request that Amazon answers with 429, whatever its method: a throttled request was not processed.
 
@@ -385,9 +385,16 @@ The responses of the operations are in each API module's `models`. 4 more famili
 use peddler::notifications::order_change::Notification;
 
 let message = r#"{"NotificationVersion":"1.0","NotificationType":"ORDER_CHANGE","PayloadVersion":"1.0",
-    "EventTime":"2026-01-02T03:04:05Z","Payload":{}}"#;
+    "EventTime":"2026-01-02T03:04:05Z","Payload":{"OrderChangeNotification":{"NotificationLevel":"OrderLevel",
+    "SellerId":"A2SELLER","AmazonOrderId":"123-1234567-1234567","OrderChangeType":"OrderStatusChange",
+    "OrderChangeTrigger":{"TimeOfOrderChange":"2026-01-02T03:04:00Z","ChangeReason":"Order Status Change"},
+    "Summary":{"MarketplaceId":"A1F83G8C2ARO7P","OrderStatus":"Unshipped","PurchaseDate":"2026-01-02T03:00:00Z",
+    "DestinationPostalCode":null,"FulfillmentType":"MFN","OrderType":"StandardOrder","OrderItems":[]}}},
+    "NotificationMetadata":{"ApplicationId":"amzn1.sp.solution.1","SubscriptionId":"s1",
+    "PublishTime":"2026-01-02T03:04:06Z","NotificationId":"n1"}}"#;
 let notification: Notification = serde_json::from_str(message)?;
-println!("{:?}", notification.notification_type);
+let order = &notification.payload.order_change_notification;
+println!("{} is {}", order.amazon_order_id, order.summary.order_status);
 ```
 
 Numbers are `serde_json::Number` with arbitrary precision, so a decimal amount keeps every digit.
