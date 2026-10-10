@@ -73,7 +73,7 @@ class TokenSourceTest < NativeTest
     end
   end
 
-  # Asking is part of the attempt, as it is in the core. Ruby can't interrupt a source, so a slow one is waited
+  # Asking is part of the attempt, as it is in the core. The timeout can't cut a source short, so a slow one is waited
   # for, and the attempt has then timed out: its token came too late, and nothing is sent with it. The connection
   # the first call left idle is neither written to nor closed, so the last call finds it.
   def test_timeout_limits_an_attempt_with_the_time_its_source_takes
