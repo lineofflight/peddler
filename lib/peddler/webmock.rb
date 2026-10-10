@@ -9,10 +9,11 @@ module WebMock
     #
     # Peddler's requests are made by its native extension, where WebMock's other adapters don't see them. This one
     # does, and an application requires nothing: Peddler loads it before the first request it makes with WebMock
-    # loaded. While WebMock is enabled every exchange Peddler makes goes through it: the operations and
-    # Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed URLs.
-    # `stub_request`, `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` then work as
-    # they do for any HTTP library.
+    # loaded. Every exchange of a call that begins while WebMock is enabled goes through it: the operations and
+    # Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed URLs. A call that
+    # is under way when WebMock is enabled, a wait between 2 polls say, finishes without it. `stub_request`,
+    # `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` work as they do for any HTTP
+    # library.
     #
     # WebMock doesn't say whether it is enabled, so the adapter tells when it loads, by whether Net::HTTP is
     # swapped. Loaded after a selective `WebMock.enable!(except: ...)` that leaves Net::HTTP out, the adapter stays
