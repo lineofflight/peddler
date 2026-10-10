@@ -6,7 +6,6 @@ require_relative "support/logger"
 require_relative "api"
 require_relative "support/config"
 require_relative "support/file_writer"
-require_relative "rbs/entrypoint"
 
 module Generator
   class Entrypoint
@@ -26,13 +25,7 @@ module Generator
     end
 
     def generate
-      written_files = []
-
-      written_files << write_file(file_path, render_template)
-
-      written_files << RBS::Entrypoint.new.generate
-
-      format_files(written_files)
+      format_files([write_file(file_path, render_template)])
     end
 
     private

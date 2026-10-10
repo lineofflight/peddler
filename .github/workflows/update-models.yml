@@ -49,7 +49,7 @@ jobs:
       # Peddler 6 has no Ruby API classes. Generation must not bring them back.
       - name: Refuse regenerated HTTP API classes
         run: |
-          if grep -rEl '^\s*class \w+ < (Peddler::)?API\b|^\s*require "http"' lib/peddler.rb lib/peddler/apis sig/peddler.rbs sig/peddler/apis; then
+          if grep -rEl '^\s*class \w+ < (Peddler::)?API\b|^\s*require "http"' lib/peddler.rb lib/peddler/apis sig/peddler/apis; then
             echo "Generated Ruby code references the removed HTTP API classes." >&2
             exit 1
           fi

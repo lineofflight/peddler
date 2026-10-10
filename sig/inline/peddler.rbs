@@ -1,0 +1,27 @@
+# Generated from lib/peddler.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  LOADER: Zeitwerk::Loader
+end
+
+module Peddler
+  # Builds a client: short for {Peddler::Client#initialize Peddler::Client.new}, with the same arguments
+  #
+  # @example
+  #   client = Peddler.new(region: "us-east-1", access_token: token)
+  def self.new: (access_token: String | Native::_TokenSource, ?region: String?, ?base_url: String?, ?timeout: Integer | Float, ?retries: Integer) -> Client
+
+  # Loads every typed model now, which takes about a second
+  #
+  # Ruby 3.3 loads code in the main Ractor only. Call this there before another Ractor parses a response, a
+  # notification, a report, a feed or a Data Kiosk document. From Ruby 3.4 a Ractor loads a model on first use.
+  #
+  # @raise [Ractor::IsolationError] in a Ractor other than the main one
+  def self.eager_load!: () -> void
+
+  module APIs
+    # Each API's typed model lookup, by the API part of a native operation key. Shareable, so that any Ractor can
+    # read it.
+    PARSERS: Hash[String, ^() -> Hash[String, ^() -> untyped]]
+  end
+end

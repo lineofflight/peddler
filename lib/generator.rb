@@ -37,7 +37,6 @@ module Generator
         "lib/peddler/reports",
         "lib/peddler/feeds",
         "lib/peddler/data_kiosk",
-        "sig/peddler.rbs",
         "sig/peddler/apis",
         "sig/peddler/notifications",
         "sig/peddler/reports",

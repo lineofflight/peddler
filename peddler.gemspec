@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   ruby_files = Dir["lib/peddler/**/*.rb", "lib/peddler/**/*.json", "sig/peddler/**/*.rbs",
     "sig/inline/**/*.rbs"]
-    .append("lib/peddler.rb", "sig/peddler.rbs", "LICENSE", "README.md", "CHANGELOG.md", "UPGRADING.md")
+    .append("lib/peddler.rb", "LICENSE", "README.md", "CHANGELOG.md", "UPGRADING.md")
   # The Cargo workspace closure the extension needs to resolve and build with --locked.
   rust_files = ["Cargo.toml", "Cargo.lock"] +
     ["crates/peddler/Cargo.toml", "crates/peddler/README.md", "crates/peddler-ruby/Cargo.toml",
