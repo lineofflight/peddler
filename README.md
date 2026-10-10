@@ -57,7 +57,7 @@ npx skills add lineofflight/peddler -s building-with-peddler
 npx skills add lineofflight/peddler -s amazon-sp-api
 ```
 
-- `building-with-peddler`: Ruby integration, tokens, retries, pagination, and documents.
+- `building-with-peddler`: Ruby integration, tokens, retries, pagination, documents, tests, and Ractors.
 - `amazon-sp-api`: Language-agnostic OpenAPI spec research, issue hunting, and discussions.
 
 ## Usage
@@ -109,7 +109,9 @@ client = Peddler.new(
 
 `Peddler.new` is short for `Peddler::Client.new`.
 
-The client calls it once before every call, on the thread that makes the call: each operation and each page of a `*_pages` enumerator. Keep it thread-safe. `timeout:` doesn't limit it, and a call that is [retried](#rate-limiting) sends that token again on every attempt.
+The client calls it before every attempt of a call, on the thread that makes the call: each operation, each page of a `*_pages` enumerator, each poll of a `wait_for_*` method, and each [retry](#rate-limiting) of those. So a retry minutes later sends a fresh token. Keep it thread-safe.
+
+The time it takes counts against `timeout:`. Ruby can't interrupt it, so a source slower than the timeout is waited for, and the attempt has then timed out.
 
 In a single process, `token_source` does the same without a cache of your own. It keeps 1 access token in memory, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask.
 
@@ -178,7 +180,9 @@ response = client.reports.create_report({
 })
 ```
 
-Every operation is documented where it is defined, in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb): what it does, each argument, and whether it can run in the sandbox.
+Every operation is documented where it is defined, in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb): what it does, each argument, and whether it can run in the sandbox. The [documentation site](https://lineofflight.github.io/peddler/) shows the same, with each method's signature.
+
+The gem ships RBS signatures under `sig/`, for Steep and for an editor that reads RBS. Those of the operations carry Amazon's description of each argument, so the editor shows it on hover.
 
 For an endpoint Peddler has no method for yet, call `request` with the HTTP method and the path. It sends the client's token and keeps its timeout and retries. Its response has no typed model, so `parse` returns the Hash.
 
@@ -267,28 +271,27 @@ It also retries a GET that Amazon answers with 500, 502, 503 or 504, that got no
 
 After a 429, Peddler waits by the rate Amazon documents for the operation: 1 / rate seconds before the first retry, twice that before the second, and so on, plus up to 0.1 seconds. An operation limited to 0.5 requests a second waits 2, 4 and 8 seconds. One limited to 1 request a minute waits 60, 120 and 240. In the sandbox the first wait is 0.2 seconds, whatever the rate.
 
-The rates come from Amazon's API models. Peddler doesn't read `x-amzn-RateLimit-Limit`, so a higher limit that Amazon gave your account doesn't shorten a wait.
+The rates come from Amazon's API models. Peddler doesn't read `x-amzn-RateLimit-Limit`. If Amazon gave your account another limit, override the default value by passing a `rate_limit:` parameter when calling an operation.
 
-After a 5xx, a failed connection or a timeout, Peddler waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of an operation without a documented rate, and of a call through `request`.
+```ruby
+client.orders_v0.get_orders(
+  Peddler::Marketplace.ids("UK"),
+  created_after: "2026-01-01T00:00:00Z",
+  rate_limit: 0.5,
+)
+```
+
+`rate_limit:` is in requests per second. Every operation and every `*_pages` method takes it. It sets the wait after a 429 and nothing else: no call is paced. `nil` is no rate, which is the default where Amazon documents none. A value that is not a positive number raises `ArgumentError` before anything is sent: `rate_limit must be a positive number of requests per second`.
+
+After a 5xx, a failed connection or a timeout, Peddler waits up to 1 second, then 1 to 2, then 3 to 4, and so on. So does a 429 of a call without a rate, and of a call through `request`.
 
 If the response has a `Retry-After` header, Peddler waits as long as it asks instead.
 
-A wait is 900 seconds at most. When the rate or `Retry-After` asks for a longer one, Peddler stops retrying and the last response raises `Peddler::Error`, as when the retries run out. So the rate of an operation sets how many retries its 429 can use. One limited to 1 request a minute waits 60, 120, 240 and 480 seconds and is not retried a fifth time.
+No wait has a ceiling. An operation limited to 1 request a minute waits 512 minutes before its tenth retry. The slowest, `search_orders` of Orders 2026-01-01, waits 179, 357 and 714 seconds before its first 3.
 
-| Requests a second | Retries of a 429 |
-| --- | --- |
-| 0.0056 to 0.0083 | 3 |
-| 0.016 to 0.017 | 4 |
-| 0.0222 to 0.033 | 5 |
-| 0.1 | 7 |
-| 0.5 | 9 |
-| 1 or more | 10 |
+`timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 7 minutes for 3 retries at 1 request a minute, and 17 hours for 10. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
 
-52 operations are limited to less than 1 request a second, so none of them can use `retries: 10`. Every operation can use `retries: 3`: the slowest, `search_orders` of Orders 2026-01-01, waits 179, 357 and 714 seconds.
-
-`timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 23 minutes for 5 retries at 0.0222 requests a second, and 150 minutes if `Retry-After` asks for 900 seconds 10 times. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
-
-A token source is asked once for a call, before its first attempt, so every retry sends the same token. Give a call that may retry for minutes a token that outlives it. `token_source` hands out a token with 60 seconds or more left, and the second retry of an operation limited to 1 request a minute goes out 3 minutes in.
+A token source is asked again before every retry, so a retry sends a fresh token however long the wait was. A token given as a String is sent on every attempt: give a call that may wait for minutes one that outlives it.
 
 When Peddler stops retrying, the last response raises `Peddler::Error` like any other. If the last attempt got no response, it raises `Peddler::TransportError` or `Peddler::TimeoutError`.
 
@@ -397,7 +400,59 @@ local = Peddler::Client.new(base_url: "http://localhost:9001", access_token: "te
 
 `base_url` is a scheme, a host and an optional port, with no path. Plain `http` is accepted for `localhost` and loopback addresses only, so that a token is never sent unencrypted over a network. A client with a `base_url` has no sandbox: `sandbox` raises `ArgumentError`.
 
-Tests use `base_url:` too. WebMock and VCR don't see Peddler's requests, which leave through the native extension, so a stub is never hit. Point the client at a server the test starts, and `Peddler::LWA` at one with `lwa_endpoint:`.
+### Testing
+
+Peddler's requests leave through the native extension, where WebMock's own adapters don't see them. Require Peddler's adapter, and WebMock sees them. So does VCR, through WebMock.
+
+```ruby
+require "webmock/minitest"
+require "peddler/webmock"
+
+class OrderTest < Minitest::Test
+  def test_gets_an_order
+    url = "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123-1234567-1234567"
+    stub_request(:get, url)
+      .to_return(body: JSON.generate(payload: { AmazonOrderId: "123-1234567-1234567" }))
+    client = Peddler.new(region: "eu-west-1", access_token: "token")
+
+    order = client.orders_v0.get_order("123-1234567-1234567")
+
+    assert_equal("123-1234567-1234567", order.dig("payload", "AmazonOrderId"))
+    assert_requested(:get, url, headers: { "X-Amz-Access-Token" => "token" })
+  end
+end
+```
+
+While WebMock is enabled, every exchange goes through it: operations and `request`, the token requests of `Peddler::LWA`, and the downloads and uploads of signed URLs. Without the `require`, a stub is never hit and `WebMock.disable_net_connect!` stops nothing.
+
+Only the exchange is replaced. A stubbed response is retried, paginated, parsed and raised on as one from Amazon is, and every attempt is a request to `assert_requested`. `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL. `to_raise` raises the error you give it.
+
+With `retries:` set, a stubbed 429 waits as a real one does: a minute for `get_orders`. Give the stub a `Retry-After: 0` header, or the call a fast `rate_limit:`.
+
+A request without a stub raises `WebMock::NetConnectNotAllowedError` when connections are disabled. The message is WebMock's and shows the request with its headers, the access token among them.
+
+A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole.
+
+Require the adapter before a selective `WebMock.enable!(except: ...)`. Required after one that leaves `Net::HTTP` out, it stays off, and requests reach the network.
+
+VCR records and replays Peddler's requests once it hooks into WebMock.
+
+```ruby
+require "vcr"
+require "peddler/webmock"
+
+VCR.configure do |config|
+  config.hook_into(:webmock)
+  config.cassette_library_dir = "test/cassettes"
+  config.filter_sensitive_data("<ACCESS_TOKEN>") { access_token }
+end
+
+item = VCR.use_cassette("catalog_item") do
+  client.catalog_items.get_catalog_item("B08N5WRWNW", Peddler::Marketplace.ids("US"))
+end
+```
+
+A test can also run against a server it starts. Point the client at it with `base_url:`, and `Peddler::LWA` with `lwa_endpoint:`.
 
 ### Pagination
 
@@ -440,7 +495,7 @@ end
 | `client.feeds` | `wait_for_feed` | `open_feed_document` | `download_result_feed_document` | `upload_feed_document`, `create_and_upload_feed_document` |
 | `client.data_kiosk` | `wait_for_query` | `open_query_document` | `download_query_document` | |
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out. A poll that is told to wait more than 900 seconds is not retried: its 429 raises `Peddler::Error` at once.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out.
 
 4 helpers return a whole document in a response. They allow 600 seconds for a call.
 
@@ -543,7 +598,29 @@ client.upload_document(upload_url, "<xml/>", content_type: "text/xml; charset=UT
 
 A signed URL that answers outside 2xx raises `Peddler::Error`. Its `response` holds the reply.
 
-A token source is asked once by each `wait_for_*` call and each document method, however long the call runs. Give a long wait a token that outlives it.
+A token source is asked before every poll of a `wait_for_*` method, and before a document is looked up by its ID or a feed document is created, with each retry of those. A signed URL takes no token, so a transfer asks for none.
+
+### Ractors
+
+Peddler works in a Ractor other than the main one: operations, `request`, `*_pages`, the document and wait helpers, and `Peddler::LWA`.
+
+```ruby
+ractor = Ractor.new(access_token) do |token|
+  Peddler.new(region: "eu-west-1", access_token: token).sellers.get_marketplace_participations.to_h
+end
+participations = ractor.value # ractor.take before Ruby 4.0
+```
+
+- Build the client in the Ractor that uses it. A client, a `Peddler::LWA` and a `Peddler::Document` can't be copied, moved or made shareable. Building one is cheap: clients in every Ractor share the 1 connection pool.
+- A callable token source belongs to the Ractor that made it, and is asked there before every attempt. So does `lwa.token_source`: each Ractor that builds one refreshes for itself. To share a token, pass each Ractor a String, or a source that reads a store outside the process.
+- A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3, where it arrives without its body.
+- An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
+- On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
+- Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
+- WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing.
+- On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs such a child, with or without Peddler.
+
+How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, 4 Ractors together parse less than 1 does alone: about half as many typed responses. On Ruby 4.0 they parse 2 to 3 times as many.
 
 ### Available APIs
 
@@ -739,9 +816,12 @@ bundle exec rake generate
 
 # Type check with Steep
 bundle exec steep check --severity-level=hint
+
+# Build the documentation site into doc/ with RDoc
+bundle exec rake rdoc
 ```
 
-`rake test` builds the extension first. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md). A release is made by hand: see [RELEASING.md](RELEASING.md).
+`rake test` builds the extension first. Types are inline RBS comments in the Ruby files, and RDoc builds the documentation from the same comments. `rake generate` writes the signatures the gem ships into `sig/inline`, and `rake rbs:export` does after a change to hand-written code. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md). A release is made by hand: see [RELEASING.md](RELEASING.md).
 
 ## License
 
