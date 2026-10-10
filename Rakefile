@@ -38,10 +38,12 @@ task "rbs:sort" do
   end
 end
 
+# The generated Ruby carries its types inline, so the export follows it.
 desc "Generate all code from specs"
 task generate: "generate:rust" do
   require_relative "lib/generator"
   Generator.generate
+  Rake::Task["rbs:export"].invoke
 end
 
 namespace :generate do
@@ -89,12 +91,13 @@ namespace :generate do
   end
 
   # rust:verify compares the Rust generator's output with the files on disk, so it runs before generate
-  # rewrites them. The git gate then covers both generators' paths.
+  # rewrites them. The git gate then covers both generators' paths and the signatures exported from them, so a
+  # generator change that moves a type shows as drift.
   desc "Regenerate at the pinned spec revision; fail if committed output drifts"
   task verify: ["rust:verify", :generate] do
     require "open3"
 
-    paths = Generator.generated_paths + RUST_GENERATED_PATHS
+    paths = Generator.generated_paths + RUST_GENERATED_PATHS + ["sig/inline"]
     status_out, _err, status = Open3.capture3("git", "status", "--porcelain", "--", *paths)
     raise "git status failed" unless status.success?
 
