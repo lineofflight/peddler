@@ -92,6 +92,24 @@ class ArgumentsTest < NativeTest
     )
   end
 
+  # ActiveSupport writes a Hash through `as_json`, where a marketplace is its attributes. Peddler writes a body
+  # itself, so a marketplace in one is its ID with ActiveSupport loaded too, and so is a direct `to_json`.
+  def test_a_marketplace_is_its_id_as_json_with_active_support_loaded
+    serve_keep_alive do |url, _accepted, requests|
+      output = run_ruby(<<~RUBY)
+        require "active_support"
+        require "active_support/core_ext/object/json"
+        require "peddler"
+        uk = Peddler::Marketplace.find("UK")
+        Peddler.new(base_url: #{url.inspect}, access_token: "t").request("POST", "/raw", body: { "a" => [{ "b" => uk }] })
+        puts uk.to_json, JSON.generate([uk])
+      RUBY
+
+      assert_equal(%("A1F83G8C2ARO7P"\n["A1F83G8C2ARO7P"]\n), output)
+      assert_equal('{"a":[{"b":"A1F83G8C2ARO7P"}]}', requests.pop.last)
+    end
+  end
+
   def test_an_object_whose_text_is_an_inspect_form_is_refused_by_name
     point = Data.define(:x).new(x: SENTINEL)
     messages = refused(

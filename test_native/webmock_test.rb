@@ -172,6 +172,22 @@ class WebMockTest < WebMockTestCase
     assert_requested(stub, times: 3)
   end
 
+  # In Amazon's sandbox the first wait after a 429 is 0.2 seconds and the second 0.4, whatever the rate: by that of
+  # `get_orders` the first would be a minute. A sandbox has a region, so only a stub answers for it.
+  def test_a_throttled_stub_in_the_sandbox_is_retried_after_a_fifth_of_a_second
+    stub = stub_request(:get, "https://sandbox.sellingpartnerapi-eu.amazon.com/orders/v0/orders")
+      .with(query: { "MarketplaceIds" => UK })
+      .to_return({ status: 429 }, { status: 429 }, { status: 200, body: '{"payload":{"Orders":[]}}', headers: JSON_TYPE })
+    started = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    response = Timeout.timeout(10) { seller(retries: 2).sandbox.orders_v0.get_orders([UK]) }
+    elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started
+
+    assert_equal(200, response.status)
+    assert_operator(elapsed, :>=, 0.6)
+    assert_operator(elapsed, :<, 5)
+    assert_requested(stub, times: 3)
+  end
+
   def test_to_timeout_raises_what_a_timeout_does_and_to_raise_the_error_itself
     failure = Class.new(StandardError).new("boom")
     signed = "https://signed.example/document?X-Amz-Signature=abc"
