@@ -4,7 +4,7 @@ This guide covers upgrading from v5.x to v6.0, and from v4.x to v5.0.
 
 ## From v5.x to v6.0
 
-Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens and how you rescue errors, and your tests require an adapter for WebMock. Your operation calls stay as they are.
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. Its Ruby API stays close to v5. You change how you create a client, how you get tokens and how you rescue errors. Your operation calls stay as they are.
 
 ### What to change
 
@@ -256,7 +256,7 @@ It differs in 2 ways.
 
 #### 6. Tests
 
-Peddler's requests now leave through the native extension, where WebMock's own adapters don't see them. Require Peddler's adapter, and stubs, `assert_requested`, `WebMock.disable_net_connect!` and VCR work as they did.
+A suite keeps its helper as it is. Peddler's requests now leave through the native extension, but once WebMock is loaded Peddler loads an adapter of its own before the next one, so stubs, `assert_requested`, `WebMock.disable_net_connect!`, `WebMock.disable!` and VCR work as they did.
 
 **Before (v5):**
 ```ruby
@@ -270,14 +270,13 @@ api = Peddler.orders_v0.new("eu-west-1", "token")
 **After (v6):**
 ```ruby
 require "webmock/minitest"
-require "peddler/webmock"
 
 stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123-1234567-1234567")
   .to_return(body: JSON.generate(payload: { AmazonOrderId: "123-1234567-1234567" }))
 client = Peddler::Client.new(region: "eu-west-1", access_token: "token")
 ```
 
-Without that line a stub is never hit, a cassette records nothing, and `WebMock.disable_net_connect!` doesn't stop a call: it reaches Amazon. Put the line before a selective `WebMock.enable!(except: ...)`. Required after one that leaves `Net::HTTP` out, the adapter stays off.
+A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request adds 1 line, `require "peddler/webmock"`, before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent to Amazon.
 
 A stubbed response is handled as one from Amazon is, so the changes above show in a test too.
 
@@ -286,11 +285,9 @@ A stubbed response is handled as one from Amazon is, so the changes above show i
 - A request without a stub raises `WebMock::NetConnectNotAllowedError`, as before. Its message shows the request with its headers, the access token among them.
 - A document is not streamed while WebMock is enabled: an upload is read to its end before it is sent, and a download arrives whole.
 
-Cassettes recorded with v5 replay, the token request in them too. 2 operations need more: `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20 now repeat `mskus`, where the cassette holds 1 value with commas. WebMock keeps only the last value of a repeated parameter unless it is told otherwise. Tell it, and match a URI by its values.
+Cassettes recorded with v5 replay, the token request in them too. 2 operations need more: `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20 now repeat `mskus`, where the cassette holds 1 value with commas. WebMock keeps only the last value of a repeated parameter unless it is told otherwise. Match a URI by its values, and tell WebMock to keep them all.
 
 ```ruby
-WebMock::Config.instance.query_values_notation = :flat_array
-
 VCR.configure do |config|
   config.hook_into(:webmock)
   config.register_request_matcher(:uri_with_lists) do |recorded, sent|
@@ -303,6 +300,8 @@ VCR.configure do |config|
   end
   config.default_cassette_options = { match_requests_on: [:method, :uri_with_lists] }
 end
+
+WebMock::Config.instance.query_values_notation = :flat_array
 ```
 
 The notation is for the whole suite: set it before the first request. Under it `with(query: hash_including(...))` no longer matches, so give such a stub the whole query.
