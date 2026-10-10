@@ -694,6 +694,36 @@ fn parameter_json(p: &Parameter) -> Value {
 mod tests {
     use super::*;
 
+    /// The method that enumerates pages takes its whole type in 1 line, each kind of
+    /// argument in it: positional when required, a keyword that may be nil otherwise,
+    /// and `rate_limit:` last.
+    #[test]
+    fn a_pages_method_carries_its_whole_type() {
+        let spec = json!({"swagger":"2.0","produces":["application/json"],"consumes":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
+            "/sellers/{sellerId}/items":{"get":{"operationId":"listItems","parameters":[
+                {"name":"nextToken","in":"query","type":"string"},
+                {"name":"sellerId","in":"path","required":true,"type":"string"},
+                {"name":"marketplaceIds","in":"query","required":true,"type":"array","items":{"type":"string"}},
+                {"name":"maxResults","in":"query","type":"integer","default":10},
+                {"name":"withStock","in":"query","type":"boolean"},
+                {"name":"minPrice","in":"query","type":"number"}],
+                "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Page"}}}}}
+        },"definitions":{"Page":{"type":"object","properties":{"nextToken":{"type":"string"}}}}});
+        let api = &crate::manifest::ALL_APIS[0];
+        let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
+        let specs = BTreeMap::from([(api.module, spec)]);
+        let key = format!("{}.list_items", api.module);
+        let source = json!({"mappings":[{"operation":key,"input":"/next_token","output":"/nextToken"}],"exclusions":[]});
+        let source: pagination::Source = serde_json::from_value(source).unwrap();
+        let resolved = pagination::resolve(&source, &clients, &specs).unwrap();
+        let ruby = ruby(&clients, &resolved, &specs).unwrap();
+        assert!(ruby.contains(concat!(
+            "      # Each page of {#list_items}\n",
+            "      #: (String seller_id, Array[String] marketplace_ids, ?next_token: String?, ?max_results: Integer?, ?with_stock: bool?, ?min_price: (Float | Integer)?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]\n",
+            "      def list_items_pages(seller_id, marketplace_ids, next_token: nil, max_results: 10, with_stock: nil, min_price: nil, rate_limit: nil)\n",
+        )), "{ruby}");
+    }
+
     /// Each literal reads back in Ruby as the spec's text and runs nothing.
     #[test]
     fn a_default_is_written_as_a_literal_that_runs_nothing() {
