@@ -7,9 +7,15 @@ plugins:
 inherit_gem:
   rubocop-shopify: rubocop.yml
 
+inherit_mode:
+  merge:
+    - Include
+
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.3
+  Include:
+    - Steepfile.shipped
 
 RBS:
   Enabled: true
@@ -51,9 +57,3 @@ Style/ClassMethodsDefinitions:
     - lib/peddler/*.rb
     - lib/peddler/lwa/**/*
     - lib/peddler/native/**/*
-
-# These tests assert that generated code contains literal `#{...}` text; the
-# cop's autocorrect would turn it into live interpolation.
-Lint/InterpolationCheck:
-  Exclude:
-    - test/generator/builders/operation_render_test.rb
