@@ -42,7 +42,7 @@ bundle exec rake generate:rust
 bundle exec rake generate:rust:verify
 ```
 
-`bundle exec rake generate` runs this generator and then the Ruby one. `bundle exec rake generate:verify` regenerates everything at the pin and fails if a committed file changes. `bundle exec rake generate:update` moves the pin to Amazon's latest revision first.
+`bundle exec rake generate` runs this generator, then the Ruby one, then `rbs:export`. `bundle exec rake generate:verify` regenerates everything at the pin and fails if a committed file changes, an exported signature included. `generate:rust` alone doesn't export. `bundle exec rake generate:update` moves the pin to Amazon's latest revision first.
 
 The generator is a Cargo workspace of its own, with its own `Cargo.lock`, so every `cargo` command names its manifest:
 

@@ -39,7 +39,7 @@ bundle exec rake generate:verify
 bundle exec rake generate:update
 ```
 
-`rake generate` runs the Rust generator first, because this one reads its inventory. It needs a Rust toolchain.
+`rake generate` runs the Rust generator first, because this one reads its inventory. It needs a Rust toolchain. It ends with `rake rbs:export`, which writes `sig/inline` from the Ruby that carries inline RBS, and `generate:verify` fails if that changes too.
 
 To run 1 part of this generator, at the pinned revision and without Rust:
 
@@ -51,6 +51,8 @@ bundle exec rake generate:feeds
 bundle exec rake generate:data_kiosk
 bundle exec rake generate:entrypoints
 ```
+
+A part doesn't export: run `bundle exec rake rbs:export` after `generate:entrypoints`.
 
 Generated code is committed and corresponds to the pinned revision. A change to the generator must leave the output as it is, or land the changed output in the same commit. `generate:verify` is the test of that, more than the unit tests of the generator's parts. The nightly `update-models` workflow runs `generate:update`.
 
