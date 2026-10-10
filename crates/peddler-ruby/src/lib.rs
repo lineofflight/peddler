@@ -7,7 +7,10 @@ use peddler::{
     Client, ClientConfig, Pool, Request, Response, auth::TokenSource, policy::RetryPolicy,
 };
 use std::{
-    sync::{Arc, Mutex},
+    sync::{
+        Arc,
+        atomic::{AtomicPtr, Ordering},
+    },
     time::{Duration, Instant},
 };
 
@@ -59,9 +62,7 @@ struct Shared {
 }
 
 impl Shared {
-    /// Leaked on purpose: it lives as long as its process, and a forked child must
-    /// never drop the one it inherited.
-    fn build(user_agent: &str) -> Option<&'static Self> {
+    fn build(user_agent: &str) -> Option<Self> {
         let runtime = Builder::new_multi_thread()
             .worker_threads(1)
             .enable_all()
@@ -70,41 +71,59 @@ impl Shared {
         let pool = Pool::with_user_agent(user_agent)
             .ok()?
             .with_interceptor(hook::Hook);
-        Some(Box::leak(Box::new(Self { runtime, pool })))
+        Some(Self { runtime, pool })
     }
 }
 
-// The process that built the shared state, and the state.
-static SHARED: Mutex<Option<(u32, &'static Shared)>> = Mutex::new(None);
+// The process that built the shared state, and the state. What is stored here is leaked:
+// it lives as long as its process, and a forked child must never drop the one it
+// inherited. The slot is swapped whole and there is no lock: on Ruby 3.3 and 3.4 another
+// Ractor can fork while this one is in `shared`, and a lock held by a thread that the
+// child doesn't have would never be released there.
+static SHARED: AtomicPtr<(u32, Shared)> = AtomicPtr::new(std::ptr::null_mut());
 
 /// The shared state of the calling process, built on first use. After a fork the
 /// child builds its own: the inherited runtime has no threads there and is never
 /// touched again.
 fn shared(ruby: &Ruby) -> Result<&'static Shared, Error> {
     let pid = std::process::id();
-    let current = |slot: &Option<(u32, &'static Shared)>| match *slot {
-        Some((owner, shared)) if owner == pid => Some(shared),
-        _ => None,
+    let current = |slot: *mut (u32, Shared)| -> Option<&'static Shared> {
+        // SAFETY: what the slot points to was leaked and is never freed.
+        match unsafe { slot.as_ref() } {
+            Some((owner, shared)) if *owner == pid => Some(shared),
+            _ => None,
+        }
     };
-    // The lock is never held across a call into Ruby, so a fork never inherits it locked.
-    let lock = || SHARED.lock().unwrap_or_else(|error| error.into_inner());
-    if let Some(shared) = current(&lock()) {
+    let mut seen = SHARED.load(Ordering::Acquire);
+    if let Some(shared) = current(seen) {
         return Ok(shared);
     }
     let version: String = peddler_const(ruby, "VERSION")?;
     // LWA and signed URLs get this. Ruby adds the host name for the Selling Partner API.
     let user_agent = format!("Peddler/{version} (Language=Ruby)");
-    let built = {
-        let mut slot = lock();
-        current(&slot).or_else(|| {
-            let built = Shared::build(&user_agent);
-            if let Some(shared) = built {
-                *slot = Some((pid, shared));
-            }
-            built
-        })
+    // Built outside the slot, so 2 Ractors that both find it empty both build.
+    let Some(built) = Shared::build(&user_agent) else {
+        return Err(native_error(
+            ruby,
+            "TransportError",
+            "runtime initialization failed",
+        ));
     };
-    built.ok_or_else(|| native_error(ruby, "TransportError", "runtime initialization failed"))
+    let mine = Box::into_raw(Box::new((pid, built)));
+    loop {
+        if let Some(shared) = current(seen) {
+            // Another Ractor of this process stored its own first, and every client uses
+            // that one. This one was never used: its runtime is idle and stops at once.
+            // SAFETY: `mine` came from `Box::into_raw` above and was not stored.
+            drop(unsafe { Box::from_raw(mine) });
+            return Ok(shared);
+        }
+        match SHARED.compare_exchange(seen, mine, Ordering::AcqRel, Ordering::Acquire) {
+            // SAFETY: it is stored now, and so never freed.
+            Ok(_) => return Ok(unsafe { &(*mine).1 }),
+            Err(now) => seen = now,
+        }
+    }
 }
 
 /// A light view: an origin, a token, a timeout and a retry policy on the shared pool.
