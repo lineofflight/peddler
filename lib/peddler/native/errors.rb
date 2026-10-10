@@ -29,12 +29,16 @@ module Peddler
   #     seller.disconnect! if error.code == "invalid_grant"
   #   end
   class AuthenticationError < StandardError
-    # @return [Integer, nil] the HTTP status when Login with Amazon rejected the request
-    attr_reader :status
+    # @rbs @status: Integer?
+    # @rbs @code: String?
 
-    # @return [String, nil] what Login with Amazon names as the problem, such as "invalid_client" or "invalid_grant"
-    attr_reader :code
+    # The HTTP status when Login with Amazon rejected the request
+    attr_reader :status #: Integer?
 
+    # What Login with Amazon names as the problem, such as "invalid_client" or "invalid_grant"
+    attr_reader :code #: String?
+
+    #: (String message, ?Integer? status, ?code: String?) -> void
     def initialize(message, status = nil, code: nil)
       @status = status
       @code = code
@@ -48,9 +52,7 @@ module Peddler
     #   in code: "invalid_grant" then reauthorize
     #   in status: 500.. then retry_later
     #   end
-    #
-    # @param [Array<Symbol>, nil] keys
-    # @return [Hash]
+    #: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
     def deconstruct_keys(keys)
       hash = { status: status, code: code }
       keys ? hash.slice(*keys) : hash
@@ -78,9 +80,12 @@ module Peddler
   # Raised after the last good page when a following page can't be requested.
   # Messages never include tokens, bodies or arguments.
   class PaginationError < StandardError
-    # @return [Symbol] what was wrong with the token of the page
-    attr_reader :reason
+    # @rbs @reason: Symbol
 
+    # What was wrong with the token of the page
+    attr_reader :reason #: Symbol
+
+    #: (Symbol reason) -> void
     def initialize(reason)
       @reason = reason
       super("#{reason.to_s.tr("_", " ")} in pagination response")
