@@ -1,13 +1,7 @@
 module Peddler
   class Response
-    @to_h: untyped
-    @metadata: Native::error_metadata?
-    @operation: String?
-
     class Status < SimpleDelegator
       def initialize: (Integer code) -> void
-      def code: () -> Integer
-      def reason: () -> String?
 
       # What the Integer it wraps answers, as v5's status did
       def <: (Integer | Float other) -> bool
@@ -19,47 +13,6 @@ module Peddler
       def between?: (Integer | Float min, Integer | Float max) -> bool
       def to_i: () -> Integer
       def to_s: () -> String
-      def informational?: () -> bool
-      def success?: () -> bool
-      def redirect?: () -> bool
-      def client_error?: () -> bool
-      def server_error?: () -> bool
     end
-
-    class Headers
-      include Enumerable[[String, String]]
-
-      @pairs: Array[[String, String]]
-
-      def initialize: (Array[[String, String]] pairs) -> void
-      def []: (String | Symbol name) -> (String | Array[String] | nil)
-      def include?: (String | Symbol name) -> bool
-      alias key? include?
-      def each: () { ([String, String] pair) -> void } -> self
-              | () -> Enumerator[[String, String], self]
-      def to_h: () -> Hash[String, String | Array[String] | nil]
-    end
-
-    attr_reader status: Status
-    attr_reader headers: Headers
-    attr_reader body: String
-
-    def self.from_parts: (Native::response_parts parts, ?String? operation) -> Response
-    def initialize: (Integer status, Array[[String, String]] headers, String body, ?Native::error_metadata? metadata, ?operation: String?) -> void
-    def raise_for_status!: () -> self
-    def code: () -> Integer
-    def inspect: () -> String
-    def charset: () -> String?
-    def to_s: () -> String
-    alias to_str to_s
-    def to_h: () -> untyped
-    def dig: (*untyped keys) -> untyped
-    def parse: () -> untyped
-
-    private
-
-    def content_type: () -> String
-    def encoding: () -> Encoding
-    def parser: () -> untyped
   end
 end
