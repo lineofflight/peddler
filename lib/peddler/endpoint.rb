@@ -3,7 +3,10 @@
 require "uri"
 
 module Peddler
-  class Endpoint < Data.define(:aws_region, :selling_region, :host)
+  # @rbs skip
+  Endpoint = Data.define(:aws_region, :selling_region, :host)
+
+  class Endpoint
     # @see https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints
     REGIONS = Ractor.make_shareable({
       "us-east-1" => {
@@ -18,38 +21,36 @@ module Peddler
         selling_region: "Europe",
         host: "sellingpartnerapi-eu.amazon.com",
       },
-    })
+    }) #: Hash[String, Hash[Symbol, String]]
 
-    class << self
-      # @return [Array<Endpoint>]
-      def all
-        REGIONS.map { |aws_region, values| new(**values, aws_region: aws_region) }
-      end
-
-      # @param [String] aws_region
-      def find(aws_region)
-        values = REGIONS.fetch(aws_region) do
-          raise ArgumentError, "#{aws_region} not found"
-        end
-
-        new(**values, aws_region: aws_region)
-      end
-
-      # @param [String] selling_region
-      def find_by_selling_region(selling_region)
-        aws_region, values = REGIONS.find { |_, v| v[:selling_region] == selling_region } ||
-          raise(ArgumentError, "#{selling_region} not found")
-
-        new(**values, aws_region: aws_region)
-      end
+    #: () -> Array[Endpoint]
+    def self.all
+      REGIONS.map { |aws_region, values| new(**values, aws_region: aws_region) }
     end
 
-    # @return [URI]
+    #: (String aws_region) -> Endpoint
+    def self.find(aws_region)
+      values = REGIONS.fetch(aws_region) do
+        raise ArgumentError, "#{aws_region} not found"
+      end
+
+      new(**values, aws_region: aws_region)
+    end
+
+    #: (String selling_region) -> Endpoint
+    def self.find_by_selling_region(selling_region)
+      aws_region, values = REGIONS.find { |_, v| v[:selling_region] == selling_region } ||
+        raise(ArgumentError, "#{selling_region} not found")
+
+      new(**values, aws_region: aws_region)
+    end
+
+    #: () -> URI::HTTPS
     def production
       URI::HTTPS.build(host: host)
     end
 
-    # @return [URI]
+    #: () -> URI::HTTPS
     def sandbox
       URI::HTTPS.build(host: "sandbox.#{host}")
     end

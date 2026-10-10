@@ -1,15 +1,32 @@
+# Generated from lib/peddler/error.rb by rake rbs:export. Do not edit.
+
 module Peddler
   class Error < StandardError
     @response: Response?
+
     @code: String?
+
     @request_id: String?
 
     attr_reader response: Response?
+
+    # Amazon's error code
     attr_reader code: String?
+
     attr_reader request_id: String?
 
     def initialize: (?String? message, ?Response? response, ?code: String?, ?request_id: String?) -> void
+
     def status: () -> Integer?
+
+    # Supports pattern matching on status and code
+    #
+    # @example
+    #   case error
+    #   in status: 429 then backoff
+    #   in code: "QuotaExceeded" then backoff
+    #   in status: 500.. then retry_later
+    #   end
     def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
   end
 end

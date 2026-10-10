@@ -1,15 +1,8 @@
 module Peddler
-  MARKETPLACE_IDS: Hash[String, Hash[Symbol, String]]
-
   class Marketplace < Data
     def self.new: (?id: String?, ?country_code: String?, ?country_name: String?, ?selling_region: String?) -> Marketplace
 
-    def self.all: () -> Array[Marketplace]
-    def self.find: (String country_code) -> Marketplace
-
     def self.gb: () -> Marketplace
-    def self.id: (String country_code) -> String
-    def self.ids: (*String country_codes) -> Array[String]
 
     # Dynamically defined country methods
     def self.us: () -> Marketplace
@@ -19,10 +12,6 @@ module Peddler
 
     attr_reader selling_region: String
 
-    def endpoint: () -> Endpoint
-
-    def to_json: (*untyped) -> String
     alias to_s to_str
-    def to_str: () -> String
   end
 end

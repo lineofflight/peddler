@@ -28,7 +28,7 @@ module Peddler
     "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
     "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
-  })
+  }) #: Hash[String, Hash[Symbol, String]]
 
   # @!parse
   #   # Wraps an Amazon marketplace
@@ -40,72 +40,70 @@ module Peddler
   #   # @!attribute [r] country_name
   #   # @!attribute [r] selling_region
   #   class Peddler::Marketplace < Data; end
-  class Marketplace < Data.define(:id, :country_code, :country_name, :selling_region)
-    class << self
-      # Finds the marketplace for the given country code
-      #
-      # @param [String] country_code
-      def find(country_code)
-        values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
-          raise ArgumentError, "#{country_code} not found"
-        end
+  # @rbs skip
+  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region)
 
+  class Marketplace
+    # Finds the marketplace for the given country code
+    #
+    #: (String country_code) -> Marketplace
+    def self.find(country_code)
+      values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
+        raise ArgumentError, "#{country_code} not found"
+      end
+
+      new(**values, country_code: country_code)
+    end
+
+    # Returns the marketplace ID for the given country code
+    #
+    #: (String country_code) -> String
+    def self.id(country_code)
+      find(country_code).id
+    end
+
+    # Returns the marketplace IDs for the given country codes
+    #
+    #: (*String country_codes) -> Array[String]
+    def self.ids(*country_codes)
+      country_codes.map { |country_code| id(country_code) }
+    end
+
+    # Returns all marketplaces
+    #
+    #: () -> Array[Marketplace]
+    def self.all
+      MARKETPLACE_IDS.map do |country_code, values|
         new(**values, country_code: country_code)
-      end
-
-      # Returns the marketplace ID for the given country code
-      #
-      # @param [String] country_code
-      # @return [String]
-      def id(country_code)
-        find(country_code).id
-      end
-
-      # Returns the marketplace IDs for the given country codes
-      #
-      # @param [Array<String>] country_codes
-      # @return [Array<String>]
-      def ids(*country_codes)
-        country_codes.map { |country_code| id(country_code) }
-      end
-
-      # Returns all marketplaces
-      #
-      # @return [Array<Peddler::Marketplace>]
-      def all
-        MARKETPLACE_IDS.map do |country_code, values|
-          new(**values, country_code: country_code)
-        end
-      end
-
-      # Dynamically generate shorthand methods for each country code
-      # e.g., Marketplace.us returns the US marketplace
-      # GB (Great Britain) is a special alias for UK
-      #
-      # Their blocks are shareable, so that any Ractor can call the methods.
-      [*MARKETPLACE_IDS.keys, "GB"].each do |country_code|
-        finder = Ractor.make_shareable(proc do
-          # @type self: singleton(Marketplace)
-          find(country_code)
-        end)
-        define_method(country_code.downcase, &finder) # steep:ignore BlockTypeMismatch
       end
     end
 
-    # @return [Peddler::Endpoint]
+    # Dynamically generate shorthand methods for each country code
+    # e.g., Marketplace.us returns the US marketplace
+    # GB (Great Britain) is a special alias for UK
+    #
+    # Their blocks are shareable, so that any Ractor can call the methods.
+    [*MARKETPLACE_IDS.keys, "GB"].each do |country_code|
+      finder = Ractor.make_shareable(proc do
+        # @type self: singleton(Marketplace)
+        find(country_code)
+      end)
+      define_singleton_method(country_code.downcase, &finder) # steep:ignore BlockTypeMismatch
+    end
+
+    #: () -> Endpoint
     def endpoint
       Endpoint.find_by_selling_region(selling_region)
     end
 
     # @note So HTTP can encode
-    # @return [String]
+    #: () -> String
     def to_str
       id
     end
 
     # Its ID as JSON, so a marketplace anywhere inside a request body is sent as its ID
-    #
-    # @return [String]
+    #: (*untyped) -> String
     def to_json(*)
       id.to_json(*)
     end

@@ -6,15 +6,18 @@ module Peddler
   # Transport, authentication, pagination, document and workflow failures have their own classes and don't descend
   # from this one.
   class Error < StandardError
-    # @return [Peddler::Response, nil]
-    attr_reader :response
+    # @rbs @response: Response?
+    # @rbs @code: String?
+    # @rbs @request_id: String?
 
-    # @return [String, nil] Amazon's error code
-    attr_reader :code
+    attr_reader :response #: Response?
 
-    # @return [String, nil]
-    attr_reader :request_id
+    # Amazon's error code
+    attr_reader :code #: String?
 
+    attr_reader :request_id #: String?
+
+    #: (?String? message, ?Response? response, ?code: String?, ?request_id: String?) -> void
     def initialize(message = nil, response = nil, code: nil, request_id: nil)
       @response = response
       @code = code
@@ -22,7 +25,7 @@ module Peddler
       super(message)
     end
 
-    # @return [Integer, nil]
+    #: () -> Integer?
     def status
       response&.code
     end
@@ -36,8 +39,7 @@ module Peddler
     #   in status: 500.. then retry_later
     #   end
     #
-    # @param [Array<Symbol>, nil] keys
-    # @return [Hash]
+    #: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
     def deconstruct_keys(keys)
       hash = { status: status, code: code }
       keys ? hash.slice(*keys) : hash

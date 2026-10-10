@@ -1,0 +1,15 @@
+# Generated from lib/peddler/acronyms.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  module Acronyms
+    # Mapping of camelized forms to their uppercase acronym equivalents
+    MAP: Hash[String, String]
+
+    # Transforms acronyms in camelized words to uppercase equivalents. Uses lookahead to prevent partial matches
+    # within words (e.g., "Cod" won't match inside "Code"). Plural forms require explicit mappings (e.g.,
+    # "Urls" => "URLs").
+    def self.apply: (String word) -> String
+
+    def self.values: () -> Array[String]
+  end
+end

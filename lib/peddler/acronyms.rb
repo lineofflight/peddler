@@ -3,8 +3,6 @@
 module Peddler
   # Handles acronym transformations for Amazon SP-API terminology
   module Acronyms
-    extend self
-
     # Mapping of camelized forms to their uppercase acronym equivalents
     MAP = {
       "Api" => "API",
@@ -23,20 +21,19 @@ module Peddler
       "Tds" => "TDS",
       "Url" => "URL",
       "Urls" => "URLs",
-    }.freeze
+    }.freeze #: Hash[String, String]
 
     # Transforms acronyms in camelized words to uppercase equivalents. Uses lookahead to prevent partial matches
     # within words (e.g., "Cod" won't match inside "Code"). Plural forms require explicit mappings (e.g.,
     # "Urls" => "URLs").
     #
-    # @param word [String]
-    # @return [String]
-    def apply(word)
+    #: (String word) -> String
+    def self.apply(word)
       MAP.reduce(word) { |w, (from, to)| w.gsub(/#{from}(?=[A-Z]|$)/) { to } }
     end
 
-    # @return [Array<String>] Array of uppercase acronyms
-    def values
+    # @rbs return: Array[String] -- Array of uppercase acronyms
+    def self.values
       MAP.values
     end
   end
