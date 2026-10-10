@@ -61,7 +61,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Give header names in lowercase from `headers.to_h` and `headers.each`. `headers[]` still finds a name in any case
 - Wrap the status of a response in a class of Peddler's own. It compares and calculates as the Integer it holds, but is no longer an instance of `Integer`; `code` is one
 - Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models
-- Ship the signatures of the client, the operations and the other hand-written classes in `sig/inline`, exported from inline RBS in the Ruby files. Those of the typed models stay in `sig/peddler`, and `sig/peddler.rbs` is gone. An application's type checker finds both under `sig/`, as before
+- Ship the signatures of the client, the operations and the hand-written classes in `sig/inline`, exported from inline RBS in the Ruby files. Those of the typed models stay in `sig/peddler`, and `sig/peddler.rbs` is gone. An application's type checker finds both under `sig/`, as before
 - Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
 - Add runtime dependencies on `bigdecimal` and `rb_sys`
@@ -432,7 +432,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 - Work around bad charset name
 
-## [2.3.0] - 2020-01-27
+## 2.3.0 - 2020-01-27
 
 ### Added
 
@@ -446,7 +446,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Remove China. It is no longer supported starting 1st October 2019.
 - Remove Off-Amazon Payments. This is no longer under the MWS umbrella and has its own official Ruby client.
 
-## [2.2.0] - 2019-09-04
+## 2.2.0 - 2019-09-04
 
 ### Added
 
@@ -484,19 +484,19 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Properly massage inbound shipment items in FulfillmentInboundShipment#create_inbound_shipment and FulfillmentInboundShipment#update_inbound_shipment_plan.
 - Require inbound shipment items argument.
 
-## [2.0.3] - 2018-06-29
+## 2.0.3 - 2018-06-29
 
 ### Fixed
 
 - Structure nested structured lists.
 
-## [2.0.2] - 2018-06-22
+## 2.0.2 - 2018-06-22
 
 ### Fixed
 
 - Parse flat files with blank rows.
 
-## [2.0.1] - 2018-06-01
+## 2.0.1 - 2018-06-01
 
 ### Fixed
 
@@ -729,20 +729,15 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0
-[2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
+[2.4.5]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/hakanensari/peddler/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/hakanensari/peddler/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/hakanensari/peddler/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/hakanensari/peddler/compare/v2.3.0...v2.4.0
-[2.3.0]: https://github.com/hakanensari/peddler/compare/v2.2.0...v2.3.0
-[2.2.0]: https://github.com/hakanensari/peddler/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/hakanensari/peddler/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/hakanensari/peddler/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/hakanensari/peddler/compare/v2.0.3...v2.0.4
-[2.0.3]: https://github.com/hakanensari/peddler/compare/v2.0.2...v2.0.3
-[2.0.2]: https://github.com/hakanensari/peddler/compare/v2.0.1...v2.0.2
-[2.0.1]: https://github.com/hakanensari/peddler/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/hakanensari/peddler/compare/v1.6.7...v2.0.0
 [1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
 [1.6.6]: https://github.com/hakanensari/peddler/compare/v1.6.5...v1.6.6
