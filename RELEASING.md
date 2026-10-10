@@ -110,4 +110,4 @@ It packages and builds the crate again before it uploads. The first publish need
 - On Alpine, or with `gem install peddler -v 6.0.0 --platform ruby`, the source gem compiles and `ruby tools/native_smoke.rb` passes.
 - [docs.rs/peddler](https://docs.rs/peddler) built the crate's documentation.
 - The GitHub Release exists, with the changelog entry, and is a prerelease only if the version is one.
-- The documentation site was deployed. A tag of 3 numbers deploys it, and so does `main`.
+- The [documentation site](https://lineofflight.github.io/peddler/) was deployed. `build-docs.yml` builds it with `bundle exec rake rdoc`. A tag of 3 numbers deploys it, and so does `main`.
