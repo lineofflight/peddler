@@ -3,14 +3,6 @@ module Peddler
     type error_metadata = [String?, String?, String?]
     type response_parts = [Integer, Array[[String, String]], String, error_metadata?]
 
-    def self.engine: (String config) -> Engine
-    def self.lwa_engine: (String client_id, String client_secret, Integer | Float timeout, String endpoint) -> LwaEngine
-    def self.utf8_text?: (untyped value) -> bool
-    def self.positive_seconds?: (untyped value) -> bool
-    def self.timeout: (untyped value) -> (Integer | Float)
-    def self.present_text?: (untyped value) -> bool
-    def self.generate: (untyped value) -> String?
-    def self.user_agent: () -> String
     def self.status_reason: (Integer code) -> String?
 
     # What the native layer hands every HTTP exchange to, or nil for none. The WebMock adapter sets it.
@@ -26,15 +18,11 @@ module Peddler
       def call: () -> untyped
     end
 
-    def self.access_token: (untyped value) -> String
-    def self.token_source: (untyped value) -> _TokenSource?
-
     class Engine
       def self.from_config: (String config) -> Engine
       def with_base_url: (String base_url) -> Engine
       def with_access_token: (String access_token) -> Engine
       def with_token_source: (_TokenSource source) -> Engine
-      def inspect: () -> String
       def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
       def operation: (String operation, String arguments, Float? rate_limit) -> response_parts
     end

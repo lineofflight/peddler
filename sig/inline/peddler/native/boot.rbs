@@ -1,0 +1,43 @@
+# Generated from lib/peddler/native/boot.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  module Native
+    def self.engine: (String config) -> Engine
+
+    def self.lwa_engine: (String client_id, String client_secret, Integer | Float timeout, String endpoint) -> LwaEngine
+
+    # A token is a non-empty String of valid UTF-8, whether it is given or a source returns it. The error never
+    # shows the value.
+    def self.access_token: (untyped value) -> String
+
+    # The value, if it is a token source: anything that responds to call
+    def self.token_source: (untyped value) -> _TokenSource?
+
+    # A String of valid UTF-8 as it is. Unlike valid_utf8_string?, it doesn't accept text another encoding could
+    # convert.
+    def self.utf8_text?: (untyped value) -> bool
+
+    # An Integer too large for a Float is refused here, since the core takes seconds as one.
+    def self.positive_seconds?: (untyped value) -> bool
+
+    # A timeout as it is, or the error that names it. The native layer refuses what is left: one too short or
+    # too long to keep.
+    def self.timeout: (untyped value) -> (Integer | Float)
+
+    # Whether the value is a String of valid UTF-8 with more than whitespace in it, as the core measures blank
+    def self.present_text?: (untyped value) -> bool
+
+    # Returns nil when the value can't be encoded. The generator's error quotes the value, which may be a
+    # credential, so callers raise their own error outside this rescue, where it can't become the cause.
+    def self.generate: (untyped value) -> String?
+
+    # Identifies the gem to the Selling Partner API. LWA and signed URLs get the same without the host name.
+    #
+    # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
+    def self.user_agent: () -> String
+
+    class Engine
+      def inspect: () -> String
+    end
+  end
+end
