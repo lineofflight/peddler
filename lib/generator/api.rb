@@ -137,8 +137,13 @@ module Generator
       @name ||= APINameResolver.new(file).name
     end
 
+    # The version comes from the spec, and goes into the name of a module and of a file. A spec is data: one that
+    # would be anything but a word is refused.
     def version
-      model["info"]["version"].tr("-", "_")
+      version = model["info"]["version"].tr("-", "_")
+      raise ArgumentError, "#{version.inspect} is no version of an API" unless version.match?(/\A\w+\z/)
+
+      version
     end
 
     def name_with_version

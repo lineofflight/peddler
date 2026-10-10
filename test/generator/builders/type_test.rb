@@ -464,6 +464,14 @@ module Generator
       Peddler::APIs.send(:remove_const, :TestAPI) if Peddler::APIs.const_defined?(:TestAPI, false)
     end
 
+    # The name of a type is data too, and it is the constant the file defines: one that is code never renders.
+    def test_a_type_name_that_is_no_constant_is_refused
+      definition = { "type" => "object", "properties" => { "id" => { "type" => "string" } } }
+      type = Type.new("String; raise %q(the name ran); Evil", definition, API_NAME, { "definitions" => {} })
+
+      assert_raises(ArgumentError) { type.send(:render) }
+    end
+
     private
 
     # The file of a model whose 1 property has the hostile name

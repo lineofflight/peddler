@@ -83,6 +83,17 @@ module Generator
       assert_equal("2024_01_01", @api.version)
     end
 
+    # The version comes from the spec, and goes into the name of a module and of a file. A spec is data.
+    def test_a_version_that_is_no_identifier_is_refused
+      file = Tempfile.new(["test-api-model", ".json"])
+      file.write(@test_spec.merge("info" => { "version" => "1\"; exit 1; \"" }).to_json)
+      file.rewind
+
+      assert_raises(ArgumentError) { API.new(file.path).name_with_version }
+    ensure
+      file.close!
+    end
+
     def test_name_with_version
       # Name depends on file path structure
       assert_match(/_2024_01_01$/, @api.name_with_version)
