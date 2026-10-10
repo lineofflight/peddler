@@ -14,6 +14,8 @@ This describes Peddler 6. Peddler 5 had a class per API (`Peddler.orders.new(aws
 
 - Create a client (with retries):
   `client = Peddler.new(region: "eu-west-1", access_token: token, retries: 3)`
+- The region of the seller, which names the host:
+  `"us-east-1"` for North America (`sellingpartnerapi-na.amazon.com`), `"eu-west-1"` for Europe (`-eu`), `"us-west-2"` for the Far East (`-fe`), or `Peddler::Marketplace.find("US").endpoint.aws_region`
 - Latest or pinned API version:
   `client.orders`, `client.orders_v0`
 - Call an operation, required arguments in order and optional ones as keywords:
@@ -106,6 +108,9 @@ rescue Peddler::Error => e
   in status: 500..599
     # Upstream Amazon outage
     reschedule
+  else
+    # Another status, such as a 3xx
+    raise
   end
 rescue Peddler::TransportError
   # No response: a failed connection or a timeout
@@ -157,7 +162,7 @@ end
 
 A wait that runs past its `timeout:` raises `Peddler::WorkflowTimeoutError`: reschedule the job and wait again. A download that runs past its own raises `Peddler::DocumentTimeoutError`. A single request that takes too long, such as 1 poll or looking a document up, raises `Peddler::TimeoutError`.
 
-To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. A String, and a source that answers `size`, such as a File or a StringIO, are sent with their length. For another source, pass `content_length:`.
+To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. Read the result with `client.feeds.open_feed_document(feed.result_feed_document_id)`, where `feed` is what the wait returned, parsed. A String, and a source that answers `size`, such as a File or a StringIO, are sent with their length. For another source, pass `content_length:`.
 
 Prefer reports or Data Kiosk over deep endpoint pagination for historical or bulk data.
 
