@@ -98,7 +98,7 @@ The client still sends the token you give it and requests none itself. What is n
 
 **Before (v5):**
 ```ruby
-access_token = Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
+access_token = Rails.cache.fetch("lwa/#{seller.id}", expires_in: 50.minutes) do
   Peddler::LWA.request(refresh_token: seller.refresh_token).parse.access_token
 end
 api = Peddler.orders_v0.new("eu-west-1", access_token)
@@ -109,7 +109,7 @@ api = Peddler.orders_v0.new("eu-west-1", access_token)
 client = Peddler::Client.new(
   region: "eu-west-1",
   access_token: -> {
-    Rails.cache.fetch("lwa/#{seller.id}", expires_in: 55.minutes) do
+    Rails.cache.fetch("lwa/#{seller.id}", expires_in: 50.minutes) do
       lwa.refresh(refresh_token: seller.refresh_token).access_token
     end
   },
