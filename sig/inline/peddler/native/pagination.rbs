@@ -1,41 +1,77 @@
+# Generated from lib/peddler/native/pagination.rb by rake rbs:export. Do not edit.
+
 module Peddler
   module Native
     class Continuation
       @operation: String?
+
       @keep: Array[String]?
+
       @drop: Array[String]
+
       @set: Hash[String, untyped]
+
       attr_reader operation: String?
+
       attr_reader keep: Array[String]?
+
       attr_reader drop: Array[String]
+
       attr_reader set: Hash[String, untyped]
+
       def initialize: (?operation: String?, ?keep: Array[String | Symbol]?, ?drop: Array[String | Symbol], ?set: Hash[String | Symbol, untyped]) -> void
     end
 
     class Pagination
-      NONE: Object
       @operation: String
+
       @input: String
+
       @output: String
+
       @continuation: Continuation
+
       @input_keys: Array[String]
+
       @output_keys: Array[String]
+
+      NONE: Object
+
       attr_reader operation: String
+
       attr_reader input: String
+
       attr_reader output: String
+
       attr_reader continuation: Continuation
+
       def initialize: (operation: String, input: String, output: String, ?continuation: Continuation) -> void
+
+      # Lazily yields one Response per page, requesting the next page only once
+      # the consumer asks for it. A page that is an HTTP error raises
+      # Peddler::Error. Arguments are never mutated. The rate limit is the rate
+      # of every page for the wait after a 429.
       def pages: (Engine engine, Hash[String | Symbol, untyped] arguments, ?Float? rate_limit) -> Enumerator[Response, void]
 
       private
 
       def segments: (String pointer) -> Array[String]
+
       def normalize: (untyped arguments) -> Hash[String, untyped]
+
       def generate: (Hash[String, untyped] arguments) -> String
+
       def token_in: (Hash[String, untyped] arguments) -> String?
+
       def follow: (Hash[String, untyped] initial, String token) -> Hash[String, untyped]
+
+      # Copy on write along the path, so the caller's nested hashes stay intact.
       def assign: (untyped node, Array[String] keys, untyped value) -> Hash[untyped, untyped]
-      def next_token: (Response response, String? previous) -> [String?, Symbol?]
+
+      # Returns [token, failure]. A page that returns the token it was requested with would
+      # repeat forever. Parsing happens outside any rescue so no parser error, which can quote
+      # the body, becomes a cause.
+      def next_token: (Response response, String? previous) -> [ String?, Symbol? ]
     end
   end
 end
