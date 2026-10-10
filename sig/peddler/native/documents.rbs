@@ -1,41 +1,5 @@
 module Peddler
-  class Document
-    JSON_OPTIONS: Hash[Symbol, untyped]
-
-    @handle: Native::DocumentHandle
-    def initialize: (Native::DocumentHandle handle) -> void
-    def headers: () -> Response::Headers
-    def charset: () -> String?
-    def close: () -> void
-    def closed?: () -> bool
-    def inspect: () -> String
-    def each_chunk: () { (String chunk) -> void } -> Document
-                  | () -> Enumerator[String, Document]
-    def each_jsonl: () { (untyped row) -> void } -> Document
-                  | () -> Enumerator[untyped, Document]
-    def each_tsv: (?charset: String?) { (Array[String] row) -> void } -> Document
-                | (?charset: String?) -> Enumerator[Array[String], Document]
-    def json: (max_bytes: Integer) -> untyped
-
-    private
-
-    def each_row: (String mode, ?String? charset) { (untyped row) -> void } -> self
-  end
-
   module Native
-    UINT64_MAX: Integer
-    def self.valid_utf8_string?: (untyped value) -> bool
-    def self.open_document: [T] (DocumentHandle handle) ?{ (Document document) -> T } -> (T | Document)
-
-    module TransferConfig
-      COMPRESSIONS: Array[Symbol]
-      LIMITS: Array[Symbol]
-      UNKNOWN: String
-
-      def self.json: (Hash[untyped, untyped] options) -> String
-      def self.limit: (Symbol name, untyped value) -> Integer
-    end
-
     class Engine
       def download_document: (String url, String config) -> DocumentHandle
       def start_document_upload: (String url, String config, String content_type, Array[[String, String]] headers, Integer? content_length) -> UploadHandle
@@ -61,11 +25,5 @@ module Peddler
 
   interface _DocumentIO
     def read: (Integer length) -> String?
-  end
-
-  class Client
-    def download_document: [T] (String url, **untyped transfer_options) { (Document document) -> T } -> T
-                         | (String url, **untyped transfer_options) -> Document
-    def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Response
   end
 end
