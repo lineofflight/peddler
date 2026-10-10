@@ -28,6 +28,9 @@ require "peddler/native/boot"
 # The typed models load on first use, or all at once with Peddler.eager_load!.
 (Dir["#{__dir__}/peddler/{*,lwa/*}.rb"] - [webmock]).sort.each { |file| require file }
 
+# Amazon's Selling Partner API (SP-API) in Ruby
+#
+# Peddler::Client makes the calls, with an access token that Peddler::LWA requests.
 module Peddler
   private_constant :LOADER
 

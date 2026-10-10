@@ -4,6 +4,10 @@ require "delegate"
 require "json"
 
 module Peddler
+  # What a call returns: the status, the headers and the body, which #to_h parses as JSON and #parse into the typed
+  # model of the operation
+  #
+  # A status outside 2xx never comes back as one: the call raises Peddler::Error, which holds the response.
   class Response
     # @rbs @to_h: untyped
     # @rbs @metadata: Native::error_metadata?
