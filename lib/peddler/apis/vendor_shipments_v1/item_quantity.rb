@@ -14,7 +14,7 @@ module Peddler
         #   level.
         attribute(:amount, Integer, null: false)
 
-        # @return [String] Unit of measure for the shipped quantity.
+        # @return [String] Unit of measure for the shipped quantity. Known values: `Cases`, `Eaches`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # @return [TotalWeight]

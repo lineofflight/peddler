@@ -28,7 +28,8 @@ module Peddler
         # @return [Integer] The maximum number of uses per customer for this promotion.
         attribute?(:per_customer_uses, Integer, from: "perCustomerUses")
 
-        # @return [String] Whether this benefit can be stacked with other promotions.
+        # @return [String] Whether this benefit can be stacked with other promotions. Known values: `ALLOWED`,
+        #   `NOT_ALLOWED`.
         attribute?(:stacking, String)
       end
     end

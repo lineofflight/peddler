@@ -32,7 +32,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
-      # @param granularity_type [String] The granularity type for the inventory aggregation level.
+      # @param granularity_type [String] The granularity type for the inventory aggregation level. Known values:
+      #   `Marketplace`.
       # @param granularity_id [String] The granularity ID for the inventory aggregation level.
       # @param start_date_time [String] A start date and time in ISO8601 format. If specified, all inventory summaries
       #   that have changed since then are returned. You must specify a date and time that is no earlier than 18 months

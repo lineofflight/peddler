@@ -14,7 +14,8 @@ module Peddler
         attribute(:seller_id, String, null: false, from: "SellerId")
 
         # @return [Array<String>] Array of severities for the issues currently associated with the affected listings
-        #   item. When no issues are affecting the listings item, "NONE" is provided instead.
+        #   item. When no issues are affecting the listings item, "NONE" is provided instead. Known values: `NONE`,
+        #   `ERROR`, `WARNING`.
         attribute(:severities, [String], null: false, from: "Severities")
 
         # @return [String] Identifier of the affected listings item.

@@ -43,7 +43,8 @@ module Peddler
         # @return [ShippingService]
         attribute(:shipping_service, ShippingService, null: false, from: "ShippingService")
 
-        # @return [String] The shipment status.
+        # @return [String] The shipment status. Known values: `Purchased`, `RefundPending`, `RefundRejected`,
+        #   `RefundApplied`.
         attribute(:status, String, null: false, from: "Status")
 
         # @return [Weight] The package weight.

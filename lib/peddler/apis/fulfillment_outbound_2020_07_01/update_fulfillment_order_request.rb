@@ -30,10 +30,10 @@ module Peddler
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
         attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
 
-        # @return [String]
+        # @return [String] Known values: `Ship`, `Hold`.
         attribute?(:fulfillment_action, String, from: "fulfillmentAction")
 
-        # @return [String]
+        # @return [String] Known values: `FillOrKill`, `FillAll`, `FillAllAvailable`.
         attribute?(:fulfillment_policy, String, from: "fulfillmentPolicy")
 
         # @return [Array<UpdateFulfillmentOrderItem>] A list of items to include in the fulfillment order preview,
@@ -50,7 +50,7 @@ module Peddler
         #   be in ISO 3166-1 alpha-2 format.
         attribute?(:ship_from_country_code, String, from: "shipFromCountryCode")
 
-        # @return [String]
+        # @return [String] Known values: `Standard`, `Expedited`, `Priority`, `ScheduledDelivery`.
         attribute?(:shipping_speed_category, String, from: "shippingSpeedCategory")
       end
     end

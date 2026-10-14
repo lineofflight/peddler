@@ -21,7 +21,9 @@ module Peddler
       #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param channel_name [String] The channel name associated with the location.
       # @param status [String] The status of shipment you want to include in the response. To retrieve all new
-      #   shipments, set this value to `CREATED` or `ACCEPTED`.
+      #   shipments, set this value to `CREATED` or `ACCEPTED`. Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`,
+      #   `PACKAGE_CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`,
+      #   `SHIPPED`, `DELIVERED`.
       # @param last_updated_after [String] The response includes shipments whose latest update is after the specified
       #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param last_updated_before [String] The response includes shipments whose latest update is before the specified
@@ -93,7 +95,7 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment you want to confirm or reject.
-      # @param operation [String] The status of the shipment.
+      # @param operation [String] The status of the shipment. Known values: `CONFIRM`, `REJECT`.
       # @param body [Hash] Information about the shipment and its line items.
       # @return [Peddler::Response] The API response
       def process_shipment(shipment_id, operation, body: nil)
@@ -133,7 +135,7 @@ module Peddler
       # @param shipment_id [String] The ID of the shipment to which the package belongs.
       # @param package_id [String] The ID of the package whose status you want to update.
       # @param status [String] **This field is only used for the Seller Flex program**. For the Self Delivery program,
-      #   package statuses are defined in the body parameter.
+      #   package statuses are defined in the body parameter. Known values: `SHIPPED`.
       # @param body [Hash] The body of the request.
       # @return [Peddler::Response] The API response
       def update_package_status(shipment_id, package_id, status: nil, body: nil)
@@ -187,7 +189,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @param shipping_option_id [String] The ID of the shipping option whose shipping labels you want.
-      # @param operation [String] Specify whether you want to generate or regenerate a label.
+      # @param operation [String] Specify whether you want to generate or regenerate a label. Known values: `GENERATE`,
+      #   `REGENERATE`.
       # @param body [Hash] Shipping details for when shipping is not done by the marketplace channel.
       # @return [Peddler::Response] The API response
       def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil)

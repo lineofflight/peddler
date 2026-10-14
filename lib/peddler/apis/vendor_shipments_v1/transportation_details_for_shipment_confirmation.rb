@@ -27,7 +27,7 @@ module Peddler
         #   confirmations.
         attribute?(:carrier_shipment_reference_number, String, from: "carrierShipmentReferenceNumber")
 
-        # @return [String] The mode of transportation for this shipment.
+        # @return [String] The mode of transportation for this shipment. Known values: `Road`, `Air`, `Ocean`.
         attribute?(:transportation_mode, String, from: "transportationMode")
       end
     end

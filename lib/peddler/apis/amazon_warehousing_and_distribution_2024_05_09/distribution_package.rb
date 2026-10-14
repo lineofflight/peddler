@@ -15,7 +15,7 @@ module Peddler
         # @return [MeasurementData] Measurements of a package, including weight, volume, and dimensions.
         attribute(:measurements, MeasurementData, null: false)
 
-        # @return [String] Type of distribution package.
+        # @return [String] Type of distribution package. Known values: `CASE`, `PALLET`.
         attribute(:type, String, null: false)
       end
     end

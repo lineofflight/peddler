@@ -18,13 +18,15 @@ module Peddler
         # @return [Array<Error>] A list of errors returned by this API.
         attribute?(:errors, [Error])
 
-        # @return [String] The current processing status of a shipment invoice.
+        # @return [String] The current processing status of a shipment invoice. Known values: `Processing`, `Accepted`,
+        #   `Errored`, `NotFound`.
         attribute?(:invoice_status, String, from: "invoiceStatus")
 
         # @return [Array<InvoiceStatus>] List of individual invoice statuses for the order.
         attribute?(:invoices, [InvoiceStatus])
 
         # @return [String] The invoicing status of the order, considering the aggregated results of all invoices sent.
+        #   Known values: `Processing`, `Accepted`, `PartiallyAccepted`, `Rejected`.
         attribute?(:order_invoicing_status, String, from: "orderInvoicingStatus")
       end
     end

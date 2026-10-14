@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The container label content encoded into a Base64 string.
         attribute(:content, String, null: false)
 
-        # @return [String] The format of the container label.
+        # @return [String] The format of the container label. Known values: `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
         # @return [String] The container (pallet) tracking identifier from the shipping carrier.

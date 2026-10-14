@@ -10,7 +10,8 @@ module Peddler
     class VendorShipmentsV1
       # Contractual or operational port or point relevant to the movement of the cargo.
       Stop = Structure.new do
-        # @return [String] Provide the function code.
+        # @return [String] Provide the function code. Known values: `PortOfDischarge`, `FreightPayableAt`,
+        #   `PortOfLoading`.
         attribute(:function_code, String, null: false, from: "functionCode")
 
         # @return [Time] Date and time of the arrival of the cargo.

@@ -19,7 +19,7 @@ module Peddler
         # @return [Money]
         attribute?(:taxable_amount, Money, from: "taxableAmount")
 
-        # @return [String] Tax type.
+        # @return [String] Tax type. Known values: `CONSUMPTION`, `GST`, `MwSt.`, `PST`, `TOTAL`, `TVA`, `VAT`.
         attribute?(:type, String)
       end
     end

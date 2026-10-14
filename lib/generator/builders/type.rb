@@ -7,6 +7,7 @@ require_relative "../support/money_detector"
 require_relative "../support/naming"
 require_relative "../resolvers/type_resolver"
 require_relative "../support/schema_helpers"
+require_relative "../support/known_values"
 require "structure/rbs"
 
 module Generator
@@ -265,13 +266,14 @@ module Generator
 
     def format_property_comment(prop_def)
       return_type = ruby_type_for(prop_def, for_comment: true)
-      if prop_def["description"] && !generic_placeholder?(prop_def["description"])
-        description = convert_html_links_to_yard(prop_def["description"])
-        description = convert_doc_links_to_full_url(description)
-        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8, wrap_indent: 2)
-      else
-        "        # @return [#{return_type}]"
-      end
+      description = prop_def["description"]
+      description = nil if generic_placeholder?(description)
+      description = convert_doc_links_to_full_url(convert_html_links_to_yard(description)) if description
+      known_values = KnownValues.enum_values(prop_def, specification&.dig("definitions"))
+      description = KnownValues.append(description, known_values)
+      return "        # @return [#{return_type}]" unless description
+
+      split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8, wrap_indent: 2)
     end
 
     def class_description

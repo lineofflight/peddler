@@ -9,7 +9,8 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # A shipment item's cancellation details.
       Cancellation = Structure.new do
-        # @return [String] The type of cancellation of the item in the shipment.
+        # @return [String] The type of cancellation of the item in the shipment. Known values: `SELLER_REJECTED`,
+        #   `MARKETPLACE_CANCELLED`, `SYSTEM_CANCELLED`.
         attribute(:cancellation_type, String, null: false, from: "cancellationType")
 
         # @return [Integer] The number of items of this particular item which have been cancelled.

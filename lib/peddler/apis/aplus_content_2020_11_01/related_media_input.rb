@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       # Input for creating a media association.
       RelatedMediaInput = Structure.new do
-        # @return [String] The type of relationship to create.
+        # @return [String] The type of relationship to create. Known values: `VIDEO_PAIRING`.
         attribute(:association_type, String, null: false, from: "associationType")
 
         # @return [MediaInput] The media asset to associate.

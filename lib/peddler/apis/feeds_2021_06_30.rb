@@ -21,7 +21,8 @@ module Peddler
       # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter feeds. The feeds
       #   returned will match at least one of the marketplaces that you specify.
       # @param page_size [Integer] The maximum number of feeds to return in a single call.
-      # @param processing_statuses [Array<String>] A list of processing statuses used to filter feeds.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter feeds. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @param created_since [String] The earliest feed creation date and time for feeds included in the response, in
       #   ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
       # @param created_until [String] The latest feed creation date and time for feeds included in the response, in ISO

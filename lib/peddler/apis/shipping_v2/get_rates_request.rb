@@ -38,7 +38,7 @@ module Peddler
         # @return [Address] The ship to address.
         attribute?(:ship_to, Address, from: "shipTo")
 
-        # @return [String]
+        # @return [String] Known values: `FORWARD`, `RETURNS`.
         attribute?(:shipment_type, String, from: "shipmentType")
 
         # @return [ShipperInstruction] This field describe shipper instruction.

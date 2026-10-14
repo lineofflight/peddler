@@ -17,7 +17,7 @@ module Peddler
         #   shipment ID (which is generated after transportation has been confirmed) and the index of the box.
         attribute?(:box_id, String, from: "boxId")
 
-        # @return [String]
+        # @return [String] Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`.
         attribute?(:content_information_source, String, from: "contentInformationSource")
 
         # @return [Region]

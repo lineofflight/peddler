@@ -12,7 +12,7 @@ module Peddler
         # @return [AvailabilityRecord] `AvailabilityRecord` to represent the capacity of a resource over a time range.
         attribute(:availability, AvailabilityRecord, null: false)
 
-        # @return [String] Type of reservation.
+        # @return [String] Type of reservation. Known values: `APPOINTMENT`, `TRAVEL`, `VACATION`, `BREAK`, `TRAINING`.
         attribute(:type, String, null: false)
 
         # @return [String] Unique identifier for a reservation. If present, it is treated as an update reservation

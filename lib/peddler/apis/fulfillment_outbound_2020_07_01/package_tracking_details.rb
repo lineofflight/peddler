@@ -13,7 +13,10 @@ module Peddler
         # @return [Integer] The package identifier.
         attribute(:package_number, Integer, null: false, from: "packageNumber")
 
-        # @return [String]
+        # @return [String] Known values: `AS_INSTRUCTED`, `CARPORT`, `CUSTOMER_PICKUP`, `DECK`, `DOOR_PERSON`,
+        #   `FRONT_DESK`, `FRONT_DOOR`, `GARAGE`, `GUARD`, `MAIL_ROOM`, `MAIL_SLOT`, `MAILBOX`, `MC_BOY`, `MC_GIRL`,
+        #   `MC_MAN`, `MC_WOMAN`, `NEIGHBOR`, `OFFICE`, `OUTBUILDING`, `PATIO`, `PORCH`, `REAR_DOOR`, `RECEPTIONIST`,
+        #   `RECEIVER`, `SECURE_LOCATION`, `SIDE_DOOR`.
         attribute?(:additional_location_info, String, from: "additionalLocationInfo")
 
         # @return [String] The name of the carrier.
@@ -25,7 +28,10 @@ module Peddler
         # @return [String] The URL of the carrier's website.
         attribute?(:carrier_url, String, from: "carrierURL")
 
-        # @return [String]
+        # @return [String] Known values: `IN_TRANSIT`, `DELIVERED`, `RETURNING`, `RETURNED`, `UNDELIVERABLE`, `DELAYED`,
+        #   `AVAILABLE_FOR_PICKUP`, `CUSTOMER_ACTION`, `UNKNOWN`, `OUT_FOR_DELIVERY`, `DELIVERY_ATTEMPTED`,
+        #   `PICKUP_SUCCESSFUL`, `PICKUP_CANCELLED`, `PICKUP_ATTEMPTED`, `PICKUP_SCHEDULED`, `RETURN_REQUEST_ACCEPTED`,
+        #   `REFUND_ISSUED`, `RETURN_RECEIVED_IN_FC`.
         attribute?(:current_status, String, from: "currentStatus")
 
         # @return [String] Description corresponding to the `CurrentStatus` value.

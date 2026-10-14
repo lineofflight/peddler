@@ -9,7 +9,7 @@ module Peddler
     class ShippingV2
       # Info About Linkable Account Type
       LinkableAccountType = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `SHIPPER_ACCOUNT`, `SHIPPER_ACCOUNT_WITH_INVOICE`, `AMAZON_ACCOUNT`.
         attribute?(:account_type, String, from: "accountType")
 
         # @return [Array<CarrierAccountInput>]

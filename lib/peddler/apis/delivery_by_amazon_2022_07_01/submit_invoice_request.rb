@@ -17,13 +17,14 @@ module Peddler
         # @return [String] The binary object representing an invoice's content.
         attribute(:invoice_content, String, null: false, from: "invoiceContent")
 
-        # @return [String] The type of an invoice.
+        # @return [String] The type of an invoice. Known values: `Outbound`.
         attribute(:invoice_type, String, null: false, from: "invoiceType")
 
         # @return [String] An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The Amazon program that the seller is currently enrolled.
+        # @return [String] The Amazon program that the seller is currently enrolled. Known values: `EasyShip`,
+        #   `FbaOnSite`, `SelfShip`.
         attribute(:program_type, String, null: false, from: "programType")
       end
     end

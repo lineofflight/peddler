@@ -12,7 +12,7 @@ module Peddler
         # @return [DistributionPackageQuantity]
         attribute(:package_quantity, DistributionPackageQuantity, null: false, from: "packageQuantity")
 
-        # @return [String]
+        # @return [String] Known values: `ELIGIBLE`, `INELIGIBLE`.
         attribute(:status, String, null: false)
 
         # @return [Array<SkuIneligibilityReason>] If not eligible, these are list of error codes and descriptions.

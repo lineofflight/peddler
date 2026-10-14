@@ -9,7 +9,7 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # A distance measurement.
       Distance = Structure.new do
-        # @return [String] The unit of measurement of the distance.
+        # @return [String] The unit of measurement of the distance. Known values: `MI`, `KM`.
         attribute(:distance_unit, String, null: false, from: "distanceUnit")
 
         # @return [String] The numerical value of the distance.

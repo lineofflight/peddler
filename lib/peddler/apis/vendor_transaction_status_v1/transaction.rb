@@ -9,7 +9,8 @@ module Peddler
     class VendorTransactionStatusV1
       # The transaction status.
       Transaction = Structure.new do
-        # @return [String] Current processing status of the transaction.
+        # @return [String] Current processing status of the transaction. Known values: `Failure`, `Processing`,
+        #   `Success`.
         attribute(:status, String, null: false)
 
         # @return [String] The unique identifier returned in the 'transactionId' field in response to the post request

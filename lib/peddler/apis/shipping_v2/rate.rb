@@ -47,7 +47,7 @@ module Peddler
         # @return [Weight]
         attribute?(:billed_weight, Weight, from: "billedWeight")
 
-        # @return [String]
+        # @return [String] Known values: `PAY_THROUGH_AMAZON`, `PAY_DIRECT_TO_CARRIER`.
         attribute?(:payment_type, String, from: "paymentType")
 
         # @return [Array<RateItem>]

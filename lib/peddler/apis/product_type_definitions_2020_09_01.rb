@@ -55,15 +55,20 @@ module Peddler
       # @param product_type_version [String] The version of the Amazon product type to retrieve. Defaults to "LATEST".
       #   Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease
       #   version is currently available, the "LATEST" live version will be provided.
-      # @param requirements [String] The name of the requirements set to retrieve requirements for.
+      # @param requirements [String] The name of the requirements set to retrieve requirements for. Known values:
+      #   `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
       # @param requirements_enforced [String] Identifies if the required attributes for a requirements set are enforced
       #   by the product type definition schema. Non-enforced requirements enable structural validation of individual
-      #   attributes without all the required attributes being present (such as for partial updates).
+      #   attributes without all the required attributes being present (such as for partial updates). Known values:
+      #   `ENFORCED`, `NOT_ENFORCED`.
       # @param locale [String] Locale for retrieving display labels and other presentation details. Defaults to the
-      #   default language of the first marketplace in the request.
+      #   default language of the first marketplace in the request. Known values: `DEFAULT`, `ar`, `ar_AE`, `de`,
+      #   `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`,
+      #   `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`,
+      #   `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
       # @param parentage_level [String] The parentage level of the listing to retrieve a schema for. When provided, the
       #   schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in
-      #   a smaller schema with fewer conditions.
+      #   a smaller schema with fewer conditions. Known values: `NONE`, `CHILD`, `PARENT`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",

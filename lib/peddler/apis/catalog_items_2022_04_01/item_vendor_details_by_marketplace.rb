@@ -31,7 +31,9 @@ module Peddler
         # @return [ItemVendorDetailsCategory] The product subcategory that is associated with an Amazon catalog item.
         attribute?(:product_subcategory, ItemVendorDetailsCategory, from: "productSubcategory")
 
-        # @return [String] The replenishment category that is associated with an Amazon catalog item.
+        # @return [String] The replenishment category that is associated with an Amazon catalog item. Known values:
+        #   `ALLOCATED`, `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`,
+        #   `NEW_PRODUCT`, `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`.
         attribute?(:replenishment_category, String, from: "replenishmentCategory")
       end
     end

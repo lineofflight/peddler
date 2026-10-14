@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The container identifier.
         attribute(:container_identifier, String, null: false, from: "containerIdentifier")
 
-        # @return [String] The type of container.
+        # @return [String] The type of container. Known values: `Carton`, `Pallet`.
         attribute(:container_type, String, null: false, from: "containerType")
 
         # @return [Array<PackedItem>] A list of packed items.

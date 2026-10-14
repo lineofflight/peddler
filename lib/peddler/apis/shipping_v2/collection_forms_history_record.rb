@@ -19,7 +19,7 @@ module Peddler
         # @return [Time] Creation Time for this account.
         attribute?(:creation_date, Time, from: "creationDate")
 
-        # @return [String]
+        # @return [String] Known values: `Completed`, `InProgress`.
         attribute?(:generation_status, String, from: "generationStatus")
 
         # @return [Address]

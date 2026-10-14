@@ -12,7 +12,8 @@ module Peddler
         # @return [String] A requested marketplace ID.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] Seller's account status for a requested marketplace.
+        # @return [String] Seller's account status for a requested marketplace. Known values: `NORMAL`, `AT_RISK`,
+        #   `DEACTIVATED`.
         attribute(:status, String, null: false)
       end
     end

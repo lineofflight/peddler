@@ -9,7 +9,9 @@ module Peddler
     class FulfillmentOutbound20200701
       # The drop-off location at the destination address.
       DropOffLocation = Structure.new do
-        # @return [String] The drop-off location type at the destination address.
+        # @return [String] The drop-off location type at the destination address. Known values: `FRONT_DOOR`,
+        #   `DELIVERY_BOX`, `GAS_METER_BOX`, `BICYCLE_BASKET`, `GARAGE`, `RECEPTIONIST`, `FALLBACK_NEIGHBOR_DELIVERY`,
+        #   `DO_NOT_LEAVE_UNATTENDED`.
         attribute(:type, String, null: false)
 
         # @return [Hash] Additional information about the drop-off location. This information can vary depending on the

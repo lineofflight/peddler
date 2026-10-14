@@ -40,7 +40,8 @@ module Peddler
       # related to shipment based on the filter parameters value that you specify.
       #
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
-      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @param next_token [String] Used for pagination when there are more shipments than the specified result size
       #   limit.
       # @param created_after [String] Get Shipment Details that became available after this timestamp will be included
@@ -127,7 +128,8 @@ module Peddler
       # Returns small parcel shipment labels based on the filters that you specify.
       #
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
-      # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
+      # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order. Known
+      #   values: `ASC`, `DESC`.
       # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
       #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
       #   results, call the operation with this token and include the same arguments as the call that produced the

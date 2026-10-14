@@ -165,6 +165,7 @@ module Peddler
       # @param created_before [String] Packing slips that became available before this date and time will be included in
       #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param sort_order [String] The packing slip creation dates, which are sorted by ascending or descending order.
+      #   Known values: `ASC`, `DESC`.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second

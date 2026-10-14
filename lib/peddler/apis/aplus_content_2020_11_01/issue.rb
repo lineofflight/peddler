@@ -26,7 +26,7 @@ module Peddler
         # @return [String] A message that describes the issue.
         attribute(:message, String, null: false)
 
-        # @return [String] The severity of the issue.
+        # @return [String] The severity of the issue. Known values: `ERROR`, `WARNING`, `INFO`.
         attribute(:severity, String, null: false)
 
         # @return [Array<String>] Names of the properties associated with the issue, if applicable.

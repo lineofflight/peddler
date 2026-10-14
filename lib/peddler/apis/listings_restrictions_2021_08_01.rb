@@ -19,7 +19,10 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
-      # @param condition_type [String] The condition used to filter restrictions.
+      # @param condition_type [String] The condition used to filter restrictions. Known values: `new_new`,
+      #   `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`,
+      #   `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`,
+      #   `collectible_acceptable`, `club_club`.
       # @param seller_id [String] A selling partner identifier, such as a merchant account.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param reason_locale [String] A locale for reason text localization. When not provided, the default language

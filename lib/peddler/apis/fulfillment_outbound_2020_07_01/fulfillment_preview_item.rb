@@ -23,7 +23,8 @@ module Peddler
         #   `sellerSku`, in a shipment.
         attribute?(:estimated_shipping_weight, Weight, from: "estimatedShippingWeight")
 
-        # @return [String] The method used to calculate the estimated shipping weight.
+        # @return [String] The method used to calculate the estimated shipping weight. Known values: `Package`,
+        #   `Dimensional`.
         attribute?(:shipping_weight_calculation_method, String, from: "shippingWeightCalculationMethod")
       end
     end

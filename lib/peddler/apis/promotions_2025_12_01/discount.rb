@@ -9,7 +9,8 @@ module Peddler
     class Promotions20251201
       # The discount configuration shared across benefit types.
       Discount = Structure.new do
-        # @return [String] The method used to calculate the discount amount.
+        # @return [String] The method used to calculate the discount amount. Known values: `PERCENTAGE_OFF`,
+        #   `AMOUNT_OFF`, `FREE_ITEM`.
         attribute(:type, String, null: false)
 
         # @return [Float] The amount off value. Only valid when `type` is `AMOUNT_OFF`.

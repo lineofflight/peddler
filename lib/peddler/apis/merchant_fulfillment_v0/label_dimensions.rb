@@ -12,7 +12,7 @@ module Peddler
         # @return [Float] The length dimension.
         attribute(:length, Float, null: false, from: "Length")
 
-        # @return [String] The unit of measurement.
+        # @return [String] The unit of measurement. Known values: `inches`, `centimeters`.
         attribute(:unit, String, null: false, from: "Unit")
 
         # @return [Float] The width dimension.

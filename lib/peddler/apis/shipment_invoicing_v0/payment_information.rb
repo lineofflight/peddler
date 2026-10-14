@@ -18,7 +18,8 @@ module Peddler
         # @return [String] The credit card brand if the payment method is `CreditCard`.
         attribute?(:card_brand, String, from: "CardBrand")
 
-        # @return [String] The name of the payment method.
+        # @return [String] The name of the payment method. Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`,
+        #   `GiftCard`, `Other`.
         attribute?(:payment_method, String, from: "PaymentMethod")
 
         # @return [Money] The amount paid in this payment.

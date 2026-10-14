@@ -30,12 +30,14 @@ module Peddler
         #   of schema properties that can be used for display or informational purposes.
         attribute(:property_groups, Hash, null: false, from: "propertyGroups")
 
-        # @return [String] Name of the requirements set represented in this product type definition.
+        # @return [String] Name of the requirements set represented in this product type definition. Known values:
+        #   `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
         attribute(:requirements, String, null: false)
 
         # @return [String] Identifies if the required attributes for a requirements set are enforced by the product type
         #   definition schema. Non-enforced requirements enable structural validation of individual attributes without
-        #   all of the required attributes being present (such as for partial updates).
+        #   all of the required attributes being present (such as for partial updates). Known values: `ENFORCED`,
+        #   `NOT_ENFORCED`.
         attribute(:requirements_enforced, String, null: false, from: "requirementsEnforced")
 
         # @return [SchemaLink] Link to schema describing the attributes and requirements for the product type.

@@ -12,7 +12,7 @@ module Peddler
         # @return [Integer] Quantity of an item. This value should not be zero.
         attribute(:amount, Integer, null: false)
 
-        # @return [String] Unit of measure for the quantity.
+        # @return [String] Unit of measure for the quantity. Known values: `Cases`, `Eaches`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # @return [TotalWeight]

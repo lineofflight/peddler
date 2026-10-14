@@ -16,7 +16,7 @@ module Peddler
         # @return [Time] The date of the payment in ISO 8601 date-time format.
         attribute(:payment_date, Time, null: false, from: "paymentDate")
 
-        # @return [String] The status of the remittance.
+        # @return [String] The status of the remittance. Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`.
         attribute(:remittance_status, String, null: false, from: "remittanceStatus")
 
         # @return [String] The unique internal identifier for the payment record in the remittance system.

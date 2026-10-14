@@ -13,7 +13,8 @@ module Peddler
         # @return [Time] The date and time when the query was created, in ISO 8601 date time format.
         attribute(:created_time, Time, null: false, from: "createdTime")
 
-        # @return [String] The processing status of the query.
+        # @return [String] The processing status of the query. Known values: `CANCELLED`, `DONE`, `FATAL`,
+        #   `IN_PROGRESS`, `IN_QUEUE`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The submitted query.

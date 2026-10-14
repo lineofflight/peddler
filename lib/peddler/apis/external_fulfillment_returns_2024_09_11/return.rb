@@ -28,10 +28,14 @@ module Peddler
         # @return [ReturnShippingInfo] Information about the shipping of the return packages.
         attribute(:return_shipping_info, ReturnShippingInfo, null: false, from: "returnShippingInfo")
 
-        # @return [String] The type of return.
+        # @return [String] The type of return. Known values: `CUSTOMER`, `REJECT`.
         attribute(:return_type, String, null: false, from: "returnType")
 
-        # @return [String] The current status of the return.
+        # @return [String] The current status of the return. Known values: `CREATED`,
+        #   `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`,
+        #   `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`,
+        #   `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`,
+        #   `REJECTED`, `CANCELLED`.
         attribute(:status, String, null: false)
 
         # @return [String] The date and time when the return was created.
@@ -47,7 +51,7 @@ module Peddler
         attribute?(:otp_details, OtpDetails, from: "otpDetails")
 
         # @return [String] The package delivery mode. This indicates whether the return was delivered to the seller with
-        #   or without a one-time password (OTP).
+        #   or without a one-time password (OTP). Known values: `WITH_OTP`, `WITHOUT_OTP`.
         attribute?(:package_delivery_mode, String, from: "packageDeliveryMode")
 
         # @return [ReplanningDetails] Details about the replanned returns.
@@ -56,7 +60,7 @@ module Peddler
         # @return [String] The SmartConnect identifier for where the return item was dropped for delivery.
         attribute?(:return_location_id, String, from: "returnLocationId")
 
-        # @return [String] The sub-type of return.
+        # @return [String] The sub-type of return. Known values: `NORMAL`, `REPLACEMENT`, `EXCHANGE`.
         attribute?(:return_sub_type, String, from: "returnSubType")
       end
     end

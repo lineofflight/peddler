@@ -18,10 +18,11 @@ module Peddler
       # @param locale [String] The locale from which to retrieve promotions. Formatted as an ISO 639 language code,
       #   followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
       # @param statuses [Array<String>] The statuses of promotions to retrieve, formatted as a comma-delimited list.
+      #   Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`.
       # @param asins [Array<String>] The ASINs to which promotions apply, formatted as a comma-delimited list.
       # @param skus [Array<String>] The SKUs to which promotions apply, formatted as a comma-delimited list.
       # @param promotion_types [Array<String>] The promotion types to which promotions apply, formatted as a
-      #   comma-delimited list.
+      #   comma-delimited list. Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
       # @param start_date_before [String] Promotions that start before this date are returned. Formatted in ISO 8601
       #   format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
       # @param start_date_after [String] Promotions that start after this date are returned. Formatted in ISO 8601
@@ -42,9 +43,10 @@ module Peddler
       # @param revision [String] Specifies which promotion revision or revisions to match against when filtering. This
       #   controls which promotions are included in search results, not the shape of the response. The response always
       #   returns the published revision in the main body, with `latestRevision` included when the latest revision
-      #   diverges.
+      #   diverges. Known values: `LATEST`, `PUBLISHED`, `ANY`.
       # @param limit [Integer] The maximum number of response results per page.
-      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`, `CUSTOMER_SEGMENTS`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil,
@@ -78,7 +80,8 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param promotion_id [String] The ID of the promotion.
-      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`, `SELECTION`, `CUSTOMER_SEGMENTS`.
       # @param locale [String] The locale of the promotion. Formatted as an ISO 639 language code, followed by an
       #   underscore, followed by an ISO 3166-1 alpha-2 country code.
       # @param rate_limit [Float] Requests per second
@@ -111,7 +114,8 @@ module Peddler
       #   the token. To get a complete list, call this operation until `paginationToken` is null. Note that this
       #   operation can return empty pages.
       # @param limit [Integer] The maximum number of response results per page.
-      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20,

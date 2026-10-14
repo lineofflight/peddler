@@ -9,7 +9,7 @@ module Peddler
     class ShippingV2
       # Document specification that is supported for a service offering.
       SupportedDocumentSpecification = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
         # @return [Array<PrintOption>]

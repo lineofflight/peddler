@@ -17,7 +17,8 @@ module Peddler
         attribute?(:days_of_month, [Integer], from: "daysOfMonth")
 
         # @return [Array<DayOfWeek>] Days of the week when recurrence is valid. If the schedule is valid every Monday,
-        #   input will only contain `MONDAY` in the list.
+        #   input will only contain `MONDAY` in the list. Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`,
+        #   `FRIDAY`, `SATURDAY`, `SUNDAY`.
         attribute?(:days_of_week, Array, from: "daysOfWeek")
       end
     end

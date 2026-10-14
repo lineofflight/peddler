@@ -9,7 +9,7 @@ module Peddler
     class EasyShip20220323
       # The request body for the POST /easyShip/2022-03-23/packages/bulk API.
       CreateScheduledPackagesRequest = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `PDF`, `ZPL`.
         attribute(:label_format, String, null: false, from: "labelFormat")
 
         # @return [String]

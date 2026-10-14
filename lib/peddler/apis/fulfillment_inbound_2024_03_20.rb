@@ -19,9 +19,9 @@ module Peddler
       # @param pagination_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
-      # @param status [String] The status of an inbound plan.
-      # @param sort_by [String] Sort by field.
-      # @param sort_order [String] The sort order.
+      # @param status [String] The status of an inbound plan. Known values: `ACTIVE`, `VOIDED`, `SHIPPED`.
+      # @param sort_by [String] Sort by field. Known values: `LAST_UPDATED_TIME`, `CREATION_TIME`.
+      # @param sort_order [String] The sort order. Known values: `ASC`, `DESC`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil,

@@ -24,7 +24,8 @@ module Peddler
         # @return [AdditionalSellerInput]
         attribute(:stored_value, AdditionalSellerInput, null: false, from: "StoredValue")
 
-        # @return [String] Whether the seller input applies to the item or the shipment.
+        # @return [String] Whether the seller input applies to the item or the shipment. Known values: `SHIPMENT_LEVEL`,
+        #   `ITEM_LEVEL`.
         attribute?(:input_target, String, from: "InputTarget")
 
         # @return [Array<String>]

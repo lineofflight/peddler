@@ -13,7 +13,7 @@ module Peddler
         #   `bankAccountCountryCode` is a required field.
         attribute(:transaction_destination_account, TransactionAccount, null: false, from: "transactionDestinationAccount")
 
-        # @return [String] The type of transfer.
+        # @return [String] The type of transfer. Known values: `CREDIT`, `DEBIT`.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # @return [Array<TransferScheduleFailures>] A list of transfer schedule failures.
@@ -27,7 +27,7 @@ module Peddler
         attribute(:transfer_schedule_information, TransferScheduleInformation, null: false, from: "transferScheduleInformation")
 
         # @return [String] The type of transfer schedule. This information can be modified when you update a transfer
-        #   schedule.
+        #   schedule. Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`.
         attribute(:transfer_schedule_status, String, null: false, from: "transferScheduleStatus")
 
         # @return [PaymentPreference] The payment preference of the scheduled transfer. This information can be modified

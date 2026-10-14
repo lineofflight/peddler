@@ -18,7 +18,7 @@ module Peddler
         # @return [String] The tax registration number for the party. For example, their VAT ID.
         attribute?(:number, String)
 
-        # @return [String] Tax registration type for the entity
+        # @return [String] Tax registration type for the entity. Known values: `VAT`, `GST`.
         attribute?(:type, String)
       end
     end

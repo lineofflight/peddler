@@ -20,7 +20,7 @@ module Peddler
         #   code.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # @return [String] The status of the buyer's purchase order for this order.
+        # @return [String] The status of the buyer's purchase order for this order. Known values: `OPEN`, `CLOSED`.
         attribute(:purchase_order_status, String, null: false, from: "purchaseOrderStatus")
 
         # @return [PartyIdentification] Name/Address and tax details of the selling party.

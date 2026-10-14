@@ -12,7 +12,7 @@ module Peddler
         # @return [String]
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String]
+        # @return [String] Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         # @return [String]

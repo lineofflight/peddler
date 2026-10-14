@@ -12,10 +12,11 @@ module Peddler
         # @return [String] The identifier for the store where the invoice issuance eligibility status applies.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The invoice issuance operation available to the seller.
+        # @return [String] The invoice issuance operation available to the seller. Known values: `inbound`,
+        #   `outbound-fba-offers`, `c-returns`, `removals`.
         attribute(:operation, String, null: false)
 
-        # @return [String] The status of the seller invoice issuance operation.
+        # @return [String] The status of the seller invoice issuance operation. Known values: `BLOCKED`, `ALLOWED`.
         attribute(:status, String, null: false)
 
         # @return [Array<Object>] An optional message to describe why the operation is blocked.

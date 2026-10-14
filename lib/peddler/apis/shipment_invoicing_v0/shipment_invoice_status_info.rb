@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The Amazon-defined shipment identifier.
         attribute?(:amazon_shipment_id, String, from: "AmazonShipmentId")
 
-        # @return [String]
+        # @return [String] Known values: `Processing`, `Accepted`, `Errored`, `NotFound`.
         attribute?(:invoice_status, String, from: "InvoiceStatus")
       end
     end

@@ -56,7 +56,7 @@ module Peddler
         # @return [ShipsFromType] The state and country from where the item is shipped.
         attribute?(:ships_from, ShipsFromType, from: "ShipsFrom")
 
-        # @return [String] Indicates the type of customer that the offer is valid for.
+        # @return [String] Indicates the type of customer that the offer is valid for. Known values: `B2C`, `B2B`.
         attribute?(:offer_type, String, from: "offerType")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing

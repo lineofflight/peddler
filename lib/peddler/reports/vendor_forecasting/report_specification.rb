@@ -21,7 +21,7 @@ module Peddler
         # @return [ReportOptions] Report options specifying parameters such as sellingProgram.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type.
+        # @return [String] The report type. Known values: `GET_VENDOR_FORECASTING_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

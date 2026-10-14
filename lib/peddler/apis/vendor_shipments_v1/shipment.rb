@@ -45,7 +45,8 @@ module Peddler
         #   corresponding carton or pallet level.
         attribute?(:containers, [Containers])
 
-        # @return [String] Indicates the current shipment status.
+        # @return [String] Indicates the current shipment status. Known values: `Created`, `TransportationRequested`,
+        #   `CarrierAssigned`, `Shipped`.
         attribute?(:current_shipment_status, String, from: "currentShipmentStatus")
 
         # @return [Time] Date and time when the last status was updated.

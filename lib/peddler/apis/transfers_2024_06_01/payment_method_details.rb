@@ -14,7 +14,7 @@ module Peddler
         attribute?(:account_holder_name, String, from: "accountHolderName")
 
         # @return [String] The payment method assignment type, whether it is assigned as default to the given
-        #   marketplace or not.
+        #   marketplace or not. Known values: `DEFAULT_DEPOSIT_METHOD`.
         attribute?(:assignment_type, String, from: "assignmentType")
 
         # @return [String] The two-letter country code in ISO 3166-1 alpha-2 format. For payment methods in the `card`
@@ -28,7 +28,7 @@ module Peddler
         # @return [String] The payment method identifier.
         attribute?(:payment_method_id, String, from: "paymentMethodId")
 
-        # @return [String] The payment method type.
+        # @return [String] The payment method type. Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
         attribute?(:payment_method_type, String, from: "paymentMethodType")
 
         # @return [String] The last three or four digits of the payment method.

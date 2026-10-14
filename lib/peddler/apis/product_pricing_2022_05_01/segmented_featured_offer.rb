@@ -9,7 +9,7 @@ module Peddler
     class ProductPricing20220501
       # A product offer with segment information indicating where it's featured.
       SegmentedFeaturedOffer = Structure.new do
-        # @return [String] Item Condition.
+        # @return [String] Item Condition. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute(:condition, String, null: false)
 
         # @return [Array<FeaturedOfferSegment>] The list of segment information in which the offer is featured.
@@ -38,7 +38,8 @@ module Peddler
         # @return [Array<ShippingOption>] A list of shipping options associated with this offer
         attribute?(:shipping_options, [ShippingOption], from: "shippingOptions")
 
-        # @return [String] The item subcondition of the offer.
+        # @return [String] The item subcondition of the offer. Known values: `New`, `Mint`, `VeryGood`, `Good`,
+        #   `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`.
         attribute?(:sub_condition, String, from: "subCondition")
       end
     end

@@ -28,7 +28,8 @@ module Peddler
         # @return [ReportOptions] The report options that specify parameters, such as reportPeriod.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The type of the report.
+        # @return [String] The type of the report. Known values:
+        #   `GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

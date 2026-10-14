@@ -16,7 +16,8 @@ module Peddler
         # @return [Array<OutboundShipmentSummary>] List of outbound shipments that are part of this order.
         attribute(:outbound_shipments, [OutboundShipmentSummary], null: false, from: "outboundShipments")
 
-        # @return [String]
+        # @return [String] Known values: `CONFIRMED`, `CREATED`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`,
+        #   `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`.
         attribute(:status, String, null: false)
 
         # @return [Time] Date on which this replenishment order was confirmed.

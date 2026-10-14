@@ -12,7 +12,7 @@ module Peddler
         # @return [String] Base 64 encoded file contents.
         attribute?(:content, String)
 
-        # @return [String] The type of the file.
+        # @return [String] The type of the file. Known values: `ZPL`, `PDF`, `PNG`, `PLAIN_TEXT`.
         attribute?(:format, String)
       end
     end

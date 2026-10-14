@@ -9,7 +9,7 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Represents the volume of the package with a unit of measurement.
       PackageVolume = Structure.new do
-        # @return [String] Unit of measurement for the package volume.
+        # @return [String] Unit of measurement for the package volume. Known values: `CU_IN`, `CBM`, `CC`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # @return [Float] The package volume value.

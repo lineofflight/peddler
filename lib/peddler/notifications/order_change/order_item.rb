@@ -32,7 +32,8 @@ module Peddler
         # @return [String] The end of the time period within which you have committed to fulfill the order item.
         attribute?(:item_latest_delivery_date, String, from: "ItemLatestDeliveryDate")
 
-        # @return [String] The current status of the order item. Will display it when items' status are different.
+        # @return [String] The current status of the order item. Will display it when items' status are different. Known
+        #   values: `Unshipped`, `Shipped`.
         attribute?(:order_item_status, String, from: "OrderItemStatus")
 
         # @return [Integer] The number of items shipped.

@@ -10,10 +10,12 @@ module Peddler
       # The preparation details for a product. This contains the prep category, prep owner, and label owner.
       # Prep instructions are generated based on the specified category.
       PrepDetails = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `AMAZON`, `SELF`.
         attribute?(:label_owner, String, from: "labelOwner")
 
-        # @return [String] The preparation category for shipping an item to Amazon's fulfillment network.
+        # @return [String] The preparation category for shipping an item to Amazon's fulfillment network. Known values:
+        #   `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`,
+        #   `SMALL`, `TEXTILE`, `NO_PREP`, `UNKNOWN`.
         attribute?(:prep_category, String, from: "prepCategory")
 
         # @return [Array<PrepInstruction>] Contains information about the preparation of the inbound products. The
@@ -21,7 +23,7 @@ module Peddler
         #   this field, the system will ignore it.
         attribute?(:prep_instructions, [PrepInstruction], from: "prepInstructions")
 
-        # @return [String]
+        # @return [String] Known values: `AMAZON`, `SELF`.
         attribute?(:prep_owner, String, from: "prepOwner")
       end
     end

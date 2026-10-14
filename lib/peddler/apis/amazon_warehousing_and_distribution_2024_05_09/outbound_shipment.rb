@@ -22,7 +22,8 @@ module Peddler
         # @return [String] Unique shipment ID.
         attribute(:shipment_id, String, null: false, from: "shipmentId")
 
-        # @return [String] Current status of this shipment.
+        # @return [String] Current status of this shipment. Known values: `CREATED`, `IN_TRANSIT`, `DELIVERED`,
+        #   `RECEIVING`, `RECEIVED`, `CLOSED`, `CANCELLED`, `FAILED`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # @return [Time] Timestamp when the shipment was created.

@@ -18,7 +18,7 @@ module Peddler
         # @return [Float] The length dimension.
         attribute?(:length, Float)
 
-        # @return [String]
+        # @return [String] Known values: `cm`.
         attribute?(:unit, String)
 
         # @return [Float] The width dimension.

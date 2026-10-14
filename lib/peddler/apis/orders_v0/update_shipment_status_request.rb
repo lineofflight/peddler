@@ -12,7 +12,7 @@ module Peddler
         # @return [String]
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String]
+        # @return [String] Known values: `ReadyForPickup`, `PickedUp`, `RefusedPickup`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # @return [Array<Object>]

@@ -24,7 +24,7 @@ module Peddler
         # @return [String]
         attribute?(:created_at, String, from: "createdAt")
 
-        # @return [String]
+        # @return [String] Known values: `Active`, `Inactive`, `Archived`.
         attribute?(:status, String)
 
         # @return [String]

@@ -12,7 +12,9 @@ module Peddler
         # @return [Amount] The fee for Amazon to prepare 1 unit.
         attribute?(:fee_per_unit, Amount, from: "FeePerUnit")
 
-        # @return [String]
+        # @return [String] Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`,
+        #   `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`,
+        #   `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`.
         attribute?(:prep_instruction, String, from: "PrepInstruction")
       end
     end

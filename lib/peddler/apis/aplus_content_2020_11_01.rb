@@ -61,7 +61,8 @@ module Peddler
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
-      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
+      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response. Known
+      #   values: `CONTENTS`, `METADATA`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
@@ -106,7 +107,8 @@ module Peddler
       #   any A+ Content identifier.
       # @param marketplace_id [String] The identifier for the Amazon store where the A+ Content is published.
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response. If you do
-      #   not include this parameter, the operation returns the related ASINs without metadata.
+      #   not include this parameter, the operation returns the related ASINs without metadata. Known values:
+      #   `METADATA`.
       # @param asin_set [Array<String>] The set of ASINs.
       # @param page_token [String] A page token from the `nextPageToken` response element returned by your previous call
       #   to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the

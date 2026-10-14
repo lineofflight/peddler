@@ -26,13 +26,14 @@ module Peddler
         # @return [String] The three-letter currency code of the source payment method country, in ISO 4217 format.
         attribute(:source_currency_code, String, null: false, from: "sourceCurrencyCode")
 
-        # @return [String] The type of the scheduled transaction.
+        # @return [String] The type of the scheduled transaction. Known values: `CREDIT`, `DEBIT`.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # @return [TransferScheduleInformation] The configuration of the scheduled transfer.
         attribute(:transfer_schedule_information, TransferScheduleInformation, null: false, from: "transferScheduleInformation")
 
         # @return [String] The type of transaction schedule. This field is required when you update a transfer schedule.
+        #   Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`.
         attribute?(:transfer_schedule_status, String, from: "transferScheduleStatus")
       end
     end

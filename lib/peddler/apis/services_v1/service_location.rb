@@ -12,7 +12,7 @@ module Peddler
         # @return [Address] The shipping address for the service job.
         attribute?(:address, Address)
 
-        # @return [String] The location of the service job.
+        # @return [String] The location of the service job. Known values: `IN_HOME`, `IN_STORE`, `ONLINE`.
         attribute?(:service_location_type, String, from: "serviceLocationType")
       end
     end

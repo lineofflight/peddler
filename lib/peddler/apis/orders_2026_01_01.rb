@@ -40,19 +40,22 @@ module Peddler
       #   the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is
       #   provided, neither `createdAfter` nor `createdBefore` may be provided.
       # @param fulfillment_statuses [Array<String>] A list of `FulfillmentStatus` values you can use to filter the
-      #   results.
+      #   results. Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`,
+      #   `CANCELLED`, `UNFULFILLABLE`.
       # @param marketplace_ids [Array<String>] The response includes orders that were placed in marketplaces you include
       #   in this list. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a
       #   complete list of `marketplaceId` values.
       # @param fulfilled_by [Array<String>] The response includes orders that are fulfilled by the parties that you
-      #   include in this list.
+      #   include in this list. Known values: `MERCHANT`, `AMAZON`.
       # @param max_results_per_page [Integer] The maximum number of orders that can be returned per page. The value must
       #   be between 1 and 100. **Default:** 100.
       # @param pagination_token [String] Pagination occurs when a request produces a response that exceeds the
       #   `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page,
       #   you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not
       #   receive a `nextToken` value on the last page.
-      # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param included_data [Array<String>] A list of datasets to include in the response. Known values: `BUYER`,
+      #   `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`,
+      #   `FULFILLMENT_ORDERS`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
@@ -79,7 +82,9 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier.
-      # @param included_data [Array<String>] A list of datasets to include in the response.
+      # @param included_data [Array<String>] A list of datasets to include in the response. Known values: `BUYER`,
+      #   `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`,
+      #   `FULFILLMENT_ORDERS`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order(order_id, included_data: nil, rate_limit: 0.5)

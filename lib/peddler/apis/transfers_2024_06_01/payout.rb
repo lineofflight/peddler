@@ -10,7 +10,7 @@ module Peddler
       # All the information related to a payout.
       Payout = Structure.new do
         # @return [String] The current status of the payout. This value corresponds to the most recent entry in the
-        #   `statusHistory` list.
+        #   `statusHistory` list. Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`.
         attribute(:current_status, String, null: false, from: "currentStatus")
 
         # @return [String] The unique identifier of the payout.
@@ -32,7 +32,8 @@ module Peddler
         # @return [String] The date when the payout was created.
         attribute?(:creation_date, String, from: "creationDate")
 
-        # @return [String] The type of payout instrument to which funds are delivered.
+        # @return [String] The type of payout instrument to which funds are delivered. Known values: `BANK_ACCOUNT`,
+        #   `DEBIT_CARD`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
         # @return [String] The underlying payment network or clearing system used to transmit the payout.
@@ -47,7 +48,8 @@ module Peddler
         # @return [String] The banking network's unique identifier for a fund transfer request.
         attribute?(:trace_id, String, from: "traceId")
 
-        # @return [String] The type of payout. Can be null when there is no payout.
+        # @return [String] The type of payout. Can be null when there is no payout. Known values: `SCHEDULED`,
+        #   `ON_DEMAND`.
         attribute?(:type, String)
       end
     end

@@ -12,7 +12,8 @@ module Peddler
         # @return [Float] The content length of the to-be-uploaded file
         attribute(:content_length, Float, null: false, from: "contentLength")
 
-        # @return [String] The content type of the to-be-uploaded file
+        # @return [String] The content type of the to-be-uploaded file. Known values: `TIFF`, `JPG`, `PNG`, `JPEG`,
+        #   `GIF`, `PDF`.
         attribute(:content_type, String, null: false, from: "contentType")
 
         # @return [String] An MD5 hash of the content to be submitted to the upload destination. This value is used to

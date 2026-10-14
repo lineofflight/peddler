@@ -13,7 +13,7 @@ module Peddler
         #   `vendorGroupID`.
         attribute(:partner_id, String, null: false, from: "partnerId")
 
-        # @return [String] The type of partner.
+        # @return [String] The type of partner. Known values: `SELLER`, `VENDOR`, `AMAZON`.
         attribute(:partner_type, String, null: false, from: "partnerType")
 
         # @return [String] The address of the partner.

@@ -9,7 +9,7 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Preferences that can be passed in context of a replenishment order
       ReplenishmentPreferences = Structure.new do
-        # @return [String] Confirmation Mode to use for the created Replenishment order.
+        # @return [String] Confirmation Mode to use for the created Replenishment order. Known values: `AUTO`, `MANUAL`.
         attribute?(:confirmation, String)
       end
     end

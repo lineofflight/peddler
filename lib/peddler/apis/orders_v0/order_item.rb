@@ -56,7 +56,8 @@ module Peddler
         attribute?(:condition_subtype_id, String, from: "ConditionSubtypeId")
 
         # @return [String] The category of deemed reseller. This applies to selling partners that are not based in the
-        #   EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
+        #   EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK. Known values: `IOSS`,
+        #   `UOSS`.
         attribute?(:deemed_reseller_category, String, from: "DeemedResellerCategory")
 
         # @return [String] The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must

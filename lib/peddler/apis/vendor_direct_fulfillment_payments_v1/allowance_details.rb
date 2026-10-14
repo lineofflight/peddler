@@ -12,7 +12,8 @@ module Peddler
         # @return [Money] Total monetary amount related to this allowance.
         attribute(:allowance_amount, Money, null: false, from: "allowanceAmount")
 
-        # @return [String] Type of the allowance applied.
+        # @return [String] Type of the allowance applied. Known values: `Discount`, `DiscountIncentive`, `Defective`,
+        #   `Promotional`, `UnsaleableMerchandise`, `Special`.
         attribute(:type, String, null: false)
 
         # @return [String] Description of the allowance.

@@ -22,7 +22,8 @@ module Peddler
       #   result. Must be in ISO-8601 date/time format.
       # @param created_before [String] Purchase orders that became available before this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @param next_token [String] Used for pagination when there is more purchase orders than the specified result size
       #   limit. The token value is returned in the previous API call
       # @param include_details [String] When true, returns purchase orders with complete details. Otherwise, only
@@ -37,7 +38,8 @@ module Peddler
       # @param is_po_changed [String] When true, returns purchase orders which were modified after the order was placed.
       #   Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the
       #   original one. Default value is false.
-      # @param purchase_order_state [String] Filters purchase orders based on the purchase order state.
+      # @param purchase_order_state [String] Filters purchase orders based on the purchase order state. Known values:
+      #   `New`, `Acknowledged`, `Closed`.
       # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
@@ -97,7 +99,8 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
-      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @param next_token [String] Used for pagination when there are more purchase orders than the specified result
       #   size limit.
       # @param created_after [String] Purchase orders that became available after this timestamp will be included in the
@@ -110,13 +113,13 @@ module Peddler
       #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # @param purchase_order_number [String] Provides purchase order status for the specified purchase order number.
       # @param purchase_order_status [String] Filters purchase orders based on the specified purchase order status. If
-      #   not included in filter, this will return purchase orders for all statuses.
+      #   not included in filter, this will return purchase orders for all statuses. Known values: `OPEN`, `CLOSED`.
       # @param item_confirmation_status [String] Filters purchase orders based on their item confirmation status. If the
       #   item confirmation status is not included in the filter, purchase orders for all confirmation statuses are
-      #   included.
+      #   included. Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.
       # @param item_receive_status [String] Filters purchase orders based on the purchase order's item receive status.
       #   If the item receive status is not included in the filter, purchase orders for all receive statuses are
-      #   included.
+      #   included. Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.
       # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase
       #   orders for all the vendor codes that exist in the vendor group used to authorize API client application are

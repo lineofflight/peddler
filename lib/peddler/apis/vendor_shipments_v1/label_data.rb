@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The base-64 encoded string that represents the shipment label.
         attribute?(:label, String)
 
-        # @return [String] The format of the label.
+        # @return [String] The format of the label. Known values: `PDF`.
         attribute?(:label_format, String, from: "labelFormat")
 
         # @return [Integer] A sequential number assigned to each label within a shipment.

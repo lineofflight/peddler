@@ -22,7 +22,7 @@ module Peddler
         # @return [String] Email address of the payee.
         attribute(:email_address, String, null: false, from: "emailAddress")
 
-        # @return [String] Type of entity of the payee.
+        # @return [String] Type of entity of the payee. Known values: `INDIVIDUAL`, `BUSINESS`, `TAX_AUTHORITY`.
         attribute(:payee_entity_type, String, null: false, from: "payeeEntityType")
 
         # @return [String] First name of the payee. There is a 50 character limit.

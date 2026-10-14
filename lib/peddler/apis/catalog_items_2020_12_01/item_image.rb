@@ -15,7 +15,8 @@ module Peddler
         # @return [String] Link, or URL, for the image.
         attribute(:link, String, null: false)
 
-        # @return [String] Variant of the image, such as MAIN or PT01.
+        # @return [String] Variant of the image, such as MAIN or PT01. Known values: `MAIN`, `PT01`, `PT02`, `PT03`,
+        #   `PT04`, `PT05`, `PT06`, `PT07`, `PT08`, `SWCH`.
         attribute(:variant, String, null: false)
 
         # @return [Integer] Width of the image in pixels.

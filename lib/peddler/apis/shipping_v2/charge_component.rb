@@ -12,7 +12,7 @@ module Peddler
         # @return [Money]
         attribute?(:amount, Money)
 
-        # @return [String] The type of charge.
+        # @return [String] The type of charge. Known values: `TAX`, `DISCOUNT`.
         attribute?(:charge_type, String, from: "chargeType")
       end
     end

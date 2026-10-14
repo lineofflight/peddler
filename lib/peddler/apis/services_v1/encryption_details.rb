@@ -15,7 +15,8 @@ module Peddler
         # @return [String] The encryption key used to encrypt or decrypt the document contents.
         attribute(:key, String, null: false)
 
-        # @return [String] The encryption standard required to encrypt or decrypt the document contents.
+        # @return [String] The encryption standard required to encrypt or decrypt the document contents. Known values:
+        #   `AES`.
         attribute(:standard, String, null: false)
       end
     end

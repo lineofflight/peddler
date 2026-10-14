@@ -28,10 +28,11 @@ module Peddler
         #   pages.
         attribute?(:next_token, String, from: "nextToken")
 
-        # @return [String] The field to sort cases by. Defaults to CREATION_DATE when absent.
+        # @return [String] The field to sort cases by. Defaults to CREATION_DATE when absent. Known values: `CASE_ID`,
+        #   `STATUS`, `SUBJECT`, `PRIMARY_EMAIL`, `CREATION_DATE`, `LAST_OUTBOUND_DATE`, `RESOLUTION_DATE`.
         attribute?(:sort_field, String, from: "sortField")
 
-        # @return [String] The sort direction. Defaults to DESC when absent.
+        # @return [String] The sort direction. Defaults to DESC when absent. Known values: `ASC`, `DESC`.
         attribute?(:sort_order, String, from: "sortOrder")
       end
     end

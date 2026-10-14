@@ -9,7 +9,8 @@ module Peddler
     class ProductPricing20220501
       # Amazon Prime details.
       PrimeDetails = Structure.new do
-        # @return [String] Indicates whether the offer is an Amazon Prime offer.
+        # @return [String] Indicates whether the offer is an Amazon Prime offer. Known values: `NATIONAL`, `REGIONAL`,
+        #   `NONE`.
         attribute(:eligibility, String, null: false)
       end
     end

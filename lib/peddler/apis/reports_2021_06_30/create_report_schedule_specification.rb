@@ -14,7 +14,8 @@ module Peddler
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
         # @return [String] One of a set of predefined {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601}
-        #   periods that specifies how often a report should be created.
+        #   periods that specifies how often a report should be created. Known values: `PT5M`, `PT15M`, `PT30M`, `PT1H`,
+        #   `PT2H`, `PT4H`, `PT8H`, `PT12H`, `P1D`, `P2D`, `P3D`, `PT84H`, `P7D`, `P14D`, `P15D`, `P18D`, `P30D`, `P1M`.
         attribute(:period, String, null: false)
 
         # @return [String] The report type. Refer to [Report Type

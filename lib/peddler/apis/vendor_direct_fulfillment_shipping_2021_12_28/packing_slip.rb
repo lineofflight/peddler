@@ -15,7 +15,7 @@ module Peddler
         # @return [String] Purchase order number of the shipment that the packing slip is for.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # @return [String] The format of the file such as PDF, JPEG etc.
+        # @return [String] The format of the file such as PDF, JPEG etc. Known values: `application/pdf`.
         attribute?(:content_type, String, from: "contentType")
       end
     end

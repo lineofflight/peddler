@@ -15,7 +15,7 @@ module Peddler
         # @return [Dimensions]
         attribute?(:dimensions, Dimensions)
 
-        # @return [String]
+        # @return [String] Known values: `STACKABLE`, `NON_STACKABLE`.
         attribute?(:stackability, String)
 
         # @return [Weight]

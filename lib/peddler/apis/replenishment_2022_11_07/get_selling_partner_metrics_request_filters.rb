@@ -28,7 +28,8 @@ module Peddler
         # @return [Array<FulfillmentChannelType>] [Applicable only for Sellers] The fulfillment channel types to filter
         #   by. Fulfillment channel type filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS,
         #   TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS,
-        #   COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
+        #   COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION. Known values: `AMAZON`,
+        #   `MERCHANT`.
         attribute?(:fulfillment_channel_types, Array, from: "fulfillmentChannelTypes")
 
         # @return [Array<String>] [Applicable only for Vendors] A list of product group names to filter by. Product

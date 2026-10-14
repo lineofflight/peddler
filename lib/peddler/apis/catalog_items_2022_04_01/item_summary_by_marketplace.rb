@@ -35,7 +35,8 @@ module Peddler
         #   actors.
         attribute?(:contributors, [ItemContributor])
 
-        # @return [String] Classification type that is associated with the Amazon catalog item.
+        # @return [String] Classification type that is associated with the Amazon catalog item. Known values:
+        #   `BASE_PRODUCT`, `OTHER`, `PRODUCT_BUNDLE`, `VARIATION_PARENT`.
         attribute?(:item_classification, String, from: "itemClassification")
 
         # @return [String] The name that is associated with the Amazon catalog item.

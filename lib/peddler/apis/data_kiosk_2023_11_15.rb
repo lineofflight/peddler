@@ -17,7 +17,8 @@ module Peddler
       # details about query retention.
       #
       # @note This operation can make a static sandbox call.
-      # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @param page_size [Integer] The maximum number of queries to return in a single call.
       # @param created_since [String] The earliest query creation date and time for queries to include in the response,
       #   in ISO 8601 date time format. The default is 90 days ago.

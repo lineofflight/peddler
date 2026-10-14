@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The Amazon order identifier, in 3-7-7 format.
         attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
-        # @return [String] The notification level of current notification.
+        # @return [String] The notification level of current notification. Known values: `OrderItemLevel`, `OrderLevel`.
         attribute(:notification_level, String, null: false, from: "NotificationLevel")
 
         # @return [OrderChangeTrigger]

@@ -22,13 +22,15 @@ module Peddler
         # @return [String] The listings item's Amazon product type.
         attribute(:product_type, String, null: false, from: "productType")
 
-        # @return [Array<String>] Statuses that apply to the listings item.
+        # @return [Array<String>] Statuses that apply to the listings item. Known values: `BUYABLE`, `DISCOVERABLE`.
         attribute(:status, [String], null: false)
 
         # @return [String] The ASIN of the listings item.
         attribute?(:asin, String)
 
-        # @return [String] Identifies the condition of the listings item.
+        # @return [String] Identifies the condition of the listings item. Known values: `new_new`, `new_open_box`,
+        #   `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`,
+        #   `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.
         attribute?(:condition_type, String, from: "conditionType")
 
         # @return [String] Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to

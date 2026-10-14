@@ -22,7 +22,8 @@ module Peddler
       # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.
       # @param asin [String] The ASIN of the item for which you want an eligibility preview.
-      # @param program [String] The program that you want to check eligibility against.
+      # @param program [String] The program that you want to check eligibility against. Known values: `INBOUND`,
+      #   `COMMINGLING`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)

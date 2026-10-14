@@ -46,7 +46,8 @@ module Peddler
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   `summaries`.
+      #   `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`,
+      #   `procurement`, `relationships`, `productTypes`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"],
@@ -69,8 +70,8 @@ module Peddler
       # @param sku [String] A selling partner-provided identifier for an Amazon listing.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   `issues`.
-      # @param mode [String] Describes the mode of operation for the request.
+      #   `issues`. Known values: `identifiers`, `issues`.
+      # @param mode [String] Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
@@ -97,8 +98,8 @@ module Peddler
       # @param sku [String] A selling partner-provided identifier for an Amazon listing.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   `issues`.
-      # @param mode [String] Describes the mode of operation for the request.
+      #   `issues`. Known values: `identifiers`, `issues`.
+      # @param mode [String] Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
@@ -127,12 +128,14 @@ module Peddler
       #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
       #   available in the specified locale, localized messages default to "en_US".
       # @param included_data [Array<String>] A comma-delimited list of data sets that you want to include in the
-      #   response. Default: `summaries`.
+      #   response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`,
+      #   `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
       # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search for
       #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
       #   'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
       # @param identifiers_type [String] A type of product identifiers that you can use to search for listings items.
-      #   **Note**: This is required when `identifiers` is provided.
+      #   **Note**: This is required when `identifiers` is provided. Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`,
+      #   `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # @param variation_parent_sku [String] Filters results to include listing items that are variation children of the
       #   specified SKU. **Note**: You cannot use `variationParentSku` if you include `identifiers` or
       #   `packageHierarchySku` in your request.
@@ -152,12 +155,14 @@ module Peddler
       #   listings items that were last updated at or before this time. Values are in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param with_issue_severity [Array<String>] Filter results to include only listing items that have issues that
-      #   match one or more of the specified severity levels.
+      #   match one or more of the specified severity levels. Known values: `WARNING`, `ERROR`.
       # @param with_status [Array<String>] Filter results to include only listing items that have the specified status.
+      #   Known values: `BUYABLE`, `DISCOVERABLE`.
       # @param without_status [Array<String>] Filter results to include only listing items that don't contain the
-      #   specified statuses.
-      # @param sort_by [String] An attribute by which to sort the returned listing items.
-      # @param sort_order [String] The order in which to sort the result items.
+      #   specified statuses. Known values: `BUYABLE`, `DISCOVERABLE`.
+      # @param sort_by [String] An attribute by which to sort the returned listing items. Known values: `sku`,
+      #   `createdDate`, `lastUpdatedDate`.
+      # @param sort_order [String] The order in which to sort the result items. Known values: `ASC`, `DESC`.
       # @param page_size [Integer] The number of results that you want to include on each page.
       # @param page_token [String] A token that you can use to fetch a specific page when there are multiple pages of
       #   results.

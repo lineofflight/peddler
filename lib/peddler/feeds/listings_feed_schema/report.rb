@@ -10,12 +10,15 @@ module Peddler
       # The report information for the feed submission.
       Report = Structure.new do
         # @return [String] The version of the Selling Partner Listings Items API to use to retrieve the listing items.
+        #   Known values: `2021-08-01`.
         attribute(:api_version, String, null: false, from: "apiVersion")
 
         # @return [Array<String>] When "includedData" elements are in the feed submission, the processing report that
         #   generates for the feed submission includes the listings items output from the Selling Partner Listings Items
         #   API with the "includedData" elements from the request. The report includes issues that prevent the
-        #   acceptance of messages regardless of the "includedData" elements in the feed request.
+        #   acceptance of messages regardless of the "includedData" elements in the feed request. Known values:
+        #   `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`,
+        #   `productTypes`.
         attribute(:included_data, [String], null: false, from: "includedData")
       end
     end

@@ -9,7 +9,7 @@ module Peddler
     class ProductFeesV0
       # An item identifier, marketplace, time of request, and other details that identify an estimate.
       FeesEstimateIdentifier = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `ASIN`, `SellerSKU`.
         attribute?(:id_type, String, from: "IdType")
 
         # @return [String] The item identifier.
@@ -21,7 +21,7 @@ module Peddler
         # @return [String] A marketplace identifier.
         attribute?(:marketplace_id, String, from: "MarketplaceId")
 
-        # @return [String]
+        # @return [String] Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`.
         attribute?(:optional_fulfillment_program, String, from: "OptionalFulfillmentProgram")
 
         # @return [PriceToEstimateFees] The item price on which the fee estimate is based.

@@ -9,7 +9,7 @@ module Peddler
     class Tokens20210301
       # Model of a restricted resource.
       RestrictedResource = Structure.new do
-        # @return [String] The HTTP method in the restricted resource.
+        # @return [String] The HTTP method in the restricted resource. Known values: `GET`, `PUT`, `POST`, `DELETE`.
         attribute(:method, String, null: false)
 
         # @return [String] The path in the restricted resource. Here are some path examples:

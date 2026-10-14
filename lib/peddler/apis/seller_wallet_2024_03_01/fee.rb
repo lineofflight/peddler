@@ -18,7 +18,7 @@ module Peddler
         # @return [String] The value of the fee in percentage format.
         attribute(:fee_rate_value, String, null: false, from: "feeRateValue")
 
-        # @return [String] The type of the fee.
+        # @return [String] The type of the fee. Known values: `MISCELLANEOUS_FEE`, `TAX`, `TRANSACTION_FEE`.
         attribute(:fee_type, String, null: false, from: "feeType")
       end
     end

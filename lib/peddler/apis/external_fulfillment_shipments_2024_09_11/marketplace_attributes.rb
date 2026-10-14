@@ -17,7 +17,7 @@ module Peddler
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # @return [Array<String>] Marketplace channel-specific custom attributes for the order. These attributes are not
-        #   mandatory and each channel can provide them differently.
+        #   mandatory and each channel can provide them differently. Known values: `PRIME`, `FASTTRACK`.
         attribute?(:custom_attributes, [String], from: "customAttributes")
 
         # @return [String] The ID of the merchant or seller to whom this order is created.

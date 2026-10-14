@@ -12,19 +12,23 @@ module Peddler
         # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
         attribute(:msku, String, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`,
+        #   `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`.
         attribute(:prep_category, String, null: false, from: "prepCategory")
 
-        # @return [Array<PrepType>] A list of preparation types associated with a preparation category.
+        # @return [Array<PrepType>] A list of preparation types associated with a preparation category. Known values:
+        #   `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`,
+        #   `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`,
+        #   `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`.
         attribute(:prep_types, Array, null: false, from: "prepTypes")
 
-        # @return [String]
+        # @return [String] Known values: `MUST_MATCH`.
         attribute?(:all_owners_constraint, String, from: "allOwnersConstraint")
 
-        # @return [String]
+        # @return [String] Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`.
         attribute?(:label_owner_constraint, String, from: "labelOwnerConstraint")
 
-        # @return [String]
+        # @return [String] Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`.
         attribute?(:prep_owner_constraint, String, from: "prepOwnerConstraint")
       end
     end

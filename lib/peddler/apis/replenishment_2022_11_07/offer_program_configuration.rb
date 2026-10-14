@@ -10,7 +10,7 @@ module Peddler
       # The offer program configuration contains a set of program properties for an offer.
       OfferProgramConfiguration = Structure.new do
         # @return [String] Determines whether the offer was automatically or manually enrolled in the program. This
-        #   property is only supported for sellers, not for vendors.
+        #   property is only supported for sellers, not for vendors. Known values: `MANUAL`, `AUTOMATIC`.
         attribute?(:enrollment_method, String, from: "enrollmentMethod")
 
         # @return [OfferProgramConfigurationPreferences] An object which contains the preferences applied to the offer.

@@ -12,7 +12,7 @@ module Peddler
         # @return [Array<ContentModule>]
         attribute(:content_module_list, [ContentModule], null: false, from: "contentModuleList")
 
-        # @return [String]
+        # @return [String] Known values: `EBC`, `EMC`, `BrandStory`.
         attribute(:content_type, String, null: false, from: "contentType")
 
         # @return [String]

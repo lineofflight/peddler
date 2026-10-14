@@ -16,7 +16,7 @@ module Peddler
         # @return [ImageComponent]
         attribute(:image, ImageComponent, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `LEFT`, `RIGHT`.
         attribute(:position_type, String, null: false, from: "positionType")
 
         # @return [ParagraphComponent]

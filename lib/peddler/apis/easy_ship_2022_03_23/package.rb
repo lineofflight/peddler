@@ -31,7 +31,9 @@ module Peddler
         # @return [Array<Item>]
         attribute?(:package_items, [Item], from: "packageItems")
 
-        # @return [String]
+        # @return [String] Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`,
+        #   `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`,
+        #   `OutForDelivery`.
         attribute?(:package_status, String, from: "packageStatus")
 
         # @return [TrackingDetails]

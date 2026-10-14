@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       # A standard background image with a floating text box.
       StandardImageTextOverlayModule = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `DARK`, `LIGHT`.
         attribute(:overlay_color_type, String, null: false, from: "overlayColorType")
 
         # @return [StandardImageTextBlock]

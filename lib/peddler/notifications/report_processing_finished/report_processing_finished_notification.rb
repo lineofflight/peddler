@@ -13,7 +13,7 @@ module Peddler
         #   whose behalf the report was submitted.
         attribute(:account_id, String, null: false, from: "accountId")
 
-        # @return [String] The processing status of the report.
+        # @return [String] The processing status of the report. Known values: `CANCELLED`, `DONE`, `FATAL`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [String] The report identifier.

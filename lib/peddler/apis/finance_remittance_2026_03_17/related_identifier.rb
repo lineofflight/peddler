@@ -9,7 +9,8 @@ module Peddler
     class FinanceRemittance20260317
       # A related business identifier for the transaction.
       RelatedIdentifier = Structure.new do
-        # @return [String] An enumerated set of related business identifier names.
+        # @return [String] An enumerated set of related business identifier names. Known values: `VENDOR_CODE`,
+        #   `PAYEE_CODE`.
         attribute(:related_identifier_name, String, null: false, from: "relatedIdentifierName")
 
         # @return [Array<String>] The corresponding values for `relatedIdentifierName`.

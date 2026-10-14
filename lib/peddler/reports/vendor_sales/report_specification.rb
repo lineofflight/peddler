@@ -33,7 +33,7 @@ module Peddler
         #   sellingProgram.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type.
+        # @return [String] The report type. Known values: `GET_VENDOR_SALES_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

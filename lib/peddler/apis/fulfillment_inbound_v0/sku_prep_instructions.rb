@@ -16,13 +16,16 @@ module Peddler
         # @return [Array<AmazonPrepFeesDetails>]
         attribute?(:amazon_prep_fees_details_list, [AmazonPrepFeesDetails], from: "AmazonPrepFeesDetailsList")
 
-        # @return [String]
+        # @return [String] Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`.
         attribute?(:barcode_instruction, String, from: "BarcodeInstruction")
 
-        # @return [String]
+        # @return [String] Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`.
         attribute?(:prep_guidance, String, from: "PrepGuidance")
 
-        # @return [Array<PrepInstruction>]
+        # @return [Array<PrepInstruction>] Known values: `Polybagging`, `BubbleWrapping`, `Taping`,
+        #   `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`,
+        #   `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`,
+        #   `NoPrep`.
         attribute?(:prep_instruction_list, Array, from: "PrepInstructionList")
 
         # @return [String] The seller SKU of the item.

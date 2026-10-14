@@ -36,7 +36,7 @@ module Peddler
         # @return [ShipmentDetails]
         attribute(:shipment_details, ShipmentDetails, null: false, from: "shipmentDetails")
 
-        # @return [String] Current status of the order.
+        # @return [String] Current status of the order. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
         attribute?(:order_status, String, from: "orderStatus")
 
         # @return [Hash] The total Tax object within shipment that relates to the order.

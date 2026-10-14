@@ -13,7 +13,8 @@ module Peddler
         # @return [Array<ContainerSpecification>]
         attribute(:container_specifications, [ContainerSpecification], null: false, from: "containerSpecifications")
 
-        # @return [Array<ServiceType>]
+        # @return [Array<ServiceType>] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon
+        #   Shipping Premium`.
         attribute(:service_types, Array, null: false, from: "serviceTypes")
 
         # @return [Address]

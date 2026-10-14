@@ -10,7 +10,7 @@ module Peddler
       # Defines which products qualify for a benefit, allowing either specific items to be selected by ASIN or the
       # entire catalog with optional exclusions.
       Selection = Structure.new do
-        # @return [String] Selection type.
+        # @return [String] Selection type. Known values: `CATALOG`, `ITEMS`.
         attribute(:type, String, null: false)
 
         # @return [Integer] The revision identifier for the selection. Pass this value to the `getSelection` operation's

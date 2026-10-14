@@ -44,7 +44,8 @@ module Peddler
         #   `shippingSpeedCategory` value is `ScheduledDelivery`.
         # Note: Shipping method service level agreements vary by marketplace. Sellers can refer to [Seller Central](
         #   https://developer-docs.amazon.com/sp-api/docs/seller-central-urls) for shipping method service-level
-        #   agreements and multi-channel fulfillment fees.
+        #   agreements and multi-channel fulfillment fees. Known values: `Standard`, `Expedited`, `Priority`,
+        #   `ScheduledDelivery`.
         attribute(:shipping_speed_category, String, null: false, from: "shippingSpeedCategory")
 
         # @return [CODSettings]
@@ -64,10 +65,10 @@ module Peddler
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
         attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
 
-        # @return [String]
+        # @return [String] Known values: `Ship`, `Hold`.
         attribute?(:fulfillment_action, String, from: "fulfillmentAction")
 
-        # @return [String]
+        # @return [String] Known values: `FillOrKill`, `FillAll`, `FillAllAvailable`.
         attribute?(:fulfillment_policy, String, from: "fulfillmentPolicy")
 
         # @return [String] The marketplace the fulfillment order is placed against.

@@ -12,7 +12,8 @@ module Peddler
         # @return [Money] The price at this quantity tier.
         attribute(:listing_price, Money, null: false, from: "listingPrice")
 
-        # @return [String] Indicates the type of quantity discount this price applies to.
+        # @return [String] Indicates the type of quantity discount this price applies to. Known values:
+        #   `QUANTITY_DISCOUNT`.
         attribute(:quantity_discount_type, String, null: false, from: "quantityDiscountType")
 
         # @return [Integer] Indicates at what quantity this price becomes active.

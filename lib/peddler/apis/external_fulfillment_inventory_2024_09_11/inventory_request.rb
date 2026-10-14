@@ -10,7 +10,7 @@ module Peddler
       # An inventory request.
       InventoryRequest = Structure.new do
         # @return [String] The method associated with the individual operation from the batch request. To make an
-        #   update, use `POST`.
+        #   update, use `POST`. Known values: `GET`, `POST`.
         attribute(:method, String, null: false)
 
         # @return [String] The URI associated with the individual APIs from the batch request. The user must provide the

@@ -72,7 +72,7 @@ module Peddler
       #   methods. For the list of store identifiers, refer to [Store
       #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param payment_method_types [Array<String>] A comma-separated list of the payment method types you want to
-      #   include in the response.
+      #   include in the response. Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_payment_methods(marketplace_id, payment_method_types: nil, rate_limit: 0.5)

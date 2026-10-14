@@ -21,13 +21,14 @@ module Peddler
       # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @param status [String] Returns only the purchase orders that match the specified status. If not specified, the
-      #   result will contain orders that match any status.
+      #   result will contain orders that match any status. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
       # @param limit [Integer] The limit to the number of purchase orders returned.
       # @param created_after [String] Purchase orders that became available after this date and time will be included in
       #   the result. Must be in ISO-8601 date/time format.
       # @param created_before [String] Purchase orders that became available before this date and time will be included
       #   in the result. Must be in ISO-8601 date/time format.
-      # @param sort_order [String] Sort the list in ascending or descending order by order creation date.
+      # @param sort_order [String] Sort the list in ascending or descending order by order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
       # @param include_details [String] When true, returns the complete purchase order details. Otherwise, only purchase

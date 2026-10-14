@@ -4,6 +4,7 @@ require "erb"
 require_relative "../support/config"
 require_relative "../support/formatter"
 require_relative "../support/naming"
+require_relative "../support/known_values"
 require_relative "parameter_builder"
 require_relative "response_model"
 require_relative "../parsers/rate_limit_parser"
@@ -66,6 +67,7 @@ module Generator
         param_description = param["description"]&.gsub(/\s+/, " ")
         param_description = convert_html_links_to_yard(param_description) if param_description
         param_description = convert_doc_links_to_full_url(param_description) if param_description
+        param_description = KnownValues.append(param_description, KnownValues.enum_values(param))
 
         "@param #{param_name} [#{param_type}] #{param_description}"
       end

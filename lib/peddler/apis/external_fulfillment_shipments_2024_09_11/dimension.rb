@@ -9,7 +9,7 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # A dimension of a package.
       Dimension = Structure.new do
-        # @return [String] The unit of measurement of the dimension.
+        # @return [String] The unit of measurement of the dimension. Known values: `CM`, `M`, `IN`.
         attribute(:dimension_unit, String, null: false, from: "dimensionUnit")
 
         # @return [String] The numerical value of the dimension. Must be a positive value.

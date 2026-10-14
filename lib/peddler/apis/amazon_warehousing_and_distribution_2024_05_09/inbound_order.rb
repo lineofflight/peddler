@@ -16,7 +16,8 @@ module Peddler
         # @return [String] Inbound order ID.
         attribute(:order_id, String, null: false, from: "orderId")
 
-        # @return [String] Inbound order status.
+        # @return [String] Inbound order status. Known values: `DRAFT`, `VALIDATING`, `CONFIRMED`, `CLOSED`, `EXPIRED`,
+        #   `CANCELLED`.
         attribute(:order_status, String, null: false, from: "orderStatus")
 
         # @return [Address] Origin address from where the inbound order will be shipped.

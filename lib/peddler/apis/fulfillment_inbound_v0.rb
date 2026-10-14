@@ -48,8 +48,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param page_type [String] The page type to use to print the labels. Submitting a PageType value that is not
-      #   supported in your marketplace returns an error.
-      # @param label_type [String] The type of labels requested.
+      #   supported in your marketplace returns an error. Known values: `PackageLabel_Letter_2`,
+      #   `PackageLabel_Letter_4`, `PackageLabel_Letter_6`, `PackageLabel_Letter_6_CarrierLeft`, `PackageLabel_A4_2`,
+      #   `PackageLabel_A4_4`, `PackageLabel_Plain_Paper`, `PackageLabel_Plain_Paper_CarrierBottom`,
+      #   `PackageLabel_Thermal`, `PackageLabel_Thermal_Unified`, `PackageLabel_Thermal_NonPCP`,
+      #   `PackageLabel_Thermal_No_Carrier_Rotation`.
+      # @param label_type [String] The type of labels requested. Known values: `BARCODE_2D`, `UNIQUE`, `PALLET`.
       # @param number_of_packages [Integer] The number of packages in the shipment.
       # @param package_labels_to_print [Array<String>] A list of identifiers that specify packages for which you want
       #   package labels printed. If you provide box content information with the [FBA Inbound Shipment Carton
@@ -103,7 +107,8 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_status_list [Array<String>] A list of ShipmentStatus values. Used to select shipments with a
-      #   current status that matches the status values that you specify.
+      #   current status that matches the status values that you specify. Known values: `WORKING`, `READY_TO_SHIP`,
+      #   `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`.
       # @param shipment_id_list [Array<String>] A list of shipment IDs used to select the shipments that you want. If
       #   both ShipmentStatusList and ShipmentIdList are specified, only shipments that match both parameters are
       #   returned.
@@ -114,7 +119,7 @@ module Peddler
       # @param query_type [String] Indicates whether shipments are returned using shipment information (by providing the
       #   ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and
       #   LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous
-      #   request.
+      #   request. Known values: `SHIPMENT`, `DATE_RANGE`, `NEXT_TOKEN`.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
@@ -162,7 +167,7 @@ module Peddler
       #   before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
       # @param query_type [String] Indicates whether items are returned using a date range (by providing the
       #   LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items
-      #   specified in a previous request.
+      #   specified in a previous request. Known values: `DATE_RANGE`, `NEXT_TOKEN`.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.

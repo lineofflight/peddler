@@ -9,7 +9,7 @@ module Peddler
     class AplusContent20201101
       # A standard headline and body text with an image on the side.
       StandardSingleSideImageModule = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `LEFT`, `RIGHT`.
         attribute(:image_position_type, String, null: false, from: "imagePositionType")
 
         # @return [StandardImageTextBlock]

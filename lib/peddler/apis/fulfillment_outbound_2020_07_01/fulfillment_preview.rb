@@ -18,7 +18,7 @@ module Peddler
         # @return [String] The marketplace the fulfillment order is placed against.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String]
+        # @return [String] Known values: `Standard`, `Expedited`, `Priority`, `ScheduledDelivery`.
         attribute(:shipping_speed_category, String, null: false, from: "shippingSpeedCategory")
 
         # @return [Array<Fee>] The estimated fulfillment fees for this fulfillment order preview, if applicable. The

@@ -16,7 +16,7 @@ module Peddler
         # @return [Time] Timestamp when the eligibility check is performed.
         attribute(:previewed_at, Time, null: false, from: "previewedAt")
 
-        # @return [String]
+        # @return [String] Known values: `ELIGIBLE`, `INELIGIBLE`.
         attribute(:status, String, null: false)
 
         # @return [Array<OrderIneligibilityReason>] If there are order level eligibility issues, then this list will

@@ -13,7 +13,8 @@ module Peddler
         # @return [String] Order ID for the outbound order.
         attribute(:order_id, String, null: false, from: "orderId")
 
-        # @return [String] Status for the outbound order.
+        # @return [String] Status for the outbound order. Known values: `CONFIRMED`, `DRAFT`, `ELIGIBLE`, `EXECUTING`,
+        #   `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`.
         attribute(:order_status, String, null: false, from: "orderStatus")
 
         # @return [Array<OutboundShipment>] List of outbound shipments that are part of this order.

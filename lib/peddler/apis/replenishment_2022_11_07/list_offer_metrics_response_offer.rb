@@ -28,7 +28,7 @@ module Peddler
         attribute?(:currency_code, String, from: "currencyCode")
 
         # @return [String] The fulfillment channel type of an offer. This property is only supported for sellers and not
-        #   for vendors.
+        #   for vendors. Known values: `AMAZON`, `MERCHANT`.
         attribute?(:fulfillment_channel_type, String, from: "fulfillmentChannelType")
 
         # @return [Float] The revenue that would have been generated had there not been out of stock. Applicable to

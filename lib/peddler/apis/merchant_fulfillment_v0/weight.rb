@@ -9,7 +9,7 @@ module Peddler
     class MerchantFulfillmentV0
       # The weight.
       Weight = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `oz`, `g`.
         attribute(:unit, String, null: false, from: "Unit")
 
         # @return [Float]

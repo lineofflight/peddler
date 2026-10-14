@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The length of the container.
         attribute(:length, String, null: false)
 
-        # @return [String] The unit of measure for dimensions.
+        # @return [String] The unit of measure for dimensions. Known values: `In`, `Ft`, `Meter`, `Yard`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # @return [String] The width of the container.

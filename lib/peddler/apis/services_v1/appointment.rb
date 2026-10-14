@@ -13,7 +13,7 @@ module Peddler
         # @return [String] The appointment identifier.
         attribute?(:appointment_id, String, from: "appointmentId")
 
-        # @return [String] The status of the appointment.
+        # @return [String] The status of the appointment. Known values: `ACTIVE`, `CANCELLED`, `COMPLETED`.
         attribute?(:appointment_status, String, from: "appointmentStatus")
 
         # @return [AppointmentTime] The time of the appointment window.

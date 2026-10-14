@@ -12,7 +12,7 @@ module Peddler
         # @return [Float] Quantity of the respective inventory.
         attribute(:quantity, Float, null: false)
 
-        # @return [String] Unit of measurement for the inventory.
+        # @return [String] Unit of measurement for the inventory. Known values: `PRODUCT_UNITS`, `CASES`, `PALLETS`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
       end
     end

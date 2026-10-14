@@ -10,7 +10,8 @@ module Peddler
       # A way to configure this packing option. Some box content information sources might not be allowed. Non-standard
       # minimum and maximum box weights might be enforced.
       PackingConfiguration = Structure.new do
-        # @return [Array<BoxContentInformationSource>] The box content information sources that are allowed.
+        # @return [Array<BoxContentInformationSource>] The box content information sources that are allowed. Known
+        #   values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`.
         attribute?(:box_packing_methods, Array, from: "boxPackingMethods")
 
         # @return [BoxRequirements]

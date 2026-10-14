@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The name of the field.
         attribute(:field_label, String, null: false, from: "FieldLabel")
 
-        # @return [String] The type of field.
+        # @return [String] The type of field. Known values: `Text`, `FileAttachment`.
         attribute(:field_type, String, null: false, from: "FieldType")
 
         # @return [String] The content of the field as collected in regulatory form. Note that `FileAttachment` type

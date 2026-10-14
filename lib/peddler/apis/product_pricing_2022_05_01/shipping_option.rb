@@ -12,7 +12,7 @@ module Peddler
         # @return [Money] Shipping price for the offer.
         attribute(:price, Money, null: false)
 
-        # @return [String] The type of shipping option.
+        # @return [String] The type of shipping option. Known values: `DEFAULT`.
         attribute(:shipping_option_type, String, null: false, from: "shippingOptionType")
       end
     end

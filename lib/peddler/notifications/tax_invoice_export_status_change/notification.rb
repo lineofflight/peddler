@@ -16,7 +16,7 @@ module Peddler
         #   and notification event identifiers.
         attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
 
-        # @return [String] The notification type.
+        # @return [String] The notification type. Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`.
         attribute(:notification_type, String, null: false, from: "notificationType")
 
         # @return [String] The version for this notification type.

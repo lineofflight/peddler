@@ -13,7 +13,9 @@ module Peddler
         #   enforced.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The condition that applies to the restriction.
+        # @return [String] The condition that applies to the restriction. Known values: `new_new`, `new_open_box`,
+        #   `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`,
+        #   `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.
         attribute?(:condition_type, String, from: "conditionType")
 
         # @return [Array<Reason>] A list of reasons for the restriction.

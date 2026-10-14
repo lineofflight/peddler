@@ -9,7 +9,7 @@ module Peddler
     class VendorDirectFulfillmentShipping20211228
       # The weight.
       Weight = Structure.new do
-        # @return [String] The unit of measurement.
+        # @return [String] The unit of measurement. Known values: `KG`, `LB`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # @return [String] The measurement value.

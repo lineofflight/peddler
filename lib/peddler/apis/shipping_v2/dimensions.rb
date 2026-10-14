@@ -15,7 +15,7 @@ module Peddler
         # @return [Float] The length of the package.
         attribute(:length, Float, null: false)
 
-        # @return [String] The unit of measurement.
+        # @return [String] The unit of measurement. Known values: `INCH`, `CENTIMETER`.
         attribute(:unit, String, null: false)
 
         # @return [Float] The width of the package.

@@ -12,7 +12,8 @@ module Peddler
         # @return [String]
         attribute(:amount, String, null: false)
 
-        # @return [String] The unit of measure for items sold by weight.
+        # @return [String] The unit of measure for items sold by weight. Known values: `POUNDS`, `OUNCES`, `GRAMS`,
+        #   `KILOGRAMS`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
       end
     end

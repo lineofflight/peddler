@@ -15,7 +15,8 @@ module Peddler
         # @return [String] The listings item's Amazon product type.
         attribute(:product_type, String, null: false, from: "productType")
 
-        # @return [String] The name of the requirements set for the provided data.
+        # @return [String] The name of the requirements set for the provided data. Known values: `LISTING`,
+        #   `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
         attribute?(:requirements, String)
       end
     end

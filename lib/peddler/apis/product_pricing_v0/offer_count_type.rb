@@ -16,7 +16,8 @@ module Peddler
         #   Club.
         attribute?(:condition, String)
 
-        # @return [String] Indicates whether the item is fulfilled by Amazon or by the seller.
+        # @return [String] Indicates whether the item is fulfilled by Amazon or by the seller. Known values: `Amazon`,
+        #   `Merchant`.
         attribute?(:fulfillment_channel, String, from: "fulfillmentChannel")
       end
     end

@@ -20,7 +20,8 @@ module Peddler
         #   invoice is due.
         attribute?(:net_due_days, Float, from: "netDueDays")
 
-        # @return [String] The payment term type for the invoice.
+        # @return [String] The payment term type for the invoice. Known values: `Basic`, `EndOfMonth`, `FixedDate`,
+        #   `Proximo`, `PaymentDueUponReceiptOfInvoice`, `LetterofCredit`.
         attribute?(:type, String)
       end
     end

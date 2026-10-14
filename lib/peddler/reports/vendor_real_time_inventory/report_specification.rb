@@ -21,7 +21,7 @@ module Peddler
         # @return [Array<String>] Marketplace IDs as specified in the report request.
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
-        # @return [String] The report type.
+        # @return [String] The report type. Known values: `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

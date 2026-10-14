@@ -33,10 +33,11 @@ module Peddler
       #   years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire
       #   interval that you specify. If the interval start and end date don’t align with the specified granularity, the
       #   head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of
-      #   the request interval, where the day boundary is defined by the granularityTimeZone.
+      #   the request interval, where the day boundary is defined by the granularityTimeZone. Known values: `Hour`,
+      #   `Day`, `Week`, `Month`, `Year`, `Total`.
       # @param buyer_type [String] Filters the results by the buyer type that you specify, B2B (business to business) or
       #   B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B
-      #   buyers.
+      #   buyers. Known values: `B2B`, `B2C`, `All`.
       # @param fulfillment_network [String] Filters the results by the fulfillment network that you specify, MFN
       #   (merchant fulfillment network) or AFN (Amazon fulfillment network). Do not include this filter if you want the
       #   response to include order metrics for all fulfillment networks. Example: AFN, if you want the response to

@@ -15,7 +15,8 @@ module Peddler
         # @return [ShippingPromiseSet]
         attribute(:promise, ShippingPromiseSet, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping
+        #   Premium`.
         attribute(:service_type, String, null: false, from: "serviceType")
 
         # @return [Money] The total charge that will be billed for the rate.

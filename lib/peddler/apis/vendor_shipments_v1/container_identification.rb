@@ -13,7 +13,7 @@ module Peddler
         #   identification type.
         attribute(:container_identification_number, String, null: false, from: "containerIdentificationNumber")
 
-        # @return [String] The container identification type.
+        # @return [String] The container identification type. Known values: `SSCC`, `AMZNCC`, `GTIN`, `BPS`, `CID`.
         attribute(:container_identification_type, String, null: false, from: "containerIdentificationType")
       end
     end

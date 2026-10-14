@@ -71,7 +71,8 @@ module Peddler
       # @param date_end [String] The latest export creation date and time for exports that you want to include in the
       #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       #   The default value is the time of the request.
-      # @param status [String] Return exports matching the status specified.
+      # @param status [String] Return exports matching the status specified. Known values: `REQUESTED`, `PROCESSING`,
+      #   `DONE`, `ERROR`.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response
@@ -194,14 +195,16 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
-      # @param sort_order [String] Sort the invoices in the response in ascending or descending order.
+      # @param sort_order [String] Sort the invoices in the response in ascending or descending order. Known values:
+      #   `DESC`, `ASC`.
       # @param invoice_type [String] The marketplace-specific classification of the invoice type. Use the
       #   `getInvoicesAttributes` operation to check `invoiceType` options.
       # @param statuses [Array<String>] A list of statuses that you can use to filter invoices. Use the
       #   `getInvoicesAttributes` operation to check invoice status options. Min count: 1
       # @param external_invoice_id [String] Return invoices that match this external ID. This is typically the
       #   Government Invoice ID.
-      # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
+      # @param sort_by [String] The attribute by which you want to sort the invoices in the response. Known values:
+      #   `START_DATE_TIME`.
       # @param warehouse_code [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @return [Peddler::Response] The API response

@@ -13,7 +13,7 @@ module Peddler
         # @return [TextComponent]
         attribute(:headline, TextComponent, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `LEFT`, `RIGHT`.
         attribute(:position_type, String, null: false, from: "positionType")
 
         # @return [VideoComponent]

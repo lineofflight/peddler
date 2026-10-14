@@ -13,7 +13,8 @@ module Peddler
         # @return [AppointmentTime] The time of the appointment window.
         attribute?(:appointment_time, AppointmentTime, from: "appointmentTime")
 
-        # @return [String] The type of POA uploaded.
+        # @return [String] The type of POA uploaded. Known values: `NO_SIGNATURE_DUMMY_POS`, `CUSTOMER_SIGNATURE`,
+        #   `DUMMY_RECEIPT`, `POA_RECEIPT`.
         attribute?(:poa_type, String, from: "poaType")
 
         # @return [Array<Technician>] A list of technicians.

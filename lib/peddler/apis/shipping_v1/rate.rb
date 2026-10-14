@@ -22,7 +22,8 @@ module Peddler
         # @return [String] An identifier for the rate.
         attribute?(:rate_id, String, from: "rateId")
 
-        # @return [String]
+        # @return [String] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping
+        #   Premium`.
         attribute?(:service_type, String, from: "serviceType")
 
         # @return [Money] The total charge that will be billed for the rate.

@@ -62,11 +62,14 @@ module Peddler
       # @param tracking_ids [Array<String>] A list of up to 20 associated product tracking IDs. You can use these IDs to
       #   query service jobs.
       # @param service_job_status [Array<String>] A list of one or more job status by which to filter the list of jobs.
+      #   Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`,
+      #   `PAYMENT_DECLINED`.
       # @param page_token [String] String returned in the response of your previous request.
       # @param page_size [Integer] A non-negative integer that indicates the maximum number of jobs to return in the
       #   list, Value must be 1 - 20. Default 20.
-      # @param sort_field [String] Sort fields on which you want to sort the output.
-      # @param sort_order [String] Sort order for the query you want to perform.
+      # @param sort_field [String] Sort fields on which you want to sort the output. Known values: `JOB_DATE`,
+      #   `JOB_STATUS`.
+      # @param sort_order [String] Sort order for the query you want to perform. Known values: `ASC`, `DESC`.
       # @param created_after [String] A date used for selecting jobs created at or after a specified time. Must be in
       #   ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
       #   `LastUpdatedAfter` returns an error.

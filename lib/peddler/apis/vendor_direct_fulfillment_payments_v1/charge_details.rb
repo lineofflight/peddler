@@ -12,7 +12,8 @@ module Peddler
         # @return [Money]
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # @return [String] Type of charge applied.
+        # @return [String] Type of charge applied. Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`,
+        #   `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`.
         attribute(:type, String, null: false)
 
         # @return [Array<TaxDetail>] Individual tax details per line item.

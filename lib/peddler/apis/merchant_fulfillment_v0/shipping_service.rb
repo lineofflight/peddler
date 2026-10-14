@@ -43,7 +43,7 @@ module Peddler
         # @return [Array<LabelFormatOption>]
         attribute?(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")
 
-        # @return [Array<LabelFormat>]
+        # @return [Array<LabelFormat>] Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
         attribute?(:available_label_formats, Array, from: "AvailableLabelFormats")
 
         # @return [AvailableShippingServiceOptions]

@@ -18,7 +18,8 @@ module Peddler
       #   within a marketplace. The value must be a child ASIN.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # @param sort_by [String] The metric by which to sort data in the response.
+      # @param sort_by [String] The metric by which to sort data in the response. Known values: `MENTIONS`,
+      #   `STAR_RATING_IMPACT`.
       # @return [Peddler::Response] The API response
       def get_item_review_topics(asin, marketplace_id, sort_by)
         path = "/customerFeedback/2024-06-01/items/#{percent_encode(asin)}/reviews/topics"
@@ -55,7 +56,8 @@ module Peddler
       #   is used for navigation, product classification, and website content.
       # @param marketplace_id [String] The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # @param sort_by [String] The metric by which to sort the data in the response.
+      # @param sort_by [String] The metric by which to sort the data in the response. Known values: `MENTIONS`,
+      #   `STAR_RATING_IMPACT`.
       # @return [Peddler::Response] The API response
       def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by)
         path = "/customerFeedback/2024-06-01/browseNodes/#{percent_encode(browse_node_id)}/reviews/topics"

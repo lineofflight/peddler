@@ -19,7 +19,8 @@ module Peddler
         # @return [String] The feed type.
         attribute(:feed_type, String, null: false, from: "feedType")
 
-        # @return [String] The processing status of the feed.
+        # @return [String] The processing status of the feed. Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`,
+        #   `IN_QUEUE`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # @return [Array<String>] A list of identifiers for the marketplaces that the feed is applied to.

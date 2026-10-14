@@ -18,7 +18,7 @@ module Peddler
         # @return [String] Additional street address information, if required.
         attribute?(:address_line3, String, from: "AddressLine3")
 
-        # @return [String]
+        # @return [String] Known values: `Residential`, `Commercial`.
         attribute?(:address_type, String, from: "AddressType")
 
         # @return [String] The city.

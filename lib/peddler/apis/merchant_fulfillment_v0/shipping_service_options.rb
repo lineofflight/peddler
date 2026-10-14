@@ -13,10 +13,11 @@ module Peddler
         #   available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
         attribute(:carrier_will_pick_up, :boolean, null: false, from: "CarrierWillPickUp")
 
-        # @return [String] The delivery confirmation level.
+        # @return [String] The delivery confirmation level. Known values: `DeliveryConfirmationWithAdultSignature`,
+        #   `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`.
         attribute(:delivery_experience, String, null: false, from: "DeliveryExperience")
 
-        # @return [String]
+        # @return [String] Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`.
         attribute?(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")
 
         # @return [Money] The declared value of the shipment. The carrier uses this value to determine the amount to use
@@ -27,7 +28,8 @@ module Peddler
         #   [US](https://sellercentral.amazon.com/gp/help/200204080).
         attribute?(:declared_value, Money, from: "DeclaredValue")
 
-        # @return [String] The seller's preferred label format.
+        # @return [String] The seller's preferred label format. Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`,
+        #   `ShippingServiceDefault`.
         attribute?(:label_format, String, from: "LabelFormat")
       end
     end

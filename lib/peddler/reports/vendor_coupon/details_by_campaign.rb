@@ -11,6 +11,7 @@ module Peddler
       # Contains details about a campaign and every included coupon.
       DetailsByCampaign = Structure.new do
         # @return [String] Whether the budget is allocated independently for each coupon or shared among all coupons.
+        #   Known values: `PER_INDIVIDUAL_COUPON`, `SHARED_BUDGET`.
         attribute(:budget_type, String, null: false, from: "budgetType")
 
         # @return [String] Unique identifier of the campaign.

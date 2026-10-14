@@ -9,7 +9,8 @@ module Peddler
     class FinancesInvoices20260625
       # Identifier for an item in the invoice line item.
       ItemIdentifier = Structure.new do
-        # @return [String] The type of item identifier.
+        # @return [String] The type of item identifier. Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`,
+        #   `ISBN`.
         attribute(:item_identifier_name, String, null: false, from: "itemIdentifierName")
 
         # @return [String] The value of the item identifier.

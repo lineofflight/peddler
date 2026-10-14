@@ -9,7 +9,7 @@ module Peddler
     class SupplySources20200701
       # The throughput capacity
       ThroughputCap = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `Hours`, `Minutes`, `Days`.
         attribute?(:time_unit, String, from: "timeUnit")
 
         # @return [Integer]

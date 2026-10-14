@@ -16,7 +16,7 @@ module Peddler
         # @return [Time] Timestamp of the event. Formatted as ISO 8601 date-time.
         attribute?(:event_time, Time, from: "EventTime")
 
-        # @return [String] The type of this notification
+        # @return [String] The type of this notification. Known values: `FBA_INVENTORY_AVAILABILITY_CHANGES`.
         attribute?(:notification_type, String, from: "NotificationType")
 
         # @return [String] The version of this notification.

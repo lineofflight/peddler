@@ -19,7 +19,8 @@ module Peddler
         # @return [LabelSpecification]
         attribute(:label_specification, LabelSpecification, null: false, from: "labelSpecification")
 
-        # @return [String]
+        # @return [String] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping
+        #   Premium`.
         attribute(:service_type, String, null: false, from: "serviceType")
 
         # @return [Address]

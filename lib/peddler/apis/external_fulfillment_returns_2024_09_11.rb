@@ -18,7 +18,10 @@ module Peddler
       #   return items.
       # @param rma_id [String] The RMA ID of the return items you want to list.
       # @param status [String] The status of return items you want to list. You can retrieve all new return items with
-      #   the `CREATED` status.
+      #   the `CREATED` status. Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`,
+      #   `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`,
+      #   `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`,
+      #   `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
       # @param reverse_tracking_id [String] The reverse tracking ID of the return items you want to list.
       # @param created_since [String] Return items created after the specified date are included in the response. In
       #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.

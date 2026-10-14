@@ -17,7 +17,9 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetRatesRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -37,7 +39,9 @@ module Peddler
       #   secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional
       #   designation. This does not support additional subtags beyond the primary and secondary language subtags.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
@@ -58,7 +62,9 @@ module Peddler
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -72,7 +78,9 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] OneClickShipmentRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -89,7 +97,9 @@ module Peddler
       # @param carrier_id [String] A carrier identifier originally returned by the getRates operation for the selected
       #   rate.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -113,7 +123,9 @@ module Peddler
       # @param dpi [Number] The resolution of the document (for example, 300 means 300 dots per inch). Must be one of
       #   the supported resolutions returned in the response to the getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil,
@@ -133,7 +145,9 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -151,7 +165,9 @@ module Peddler
       # @param rate_id [String] The rate identifier for the shipping offering (rate) returned in the response to the
       #   getRates operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -167,7 +183,9 @@ module Peddler
       # This API will return a list of input schema required to register a shipper account with the carrier.
       #
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -182,7 +200,9 @@ module Peddler
       #
       # @param body [Hash] GetCarrierAccountsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -199,7 +219,9 @@ module Peddler
       # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
       # @param body [Hash] LinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
@@ -213,7 +235,9 @@ module Peddler
       # @param carrier_id [String] carrier Id to unlink with merchant.
       # @param body [Hash] UnlinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -230,7 +254,9 @@ module Peddler
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil,
@@ -246,7 +272,9 @@ module Peddler
       #
       # @param body [Hash] GetCollectionFormHistoryRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -262,7 +290,9 @@ module Peddler
       #
       # @param body [Hash] GetUmanifestedShipmentsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -277,7 +307,9 @@ module Peddler
       #
       # @param collection_form_id [String] collection form Id to reprint a collection.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -291,11 +323,14 @@ module Peddler
       # Returns a list of access points in proximity of input postal code.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param access_point_types [Array<String>] Access point types
+      # @param access_point_types [Array<String>] Access point types. Known values: `HELIX`, `CAMPUS_LOCKER`,
+      #   `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.
       # @param country_code [String] Country code for access point
       # @param postal_code [String] postal code for access point
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil,
@@ -315,7 +350,9 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for ndrFeedback operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -328,7 +365,9 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for the createClaim operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)

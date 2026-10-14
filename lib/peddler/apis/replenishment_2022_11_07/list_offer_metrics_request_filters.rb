@@ -17,16 +17,16 @@ module Peddler
         #   identifier for the marketplace.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<ProgramType>]
+        # @return [Array<ProgramType>] Known values: `SUBSCRIBE_AND_SAVE`.
         attribute(:program_types, Array, null: false, from: "programTypes")
 
         # @return [TimeInterval] A time interval used to compute metrics.
         attribute(:time_interval, TimeInterval, null: false, from: "timeInterval")
 
-        # @return [String]
+        # @return [String] Known values: `PERFORMANCE`, `FORECAST`.
         attribute(:time_period_type, String, null: false, from: "timePeriodType")
 
-        # @return [String]
+        # @return [String] Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`.
         attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs) to filter by.
@@ -36,7 +36,7 @@ module Peddler
         attribute?(:brand_names, [String], from: "brandNames")
 
         # @return [Array<FulfillmentChannelType>] [Applicable only for Sellers] The fulfillment channel types to filter
-        #   by.
+        #   by. Known values: `AMAZON`, `MERCHANT`.
         attribute?(:fulfillment_channel_types, Array, from: "fulfillmentChannelTypes")
 
         # @return [Array<String>] [Applicable only for Vendors] A list of product group names to filter by.

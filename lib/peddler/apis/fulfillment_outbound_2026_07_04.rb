@@ -108,7 +108,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_fulfillment_service_id [String] The identifier of the fulfillment service used for this operation.
       # @param order_id [String] The ID of the order you want to retrieve.
-      # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @param shipments [String] Whether to include shipment data in the response. Included by default. Known values:
+      #   `INCLUDE`, `EXCLUDE`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil, rate_limit: 2.0)
@@ -130,7 +131,8 @@ module Peddler
       #   `pageToken` when the number of results exceeds the page size. To get the next page of results, call the
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `pageToken` is `null`.
-      # @param shipments [String] Whether to include shipment data in the response. Included by default.
+      # @param shipments [String] Whether to include shipment data in the response. Included by default. Known values:
+      #   `INCLUDE`, `EXCLUDE`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil,

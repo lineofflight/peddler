@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The human-readable name of the participant.
         attribute(:display_name, String, null: false, from: "displayName")
 
-        # @return [String] The role of the participant.
+        # @return [String] The role of the participant. Known values: `AMAZON`, `SELLING_PARTNER`.
         attribute(:role, String, null: false)
       end
     end

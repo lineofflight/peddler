@@ -14,7 +14,7 @@ module Peddler
         #   purposes in certain regions.
         attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
-        # @return [String]
+        # @return [String] Known values: `GST`.
         attribute(:tax_type, String, null: false, from: "taxType")
       end
     end

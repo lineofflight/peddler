@@ -411,6 +411,64 @@ module Generator
       assert_equal("        # @return [Integer]", comment)
     end
 
+    def test_format_property_comment_lists_known_values
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "description" => "The type of shipping.", "enum" => ["Marketplace", "Self"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_match(/@return \[String\] The type of shipping\. Known values: `Marketplace`, `Self`\./, comment)
+    end
+
+    def test_format_property_comment_lists_known_values_without_description
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      comment = type.send(:format_property_comment, { "type" => "string", "enum" => ["A", "B"] })
+
+      assert_equal("        # @return [String] Known values: `A`, `B`.", comment)
+    end
+
+    def test_format_property_comment_lists_known_values_from_ref
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "Status" => { "type" => "string", "enum" => ["Open", "Closed"] },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "$ref" => "#/definitions/Status", "description" => "The status" }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_match(/@return \[String\] The status\. Known values: `Open`, `Closed`\./, comment)
+    end
+
+    def test_format_property_comment_lists_known_values_of_array_items
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "array", "items" => { "type" => "string", "enum" => ["HAZMAT", "MPS"] } }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # @return [Array<String>] Known values: `HAZMAT`, `MPS`.", comment)
+    end
+
+    def test_format_property_comment_skips_known_values_the_description_already_lists
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "description" => "Possible values: `Open`, `Closed`.", "enum" => ["Open", "Closed"] }
+      comment = type.send(:format_property_comment, prop)
+
+      refute_match(/Known values/, comment)
+    end
+
     def test_required_properties
       definition = {
         "type" => "object",

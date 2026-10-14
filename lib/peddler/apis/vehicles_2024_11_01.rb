@@ -16,7 +16,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       # @param marketplace_id [String] An identifier for the marketplace in which the resource operates.
-      # @param vehicle_type [String] An identifier for vehicle type.
+      # @param vehicle_type [String] An identifier for vehicle type. Known values: `CAR`, `MOTORBIKE`.
       # @param updated_after [String] Date in ISO 8601 format, if provided only vehicles which are modified/added to
       #   Amazon's catalog after this date will be returned.
       # @return [Peddler::Response] The API response

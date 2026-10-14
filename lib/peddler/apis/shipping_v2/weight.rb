@@ -9,7 +9,7 @@ module Peddler
     class ShippingV2
       # The weight in the units indicated.
       Weight = Structure.new do
-        # @return [String] The unit of measurement.
+        # @return [String] The unit of measurement. Known values: `GRAM`, `KILOGRAM`, `OUNCE`, `POUND`.
         attribute(:unit, String, null: false)
 
         # @return [Float] The measurement value.

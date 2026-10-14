@@ -18,7 +18,8 @@ module Peddler
         #   2009-04-01.
         attribute(:last_update_date, String, null: false, from: "LastUpdateDate")
 
-        # @return [String] The current order status.
+        # @return [String] The current order status. Known values: `Pending`, `Unshipped`, `PartiallyShipped`,
+        #   `Shipped`, `Canceled`, `Unfulfillable`, `InvoiceUnconfirmed`, `PendingAvailability`.
         attribute(:order_status, String, null: false, from: "OrderStatus")
 
         # @return [String] The date when the order was created.
@@ -38,7 +39,7 @@ module Peddler
         # @return [String] The buyer's invoicing preference. Sellers can use this data to issue electronic invoices for
         #   orders in Turkey.
         #
-        # **Note**: This attribute is only available in the Turkey marketplace.
+        # **Note**: This attribute is only available in the Turkey marketplace. Known values: `INDIVIDUAL`, `BUSINESS`.
         attribute?(:buyer_invoice_preference, String, from: "BuyerInvoicePreference")
 
         # @return [BuyerTaxInformation] Contains the business invoice tax information. Sellers could use this data to
@@ -70,10 +71,13 @@ module Peddler
         attribute?(:earliest_ship_date, String, from: "EarliestShipDate")
 
         # @return [String] The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship
-        #   orders.
+        #   orders. Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`,
+        #   `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`,
+        #   `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`.
         attribute?(:easy_ship_shipment_status, String, from: "EasyShipShipmentStatus")
 
-        # @return [String] The status of the electronic invoice.
+        # @return [String] The status of the electronic invoice. Known values: `NotRequired`, `NotFound`, `Processing`,
+        #   `Errored`, `Accepted`.
         attribute?(:electronic_invoice_status, String, from: "ElectronicInvoiceStatus")
 
         # @return [String] Whether the order was fulfilled by Amazon (`AFN`) or by the seller (`MFN`).
@@ -161,7 +165,8 @@ module Peddler
         # @return [Money] The total charge for this order.
         attribute?(:order_total, Money, from: "OrderTotal")
 
-        # @return [String] The order's type.
+        # @return [String] The order's type. Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`,
+        #   `BackOrder`, `SourcingOnDemandOrder`.
         attribute?(:order_type, String, from: "OrderType")
 
         # @return [Array<PaymentExecutionDetailItem>] Information about the sub-payment methods for an order.
@@ -169,7 +174,8 @@ module Peddler
 
         # @return [String] The payment method for the order. This property is limited to COD and CVS payment methods.
         #   Unless you need the specific COD payment information provided by the `PaymentExecutionDetailItem` object, we
-        #   recommend using the `PaymentMethodDetails` property to get payment method information.
+        #   recommend using the `PaymentMethodDetails` property to get payment method information. Known values: `COD`,
+        #   `CVS`, `Other`.
         attribute?(:payment_method, String, from: "PaymentMethod")
 
         # @return [Array<String>] A list of payment methods for the order.

@@ -25,10 +25,11 @@ module Peddler
         # @return [String] The invoice number provided when the invoice was created.
         attribute(:invoice_number, String, null: false, from: "invoiceNumber")
 
-        # @return [String] The current state of the invoice.
+        # @return [String] The current state of the invoice. Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`,
+        #   `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`.
         attribute(:invoice_status, String, null: false, from: "invoiceStatus")
 
-        # @return [String] The type of invoice.
+        # @return [String] The type of invoice. Known values: `AP_INVENTORY`, `OTHER`.
         attribute(:invoice_type, String, null: false, from: "invoiceType")
 
         # @return [Time] When the invoice was issued. In ISO 8601 format.

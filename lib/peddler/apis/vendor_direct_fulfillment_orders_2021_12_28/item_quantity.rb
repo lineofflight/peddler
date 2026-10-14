@@ -12,7 +12,7 @@ module Peddler
         # @return [Integer] Acknowledged quantity. This value should not be zero.
         attribute?(:amount, Integer)
 
-        # @return [String] Unit of measure for the acknowledged quantity.
+        # @return [String] Unit of measure for the acknowledged quantity. Known values: `Each`.
         attribute?(:unit_of_measure, String, from: "unitOfMeasure")
       end
     end

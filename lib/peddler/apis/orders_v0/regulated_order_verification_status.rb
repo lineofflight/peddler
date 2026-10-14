@@ -13,7 +13,8 @@ module Peddler
         #   merchant.
         attribute(:requires_merchant_action, :boolean, null: false, from: "RequiresMerchantAction")
 
-        # @return [String] The verification status of the order.
+        # @return [String] The verification status of the order. Known values: `Pending`, `Approved`, `Rejected`,
+        #   `Expired`, `Cancelled`.
         attribute(:status, String, null: false, from: "Status")
 
         # @return [Array<RejectionReason>] A list of valid rejection reasons that may be used to reject the order's

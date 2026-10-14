@@ -150,10 +150,12 @@ module Peddler
       # optional filters.
       #
       # @note This operation can make a static sandbox call.
-      # @param sort_by [String] Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+      # @param sort_by [String] Field to sort results by. By default, the response will be sorted by UPDATED_AT. Known
+      #   values: `UPDATED_AT`, `CREATED_AT`.
       # @param sort_order [String] Sort the response in ASCENDING or DESCENDING order. By default, the response will be
       #   sorted in DESCENDING order.
-      # @param shipment_status [String] Filter by inbound shipment status.
+      # @param shipment_status [String] Filter by inbound shipment status. Known values: `CREATED`, `SHIPPED`,
+      #   `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.
       # @param updated_after [String] List the inbound shipments that were updated after a certain time (inclusive). The
       #   date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param updated_before [String] List the inbound shipments that were updated before a certain time (inclusive).

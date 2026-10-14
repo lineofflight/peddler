@@ -31,7 +31,7 @@ module Peddler
         # @return [ReportOptions] Report options specifying parameters such as reportPeriod.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The type of report.
+        # @return [String] The type of report. Known values: `GET_VENDOR_TRAFFIC_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

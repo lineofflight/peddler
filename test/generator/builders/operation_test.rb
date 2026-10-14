@@ -2,6 +2,7 @@
 
 require "helper"
 require "generator/builders/operation"
+require "generator/parsers/path"
 
 module Generator
   class OperationTest < Minitest::Test
@@ -150,6 +151,30 @@ module Generator
       assert_includes(operation.method_definition, "carrier_tracking_tracking_number: nil")
       # The query string still uses Amazon's dotted name
       assert_equal({ "carrierTracking.trackingNumber" => "carrier_tracking_tracking_number" }, operation.query_params)
+    end
+
+    def test_tags_list_known_values_for_enum_parameters
+      operation_data = {
+        "operationId" => "getOrders",
+        "description" => "Returns orders.",
+        "parameters" => [
+          { "name" => "Channel", "in" => "query", "type" => "string", "description" => "The channel", "enum" => ["MFN", "AFN"] },
+          {
+            "name" => "Statuses",
+            "in" => "query",
+            "type" => "array",
+            "items" => { "type" => "string", "enum" => ["Open", "Closed"] },
+            "description" => "Possible values: `Open`, `Closed`.",
+          },
+        ],
+        "responses" => {},
+      }
+      operation = Generator::Operation.new(Generator::Path.new("/orders", {}), "get", operation_data, "test_api_v0")
+      tags = operation.tags.join("\n")
+
+      assert_includes(tags, "@param channel [String] The channel. Known values: `MFN`, `AFN`.")
+      assert_includes(tags, "@param statuses [Array<String>] Possible values: `Open`, `Closed`.")
+      refute_match(/statuses.*Known values/, tags)
     end
   end
 end

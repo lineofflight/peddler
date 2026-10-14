@@ -19,7 +19,7 @@ module Peddler
         # @return [Integer] The number of containers where all other properties like weight or dimensions are identical.
         attribute?(:quantity, Integer)
 
-        # @return [String]
+        # @return [String] Known values: `STACKABLE`, `NON_STACKABLE`.
         attribute?(:stackability, String)
 
         # @return [Weight]

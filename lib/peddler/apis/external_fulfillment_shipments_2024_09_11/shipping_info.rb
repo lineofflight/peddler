@@ -23,7 +23,8 @@ module Peddler
         #   buyer's address needed for taxation purposes.
         attribute?(:ship_to_address, Address, from: "shipToAddress")
 
-        # @return [String] The type of shipping that the seller uses to deliver a customer order.
+        # @return [String] The type of shipping that the seller uses to deliver a customer order. Known values:
+        #   `MARKETPLACE`, `SELF`.
         attribute?(:shipping_type, String, from: "shippingType")
       end
     end

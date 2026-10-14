@@ -27,7 +27,9 @@ module Peddler
         # @return [String] Product group associated with an Amazon catalog item.
         attribute?(:product_group, String, from: "productGroup")
 
-        # @return [String] Replenishment category associated with an Amazon catalog item.
+        # @return [String] Replenishment category associated with an Amazon catalog item. Known values: `ALLOCATED`,
+        #   `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`,
+        #   `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`.
         attribute?(:replenishment_category, String, from: "replenishmentCategory")
 
         # @return [String] Product subcategory associated with an Amazon catalog item.

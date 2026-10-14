@@ -14,7 +14,8 @@ module Peddler
         # @return [String]
         attribute(:asin, String, null: false)
 
-        # @return [Array<AsinBadge>]
+        # @return [Array<AsinBadge>] Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`,
+        #   `CONTENT_PUBLISHED`.
         attribute?(:badge_set, Array, from: "badgeSet")
 
         # @return [Array<ContentReferenceKey>]

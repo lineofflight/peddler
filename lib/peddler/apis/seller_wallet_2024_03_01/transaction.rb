@@ -37,10 +37,11 @@ module Peddler
         #   the customer used to start the transaction.
         attribute(:transaction_requester_source, String, null: false, from: "transactionRequesterSource")
 
-        # @return [String] The status of the transaction.
+        # @return [String] The status of the transaction. Known values: `EXPIRED`, `FAILED`, `FAILED_CREDITS_APPLIED`,
+        #   `IN_PROGRESS`, `PENDING_USER_APPROVAL`, `SUCCESSFUL`.
         attribute(:transaction_status, String, null: false, from: "transactionStatus")
 
-        # @return [String] The type of the transaction.
+        # @return [String] The type of the transaction. Known values: `CREDIT`, `DEBIT`.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # @return [TransferRatePreview] The fees and rates that apply to the transaction, as applicable.

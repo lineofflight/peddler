@@ -12,7 +12,7 @@ module Peddler
         # @return [String] The attribute key.
         attribute?(:key, String)
 
-        # @return [String]
+        # @return [String] Known values: `STRING`, `BOOLEAN`, `INTEGER`, `DOUBLE`, `JSON_STRING`.
         attribute?(:type, String)
 
         # @return [String] The attribute value.

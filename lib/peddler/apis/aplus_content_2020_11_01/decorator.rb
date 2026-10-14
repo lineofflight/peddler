@@ -21,7 +21,8 @@ module Peddler
         #   character.
         attribute?(:offset, Integer)
 
-        # @return [String]
+        # @return [String] Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`,
+        #   `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`.
         attribute?(:type, String)
       end
     end

@@ -16,7 +16,8 @@ module Peddler
         #   information. Only required if the new status is rejected.
         attribute?(:rejection_reason_id, String, from: "rejectionReasonId")
 
-        # @return [String] The new verification status of the order.
+        # @return [String] The new verification status of the order. Known values: `Pending`, `Approved`, `Rejected`,
+        #   `Expired`, `Cancelled`.
         attribute?(:status, String)
 
         # @return [VerificationDetails] Additional information regarding the verification of the order.

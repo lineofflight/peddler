@@ -37,7 +37,7 @@ module Peddler
         # @return [ImportDetails] If the purchase order is an import order, the details for the import order.
         attribute?(:import_details, ImportDetails, from: "importDetails")
 
-        # @return [String] Payment method used.
+        # @return [String] Payment method used. Known values: `Invoice`, `Consignment`, `CreditCard`, `Prepaid`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
         # @return [Time] The date when purchase order was last changed by Amazon after the order was placed. This date
@@ -47,7 +47,8 @@ module Peddler
         #   ISO-8601 date/time format.
         attribute?(:purchase_order_changed_date, Time, from: "purchaseOrderChangedDate")
 
-        # @return [String] Type of purchase order.
+        # @return [String] Type of purchase order. Known values: `RegularOrder`, `ConsignedOrder`,
+        #   `NewProductIntroduction`, `RushOrder`.
         attribute?(:purchase_order_type, String, from: "purchaseOrderType")
 
         # @return [PartyIdentification] Name/Address and tax details of the selling party.

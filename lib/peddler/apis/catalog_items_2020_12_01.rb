@@ -22,7 +22,8 @@ module Peddler
       #   for.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      #   summaries. Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`,
+      #   `vendorDetails`.
       # @param brand_names [Array<String>] A comma-delimited list of brand names to limit the search to.
       # @param classification_ids [Array<String>] A comma-delimited list of classification identifiers to limit the
       #   search to.
@@ -59,7 +60,8 @@ module Peddler
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. Data sets in
       #   the response contain data only for the specified marketplaces.
       # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      #   summaries. Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`,
+      #   `variations`, `vendorDetails`.
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @param rate_limit [Float] Requests per second

@@ -9,7 +9,7 @@ module Peddler
     class VendorDirectFulfillmentShipping20211228
       # The request body schema for the `createContainerLabel` operation.
       CreateContainerLabelRequest = Structure.new do
-        # @return [String] The container (pallet) label's carrier.
+        # @return [String] The container (pallet) label's carrier. Known values: `SWA`.
         attribute(:carrier_id, String, null: false, from: "carrierId")
 
         # @return [Array<Package>] An array of package objects that associate shipment packages with a container.

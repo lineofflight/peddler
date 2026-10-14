@@ -28,10 +28,11 @@ module Peddler
         # @return [Money] The shipping cost.
         attribute?(:shipping, Money, from: "Shipping")
 
-        # @return [String] Indicates the type of customer that the offer is valid for.
+        # @return [String] Indicates the type of customer that the offer is valid for. Known values: `B2C`, `B2B`.
         attribute?(:offer_type, String, from: "offerType")
 
-        # @return [String] Indicates the type of quantity discount this price applies to.
+        # @return [String] Indicates the type of quantity discount this price applies to. Known values:
+        #   `QUANTITY_DISCOUNT`.
         attribute?(:quantity_discount_type, String, from: "quantityDiscountType")
 
         # @return [Integer] Indicates at what quantity this price becomes active.

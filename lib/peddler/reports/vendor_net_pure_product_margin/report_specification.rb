@@ -31,7 +31,7 @@ module Peddler
         # @return [ReportOptions] Report options specifying parameters such as reportPeriod.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type.
+        # @return [String] The report type. Known values: `GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

@@ -16,17 +16,21 @@ module Peddler
         #   identifier for the marketplace.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Array<ProgramType>]
+        # @return [Array<ProgramType>] Known values: `SUBSCRIBE_AND_SAVE`.
         attribute(:program_types, Array, null: false, from: "programTypes")
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs).
         attribute?(:asins, [String])
 
         # @return [Array<String>] A list of delivery condition types to filter the results by. Results are filtered to
-        #   only include offers with the specified delivery conditions.
+        #   only include offers with the specified delivery conditions. Known values:
+        #   `NEXT_30_DAYS_DELIVERIES_PAUSED_PRICING`, `NEXT_30_DAYS_DELIVERIES_PAUSED_NON_BUYABLE`,
+        #   `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK_ONLY`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK`,
+        #   `NO_ISSUES_FOR_NEXT_30_DAYS_DELIVERIES`.
         attribute?(:deliveries_conditions, [String], from: "deliveriesConditions")
 
-        # @return [Array<EligibilityStatus>] A list of eligibilities associated with an offer.
+        # @return [Array<EligibilityStatus>] A list of eligibilities associated with an offer. Known values: `ELIGIBLE`,
+        #   `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`.
         attribute?(:eligibilities, Array)
 
         # @return [Preference] Offer preferences to include in the result filter criteria.

@@ -40,8 +40,9 @@ module Peddler
       # @param invoice_id [String] The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve
       #   the status of a specific invoice.
       # @param marketplace_id [String] The Amazon store identifier.
-      # @param invoice_type [String] The invoice's type.
-      # @param program_type [String] The Amazon program that seller is currently enrolled.
+      # @param invoice_type [String] The invoice's type. Known values: `Outbound`.
+      # @param program_type [String] The Amazon program that seller is currently enrolled. Known values: `EasyShip`,
+      #   `FbaOnSite`, `SelfShip`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil,

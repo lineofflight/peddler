@@ -12,7 +12,7 @@ module Peddler
         # @return [ItemIdentifier] Metadata that identifies the item.
         attribute(:identifier, ItemIdentifier, null: false, from: "Identifier")
 
-        # @return [String] The condition of the item.
+        # @return [String] The condition of the item. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # @return [Array<OfferDetail>] A list of offer details. The list is the same length as the TotalOfferCount in

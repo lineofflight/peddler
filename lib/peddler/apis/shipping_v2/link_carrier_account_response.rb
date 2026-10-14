@@ -12,7 +12,7 @@ module Peddler
         # @return [String]
         attribute?(:account_id, String, from: "accountId")
 
-        # @return [String]
+        # @return [String] Known values: `ACTIVE`, `INACTIVE`, `PENDING`, `SUSPENDED`.
         attribute?(:registration_status, String, from: "registrationStatus")
       end
     end

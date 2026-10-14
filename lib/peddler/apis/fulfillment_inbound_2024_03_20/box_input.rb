@@ -9,7 +9,7 @@ module Peddler
     class FulfillmentInbound20240320
       # Input information for a given box.
       BoxInput = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`.
         attribute(:content_information_source, String, null: false, from: "contentInformationSource")
 
         # @return [Dimensions]

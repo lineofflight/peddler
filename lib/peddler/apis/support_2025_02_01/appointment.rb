@@ -18,10 +18,10 @@ module Peddler
         # @return [PhoneNumber] The selling partner's phone number.
         attribute(:phone_number, PhoneNumber, null: false, from: "phoneNumber")
 
-        # @return [String] The appointment status.
+        # @return [String] The appointment status. Known values: `SCHEDULED`, `CANCELLED`, `MISSED`, `COMPLETED`.
         attribute(:status, String, null: false)
 
-        # @return [String] The person who is expected to answer the call.
+        # @return [String] The person who is expected to answer the call. Known values: `RECEPTIONIST`.
         attribute?(:answering_party, String, from: "answeringParty")
       end
     end

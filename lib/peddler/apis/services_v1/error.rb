@@ -18,7 +18,7 @@ module Peddler
         # @return [String] Additional details that can help the caller understand or fix the issue.
         attribute?(:details, String)
 
-        # @return [String] The type of error.
+        # @return [String] The type of error. Known values: `ERROR`, `WARNING`.
         attribute?(:error_level, String, from: "errorLevel")
       end
     end

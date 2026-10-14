@@ -15,7 +15,7 @@ module Peddler
         # @return [String]
         attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
 
-        # @return [String]
+        # @return [String] Known values: `EBC`, `EMC`, `BrandStory`.
         attribute(:content_type, String, null: false, from: "contentType")
 
         # @return [String]

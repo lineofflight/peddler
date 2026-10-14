@@ -10,7 +10,8 @@ module Peddler
       # The transaction details including the status. If the transaction was successful, also includes the requested
       # test order data.
       Transaction = Structure.new do
-        # @return [String] The current processing status of the transaction.
+        # @return [String] The current processing status of the transaction. Known values: `FAILURE`, `PROCESSING`,
+        #   `SUCCESS`.
         attribute(:status, String, null: false)
 
         # @return [String] The unique identifier returned in the response to the generateOrderScenarios request.

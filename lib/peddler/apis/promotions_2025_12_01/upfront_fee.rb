@@ -9,7 +9,7 @@ module Peddler
     class Promotions20251201
       # Upfront fee (or a flat fee) for each promotion submitted.
       UpfrontFee = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `ONE_TIME`, `DAILY`.
         attribute(:frequency, String, null: false)
 
         # @return [Money]

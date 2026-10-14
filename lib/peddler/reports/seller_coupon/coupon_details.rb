@@ -65,7 +65,8 @@ module Peddler
         #   PERCENT_OFF_LIST_PRICE and a currency value when discountType is AMOUNT_OFF_LIST_PRICE.
         attribute?(:discount_amount, Float, from: "discountAmount")
 
-        # @return [String] Whether the discount is given as a fixed amount or a percentage off the list price.
+        # @return [String] Whether the discount is given as a fixed amount or a percentage off the list price. Known
+        #   values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`.
         attribute?(:discount_type, String, from: "discountType")
 
         # @return [String] The name given to the coupon.

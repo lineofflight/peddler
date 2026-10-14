@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The notification's metadata.
         attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
 
-        # @return [String] The notification type.
+        # @return [String] The notification type. Known values: `TAX_INVOICE_ISSUANCE_STATUS`.
         attribute(:notification_type, String, null: false, from: "notificationType")
 
         # @return [String] The notification version.

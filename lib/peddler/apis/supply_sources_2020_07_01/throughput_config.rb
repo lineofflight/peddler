@@ -9,7 +9,7 @@ module Peddler
     class SupplySources20200701
       # The throughput configuration.
       ThroughputConfig = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `Order`.
         attribute(:throughput_unit, String, null: false, from: "throughputUnit")
 
         # @return [ThroughputCap]

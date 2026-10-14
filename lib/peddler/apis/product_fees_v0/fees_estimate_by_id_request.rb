@@ -9,7 +9,7 @@ module Peddler
     class ProductFeesV0
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateByIdRequest = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `ASIN`, `SellerSKU`.
         attribute(:id_type, String, null: false, from: "IdType")
 
         # @return [String] The item identifier.

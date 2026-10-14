@@ -21,7 +21,7 @@ module Peddler
         # @return [ImageComponent]
         attribute?(:mobile_image, ImageComponent, from: "mobileImage")
 
-        # @return [String]
+        # @return [String] Known values: `LEFT`, `RIGHT`.
         attribute?(:position_type, String, from: "positionType")
 
         # @return [TextComponent]

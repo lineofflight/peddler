@@ -15,7 +15,7 @@ module Peddler
         # @return [String] groupName value .
         attribute?(:group_name, String, from: "groupName")
 
-        # @return [String]
+        # @return [String] Known values: `TEXTBOX`, `PASSWORD`.
         attribute?(:input_type, String, from: "inputType")
 
         # @return [:boolean] is value is Confidential .

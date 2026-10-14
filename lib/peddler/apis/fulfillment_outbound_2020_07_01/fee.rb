@@ -12,7 +12,8 @@ module Peddler
         # @return [Money] The amount of the fee.
         attribute(:amount, Money, null: false)
 
-        # @return [String] The type of fee.
+        # @return [String] The type of fee. Known values: `FBAPerUnitFulfillmentFee`, `FBAPerOrderFulfillmentFee`,
+        #   `FBATransportationFee`, `FBAFulfillmentCODFee`.
         attribute(:name, String, null: false)
       end
     end

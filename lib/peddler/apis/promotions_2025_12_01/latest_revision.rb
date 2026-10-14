@@ -29,10 +29,10 @@ module Peddler
         # @return [String] The name of the promotion for the selling partner. This value is not displayed to buyers.
         attribute(:promotion_title, String, null: false, from: "promotionTitle")
 
-        # @return [String] The promotion type.
+        # @return [String] The promotion type. Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
         attribute(:promotion_type, String, null: false, from: "promotionType")
 
-        # @return [String] The processing status of the latest revision.
+        # @return [String] The processing status of the latest revision. Known values: `PROCESSING`, `FAILED`.
         attribute(:revision_status, String, null: false, from: "revisionStatus")
 
         # @return [Schedule] The promotion schedule configuration.
@@ -58,7 +58,8 @@ module Peddler
         attribute?(:budget, Budget)
 
         # @return [String] The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when
-        #   omitted, the coupon is treated as `STANDARD`.
+        #   omitted, the coupon is treated as `STANDARD`. Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`,
+        #   `REORDER_REWARDS`.
         attribute?(:coupon_type, String, from: "couponType")
 
         # @return [Array<CustomerSegment>] The target customer segments for the promotion.

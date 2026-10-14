@@ -12,7 +12,7 @@ module Peddler
         # @return [String]
         attribute?(:custom_text_for_label, String, from: "CustomTextForLabel")
 
-        # @return [String]
+        # @return [String] Known values: `AmazonOrderId`.
         attribute?(:standard_id_for_label, String, from: "StandardIdForLabel")
       end
     end

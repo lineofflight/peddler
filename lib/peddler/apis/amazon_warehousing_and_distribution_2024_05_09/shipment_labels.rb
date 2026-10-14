@@ -9,7 +9,8 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509
       # Shipment labels.
       ShipmentLabels = Structure.new do
-        # @return [String] Status of label generation.
+        # @return [String] Status of label generation. Known values: `GENERATING`, `GENERATED`, `GENERATION_FAILED`,
+        #   `NOT_READY`.
         attribute(:label_status, String, null: false, from: "labelStatus")
 
         # @return [String] The URL to download shipment labels. The URL is active for 600 seconds from generation.

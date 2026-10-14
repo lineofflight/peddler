@@ -17,7 +17,7 @@ module Peddler
         # @return [Time] End Time up to which the appointment slots are generated in ISO 8601 format.
         attribute?(:end_time, Time, from: "endTime")
 
-        # @return [String] Defines the type of slots.
+        # @return [String] Defines the type of slots. Known values: `REAL_TIME_SCHEDULING`, `NON_REAL_TIME_SCHEDULING`.
         attribute?(:scheduling_type, String, from: "schedulingType")
 
         # @return [Time] Start Time from which the appointment slots are generated in ISO 8601 format.

@@ -12,7 +12,7 @@ module Peddler
         # @return [String] Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The listings item's offer type.
+        # @return [String] The listings item's offer type. Known values: `B2C`, `B2B`.
         attribute(:offer_type, String, null: false, from: "offerType")
 
         # @return [Money] Purchase price of the listings item

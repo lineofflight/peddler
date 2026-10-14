@@ -20,7 +20,8 @@ module Peddler
       #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
       #   reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince,
       #   createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
-      # @param processing_statuses [Array<String>] A list of processing statuses used to filter reports.
+      # @param processing_statuses [Array<String>] A list of processing statuses used to filter reports. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @param marketplace_ids [Array<String>] A list of marketplace identifiers used to filter reports. The reports
       #   returned will match at least one of the marketplaces that you specify.
       # @param page_size [Integer] The maximum number of reports to return in a single call.

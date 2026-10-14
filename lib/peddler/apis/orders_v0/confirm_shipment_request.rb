@@ -15,7 +15,8 @@ module Peddler
         # @return [PackageDetail]
         attribute(:package_detail, PackageDetail, null: false, from: "packageDetail")
 
-        # @return [String] The COD collection method (only supported in the JP marketplace).
+        # @return [String] The COD collection method (only supported in the JP marketplace). Known values:
+        #   `DirectPayment`.
         attribute?(:cod_collection_method, String, from: "codCollectionMethod")
       end
     end

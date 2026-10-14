@@ -16,7 +16,7 @@ module Peddler
         # @return [Hash] The metadata of the notification.
         attribute(:notification_metadata, Hash, null: false, from: "NotificationMetadata")
 
-        # @return [String] The type of the notification.
+        # @return [String] The type of the notification. Known values: `LISTINGS_ITEM_ISSUES_CHANGE`.
         attribute(:notification_type, String, null: false, from: "NotificationType")
 
         # @return [String] The version of the notification.

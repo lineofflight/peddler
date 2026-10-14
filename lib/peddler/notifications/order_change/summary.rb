@@ -23,10 +23,12 @@ module Peddler
         #   items.
         attribute(:order_items, [OrderItem], null: false, from: "OrderItems")
 
-        # @return [String] The current order status.
+        # @return [String] The current order status. Known values: `Pending`, `Unshipped`, `PartiallyShipped`,
+        #   `Shipped`, `Canceled`, `Unfulfillable`, `InvoiceUnconfirmed`, `PendingAvailability`.
         attribute(:order_status, String, null: false, from: "OrderStatus")
 
-        # @return [String] The type of the order.
+        # @return [String] The type of the order. Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`,
+        #   `BackOrder`, `SourcingOnDemandOrder`.
         attribute(:order_type, String, null: false, from: "OrderType")
 
         # @return [String] The purchase date of the order, presented in ISO-8601 date/time format. It will be null when
@@ -46,10 +48,13 @@ module Peddler
         attribute?(:earliest_ship_date, String, from: "EarliestShipDate")
 
         # @return [String] The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship
-        #   orders.
+        #   orders. Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`,
+        #   `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`,
+        #   `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`.
         attribute?(:easy_ship_shipment_status, String, from: "EasyShipShipmentStatus")
 
-        # @return [String] The status of the electronic invoice.
+        # @return [String] The status of the electronic invoice. Known values: `NotRequired`, `NotFound`, `Processing`,
+        #   `Errored`, `Accepted`.
         attribute?(:electronic_invoice_status, String, from: "ElectronicInvoiceStatus")
 
         # @return [String] The end of the time period within which you have committed to fulfill the order, presented in
@@ -67,10 +72,12 @@ module Peddler
         # @return [Integer] The number of items unshipped.
         attribute?(:number_of_items_unshipped, Integer, from: "NumberOfItemsUnshipped")
 
-        # @return [Array<String>] The order programs, if any, in which this order participates.
+        # @return [Array<String>] The order programs, if any, in which this order participates. Known values:
+        #   `Business`, `Prime`, `Premium`, `IBA`, `Replacement`.
         attribute?(:order_programs, [String], from: "OrderPrograms")
 
-        # @return [Array<String>] The shipping programs, if any, in which this order participates.
+        # @return [Array<String>] The shipping programs, if any, in which this order participates. Known values:
+        #   `ShipDateSet`, `GlobalExpress`, `ISPU`, `AccessPoint`, `TFM`, `EasyShip`.
         attribute?(:shipping_programs, [String], from: "ShippingPrograms")
       end
     end

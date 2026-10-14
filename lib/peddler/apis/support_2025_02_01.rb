@@ -42,6 +42,7 @@ module Peddler
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @param sort_order [String] Sort the returned contacts by `createdDate` in either ascending or descending order.
+      #   Known values: `ASC`, `DESC`.
       # @return [Peddler::Response] The API response
       def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
         path = "/support/2025-02-01/cases/#{percent_encode(case_id)}/contacts"

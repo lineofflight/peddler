@@ -12,7 +12,7 @@ module Peddler
       FeaturedBuyingOption = Structure.new do
         # @return [String] The buying option type for the featured offer. `buyingOptionType` represents the buying
         #   options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`.
-        #   `buyingOptionType` currently supports `NEW` as a value.
+        #   `buyingOptionType` currently supports `NEW` as a value. Known values: `New`.
         attribute(:buying_option_type, String, null: false, from: "buyingOptionType")
 
         # @return [Array<SegmentedFeaturedOffer>] A list of segmented featured offers for the current buying option

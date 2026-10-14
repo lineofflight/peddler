@@ -24,7 +24,7 @@ module Peddler
         # @return [ReportOptions] Report options specifying parameters such as currencyCode.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The type of the report.
+        # @return [String] The type of the report. Known values: `GET_VENDOR_REAL_TIME_SALES_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

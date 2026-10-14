@@ -12,10 +12,10 @@ module Peddler
         # @return [String]
         attribute(:contents, String, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
-        # @return [String]
+        # @return [String] Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
         attribute(:type, String, null: false)
       end
     end

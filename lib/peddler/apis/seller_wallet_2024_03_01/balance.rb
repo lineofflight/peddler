@@ -22,7 +22,7 @@ module Peddler
         # @return [Time] The date of the most recent account balance update.
         attribute(:last_update_date, Time, null: false, from: "lastUpdateDate")
 
-        # @return [String] The type of balance.
+        # @return [String] The type of balance. Known values: `AVAILABLE`, `LOCKED_IN`, `LOCKED_OUT`, `TOTAL`.
         attribute?(:balance_type, String, from: "balanceType")
       end
     end

@@ -9,10 +9,12 @@ module Peddler
     class FulfillmentInboundV0
       # Preparation instructions and who is responsible for the preparation.
       PrepDetails = Structure.new do
-        # @return [String]
+        # @return [String] Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`,
+        #   `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`,
+        #   `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`.
         attribute(:prep_instruction, String, null: false, from: "PrepInstruction")
 
-        # @return [String]
+        # @return [String] Known values: `AMAZON`, `SELLER`.
         attribute(:prep_owner, String, null: false, from: "PrepOwner")
       end
     end

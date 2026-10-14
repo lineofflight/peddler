@@ -20,11 +20,14 @@ module Peddler
       # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search the
       #   Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
       # @param identifiers_type [String] The type of product identifiers that you can use to search the Amazon catalog.
-      #   **Note:** `identifiersType` is required when `identifiers` is in the request.
+      #   **Note:** `identifiersType` is required when `identifiers` is in the request. Known values: `ASIN`, `EAN`,
+      #   `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. To find the ID
       #   for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response. Known
+      #   values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`,
+      #   `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # @param locale [String] The locale for which you want to retrieve localized summaries. Defaults to the primary
       #   locale of the marketplace.
       # @param seller_id [String] A selling partner identifier, such as a seller account or vendor code. **Note:**
@@ -71,7 +74,9 @@ module Peddler
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. To find the ID
       #   for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response.
+      # @param included_data [Array<String>] A comma-delimited list of datasets to include in the response. Known
+      #   values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`,
+      #   `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # @param locale [String] The locale for which you want to retrieve localized summaries. Defaults to the primary
       #   locale of the marketplace.
       # @param rate_limit [Float] Requests per second

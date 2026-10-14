@@ -11,7 +11,8 @@ module Peddler
       # Information about how the order is being processed, packed, and shipped to the customer.
       OrderFulfillment = Structure.new do
         # @return [String] The current status of the order in the fulfillment process, from pending to handover to
-        #   carrier.
+        #   carrier. Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`,
+        #   `CANCELLED`, `UNFULFILLABLE`.
         attribute(:fulfillment_status, String, null: false, from: "fulfillmentStatus")
 
         # @return [DateTimeRange] The promised time period within which the order should be delivered to the customer.

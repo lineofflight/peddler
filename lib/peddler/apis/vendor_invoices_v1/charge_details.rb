@@ -12,7 +12,9 @@ module Peddler
         # @return [Money] Total monetary amount related to this charge.
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # @return [String] Type of the charge applied.
+        # @return [String] Type of the charge applied. Known values: `Freight`, `Packing`, `Duty`, `Service`,
+        #   `SmallOrder`, `InsurancePlacementCost`, `InsuranceFee`, `SpecialHandlingService`,
+        #   `CollectionAndRecyclingService`, `EnvironmentalProtectionService`, `TaxCollectedAtSource`.
         attribute(:type, String, null: false)
 
         # @return [String] Description of the charge.

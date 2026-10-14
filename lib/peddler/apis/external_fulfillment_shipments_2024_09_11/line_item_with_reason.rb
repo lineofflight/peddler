@@ -12,7 +12,8 @@ module Peddler
         # @return [LineItem]
         attribute(:line_item, LineItem, null: false, from: "lineItem")
 
-        # @return [String] The reason for the rejection of the line item.
+        # @return [String] The reason for the rejection of the line item. Known values: `OUT_OF_STOCK`,
+        #   `CUSTOMER_REQUESTED`.
         attribute?(:reason, String)
       end
     end
