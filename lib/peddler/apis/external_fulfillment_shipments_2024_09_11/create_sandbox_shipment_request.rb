@@ -18,7 +18,7 @@ module Peddler
         # @return [String]
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The shipping type for the sandbox shipment. Known values: `SELF`, `MARKETPLACE`,
+        # @return [String] The shipping type for the sandbox shipment. Known values: `Self`, `Marketplace`,
         #   `THIRD_PARTY_CARRIER`.
         attribute(:shipping_type, String, null: false, from: "shippingType")
 

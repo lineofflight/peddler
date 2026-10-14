@@ -56,6 +56,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
 - **Added**: Promotions 2025-12-01: `rate_limit` parameter on `get_promotion`
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
+- **Added**: Notifications: `ShipmentTrackingMilestoneChanged` now has a full envelope (`event_time`, `notification_metadata`, `notification_type`, `notification_version`, `payload_version`) and a payload carrying `shipment_tracking_milestone_changed_notification`, with new tracking types (`TrackingDetail`, `TrackingMilestone`, `TrackingEstimate`, `TrackingIdentifier`, `CarrierTracking`, and others)
 
 ## [5.5.0] - 2026-06-10
 

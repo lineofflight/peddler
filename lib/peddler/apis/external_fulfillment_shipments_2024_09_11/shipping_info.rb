@@ -24,7 +24,7 @@ module Peddler
         attribute?(:ship_to_address, Address, from: "shipToAddress")
 
         # @return [String] The type of shipping that the seller uses to deliver a customer order. Known values:
-        #   `MARKETPLACE`, `SELF`.
+        #   `Marketplace`, `Self`.
         attribute?(:shipping_type, String, from: "shippingType")
       end
     end
