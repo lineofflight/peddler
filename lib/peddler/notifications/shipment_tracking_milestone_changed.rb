@@ -4,9 +4,9 @@
 
 module Peddler
   module Notifications
-    # Shipment Tracking Milestone Change Notification Schema.
     #
-    # Notification sent when a shipment tracking milestone changes.
+    #
+    # The shipment tracking milestone change notification, with metadata and payload.
     module ShipmentTrackingMilestoneChanged
       class << self
         def parse(hash)
