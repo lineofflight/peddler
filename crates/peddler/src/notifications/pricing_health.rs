@@ -99,7 +99,7 @@ impl ::std::str::FromStr for Condition {
 }
 /**Indicates whether the item is fulfilled by Amazon or by the seller
 
-Known values: "AFN", "MFN". Other values may be returned by Amazon.*/
+Known values: `AFN`, `MFN`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -184,6 +184,7 @@ impl ::std::convert::From<MoneyType> for ListingPrice {
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MerchantOffer {
     pub condition: Condition,
+    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
     #[serde(rename = "landedPrice")]
@@ -297,6 +298,7 @@ pub struct OfferChangeTrigger {
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferCount {
     pub condition: Condition,
+    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
     ///The total number of offers for the specified condition and fulfillment channel

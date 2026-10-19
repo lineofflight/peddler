@@ -10,7 +10,7 @@ module Peddler
       # The merchandising configuration for displaying promotions on the retail website.
       Merchandising = Structure.new do
         # Whether the promotion badge and details are displayed on the product detail pages and search results on the
-        # retail website.
+        # retail website. Known values: `ALLOWED`, `NOT_ALLOWED`.
         attribute?(:display_on_website, String, from: "displayOnWebsite")
       end
     end

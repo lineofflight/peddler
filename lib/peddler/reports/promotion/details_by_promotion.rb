@@ -13,7 +13,7 @@ module Peddler
         # The promotion creation date-time in ISO 8601 format in UTC.
         attribute(:created_date_time, Time, null: false, from: "createdDateTime")
 
-        # The mode of creation for the promotion.
+        # The mode of creation for the promotion. Known values: `SELF-SERVICE`, `FULL-SERVICE`, `AUTOMATED`, `MANUAL`.
         attribute(:creation_channel, String, null: false, from: "creationChannel")
 
         # Promotion end date-time in ISO 8601 format in UTC.
@@ -44,10 +44,12 @@ module Peddler
         # Promotion start date-time in ISO 8601 format in UTC.
         attribute(:start_date_time, Time, null: false, from: "startDateTime")
 
-        # The state that the promotion is in.
+        # The state that the promotion is in. Known values: `APPROVED`, `PENDING_APPROVAL`, `NEEDS_YOUR_ATTENTION`,
+        # `CANCELED`.
         attribute(:status, String, null: false)
 
-        # The type of the promotion.
+        # The type of the promotion. Known values: `BEST_DEAL`, `DEAL_OF_THE_DAY`, `LIGHTNING_DEAL`, `PRICE_DISCOUNT`,
+        # `SALES_DISCOUNT`, `COUPON`, `PROMO_CODE`.
         attribute(:type, String, null: false)
 
         # The number of units sold across all ASINs in the promotion.

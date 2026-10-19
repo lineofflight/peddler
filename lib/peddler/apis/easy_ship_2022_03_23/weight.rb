@@ -9,6 +9,7 @@ module Peddler
     module EasyShip20220323
       # The weight of the scheduled package
       Weight = Structure.new do
+        # Known values: `grams`, `g`.
         attribute?(:unit, String)
 
         attribute?(:value, Float)

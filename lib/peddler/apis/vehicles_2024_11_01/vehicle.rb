@@ -39,7 +39,7 @@ module Peddler
         # Vehicle manufacturing stop date. If it is empty, then the vehicle is still being manufactured.
         attribute?(:manufacturing_stop_date, MonthAndYear, from: "manufacturingStopDate")
 
-        # Denotes if the vehicle is active or deleted from Amazon's catalog.
+        # Denotes if the vehicle is active or deleted from Amazon's catalog. Known values: `ACTIVE`, `DELETED`.
         attribute?(:status, String)
 
         # Name of the vehicle variant.

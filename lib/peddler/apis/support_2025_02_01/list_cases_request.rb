@@ -27,10 +27,11 @@ module Peddler
         # operation until `nextToken` is null. Note that this operation can return empty pages.
         attribute?(:next_token, String, from: "nextToken")
 
-        # The field to sort cases by. Defaults to CREATION_DATE when absent.
+        # The field to sort cases by. Defaults to CREATION_DATE when absent. Known values: `CASE_ID`, `STATUS`,
+        # `SUBJECT`, `PRIMARY_EMAIL`, `CREATION_DATE`, `LAST_OUTBOUND_DATE`, `RESOLUTION_DATE`.
         attribute?(:sort_field, String, from: "sortField")
 
-        # The sort direction. Defaults to DESC when absent.
+        # The sort direction. Defaults to DESC when absent. Known values: `ASC`, `DESC`.
         attribute?(:sort_order, String, from: "sortOrder")
       end
     end

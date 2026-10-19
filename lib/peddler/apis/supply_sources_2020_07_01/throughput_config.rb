@@ -9,6 +9,7 @@ module Peddler
     module SupplySources20200701
       # The throughput configuration.
       ThroughputConfig = Structure.new do
+        # Known values: `Order`.
         attribute(:throughput_unit, String, null: false, from: "throughputUnit")
 
         attribute?(:throughput_cap, ThroughputCap, from: "throughputCap")

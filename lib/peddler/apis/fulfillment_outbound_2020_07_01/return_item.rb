@@ -21,7 +21,8 @@ module Peddler
         # The return reason code assigned to the return item by the seller.
         attribute(:seller_return_reason_code, String, null: false, from: "sellerReturnReasonCode")
 
-        # Indicates if the return item has been processed by an Amazon fulfillment center.
+        # Indicates if the return item has been processed by an Amazon fulfillment center. Known values: `New`,
+        # `Processed`.
         attribute(:status, String, null: false)
 
         # Indicates when the status last changed.
@@ -39,6 +40,7 @@ module Peddler
         # An optional comment about the return item.
         attribute?(:return_comment, String, from: "returnComment")
 
+        # Known values: `Sellable`, `Defective`, `CustomerDamaged`, `CarrierDamaged`, `FulfillerDamaged`.
         attribute?(:return_received_condition, String, from: "returnReceivedCondition")
       end
     end

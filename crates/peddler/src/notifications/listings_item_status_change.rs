@@ -12,7 +12,7 @@ pub struct Notification {
     pub notification_metadata: NotificationMetadata,
     /**The type of the notification.
 
-Known values: "LISTINGS_ITEM_STATUS_CHANGED". Other values may be returned by Amazon.*/
+Known values: `LISTINGS_ITEM_STATUS_CHANGED`. Other values may be returned by Amazon.*/
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
     ///The version of the notification.
@@ -64,7 +64,9 @@ pub struct Payload {
     ///Identifier of the affected listings item.
     #[serde(rename = "Sku")]
     pub sku: ::std::string::String,
-    ///Array of status states currently associated with the affected listings item. The absence of a value indicates the status state is not currently applicable to the listings item. For example, if "BUYABLE" is not present, the listings item is not currently buyable.
+    /**Array of status states currently associated with the affected listings item. The absence of a value indicates the status state is not currently applicable to the listings item. For example, if "BUYABLE" is not present, the listings item is not currently buyable.
+
+Known values: `BUYABLE`, `DISCOVERABLE`, `DELETED`. Other values may be returned by Amazon.*/
     #[serde(rename = "Status")]
     pub status: ::std::vec::Vec<::std::string::String>,
 }

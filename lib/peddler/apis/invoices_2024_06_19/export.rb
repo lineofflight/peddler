@@ -30,6 +30,7 @@ module Peddler
         # This list is empty until the status is `DONE`.
         attribute?(:invoices_document_ids, [String], from: "invoicesDocumentIds")
 
+        # Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`.
         attribute?(:status, String)
       end
     end

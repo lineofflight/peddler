@@ -41,6 +41,7 @@ module Peddler
 
         attribute?(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")
 
+        # Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
         attribute?(:available_label_formats, Array, from: "AvailableLabelFormats")
 
         attribute?(:available_shipping_service_options, AvailableShippingServiceOptions, from: "AvailableShippingServiceOptions")

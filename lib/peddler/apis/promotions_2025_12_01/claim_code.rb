@@ -9,7 +9,7 @@ module Peddler
     module Promotions20251201
       # Claim code configuration for accessing the promotion.
       ClaimCode = Structure.new do
-        # The type of claim code.
+        # The type of claim code. Known values: `GROUP`, `INDIVIDUAL`.
         attribute(:type, String, null: false)
 
         # The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.

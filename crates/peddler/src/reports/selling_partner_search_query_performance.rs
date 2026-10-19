@@ -91,7 +91,7 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**The type of the report.
 
-Known values: "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
@@ -100,9 +100,7 @@ Known values: "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT". Other value
 pub struct ReportReportSpecificationReportOptions {
     ///A space-separated list of ASINs for which you can request the report. There is a 200-character limit.
     pub asin: ::std::string::String,
-    /**The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
-
-Known values: "WEEK", "MONTH", "QUARTER". Other values may be returned by Amazon.*/
+    ///The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

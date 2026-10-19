@@ -15,7 +15,7 @@ module Peddler
         # Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
         attribute?(:condition, String)
 
-        # Indicates whether the item is fulfilled by Amazon or by the seller.
+        # Indicates whether the item is fulfilled by Amazon or by the seller. Known values: `Amazon`, `Merchant`.
         attribute?(:fulfillment_channel, String, from: "fulfillmentChannel")
       end
     end

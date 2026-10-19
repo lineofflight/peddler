@@ -15,10 +15,10 @@ module Peddler
         # Total number of units in the shipment.
         attribute(:number_of_units, Integer, null: false, from: "numberOfUnits")
 
-        # The priority of the order.
+        # The priority of the order. Known values: `HIGH`, `LOW`.
         attribute(:priority, String, null: false)
 
-        # The type of shipment.
+        # The type of shipment. Known values: `NEW`, `EXCHANGE`, `REPLACEMENT`.
         attribute(:shipment_type, String, null: false, from: "shipmentType")
 
         # The timestamp of when the order was placed, in UTC
@@ -31,10 +31,10 @@ module Peddler
         # This field contains details of the original shipment if `shipmentType` is either `REPLACEMENT` or `EXCHANGE`.
         attribute?(:original_shipment_info, ReplacedShipmentInfo, from: "originalShipmentInfo")
 
-        # The payment method for the shipment.
+        # The payment method for the shipment. Known values: `CASH_ON_DELIVERY`, `PREPAID`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
-        # The source of the order operation.
+        # The source of the order operation. Known values: `EXTERNAL_PLATFORM`, `INTERNAL_PLATFORM`.
         attribute?(:processing_source, String, from: "processingSource")
       end
     end

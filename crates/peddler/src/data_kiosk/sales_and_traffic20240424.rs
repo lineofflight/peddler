@@ -45,7 +45,7 @@ intervals to support various analytical needs.*/
         ::std::vec::Vec<::std::option::Option<SalesAndTrafficTrends>>,
     >,
 }
-///Known values: "CHILD", "PARENT", "SKU". Other values may be returned by Amazon.
+///Known values: `CHILD`, `PARENT`, `SKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -835,7 +835,7 @@ viewed the products. Note: This field is only populated when the seller is a B2B
     )]
     pub unit_session_percentage_b2b: ::std::option::Option<::serde_json::Number>,
 }
-///Known values: "DAY", "MONTH", "WEEK". Other values may be returned by Amazon.
+///Known values: `DAY`, `MONTH`, `WEEK`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -962,7 +962,9 @@ pub struct SalesAndTrafficByDate {
 ///`SalesAndTrafficTrends`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SalesAndTrafficTrends {
-    ///Indicates the ASIN level at which the data is aggregated. Currently only CHILD is supported.
+    /**Indicates the ASIN level at which the data is aggregated. Currently only CHILD is supported.
+
+Known values: `CHILD`, `PARENT`, `SKU`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "asinAggregation",
         skip_serializing_if = "::std::option::Option::is_none"

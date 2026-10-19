@@ -322,10 +322,12 @@ module Peddler
       #
       # This operation can make a static sandbox call.
       #
-      # @rbs sort_by: String? -- Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+      # @rbs sort_by: String? -- Field to sort results by. By default, the response will be sorted by UPDATED_AT. Known
+      #   values: `UPDATED_AT`, `CREATED_AT`.
       # @rbs sort_order: String? -- Sort the response in ASCENDING or DESCENDING order. By default, the response will be
       #   sorted in DESCENDING order.
-      # @rbs shipment_status: String? -- Filter by inbound shipment status.
+      # @rbs shipment_status: String? -- Filter by inbound shipment status. Known values: `CREATED`, `SHIPPED`,
+      #   `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.
       # @rbs updated_after: String? -- List the inbound shipments that were updated after a certain time (inclusive).
       #   The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @rbs updated_before: String? -- List the inbound shipments that were updated before a certain time (inclusive).
@@ -601,7 +603,8 @@ module Peddler
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
       # @rbs marketplace_id: String -- The identifier for the Amazon store where the A+ Content is published.
-      # @rbs included_data_set: Array[String] -- The set of A+ Content data types to include in the response.
+      # @rbs included_data_set: Array[String] -- The set of A+ Content data types to include in the response. Known
+      #   values: `CONTENTS`, `METADATA`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
@@ -642,7 +645,8 @@ module Peddler
       #   any A+ Content identifier.
       # @rbs marketplace_id: String -- The identifier for the Amazon store where the A+ Content is published.
       # @rbs included_data_set: Array[String]? -- The set of A+ Content data types to include in the response. If you do
-      #   not include this parameter, the operation returns the related ASINs without metadata.
+      #   not include this parameter, the operation returns the related ASINs without metadata. Known values:
+      #   `METADATA`.
       # @rbs asin_set: Array[String]? -- The set of ASINs.
       # @rbs page_token: String? -- A page token from the `nextPageToken` response element returned by your previous
       #   call to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get
@@ -999,7 +1003,8 @@ module Peddler
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers. Data sets in
       #   the response contain data only for the specified marketplaces.
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      #   summaries. Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`,
+      #   `variations`, `vendorDetails`.
       # @rbs locale: String? -- Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1022,7 +1027,8 @@ module Peddler
       #   for.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
+      #   summaries. Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`,
+      #   `vendorDetails`.
       # @rbs brand_names: Array[String]? -- A comma-delimited list of brand names to limit the search to.
       # @rbs classification_ids: Array[String]? -- A comma-delimited list of classification identifiers to limit the
       #   search to.
@@ -1091,7 +1097,9 @@ module Peddler
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers. To find the ID
       #   for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response. Known
+      #   values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`,
+      #   `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # @rbs locale: String? -- The locale for which you want to retrieve localized summaries. Defaults to the primary
       #   locale of the marketplace.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1114,11 +1122,14 @@ module Peddler
       # @rbs identifiers: Array[String]? -- A comma-delimited list of product identifiers that you can use to search the
       #   Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
       # @rbs identifiers_type: String? -- The type of product identifiers that you can use to search the Amazon catalog.
-      #   **Note:** `identifiersType` is required when `identifiers` is in the request.
+      #   **Note:** `identifiersType` is required when `identifiers` is in the request. Known values: `ASIN`, `EAN`,
+      #   `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers. To find the ID
       #   for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response. Known
+      #   values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`,
+      #   `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # @rbs locale: String? -- The locale for which you want to retrieve localized summaries. Defaults to the primary
       #   locale of the marketplace.
       # @rbs seller_id: String? -- A selling partner identifier, such as a seller account or vendor code. **Note:**
@@ -1233,7 +1244,8 @@ module Peddler
       #   is used for navigation, product classification, and website content.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # @rbs sort_by: String -- The metric by which to sort the data in the response.
+      # @rbs sort_by: String -- The metric by which to sort the data in the response. Known values: `MENTIONS`,
+      #   `STAR_RATING_IMPACT`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_browse_node_review_topics(browse_node_id, marketplace_id, sort_by, rate_limit: nil)
@@ -1290,7 +1302,8 @@ module Peddler
       #   within a marketplace. The value must be a child ASIN.
       # @rbs marketplace_id: String -- The MarketplaceId is the globally unique identifier of a marketplace, you can
       #   refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # @rbs sort_by: String -- The metric by which to sort data in the response.
+      # @rbs sort_by: String -- The metric by which to sort data in the response. Known values: `MENTIONS`,
+      #   `STAR_RATING_IMPACT`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_item_review_topics(asin, marketplace_id, sort_by, rate_limit: nil)
@@ -1392,7 +1405,8 @@ module Peddler
       #
       # This operation can make a static sandbox call.
       #
-      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter queries.
+      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter queries. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @rbs page_size: Integer? -- The maximum number of queries to return in a single call.
       # @rbs created_since: String? -- The earliest query creation date and time for queries to include in the response,
       #   in ISO 8601 date time format. The default is 90 days ago.
@@ -1470,8 +1484,9 @@ module Peddler
       # @rbs invoice_id: String? -- The invoice access key (NF-e access key for Brazilian invoices). Use this to
       #   retrieve the status of a specific invoice.
       # @rbs marketplace_id: String -- The Amazon store identifier.
-      # @rbs invoice_type: String -- The invoice's type.
-      # @rbs program_type: String -- The Amazon program that seller is currently enrolled.
+      # @rbs invoice_type: String -- The invoice's type. Known values: `Outbound`.
+      # @rbs program_type: String -- The Amazon program that seller is currently enrolled. Known values: `EasyShip`,
+      #   `FbaOnSite`, `SelfShip`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_invoice_status(marketplace_id, invoice_type, program_type, order_id: nil, shipment_id: nil, invoice_id: nil, rate_limit: 1.133)
@@ -1748,7 +1763,10 @@ module Peddler
       #   return items.
       # @rbs rma_id: String? -- The RMA ID of the return items you want to list.
       # @rbs status: String? -- The status of return items you want to list. You can retrieve all new return items with
-      #   the `CREATED` status.
+      #   the `CREATED` status. Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`,
+      #   `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`,
+      #   `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`,
+      #   `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
       # @rbs reverse_tracking_id: String? -- The reverse tracking ID of the return items you want to list.
       # @rbs created_since: String? -- Return items created after the specified date are included in the response. In
       #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
@@ -1876,7 +1894,8 @@ module Peddler
       #
       # @rbs shipment_id: String -- The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @rbs shipping_option_id: String? -- The ID of the shipping option whose shipping labels you want.
-      # @rbs operation: String -- Specify whether you want to generate or regenerate a label.
+      # @rbs operation: String -- Specify whether you want to generate or regenerate a label. Known values: `GENERATE`,
+      #   `REGENERATE`.
       # @rbs body: untyped? -- Shipping details for when shipping is not done by the marketplace channel.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -1914,7 +1933,8 @@ module Peddler
       #   marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @rbs channel_name: String? -- The channel name associated with the location.
       # @rbs status: String -- The status of shipment you want to include in the response. To retrieve all new
-      #   shipments, set this value to `CREATED` or `ACCEPTED`.
+      #   shipments, set this value to `ACCEPTED`. Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`,
+      #   `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.
       # @rbs last_updated_after: String? -- The response includes shipments whose latest update is after the specified
       #   time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @rbs last_updated_before: String? -- The response includes shipments whose latest update is before the specified
@@ -1961,7 +1981,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # @rbs shipment_id: String -- The ID of the shipment you want to confirm or reject.
-      # @rbs operation: String -- The status of the shipment.
+      # @rbs operation: String -- The status of the shipment. Known values: `CONFIRM`, `REJECT`.
       # @rbs body: untyped? -- Information about the shipment and its line items.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2030,7 +2050,7 @@ module Peddler
       # @rbs shipment_id: String -- The ID of the shipment to which the package belongs.
       # @rbs package_id: String -- The ID of the package whose status you want to update.
       # @rbs status: String? -- **This field is only used for the Seller Flex program**. For the Self Delivery program,
-      #   package statuses are defined in the body parameter.
+      #   package statuses are defined in the body parameter. Known values: `SHIPPED`.
       # @rbs body: untyped? -- The body of the request.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2088,7 +2108,8 @@ module Peddler
       # @rbs marketplace_ids: Array[String]? -- The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.
       # @rbs asin: String -- The ASIN of the item for which you want an eligibility preview.
-      # @rbs program: String -- The program that you want to check eligibility against.
+      # @rbs program: String -- The program that you want to check eligibility against. Known values: `INBOUND`,
+      #   `COMMINGLING`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
@@ -2190,7 +2211,8 @@ module Peddler
       #
       # @rbs details: bool? -- true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
-      # @rbs granularity_type: String -- The granularity type for the inventory aggregation level.
+      # @rbs granularity_type: String -- The granularity type for the inventory aggregation level. Known values:
+      #   `Marketplace`.
       # @rbs granularity_id: String -- The granularity ID for the inventory aggregation level.
       # @rbs start_date_time: String? -- A start date and time in ISO8601 format. If specified, all inventory summaries
       #   that have changed since then are returned. You must specify a date and time that is no earlier than 18 months
@@ -2339,7 +2361,8 @@ module Peddler
       # @rbs marketplace_ids: Array[String]? -- A list of marketplace identifiers used to filter feeds. The feeds
       #   returned will match at least one of the marketplaces that you specify.
       # @rbs page_size: Integer? -- The maximum number of feeds to return in a single call.
-      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter feeds.
+      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter feeds. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @rbs created_since: String? -- The earliest feed creation date and time for feeds included in the response, in
       #   ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
       # @rbs created_until: String? -- The latest feed creation date and time for feeds included in the response, in ISO
@@ -2954,7 +2977,7 @@ module Peddler
       #   methods. For the list of store identifiers, refer to [Store
       #   Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @rbs payment_method_types: Array[String]? -- A comma-separated list of the payment method types you want to
-      #   include in the response.
+      #   include in the response. Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_payment_methods(marketplace_id, payment_method_types: nil, rate_limit: 0.5)
@@ -3108,8 +3131,12 @@ module Peddler
       # @rbs shipment_id: String -- A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @rbs page_type: String -- The page type to use to print the labels. Submitting a PageType value that is not
-      #   supported in your marketplace returns an error.
-      # @rbs label_type: String -- The type of labels requested.
+      #   supported in your marketplace returns an error. Known values: `PackageLabel_Letter_2`,
+      #   `PackageLabel_Letter_4`, `PackageLabel_Letter_6`, `PackageLabel_Letter_6_CarrierLeft`, `PackageLabel_A4_2`,
+      #   `PackageLabel_A4_4`, `PackageLabel_Plain_Paper`, `PackageLabel_Plain_Paper_CarrierBottom`,
+      #   `PackageLabel_Thermal`, `PackageLabel_Thermal_Unified`, `PackageLabel_Thermal_NonPCP`,
+      #   `PackageLabel_Thermal_No_Carrier_Rotation`.
+      # @rbs label_type: String -- The type of labels requested. Known values: `BARCODE_2D`, `UNIQUE`, `PALLET`.
       # @rbs number_of_packages: Integer? -- The number of packages in the shipment.
       # @rbs package_labels_to_print: Array[String]? -- A list of identifiers that specify packages for which you want
       #   package labels printed. If you provide box content information with the [FBA Inbound Shipment Carton
@@ -3183,7 +3210,7 @@ module Peddler
       #   before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
       # @rbs query_type: String -- Indicates whether items are returned using a date range (by providing the
       #   LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items
-      #   specified in a previous request.
+      #   specified in a previous request. Known values: `DATE_RANGE`, `NEXT_TOKEN`.
       # @rbs next_token: String? -- A string token returned in the response to your previous request.
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
@@ -3234,7 +3261,8 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # @rbs shipment_status_list: Array[String]? -- A list of ShipmentStatus values. Used to select shipments with a
-      #   current status that matches the status values that you specify.
+      #   current status that matches the status values that you specify. Known values: `WORKING`, `READY_TO_SHIP`,
+      #   `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`.
       # @rbs shipment_id_list: Array[String]? -- A list of shipment IDs used to select the shipments that you want. If
       #   both ShipmentStatusList and ShipmentIdList are specified, only shipments that match both parameters are
       #   returned.
@@ -3245,7 +3273,7 @@ module Peddler
       # @rbs query_type: String -- Indicates whether shipments are returned using shipment information (by providing the
       #   ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and
       #   LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous
-      #   request.
+      #   request. Known values: `SHIPMENT`, `DATE_RANGE`, `NEXT_TOKEN`.
       # @rbs next_token: String? -- A string token returned in the response to your previous request.
       # @rbs marketplace_id: String -- A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
@@ -3807,9 +3835,9 @@ module Peddler
       # @rbs pagination_token: String? -- A token to fetch a certain page when there are multiple pages worth of
       #   results. The value of this token is fetched from the `pagination` returned in the API response. In the absence
       #   of the token value from the query parameter the API returns the first page of the result.
-      # @rbs status: String? -- The status of an inbound plan.
-      # @rbs sort_by: String? -- Sort by field.
-      # @rbs sort_order: String? -- The sort order.
+      # @rbs status: String? -- The status of an inbound plan. Known values: `ACTIVE`, `VOIDED`, `SHIPPED`.
+      # @rbs sort_by: String? -- Sort by field. Known values: `LAST_UPDATED_TIME`, `CREATION_TIME`.
+      # @rbs sort_order: String? -- The sort order. Known values: `ASC`, `DESC`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil, rate_limit: 2.0)
@@ -4716,7 +4744,8 @@ module Peddler
       # @rbs x_amzn_fulfillment_service_id: String? -- The identifier of the fulfillment service used for this
       #   operation.
       # @rbs order_id: String -- The ID of the order you want to retrieve.
-      # @rbs shipments: String? -- Whether to include shipment data in the response. Included by default.
+      # @rbs shipments: String? -- Whether to include shipment data in the response. Included by default. Known values:
+      #   `INCLUDE`, `EXCLUDE`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_order(order_id, x_amzn_fulfillment_service_id: nil, shipments: nil, rate_limit: 2.0)
@@ -4757,7 +4786,8 @@ module Peddler
       #   `pageToken` when the number of results exceeds the page size. To get the next page of results, call the
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `pageToken` is `null`.
-      # @rbs shipments: String? -- Whether to include shipment data in the response. Included by default.
+      # @rbs shipments: String? -- Whether to include shipment data in the response. Included by default. Known values:
+      #   `INCLUDE`, `EXCLUDE`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def list_orders(x_amzn_fulfillment_service_id: nil, updated_after: nil, page_token: nil, shipments: nil, rate_limit: 2.0)
@@ -4990,14 +5020,16 @@ module Peddler
       #   `pageSize` value. To get the next page of results, call the operation with this token and include the same
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
-      # @rbs sort_order: String? -- Sort the invoices in the response in ascending or descending order.
+      # @rbs sort_order: String? -- Sort the invoices in the response in ascending or descending order. Known values:
+      #   `DESC`, `ASC`.
       # @rbs invoice_type: String? -- The marketplace-specific classification of the invoice type. Use the
       #   `getInvoicesAttributes` operation to check `invoiceType` options.
       # @rbs statuses: Array[String]? -- A list of statuses that you can use to filter invoices. Use the
       #   `getInvoicesAttributes` operation to check invoice status options. Min count: 1
       # @rbs external_invoice_id: String? -- Return invoices that match this external ID. This is typically the
       #   Government Invoice ID.
-      # @rbs sort_by: String? -- The attribute by which you want to sort the invoices in the response.
+      # @rbs sort_by: String? -- The attribute by which you want to sort the invoices in the response. Known values:
+      #   `START_DATE_TIME`.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -5114,7 +5146,8 @@ module Peddler
       # @rbs date_end: String? -- The latest export creation date and time for exports that you want to include in the
       #   response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       #   The default value is the time of the request.
-      # @rbs status: String? -- Return exports matching the status specified.
+      # @rbs status: String? -- Return exports matching the status specified. Known values: `REQUESTED`, `PROCESSING`,
+      #   `DONE`, `ERROR`.
       # @rbs warehouse_code: String? -- The Warehouse code included in the invoice issued on behalf of the vendor. Check
       #   the warehouse code under your WarehouseSettings in VendorCentral.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -5301,7 +5334,8 @@ module Peddler
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
-      #   `summaries`.
+      #   `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`,
+      #   `procurement`, `relationships`, `productTypes`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"], rate_limit: 5.0)
@@ -5324,8 +5358,8 @@ module Peddler
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
-      #   `issues`.
-      # @rbs mode: String? -- Describes the mode of operation for the request.
+      #   `issues`. Known values: `identifiers`, `issues`.
+      # @rbs mode: String? -- Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # @rbs issue_locale: String? -- A locale for localization of issues. When not provided, the default language code
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
@@ -5353,8 +5387,8 @@ module Peddler
       # @rbs sku: String -- A selling partner-provided identifier for an Amazon listing.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
-      #   `issues`.
-      # @rbs mode: String? -- Describes the mode of operation for the request.
+      #   `issues`. Known values: `identifiers`, `issues`.
+      # @rbs mode: String? -- Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # @rbs issue_locale: String? -- A locale for localization of issues. When not provided, the default language code
       #   of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when localization is not available for the specified locale.
@@ -5384,12 +5418,14 @@ module Peddler
       #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
       #   available in the specified locale, localized messages default to "en_US".
       # @rbs included_data: Array[String]? -- A comma-delimited list of data sets that you want to include in the
-      #   response. Default: `summaries`.
+      #   response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`,
+      #   `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
       # @rbs identifiers: Array[String]? -- A comma-delimited list of product identifiers that you can use to search for
       #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
       #   'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
       # @rbs identifiers_type: String? -- A type of product identifiers that you can use to search for listings items.
-      #   **Note**: This is required when `identifiers` is provided.
+      #   **Note**: This is required when `identifiers` is provided. Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`,
+      #   `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # @rbs variation_parent_sku: String? -- Filters results to include listing items that are variation children of
       #   the specified SKU. **Note**: You cannot use `variationParentSku` if you include `identifiers` or
       #   `packageHierarchySku` in your request.
@@ -5409,12 +5445,14 @@ module Peddler
       #   listings items that were last updated at or before this time. Values are in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @rbs with_issue_severity: Array[String]? -- Filter results to include only listing items that have issues that
-      #   match one or more of the specified severity levels.
+      #   match one or more of the specified severity levels. Known values: `WARNING`, `ERROR`.
       # @rbs with_status: Array[String]? -- Filter results to include only listing items that have the specified status.
+      #   Known values: `BUYABLE`, `DISCOVERABLE`.
       # @rbs without_status: Array[String]? -- Filter results to include only listing items that don't contain the
-      #   specified statuses.
-      # @rbs sort_by: String? -- An attribute by which to sort the returned listing items.
-      # @rbs sort_order: String? -- The order in which to sort the result items.
+      #   specified statuses. Known values: `BUYABLE`, `DISCOVERABLE`.
+      # @rbs sort_by: String? -- An attribute by which to sort the returned listing items. Known values: `sku`,
+      #   `createdDate`, `lastUpdatedDate`.
+      # @rbs sort_order: String? -- The order in which to sort the result items. Known values: `ASC`, `DESC`.
       # @rbs page_size: Integer? -- The number of results that you want to include on each page.
       # @rbs page_token: String? -- A token that you can use to fetch a specific page when there are multiple pages of
       #   results.
@@ -5495,7 +5533,10 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # @rbs asin: String -- The Amazon Standard Identification Number (ASIN) of the item.
-      # @rbs condition_type: String? -- The condition used to filter restrictions.
+      # @rbs condition_type: String? -- The condition used to filter restrictions. Known values: `new_new`,
+      #   `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`,
+      #   `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`,
+      #   `collectible_acceptable`, `club_club`.
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon marketplace identifiers for the request.
       # @rbs reason_locale: String? -- A locale for reason text localization. When not provided, the default language
@@ -6436,7 +6477,9 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # @rbs order_id: String -- An Amazon-defined order identifier.
-      # @rbs included_data: Array[String]? -- A list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A list of datasets to include in the response. Known values: `BUYER`,
+      #   `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`,
+      #   `FULFILLMENT_ORDERS`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_order(order_id, included_data: nil, rate_limit: 0.5)
@@ -6473,20 +6516,23 @@ module Peddler
       #   the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is
       #   provided, neither `createdAfter` nor `createdBefore` may be provided.
       # @rbs fulfillment_statuses: Array[String]? -- A list of `FulfillmentStatus` values you can use to filter the
-      #   results.
+      #   results. Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`,
+      #   `CANCELLED`, `UNFULFILLABLE`.
       # @rbs marketplace_ids: Array[String]? -- The response includes orders that were placed in marketplaces you
       #   include in this list. Refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId`
       #   values.
       # @rbs fulfilled_by: Array[String]? -- The response includes orders that are fulfilled by the parties that you
-      #   include in this list.
+      #   include in this list. Known values: `MERCHANT`, `AMAZON`.
       # @rbs max_results_per_page: Integer? -- The maximum number of orders that can be returned per page. The value
       #   must be between 1 and 100. **Default:** 100.
       # @rbs pagination_token: String? -- Pagination occurs when a request produces a response that exceeds the
       #   `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page,
       #   you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not
       #   receive a `nextToken` value on the last page.
-      # @rbs included_data: Array[String]? -- A list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A list of datasets to include in the response. Known values: `BUYER`,
+      #   `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`,
+      #   `FULFILLMENT_ORDERS`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def search_orders(created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, fulfillment_statuses: nil, marketplace_ids: nil, fulfilled_by: nil, max_results_per_page: nil, pagination_token: nil, included_data: nil, rate_limit: 0.0056)
@@ -6865,15 +6911,20 @@ module Peddler
       # @rbs product_type_version: String? -- The version of the Amazon product type to retrieve. Defaults to "LATEST".
       #   Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease
       #   version is currently available, the "LATEST" live version will be provided.
-      # @rbs requirements: String? -- The name of the requirements set to retrieve requirements for.
+      # @rbs requirements: String? -- The name of the requirements set to retrieve requirements for. Known values:
+      #   `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
       # @rbs requirements_enforced: String? -- Identifies if the required attributes for a requirements set are enforced
       #   by the product type definition schema. Non-enforced requirements enable structural validation of individual
-      #   attributes without all the required attributes being present (such as for partial updates).
+      #   attributes without all the required attributes being present (such as for partial updates). Known values:
+      #   `ENFORCED`, `NOT_ENFORCED`.
       # @rbs locale: String? -- Locale for retrieving display labels and other presentation details. Defaults to the
-      #   default language of the first marketplace in the request.
+      #   default language of the first marketplace in the request. Known values: `DEFAULT`, `ar`, `ar_AE`, `de`,
+      #   `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`,
+      #   `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`,
+      #   `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
       # @rbs parentage_level: String? -- The parentage level of the listing to retrieve a schema for. When provided, the
       #   schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in
-      #   a smaller schema with fewer conditions.
+      #   a smaller schema with fewer conditions. Known values: `NONE`, `CHILD`, `PARENT`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST", requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil, rate_limit: 5.0)
@@ -6934,7 +6985,8 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # @rbs promotion_id: String -- The ID of the promotion.
-      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`, `SELECTION`, `CUSTOMER_SEGMENTS`.
       # @rbs locale: String? -- The locale of the promotion. Formatted as an ISO 639 language code, followed by an
       #   underscore, followed by an ISO 3166-1 alpha-2 country code.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -6967,7 +7019,8 @@ module Peddler
       #   the token. To get a complete list, call this operation until `paginationToken` is null. Note that this
       #   operation can return empty pages.
       # @rbs limit: Integer? -- The maximum number of response results per page.
-      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_selection(promotion_id, selection_id, revision_id, locale: "en_US", pagination_token: nil, limit: 20, included_data: nil, rate_limit: 0.1)
@@ -7007,10 +7060,11 @@ module Peddler
       # @rbs locale: String? -- The locale from which to retrieve promotions. Formatted as an ISO 639 language code,
       #   followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
       # @rbs statuses: Array[String]? -- The statuses of promotions to retrieve, formatted as a comma-delimited list.
+      #   Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`.
       # @rbs asins: Array[String]? -- The ASINs to which promotions apply, formatted as a comma-delimited list.
       # @rbs skus: Array[String]? -- The SKUs to which promotions apply, formatted as a comma-delimited list.
       # @rbs promotion_types: Array[String]? -- The promotion types to which promotions apply, formatted as a
-      #   comma-delimited list.
+      #   comma-delimited list. Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
       # @rbs start_date_before: String? -- Promotions that start before this date are returned. Formatted in ISO 8601
       #   format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
       # @rbs start_date_after: String? -- Promotions that start after this date are returned. Formatted in ISO 8601
@@ -7031,9 +7085,10 @@ module Peddler
       # @rbs revision: String? -- Specifies which promotion revision or revisions to match against when filtering. This
       #   controls which promotions are included in search results, not the shape of the response. The response always
       #   returns the published revision in the main body, with `latestRevision` included when the latest revision
-      #   diverges.
+      #   diverges. Known values: `LATEST`, `PUBLISHED`, `ANY`.
       # @rbs limit: Integer? -- The maximum number of response results per page.
-      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response.
+      # @rbs included_data: Array[String]? -- A comma-delimited list of datasets to include in the response. Known
+      #   values: `ISSUES`, `CUSTOMER_SEGMENTS`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def search_promotions(marketplace_ids, locale: "en_US", statuses: nil, asins: nil, skus: nil, promotion_types: nil, start_date_before: nil, start_date_after: nil, end_date_before: nil, end_date_after: nil, update_date_after: nil, update_date_before: nil, pagination_token: nil, revision: "PUBLISHED", limit: 20, included_data: nil, rate_limit: 0.1)
@@ -7289,7 +7344,8 @@ module Peddler
       #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
       #   reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince,
       #   createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
-      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter reports.
+      # @rbs processing_statuses: Array[String]? -- A list of processing statuses used to filter reports. Known values:
+      #   `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # @rbs marketplace_ids: Array[String]? -- A list of marketplace identifiers used to filter reports. The reports
       #   returned will match at least one of the marketplaces that you specify.
       # @rbs page_size: Integer? -- The maximum number of reports to return in a single call.
@@ -7370,10 +7426,11 @@ module Peddler
       #   years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire
       #   interval that you specify. If the interval start and end date don’t align with the specified granularity, the
       #   head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of
-      #   the request interval, where the day boundary is defined by the granularityTimeZone.
+      #   the request interval, where the day boundary is defined by the granularityTimeZone. Known values: `Hour`,
+      #   `Day`, `Week`, `Month`, `Year`, `Total`.
       # @rbs buyer_type: String? -- Filters the results by the buyer type that you specify, B2B (business to business)
       #   or B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B
-      #   buyers.
+      #   buyers. Known values: `B2B`, `B2C`, `All`.
       # @rbs fulfillment_network: String? -- Filters the results by the fulfillment network that you specify, MFN
       #   (merchant fulfillment network) or AFN (Amazon fulfillment network). Do not include this filter if you want the
       #   response to include order metrics for all fulfillment networks. Example: AFN, if you want the response to
@@ -8010,11 +8067,14 @@ module Peddler
       # @rbs tracking_ids: Array[String]? -- A list of up to 20 associated product tracking IDs. You can use these IDs
       #   to query service jobs.
       # @rbs service_job_status: Array[String]? -- A list of one or more job status by which to filter the list of jobs.
+      #   Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`,
+      #   `PAYMENT_DECLINED`.
       # @rbs page_token: String? -- String returned in the response of your previous request.
       # @rbs page_size: Integer? -- A non-negative integer that indicates the maximum number of jobs to return in the
       #   list, Value must be 1 - 20. Default 20.
-      # @rbs sort_field: String? -- Sort fields on which you want to sort the output.
-      # @rbs sort_order: String? -- Sort order for the query you want to perform.
+      # @rbs sort_field: String? -- Sort fields on which you want to sort the output. Known values: `JOB_DATE`,
+      #   `JOB_STATUS`.
+      # @rbs sort_order: String? -- Sort order for the query you want to perform. Known values: `ASC`, `DESC`.
       # @rbs created_after: String? -- A date used for selecting jobs created at or after a specified time. Must be in
       #   ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and
       #   `LastUpdatedAfter` returns an error.
@@ -8393,7 +8453,9 @@ module Peddler
       #
       # @rbs shipment_id: String -- The shipment identifier originally returned by the purchaseShipment operation.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8410,7 +8472,9 @@ module Peddler
       #
       # @rbs body: untyped -- Request body for the createClaim operation
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8433,7 +8497,9 @@ module Peddler
       #   secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional
       #   designation. This does not support additional subtags beyond the primary and secondary language subtags.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8452,7 +8518,9 @@ module Peddler
       # @rbs x_amzn_idempotency_key: String? -- A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8468,11 +8536,14 @@ module Peddler
       #
       # This operation can make a dynamic sandbox call.
       #
-      # @rbs access_point_types: Array[String] -- Access point types
+      # @rbs access_point_types: Array[String] -- Access point types. Known values: `HELIX`, `CAMPUS_LOCKER`,
+      #   `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.
       # @rbs country_code: String -- Country code for access point
       # @rbs postal_code: String -- postal code for access point
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8495,7 +8566,9 @@ module Peddler
       # @rbs rate_id: String -- The rate identifier for the shipping offering (rate) returned in the response to the
       #   getRates operation.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8510,7 +8583,9 @@ module Peddler
       # This API will return a list of input schema required to register a shipper account with the carrier.
       #
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8524,7 +8599,9 @@ module Peddler
       #
       # @rbs body: untyped -- GetCarrierAccountsRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8539,7 +8616,9 @@ module Peddler
       #
       # @rbs collection_form_id: String -- collection form Id to reprint a collection.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8554,7 +8633,9 @@ module Peddler
       #
       # @rbs body: untyped -- GetCollectionFormHistoryRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8571,7 +8652,9 @@ module Peddler
       #
       # @rbs body: untyped -- GetRatesRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8594,7 +8677,9 @@ module Peddler
       # @rbs dpi: (Float | Integer)? -- The resolution of the document (for example, 300 means 300 dots per inch). Must
       #   be one of the supported resolutions returned in the response to the getRates operation.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8617,7 +8702,9 @@ module Peddler
       # @rbs carrier_id: String -- A carrier identifier originally returned by the getRates operation for the selected
       #   rate.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8634,7 +8721,9 @@ module Peddler
       #
       # @rbs body: untyped -- GetUmanifestedShipmentsRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8652,7 +8741,9 @@ module Peddler
       # @rbs carrier_id: String -- An identifier for the carrier with which the seller's account is being linked.
       # @rbs body: untyped -- LinkCarrierAccountRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
@@ -8669,7 +8760,9 @@ module Peddler
       # @rbs carrier_id: String -- An identifier for the carrier with which the seller's account is being linked.
       # @rbs body: untyped -- LinkCarrierAccountRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def link_carrier_account_put(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8687,7 +8780,9 @@ module Peddler
       #
       # @rbs body: untyped -- OneClickShipmentRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8710,7 +8805,9 @@ module Peddler
       # @rbs x_amzn_idempotency_key: String? -- A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8728,7 +8825,9 @@ module Peddler
       #
       # @rbs body: untyped -- Request body for ndrFeedback operation
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8744,7 +8843,9 @@ module Peddler
       # @rbs carrier_id: String -- carrier Id to unlink with merchant.
       # @rbs body: untyped -- UnlinkCarrierAccountRequest body
       # @rbs x_amzn_shipping_business_id: String? -- Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
+      #   AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`,
+      #   `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`,
+      #   `AmazonShipping_FR`, `AmazonShipping_JP`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
@@ -8991,6 +9092,7 @@ module Peddler
       #   operation with this token and include the same arguments as the call that produced the token. To get a
       #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @rbs sort_order: String? -- Sort the returned contacts by `createdDate` in either ascending or descending order.
+      #   Known values: `ASC`, `DESC`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
       def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
@@ -9164,7 +9266,7 @@ module Peddler
       #
       # @rbs page_token: String? -- A token to fetch a certain page when there are multiple pages worth of results.
       # @rbs marketplace_id: String -- An identifier for the marketplace in which the resource operates.
-      # @rbs vehicle_type: String -- An identifier for vehicle type.
+      # @rbs vehicle_type: String -- An identifier for vehicle type. Known values: `CAR`, `MOTORBIKE`.
       # @rbs updated_after: String? -- Date in ISO 8601 format, if provided only vehicles which are modified/added to
       #   Amazon's catalog after this date will be returned.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -9263,13 +9365,14 @@ module Peddler
       # @rbs ship_from_party_id: String? -- The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @rbs status: String? -- Returns only the purchase orders that match the specified status. If not specified, the
-      #   result will contain orders that match any status.
+      #   result will contain orders that match any status. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
       # @rbs limit: Integer? -- The limit to the number of purchase orders returned.
       # @rbs created_after: String -- Purchase orders that became available after this date and time will be included in
       #   the result. Must be in ISO-8601 date/time format.
       # @rbs created_before: String -- Purchase orders that became available before this date and time will be included
       #   in the result. Must be in ISO-8601 date/time format.
-      # @rbs sort_order: String? -- Sort the list in ascending or descending order by order creation date.
+      # @rbs sort_order: String? -- Sort the list in ascending or descending order by order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
       # @rbs include_details: bool? -- When true, returns the complete purchase order details. Otherwise, only purchase
@@ -9361,13 +9464,14 @@ module Peddler
       # @rbs ship_from_party_id: String? -- The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @rbs status: String? -- Returns only the purchase orders that match the specified status. If not specified, the
-      #   result will contain orders that match any status.
+      #   result will contain orders that match any status. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
       # @rbs limit: Integer? -- The limit to the number of purchase orders returned.
       # @rbs created_after: String -- Purchase orders that became available after this date and time will be included in
       #   the result. Must be in ISO-8601 date/time format.
       # @rbs created_before: String -- Purchase orders that became available before this date and time will be included
       #   in the result. Must be in ISO-8601 date/time format.
-      # @rbs sort_order: String? -- Sort the list in ascending or descending order by order creation date.
+      # @rbs sort_order: String? -- Sort the list in ascending or descending order by order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
       # @rbs include_details: bool? -- When true, returns the complete purchase order details. Otherwise, only purchase
@@ -9855,6 +9959,7 @@ module Peddler
       # @rbs created_before: String -- Packing slips that became available before this date and time will be included in
       #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @rbs sort_order: String? -- The packing slip creation dates, which are sorted by ascending or descending order.
+      #   Known values: `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -10120,7 +10225,8 @@ module Peddler
       #   result. Must be in ISO-8601 date/time format.
       # @rbs created_before: String? -- Purchase orders that became available before this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date.
+      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there is more purchase orders than the specified result
       #   size limit. The token value is returned in the previous API call
       # @rbs include_details: bool? -- When true, returns purchase orders with complete details. Otherwise, only
@@ -10135,7 +10241,8 @@ module Peddler
       # @rbs is_po_changed: bool? -- When true, returns purchase orders which were modified after the order was placed.
       #   Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the
       #   original one. Default value is false.
-      # @rbs purchase_order_state: String? -- Filters purchase orders based on the purchase order state.
+      # @rbs purchase_order_state: String? -- Filters purchase orders based on the purchase order state. Known values:
+      #   `New`, `Acknowledged`, `Closed`.
       # @rbs ordering_vendor_code: String? -- Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
@@ -10187,7 +10294,8 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # @rbs limit: Integer? -- The limit to the number of records returned. Default value is 100 records.
-      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date.
+      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there are more purchase orders than the specified result
       #   size limit.
       # @rbs created_after: String? -- Purchase orders that became available after this timestamp will be included in
@@ -10200,13 +10308,13 @@ module Peddler
       #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # @rbs purchase_order_number: String? -- Provides purchase order status for the specified purchase order number.
       # @rbs purchase_order_status: String? -- Filters purchase orders based on the specified purchase order status. If
-      #   not included in filter, this will return purchase orders for all statuses.
+      #   not included in filter, this will return purchase orders for all statuses. Known values: `OPEN`, `CLOSED`.
       # @rbs item_confirmation_status: String? -- Filters purchase orders based on their item confirmation status. If
       #   the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are
-      #   included.
+      #   included. Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.
       # @rbs item_receive_status: String? -- Filters purchase orders based on the purchase order's item receive status.
       #   If the item receive status is not included in the filter, purchase orders for all receive statuses are
-      #   included.
+      #   included. Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.
       # @rbs ordering_vendor_code: String? -- Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase
       #   orders for all the vendor codes that exist in the vendor group used to authorize API client application are
@@ -10290,7 +10398,8 @@ module Peddler
       # related to shipment based on the filter parameters value that you specify.
       #
       # @rbs limit: Integer? -- The limit to the number of records returned. Default value is 50 records.
-      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date.
+      # @rbs sort_order: String? -- Sort in ascending or descending order by purchase order creation date. Known values:
+      #   `ASC`, `DESC`.
       # @rbs next_token: String? -- Used for pagination when there are more shipments than the specified result size
       #   limit.
       # @rbs created_after: String? -- Get Shipment Details that became available after this timestamp will be included
@@ -10400,6 +10509,7 @@ module Peddler
       #
       # @rbs limit: Integer? -- The limit to the number of records returned. Default value is 50 records.
       # @rbs sort_order: String? -- Sort the list by shipment label creation date in ascending or descending order.
+      #   Known values: `ASC`, `DESC`.
       # @rbs next_token: String? -- A token that you use to retrieve the next page of results. The response includes
       #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
       #   results, call the operation with this token and include the same arguments as the call that produced the

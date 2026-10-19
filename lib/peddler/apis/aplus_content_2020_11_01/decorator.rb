@@ -20,6 +20,8 @@ module Peddler
         # The starting character of this decorator within the content string. Use zero for the first character.
         attribute?(:offset, Integer)
 
+        # Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`,
+        # `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`.
         attribute?(:type, String)
       end
     end

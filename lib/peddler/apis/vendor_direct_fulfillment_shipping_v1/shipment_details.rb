@@ -10,7 +10,7 @@ module Peddler
     module VendorDirectFulfillmentShippingV1
       # Details about a shipment.
       ShipmentDetails = Structure.new do
-        # Indicate the shipment status.
+        # Indicate the shipment status. Known values: `SHIPPED`, `FLOOR_DENIAL`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # This field indicates the date of the departure of the shipment from vendor's location. Vendors are requested

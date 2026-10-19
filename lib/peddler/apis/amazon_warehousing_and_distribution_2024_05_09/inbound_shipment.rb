@@ -25,7 +25,8 @@ module Peddler
         # Unique shipment ID.
         attribute(:shipment_id, String, null: false, from: "shipmentId")
 
-        # Current status of this shipment.
+        # Current status of this shipment. Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`,
+        # `CLOSED`, `CANCELLED`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # The shipment carrier code.

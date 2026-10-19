@@ -12,7 +12,8 @@ module Peddler
         # The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # This field will contain the current state of the purchase order.
+        # This field will contain the current state of the purchase order. Known values: `New`, `Acknowledged`,
+        # `Closed`.
         attribute(:purchase_order_state, String, null: false, from: "purchaseOrderState")
 
         # Details of an order.

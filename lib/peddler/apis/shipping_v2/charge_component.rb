@@ -11,7 +11,7 @@ module Peddler
       ChargeComponent = Structure.new do
         attribute?(:amount, Money)
 
-        # The type of charge.
+        # The type of charge. Known values: `TAX`, `DISCOUNT`.
         attribute?(:charge_type, String, from: "chargeType")
       end
     end

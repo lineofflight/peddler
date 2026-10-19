@@ -14,7 +14,7 @@ module Peddler
         # A list of carton identifiers.
         attribute(:container_identifiers, [ContainerIdentification], null: false, from: "containerIdentifiers")
 
-        # The type of container.
+        # The type of container. Known values: `carton`, `pallet`.
         attribute(:container_type, String, null: false, from: "containerType")
 
         # Number of cartons per layer on the pallet.

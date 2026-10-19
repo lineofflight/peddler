@@ -17,7 +17,7 @@ module Peddler
         # is provided. Null for point-in-time balance queries.
         attribute?(:as_of_date, String, from: "asOfDate")
 
-        # The type of balance.
+        # The type of balance. Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`.
         attribute?(:balance_type, String, from: "balanceType")
 
         # A list of balances that comprise this balance.

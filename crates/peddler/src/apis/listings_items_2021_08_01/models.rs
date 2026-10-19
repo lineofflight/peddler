@@ -115,7 +115,7 @@ pub struct Issue {
     pub message: ::std::string::String,
     /**The severity of the issue.
 
-Known values: "ERROR", "WARNING", "INFO". Other values may be returned by Amazon.*/
+Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.*/
     pub severity: ::std::string::String,
 }
 ///The enforcement action taken by Amazon that affect the publishing or status of a listing
@@ -151,9 +151,7 @@ pub struct IssueExemption {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub expiry_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /**Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
-
-Known values: "EXEMPT", "EXEMPT_UNTIL_EXPIRY_DATE", "NOT_EXEMPT". Other values may be returned by Amazon.*/
+    ///Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
     pub status: ::std::string::String,
 }
 ///A listings item.
@@ -290,7 +288,7 @@ pub struct ItemOfferByMarketplace {
     pub marketplace_id: ::std::string::String,
     /**The listings item's offer type.
 
-Known values: "B2C", "B2B". Other values may be returned by Amazon.*/
+Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
     #[serde(rename = "offerType")]
     pub offer_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -374,7 +372,7 @@ pub struct ItemRelationship {
     pub parent_skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**The type of relationship.
 
-Known values: "VARIATION", "PACKAGE_HIERARCHY". Other values may be returned by Amazon.*/
+Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
@@ -457,7 +455,7 @@ pub struct ItemSummaryByMarketplace {
     pub asin: ::std::option::Option<::std::string::String>,
     /**Identifies the condition of the listings item.
 
-Known values: "new_new", "new_open_box", "new_oem", "refurbished_refurbished", "used_like_new", "used_very_good", "used_good", "used_acceptable", "collectible_like_new", "collectible_very_good", "collectible_good", "collectible_acceptable", "club_club". Other values may be returned by Amazon.*/
+Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "conditionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -487,7 +485,9 @@ Known values: "new_new", "new_open_box", "new_oem", "refurbished_refurbished", "
     ///The listings item's Amazon product type.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    ///Statuses that apply to the listings item.
+    /**Statuses that apply to the listings item.
+
+Known values: `BUYABLE`, `DISCOVERABLE`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<::std::string::String>,
 }
 ///A variation theme that indicates the combination of listing item attributes that define the variation family.
@@ -517,7 +517,7 @@ pub struct ListingsItemPutRequest {
     pub product_type: ::std::string::String,
     /**The name of the requirements set for the provided data.
 
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.*/
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requirements: ::std::option::Option<::std::string::String>,
 }
@@ -534,7 +534,7 @@ pub struct ListingsItemSubmissionResponse {
     pub sku: ::std::string::String,
     /**The status of the listings item submission.
 
-Known values: "ACCEPTED", "INVALID", "VALID". Other values may be returned by Amazon.*/
+Known values: `ACCEPTED`, `INVALID`, `VALID`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The unique identifier of the listings item submission.
     #[serde(rename = "submissionId")]
@@ -568,9 +568,7 @@ pub struct Pagination {
 ///Individual JSON Patch operation for an HTTP PATCH request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PatchOperation {
-    /**Type of JSON Patch operation. Supported JSON Patch operations include `add`, `replace`, `merge` and `delete`. Refer to <https://tools.ietf.org/html/rfc6902>.
-
-Known values: "add", "replace", "merge", "delete". Other values may be returned by Amazon.*/
+    ///Type of JSON Patch operation. Supported JSON Patch operations include `add`, `replace`, `merge` and `delete`. Refer to <https://tools.ietf.org/html/rfc6902>.
     pub op: ::std::string::String,
     ///JSON Pointer path of the element to patch. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information.
     pub path: ::std::string::String,

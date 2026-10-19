@@ -12,7 +12,8 @@ module Peddler
       # field. Different filters are combined with AND logic, and multiple values of the same field are combined with OR
       # logic.
       CaseFilters = Structure.new do
-        # Filter the collection by one or more case statuses.
+        # Filter the collection by one or more case statuses. Known values: `RESOLVED`, `TRANSFERRED`,
+        # `PENDING_MERCHANT_ACTION`, `PENDING_AMAZON_ACTION`.
         attribute?(:case_statuses, [String], from: "caseStatuses")
 
         # Filter the collection by one or more CC email addresses.

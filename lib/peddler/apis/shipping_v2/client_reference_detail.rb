@@ -12,7 +12,7 @@ module Peddler
         # The Client Reference Id.
         attribute(:client_reference_id, String, null: false, from: "clientReferenceId")
 
-        # Client Reference type.
+        # Client Reference type. Known values: `IntegratorShipperId`, `IntegratorMerchantId`.
         attribute(:client_reference_type, String, null: false, from: "clientReferenceType")
       end
     end

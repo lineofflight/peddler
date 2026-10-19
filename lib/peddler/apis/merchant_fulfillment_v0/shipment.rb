@@ -38,7 +38,7 @@ module Peddler
 
         attribute(:shipping_service, ShippingService, null: false, from: "ShippingService")
 
-        # The shipment status.
+        # The shipment status. Known values: `Purchased`, `RefundPending`, `RefundRejected`, `RefundApplied`.
         attribute(:status, String, null: false, from: "Status")
 
         # The package weight.

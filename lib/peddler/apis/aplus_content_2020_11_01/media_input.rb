@@ -10,7 +10,7 @@ module Peddler
       # Input for referencing a media asset during creation. Exactly one of `uploadDestinationId` or `mediaId` must be
       # provided.
       MediaInput = Structure.new do
-        # The type of media asset.
+        # The type of media asset. Known values: `VIDEO`, `IMAGE`.
         attribute(:media_type, String, null: false, from: "mediaType")
 
         # An existing media asset identifier for reuse in a new association. Mutually exclusive with

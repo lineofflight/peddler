@@ -33,7 +33,7 @@ pub struct Issue {
     pub message: ::std::string::String,
     /**The severity of the issue.
 
-Known values: "ERROR", "WARNING", "INFO". Other values may be returned by Amazon.*/
+Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.*/
     pub severity: ::std::string::String,
 }
 ///The request body schema for the patchListingsItem operation.
@@ -55,7 +55,7 @@ pub struct ListingsItemPutRequest {
     pub product_type: ::std::string::String,
     /**The name of the requirements set for the provided data.
 
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.*/
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requirements: ::std::option::Option<::std::string::String>,
 }
@@ -69,7 +69,7 @@ pub struct ListingsItemSubmissionResponse {
     pub sku: ::std::string::String,
     /**The status of the listings item submission.
 
-Known values: "ACCEPTED", "INVALID". Other values may be returned by Amazon.*/
+Known values: `ACCEPTED`, `INVALID`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The unique identifier of the listings item submission.
     #[serde(rename = "submissionId")]
@@ -78,9 +78,7 @@ Known values: "ACCEPTED", "INVALID". Other values may be returned by Amazon.*/
 ///Individual JSON Patch operation for an HTTP PATCH request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PatchOperation {
-    /**Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
-
-Known values: "add", "replace", "delete". Other values may be returned by Amazon.*/
+    ///Type of JSON Patch operation. Supported JSON Patch operations include add, replace, and delete. See <https://tools.ietf.org/html/rfc6902>.
     pub op: ::std::string::String,
     ///JSON Pointer path of the element to patch. See <https://tools.ietf.org/html/rfc6902>.
     pub path: ::std::string::String,

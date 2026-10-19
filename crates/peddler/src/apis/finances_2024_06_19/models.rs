@@ -32,7 +32,7 @@ pub struct Balance {
     pub as_of_date: ::std::option::Option<Date>,
     /**The type of balance.
 
-Known values: "AVAILABLE", "RESERVED", "ACCOUNT_LEVEL_RESERVE", "DEFERRED", "TOTAL". Other values may be returned by Amazon.*/
+Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "balanceType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -163,7 +163,7 @@ impl ::std::convert::From<::std::vec::Vec<Breakdown>> for Breakdowns {
 pub struct BusinessContext {
     /**The store name associated with the transaction.
 
-Known values: "AMAZON_HAUL". Other values may be returned by Amazon.*/
+Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "storeName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -400,7 +400,7 @@ pub struct Item {
 pub struct ItemRelatedIdentifier {
     /**Enumerated set of related item identifier names for the item.
 
-Known values: "ORDER_ADJUSTMENT_ITEM_ID", "COUPON_ID", "REMOVAL_SHIPMENT_ITEM_ID", "TRANSACTION_ID". Other values may be returned by Amazon.*/
+Known values: `ORDER_ADJUSTMENT_ITEM_ID`, `COUPON_ID`, `REMOVAL_SHIPMENT_ITEM_ID`, `TRANSACTION_ID`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "itemRelatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -567,7 +567,7 @@ pub struct ProductContext {
 pub struct RelatedIdentifier {
     /**An enumerated set of related business identifier names.
 
-Known values: "ORDER_ID", "SHIPMENT_ID", "FINANCIAL_EVENT_GROUP_ID", "REFUND_ID", "INVOICE_ID", "DISBURSEMENT_ID", "TRANSFER_ID", "DEFERRED_TRANSACTION_ID", "RELEASE_TRANSACTION_ID", "SETTLEMENT_ID". Other values may be returned by Amazon.*/
+Known values: `ORDER_ID`, `SHIPMENT_ID`, `FINANCIAL_EVENT_GROUP_ID`, `REFUND_ID`, `INVOICE_ID`, `DISBURSEMENT_ID`, `TRANSFER_ID`, `DEFERRED_TRANSACTION_ID`, `RELEASE_TRANSACTION_ID`, `SETTLEMENT_ID`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "relatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"

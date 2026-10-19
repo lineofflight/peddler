@@ -16,6 +16,7 @@ module Peddler
         # Timestamp when the eligibility check is performed.
         attribute(:previewed_at, Time, null: false, from: "previewedAt")
 
+        # Known values: `ELIGIBLE`, `INELIGIBLE`.
         attribute(:status, String, null: false)
 
         # If there are order level eligibility issues, then this list will contain those error codes and descriptions.

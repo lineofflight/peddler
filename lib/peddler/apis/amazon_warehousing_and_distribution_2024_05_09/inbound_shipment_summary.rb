@@ -17,6 +17,7 @@ module Peddler
         # A unique shipment ID.
         attribute(:shipment_id, String, null: false, from: "shipmentId")
 
+        # Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         # Timestamp when the shipment was created.

@@ -9,8 +9,11 @@ module Peddler
     module MerchantFulfillmentV0
       # Filter for use when requesting eligible shipping services.
       ShippingOfferingFilter = Structure.new do
+        # Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`.
         attribute?(:carrier_will_pick_up, String, from: "CarrierWillPickUp")
 
+        # Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`,
+        # `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`.
         attribute?(:delivery_experience, String, from: "DeliveryExperience")
 
         # When true, include complex shipping options.

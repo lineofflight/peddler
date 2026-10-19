@@ -143,9 +143,9 @@ module Peddler
       #
       # This operation can make a static sandbox call.
       #
-      # - sort_by: Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+      # - sort_by: Field to sort results by. By default, the response will be sorted by UPDATED_AT. Known values: `UPDATED_AT`, `CREATED_AT`.
       # - sort_order: Sort the response in ASCENDING or DESCENDING order. By default, the response will be sorted in DESCENDING order.
-      # - shipment_status: Filter by inbound shipment status.
+      # - shipment_status: Filter by inbound shipment status. Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.
       # - updated_after: List the inbound shipments that were updated after a certain time (inclusive). The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # - updated_before: List the inbound shipments that were updated before a certain time (inclusive). The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # - max_results: Maximum number of results to return.
@@ -266,7 +266,7 @@ module Peddler
       #
       # - content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
       # - marketplace_id: The identifier for the Amazon store where the A+ Content is published.
-      # - included_data_set: The set of A+ Content data types to include in the response.
+      # - included_data_set: The set of A+ Content data types to include in the response. Known values: `CONTENTS`, `METADATA`.
       # - rate_limit: Requests per second
       def get_content_document: (String content_reference_key, String marketplace_id, Array[String] included_data_set, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -288,7 +288,7 @@ module Peddler
       #
       # - content_reference_key: The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
       # - marketplace_id: The identifier for the Amazon store where the A+ Content is published.
-      # - included_data_set: The set of A+ Content data types to include in the response. If you do not include this parameter, the operation returns the related ASINs without metadata.
+      # - included_data_set: The set of A+ Content data types to include in the response. If you do not include this parameter, the operation returns the related ASINs without metadata. Known values: `METADATA`.
       # - asin_set: The set of ASINs.
       # - page_token: A page token from the `nextPageToken` response element returned by your previous call to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken` with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are no more pages to return. A `pageToken` value is not usable across different operations.
       # - rate_limit: Requests per second
@@ -453,7 +453,7 @@ module Peddler
       #
       # - asin: The Amazon Standard Identification Number (ASIN) of the item.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
-      # - included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: summaries. Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
       # - locale: Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
       # - rate_limit: Requests per second
       def get_catalog_item: (String asin, Array[String] marketplace_ids, ?included_data: Array[String]?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -464,7 +464,7 @@ module Peddler
       #
       # - keywords: A comma-delimited list of words or item identifiers to search the Amazon catalog for.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
-      # - included_data: A comma-delimited list of data sets to include in the response. Default: summaries.
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: summaries. Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
       # - brand_names: A comma-delimited list of brand names to limit the search to.
       # - classification_ids: A comma-delimited list of classification identifiers to limit the search to.
       # - page_size: Number of results to be returned per page.
@@ -489,7 +489,7 @@ module Peddler
       #
       # - asin: The Amazon Standard Identification Number (ASIN) of the item.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # - included_data: A comma-delimited list of datasets to include in the response.
+      # - included_data: A comma-delimited list of datasets to include in the response. Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # - locale: The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
       # - rate_limit: Requests per second
       def get_catalog_item: (String asin, Array[String] marketplace_ids, ?included_data: Array[String]?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -500,9 +500,9 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - identifiers: A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
-      # - identifiers_type: The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
+      # - identifiers_type: The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request. Known values: `ASIN`, `EAN`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # - included_data: A comma-delimited list of datasets to include in the response.
+      # - included_data: A comma-delimited list of datasets to include in the response. Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
       # - locale: The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
       # - seller_id: A selling partner identifier, such as a seller account or vendor code. **Note:** Required when `identifiersType` is `SKU`.
       # - keywords: A comma-delimited list of keywords that you can use to search the Amazon catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request.
@@ -547,7 +547,7 @@ module Peddler
       #
       # - browse_node_id: The ID of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
       # - marketplace_id: The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # - sort_by: The metric by which to sort the data in the response.
+      # - sort_by: The metric by which to sort the data in the response. Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
       # - rate_limit: Requests per second
       def get_browse_node_review_topics: (String browse_node_id, String marketplace_id, String sort_by, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -576,7 +576,7 @@ module Peddler
       #
       # - asin: The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace. The value must be a child ASIN.
       # - marketplace_id: The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
-      # - sort_by: The metric by which to sort data in the response.
+      # - sort_by: The metric by which to sort data in the response. Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
       # - rate_limit: Requests per second
       def get_item_review_topics: (String asin, String marketplace_id, String sort_by, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -633,7 +633,7 @@ module Peddler
       #
       # This operation can make a static sandbox call.
       #
-      # - processing_statuses: A list of processing statuses used to filter queries.
+      # - processing_statuses: A list of processing statuses used to filter queries. Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # - page_size: The maximum number of queries to return in a single call.
       # - created_since: The earliest query creation date and time for queries to include in the response, in ISO 8601 date time format. The default is 90 days ago.
       # - created_until: The latest query creation date and time for queries to include in the response, in ISO 8601 date time format. The default is the time of the `getQueries` request.
@@ -669,8 +669,8 @@ module Peddler
       # - shipment_id: The shipment identifier.
       # - invoice_id: The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve the status of a specific invoice.
       # - marketplace_id: The Amazon store identifier.
-      # - invoice_type: The invoice's type.
-      # - program_type: The Amazon program that seller is currently enrolled.
+      # - invoice_type: The invoice's type. Known values: `Outbound`.
+      # - program_type: The Amazon program that seller is currently enrolled. Known values: `EasyShip`, `FbaOnSite`, `SelfShip`.
       # - rate_limit: Requests per second
       def get_invoice_status: (String marketplace_id, String invoice_type, String program_type, ?order_id: String?, ?shipment_id: String?, ?invoice_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -835,7 +835,7 @@ module Peddler
       #
       # - return_location_id: The SmartConnect location ID of the location from which you want to retrieve return items.
       # - rma_id: The RMA ID of the return items you want to list.
-      # - status: The status of return items you want to list. You can retrieve all new return items with the `CREATED` status.
+      # - status: The status of return items you want to list. You can retrieve all new return items with the `CREATED` status. Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
       # - reverse_tracking_id: The reverse tracking ID of the return items you want to list.
       # - created_since: Return items created after the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - created_until: Return items created before the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
@@ -890,7 +890,7 @@ module Peddler
       #
       # - shipment_id: The ID of the shipment whose shipping labels you want to generate and retrieve.
       # - shipping_option_id: The ID of the shipping option whose shipping labels you want.
-      # - operation: Specify whether you want to generate or regenerate a label.
+      # - operation: Specify whether you want to generate or regenerate a label. Known values: `GENERATE`, `REGENERATE`.
       # - body: Shipping details for when shipping is not done by the marketplace channel.
       # - rate_limit: Requests per second
       def generate_ship_labels: (String shipment_id, String operation, ?shipping_option_id: String?, ?body: untyped?, ?rate_limit: (Float | Integer)?) -> Response
@@ -911,7 +911,7 @@ module Peddler
       # - location_id: The Amazon channel location identifier for the shipments you want to retrieve.
       # - marketplace_id: The marketplace ID associated with the location. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # - channel_name: The channel name associated with the location.
-      # - status: The status of shipment you want to include in the response. To retrieve all new shipments, set this value to `CREATED` or `ACCEPTED`.
+      # - status: The status of shipment you want to include in the response. To retrieve all new shipments, set this value to `ACCEPTED`. Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.
       # - last_updated_after: The response includes shipments whose latest update is after the specified time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - last_updated_before: The response includes shipments whose latest update is before the specified time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - max_results: The maximum number of shipments to include in the response.
@@ -927,7 +927,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - shipment_id: The ID of the shipment you want to confirm or reject.
-      # - operation: The status of the shipment.
+      # - operation: The status of the shipment. Known values: `CONFIRM`, `REJECT`.
       # - body: Information about the shipment and its line items.
       # - rate_limit: Requests per second
       def process_shipment: (String shipment_id, String operation, ?body: untyped?, ?rate_limit: (Float | Integer)?) -> Response
@@ -966,7 +966,7 @@ module Peddler
       #
       # - shipment_id: The ID of the shipment to which the package belongs.
       # - package_id: The ID of the package whose status you want to update.
-      # - status: **This field is only used for the Seller Flex program**. For the Self Delivery program, package statuses are defined in the body parameter.
+      # - status: **This field is only used for the Seller Flex program**. For the Self Delivery program, package statuses are defined in the body parameter. Known values: `SHIPPED`.
       # - body: The body of the request.
       # - rate_limit: Requests per second
       def update_package_status: (String shipment_id, String package_id, ?status: String?, ?body: untyped?, ?rate_limit: (Float | Integer)?) -> Response
@@ -995,7 +995,7 @@ module Peddler
       #
       # - marketplace_ids: The identifier for the marketplace in which you want to determine eligibility. Required only when program=INBOUND.
       # - asin: The ASIN of the item for which you want an eligibility preview.
-      # - program: The program that you want to check eligibility against.
+      # - program: The program that you want to check eligibility against. Known values: `INBOUND`, `COMMINGLING`.
       # - rate_limit: Requests per second
       def get_item_eligibility_preview: (String asin, String program, ?marketplace_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
     end
@@ -1059,7 +1059,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - details: true to return inventory summaries with additional summarized inventory details and quantities. Otherwise, returns inventory summaries only (default value).
-      # - granularity_type: The granularity type for the inventory aggregation level.
+      # - granularity_type: The granularity type for the inventory aggregation level. Known values: `Marketplace`.
       # - granularity_id: The granularity ID for the inventory aggregation level.
       # - start_date_time: A start date and time in ISO8601 format. If specified, all inventory summaries that have changed since then are returned. You must specify a date and time that is no earlier than 18 months prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity, inboundShippedQuantity and inboundReceivingQuantity are not detected.
       # - seller_skus: A list of seller SKUs for which to return inventory summaries. You may specify up to 50 SKUs.
@@ -1130,7 +1130,7 @@ module Peddler
       # - feed_types: A list of feed types used to filter feeds. When feedTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either feedTypes or nextToken is required.
       # - marketplace_ids: A list of marketplace identifiers used to filter feeds. The feeds returned will match at least one of the marketplaces that you specify.
       # - page_size: The maximum number of feeds to return in a single call.
-      # - processing_statuses: A list of processing statuses used to filter feeds.
+      # - processing_statuses: A list of processing statuses used to filter feeds. Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # - created_since: The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
       # - created_until: The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
       # - next_token: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
@@ -1352,7 +1352,7 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - marketplace_id: The identifier of the Amazon store from which you want to retrieve payment methods. For the list of store identifiers, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      # - payment_method_types: A comma-separated list of the payment method types you want to include in the response.
+      # - payment_method_types: A comma-separated list of the payment method types you want to include in the response. Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
       # - rate_limit: Requests per second
       def get_payment_methods: (String marketplace_id, ?payment_method_types: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -1421,8 +1421,8 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - shipment_id: A shipment identifier originally returned by the createInboundShipmentPlan operation.
-      # - page_type: The page type to use to print the labels. Submitting a PageType value that is not supported in your marketplace returns an error.
-      # - label_type: The type of labels requested.
+      # - page_type: The page type to use to print the labels. Submitting a PageType value that is not supported in your marketplace returns an error. Known values: `PackageLabel_Letter_2`, `PackageLabel_Letter_4`, `PackageLabel_Letter_6`, `PackageLabel_Letter_6_CarrierLeft`, `PackageLabel_A4_2`, `PackageLabel_A4_4`, `PackageLabel_Plain_Paper`, `PackageLabel_Plain_Paper_CarrierBottom`, `PackageLabel_Thermal`, `PackageLabel_Thermal_Unified`, `PackageLabel_Thermal_NonPCP`, `PackageLabel_Thermal_No_Carrier_Rotation`.
+      # - label_type: The type of labels requested. Known values: `BARCODE_2D`, `UNIQUE`, `PALLET`.
       # - number_of_packages: The number of packages in the shipment.
       # - package_labels_to_print: A list of identifiers that specify packages for which you want package labels printed. If you provide box content information with the [FBA Inbound Shipment Carton Information Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed), then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the `boxID` values from the [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
       # - number_of_pallets: The number of pallets in the shipment. This returns four identical labels for each pallet.
@@ -1449,7 +1449,7 @@ module Peddler
       #
       # - last_updated_after: A date used for selecting inbound shipment items that were last updated after (or at) a specified time. The selection includes updates made by Amazon and by the seller.
       # - last_updated_before: A date used for selecting inbound shipment items that were last updated before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
-      # - query_type: Indicates whether items are returned using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items specified in a previous request.
+      # - query_type: Indicates whether items are returned using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items specified in a previous request. Known values: `DATE_RANGE`, `NEXT_TOKEN`.
       # - next_token: A string token returned in the response to your previous request.
       # - marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
       # - rate_limit: Requests per second
@@ -1471,11 +1471,11 @@ module Peddler
       #
       # This operation can make a static sandbox call.
       #
-      # - shipment_status_list: A list of ShipmentStatus values. Used to select shipments with a current status that matches the status values that you specify.
+      # - shipment_status_list: A list of ShipmentStatus values. Used to select shipments with a current status that matches the status values that you specify. Known values: `WORKING`, `READY_TO_SHIP`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`.
       # - shipment_id_list: A list of shipment IDs used to select the shipments that you want. If both ShipmentStatusList and ShipmentIdList are specified, only shipments that match both parameters are returned.
       # - last_updated_after: A date used for selecting inbound shipments that were last updated after (or at) a specified time. The selection includes updates made by Amazon and by the seller.
       # - last_updated_before: A date used for selecting inbound shipments that were last updated before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
-      # - query_type: Indicates whether shipments are returned using shipment information (by providing the ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous request.
+      # - query_type: Indicates whether shipments are returned using shipment information (by providing the ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous request. Known values: `SHIPMENT`, `DATE_RANGE`, `NEXT_TOKEN`.
       # - next_token: A string token returned in the response to your previous request.
       # - marketplace_id: A marketplace identifier. Specifies the marketplace where the product would be stored.
       # - rate_limit: Requests per second
@@ -1763,9 +1763,9 @@ module Peddler
       #
       # - page_size: The number of inbound plans to return in the response matching the given query.
       # - pagination_token: A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
-      # - status: The status of an inbound plan.
-      # - sort_by: Sort by field.
-      # - sort_order: The sort order.
+      # - status: The status of an inbound plan. Known values: `ACTIVE`, `VOIDED`, `SHIPPED`.
+      # - sort_by: Sort by field. Known values: `LAST_UPDATED_TIME`, `CREATION_TIME`.
+      # - sort_order: The sort order. Known values: `ASC`, `DESC`.
       # - rate_limit: Requests per second
       def list_inbound_plans: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -2218,7 +2218,7 @@ module Peddler
       #
       # - x_amzn_fulfillment_service_id: The identifier of the fulfillment service used for this operation.
       # - order_id: The ID of the order you want to retrieve.
-      # - shipments: Whether to include shipment data in the response. Included by default.
+      # - shipments: Whether to include shipment data in the response. Included by default. Known values: `INCLUDE`, `EXCLUDE`.
       # - rate_limit: Requests per second
       def get_order: (String order_id, ?x_amzn_fulfillment_service_id: String?, ?shipments: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -2238,7 +2238,7 @@ module Peddler
       # - x_amzn_fulfillment_service_id: The identifier of the fulfillment service used for this operation.
       # - updated_after: The response includes orders updated after this time. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # - page_token: A token that you use to retrieve the next page of results. The response includes `pageToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `pageToken` is `null`.
-      # - shipments: Whether to include shipment data in the response. Included by default.
+      # - shipments: Whether to include shipment data in the response. Included by default. Known values: `INCLUDE`, `EXCLUDE`.
       # - rate_limit: Requests per second
       def list_orders: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -2356,11 +2356,11 @@ module Peddler
       # - date_start: The earliest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24 hours prior to the time of the request.
       # - series: Return invoices with the specified series number.
       # - next_token: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
-      # - sort_order: Sort the invoices in the response in ascending or descending order.
+      # - sort_order: Sort the invoices in the response in ascending or descending order. Known values: `DESC`, `ASC`.
       # - invoice_type: The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
       # - statuses: A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options. Min count: 1
       # - external_invoice_id: Return invoices that match this external ID. This is typically the Government Invoice ID.
-      # - sort_by: The attribute by which you want to sort the invoices in the response.
+      # - sort_by: The attribute by which you want to sort the invoices in the response. Known values: `START_DATE_TIME`.
       # - warehouse_code: The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
       # - rate_limit: Requests per second
       def get_invoices: (String marketplace_id, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -2405,7 +2405,7 @@ module Peddler
       # - next_token: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # - page_size: The maximum number of invoices to return in a single call. Minimum: 1 Maximum: 100
       # - date_end: The latest export creation date and time for exports that you want to include in the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default value is the time of the request.
-      # - status: Return exports matching the status specified.
+      # - status: Return exports matching the status specified. Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`.
       # - warehouse_code: The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
       # - rate_limit: Requests per second
       def get_invoices_exports: (String marketplace_id, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?warehouse_code: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -2492,7 +2492,7 @@ module Peddler
       # - sku: A selling partner-provided identifier for an Amazon listing.
       # - marketplace_ids: A comma-delimited list of Amazon store identifiers for the request.
       # - issue_locale: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
-      # - included_data: A comma-delimited list of data sets to include in the response. Default: `summaries`.
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
       # - rate_limit: Requests per second
       def get_listings_item: (String seller_id, String sku, Array[String] marketplace_ids, ?issue_locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -2504,8 +2504,8 @@ module Peddler
       # - seller_id: A selling partner identifier, such as a merchant account or vendor code.
       # - sku: A selling partner-provided identifier for an Amazon listing.
       # - marketplace_ids: A comma-delimited list of Amazon store identifiers for the request.
-      # - included_data: A comma-delimited list of data sets to include in the response. Default: `issues`.
-      # - mode: Describes the mode of operation for the request.
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: `issues`. Known values: `identifiers`, `issues`.
+      # - mode: Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # - issue_locale: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
       # - body: The request body schema for the `patchListingsItem` operation.
       # - rate_limit: Requests per second
@@ -2518,8 +2518,8 @@ module Peddler
       # - seller_id: A selling partner identifier, such as a merchant account or vendor code.
       # - sku: A selling partner-provided identifier for an Amazon listing.
       # - marketplace_ids: A comma-delimited list of Amazon store identifiers for the request.
-      # - included_data: A comma-delimited list of data sets to include in the response. Default: `issues`.
-      # - mode: Describes the mode of operation for the request.
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: `issues`. Known values: `identifiers`, `issues`.
+      # - mode: Describes the mode of operation for the request. Known values: `VALIDATION_PREVIEW`.
       # - issue_locale: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
       # - body: The request body schema for the `putListingsItem` operation.
       # - rate_limit: Requests per second
@@ -2532,20 +2532,20 @@ module Peddler
       # - seller_id: A selling partner identifier, such as a merchant account or vendor code.
       # - marketplace_ids: A comma-delimited list of Amazon store identifiers for the request.
       # - issue_locale: A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
-      # - included_data: A comma-delimited list of data sets that you want to include in the response. Default: `summaries`.
+      # - included_data: A comma-delimited list of data sets that you want to include in the response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
       # - identifiers: A comma-delimited list of product identifiers that you can use to search for listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
-      # - identifiers_type: A type of product identifiers that you can use to search for listings items. **Note**: This is required when `identifiers` is provided.
+      # - identifiers_type: A type of product identifiers that you can use to search for listings items. **Note**: This is required when `identifiers` is provided. Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # - variation_parent_sku: Filters results to include listing items that are variation children of the specified SKU. **Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request.
       # - package_hierarchy_sku: Filter results to include listing items that contain or are contained by the specified SKU. **Note**: You cannot use `packageHierarchySku` if you include `identifiers` or `variationParentSku` in your request.
       # - created_after: A date-time that is used to filter listing items. The response includes listings items that were created at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - created_before: A date-time that is used to filter listing items. The response includes listings items that were created at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - last_updated_after: A date-time that is used to filter listing items. The response includes listings items that were last updated at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - last_updated_before: A date-time that is used to filter listing items. The response includes listings items that were last updated at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-      # - with_issue_severity: Filter results to include only listing items that have issues that match one or more of the specified severity levels.
-      # - with_status: Filter results to include only listing items that have the specified status.
-      # - without_status: Filter results to include only listing items that don't contain the specified statuses.
-      # - sort_by: An attribute by which to sort the returned listing items.
-      # - sort_order: The order in which to sort the result items.
+      # - with_issue_severity: Filter results to include only listing items that have issues that match one or more of the specified severity levels. Known values: `WARNING`, `ERROR`.
+      # - with_status: Filter results to include only listing items that have the specified status. Known values: `BUYABLE`, `DISCOVERABLE`.
+      # - without_status: Filter results to include only listing items that don't contain the specified statuses. Known values: `BUYABLE`, `DISCOVERABLE`.
+      # - sort_by: An attribute by which to sort the returned listing items. Known values: `sku`, `createdDate`, `lastUpdatedDate`.
+      # - sort_order: The order in which to sort the result items. Known values: `ASC`, `DESC`.
       # - page_size: The number of results that you want to include on each page.
       # - page_token: A token that you can use to fetch a specific page when there are multiple pages of results.
       # - rate_limit: Requests per second
@@ -2565,7 +2565,7 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - asin: The Amazon Standard Identification Number (ASIN) of the item.
-      # - condition_type: The condition used to filter restrictions.
+      # - condition_type: The condition used to filter restrictions. Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.
       # - seller_id: A selling partner identifier, such as a merchant account.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request.
       # - reason_locale: A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
@@ -3011,7 +3011,7 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - order_id: An Amazon-defined order identifier.
-      # - included_data: A list of datasets to include in the response.
+      # - included_data: A list of datasets to include in the response. Known values: `BUYER`, `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`, `FULFILLMENT_ORDERS`.
       # - rate_limit: Requests per second
       def get_order: (String order_id, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3024,12 +3024,12 @@ module Peddler
       # - created_before: The response includes orders created at or before this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.
       # - last_updated_after: The response includes orders updated at or after this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor `createdBefore` may be provided.
       # - last_updated_before: The response includes orders updated at or before this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: If you include `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is provided, neither `createdAfter` nor `createdBefore` may be provided.
-      # - fulfillment_statuses: A list of `FulfillmentStatus` values you can use to filter the results.
+      # - fulfillment_statuses: A list of `FulfillmentStatus` values you can use to filter the results. Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`, `CANCELLED`, `UNFULFILLABLE`.
       # - marketplace_ids: The response includes orders that were placed in marketplaces you include in this list. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.
-      # - fulfilled_by: The response includes orders that are fulfilled by the parties that you include in this list.
+      # - fulfilled_by: The response includes orders that are fulfilled by the parties that you include in this list. Known values: `MERCHANT`, `AMAZON`.
       # - max_results_per_page: The maximum number of orders that can be returned per page. The value must be between 1 and 100. **Default:** 100.
       # - pagination_token: Pagination occurs when a request produces a response that exceeds the `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page, you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not receive a `nextToken` value on the last page.
-      # - included_data: A list of datasets to include in the response.
+      # - included_data: A list of datasets to include in the response. Known values: `BUYER`, `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`, `FULFILLMENT_ORDERS`.
       # - rate_limit: Requests per second
       def search_orders: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3222,10 +3222,10 @@ module Peddler
       # - seller_id: A selling partner identifier. When provided, seller-specific requirements and values are populated within the product type definition schema, such as brand names associated with the selling partner.
       # - marketplace_ids: A comma-delimited list of Amazon marketplace identifiers for the request. Note: This parameter is limited to one marketplaceId at this time.
       # - product_type_version: The version of the Amazon product type to retrieve. Defaults to "LATEST". Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease version is currently available, the "LATEST" live version will be provided.
-      # - requirements: The name of the requirements set to retrieve requirements for.
-      # - requirements_enforced: Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates).
-      # - locale: Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request.
-      # - parentage_level: The parentage level of the listing to retrieve a schema for. When provided, the schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in a smaller schema with fewer conditions.
+      # - requirements: The name of the requirements set to retrieve requirements for. Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
+      # - requirements_enforced: Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates). Known values: `ENFORCED`, `NOT_ENFORCED`.
+      # - locale: Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request. Known values: `DEFAULT`, `ar`, `ar_AE`, `de`, `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`, `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`, `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
+      # - parentage_level: The parentage level of the listing to retrieve a schema for. When provided, the schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in a smaller schema with fewer conditions. Known values: `NONE`, `CHILD`, `PARENT`.
       # - rate_limit: Requests per second
       def get_definitions_product_type: (String product_type, Array[String] marketplace_ids, ?seller_id: String?, ?product_type_version: String?, ?requirements: String?, ?requirements_enforced: String?, ?locale: String?, ?parentage_level: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3252,7 +3252,7 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - promotion_id: The ID of the promotion.
-      # - included_data: A comma-delimited list of datasets to include in the response.
+      # - included_data: A comma-delimited list of datasets to include in the response. Known values: `ISSUES`, `SELECTION`, `CUSTOMER_SEGMENTS`.
       # - locale: The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
       # - rate_limit: Requests per second
       def get_promotion: (String promotion_id, ?included_data: Array[String]?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -3269,7 +3269,7 @@ module Peddler
       # - locale: The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
       # - pagination_token: A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
       # - limit: The maximum number of response results per page.
-      # - included_data: A comma-delimited list of datasets to include in the response.
+      # - included_data: A comma-delimited list of datasets to include in the response. Known values: `ISSUES`.
       # - rate_limit: Requests per second
       def get_selection: (String promotion_id, String selection_id, Integer revision_id, ?locale: String?, ?pagination_token: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3282,10 +3282,10 @@ module Peddler
       #
       # - marketplace_ids: The Amazon stores from which to retrieve promotions. Refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers) for a list of Amazon store values.
       # - locale: The locale from which to retrieve promotions. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
-      # - statuses: The statuses of promotions to retrieve, formatted as a comma-delimited list.
+      # - statuses: The statuses of promotions to retrieve, formatted as a comma-delimited list. Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`.
       # - asins: The ASINs to which promotions apply, formatted as a comma-delimited list.
       # - skus: The SKUs to which promotions apply, formatted as a comma-delimited list.
-      # - promotion_types: The promotion types to which promotions apply, formatted as a comma-delimited list.
+      # - promotion_types: The promotion types to which promotions apply, formatted as a comma-delimited list. Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
       # - start_date_before: Promotions that start before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
       # - start_date_after: Promotions that start after this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
       # - end_date_before: Promotions that end before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
@@ -3293,9 +3293,9 @@ module Peddler
       # - update_date_after: Filter promotions that were last modified after this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
       # - update_date_before: Filter promotions that were last modified before this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
       # - pagination_token: A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
-      # - revision: Specifies which promotion revision or revisions to match against when filtering. This controls which promotions are included in search results, not the shape of the response. The response always returns the published revision in the main body, with `latestRevision` included when the latest revision diverges.
+      # - revision: Specifies which promotion revision or revisions to match against when filtering. This controls which promotions are included in search results, not the shape of the response. The response always returns the published revision in the main body, with `latestRevision` included when the latest revision diverges. Known values: `LATEST`, `PUBLISHED`, `ANY`.
       # - limit: The maximum number of response results per page.
-      # - included_data: A comma-delimited list of datasets to include in the response.
+      # - included_data: A comma-delimited list of datasets to include in the response. Known values: `ISSUES`, `CUSTOMER_SEGMENTS`.
       # - rate_limit: Requests per second
       def search_promotions: (Array[String] marketplace_ids, ?locale: String?, ?statuses: Array[String]?, ?asins: Array[String]?, ?skus: Array[String]?, ?promotion_types: Array[String]?, ?start_date_before: String?, ?start_date_after: String?, ?end_date_before: String?, ?end_date_after: String?, ?update_date_after: String?, ?update_date_before: String?, ?pagination_token: String?, ?revision: String?, ?limit: Integer?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3410,7 +3410,7 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - report_types: A list of report types used to filter reports. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
-      # - processing_statuses: A list of processing statuses used to filter reports.
+      # - processing_statuses: A list of processing statuses used to filter reports. Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
       # - marketplace_ids: A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify.
       # - page_size: The maximum number of reports to return in a single call.
       # - created_since: The earliest report creation date and time for reports to include in the response, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. The default is 90 days ago. Reports are retained for a maximum of 90 days.
@@ -3435,8 +3435,8 @@ module Peddler
       # - marketplace_ids: A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified. For example, ATVPDKIKX0DER indicates the US marketplace.
       # - interval: A time interval used for selecting order metrics. This takes the form of two dates separated by two hyphens (first date is inclusive; second date is exclusive). Dates are in ISO8601 format and must represent absolute time (either Z notation or offset notation). Example: 2018-09-01T00:00:00-07:00--2018-09-04T00:00:00-07:00 requests order metrics for Sept 1st, 2nd and 3rd in the -07:00 zone.
       # - granularity_time_zone: An IANA-compatible time zone for determining the day boundary. Required when specifying a granularity value greater than Hour. The granularityTimeZone value must align with the offset of the specified interval value. For example, if the interval value uses Z notation, then granularityTimeZone must be UTC. If the interval value uses an offset, then granularityTimeZone must be an IANA-compatible time zone that matches the offset. Example: US/Pacific to compute day boundaries, accounting for daylight time savings, for US/Pacific zone.
-      # - granularity: The granularity of the grouping of order metrics, based on a unit of time. Specifying granularity=Hour results in a successful request only if the interval specified is less than or equal to 30 days from now. For all other granularities, the interval specified must be less or equal to 2 years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire interval that you specify. If the interval start and end date don’t align with the specified granularity, the head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of the request interval, where the day boundary is defined by the granularityTimeZone.
-      # - buyer_type: Filters the results by the buyer type that you specify, B2B (business to business) or B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B buyers.
+      # - granularity: The granularity of the grouping of order metrics, based on a unit of time. Specifying granularity=Hour results in a successful request only if the interval specified is less than or equal to 30 days from now. For all other granularities, the interval specified must be less or equal to 2 years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire interval that you specify. If the interval start and end date don’t align with the specified granularity, the head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of the request interval, where the day boundary is defined by the granularityTimeZone. Known values: `Hour`, `Day`, `Week`, `Month`, `Year`, `Total`.
+      # - buyer_type: Filters the results by the buyer type that you specify, B2B (business to business) or B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B buyers. Known values: `B2B`, `B2C`, `All`.
       # - fulfillment_network: Filters the results by the fulfillment network that you specify, MFN (merchant fulfillment network) or AFN (Amazon fulfillment network). Do not include this filter if you want the response to include order metrics for all fulfillment networks. Example: AFN, if you want the response to include order metrics for only Amazon fulfillment network.
       # - first_day_of_week: Specifies the day that the week starts on when granularity=Week, either Monday or Sunday. Default: Monday. Example: Sunday, if you want the week to start on a Sunday.
       # - asin: Filters the results by the ASIN that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all ASINs. Example: B0792R1RSN, if you want the response to include order metrics for only ASIN B0792R1RSN.
@@ -3732,11 +3732,11 @@ module Peddler
       # - service_order_ids: List of service order ids for the query you want to perform.Max values supported 20.
       # - product_order_ids: A list of up to 20 associated product order IDs. You can use these IDs to query service jobs.
       # - tracking_ids: A list of up to 20 associated product tracking IDs. You can use these IDs to query service jobs.
-      # - service_job_status: A list of one or more job status by which to filter the list of jobs.
+      # - service_job_status: A list of one or more job status by which to filter the list of jobs. Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.
       # - page_token: String returned in the response of your previous request.
       # - page_size: A non-negative integer that indicates the maximum number of jobs to return in the list, Value must be 1 - 20. Default 20.
-      # - sort_field: Sort fields on which you want to sort the output.
-      # - sort_order: Sort order for the query you want to perform.
+      # - sort_field: Sort fields on which you want to sort the output. Known values: `JOB_DATE`, `JOB_STATUS`.
+      # - sort_order: Sort order for the query you want to perform. Known values: `ASC`, `DESC`.
       # - created_after: A date used for selecting jobs created at or after a specified time. Must be in ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
       # - created_before: A date used for selecting jobs created at or before a specified time. Must be in ISO 8601 format.
       # - last_updated_after: A date used for selecting jobs updated at or after a specified time. Must be in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
@@ -3914,7 +3914,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - shipment_id: The shipment identifier originally returned by the purchaseShipment operation.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def cancel_shipment: (String shipment_id, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3923,7 +3923,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - body: Request body for the createClaim operation
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def create_claim: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3935,7 +3935,7 @@ module Peddler
       # - body: DirectPurchaseRequest body
       # - x_amzn_idempotency_key: A unique value which the server uses to recognize subsequent retries of the same request.
       # - locale: The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary language subtags.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def direct_purchase_shipment: (untyped body, ?x_amzn_idempotency_key: String?, ?locale: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3943,7 +3943,7 @@ module Peddler
       #
       # - body: GenerateCollectionFormRequest body
       # - x_amzn_idempotency_key: A unique value which the server uses to recognize subsequent retries of the same request.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def generate_collection_form: (untyped body, ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3951,10 +3951,10 @@ module Peddler
       #
       # This operation can make a dynamic sandbox call.
       #
-      # - access_point_types: Access point types
+      # - access_point_types: Access point types. Known values: `HELIX`, `CAMPUS_LOCKER`, `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.
       # - country_code: Country code for access point
       # - postal_code: postal code for access point
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_access_points: (Array[String] access_point_types, String country_code, String postal_code, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -3966,34 +3966,34 @@ module Peddler
       #
       # - request_token: The request token returned in the response to the getRates operation.
       # - rate_id: The rate identifier for the shipping offering (rate) returned in the response to the getRates operation.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_additional_inputs: (String request_token, String rate_id, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
       #
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_carrier_account_form_inputs: (?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
       # This API will return Get all carrier accounts for a merchant.
       #
       # - body: GetCarrierAccountsRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_carrier_accounts: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
       # This API reprint a collection form.
       #
       # - collection_form_id: collection form Id to reprint a collection.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_collection_form: (String collection_form_id, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
       # This API Call to get the history of the previously generated collection forms.
       #
       # - body: GetCollectionFormHistoryRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_collection_form_history: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4002,7 +4002,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - body: GetRatesRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_rates: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4014,7 +4014,7 @@ module Peddler
       # - package_client_reference_id: The package client reference identifier originally provided in the request body parameter for the getRates operation.
       # - format: The file format of the document. Must be one of the supported formats returned by the getRates operation.
       # - dpi: The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_shipment_documents: (String shipment_id, String package_client_reference_id, ?format: String?, ?dpi: (Float | Integer)?, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4024,7 +4024,7 @@ module Peddler
       #
       # - tracking_id: A carrier-generated tracking identifier originally returned by the purchaseShipment operation.
       # - carrier_id: A carrier identifier originally returned by the getRates operation for the selected rate.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_tracking: (String tracking_id, String carrier_id, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4032,7 +4032,7 @@ module Peddler
       # with an eligible carrier for manifesting shall be returned.
       #
       # - body: GetUmanifestedShipmentsRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def get_unmanifested_shipments: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4042,7 +4042,7 @@ module Peddler
       #
       # - carrier_id: An identifier for the carrier with which the seller's account is being linked.
       # - body: LinkCarrierAccountRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def link_carrier_account: (String carrier_id, untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4050,7 +4050,7 @@ module Peddler
       #
       # - carrier_id: An identifier for the carrier with which the seller's account is being linked.
       # - body: LinkCarrierAccountRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def link_carrier_account_put: (String carrier_id, untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4059,7 +4059,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - body: OneClickShipmentRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def one_click_shipment: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4073,7 +4073,7 @@ module Peddler
       #
       # - body: PurchaseShipmentRequest body
       # - x_amzn_idempotency_key: A unique value which the server uses to recognize subsequent retries of the same request.
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def purchase_shipment: (untyped body, ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4082,7 +4082,7 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - body: Request body for ndrFeedback operation
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def submit_ndr_feedback: (untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4090,7 +4090,7 @@ module Peddler
       #
       # - carrier_id: carrier Id to unlink with merchant.
       # - body: UnlinkCarrierAccountRequest body
-      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+      # - x_amzn_shipping_business_id: Amazon shipping business to assume for this request. The default is AmazonShipping_UK. Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
       # - rate_limit: Requests per second
       def unlink_carrier_account: (String carrier_id, untyped body, ?x_amzn_shipping_business_id: String?, ?rate_limit: (Float | Integer)?) -> Response
     end
@@ -4212,7 +4212,7 @@ module Peddler
       # - case_id: The case identifier.
       # - max_results: The maximum number of results to include in the response.
       # - next_token: A token to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
-      # - sort_order: Sort the returned contacts by `createdDate` in either ascending or descending order.
+      # - sort_order: Sort the returned contacts by `createdDate` in either ascending or descending order. Known values: `ASC`, `DESC`.
       # - rate_limit: Requests per second
       def list_contacts: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?rate_limit: (Float | Integer)?) -> Response
 
@@ -4287,7 +4287,7 @@ module Peddler
       #
       # - page_token: A token to fetch a certain page when there are multiple pages worth of results.
       # - marketplace_id: An identifier for the marketplace in which the resource operates.
-      # - vehicle_type: An identifier for vehicle type.
+      # - vehicle_type: An identifier for vehicle type. Known values: `CAR`, `MOTORBIKE`.
       # - updated_after: Date in ISO 8601 format, if provided only vehicles which are modified/added to Amazon's catalog after this date will be returned.
       # - rate_limit: Requests per second
       def get_vehicles: (String marketplace_id, String vehicle_type, ?page_token: String?, ?updated_after: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -4333,11 +4333,11 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - ship_from_party_id: The vendor warehouse identifier for the fulfillment warehouse. If not specified, the result will contain orders for all warehouses.
-      # - status: Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status.
+      # - status: Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
       # - limit: The limit to the number of purchase orders returned.
       # - created_after: Purchase orders that became available after this date and time will be included in the result. Must be in ISO-8601 date/time format.
       # - created_before: Purchase orders that became available before this date and time will be included in the result. Must be in ISO-8601 date/time format.
-      # - sort_order: Sort the list in ascending or descending order by order creation date.
+      # - sort_order: Sort the list in ascending or descending order by order creation date. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
       # - include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
       # - rate_limit: Requests per second
@@ -4377,11 +4377,11 @@ module Peddler
       # This operation can make a dynamic sandbox call.
       #
       # - ship_from_party_id: The vendor warehouse identifier for the fulfillment warehouse. If not specified, the result will contain orders for all warehouses.
-      # - status: Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status.
+      # - status: Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
       # - limit: The limit to the number of purchase orders returned.
       # - created_after: Purchase orders that became available after this date and time will be included in the result. Must be in ISO-8601 date/time format.
       # - created_before: Purchase orders that became available before this date and time will be included in the result. Must be in ISO-8601 date/time format.
-      # - sort_order: Sort the list in ascending or descending order by order creation date.
+      # - sort_order: Sort the list in ascending or descending order by order creation date. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
       # - include_details: When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
       # - rate_limit: Requests per second
@@ -4610,7 +4610,7 @@ module Peddler
       # - limit: The maximum number of records to return.
       # - created_after: Packing slips that become available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # - created_before: Packing slips that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-      # - sort_order: The packing slip creation dates, which are sorted by ascending or descending order.
+      # - sort_order: The packing slip creation dates, which are sorted by ascending or descending order. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
       # - rate_limit: Requests per second
       def get_packing_slips: (String created_after, String created_before, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -4737,14 +4737,14 @@ module Peddler
       # - limit: The limit to the number of records returned. Default value is 100 records.
       # - created_after: Purchase orders that became available after this time will be included in the result. Must be in ISO-8601 date/time format.
       # - created_before: Purchase orders that became available before this time will be included in the result. Must be in ISO-8601 date/time format.
-      # - sort_order: Sort in ascending or descending order by purchase order creation date.
+      # - sort_order: Sort in ascending or descending order by purchase order creation date. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there is more purchase orders than the specified result size limit. The token value is returned in the previous API call
       # - include_details: When true, returns purchase orders with complete details. Otherwise, only purchase order numbers are returned. Default value is true.
       # - changed_after: Purchase orders that changed after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - changed_before: Purchase orders that changed before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - po_item_state: Current state of the purchase order item. If this value is Cancelled, this API will return purchase orders which have one or more items cancelled by Amazon with updated item quantity as zero.
       # - is_po_changed: When true, returns purchase orders which were modified after the order was placed. Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the original one. Default value is false.
-      # - purchase_order_state: Filters purchase orders based on the purchase order state.
+      # - purchase_order_state: Filters purchase orders based on the purchase order state. Known values: `New`, `Acknowledged`, `Closed`.
       # - ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
       # - rate_limit: Requests per second
       def get_purchase_orders: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: bool?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: bool?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?rate_limit: (Float | Integer)?) -> Response
@@ -4759,16 +4759,16 @@ module Peddler
       # This operation can make a static sandbox call.
       #
       # - limit: The limit to the number of records returned. Default value is 100 records.
-      # - sort_order: Sort in ascending or descending order by purchase order creation date.
+      # - sort_order: Sort in ascending or descending order by purchase order creation date. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there are more purchase orders than the specified result size limit.
       # - created_after: Purchase orders that became available after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - created_before: Purchase orders that became available before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - updated_after: Purchase orders for which the last purchase order update happened after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - updated_before: Purchase orders for which the last purchase order update happened before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
       # - purchase_order_number: Provides purchase order status for the specified purchase order number.
-      # - purchase_order_status: Filters purchase orders based on the specified purchase order status. If not included in filter, this will return purchase orders for all statuses.
-      # - item_confirmation_status: Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included.
-      # - item_receive_status: Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included.
+      # - purchase_order_status: Filters purchase orders based on the specified purchase order status. If not included in filter, this will return purchase orders for all statuses. Known values: `OPEN`, `CLOSED`.
+      # - item_confirmation_status: Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included. Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.
+      # - item_receive_status: Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included. Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.
       # - ordering_vendor_code: Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase orders for all the vendor codes that exist in the vendor group used to authorize API client application are returned.
       # - ship_to_party_id: Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order. If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor group purchase orders.
       # - rate_limit: Requests per second
@@ -4795,7 +4795,7 @@ module Peddler
       # related to shipment based on the filter parameters value that you specify.
       #
       # - limit: The limit to the number of records returned. Default value is 50 records.
-      # - sort_order: Sort in ascending or descending order by purchase order creation date.
+      # - sort_order: Sort in ascending or descending order by purchase order creation date. Known values: `ASC`, `DESC`.
       # - next_token: Used for pagination when there are more shipments than the specified result size limit.
       # - created_after: Get Shipment Details that became available after this timestamp will be included in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # - created_before: Get Shipment Details that became available before this timestamp will be included in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
@@ -4827,7 +4827,7 @@ module Peddler
       # Returns small parcel shipment labels based on the filters that you specify.
       #
       # - limit: The limit to the number of records returned. Default value is 50 records.
-      # - sort_order: Sort the list by shipment label creation date in ascending or descending order.
+      # - sort_order: Sort the list by shipment label creation date in ascending or descending order. Known values: `ASC`, `DESC`.
       # - next_token: A token that you use to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # - label_created_after: Shipment labels created after this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
       # - label_created_before: Shipment labels created before this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.

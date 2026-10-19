@@ -14,6 +14,7 @@ module Peddler
 
         attribute(:image, ImageComponent, null: false)
 
+        # Known values: `LEFT`, `RIGHT`.
         attribute(:position_type, String, null: false, from: "positionType")
 
         attribute?(:body_text, ParagraphComponent, from: "bodyText")

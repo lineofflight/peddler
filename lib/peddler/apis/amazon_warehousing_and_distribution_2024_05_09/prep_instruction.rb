@@ -9,6 +9,7 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Information pertaining to the preparation of inbound products.
       PrepInstruction = Structure.new do
+        # Known values: `AMAZON`, `SELF`.
         attribute?(:prep_owner, String, from: "prepOwner")
 
         # The type of preparation to be done. For more information about preparing items, refer to [Prep

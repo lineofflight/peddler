@@ -152,7 +152,7 @@ pub struct ItemQuantity {
     pub amount: ::std::option::Option<i64>,
     /**Unit of measure for the acknowledged quantity.
 
-Known values: "Each". Other values may be returned by Amazon.*/
+Known values: `Each`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "unitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -231,7 +231,7 @@ pub struct OrderDetails {
     pub order_date: ::chrono::DateTime<::chrono::offset::Utc>,
     /**Current status of the order.
 
-Known values: "NEW", "SHIPPED", "ACCEPTED", "CANCELLED". Other values may be returned by Amazon.*/
+Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "orderStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -468,7 +468,7 @@ pub struct TaxDetails {
     pub taxable_amount: ::std::option::Option<Money>,
     /**Tax type.
 
-Known values: "CONSUMPTION", "GST", "MwSt.", "PST", "TOTAL", "TVA", "VAT". Other values may be returned by Amazon.*/
+Known values: `CONSUMPTION`, `GST`, `MwSt.`, `PST`, `TOTAL`, `TVA`, `VAT`. Other values may be returned by Amazon.*/
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
 }
@@ -522,7 +522,7 @@ pub struct TaxRegistrationDetails {
     pub tax_registration_number: ::std::string::String,
     /**Tax registration type for the entity.
 
-Known values: "VAT", "GST". Other values may be returned by Amazon.*/
+Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"

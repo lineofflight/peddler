@@ -13,7 +13,7 @@ module Peddler
         # query was submitted.
         attribute(:account_id, String, null: false, from: "accountId")
 
-        # The processing status of the query.
+        # The processing status of the query. Known values: `CANCELLED`, `DONE`, `FATAL`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # The submitted query.

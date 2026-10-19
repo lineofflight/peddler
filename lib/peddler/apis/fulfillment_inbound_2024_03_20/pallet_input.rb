@@ -14,6 +14,7 @@ module Peddler
 
         attribute?(:dimensions, Dimensions)
 
+        # Known values: `STACKABLE`, `NON_STACKABLE`.
         attribute?(:stackability, String)
 
         attribute?(:weight, Weight)

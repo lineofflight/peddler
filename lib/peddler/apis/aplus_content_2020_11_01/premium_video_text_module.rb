@@ -12,6 +12,7 @@ module Peddler
       PremiumVideoTextModule = Structure.new do
         attribute(:headline, TextComponent, null: false)
 
+        # Known values: `LEFT`, `RIGHT`.
         attribute(:position_type, String, null: false, from: "positionType")
 
         attribute(:video, VideoComponent, null: false)

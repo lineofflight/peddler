@@ -18,6 +18,7 @@ module Peddler
 
         attribute?(:mobile_image, ImageComponent, from: "mobileImage")
 
+        # Known values: `LEFT`, `RIGHT`.
         attribute?(:position_type, String, from: "positionType")
 
         attribute?(:subheadline, TextComponent)

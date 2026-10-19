@@ -24,6 +24,8 @@ module Peddler
 
         attribute?(:package_items, [Item], from: "packageItems")
 
+        # Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`,
+        # `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`.
         attribute?(:package_status, String, from: "packageStatus")
 
         attribute?(:tracking_details, TrackingDetails, from: "trackingDetails")

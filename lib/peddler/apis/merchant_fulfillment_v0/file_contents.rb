@@ -15,6 +15,7 @@ module Peddler
         # Data for printing labels encoded into a Base64, GZip-compressed string.
         attribute(:contents, String, null: false, from: "Contents")
 
+        # Known values: `application/pdf`, `application/zpl`, `image/png`.
         attribute(:file_type, String, null: false, from: "FileType")
       end
     end

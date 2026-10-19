@@ -12,7 +12,7 @@ module Peddler
         # The tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
         attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
-        # The tax registration type for the entity.
+        # The tax registration type for the entity. Known values: `VAT`, `GST`, `LocalTaxNumber`.
         attribute(:tax_registration_type, String, null: false, from: "taxRegistrationType")
       end
     end

@@ -17,7 +17,8 @@ module Peddler
 
         attribute(:fulfillment_shipment_item, [FulfillmentShipmentItem], null: false, from: "fulfillmentShipmentItem")
 
-        # The current status of the shipment.
+        # The current status of the shipment. Known values: `PENDING`, `SHIPPED`, `CANCELLED_BY_FULFILLER`,
+        # `CANCELLED_BY_SELLER`.
         attribute(:fulfillment_shipment_status, String, null: false, from: "fulfillmentShipmentStatus")
 
         # The estimated arrival date and time of the shipment, in ISO 8601 date time format. Note that this value can

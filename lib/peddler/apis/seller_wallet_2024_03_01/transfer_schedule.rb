@@ -13,7 +13,7 @@ module Peddler
         # field.
         attribute(:transaction_destination_account, TransactionAccount, null: false, from: "transactionDestinationAccount")
 
-        # The type of transfer.
+        # The type of transfer. Known values: `CREDIT`, `DEBIT`.
         attribute(:transaction_type, String, null: false, from: "transactionType")
 
         # A list of transfer schedule failures.
@@ -26,7 +26,8 @@ module Peddler
         # schedule.
         attribute(:transfer_schedule_information, TransferScheduleInformation, null: false, from: "transferScheduleInformation")
 
-        # The type of transfer schedule. This information can be modified when you update a transfer schedule.
+        # The type of transfer schedule. This information can be modified when you update a transfer schedule. Known
+        # values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`.
         attribute(:transfer_schedule_status, String, null: false, from: "transferScheduleStatus")
 
         # The payment preference of the scheduled transfer. This information can be modified when you update a transfer

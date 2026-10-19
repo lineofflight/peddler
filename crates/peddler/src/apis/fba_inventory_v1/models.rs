@@ -287,7 +287,7 @@ pub struct ResearchingQuantity {
 pub struct ResearchingQuantityEntry {
     /**The duration of the research.
 
-Known values: "researchingQuantityInShortTerm", "researchingQuantityInMidTerm", "researchingQuantityInLongTerm". Other values may be returned by Amazon.*/
+Known values: `researchingQuantityInShortTerm`, `researchingQuantityInMidTerm`, `researchingQuantityInLongTerm`. Other values may be returned by Amazon.*/
     pub name: ::std::string::String,
     ///The number of units.
     pub quantity: i64,

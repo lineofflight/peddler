@@ -12,7 +12,7 @@ pub struct Notification {
     pub notification_metadata: NotificationMetadata,
     /**The type of the notification.
 
-Known values: "LISTINGS_ITEM_ISSUES_CHANGE". Other values may be returned by Amazon.*/
+Known values: `LISTINGS_ITEM_ISSUES_CHANGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
     ///The version of the notification.
@@ -46,7 +46,9 @@ pub struct Payload {
     ///The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated with the listings item.
     #[serde(rename = "Asin", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Array of enforcement actions taken by Amazon for the issues associated with the affected listings item.
+    /**Array of enforcement actions taken by Amazon for the issues associated with the affected listings item.
+
+Known values: `SEARCH_SUPPRESSED`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "EnforcementActions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -63,7 +65,9 @@ pub struct Payload {
     ///Selling partner identifier, such as a merchant account or vendor code, of the affected listings item.
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
-    ///Array of severities for the issues currently associated with the affected listings item. When no issues are affecting the listings item, "NONE" is provided instead.
+    /**Array of severities for the issues currently associated with the affected listings item. When no issues are affecting the listings item, "NONE" is provided instead.
+
+Known values: `NONE`, `ERROR`, `WARNING`. Other values may be returned by Amazon.*/
     #[serde(rename = "Severities")]
     pub severities: ::std::vec::Vec<::std::string::String>,
     ///Identifier of the affected listings item.

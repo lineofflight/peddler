@@ -12,7 +12,7 @@ module Peddler
         # The charge value before taxes.
         attribute(:base_charge, ChargeBreakup, null: false, from: "baseCharge")
 
-        # The type of charge.
+        # The type of charge. Known values: `PRODUCT`, `SHIPPING`, `GIFT_WRAP`, `TOTAL`, `OTHER`.
         attribute(:charge_type, String, null: false, from: "chargeType")
 
         # The total charge, including the base charge and taxes.

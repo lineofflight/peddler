@@ -26,6 +26,7 @@ module Peddler
         # The external ID of the invoices you want included in the response.
         attribute?(:external_invoice_id, String, from: "externalInvoiceId")
 
+        # Known values: `XML`.
         attribute?(:file_format, String, from: "fileFormat")
 
         # The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to

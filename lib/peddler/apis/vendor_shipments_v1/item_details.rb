@@ -18,7 +18,8 @@ module Peddler
         # mfgDate and expiryAfterDuration. These are mandatory for perishable items.
         attribute?(:expiry, Expiry)
 
-        # Identification of the instructions on how specified item/carton/pallet should be handled.
+        # Identification of the instructions on how specified item/carton/pallet should be handled. Known values:
+        # `Oversized`, `Fragile`, `Food`, `HandleWithCare`.
         attribute?(:handling_code, String, from: "handlingCode")
 
         # The batch or lot number associates an item with information the manufacturer considers relevant for
@@ -32,7 +33,7 @@ module Peddler
         attribute?(:lot_number_source_reference, String, from: "lotNumberSourceReference")
 
         # The identifier type used for the lot number source. Provide this field when you specify
-        # `lotNumberSourceReference`.
+        # `lotNumberSourceReference`. Known values: `GLN`, `FFRN`, `USDA_E`, `URL`.
         attribute?(:lot_number_source_type, String, from: "lotNumberSourceType")
 
         # Maximum retail price of the item being shipped.

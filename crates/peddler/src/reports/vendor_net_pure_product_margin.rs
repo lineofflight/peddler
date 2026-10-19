@@ -63,16 +63,14 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**The report type.
 
-Known values: "GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
 ///Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    /**Determines the period by which data in the report is aggregated. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
-
-Known values: "DAY", "WEEK", "MONTH", "QUARTER", "YEAR". Other values may be returned by Amazon.*/
+    ///Determines the period by which data in the report is aggregated. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

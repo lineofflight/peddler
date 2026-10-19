@@ -18,7 +18,8 @@ module Peddler
         # The number of calendar days from the base date (invoice date) until the total amount on the invoice is due.
         attribute?(:net_due_days, Float, from: "netDueDays")
 
-        # The payment term type for the invoice.
+        # The payment term type for the invoice. Known values: `Basic`, `EndOfMonth`, `FixedDate`, `Proximo`,
+        # `PaymentDueUponReceiptOfInvoice`, `LetterofCredit`.
         attribute?(:type, String)
       end
     end

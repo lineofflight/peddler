@@ -9,7 +9,8 @@ module Peddler
     module Orders20260101
       # Substitution preference for an order item when it becomes unavailable during fulfillment.
       ItemSubstitutionPreference = Structure.new do
-        # Source and nature of the substitution preferences for this item.
+        # Source and nature of the substitution preferences for this item. Known values: `CUSTOMER_PREFERENCE`,
+        # `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`.
         attribute(:substitution_type, String, null: false, from: "substitutionType")
 
         # List of alternative products that can be substituted for the original item if it becomes unavailable.

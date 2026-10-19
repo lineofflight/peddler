@@ -17,6 +17,7 @@ module Peddler
         # Creation Time for this account.
         attribute?(:creation_date, Time, from: "creationDate")
 
+        # Known values: `Completed`, `InProgress`.
         attribute?(:generation_status, String, from: "generationStatus")
 
         attribute?(:ship_from_address, Address, from: "shipFromAddress")

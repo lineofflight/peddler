@@ -12,7 +12,7 @@ module Peddler
         # The unique invoice identifier (NF-e access key for Brazilian invoices).
         attribute(:id, String, null: false)
 
-        # The current status of this invoice.
+        # The current status of this invoice. Known values: `Processing`, `Accepted`, `Rejected`, `NotFound`.
         attribute(:status, String, null: false)
       end
     end

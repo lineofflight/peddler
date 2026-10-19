@@ -18,7 +18,7 @@ module Peddler
         # Delivery information for the item.
         attribute?(:item_delivery, ItemDelivery, from: "itemDelivery")
 
-        # The status of the item.
+        # The status of the item. Known values: `ACTIVE`, `CANCELLED`, `SHIPPED`, `DELIVERED`.
         attribute?(:item_status, String, from: "itemStatus")
 
         # A list of customer-owned assets on which the service must be performed.

@@ -38,7 +38,7 @@ module Peddler
         # When `true`, the order contains customizable items.
         attribute?(:has_customizable_items, :boolean, from: "hasCustomizableItems")
 
-        # Current status of the order.
+        # Current status of the order. Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
         attribute?(:order_status, String, from: "orderStatus")
 
         attribute?(:tax_total, TaxItemDetails, from: "taxTotal")

@@ -12,7 +12,7 @@ module Peddler
         # When true, the regulated information provided in the order requires a review by the merchant.
         attribute(:requires_merchant_action, :boolean, null: false, from: "RequiresMerchantAction")
 
-        # The verification status of the order.
+        # The verification status of the order. Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`.
         attribute(:status, String, null: false, from: "Status")
 
         # A list of valid rejection reasons that may be used to reject the order's regulated information.

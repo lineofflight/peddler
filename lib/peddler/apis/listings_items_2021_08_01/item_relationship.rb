@@ -9,7 +9,7 @@ module Peddler
     module ListingsItems20210801
       # The relationship details for a listing item.
       ItemRelationship = Structure.new do
-        # The type of relationship.
+        # The type of relationship. Known values: `VARIATION`, `PACKAGE_HIERARCHY`.
         attribute(:type, String, null: false)
 
         # Identifiers (SKUs) of the related items that are children of this listing item.

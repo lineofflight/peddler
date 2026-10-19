@@ -9,7 +9,7 @@ module Peddler
     module ApplicationIntegrations20240401
       # The request for the `recordActionFeedback` operation.
       RecordActionFeedbackRequest = Structure.new do
-        # The unique identifier for each notification status.
+        # The unique identifier for each notification status. Known values: `SELLER_ACTION_COMPLETED`.
         attribute(:feedback_action_code, String, null: false, from: "feedbackActionCode")
       end
     end

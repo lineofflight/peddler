@@ -9,10 +9,13 @@ module Peddler
     module MerchantFulfillmentV0
       # Details related to any dangerous goods or items that are shipped.
       DangerousGoodsDetails = Structure.new do
-        # The specific packaging group of the item being shipped.
+        # The specific packaging group of the item being shipped. Known values: `I`, `II`, `III`.
         attribute?(:packing_group, String, from: "PackingGroup")
 
-        # The specific packing instruction of the item being shipped.
+        # The specific packing instruction of the item being shipped. Known values: `PI965_SECTION_IA`,
+        # `PI965_SECTION_IB`, `PI965_SECTION_II`, `PI966_SECTION_I`, `PI966_SECTION_II`, `PI967_SECTION_I`,
+        # `PI967_SECTION_II`, `PI968_SECTION_IA`, `PI968_SECTION_IB`, `PI969_SECTION_I`, `PI969_SECTION_II`,
+        # `PI970_SECTION_I`, `PI970_SECTION_II`.
         attribute?(:packing_instruction, String, from: "PackingInstruction")
 
         # The specific regulatory class of the shipped item.

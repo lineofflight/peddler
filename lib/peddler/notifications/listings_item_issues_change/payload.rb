@@ -13,7 +13,7 @@ module Peddler
         attribute(:seller_id, String, null: false, from: "SellerId")
 
         # Array of severities for the issues currently associated with the affected listings item. When no issues are
-        # affecting the listings item, "NONE" is provided instead.
+        # affecting the listings item, "NONE" is provided instead. Known values: `NONE`, `ERROR`, `WARNING`.
         attribute(:severities, [String], null: false, from: "Severities")
 
         # Identifier of the affected listings item.
@@ -23,7 +23,8 @@ module Peddler
         # item.
         attribute?(:asin, String, from: "Asin")
 
-        # Array of enforcement actions taken by Amazon for the issues associated with the affected listings item.
+        # Array of enforcement actions taken by Amazon for the issues associated with the affected listings item. Known
+        # values: `SEARCH_SUPPRESSED`.
         attribute?(:enforcement_actions, [String], from: "EnforcementActions")
 
         # Amazon marketplace identifier of the affected listings item.

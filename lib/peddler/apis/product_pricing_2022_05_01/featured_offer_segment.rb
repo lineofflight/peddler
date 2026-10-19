@@ -9,7 +9,7 @@ module Peddler
     module ProductPricing20220501
       # Describes the segment in which the offer is featured.
       FeaturedOfferSegment = Structure.new do
-        # The customer membership type that makes up this segment
+        # The customer membership type that makes up this segment. Known values: `PRIME`, `NON_PRIME`, `DEFAULT`.
         attribute(:customer_membership, String, null: false, from: "customerMembership")
 
         # The details about the segment.

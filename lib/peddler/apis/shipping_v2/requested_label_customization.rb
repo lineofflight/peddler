@@ -9,6 +9,7 @@ module Peddler
     module ShippingV2
       # Object contains customised data requested by a shipper to be printed on a shipping label.
       RequestedLabelCustomization = Structure.new do
+        # Known values: `PACKAGE_CLIENT_REFERENCE_ID`, `SELLER_DISPLAY_NAME`, `COLLECT_ON_DELIVERY_AMOUNT`.
         attribute?(:request_attributes, Array, from: "requestAttributes")
       end
     end

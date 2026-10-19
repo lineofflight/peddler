@@ -11,6 +11,7 @@ module Peddler
       FeaturedOfferExpectedPriceRequest = Structure.new do
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
+        # Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         attribute(:sku, String, null: false)

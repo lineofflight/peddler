@@ -24,7 +24,8 @@ module Peddler
 
         # Indicates if this shipment confirmation is the initial confirmation, or intended to replace an already posted
         # shipment confirmation. If replacing an existing shipment confirmation, be sure to provide the identical
-        # shipmentIdentifier and sellingParty information as in the previous confirmation.
+        # shipmentIdentifier and sellingParty information as in the previous confirmation. Known values: `Original`,
+        # `Replace`.
         attribute(:shipment_confirmation_type, String, null: false, from: "shipmentConfirmationType")
 
         # Unique shipment ID (not used over the last 365 days).
@@ -54,10 +55,11 @@ module Peddler
 
         attribute?(:shipment_measurements, ShipmentMeasurements, from: "shipmentMeasurements")
 
-        # Shipment hierarchical structure.
+        # Shipment hierarchical structure. Known values: `PalletizedAssortmentCase`, `LooseAssortmentCase`,
+        # `PalletOfItems`, `PalletizedStandardCase`, `LooseStandardCase`, `MasterPallet`, `MasterCase`.
         attribute?(:shipment_structure, String, from: "shipmentStructure")
 
-        # The type of shipment.
+        # The type of shipment. Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`.
         attribute?(:shipment_type, String, from: "shipmentType")
 
         # The date and time of the departure of the shipment from the vendor's location. Vendors are requested to send

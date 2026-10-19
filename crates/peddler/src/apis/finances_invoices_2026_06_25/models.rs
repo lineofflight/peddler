@@ -213,12 +213,12 @@ pub struct InvoiceHeader {
     pub invoice_settlement_breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
     /**The current state of the invoice.
 
-Known values: "IN_PROGRESS", "REJECTED", "PARTIALLY_PAID", "PARTIALLY_DEDUCTED", "PAID", "DEDUCTED". Other values may be returned by Amazon.*/
+Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`, `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`. Other values may be returned by Amazon.*/
     #[serde(rename = "invoiceStatus")]
     pub invoice_status: ::std::string::String,
     /**The type of invoice.
 
-Known values: "AP_INVENTORY", "OTHER". Other values may be returned by Amazon.*/
+Known values: `AP_INVENTORY`, `OTHER`. Other values may be returned by Amazon.*/
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
     ///When the invoice was issued. In ISO 8601 format.
@@ -294,7 +294,7 @@ pub struct InvoiceItem {
 pub struct ItemIdentifier {
     /**The type of item identifier.
 
-Known values: "ASIN", "EXTERNAL_ID", "SKU", "UPC", "EAN", "ISBN". Other values may be returned by Amazon.*/
+Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`. Other values may be returned by Amazon.*/
     #[serde(rename = "itemIdentifierName")]
     pub item_identifier_name: ::std::string::String,
     ///The value of the item identifier.
@@ -318,7 +318,7 @@ pub struct LineItemContext {
     pub item_identifiers: ::std::option::Option<::std::vec::Vec<ItemIdentifier>>,
     /**The type of line item.
 
-Known values: "GOODS", "SERVICES", "OTHERS". Other values may be returned by Amazon.*/
+Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Amazon.*/
     #[serde(rename = "lineItemType")]
     pub line_item_type: ::std::string::String,
     ///Information related to matching of invoiced quantity with Amazon systems.
@@ -335,7 +335,7 @@ Known values: "GOODS", "SERVICES", "OTHERS". Other values may be returned by Ama
     pub service_charge_period: ::std::option::Option<ServiceChargePeriod>,
     /**The type of service charge.
 
-Known values: "DAMAGE_ALLOWANCE", "PRICE_PROTECTION", "FBA_INVENTORY_STORAGE_FEE", "OTHER". Other values may be returned by Amazon.*/
+Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`, `OTHER`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "serviceChargeType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -408,7 +408,7 @@ pub struct PartnerMetadata {
     pub partner_name: ::std::option::Option<::std::string::String>,
     /**The type of partner.
 
-Known values: "SELLER", "VENDOR", "AMAZON". Other values may be returned by Amazon.*/
+Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amazon.*/
     #[serde(rename = "partnerType")]
     pub partner_type: ::std::string::String,
     ///The tax registration number of the partner.
@@ -423,7 +423,7 @@ Known values: "SELLER", "VENDOR", "AMAZON". Other values may be returned by Amaz
 pub struct RelatedIdentifier {
     /**The name of the related identifier.
 
-Known values: "PAYEE_CODE", "PURCHASE_ORDER_IDS", "SHORTAGE_INVOICE_IDS", "ASN_IDS", "RETURN_IDS", "AGREEMENT_IDS", "PRODUCT_LINE", "VENDOR_CODE", "UNIQUE_PAYMENT_IDS", "WAREHOUSE_ID". Other values may be returned by Amazon.*/
+Known values: `PAYEE_CODE`, `PURCHASE_ORDER_IDS`, `SHORTAGE_INVOICE_IDS`, `ASN_IDS`, `RETURN_IDS`, `AGREEMENT_IDS`, `PRODUCT_LINE`, `VENDOR_CODE`, `UNIQUE_PAYMENT_IDS`, `WAREHOUSE_ID`. Other values may be returned by Amazon.*/
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding related identifier values.
@@ -479,7 +479,7 @@ pub struct VarianceReason {
     pub defect_types: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**The type of variance.
 
-Known values: "PQV", "PPV", "OTHER". Other values may be returned by Amazon.*/
+Known values: `PQV`, `PPV`, `OTHER`. Other values may be returned by Amazon.*/
     #[serde(rename = "varianceType")]
     pub variance_type: ::std::string::String,
 }

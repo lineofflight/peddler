@@ -9,14 +9,14 @@ module Peddler
     module VendorSales
       # Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
       ReportOptions = Structure.new do
-        # The distributor view.
+        # The distributor view. Known values: `MANUFACTURING`, `SOURCING`.
         attribute(:distributor_view, String, null: false, from: "distributorView")
 
         # Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER,
         # YEAR.
         attribute(:report_period, String, null: false, from: "reportPeriod")
 
-        # The selling program.
+        # The selling program. Known values: `RETAIL`, `BUSINESS`, `FRESH`.
         attribute(:selling_program, String, null: false, from: "sellingProgram")
       end
     end

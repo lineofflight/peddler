@@ -16,7 +16,8 @@ module Peddler
         # A list of path forward links that may allow Selling Partners to remove the restriction.
         attribute?(:links, [Link])
 
-        # A code indicating why the listing is restricted.
+        # A code indicating why the listing is restricted. Known values: `APPROVAL_REQUIRED`, `ASIN_NOT_FOUND`,
+        # `NOT_ELIGIBLE`.
         attribute?(:reason_code, String, from: "reasonCode")
       end
     end

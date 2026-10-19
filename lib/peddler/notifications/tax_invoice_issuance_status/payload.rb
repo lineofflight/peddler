@@ -19,7 +19,7 @@ module Peddler
         # The identifier for the Amazon store where the invoice was issued.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # The status of the tax invoice issuance.
+        # The status of the tax invoice issuance. Known values: `SUCCESS`, `ERROR`.
         attribute(:status, String, null: false)
 
         # Error details when the invoice issuance fails. Only present for error statuses.

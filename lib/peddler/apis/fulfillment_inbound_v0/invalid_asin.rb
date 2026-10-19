@@ -12,7 +12,7 @@ module Peddler
         # The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")
 
-        # The reason that the ASIN is invalid.
+        # The reason that the ASIN is invalid. Known values: `DoesNotExist`, `InvalidASIN`.
         attribute?(:error_reason, String, from: "ErrorReason")
       end
     end

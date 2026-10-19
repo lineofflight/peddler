@@ -19,9 +19,7 @@ pub struct ReportRecommendationsItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub b2b_sales_rank: ::std::option::Option<i64>,
-    /**A general measure of how much the business sales rank has grown (relative to other products in the category) over the past 30 days displayed as 'HIGH', 'MEDIUM', or 'LOW'.
-
-Known values: "HIGH", "MEDIUM", "LOW". Other values may be returned by Amazon.*/
+    ///A general measure of how much the business sales rank has grown (relative to other products in the category) over the past 30 days displayed as 'HIGH', 'MEDIUM', or 'LOW'.
     #[serde(
         rename = "b2bSalesRankGrowth",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -100,9 +98,7 @@ Known values: "HIGH", "MEDIUM", "LOW". Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub offer_count: ::std::option::Option<i64>,
-    /**A general measure of how many times the product has been viewed in the past 30 days displayed as 'HIGH', 'MEDIUM', or 'LOW'.
-
-Known values: "HIGH", "MEDIUM", "LOW". Other values may be returned by Amazon.*/
+    ///A general measure of how many times the product has been viewed in the past 30 days displayed as 'HIGH', 'MEDIUM', or 'LOW'.
     #[serde(
         rename = "pageViews",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -114,9 +110,7 @@ Known values: "HIGH", "MEDIUM", "LOW". Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub part_number: ::std::option::Option<::std::string::String>,
-    /**A general measure of product sales to Amazon Business customers over the past 30 days displayed as 'TIER_1', 'TIER_2', and 'TIER_3' where 'TIER_1' is best performing and 'TIER_3' is least performing. Product performance is based on the business sales rank.
-
-Known values: "TIER_1", "TIER_2", "TIER_3". Other values may be returned by Amazon.*/
+    ///A general measure of product sales to Amazon Business customers over the past 30 days displayed as 'TIER_1', 'TIER_2', and 'TIER_3' where 'TIER_1' is best performing and 'TIER_3' is least performing. Product performance is based on the business sales rank.
     #[serde(
         rename = "productPerformance",
         skip_serializing_if = "::std::option::Option::is_none"

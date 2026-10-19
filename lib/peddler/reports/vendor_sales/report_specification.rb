@@ -32,7 +32,7 @@ module Peddler
         # Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # The report type.
+        # The report type. Known values: `GET_VENDOR_SALES_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

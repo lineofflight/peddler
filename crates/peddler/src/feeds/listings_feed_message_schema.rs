@@ -70,9 +70,7 @@ pub enum Feed {
         ///Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        /**Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
-
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
         ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
@@ -116,9 +114,7 @@ Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other val
 ///Individual JSON Patch operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemJsonPatchOperationsItem {
-    /**Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
-
-Known values: "add", "replace", "merge", "delete". Other values may be returned by Amazon.*/
+    ///Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
     pub op: ::std::string::String,
     ///JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
     pub path: ::std::string::String,
@@ -228,9 +224,7 @@ enum FeedDecode {
         ///Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        /**Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
-
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
         ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.

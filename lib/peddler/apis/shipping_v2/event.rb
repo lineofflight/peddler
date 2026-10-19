@@ -10,6 +10,9 @@ module Peddler
     module ShippingV2
       # A tracking event.
       Event = Structure.new do
+        # Known values: `ReadyForReceive`, `PickupDone`, `Delivered`, `Departed`, `DeliveryAttempted`, `Lost`,
+        # `OutForDelivery`, `ArrivedAtCarrierFacility`, `Rejected`, `Undeliverable`, `PickupCancelled`,
+        # `ReturnInitiated`, `AvailableForPickup`, `RecipientRequestedAlternateDeliveryTiming`.
         attribute(:event_code, String, null: false, from: "eventCode")
 
         # The ISO 8601 formatted timestamp of the event.
@@ -17,6 +20,7 @@ module Peddler
 
         attribute?(:location, Location)
 
+        # Known values: `FORWARD`, `RETURNS`.
         attribute?(:shipment_type, String, from: "shipmentType")
       end
     end

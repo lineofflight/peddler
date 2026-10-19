@@ -9,19 +9,21 @@ module Peddler
     module Orders20260101
       # Special shipping requirements and restrictions that must be observed when shipping an order item.
       ItemShippingConstraints = Structure.new do
-        # Payment must be collected from the customer at the time of delivery.
+        # Payment must be collected from the customer at the time of delivery. Known values: `MANDATORY`.
         attribute?(:cash_on_delivery, String, from: "cashOnDelivery")
 
-        # The line item must be delivered by pallet.
+        # The line item must be delivered by pallet. Known values: `MANDATORY`.
         attribute?(:pallet_delivery, String, from: "palletDelivery")
 
-        # The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery.
+        # The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery. Known
+        # values: `MANDATORY`.
         attribute?(:recipient_age_verification, String, from: "recipientAgeVerification")
 
-        # The person receiving the line item must be the same as the intended recipient of the order.
+        # The person receiving the line item must be the same as the intended recipient of the order. Known values:
+        # `MANDATORY`.
         attribute?(:recipient_identity_verification, String, from: "recipientIdentityVerification")
 
-        # The recipient of the line item must sign to confirm its delivery.
+        # The recipient of the line item must sign to confirm its delivery. Known values: `MANDATORY`.
         attribute?(:signature_confirmation, String, from: "signatureConfirmation")
       end
     end

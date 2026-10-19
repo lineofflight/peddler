@@ -18,7 +18,7 @@ module Peddler
 
         # Array of status states currently associated with the affected listings item. The absence of a value indicates
         # the status state is not currently applicable to the listings item. For example, if "BUYABLE" is not present,
-        # the listings item is not currently buyable.
+        # the listings item is not currently buyable. Known values: `BUYABLE`, `DISCOVERABLE`, `DELETED`.
         attribute(:status, [String], null: false, from: "Status")
 
         # The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated with the listings

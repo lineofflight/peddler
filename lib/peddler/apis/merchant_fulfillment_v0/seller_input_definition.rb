@@ -22,7 +22,7 @@ module Peddler
 
         attribute(:stored_value, AdditionalSellerInput, null: false, from: "StoredValue")
 
-        # Whether the seller input applies to the item or the shipment.
+        # Whether the seller input applies to the item or the shipment. Known values: `SHIPMENT_LEVEL`, `ITEM_LEVEL`.
         attribute?(:input_target, String, from: "InputTarget")
 
         attribute?(:restricted_set_values, [String], from: "RestrictedSetValues")

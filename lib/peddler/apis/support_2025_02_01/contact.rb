@@ -10,7 +10,8 @@ module Peddler
     module Support20250201
       # A contact.
       Contact = Structure.new do
-        # The contact channel for communication between the selling partner and Amazon.
+        # The contact channel for communication between the selling partner and Amazon. Known values: `PHONE`, `CHAT`,
+        # `EMAIL`.
         attribute(:channel, String, null: false)
 
         # A unique identifier for the contact

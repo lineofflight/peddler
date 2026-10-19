@@ -18,7 +18,7 @@ module Peddler
         # The tax registration number for the party. For example, their VAT ID.
         attribute?(:number, String)
 
-        # Tax registration type for the entity
+        # Tax registration type for the entity. Known values: `VAT`, `GST`.
         attribute?(:type, String)
       end
     end

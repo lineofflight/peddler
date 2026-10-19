@@ -16,6 +16,7 @@ module Peddler
         # The return address.
         attribute(:ship_from_address, Address, null: false, from: "ShipFromAddress")
 
+        # Known values: `NONE`, `FEED`, `2D_BARCODE`, `INTERACTIVE`.
         attribute?(:box_contents_source, String, from: "BoxContentsSource")
 
         # Date by which the shipment must arrive at the Amazon fulfillment center to avoid delivery promise breaks for
@@ -29,6 +30,7 @@ module Peddler
         # only returned when BoxContentsSource is NONE.
         attribute?(:estimated_box_contents_fee, BoxContentsFeeDetails, from: "EstimatedBoxContentsFee")
 
+        # Known values: `NO_LABEL`, `SELLER_LABEL`, `AMAZON_LABEL`.
         attribute?(:label_prep_type, String, from: "LabelPrepType")
 
         # The shipment identifier submitted in the request.
@@ -37,6 +39,8 @@ module Peddler
         # The name for the inbound shipment.
         attribute?(:shipment_name, String, from: "ShipmentName")
 
+        # Known values: `WORKING`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`,
+        # `DELIVERED`, `CHECKED_IN`.
         attribute?(:shipment_status, String, from: "ShipmentStatus")
       end
     end

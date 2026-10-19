@@ -2,7 +2,7 @@
 // Source: schemas/data-kiosk/analytics_economics_2024_03_15.graphql
 
 #![allow(clippy::doc_lazy_continuation)]
-///Known values: "AWD", "SIPP". Other values may be returned by Amazon.
+///Known values: `AWD`, `SIPP`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -158,7 +158,7 @@ selected period.*/
         ::std::vec::Vec<::std::option::Option<Economics>>,
     >,
 }
-///Known values: "DAY", "MONTH", "RANGE", "WEEK". Other values may be returned by Amazon.
+///Known values: `DAY`, `MONTH`, `RANGE`, `WEEK`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -268,7 +268,7 @@ product that has buyable variations (child products).*/
     )]
     pub start_date: ::std::option::Option<::std::string::String>,
 }
-///Known values: "RANGE". Other values may be returned by Amazon.
+///Known values: `RANGE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -309,7 +309,7 @@ impl ::std::str::FromStr for EconomicsPreviewDateGranularity {
         Ok(Self(value.to_string()))
     }
 }
-///Known values: "MSKU". Other values may be returned by Amazon.
+///Known values: `MSKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -472,7 +472,7 @@ pub struct FeeSummary {
     )]
     pub fee_type_name: ::std::option::Option<::std::string::String>,
 }
-///Known values: "FBA_FULFILLMENT_FEE", "FBA_STORAGE_FEE". Other values may be returned by Amazon.
+///Known values: `FBA_FULFILLMENT_FEE`, `FBA_STORAGE_FEE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -575,7 +575,7 @@ Amazon (FBA) and Merchant Fulfilled Network (MFN) products.*/
     )]
     pub miscellaneous_cost: ::std::option::Option<Amount>,
 }
-///Known values: "AGED_INVENTORY_SURCHARGE", "BASE_FBA_FULFILLMENT_FEE", "BASE_MONTHLY_STORAGE_FEE", "CLOSING_FEES", "DIGITAL_SERVICES_FEE_FBA", "DIGITAL_SERVICES_FEE_SOA", "FBA_FULFILLMENT_FEES", "FBA_INBOUND_PLACEMENT_SERVICE_FEE", "HIGH_RETURN_RATE_FEE", "LOW_INVENTORY_LEVEL_FEE", "MONTHLY_INVENTORY_STORAGE_FEES", "PAN_EU_OVERSIZE_FEE", "PER_ITEM_SELLING_FEES", "REFERRAL_FEES", "RETURN_PROCESSING_FEE", "SPONSORED_PRODUCTS_CHARGES", "STORAGE_UTILIZATION_SURCHARGE". Other values may be returned by Amazon.
+///Known values: `AGED_INVENTORY_SURCHARGE`, `BASE_FBA_FULFILLMENT_FEE`, `BASE_MONTHLY_STORAGE_FEE`, `CLOSING_FEES`, `DIGITAL_SERVICES_FEE_FBA`, `DIGITAL_SERVICES_FEE_SOA`, `FBA_FULFILLMENT_FEES`, `FBA_INBOUND_PLACEMENT_SERVICE_FEE`, `HIGH_RETURN_RATE_FEE`, `LOW_INVENTORY_LEVEL_FEE`, `MONTHLY_INVENTORY_STORAGE_FEES`, `PAN_EU_OVERSIZE_FEE`, `PER_ITEM_SELLING_FEES`, `REFERRAL_FEES`, `RETURN_PROCESSING_FEE`, `SPONSORED_PRODUCTS_CHARGES`, `STORAGE_UTILIZATION_SURCHARGE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -616,7 +616,7 @@ impl ::std::str::FromStr for PreviewFeeType {
         Ok(Self(value.to_string()))
     }
 }
-///Known values: "CHILD_ASIN", "MSKU", "PARENT_ASIN". Other values may be returned by Amazon.
+///Known values: `CHILD_ASIN`, `MSKU`, `PARENT_ASIN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -657,7 +657,7 @@ impl ::std::str::FromStr for ProductIdentifierGranularity {
         Ok(Self(value.to_string()))
     }
 }
-///Known values: "ASIN", "FNSKU", "MSKU". Other values may be returned by Amazon.
+///Known values: `ASIN`, `FNSKU`, `MSKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

@@ -15,7 +15,7 @@ module Peddler
         # The base-64 encoded string that represents the shipment label.
         attribute?(:label, String)
 
-        # The format of the label.
+        # The format of the label. Known values: `PDF`.
         attribute?(:label_format, String, from: "labelFormat")
 
         # A sequential number assigned to each label within a shipment.

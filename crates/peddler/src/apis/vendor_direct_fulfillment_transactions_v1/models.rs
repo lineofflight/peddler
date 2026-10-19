@@ -49,7 +49,7 @@ pub struct Transaction {
     pub errors: ::std::option::Option<ErrorList>,
     /**Current processing status of the transaction.
 
-Known values: "Failure", "Processing", "Success". Other values may be returned by Amazon.*/
+Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
     #[serde(rename = "transactionId")]

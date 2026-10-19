@@ -15,6 +15,7 @@ module Peddler
 
         attribute(:marketplace_id, String, null: false, from: "MarketplaceId")
 
+        # Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         # The resource path of the operation you are calling in batch without any query parameters.

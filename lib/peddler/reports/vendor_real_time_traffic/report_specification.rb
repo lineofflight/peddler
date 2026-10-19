@@ -21,7 +21,7 @@ module Peddler
         # Marketplace IDs as specified in the report request.
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
-        # The type of the report.
+        # The type of the report. Known values: `GET_VENDOR_REAL_TIME_TRAFFIC_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

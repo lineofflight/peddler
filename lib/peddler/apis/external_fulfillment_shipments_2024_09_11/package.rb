@@ -24,10 +24,11 @@ module Peddler
         # The optional list of HAZMAT labels applied to the package.
         attribute?(:hazmat_labels, [String], from: "hazmatLabels")
 
-        # Whether the package requires standard handling or extra care.
+        # Whether the package requires standard handling or extra care. Known values: `NORMAL`, `FRAGILE`.
         attribute?(:package_handling_requirements, String, from: "packageHandlingRequirements")
 
-        # The current status of the package.
+        # The current status of the package. Known values: `CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`,
+        # `SHIPLABEL_GENERATED`, `SHIPPED`, `DELIVERED`, `CANCELLED`.
         attribute?(:status, String)
       end
     end

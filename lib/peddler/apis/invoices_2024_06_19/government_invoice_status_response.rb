@@ -15,6 +15,7 @@ module Peddler
         # The Government Invoice ID of a successfully authorized invoice.
         attribute?(:invoice_external_document_id, String, from: "invoiceExternalDocumentId")
 
+        # Known values: `PROCESSING`, `SUCCESS`, `ERROR`.
         attribute?(:status, String)
       end
     end

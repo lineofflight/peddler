@@ -21,6 +21,7 @@ module Peddler
         # When true, the offer is fulfilled by Amazon.
         attribute?(:amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")
 
+        # Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`.
         attribute?(:optional_fulfillment_program, String, from: "OptionalFulfillmentProgram")
       end
     end

@@ -16,6 +16,8 @@ module Peddler
         # List of outbound shipments that are part of this order.
         attribute(:outbound_shipments, [OutboundShipmentSummary], null: false, from: "outboundShipments")
 
+        # Known values: `CONFIRMED`, `CREATED`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`,
+        # `SUCCESS`, `VALIDATING`.
         attribute(:status, String, null: false)
 
         # Date on which this replenishment order was confirmed.

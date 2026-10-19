@@ -11,7 +11,7 @@ module Peddler
       TotalWeight = Structure.new do
         attribute(:amount, String, null: false)
 
-        # The unit of measure for items sold by weight.
+        # The unit of measure for items sold by weight. Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
       end
     end

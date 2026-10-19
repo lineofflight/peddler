@@ -9,8 +9,11 @@ module Peddler
     module ShippingV2
       # The request schema for the CreateClaim operation
       CreateClaimRequest = Structure.new do
+        # Known values: `LOST_IN_TRANSIT`, `DAMAGED_IN_TRANSIT`, `DELIVERED_NOT_RECEIVED`, `ITEM_MISSING_SWITCHEROO`,
+        # `COD_ABUSE`.
         attribute(:claim_reason, String, null: false, from: "claimReason")
 
+        # Known values: `REFUND`, `CERTIFICATE_OF_FACT`.
         attribute(:settlement_type, String, null: false, from: "settlementType")
 
         attribute(:tracking_id, String, null: false, from: "trackingId")

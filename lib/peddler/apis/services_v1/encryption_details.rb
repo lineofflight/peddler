@@ -15,7 +15,7 @@ module Peddler
         # The encryption key used to encrypt or decrypt the document contents.
         attribute(:key, String, null: false)
 
-        # The encryption standard required to encrypt or decrypt the document contents.
+        # The encryption standard required to encrypt or decrypt the document contents. Known values: `AES`.
         attribute(:standard, String, null: false)
       end
     end

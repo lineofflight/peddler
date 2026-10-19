@@ -45,7 +45,7 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**The type of the report.
 
-Known values: "GET_VENDOR_REAL_TIME_SALES_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_VENDOR_REAL_TIME_SALES_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }

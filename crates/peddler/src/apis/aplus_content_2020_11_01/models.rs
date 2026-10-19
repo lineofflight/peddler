@@ -75,7 +75,7 @@ impl<'de> ::serde::Deserialize<'de> for Asin {
 }
 /**A flag that provides additional information about an ASIN. This is contextual and may change depending on the request that generated it.
 
-Known values: "BRAND_NOT_ELIGIBLE", "CATALOG_NOT_FOUND", "CONTENT_NOT_PUBLISHED", "CONTENT_PUBLISHED". Other values may be returned by Amazon.*/
+Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -116,7 +116,9 @@ impl ::std::str::FromStr for AsinBadge {
         Ok(Self(value.to_string()))
     }
 }
-///The set of ASIN badges.
+/**The set of ASIN badges.
+
+Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AsinBadgeSet(pub ::std::vec::Vec<AsinBadge>);
@@ -154,6 +156,7 @@ pub struct AsinImages {
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AsinMetadata {
     pub asin: Asin,
+    ///Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
     #[serde(rename = "badgeSet", skip_serializing_if = "::std::option::Option::is_none")]
     pub badge_set: ::std::option::Option<AsinBadgeSet>,
     #[serde(
@@ -320,7 +323,7 @@ impl ::std::convert::From<::std::vec::Vec<Asin>> for AsinSet {
 }
 /**The type of relationship between media assets.
 
-Known values: "VIDEO_PAIRING". Other values may be returned by Amazon.*/
+Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -414,7 +417,7 @@ pub struct BrandStoryQuestionsModule {
 }
 /**The relative color scheme of content.
 
-Known values: "DARK", "LIGHT". Other values may be returned by Amazon.*/
+Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -530,7 +533,7 @@ pub struct ComparisonRow {
 }
 /**A flag that provides additional information about an A+ Content document.
 
-Known values: "BULK", "GENERATED", "LAUNCHPAD", "PREMIUM", "STANDARD". Other values may be returned by Amazon.*/
+Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -571,7 +574,9 @@ impl ::std::str::FromStr for ContentBadge {
         Ok(Self(value.to_string()))
     }
 }
-///The set of content badges.
+/**The set of content badges.
+
+Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ContentBadgeSet(pub ::std::vec::Vec<ContentBadge>);
@@ -601,6 +606,7 @@ pub struct ContentDocument {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_sub_type: ::std::option::Option<ContentSubType>,
+    ///Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ContentType,
     pub locale: LanguageTag,
@@ -667,12 +673,14 @@ impl<'de> ::serde::Deserialize<'de> for ContentDocumentName {
 ///The metadata of an A+ Content document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentMetadata {
+    ///Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
     #[serde(rename = "badgeSet")]
     pub badge_set: ContentBadgeSet,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
     ///The A+ Content document name.
     pub name: ContentMetadataName,
+    ///Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.
     pub status: ContentStatus,
     ///The approximate age of the A+ Content document and metadata.
     #[serde(rename = "updateTime")]
@@ -795,6 +803,7 @@ pub struct ContentModule {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_story_questions: ::std::option::Option<BrandStoryQuestionsModule>,
+    ///Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.
     #[serde(rename = "contentModuleType")]
     pub content_module_type: ContentModuleType,
     #[serde(
@@ -1016,7 +1025,7 @@ impl ::std::convert::From<::std::vec::Vec<ContentModule>> for ContentModuleList 
 }
 /**The type of A+ Content module.
 
-Known values: "STANDARD_COMPANY_LOGO", "STANDARD_COMPARISON_TABLE", "STANDARD_FOUR_IMAGE_TEXT", "STANDARD_FOUR_IMAGE_TEXT_QUADRANT", "STANDARD_HEADER_IMAGE_TEXT", "STANDARD_IMAGE_SIDEBAR", "STANDARD_IMAGE_TEXT_OVERLAY", "STANDARD_MULTIPLE_IMAGE_TEXT", "STANDARD_PRODUCT_DESCRIPTION", "STANDARD_SINGLE_IMAGE_HIGHLIGHTS", "STANDARD_SINGLE_IMAGE_SPECS_DETAIL", "STANDARD_SINGLE_SIDE_IMAGE", "STANDARD_TECH_SPECS", "STANDARD_TEXT", "STANDARD_THREE_IMAGE_TEXT", "PREMIUM_IMAGE_TEXT", "PREMIUM_TEXT", "PREMIUM_FULL_BACKGROUND_TEXT", "PREMIUM_FULL_BACKGROUND_IMAGE", "PREMIUM_FOUR_COLUMN_IMAGES", "PREMIUM_DUAL_IMAGE_TEXT", "PREMIUM_IMAGE_CAROUSEL", "PREMIUM_NAVIGATION_CAROUSEL", "PREMIUM_REGIMEN_CAROUSEL", "PREMIUM_THREE_COLUMN_COMPARISON", "PREMIUM_COMPARISON_CAROUSEL", "PREMIUM_COMPARISON_SCROLLER", "PREMIUM_HOTSPOT_IMAGE", "PREMIUM_HOTSPOT_IMAGE_TEXT", "PREMIUM_FAQ", "PREMIUM_TECH_SPECS", "PREMIUM_VIDEO_TEXT", "PREMIUM_HERO_VIDEO", "PREMIUM_VIDEO_IMAGE_CAROUSEL", "BRAND_STORY_IMAGE_WITH_LOGO", "BRAND_STORY_FOUR_ASIN", "BRAND_STORY_MEDIA_ASSET", "BRAND_STORY_ABOUT", "BRAND_STORY_QUESTIONS". Other values may be returned by Amazon.*/
+Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1151,7 +1160,7 @@ for ContentReferenceKeySet {
 }
 /**The submission status of the content document.
 
-Known values: "APPROVED", "DRAFT", "REJECTED", "SUBMITTED". Other values may be returned by Amazon.*/
+Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1248,7 +1257,7 @@ impl<'de> ::serde::Deserialize<'de> for ContentSubType {
 }
 /**The A+ Content document type.
 
-Known values: "EBC", "EMC", "BrandStory". Other values may be returned by Amazon.*/
+Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1298,7 +1307,9 @@ pub struct CreateMediaRequest {
     ///An existing media asset identifier for reuse. Mutually exclusive with `uploadDestinationId`.
     #[serde(rename = "mediaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_id: ::std::option::Option<::std::string::String>,
-    ///The type of media asset to create.
+    /**The type of media asset to create.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///Related media to associate during creation. Required when `mediaType` is `VIDEO` (at least one `VIDEO_PAIRING` entry with an image must be provided). Ignored when `mediaType` is `IMAGE`.
@@ -1329,7 +1340,9 @@ pub struct CreateMediaResponse {
     ///The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
@@ -1341,7 +1354,9 @@ pub struct CreateMediaResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
@@ -1360,6 +1375,7 @@ pub struct Decorator {
     ///The starting character of this decorator within the content string. Use zero for the first character.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offset: ::std::option::Option<i64>,
+    ///Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<DecoratorType>,
 }
@@ -1385,7 +1401,7 @@ impl ::std::convert::From<::std::vec::Vec<Decorator>> for DecoratorSet {
 }
 /**The type of rich text decorator.
 
-Known values: "LIST_ITEM", "LIST_ORDERED", "LIST_UNORDERED", "STYLE_BOLD", "STYLE_ITALIC", "STYLE_LINEBREAK", "STYLE_PARAGRAPH", "STYLE_UNDERLINE". Other values may be returned by Amazon.*/
+Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1664,7 +1680,9 @@ pub struct GetMediaResponse {
     ///The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
@@ -1676,7 +1694,9 @@ pub struct GetMediaResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
@@ -1939,7 +1959,7 @@ pub struct Issue {
     pub property_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**The severity of the issue.
 
-Known values: "ERROR", "WARNING", "INFO". Other values may be returned by Amazon.*/
+Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.*/
     pub severity: ::std::string::String,
 }
 ///A list of issues associated with a media asset or pairing.
@@ -2096,7 +2116,9 @@ pub struct Media {
     ///The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
@@ -2108,7 +2130,9 @@ pub struct Media {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
@@ -2125,13 +2149,17 @@ pub struct MediaInfo {
     ///The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
@@ -2142,7 +2170,9 @@ pub struct MediaInput {
     ///An existing media asset identifier for reuse in a new association. Mutually exclusive with `uploadDestinationId`.
     #[serde(rename = "mediaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_id: ::std::option::Option<::std::string::String>,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///An optional title for the media asset. Defaults to the filename if not provided.
@@ -2157,7 +2187,7 @@ pub struct MediaInput {
 }
 /**A status value for a media asset or pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor. Workflow statuses describe the processing stage; actor statuses indicate who must take the next action.
 
-Known values: "PENDING_PROCESSING", "PENDING_REVIEW", "UNABLE_TO_PROCESS", "NOT_APPROVED", "AVAILABLE", "PENDING_AMAZON", "PENDING_SELLING_PARTNER". Other values may be returned by Amazon.*/
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2200,7 +2230,7 @@ impl ::std::str::FromStr for MediaStatus {
 }
 /**The type of media asset.
 
-Known values: "VIDEO", "IMAGE". Other values may be returned by Amazon.*/
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2426,7 +2456,7 @@ impl<'de> ::serde::Deserialize<'de> for PlainTextItemValue {
 }
 /**The relative positioning of content.
 
-Known values: "LEFT", "RIGHT". Other values may be returned by Amazon.*/
+Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2599,6 +2629,7 @@ pub struct PremiumDualImageTextModule {
 ///A list of question-and-answer pairs with a configurable background color scheme of light or dark.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFaqModule {
+    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(
         rename = "colorType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2630,6 +2661,7 @@ pub struct PremiumFullBackgroundImageModule {
 ///A full-width background image with a text overlay box containing subheadline, headline, and body text. The text box can be positioned to the left or right, and styled light or dark.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFullBackgroundTextModule {
+    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "colorType")]
     pub color_type: ColorType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2640,6 +2672,7 @@ pub struct PremiumFullBackgroundTextModule {
     pub headline: ::std::option::Option<TextComponent>,
     #[serde(rename = "mobileImage")]
     pub mobile_image: ImageComponent,
+    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2697,6 +2730,7 @@ pub struct PremiumImageTextModule {
     pub body_text: ::std::option::Option<ParagraphComponent>,
     pub headline: TextComponent,
     pub image: ImageComponent,
+    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2765,6 +2799,7 @@ pub struct PremiumVideoTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<ParagraphComponent>,
     pub headline: TextComponent,
+    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2782,6 +2817,7 @@ pub struct PublishRecord {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_sub_type: ::std::option::Option<ContentSubType>,
+    ///Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ContentType,
     pub locale: LanguageTag,
@@ -2845,7 +2881,9 @@ pub struct RegimenCarouselPanels {
 ///A relationship between media assets, representing a pairing with its own title, status, and lifecycle.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedMedia {
-    ///The type of relationship.
+    /**The type of relationship.
+
+Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.*/
     #[serde(rename = "associationType")]
     pub association_type: AssociationType,
     ///Issues associated with this pairing.
@@ -2853,7 +2891,9 @@ pub struct RelatedMedia {
     pub issues: ::std::option::Option<IssueList>,
     ///The associated media asset, without nested associations.
     pub media: MediaInfo,
-    ///The composite status of this pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of this pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for this pairing. For `VIDEO_PAIRING`, this is the user-provided pairing title. Minimum three words; must not be all capital letters.
     pub title: ::std::string::String,
@@ -2861,7 +2901,9 @@ pub struct RelatedMedia {
 ///Input for creating a media association.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedMediaInput {
-    ///The type of relationship to create.
+    /**The type of relationship to create.
+
+Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.*/
     #[serde(rename = "associationType")]
     pub association_type: AssociationType,
     ///The media asset to associate.
@@ -3136,6 +3178,7 @@ pub struct StandardImageTextCaptionBlock {
 pub struct StandardImageTextOverlayModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub block: ::std::option::Option<StandardImageTextBlock>,
+    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "overlayColorType")]
     pub overlay_color_type: ColorType,
 }
@@ -3221,6 +3264,7 @@ pub struct StandardSingleImageSpecsDetailModule {
 pub struct StandardSingleSideImageModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub block: ::std::option::Option<StandardImageTextBlock>,
+    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "imagePositionType")]
     pub image_position_type: PositionType,
 }
@@ -3423,7 +3467,9 @@ pub struct UpdateMediaResponse {
     ///The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /**The type of media asset.
+
+Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
     ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
@@ -3435,7 +3481,9 @@ pub struct UpdateMediaResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /**The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+
+Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub status: ::std::vec::Vec<MediaStatus>,
     ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
@@ -3587,6 +3635,7 @@ pub struct VideoImageCarouselPanel {
     pub mobile_image: ::std::option::Option<ImageComponent>,
     ///The position of the panel within the carousel. Must be a value between 1 and 6.
     pub position: ::std::num::NonZeroU64,
+    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(
         rename = "positionType",
         skip_serializing_if = "::std::option::Option::is_none"

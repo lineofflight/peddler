@@ -47,7 +47,8 @@ module Peddler
         # Information about the service job provider.
         attribute?(:service_job_provider, ServiceJobProvider, from: "serviceJobProvider")
 
-        # The status of the service job.
+        # The status of the service job. Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`,
+        # `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.
         attribute?(:service_job_status, String, from: "serviceJobStatus")
 
         # Information about the location of the service job.

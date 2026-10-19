@@ -16,7 +16,8 @@ module Peddler
         # describes the quantity of upcoming deliveries associated with a particular delivery condition type.
         attribute?(:deliveries_conditions, [DeliveriesCondition], from: "deliveriesConditions")
 
-        # The offer eligibility status.
+        # The offer eligibility status. Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`,
+        # `REPLENISHMENT_ONLY_ORDERING`.
         attribute?(:eligibility, String)
 
         # The projected subscriber demand for the offer over different time horizons.
@@ -42,7 +43,7 @@ module Peddler
         # The currency code in ISO 4217 format for the price. For example, `USD` for US dollars.
         attribute?(:price_currency_code, String, from: "priceCurrencyCode")
 
-        # The replenishment program for the offer.
+        # The replenishment program for the offer. Known values: `SUBSCRIBE_AND_SAVE`.
         attribute?(:program_type, String, from: "programType")
 
         # The SKU. This property is only supported for sellers and not for vendors.

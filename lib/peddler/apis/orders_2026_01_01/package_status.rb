@@ -9,7 +9,8 @@ module Peddler
     module Orders20260101
       # Current status and detailed tracking information for a shipping package throughout the delivery process.
       PackageStatus = Structure.new do
-        # Primary status classification of the package in the shipping workflow.
+        # Primary status classification of the package in the shipping workflow. Known values: `PENDING`, `IN_TRANSIT`,
+        # `SHIPPED`, `DELIVERED`, `CANCELLED`, `UNDELIVERABLE`.
         attribute(:status, String, null: false)
 
         # Granular status information providing specific details about the package's current location and handling

@@ -10,7 +10,8 @@ module Peddler
     module VendorShipmentsV1
       # Shipment Status details.
       ShipmentStatusDetails = Structure.new do
-        # Current status of the shipment on whether it is picked up or scheduled.
+        # Current status of the shipment on whether it is picked up or scheduled. Known values: `Created`,
+        # `TransportationRequested`, `CarrierAssigned`, `Shipped`.
         attribute?(:shipment_status, String, from: "shipmentStatus")
 
         # Date and time on last status update received for the shipment

@@ -33,6 +33,8 @@ module Peddler
         # Timezone of access point
         attribute?(:timezone, String)
 
+        # Known values: `HELIX`, `CAMPUS_LOCKER`, `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`,
+        # `CAMPUS_ROOM`.
         attribute?(:type, String)
       end
     end

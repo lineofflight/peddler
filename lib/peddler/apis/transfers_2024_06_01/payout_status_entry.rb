@@ -12,7 +12,8 @@ module Peddler
         # The date when this status was last updated.
         attribute(:last_updated_date, String, null: false, from: "lastUpdatedDate")
 
-        # The payout status when this entry was recorded.
+        # The payout status when this entry was recorded. Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`,
+        # `CANCELLED`, `NO_PAYOUT`.
         attribute(:status, String, null: false)
 
         # The reason the payout failed.

@@ -13,6 +13,7 @@ module Peddler
 
         attribute(:content_reference_key, String, null: false, from: "contentReferenceKey")
 
+        # Known values: `EBC`, `EMC`, `BrandStory`.
         attribute(:content_type, String, null: false, from: "contentType")
 
         attribute(:locale, String, null: false)

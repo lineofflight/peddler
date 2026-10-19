@@ -91,7 +91,7 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**The type of the report.
 
-Known values: "GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
@@ -101,9 +101,7 @@ pub struct ReportReportSpecificationReportOptions {
     ///A space-separated list of Amazon Standard Identification Number (ASINs) for which you can request the report. If you do not provide ASINs, the report returns search catalog performance data for all ASINs for which you are a brand owner. There is a 200-character limit.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asins: ::std::option::Option<::std::string::String>,
-    /**The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
-
-Known values: "WEEK", "MONTH", "QUARTER". Other values may be returned by Amazon.*/
+    ///The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

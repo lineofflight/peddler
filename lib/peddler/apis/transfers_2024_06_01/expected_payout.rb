@@ -12,7 +12,7 @@ module Peddler
         # Metadata that describes the selling partner.
         attribute(:partner_metadata, PartnerMetadata, null: false, from: "partnerMetadata")
 
-        # The status of the expected payout.
+        # The status of the expected payout. Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`.
         attribute(:status, String, null: false)
 
         # The last few digits of the payment instrument.
@@ -21,7 +21,7 @@ module Peddler
         # The total amount of money expected in the payout. Can be null when no payout is expected
         attribute?(:amount, Money)
 
-        # The type of payout instrument to which funds will be delivered.
+        # The type of payout instrument to which funds will be delivered. Known values: `BANK_ACCOUNT`, `DEBIT_CARD`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
         # The interval considered for calculating the payout amount.

@@ -9,6 +9,9 @@ module Peddler
     module ShippingV2
       # The reason why a shipping service offering is ineligible.
       IneligibilityReason = Structure.new do
+        # Known values: `NO_COVERAGE`, `PICKUP_SLOT_RESTRICTION`, `UNSUPPORTED_VAS`, `VAS_COMBINATION_RESTRICTION`,
+        # `SIZE_RESTRICTIONS`, `WEIGHT_RESTRICTIONS`, `LATE_DELIVERY`, `PROGRAM_CONSTRAINTS`,
+        # `TERMS_AND_CONDITIONS_NOT_ACCEPTED`, `UNKNOWN`.
         attribute(:code, String, null: false)
 
         # The ineligibility reason.

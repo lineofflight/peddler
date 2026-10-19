@@ -18,10 +18,14 @@ module Peddler
 
         # Incoterms (International Commercial Terms) are used to divide transaction costs and responsibilities between
         # buyer and seller and reflect state-of-the-art transportation practices. This is for import purchase orders
-        # only.
+        # only. Known values: `ExWorks`, `FreeCarrier`, `FreeOnBoard`, `FreeAlongSideShip`, `CarriagePaidTo`,
+        # `CostAndFreight`, `CarriageAndInsurancePaidTo`, `CostInsuranceAndFreight`, `DeliveredAtTerminal`,
+        # `DeliveredAtPlace`, `DeliverDutyPaid`.
         attribute?(:international_commercial_terms, String, from: "internationalCommercialTerms")
 
-        # If the recipient requests, contains the shipment method of payment. This is for import PO's only.
+        # If the recipient requests, contains the shipment method of payment. This is for import PO's only. Known
+        # values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`, `FOBPortOfCall`, `PrepaidBySeller`,
+        # `PaidBySeller`.
         attribute?(:method_of_payment, String, from: "methodOfPayment")
 
         # The port where goods on an import purchase order must be delivered by the vendor. This should only be

@@ -92,7 +92,9 @@ pub struct GetInvoiceStatusResponse {
     ///A list of errors returned by this API.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The current processing status of a shipment invoice.
+    /**The current processing status of a shipment invoice.
+
+Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "invoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -103,7 +105,7 @@ pub struct GetInvoiceStatusResponse {
     pub invoices: ::std::option::Option<::std::vec::Vec<InvoiceStatus>>,
     /**The invoicing status of the order, considering the aggregated results of all invoices sent.
 
-Known values: "Processing", "Accepted", "PartiallyAccepted", "Rejected". Other values may be returned by Amazon.*/
+Known values: `Processing`, `Accepted`, `PartiallyAccepted`, `Rejected`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "orderInvoicingStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -117,12 +119,12 @@ pub struct InvoiceStatus {
     pub id: ::std::string::String,
     /**The current status of this invoice.
 
-Known values: "Processing", "Accepted", "Rejected", "NotFound". Other values may be returned by Amazon.*/
+Known values: `Processing`, `Accepted`, `Rejected`, `NotFound`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
 }
 /**The invoice type.
 
-Known values: "Outbound". Other values may be returned by Amazon.*/
+Known values: `Outbound`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -165,7 +167,7 @@ impl ::std::str::FromStr for InvoiceType {
 }
 /**The Amazon program type.
 
-Known values: "EasyShip", "FbaOnSite", "SelfShip". Other values may be returned by Amazon.*/
+Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -208,7 +210,7 @@ impl ::std::str::FromStr for ProgramType {
 }
 /**The shipment invoice status.
 
-Known values: "Processing", "Accepted", "Errored", "NotFound". Other values may be returned by Amazon.*/
+Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -258,13 +260,17 @@ pub struct SubmitInvoiceRequest {
     ///The binary object representing an invoice's content.
     #[serde(rename = "invoiceContent")]
     pub invoice_content: Blob,
-    ///The type of an invoice.
+    /**The type of an invoice.
+
+Known values: `Outbound`. Other values may be returned by Amazon.*/
     #[serde(rename = "invoiceType")]
     pub invoice_type: InvoiceType,
     ///An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The Amazon program that the seller is currently enrolled.
+    /**The Amazon program that the seller is currently enrolled.
+
+Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.*/
     #[serde(rename = "programType")]
     pub program_type: ProgramType,
 }

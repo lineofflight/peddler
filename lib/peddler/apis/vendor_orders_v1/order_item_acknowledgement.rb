@@ -14,10 +14,11 @@ module Peddler
         # Details of quantity acknowledged with the above acknowledgement code.
         attribute(:acknowledged_quantity, ItemQuantity, null: false, from: "acknowledgedQuantity")
 
-        # This indicates the acknowledgement code.
+        # This indicates the acknowledgement code. Known values: `Accepted`, `Backordered`, `Rejected`.
         attribute(:acknowledgement_code, String, null: false, from: "acknowledgementCode")
 
-        # Indicates the reason for rejection.
+        # Indicates the reason for rejection. Known values: `TemporarilyUnavailable`, `InvalidProductIdentifier`,
+        # `ObsoleteProduct`.
         attribute?(:rejection_reason, String, from: "rejectionReason")
 
         # Estimated delivery date per line item. Must be in ISO-8601 date/time format.

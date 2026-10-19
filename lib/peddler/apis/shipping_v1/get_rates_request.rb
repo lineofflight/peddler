@@ -12,6 +12,7 @@ module Peddler
       GetRatesRequest = Structure.new do
         attribute(:container_specifications, [ContainerSpecification], null: false, from: "containerSpecifications")
 
+        # Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`.
         attribute(:service_types, Array, null: false, from: "serviceTypes")
 
         attribute(:ship_from, Address, null: false, from: "shipFrom")

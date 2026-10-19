@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20200701
       # The weight.
       Weight = Structure.new do
-        # The unit of weight.
+        # The unit of weight. Known values: `KG`, `KILOGRAMS`, `LB`, `POUNDS`.
         attribute(:unit, String, null: false)
 
         # The weight value.

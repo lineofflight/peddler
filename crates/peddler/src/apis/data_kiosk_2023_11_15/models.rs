@@ -106,7 +106,7 @@ pub struct Query {
     >,
     /**The processing status of the query.
 
-Known values: "CANCELLED", "DONE", "FATAL", "IN_PROGRESS", "IN_QUEUE". Other values may be returned by Amazon.*/
+Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.*/
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The submitted query.

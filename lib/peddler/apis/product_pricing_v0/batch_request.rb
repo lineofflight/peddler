@@ -9,6 +9,7 @@ module Peddler
     module ProductPricingV0
       # Common properties of batch requests against individual APIs.
       BatchRequest = Structure.new do
+        # Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         # The resource path of the operation you are calling in batch without any query parameters.

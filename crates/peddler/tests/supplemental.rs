@@ -2,27 +2,18 @@ use peddler::{data_kiosk, feeds, notifications};
 use serde_json::{Value, json};
 
 #[test]
-fn shipment_example_retains_typed_payload_and_extension_fields() {
-    let mut input: Value = serde_json::from_str(include_str!(
+fn shipment_example_decodes_into_the_typed_payload() {
+    let input: Value = serde_json::from_str(include_str!(
         "fixtures/supplemental/ShipmentTrackingMilestoneChangedNotification.json"
     ))
     .unwrap();
-    input["futureEnvelopeField"] = json!({"id":123});
-    input["payload"]["shipmentTrackingMilestoneChangedNotification"]["trackingDetail"]["futureField"] =
-        json!("retained");
     let notification: notifications::shipment_tracking_milestone_changed::Notification =
         serde_json::from_value(input.clone()).unwrap();
     assert_eq!(
         notification
             .payload
-            .as_ref()
-            .unwrap()
             .shipment_tracking_milestone_changed_notification
-            .as_ref()
-            .unwrap()
             .tracking_detail
-            .as_ref()
-            .unwrap()
             .identifier
             .aftn
             .as_deref(),

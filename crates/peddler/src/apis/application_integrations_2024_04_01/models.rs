@@ -33,7 +33,7 @@ pub struct CreateNotificationResponse {
 pub struct DeleteNotificationsRequest {
     /**The unique identifier that maps each notification status to a reason code.
 
-Known values: "INCORRECT_CONTENT", "INCORRECT_RECIPIENT". Other values may be returned by Amazon.*/
+Known values: `INCORRECT_CONTENT`, `INCORRECT_RECIPIENT`. Other values may be returned by Amazon.*/
     #[serde(rename = "deletionReason")]
     pub deletion_reason: ::std::string::String,
     ///The unique identifier of the notification template you used to onboard your application.
@@ -88,7 +88,7 @@ for NotificationParameters {
 pub struct RecordActionFeedbackRequest {
     /**The unique identifier for each notification status.
 
-Known values: "SELLER_ACTION_COMPLETED". Other values may be returned by Amazon.*/
+Known values: `SELLER_ACTION_COMPLETED`. Other values may be returned by Amazon.*/
     #[serde(rename = "feedbackActionCode")]
     pub feedback_action_code: ::std::string::String,
 }

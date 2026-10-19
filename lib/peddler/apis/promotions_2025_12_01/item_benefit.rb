@@ -11,7 +11,7 @@ module Peddler
       # types, where each item can have its own distinct benefit. For `COUPON` and `BASKET_BUILDING` promotion types,
       # benefits are configured at the promotion level.
       ItemBenefit = Structure.new do
-        # The benefit type for item-level pricing.
+        # The benefit type for item-level pricing. Known values: `FIXED_PRICE`, `DISCOUNTED_PRICE`.
         attribute(:type, String, null: false)
 
         # The discount configuration when using `DISCOUNTED_PRICE` type.

@@ -10,7 +10,8 @@ module Peddler
       # The input required for building `LowestPricedOffers` data in the response.
       LowestPricedOffersInput = Structure.new do
         # The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`.
-        # `New` is the default value for `itemCondition`.
+        # `New` is the default value for `itemCondition`. Known values: `New`, `Used`, `Collectible`, `Refurbished`,
+        # `Club`.
         attribute(:item_condition, String, null: false, from: "itemCondition")
 
         # The input parameter specifies the type of offers requested for `LowestPricedOffers`. This applies to

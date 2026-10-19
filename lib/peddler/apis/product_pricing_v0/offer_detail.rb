@@ -55,7 +55,7 @@ module Peddler
         # The state and country from where the item is shipped.
         attribute?(:ships_from, ShipsFromType, from: "ShipsFrom")
 
-        # Indicates the type of customer that the offer is valid for.
+        # Indicates the type of customer that the offer is valid for. Known values: `B2C`, `B2B`.
         attribute?(:offer_type, String, from: "offerType")
 
         # List of `QuantityDiscountPrice` that contains item's pricing information when buy in bulk.

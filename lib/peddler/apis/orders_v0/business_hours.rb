@@ -9,7 +9,7 @@ module Peddler
     module OrdersV0
       # Business days and hours when the destination is open for deliveries.
       BusinessHours = Structure.new do
-        # Day of the week.
+        # Day of the week. Known values: `SUN`, `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`.
         attribute?(:day_of_week, String, from: "DayOfWeek")
 
         # Time window during the day when the business is open.

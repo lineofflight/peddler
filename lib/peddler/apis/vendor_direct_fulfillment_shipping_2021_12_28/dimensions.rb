@@ -15,7 +15,7 @@ module Peddler
         # The length of the container.
         attribute(:length, String, null: false)
 
-        # The unit of measure for dimensions.
+        # The unit of measure for dimensions. Known values: `IN`, `CM`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # The width of the container.

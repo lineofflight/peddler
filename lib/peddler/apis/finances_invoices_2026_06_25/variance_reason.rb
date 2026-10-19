@@ -10,7 +10,7 @@ module Peddler
       # The type and underlying defect classifications explaining discrepancies between expected and actual invoice
       # values.
       VarianceReason = Structure.new do
-        # The type of variance.
+        # The type of variance. Known values: `PQV`, `PPV`, `OTHER`.
         attribute(:variance_type, String, null: false, from: "varianceType")
 
         # List of defect types associated with the variance. These represent root cause classifications for the

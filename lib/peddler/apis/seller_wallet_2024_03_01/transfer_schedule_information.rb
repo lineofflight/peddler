@@ -19,7 +19,7 @@ module Peddler
         # The start date of the scheduled transfer.
         attribute?(:schedule_start_date, Time, from: "scheduleStartDate")
 
-        # The type of schedule.
+        # The type of schedule. Known values: `TIME_BASED`.
         attribute?(:schedule_type, String, from: "scheduleType")
       end
     end

@@ -12,11 +12,12 @@ module Peddler
         # The unique identifier for the media asset.
         attribute(:media_id, String, null: false, from: "mediaId")
 
-        # The type of media asset.
+        # The type of media asset. Known values: `VIDEO`, `IMAGE`.
         attribute(:media_type, String, null: false, from: "mediaType")
 
         # The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the
-        # workflow stage and the responsible actor.
+        # workflow stage and the responsible actor. Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`,
+        # `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`.
         attribute(:status, Array, null: false)
 
         # The title for the media asset. For videos, this is the original filename. For images, this is the

@@ -131,7 +131,7 @@ pub struct AssociatedOrderItem {
 pub struct BusinessHour {
     /**Specific day of the week for which operating hours are being defined.
 
-Known values: "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT". Other values may be returned by Amazon.*/
+Known values: `SUN`, `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "dayOfWeek",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -174,7 +174,7 @@ pub struct Buyer {
 }
 /**Classification of the enforcement level required for shipping and delivery constraints.
 
-Known values: "MANDATORY". Other values may be returned by Amazon.*/
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -419,7 +419,7 @@ pub struct ExceptionDate {
     pub exception_date: ::std::option::Option<::chrono::naive::NaiveDate>,
     /**Operational status of the business on the specified exception date.
 
-Known values: "CLOSED", "OPEN". Other values may be returned by Amazon.*/
+Known values: `CLOSED`, `OPEN`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "exceptionDateType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -441,7 +441,7 @@ pub struct FulfillmentOrder {
 }
 /**The current fulfillment status of an order, indicating where the order is in the fulfillment process from placement to handover to carrier.
 
-Known values: "PENDING_AVAILABILITY", "PENDING", "UNSHIPPED", "PARTIALLY_SHIPPED", "SHIPPED", "CANCELLED", "UNFULFILLABLE". Other values may be returned by Amazon.*/
+Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`, `CANCELLED`, `UNFULFILLABLE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -815,31 +815,41 @@ pub struct ItemShipping {
 ///Special shipping requirements and restrictions that must be observed when shipping an order item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemShippingConstraints {
-    ///Payment must be collected from the customer at the time of delivery.
+    /**Payment must be collected from the customer at the time of delivery.
+
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "cashOnDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cash_on_delivery: ::std::option::Option<ConstraintType>,
-    ///The line item must be delivered by pallet.
+    /**The line item must be delivered by pallet.
+
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "palletDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub pallet_delivery: ::std::option::Option<ConstraintType>,
-    ///The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery.
+    /**The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery.
+
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "recipientAgeVerification",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recipient_age_verification: ::std::option::Option<ConstraintType>,
-    ///The person receiving the line item must be the same as the intended recipient of the order.
+    /**The person receiving the line item must be the same as the intended recipient of the order.
+
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "recipientIdentityVerification",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recipient_identity_verification: ::std::option::Option<ConstraintType>,
-    ///The recipient of the line item must sign to confirm its delivery.
+    /**The recipient of the line item must sign to confirm its delivery.
+
+Known values: `MANDATORY`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "signatureConfirmation",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -884,7 +894,7 @@ pub struct ItemSubstitutionPreference {
     >,
     /**Source and nature of the substitution preferences for this item.
 
-Known values: "CUSTOMER_PREFERENCE", "AMAZON_RECOMMENDED", "DO_NOT_SUBSTITUTE". Other values may be returned by Amazon.*/
+Known values: `CUSTOMER_PREFERENCE`, `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`. Other values may be returned by Amazon.*/
     #[serde(rename = "substitutionType")]
     pub substitution_type: ::std::string::String,
 }
@@ -941,7 +951,7 @@ pub struct ItemTaxCollection {
 pub struct Measurement {
     /**The specific unit of measurement used to quantify this item.
 
-Known values: "OUNCES", "POUNDS", "KILOGRAMS", "GRAMS", "MILLIGRAMS", "INCHES", "FEET", "METERS", "CENTIMETERS", "MILLIMETERS", "SQUARE_METERS", "SQUARE_CENTIMETERS", "SQUARE_FEET", "SQUARE_INCHES", "GALLONS", "PINTS", "QUARTS", "FLUID_OUNCES", "LITERS", "CUBIC_METERS", "CUBIC_FEET", "CUBIC_INCHES", "CUBIC_CENTIMETERS", "COUNT". Other values may be returned by Amazon.*/
+Known values: `OUNCES`, `POUNDS`, `KILOGRAMS`, `GRAMS`, `MILLIGRAMS`, `INCHES`, `FEET`, `METERS`, `CENTIMETERS`, `MILLIMETERS`, `SQUARE_METERS`, `SQUARE_CENTIMETERS`, `SQUARE_FEET`, `SQUARE_INCHES`, `GALLONS`, `PINTS`, `QUARTS`, `FLUID_OUNCES`, `LITERS`, `CUBIC_METERS`, `CUBIC_FEET`, `CUBIC_INCHES`, `CUBIC_CENTIMETERS`, `COUNT`. Other values may be returned by Amazon.*/
     pub unit: ::std::string::String,
     ///The numerical quantity or amount being measured in the specified unit.
     pub value: ::serde_json::Number,
@@ -1097,7 +1107,9 @@ pub struct OrderFulfillment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_service_level: ::std::option::Option<::std::string::String>,
-    ///The current status of the order in the fulfillment process, from pending to handover to carrier.
+    /**The current status of the order in the fulfillment process, from pending to handover to carrier.
+
+Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`, `CANCELLED`, `UNFULFILLABLE`. Other values may be returned by Amazon.*/
     #[serde(rename = "fulfillmentStatus")]
     pub fulfillment_status: FulfillmentStatus,
     /**The earliest time available to print the shipping label for the order. Printing is available any time after the earliestDateTime. Response does not include a latestDateTime.
@@ -1396,7 +1408,7 @@ pub struct PackageStatus {
     pub detailed_status: ::std::option::Option<::std::string::String>,
     /**Primary status classification of the package in the shipping workflow.
 
-Known values: "PENDING", "IN_TRANSIT", "SHIPPED", "DELIVERED", "CANCELLED", "UNDELIVERABLE". Other values may be returned by Amazon.*/
+Known values: `PENDING`, `IN_TRANSIT`, `SHIPPED`, `DELIVERED`, `CANCELLED`, `UNDELIVERABLE`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
 }
 ///Pagination occurs when a request has results that exceed the response limit. This means the results are divided into individual pages. To retrieve a different page, you must pass the token value as the `paginationToken` query parameter in the subsequent request. All other parameters must be provided with the same values that were provided with the request that generated this token, with the exception of `maxResultsPerPage` and `includedData`, which can be modified between calls. The token will expire after 24 hours. When there are no other pages to fetch, the `pagination` field will be absent from the response.

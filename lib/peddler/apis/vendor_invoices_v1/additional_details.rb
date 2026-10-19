@@ -12,7 +12,8 @@ module Peddler
         # The detail of the additional information provided by the selling party.
         attribute(:detail, String, null: false)
 
-        # The type of the additional information provided by the selling party.
+        # The type of the additional information provided by the selling party. Known values: `SUR`, `OCR`,
+        # `CartonCount`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`.
         attribute(:type, String, null: false)
 
         # The language code of the additional information detail.

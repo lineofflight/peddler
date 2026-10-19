@@ -23,7 +23,7 @@ module Peddler
         # shipment.
         attribute?(:estimated_shipping_weight, Weight, from: "estimatedShippingWeight")
 
-        # The method used to calculate the estimated shipping weight.
+        # The method used to calculate the estimated shipping weight. Known values: `Package`, `Dimensional`.
         attribute?(:shipping_weight_calculation_method, String, from: "shippingWeightCalculationMethod")
       end
     end

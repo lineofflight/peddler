@@ -81,7 +81,7 @@ pub struct TestOrder {
 pub struct Transaction {
     /**The current processing status of the transaction.
 
-Known values: "FAILURE", "PROCESSING", "SUCCESS". Other values may be returned by Amazon.*/
+Known values: `FAILURE`, `PROCESSING`, `SUCCESS`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///Test case data for the transaction. Only available when the transaction status is SUCCESS.
     #[serde(

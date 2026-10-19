@@ -12,7 +12,7 @@ module Peddler
         # The value of the additional party identifier.
         attribute(:identification_number, String, null: false, from: "identificationNumber")
 
-        # The type of the additional party identifier.
+        # The type of the additional party identifier. Known values: `FR_SIREN`, `DE_WIDNR`.
         attribute(:identification_type, String, null: false, from: "identificationType")
       end
     end

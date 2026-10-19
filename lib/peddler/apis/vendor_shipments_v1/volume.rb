@@ -9,7 +9,7 @@ module Peddler
     module VendorShipmentsV1
       # The volume of the shipment.
       Volume = Structure.new do
-        # The unit of measurement.
+        # The unit of measurement. Known values: `CuFt`, `CuIn`, `CuM`, `CuY`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # The measurement value.

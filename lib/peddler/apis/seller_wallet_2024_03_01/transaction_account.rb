@@ -12,7 +12,7 @@ module Peddler
         # The currency code in ISO 4217 format.
         attribute(:bank_account_currency, String, null: false, from: "bankAccountCurrency")
 
-        # The format for the bank account number.
+        # The format for the bank account number. Known values: `IBAN`, `BBAN`.
         attribute(:bank_account_number_format, String, null: false, from: "bankAccountNumberFormat")
 
         # The name of the bank.

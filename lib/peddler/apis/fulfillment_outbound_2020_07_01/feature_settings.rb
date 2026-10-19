@@ -20,7 +20,7 @@ module Peddler
       # orders and are currently supported only in the US marketplace. To ensure all items in an order are delivered
       # together, set `featureName` to `DELIVER_TOGETHER`.
       FeatureSettings = Structure.new do
-        # Specifies the policy to use when fulfilling an order.
+        # Specifies the policy to use when fulfilling an order. Known values: `Required`, `NotRequired`.
         attribute?(:feature_fulfillment_policy, String, from: "featureFulfillmentPolicy")
 
         # The name of the feature. Valid feature names are:

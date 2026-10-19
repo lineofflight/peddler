@@ -13,7 +13,7 @@ module Peddler
         # requester, the SKU field is omitted.
         attribute(:offer_identifier, OfferIdentifier, null: false, from: "offerIdentifier")
 
-        # The item condition.
+        # The item condition. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute?(:condition, String)
 
         # The current active price of the offer.

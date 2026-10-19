@@ -109,6 +109,7 @@ pub struct FeesEstimateByIdRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fees_estimate_request: ::std::option::Option<FeesEstimateRequest>,
+    ///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
     #[serde(rename = "IdType")]
     pub id_type: IdType,
     ///The item identifier.
@@ -168,6 +169,7 @@ impl ::std::convert::From<
 ///An item identifier, marketplace, time of request, and other details that identify an estimate.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeesEstimateIdentifier {
+    ///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
     #[serde(rename = "IdType", skip_serializing_if = "::std::option::Option::is_none")]
     pub id_type: ::std::option::Option<IdType>,
     ///The item identifier.
@@ -185,6 +187,7 @@ pub struct FeesEstimateIdentifier {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
+    ///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "OptionalFulfillmentProgram",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -221,6 +224,7 @@ pub struct FeesEstimateRequest {
     ///A marketplace identifier.
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
+    ///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "OptionalFulfillmentProgram",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -333,7 +337,7 @@ for GetMyFeesEstimatesResponse {
 }
 /**The type of product identifier used in a `FeesEstimateByIdRequest`.
 
-Known values: "ASIN", "SellerSKU". Other values may be returned by Amazon.*/
+Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -434,7 +438,7 @@ pub struct MoneyType {
 }
 /**An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
 
-Known values: "FBA_CORE", "FBA_SNL", "FBA_EFN". Other values may be returned by Amazon.*/
+Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

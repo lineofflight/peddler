@@ -349,7 +349,7 @@ pub struct ItemImage {
     pub link: ::std::string::String,
     /**Variant of the image, such as `MAIN` or `PT01`.
 
-Known values: "MAIN", "PT01", "PT02", "PT03", "PT04", "PT05", "PT06", "PT07", "PT08", "SWCH". Other values may be returned by Amazon.*/
+Known values: `MAIN`, `PT01`, `PT02`, `PT03`, `PT04`, `PT05`, `PT06`, `PT07`, `PT08`, `SWCH`. Other values may be returned by Amazon.*/
     pub variant: ::std::string::String,
     ///Width of the image in pixels.
     pub width: i64,
@@ -438,7 +438,7 @@ pub struct ItemRelationship {
     pub parent_asins: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**Type of relationship.
 
-Known values: "VARIATION", "PACKAGE_HIERARCHY". Other values may be returned by Amazon.*/
+Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///For `VARIATION` relationships, the variation theme indicates the combination of Amazon catalog item attributes that define the variation family.
@@ -592,7 +592,7 @@ pub struct ItemSummaryByMarketplace {
     pub contributors: ::std::option::Option<::std::vec::Vec<ItemContributor>>,
     /**Classification type that is associated with the Amazon catalog item.
 
-Known values: "BASE_PRODUCT", "OTHER", "PRODUCT_BUNDLE", "VARIATION_PARENT". Other values may be returned by Amazon.*/
+Known values: `BASE_PRODUCT`, `OTHER`, `PRODUCT_BUNDLE`, `VARIATION_PARENT`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "itemClassification",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -735,7 +735,7 @@ pub struct ItemVendorDetailsByMarketplace {
     pub product_subcategory: ::std::option::Option<ItemVendorDetailsCategory>,
     /**The replenishment category that is associated with an Amazon catalog item.
 
-Known values: "ALLOCATED", "BASIC_REPLENISHMENT", "IN_SEASON", "LIMITED_REPLENISHMENT", "MANUFACTURER_OUT_OF_STOCK", "NEW_PRODUCT", "NON_REPLENISHABLE", "NON_STOCKUPABLE", "OBSOLETE", "PLANNED_REPLENISHMENT". Other values may be returned by Amazon.*/
+Known values: `ALLOCATED`, `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`, `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "replenishmentCategory",
         skip_serializing_if = "::std::option::Option::is_none"

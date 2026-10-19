@@ -15,7 +15,7 @@ module Peddler
         # The end date and time of the time slot.
         attribute?(:end_time, String, from: "endTime")
 
-        # The method by which a seller will hand a package over to Amazon Logistics.
+        # The method by which a seller will hand a package over to Amazon Logistics. Known values: `PICKUP`, `DROPOFF`.
         attribute?(:handover_method, String, from: "handoverMethod")
 
         # The start date and time of the time slot.

@@ -15,8 +15,10 @@ module Peddler
 
         attribute?(:custom_text_for_label, String, from: "CustomTextForLabel")
 
+        # Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
         attribute?(:label_format, String, from: "LabelFormat")
 
+        # Known values: `AmazonOrderId`.
         attribute?(:standard_id_for_label, String, from: "StandardIdForLabel")
       end
     end

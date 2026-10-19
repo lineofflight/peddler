@@ -9,6 +9,7 @@ module Peddler
     module ShippingV2
       # Document specification that is supported for a service offering.
       SupportedDocumentSpecification = Structure.new do
+        # Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
         attribute(:print_options, [PrintOption], null: false, from: "printOptions")

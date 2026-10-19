@@ -9,7 +9,7 @@ module Peddler
     module ShippingV1
       # The weight.
       Weight = Structure.new do
-        # The unit of measurement.
+        # The unit of measurement. Known values: `g`, `kg`, `oz`, `lb`.
         attribute(:unit, String, null: false)
 
         # The measurement value.

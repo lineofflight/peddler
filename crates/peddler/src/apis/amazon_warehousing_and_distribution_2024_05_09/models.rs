@@ -53,7 +53,9 @@ pub struct Address {
 ///Identifies the carrier that will deliver the shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CarrierCode {
-    ///Denotes the carrier type.
+    /**Denotes the carrier type.
+
+Known values: `SCAC`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "carrierCodeType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -68,7 +70,7 @@ pub struct CarrierCode {
 }
 /**Denotes the type for the carrier.
 
-Known values: "SCAC". Other values may be returned by Amazon.*/
+Known values: `SCAC`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -111,7 +113,7 @@ impl ::std::str::FromStr for CarrierCodeType {
 }
 /**Confirmation Modes supported for Replenishment order creation. By default, the confirmation mode will be set to MANUAL.
 
-Known values: "AUTO", "MANUAL". Other values may be returned by Amazon.*/
+Known values: `AUTO`, `MANUAL`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -230,7 +232,7 @@ impl<'de> ::serde::Deserialize<'de> for DestinationDetailsShipmentId {
 }
 /**Unit of measurement for package dimensions.
 
-Known values: "INCHES", "CENTIMETERS". Other values may be returned by Amazon.*/
+Known values: `INCHES`, `CENTIMETERS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -291,7 +293,9 @@ pub struct DistributionPackage {
     pub contents: DistributionPackageContents,
     ///Measurements of a package, including weight, volume, and dimensions.
     pub measurements: MeasurementData,
-    ///Type of distribution package.
+    /**Type of distribution package.
+
+Known values: `CASE`, `PALLET`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: DistributionPackageType,
 }
@@ -315,7 +319,7 @@ pub struct DistributionPackageQuantity {
 }
 /**Type of distribution packages.
 
-Known values: "CASE", "PALLET". Other values may be returned by Amazon.*/
+Known values: `CASE`, `PALLET`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -400,7 +404,7 @@ pub struct ExpirationDetails {
 }
 /**The label format type extension.
 
-Known values: "PDF". Other values may be returned by Amazon.*/
+Known values: `PDF`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -458,11 +462,12 @@ pub struct InboundEligibility {
     ///Timestamp when the eligibility check is performed.
     #[serde(rename = "previewedAt")]
     pub previewed_at: ::chrono::DateTime<::chrono::offset::Utc>,
+    ///Known values: `ELIGIBLE`, `INELIGIBLE`. Other values may be returned by Amazon.
     pub status: InboundEligibilityStatus,
 }
 /**Enum denoting the package inbound eligibility.
 
-Known values: "ELIGIBLE", "INELIGIBLE". Other values may be returned by Amazon.*/
+Known values: `ELIGIBLE`, `INELIGIBLE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -524,7 +529,9 @@ pub struct InboundOrder {
     ///Inbound order ID.
     #[serde(rename = "orderId")]
     pub order_id: ::std::string::String,
-    ///Inbound order status.
+    /**Inbound order status.
+
+Known values: `DRAFT`, `VALIDATING`, `CONFIRMED`, `CLOSED`, `EXPIRED`, `CANCELLED`. Other values may be returned by Amazon.*/
     #[serde(rename = "orderStatus")]
     pub order_status: InboundStatus,
     ///Origin address from where the inbound order will be shipped.
@@ -641,7 +648,9 @@ pub struct InboundShipment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_sku_quantities: ::std::option::Option<::std::vec::Vec<SkuQuantity>>,
-    ///Current status of this shipment.
+    /**Current status of this shipment.
+
+Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`. Other values may be returned by Amazon.*/
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: InboundShipmentStatus,
     ///Carrier-unique tracking ID for this shipment.
@@ -773,7 +782,7 @@ impl<'de> ::serde::Deserialize<'de> for InboundShipmentShipmentId {
 }
 /**Possible shipment statuses used by shipments.
 
-Known values: "CREATED", "SHIPPED", "IN_TRANSIT", "RECEIVING", "DELIVERED", "CLOSED", "CANCELLED". Other values may be returned by Amazon.*/
+Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -835,6 +844,7 @@ pub struct InboundShipmentSummary {
     ///A unique shipment ID.
     #[serde(rename = "shipmentId")]
     pub shipment_id: InboundShipmentSummaryShipmentId,
+    ///Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: InboundShipmentStatus,
     ///Timestamp when the shipment was updated.
@@ -1009,7 +1019,7 @@ impl<'de> ::serde::Deserialize<'de> for InboundShipmentTrackingId {
 }
 /**The supported statuses for an inbound order.
 
-Known values: "DRAFT", "VALIDATING", "CONFIRMED", "CLOSED", "EXPIRED", "CANCELLED". Other values may be returned by Amazon.*/
+Known values: `DRAFT`, `VALIDATING`, `CONFIRMED`, `CLOSED`, `EXPIRED`, `CANCELLED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1074,7 +1084,7 @@ pub struct InventoryDetails {
 }
 /**Enum to specify if returned summaries should include additional summarized inventory details and quantities.
 
-Known values: "SHOW", "HIDE". Other values may be returned by Amazon.*/
+Known values: `SHOW`, `HIDE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1132,7 +1142,9 @@ pub struct InventoryListing {
 pub struct InventoryQuantity {
     ///Quantity of the respective inventory.
     pub quantity: ::serde_json::Number,
-    ///Unit of measurement for the inventory.
+    /**Unit of measurement for the inventory.
+
+Known values: `PRODUCT_UNITS`, `CASES`, `PALLETS`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasurement")]
     pub unit_of_measurement: InventoryUnitOfMeasurement,
 }
@@ -1167,7 +1179,7 @@ pub struct InventorySummary {
 }
 /**Unit of measurement for the inventory.
 
-Known values: "PRODUCT_UNITS", "CASES", "PALLETS". Other values may be returned by Amazon.*/
+Known values: `PRODUCT_UNITS`, `CASES`, `PALLETS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1210,7 +1222,7 @@ impl ::std::str::FromStr for InventoryUnitOfMeasurement {
 }
 /**The entity that labels the products. `AMAZON` is not an accepted value in the US marketplace.
 
-Known values: "AMAZON", "SELF". Other values may be returned by Amazon.*/
+Known values: `AMAZON`, `SELF`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1253,7 +1265,7 @@ impl ::std::str::FromStr for LabelOwner {
 }
 /**The status of your label.
 
-Known values: "GENERATING", "GENERATED", "GENERATION_FAILED", "NOT_READY". Other values may be returned by Amazon.*/
+Known values: `GENERATING`, `GENERATED`, `GENERATION_FAILED`, `NOT_READY`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1309,10 +1321,14 @@ pub struct MeasurementData {
 ///Consists of the order preference and corresponding preference value.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OrderAttribute {
-    ///Preference for the distribution order.
+    /**Preference for the distribution order.
+
+Known values: `PARTIAL_ORDER`. Other values may be returned by Amazon.*/
     #[serde(rename = "orderPreference")]
     pub order_preference: OrderPreference,
-    ///Value for the order preference.
+    /**Value for the order preference.
+
+Known values: `SET`, `UNSET`. Other values may be returned by Amazon.*/
     #[serde(rename = "orderPreferenceValue")]
     pub order_preference_value: OrderPreferenceValue,
 }
@@ -1326,7 +1342,7 @@ pub struct OrderIneligibilityReason {
 }
 /**Supported preferences for the distribution order.
 
-Known values: "PARTIAL_ORDER". Other values may be returned by Amazon.*/
+Known values: `PARTIAL_ORDER`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1369,7 +1385,7 @@ impl ::std::str::FromStr for OrderPreference {
 }
 /**Value for the order preference.
 
-Known values: "SET", "UNSET". Other values may be returned by Amazon.*/
+Known values: `SET`, `UNSET`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1485,7 +1501,9 @@ pub struct OutboundOrder {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_preferences: ::std::option::Option<::std::vec::Vec<OrderAttribute>>,
-    ///Status for the outbound order.
+    /**Status for the outbound order.
+
+Known values: `CONFIRMED`, `DRAFT`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`. Other values may be returned by Amazon.*/
     #[serde(rename = "orderStatus")]
     pub order_status: OutboundStatus,
     ///List of outbound shipments that are part of this order.
@@ -1596,7 +1614,9 @@ pub struct OutboundShipment {
     pub shipment_product_quantities: ::std::option::Option<
         ::std::vec::Vec<ProductQuantity>,
     >,
-    ///Current status of this shipment.
+    /**Current status of this shipment.
+
+Known values: `CREATED`, `IN_TRANSIT`, `DELIVERED`, `RECEIVING`, `RECEIVED`, `CLOSED`, `CANCELLED`, `FAILED`. Other values may be returned by Amazon.*/
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: OutboundShipmentStatus,
     ///Timestamp when the shipment was updated.
@@ -1608,7 +1628,7 @@ pub struct OutboundShipment {
 }
 /**Possible shipment statuses for outbound shipments.
 
-Known values: "CREATED", "IN_TRANSIT", "DELIVERED", "RECEIVING", "RECEIVED", "CLOSED", "CANCELLED", "FAILED". Other values may be returned by Amazon.*/
+Known values: `CREATED`, `IN_TRANSIT`, `DELIVERED`, `RECEIVING`, `RECEIVED`, `CLOSED`, `CANCELLED`, `FAILED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1665,6 +1685,7 @@ pub struct OutboundShipmentSummary {
     ///Unique shipment ID
     #[serde(rename = "shipmentId")]
     pub shipment_id: OutboundShipmentSummaryShipmentId,
+    ///Known values: `CREATED`, `IN_TRANSIT`, `DELIVERED`, `RECEIVING`, `RECEIVED`, `CLOSED`, `CANCELLED`, `FAILED`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: OutboundShipmentStatus,
     ///Timestamp denoting when the shipment was updated
@@ -1785,7 +1806,7 @@ impl<'de> ::serde::Deserialize<'de> for OutboundShipmentSummaryShipmentId {
 }
 /**Statuses supported for an outbound order.
 
-Known values: "CONFIRMED", "DRAFT", "ELIGIBLE", "EXECUTING", "FAILURE", "INELIGIBLE", "INVENTORY_OUTBOUND", "SUCCESS", "VALIDATING". Other values may be returned by Amazon.*/
+Known values: `CONFIRMED`, `DRAFT`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1833,7 +1854,9 @@ pub struct PackageDimensions {
     pub height: ::serde_json::Number,
     ///Length of the package.
     pub length: ::serde_json::Number,
-    ///Unit of measurement for package dimensions.
+    /**Unit of measurement for package dimensions.
+
+Known values: `INCHES`, `CENTIMETERS`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasurement")]
     pub unit_of_measurement: DimensionUnitOfMeasurement,
     ///Width of the package.
@@ -1842,7 +1865,9 @@ pub struct PackageDimensions {
 ///Represents the volume of the package with a unit of measurement.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PackageVolume {
-    ///Unit of measurement for the package volume.
+    /**Unit of measurement for the package volume.
+
+Known values: `CU_IN`, `CBM`, `CC`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasurement")]
     pub unit_of_measurement: VolumeUnitOfMeasurement,
     ///The package volume value.
@@ -1851,7 +1876,9 @@ pub struct PackageVolume {
 ///Represents the weight of the package with a unit of measurement.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PackageWeight {
-    ///Unit of measurement for the package weight.
+    /**Unit of measurement for the package weight.
+
+Known values: `POUNDS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasurement")]
     pub unit_of_measurement: WeightUnitOfMeasurement,
     ///The package weight value.
@@ -1859,7 +1886,7 @@ pub struct PackageWeight {
 }
 /**Label page type.
 
-Known values: "PLAIN_PAPER", "LETTER_PCP_FULFILLMENTLABEL", "LETTER_2_HORIZONTAL", "LETTER_2", "THERMAL_NO_CARRIER_ROTATION", "THERMAL", "A4_PAPER", "A4_2_HORIZONTAL", "THERMAL_SQUARE_10CM". Other values may be returned by Amazon.*/
+Known values: `PLAIN_PAPER`, `LETTER_PCP_FULFILLMENTLABEL`, `LETTER_2_HORIZONTAL`, `LETTER_2`, `THERMAL_NO_CARRIER_ROTATION`, `THERMAL`, `A4_PAPER`, `A4_2_HORIZONTAL`, `THERMAL_SQUARE_10CM`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1902,7 +1929,7 @@ impl ::std::str::FromStr for PageType {
 }
 /**The preparation category for shipping an item to Amazon's fulfillment network.
 
-Known values: "ADULT", "BABY", "FC_PROVIDED", "FRAGILE", "GRANULAR", "HANGER", "LIQUID", "PERFORATED", "SET", "SHARP", "SMALL", "TEXTILE", "NO_PREP", "UNKNOWN". Other values may be returned by Amazon.*/
+Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `NO_PREP`, `UNKNOWN`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1947,12 +1974,15 @@ impl ::std::str::FromStr for PrepCategory {
 Prep instructions are generated based on the specified category.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PrepDetails {
+    ///Known values: `AMAZON`, `SELF`. Other values may be returned by Amazon.
     #[serde(
         rename = "labelOwner",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub label_owner: ::std::option::Option<LabelOwner>,
-    ///The preparation category for shipping an item to Amazon's fulfillment network.
+    /**The preparation category for shipping an item to Amazon's fulfillment network.
+
+Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `NO_PREP`, `UNKNOWN`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "prepCategory",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1964,6 +1994,7 @@ pub struct PrepDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_instructions: ::std::option::Option<::std::vec::Vec<PrepInstruction>>,
+    ///Known values: `AMAZON`, `SELF`. Other values may be returned by Amazon.
     #[serde(
         rename = "prepOwner",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1973,6 +2004,7 @@ pub struct PrepDetails {
 ///Information pertaining to the preparation of inbound products.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PrepInstruction {
+    ///Known values: `AMAZON`, `SELF`. Other values may be returned by Amazon.
     #[serde(
         rename = "prepOwner",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1984,7 +2016,7 @@ pub struct PrepInstruction {
 }
 /**The owner of the preparations, if special preparations are required. `AMAZON` is not an accepted value in the US marketplace.
 
-Known values: "AMAZON", "SELF". Other values may be returned by Amazon.*/
+Known values: `AMAZON`, `SELF`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2102,6 +2134,7 @@ This field will be populated if the order has products or packages which failed 
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_products: ::std::option::Option<::std::vec::Vec<DistributionProduct>>,
+    ///Known values: `CONFIRMED`, `CREATED`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`. Other values may be returned by Amazon.
     pub status: ReplenishmentOrderStatus,
     ///Date on which this replenishment order was last updated.
     #[serde(
@@ -2142,7 +2175,7 @@ pub struct ReplenishmentOrderReference {
 }
 /**Statuses supported for an replenishment order.
 
-Known values: "CONFIRMED", "CREATED", "ELIGIBLE", "EXECUTING", "FAILURE", "INELIGIBLE", "INVENTORY_OUTBOUND", "SUCCESS", "VALIDATING". Other values may be returned by Amazon.*/
+Known values: `CONFIRMED`, `CREATED`, `ELIGIBLE`, `EXECUTING`, `FAILURE`, `INELIGIBLE`, `INVENTORY_OUTBOUND`, `SUCCESS`, `VALIDATING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2186,17 +2219,23 @@ impl ::std::str::FromStr for ReplenishmentOrderStatus {
 ///Preferences that can be passed in context of a replenishment order
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReplenishmentPreferences {
-    ///Confirmation Mode to use for the created Replenishment order.
+    /**Confirmation Mode to use for the created Replenishment order.
+
+Known values: `AUTO`, `MANUAL`. Other values may be returned by Amazon.*/
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub confirmation: ::std::option::Option<ConfirmationMode>,
 }
 ///Shipment label page types.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipmentLabelPageTypes {
-    ///Status of label page types.
+    /**Status of label page types.
+
+Known values: `GENERATING`, `GENERATED`, `GENERATION_FAILED`, `NOT_READY`. Other values may be returned by Amazon.*/
     #[serde(rename = "labelStatus")]
     pub label_status: LabelStatus,
-    ///List of available page types.
+    /**List of available page types.
+
+Known values: `PLAIN_PAPER`, `LETTER_PCP_FULFILLMENTLABEL`, `LETTER_2_HORIZONTAL`, `LETTER_2`, `THERMAL_NO_CARRIER_ROTATION`, `THERMAL`, `A4_PAPER`, `A4_2_HORIZONTAL`, `THERMAL_SQUARE_10CM`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "pageTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2212,7 +2251,9 @@ pub struct ShipmentLabels {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub label_download_url: ::std::option::Option<::std::string::String>,
-    ///Status of label generation.
+    /**Status of label generation.
+
+Known values: `GENERATING`, `GENERATED`, `GENERATION_FAILED`, `NOT_READY`. Other values may be returned by Amazon.*/
     #[serde(rename = "labelStatus")]
     pub label_status: LabelStatus,
 }
@@ -2231,7 +2272,7 @@ pub struct ShipmentListing {
 }
 /**Denotes the field name on which the shipments are to be sorted.
 
-Known values: "UPDATED_AT", "CREATED_AT". Other values may be returned by Amazon.*/
+Known values: `UPDATED_AT`, `CREATED_AT`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2285,6 +2326,7 @@ pub struct SkuEligibility {
     >,
     #[serde(rename = "packageQuantity")]
     pub package_quantity: DistributionPackageQuantity,
+    ///Known values: `ELIGIBLE`, `INELIGIBLE`. Other values may be returned by Amazon.
     pub status: InboundEligibilityStatus,
 }
 ///Represents the ineligibility reason for one SKU.
@@ -2297,7 +2339,7 @@ pub struct SkuIneligibilityReason {
 }
 /**Enum to specify if returned shipment should include SKU quantity details
 
-Known values: "SHOW", "HIDE". Other values may be returned by Amazon.*/
+Known values: `SHOW`, `HIDE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2353,7 +2395,7 @@ pub struct SkuQuantity {
 }
 /**Sort order for a collection of items. For example, order or shipment.
 
-Known values: "ASCENDING", "DESCENDING". Other values may be returned by Amazon.*/
+Known values: `ASCENDING`, `DESCENDING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2470,7 +2512,7 @@ pub struct TransportationDetails {
 }
 /**Unit of measurement for the package volume.
 
-Known values: "CU_IN", "CBM", "CC". Other values may be returned by Amazon.*/
+Known values: `CU_IN`, `CBM`, `CC`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2513,7 +2555,7 @@ impl ::std::str::FromStr for VolumeUnitOfMeasurement {
 }
 /**Unit of measurement for the package weight.
 
-Known values: "POUNDS", "KILOGRAMS". Other values may be returned by Amazon.*/
+Known values: `POUNDS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

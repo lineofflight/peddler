@@ -11,6 +11,7 @@ module Peddler
       ContentDocument = Structure.new do
         attribute(:content_module_list, [ContentModule], null: false, from: "contentModuleList")
 
+        # Known values: `EBC`, `EMC`, `BrandStory`.
         attribute(:content_type, String, null: false, from: "contentType")
 
         attribute(:locale, String, null: false)

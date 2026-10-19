@@ -16,6 +16,7 @@ module Peddler
 
         attribute(:label_specification, LabelSpecification, null: false, from: "labelSpecification")
 
+        # Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`.
         attribute(:service_type, String, null: false, from: "serviceType")
 
         attribute(:ship_from, Address, null: false, from: "shipFrom")

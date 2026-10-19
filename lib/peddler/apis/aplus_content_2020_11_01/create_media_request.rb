@@ -10,7 +10,7 @@ module Peddler
       # The request body for creating a media asset. Uses the unified media shape as a subset, omitting system-derived
       # fields.
       CreateMediaRequest = Structure.new do
-        # The type of media asset to create.
+        # The type of media asset to create. Known values: `VIDEO`, `IMAGE`.
         attribute(:media_type, String, null: false, from: "mediaType")
 
         # Accessibility descriptions for video assets. Required when `mediaType` is `VIDEO`. At least one entry

@@ -58,7 +58,7 @@ pub struct DetailsByPromotion {
     pub created_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
     /**The mode of creation for the promotion.
 
-Known values: "SELF-SERVICE", "FULL-SERVICE", "AUTOMATED", "MANUAL". Other values may be returned by Amazon.*/
+Known values: `SELF-SERVICE`, `FULL-SERVICE`, `AUTOMATED`, `MANUAL`. Other values may be returned by Amazon.*/
     #[serde(rename = "creationChannel")]
     pub creation_channel: ::std::string::String,
     ///Promotion end date-time in ISO 8601 format in UTC.
@@ -113,11 +113,11 @@ Known values: "SELF-SERVICE", "FULL-SERVICE", "AUTOMATED", "MANUAL". Other value
     pub start_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
     /**The state that the promotion is in.
 
-Known values: "APPROVED", "PENDING_APPROVAL", "NEEDS_YOUR_ATTENTION", "CANCELED". Other values may be returned by Amazon.*/
+Known values: `APPROVED`, `PENDING_APPROVAL`, `NEEDS_YOUR_ATTENTION`, `CANCELED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     /**The type of the promotion.
 
-Known values: "BEST_DEAL", "DEAL_OF_THE_DAY", "LIGHTNING_DEAL", "PRICE_DISCOUNT", "SALES_DISCOUNT", "COUPON", "PROMO_CODE". Other values may be returned by Amazon.*/
+Known values: `BEST_DEAL`, `DEAL_OF_THE_DAY`, `LIGHTNING_DEAL`, `PRICE_DISCOUNT`, `SALES_DISCOUNT`, `COUPON`, `PROMO_CODE`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///The number of units sold across all ASINs in the promotion.

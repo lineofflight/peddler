@@ -1365,7 +1365,7 @@ impl<'de> ::serde::Deserialize<'de> for AddressStateOrProvinceCode {
 }
 /**A constraint that applies to all owners. If no constraint is specified, defer to any individual owner constraints.
 
-Known values: "MUST_MATCH". Other values may be returned by Amazon.*/
+Known values: `MUST_MATCH`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1493,6 +1493,7 @@ pub struct Box {
     ///The ID provided by Amazon that identifies a given box. This ID is comprised of the external shipment ID (which is generated after transportation has been confirmed) and the index of the box.
     #[serde(rename = "boxId", skip_serializing_if = "::std::option::Option::is_none")]
     pub box_id: ::std::option::Option<BoxBoxId>,
+    ///Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.
     #[serde(
         rename = "contentInformationSource",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1598,7 +1599,7 @@ impl<'de> ::serde::Deserialize<'de> for BoxBoxId {
 }
 /**Indication of how box content is meant to be provided.
 
-Known values: "BOX_CONTENT_PROVIDED", "MANUAL_PROCESS", "BARCODE_2D". Other values may be returned by Amazon.*/
+Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1757,6 +1758,7 @@ impl<'de> ::serde::Deserialize<'de> for BoxExternalContainerIdentifierType {
 ///Input information for a given box.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BoxInput {
+    ///Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.
     #[serde(rename = "contentInformationSource")]
     pub content_information_source: BoxContentInformationSource,
     pub dimensions: Dimensions,
@@ -1894,6 +1896,7 @@ impl<'de> ::serde::Deserialize<'de> for BoxTemplateName {
 ///Input information for updating a box
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BoxUpdateInput {
+    ///Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.
     #[serde(rename = "contentInformationSource")]
     pub content_information_source: BoxContentInformationSource,
     pub dimensions: Dimensions,
@@ -2046,6 +2049,7 @@ impl<'de> ::serde::Deserialize<'de> for CancelInboundPlanResponseOperationId {
 ///The `cancelSelfShipAppointment` request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CancelSelfShipAppointmentRequest {
+    ///Known values: `APPOINTMENT_REQUESTED_BY_MISTAKE`, `VEHICLE_DELAY`, `SLOT_NOT_SUITABLE`, `OUTSIDE_CARRIER_BUSINESS_HOURS`, `UNFAVOURABLE_EXTERNAL_CONDITIONS`, `PROCUREMENT_DELAY`, `SHIPPING_PLAN_CHANGED`, `INCREASED_QUANTITY`, `OTHER`. Other values may be returned by Amazon.
     #[serde(
         rename = "reasonComment",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -3349,6 +3353,7 @@ pub struct CreateMarketplaceItemLabelsRequest {
     ///The height of the item label.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub height: ::std::option::Option<::serde_json::Number>,
+    ///Known values: `STANDARD_FORMAT`, `THERMAL_PRINTING`. Other values may be returned by Amazon.
     #[serde(rename = "labelType")]
     pub label_type: LabelPrintType,
     ///The locale code constructed from ISO 639 language code and ISO 3166-1 alpha-2 standard of country codes separated by an underscore character.
@@ -3363,6 +3368,7 @@ pub struct CreateMarketplaceItemLabelsRequest {
     ///Represents the quantity of an MSKU to print item labels for.
     #[serde(rename = "mskuQuantities")]
     pub msku_quantities: ::std::vec::Vec<MskuQuantity>,
+    ///Known values: `A4_21`, `A4_24`, `A4_24_64x33`, `A4_24_66x35`, `A4_24_70x36`, `A4_24_70x37`, `A4_24i`, `A4_27`, `A4_40_52x29`, `A4_44_48x25`, `Letter_30`. Other values may be returned by Amazon.
     #[serde(rename = "pageType", skip_serializing_if = "::std::option::Option::is_none")]
     pub page_type: ::std::option::Option<ItemLabelPageType>,
     ///The width of the item label.
@@ -3726,6 +3732,7 @@ pub struct Dimensions {
     pub height: ::serde_json::Number,
     ///The length of a package.
     pub length: ::serde_json::Number,
+    ///Known values: `IN`, `CM`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasurement")]
     pub unit_of_measurement: UnitOfMeasurement,
     ///The width of a package.
@@ -4579,6 +4586,7 @@ pub struct InboundOperationStatus {
     ///The problems in the processing of the asynchronous operation.
     #[serde(rename = "operationProblems")]
     pub operation_problems: ::std::vec::Vec<OperationProblem>,
+    ///Known values: `SUCCESS`, `FAILED`, `IN_PROGRESS`. Other values may be returned by Amazon.
     #[serde(rename = "operationStatus")]
     pub operation_status: OperationStatus,
 }
@@ -5511,6 +5519,7 @@ pub struct ItemInput {
     ///The expiration date of the MSKU. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern `YYYY-MM-DD`. Items with the same MSKU but different expiration dates cannot go into the same box.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub expiration: ::std::option::Option<ItemInputExpiration>,
+    ///Known values: `AMAZON`, `SELLER`, `NONE`. Other values may be returned by Amazon.
     #[serde(rename = "labelOwner")]
     pub label_owner: LabelOwner,
     ///The manufacturing lot code.
@@ -5521,6 +5530,7 @@ pub struct ItemInput {
     pub manufacturing_lot_code: ::std::option::Option<ItemInputManufacturingLotCode>,
     ///The merchant SKU, a merchant-supplied identifier of a specific SKU.
     pub msku: ItemInputMsku,
+    ///Known values: `AMAZON`, `SELLER`, `NONE`. Other values may be returned by Amazon.
     #[serde(rename = "prepOwner")]
     pub prep_owner: PrepOwner,
     ///The number of units of the specified MSKU that will be shipped.
@@ -5761,9 +5771,7 @@ impl<'de> ::serde::Deserialize<'de> for ItemLabelOwner {
             })
     }
 }
-/**The page type to use to print the labels. Possible values: 'A4_21', 'A4_24', 'A4_24_64x33', 'A4_24_66x35', 'A4_24_70x36', 'A4_24_70x37', 'A4_24i', 'A4_27', 'A4_40_52x29', 'A4_44_48x25', 'Letter_30'.
-
-Known values: "A4_21", "A4_24", "A4_24_64x33", "A4_24_66x35", "A4_24_70x36", "A4_24_70x37", "A4_24i", "A4_27", "A4_40_52x29", "A4_44_48x25", "Letter_30". Other values may be returned by Amazon.*/
+///The page type to use to print the labels. Possible values: 'A4_21', 'A4_24', 'A4_24_64x33', 'A4_24_66x35', 'A4_24_70x36', 'A4_24_70x37', 'A4_24i', 'A4_27', 'A4_40_52x29', 'A4_44_48x25', 'Letter_30'.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -5918,9 +5926,7 @@ impl<'de> ::serde::Deserialize<'de> for ItemMsku {
             })
     }
 }
-/**Specifies who will label the items. Options include `AMAZON`, `SELLER` or `NONE`. `AMAZON` is not an accepted value in the US marketplace.
-
-Known values: "AMAZON", "SELLER", "NONE". Other values may be returned by Amazon.*/
+///Specifies who will label the items. Options include `AMAZON`, `SELLER` or `NONE`. `AMAZON` is not an accepted value in the US marketplace.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -5963,7 +5969,7 @@ impl ::std::str::FromStr for LabelOwner {
 }
 /**Indicates the type of print type for a given label.
 
-Known values: "STANDARD_FORMAT", "THERMAL_PRINTING". Other values may be returned by Amazon.*/
+Known values: `STANDARD_FORMAT`, `THERMAL_PRINTING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -6426,11 +6432,13 @@ impl<'de> ::serde::Deserialize<'de> for LtlTrackingDetailInputFreightBillNumberI
 ///An MSKU and its related prep details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MskuPrepDetail {
+    ///Known values: `MUST_MATCH`. Other values may be returned by Amazon.
     #[serde(
         rename = "allOwnersConstraint",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub all_owners_constraint: ::std::option::Option<AllOwnersConstraint>,
+    ///Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`. Other values may be returned by Amazon.
     #[serde(
         rename = "labelOwnerConstraint",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -6438,14 +6446,18 @@ pub struct MskuPrepDetail {
     pub label_owner_constraint: ::std::option::Option<OwnerConstraint>,
     ///The merchant SKU, a merchant-supplied identifier for a specific SKU.
     pub msku: MskuPrepDetailMsku,
+    ///Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.
     #[serde(rename = "prepCategory")]
     pub prep_category: PrepCategory,
+    ///Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`. Other values may be returned by Amazon.
     #[serde(
         rename = "prepOwnerConstraint",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_owner_constraint: ::std::option::Option<OwnerConstraint>,
-    ///A list of preparation types associated with a preparation category.
+    /**A list of preparation types associated with a preparation category.
+
+Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
     #[serde(rename = "prepTypes")]
     pub prep_types: ::std::vec::Vec<PrepType>,
 }
@@ -6454,9 +6466,12 @@ pub struct MskuPrepDetail {
 pub struct MskuPrepDetailInput {
     ///The merchant SKU, a merchant-supplied identifier for a specific SKU.
     pub msku: MskuPrepDetailInputMsku,
+    ///Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.
     #[serde(rename = "prepCategory")]
     pub prep_category: PrepCategory,
-    ///A list of preparation types associated with a preparation category.
+    /**A list of preparation types associated with a preparation category.
+
+Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
     #[serde(rename = "prepTypes")]
     pub prep_types: ::std::vec::Vec<PrepType>,
 }
@@ -6879,7 +6894,7 @@ impl<'de> ::serde::Deserialize<'de> for OperationProblemSeverity {
 }
 /**The status of an operation.
 
-Known values: "SUCCESS", "FAILED", "IN_PROGRESS". Other values may be returned by Amazon.*/
+Known values: `SUCCESS`, `FAILED`, `IN_PROGRESS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -6922,7 +6937,7 @@ impl ::std::str::FromStr for OperationStatus {
 }
 /**A constraint that can apply to an individual owner. If no constraint is specified, both `AMAZON` and `SELLER` are acceptable.
 
-Known values: "AMAZON_ONLY", "NONE_ONLY", "SELLER_ONLY". Other values may be returned by Amazon.*/
+Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -7109,7 +7124,9 @@ impl<'de> ::serde::Deserialize<'de> for PackageGroupingInputShipmentId {
 ///A way to configure this packing option. Some box content information sources might not be allowed. Non-standard minimum and maximum box weights might be enforced.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PackingConfiguration {
-    ///The box content information sources that are allowed.
+    /**The box content information sources that are allowed.
+
+Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "boxPackingMethods",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -7545,6 +7562,7 @@ pub struct Pallet {
     ///The number of containers where all other properties like weight or dimensions are identical.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<::std::num::NonZeroU64>,
+    ///Known values: `STACKABLE`, `NON_STACKABLE`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub stackability: ::std::option::Option<Stackability>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -7557,6 +7575,7 @@ pub struct PalletInput {
     pub dimensions: ::std::option::Option<Dimensions>,
     ///The number of containers where all other properties like weight or dimensions are identical.
     pub quantity: ::std::num::NonZeroU64,
+    ///Known values: `STACKABLE`, `NON_STACKABLE`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub stackability: ::std::option::Option<Stackability>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -7957,7 +7976,7 @@ impl<'de> ::serde::Deserialize<'de> for PlacementOptionSummaryStatus {
 }
 /**The preparation category for shipping an item to Amazon's fulfillment network.
 
-Known values: "ADULT", "BABY", "FC_PROVIDED", "FRAGILE", "GRANULAR", "HANGER", "LIQUID", "PERFORATED", "SET", "SHARP", "SMALL", "TEXTILE", "UNKNOWN", "NONE". Other values may be returned by Amazon.*/
+Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8133,7 +8152,7 @@ impl<'de> ::serde::Deserialize<'de> for PrepInstructionPrepType {
 }
 /**The owner of the preparations, if special preparations are required.
 
-Known values: "AMAZON", "SELLER", "NONE". Other values may be returned by Amazon.*/
+Known values: `AMAZON`, `SELLER`, `NONE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8176,7 +8195,7 @@ impl ::std::str::FromStr for PrepOwner {
 }
 /**Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, refer to [Seller Central Help for your marketplace](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls).
 
-Known values: "ITEM_BLACK_SHRINKWRAP", "ITEM_BLANKSTK", "ITEM_BOXING", "ITEM_BUBBLEWRAP", "ITEM_CAP_SEALING", "ITEM_DEBUNDLE", "ITEM_HANG_GARMENT", "ITEM_LABELING", "ITEM_NO_PREP", "ITEM_POLYBAGGING", "ITEM_RMOVHANG", "ITEM_SETCREAT", "ITEM_SETSTK", "ITEM_SIOC", "ITEM_SUFFOSTK", "ITEM_TAPING". Other values may be returned by Amazon.*/
+Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8233,7 +8252,7 @@ pub struct Quote {
 }
 /**Reason for cancelling or rescheduling a self-ship appointment.
 
-Known values: "APPOINTMENT_REQUESTED_BY_MISTAKE", "VEHICLE_DELAY", "SLOT_NOT_SUITABLE", "OUTSIDE_CARRIER_BUSINESS_HOURS", "UNFAVOURABLE_EXTERNAL_CONDITIONS", "PROCUREMENT_DELAY", "SHIPPING_PLAN_CHANGED", "INCREASED_QUANTITY", "OTHER". Other values may be returned by Amazon.*/
+Known values: `APPOINTMENT_REQUESTED_BY_MISTAKE`, `VEHICLE_DELAY`, `SLOT_NOT_SUITABLE`, `OUTSIDE_CARRIER_BUSINESS_HOURS`, `UNFAVOURABLE_EXTERNAL_CONDITIONS`, `PROCUREMENT_DELAY`, `SHIPPING_PLAN_CHANGED`, `INCREASED_QUANTITY`, `OTHER`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8477,6 +8496,7 @@ pub struct RequestedUpdates {
 ///The `scheduleSelfShipAppointment` request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ScheduleSelfShipAppointmentRequest {
+    ///Known values: `APPOINTMENT_REQUESTED_BY_MISTAKE`, `VEHICLE_DELAY`, `SLOT_NOT_SUITABLE`, `OUTSIDE_CARRIER_BUSINESS_HOURS`, `UNFAVOURABLE_EXTERNAL_CONDITIONS`, `PROCUREMENT_DELAY`, `SHIPPING_PLAN_CHANGED`, `INCREASED_QUANTITY`, `OTHER`. Other values may be returned by Amazon.
     #[serde(
         rename = "reasonComment",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -10334,7 +10354,7 @@ impl<'de> ::serde::Deserialize<'de> for SpdTrackingItemTrackingNumberValidationS
 }
 /**Indicates whether pallets will be stacked when carrier arrives for pick-up.
 
-Known values: "STACKABLE", "NON_STACKABLE". Other values may be returned by Amazon.*/
+Known values: `STACKABLE`, `NON_STACKABLE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -10962,7 +10982,7 @@ impl<'de> ::serde::Deserialize<'de> for TransportationSelectionTransportationOpt
 }
 /**Unit of linear measure.
 
-Known values: "IN", "CM". Other values may be returned by Amazon.*/
+Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -11005,7 +11025,7 @@ impl ::std::str::FromStr for UnitOfMeasurement {
 }
 /**Unit of the weight being measured.
 
-Known values: "LB", "KG". Other values may be returned by Amazon.*/
+Known values: `LB`, `KG`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -11468,6 +11488,7 @@ for UpdateShipmentTrackingDetailsResponseOperationId {
 ///The weight of a package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
+    ///Known values: `LB`, `KG`. Other values may be returned by Amazon.
     pub unit: UnitOfWeight,
     ///Value of a weight.
     pub value: ::serde_json::Number,
@@ -11479,6 +11500,7 @@ pub struct WeightRange {
     pub maximum: ::serde_json::Number,
     ///Minimum allowed weight.
     pub minimum: ::serde_json::Number,
+    ///Known values: `LB`, `KG`. Other values may be returned by Amazon.
     pub unit: UnitOfWeight,
 }
 ///Contains a start and end DateTime representing a time range.

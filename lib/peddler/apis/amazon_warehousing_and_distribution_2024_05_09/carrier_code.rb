@@ -9,7 +9,7 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Identifies the carrier that will deliver the shipment.
       CarrierCode = Structure.new do
-        # Denotes the carrier type.
+        # Denotes the carrier type. Known values: `SCAC`.
         attribute?(:carrier_code_type, String, from: "carrierCodeType")
 
         # Value of the carrier code.

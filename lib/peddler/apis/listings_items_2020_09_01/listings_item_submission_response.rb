@@ -12,7 +12,7 @@ module Peddler
         # A selling partner provided identifier for an Amazon listing.
         attribute(:sku, String, null: false)
 
-        # The status of the listings item submission.
+        # The status of the listings item submission. Known values: `ACCEPTED`, `INVALID`.
         attribute(:status, String, null: false)
 
         # The unique identifier of the listings item submission.

@@ -9,7 +9,7 @@ module Peddler
     module FinancesInvoices20260625
       # Contextual information about an invoice line item.
       LineItemContext = Structure.new do
-        # The type of line item.
+        # The type of line item. Known values: `GOODS`, `SERVICES`, `OTHERS`.
         attribute(:line_item_type, String, null: false, from: "lineItemType")
 
         # A description of the item.
@@ -24,7 +24,8 @@ module Peddler
         # The service charge period.
         attribute?(:service_charge_period, ServiceChargePeriod, from: "serviceChargePeriod")
 
-        # The type of service charge.
+        # The type of service charge. Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`,
+        # `OTHER`.
         attribute?(:service_charge_type, String, from: "serviceChargeType")
       end
     end

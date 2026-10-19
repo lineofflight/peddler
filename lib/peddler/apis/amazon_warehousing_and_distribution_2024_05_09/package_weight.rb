@@ -9,7 +9,7 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Represents the weight of the package with a unit of measurement.
       PackageWeight = Structure.new do
-        # Unit of measurement for the package weight.
+        # Unit of measurement for the package weight. Known values: `POUNDS`, `KILOGRAMS`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # The package weight value.

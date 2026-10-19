@@ -23,6 +23,7 @@ pub struct Address {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
+    ///Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
     #[serde(
         rename = "AddressType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -64,7 +65,7 @@ pub struct Address {
 }
 /**The shipping address type.
 
-Known values: "Residential", "Commercial". Other values may be returned by Amazon.*/
+Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -271,7 +272,9 @@ pub struct PaymentInformation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub card_brand: ::std::option::Option<::std::string::String>,
-    ///The name of the payment method.
+    /**The name of the payment method.
+
+Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "PaymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -330,7 +333,7 @@ for PaymentMethodDetailItemList {
 }
 /**Payment methods
 
-Known values: "CreditCard", "DebitCard", "Pix", "BankSlip", "GiftCard", "Other". Other values may be returned by Amazon.*/
+Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -475,7 +478,7 @@ pub struct ShipmentDetail {
 }
 /**The shipment invoice status.
 
-Known values: "Processing", "Accepted", "Errored", "NotFound". Other values may be returned by Amazon.*/
+Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -525,6 +528,7 @@ pub struct ShipmentInvoiceStatusInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_shipment_id: ::std::option::Option<::std::string::String>,
+    ///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
     #[serde(
         rename = "InvoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"

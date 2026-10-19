@@ -9,10 +9,10 @@ module Peddler
     module AmazonWarehousingAndDistribution20240509
       # Consists of the order preference and corresponding preference value.
       OrderAttribute = Structure.new do
-        # Preference for the distribution order.
+        # Preference for the distribution order. Known values: `PARTIAL_ORDER`.
         attribute(:order_preference, String, null: false, from: "orderPreference")
 
-        # Value for the order preference.
+        # Value for the order preference. Known values: `SET`, `UNSET`.
         attribute(:order_preference_value, String, null: false, from: "orderPreferenceValue")
       end
     end

@@ -12,7 +12,7 @@ module Peddler
         # The length of the document measured in the units specified.
         attribute(:length, Float, null: false)
 
-        # The unit of measurement.
+        # The unit of measurement. Known values: `INCH`, `CENTIMETER`.
         attribute(:unit, String, null: false)
 
         # The width of the document measured in the units specified.

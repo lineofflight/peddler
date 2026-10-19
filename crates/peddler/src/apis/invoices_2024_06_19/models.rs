@@ -113,6 +113,7 @@ This list is empty until the status is `DONE`.*/
     pub invoices_document_ids: ::std::option::Option<
         ::std::vec::Vec<::std::string::String>,
     >,
+    ///Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<ExportStatus>,
 }
@@ -134,6 +135,7 @@ pub struct ExportInvoicesRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub external_invoice_id: ::std::option::Option<::std::string::String>,
+    ///Known values: `XML`. Other values may be returned by Amazon.
     #[serde(
         rename = "fileFormat",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -183,7 +185,7 @@ pub struct ExportInvoicesResponse {
 }
 /**The current status of the request.
 
-Known values: "REQUESTED", "PROCESSING", "DONE", "ERROR". Other values may be returned by Amazon.*/
+Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -226,7 +228,7 @@ impl ::std::str::FromStr for ExportStatus {
 }
 /**Supported invoice file extensions.
 
-Known values: "XML". Other values may be returned by Amazon.*/
+Known values: `XML`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -325,7 +327,7 @@ pub struct GetInvoicesResponse {
 }
 /**The current status of a government invoice creation request.
 
-Known values: "PROCESSING", "SUCCESS", "ERROR". Other values may be returned by Amazon.*/
+Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -406,6 +408,7 @@ pub struct GovernmentInvoiceStatusResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_external_document_id: ::std::option::Option<::std::string::String>,
+    ///Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<GovernmentInvoiceCreationStatus>,
 }

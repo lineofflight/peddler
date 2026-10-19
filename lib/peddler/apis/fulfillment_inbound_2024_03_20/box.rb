@@ -17,6 +17,7 @@ module Peddler
         # is generated after transportation has been confirmed) and the index of the box.
         attribute?(:box_id, String, from: "boxId")
 
+        # Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`.
         attribute?(:content_information_source, String, from: "contentInformationSource")
 
         attribute?(:destination_region, Region, from: "destinationRegion")

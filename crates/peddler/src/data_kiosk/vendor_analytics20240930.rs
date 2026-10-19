@@ -208,7 +208,7 @@ pub struct CustomerSatisfaction {
     )]
     pub customer_reviews: ::std::option::Option<CustomerReviews>,
 }
-///Known values: "DAY", "MONTH", "WEEK". Other values may be returned by Amazon.
+///Known values: `DAY`, `MONTH`, `WEEK`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

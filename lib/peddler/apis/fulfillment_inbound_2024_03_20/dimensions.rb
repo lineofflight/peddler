@@ -15,6 +15,7 @@ module Peddler
         # The length of a package.
         attribute(:length, Float, null: false)
 
+        # Known values: `IN`, `CM`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # The width of a package.

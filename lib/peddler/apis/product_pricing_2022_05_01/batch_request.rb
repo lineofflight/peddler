@@ -9,6 +9,7 @@ module Peddler
     module ProductPricing20220501
       # The common properties for individual requests within a batch.
       BatchRequest = Structure.new do
+        # Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         # The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is

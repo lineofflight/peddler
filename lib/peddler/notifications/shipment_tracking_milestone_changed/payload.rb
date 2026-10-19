@@ -7,8 +7,9 @@ require "structure"
 module Peddler
   module Notifications
     module ShipmentTrackingMilestoneChanged
-      # Notification payload data
+      # Notification payload that wraps nested notification data
       Payload = Structure.new do
+        attribute(:shipment_tracking_milestone_changed_notification, ShipmentTrackingMilestoneChangedNotification, null: false, from: "shipmentTrackingMilestoneChangedNotification")
       end
     end
   end

@@ -11,6 +11,8 @@ module Peddler
       AvailableDeliveryExperienceOption = Structure.new do
         attribute(:charge, Money, null: false, from: "Charge")
 
+        # Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`,
+        # `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`.
         attribute(:delivery_experience_option, String, null: false, from: "DeliveryExperienceOption")
       end
     end

@@ -13,7 +13,7 @@ pub struct Notification {
     pub notification_metadata: NotificationMetadata,
     /**The notification type.
 
-Known values: "TAX_INVOICE_EXPORT_STATUS_CHANGE". Other values may be returned by Amazon.*/
+Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
     ///The version for this notification type.
@@ -50,9 +50,7 @@ pub struct Payload {
     ///The identifier for the store where the invoice applies.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    /**The status of the export request. Possible values: REQUESTED - The export has been received. PROCESSING - The export is being generated. DONE - The export is complete and available for download. ERROR - The export failed.
-
-Known values: "DONE", "ERROR", "REQUESTED", "PROCESSING". Other values may be returned by Amazon.*/
+    ///The status of the export request. Possible values: REQUESTED - The export has been received. PROCESSING - The export is being generated. DONE - The export is complete and available for download. ERROR - The export failed.
     pub status: ::std::string::String,
 }
 /// Error types.

@@ -224,7 +224,7 @@ When querying with daily or weekly granularity, the same latest value is returne
         FloatWithBenchmarking,
     >,
 }
-///Known values: "MERCHANT", "PARTNER_ACCOUNT", "VENDOR_GROUP". Other values may be returned by Amazon.
+///Known values: `MERCHANT`, `PARTNER_ACCOUNT`, `VENDOR_GROUP`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -333,7 +333,7 @@ pub struct CountMetrics {
     )]
     pub shipping_purchase: ::std::option::Option<IntWithBenchmarking>,
 }
-///Known values: "DAY", "WEEK", "MONTH". Other values may be returned by Amazon.
+///Known values: `DAY`, `WEEK`, `MONTH`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

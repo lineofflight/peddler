@@ -493,14 +493,16 @@ pub struct QuantityDiscountPriceType {
     ///The price at this quantity tier.
     #[serde(rename = "ListingPrice")]
     pub listing_price: MoneyType,
-    ///Indicates the type of quantity discount this price applies to.
+    /**Indicates the type of quantity discount this price applies to.
+
+Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
     #[serde(rename = "QuantityDiscountType")]
     pub quantity_discount_type: QuantityDiscountType,
     ///Indicates at what quantity this price becomes active.
     #[serde(rename = "QuantityTier")]
     pub quantity_tier: i32,
 }
-///Known values: "QUANTITY_DISCOUNT". Other values may be returned by Amazon.
+///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

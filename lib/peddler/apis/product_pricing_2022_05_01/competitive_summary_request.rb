@@ -12,13 +12,14 @@ module Peddler
         # The Amazon Standard Identification Number for the item.
         attribute(:asin, String, null: false)
 
-        # The list of requested competitive pricing data for the product.
+        # The list of requested competitive pricing data for the product. Known values: `featuredBuyingOptions`,
+        # `referencePrices`, `lowestPricedOffers`, `similarItems`.
         attribute(:included_data, Array, null: false, from: "includedData")
 
         # An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # HTTP method type
+        # HTTP method type. Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
         # The URI associated with the individual APIs that are called as part of the batch request. For

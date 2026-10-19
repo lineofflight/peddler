@@ -18,7 +18,7 @@ module Peddler
         # Additional street address information, if required.
         attribute?(:address_line3, String, from: "AddressLine3")
 
-        # The address type of the shipping address.
+        # The address type of the shipping address. Known values: `Residential`, `Commercial`.
         attribute?(:address_type, String, from: "AddressType")
 
         # The city.

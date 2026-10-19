@@ -15,7 +15,7 @@ module Peddler
         # The length of the package.
         attribute(:length, Float, null: false)
 
-        # The unit of measurement.
+        # The unit of measurement. Known values: `INCH`, `CENTIMETER`.
         attribute(:unit, String, null: false)
 
         # The width of the package.

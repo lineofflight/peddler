@@ -13,7 +13,7 @@ module Peddler
         # cartons or pallets within the shipment, please provide this at the appropriate carton or pallet level.
         attribute(:amount, Integer, null: false)
 
-        # Unit of measure for the shipped quantity.
+        # Unit of measure for the shipped quantity. Known values: `Cases`, `Eaches`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         attribute?(:total_weight, TotalWeight, from: "totalWeight")

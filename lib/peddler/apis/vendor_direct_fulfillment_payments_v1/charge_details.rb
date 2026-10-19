@@ -11,7 +11,8 @@ module Peddler
       ChargeDetails = Structure.new do
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # Type of charge applied.
+        # Type of charge applied. Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`,
+        # `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`.
         attribute(:type, String, null: false)
 
         # Individual tax details per line item.

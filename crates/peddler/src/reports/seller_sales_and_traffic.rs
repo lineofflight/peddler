@@ -37,24 +37,20 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**Type of the report.
 
-Known values: "GET_SALES_AND_TRAFFIC_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_SALES_AND_TRAFFIC_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
 ///Report options specifying parameters such as dateGranularity and asinGranularity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReportReportSpecificationReportOptions {
-    /**This parameter determines what granularity of the ASIN sales and traffic data is expected in the report. Valid values are: PARENT, CHILD, SKU. If this parameter is omitted, then the salesAndTrafficByAsin section of this report will default to PARENT granularity.
-
-Known values: "PARENT", "CHILD", "SKU". Other values may be returned by Amazon.*/
+    ///This parameter determines what granularity of the ASIN sales and traffic data is expected in the report. Valid values are: PARENT, CHILD, SKU. If this parameter is omitted, then the salesAndTrafficByAsin section of this report will default to PARENT granularity.
     #[serde(
         rename = "asinGranularity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub asin_granularity: ::std::option::Option<::std::string::String>,
-    /**This parameter determines what granularity of the aggregated sales and traffic data is expected in the report. Valid values are: DAY, WEEK, MONTH. If this parameter is omitted, then the salesAndTrafficByDate section of this report will default to DAY granularity.
-
-Known values: "DAY", "WEEK", "MONTH". Other values may be returned by Amazon.*/
+    ///This parameter determines what granularity of the aggregated sales and traffic data is expected in the report. Valid values are: DAY, WEEK, MONTH. If this parameter is omitted, then the salesAndTrafficByDate section of this report will default to DAY granularity.
     #[serde(
         rename = "dateGranularity",
         skip_serializing_if = "::std::option::Option::is_none"

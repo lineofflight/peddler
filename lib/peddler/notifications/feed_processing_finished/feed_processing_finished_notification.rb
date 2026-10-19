@@ -19,7 +19,7 @@ module Peddler
         # The feed type.
         attribute(:feed_type, String, null: false, from: "feedType")
 
-        # The processing status of the feed.
+        # The processing status of the feed. Known values: `CANCELLED`, `DONE`, `FATAL`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # The feed document identifier. This identifier is unique only in combination with a seller ID.

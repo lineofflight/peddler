@@ -9,6 +9,8 @@ module Peddler
     module ShippingV2
       # A package status summary.
       TrackingSummary = Structure.new do
+        # Known values: `PreTransit`, `InTransit`, `Delivered`, `Lost`, `OutForDelivery`, `Rejected`, `Undeliverable`,
+        # `DeliveryAttempted`, `PickupCancelled`, `AwaitingCustomerPickup`.
         attribute?(:status, String)
 
         attribute?(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")

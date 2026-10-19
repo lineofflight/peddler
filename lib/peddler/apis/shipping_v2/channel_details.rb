@@ -9,6 +9,7 @@ module Peddler
     module ShippingV2
       # Shipment source channel related information.
       ChannelDetails = Structure.new do
+        # Known values: `AMAZON`, `EXTERNAL`.
         attribute(:channel_type, String, null: false, from: "channelType")
 
         attribute?(:amazon_order_details, AmazonOrderDetails, from: "amazonOrderDetails")

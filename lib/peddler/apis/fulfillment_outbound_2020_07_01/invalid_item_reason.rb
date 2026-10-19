@@ -12,6 +12,7 @@ module Peddler
         # A human readable description of the invalid item reason code.
         attribute(:description, String, null: false)
 
+        # Known values: `InvalidValues`, `DuplicateRequest`, `NoCompletedShipItems`, `NoReturnableQuantity`.
         attribute(:invalid_item_reason_code, String, null: false, from: "invalidItemReasonCode")
       end
     end

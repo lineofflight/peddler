@@ -26,7 +26,8 @@ module Peddler
         # The primary email associated with the case.
         attribute(:primary_email, String, null: false, from: "primaryEmail")
 
-        # The current status of the case.
+        # The current status of the case. Known values: `RESOLVED`, `TRANSFERRED`, `PENDING_MERCHANT_ACTION`,
+        # `PENDING_AMAZON_ACTION`.
         attribute(:status, String, null: false)
 
         # The subject of the case.

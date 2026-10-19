@@ -7,9 +7,7 @@
 pub struct AmountThreshold {
     ///The minimum spend amount customers must meet.
     pub currency: Currency,
-    /**The type of amount requirement. Only `AT_LEAST` is supported for spend-based conditions.
-
-Known values: "AT_LEAST". Other values may be returned by Amazon.*/
+    ///The type of amount requirement. Only `AT_LEAST` is supported for spend-based conditions.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -40,7 +38,7 @@ pub struct Budget {
     pub currency_code: ::std::option::Option<BudgetCurrencyCode>,
     /**The budget type, either monetary or unit-based.
 
-Known values: "AMOUNT", "UNITS". Other values may be returned by Amazon.*/
+Known values: `AMOUNT`, `UNITS`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///Budget value (amount or unit count).
@@ -108,7 +106,7 @@ impl<'de> ::serde::Deserialize<'de> for BudgetCurrencyCode {
 pub struct ClaimCode {
     /**The type of claim code.
 
-Known values: "GROUP", "INDIVIDUAL". Other values may be returned by Amazon.*/
+Known values: `GROUP`, `INDIVIDUAL`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
@@ -179,7 +177,7 @@ impl<'de> ::serde::Deserialize<'de> for ClaimCodeValue {
 }
 /**The subtype of a `COUPON` promotion. Only applicable when `promotionType` is `COUPON`; not set for other promotion types. When omitted, the coupon is treated as `STANDARD`.
 
-Known values: "STANDARD", "SUBSCRIBE_AND_SAVE", "REORDER_REWARDS". Other values may be returned by Amazon.*/
+Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -298,7 +296,9 @@ pub struct CustomerSegment {
     ///The segment identifier. For `BRAND`: the segment / audience ID. For `PROGRAM`: the program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT` etc).
     #[serde(rename = "segmentId")]
     pub segment_id: ::std::string::String,
-    ///Top-level segment type.
+    /**Top-level segment type.
+
+Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.*/
     #[serde(rename = "segmentType")]
     pub segment_type: CustomerSegmentType,
 }
@@ -314,7 +314,7 @@ pub struct CustomerSegmentDetails {
 }
 /**The segment type for targeting specific customer cohorts.
 
-Known values: "BRAND", "PROGRAM". Other values may be returned by Amazon.*/
+Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -378,7 +378,7 @@ pub struct Discount {
     pub percent_off: ::std::option::Option<::serde_json::Number>,
     /**The method used to calculate the discount amount.
 
-Known values: "PERCENTAGE_OFF", "AMOUNT_OFF", "FREE_ITEM". Other values may be returned by Amazon.*/
+Known values: `PERCENTAGE_OFF`, `AMOUNT_OFF`, `FREE_ITEM`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -518,7 +518,7 @@ impl<'de> ::serde::Deserialize<'de> for ErrorMessage {
 }
 /**For participation fees, the frequency at which fees are charged.
 
-Known values: "ONE_TIME", "DAILY". Other values may be returned by Amazon.*/
+Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -568,7 +568,9 @@ pub struct GetPromotionResponse {
     ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /**The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+
+Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -612,7 +614,9 @@ pub struct GetPromotionResponse {
     ///The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /**The promotion type.
+
+Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.*/
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
     ///Purchase requirements for `BASKET_BUILDING` promotions.
@@ -627,7 +631,7 @@ pub struct GetPromotionResponse {
     pub selection: Selection,
     /**Current promotion status indicating the lifecycle state of the promotion.
 
-Known values: "PROCESSING", "UPCOMING", "RUNNING", "EXPIRED", "FAILED", "CANCELLING", "CANCELLED". Other values may be returned by Amazon.*/
+Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
@@ -647,7 +651,7 @@ pub struct Issue {
     pub message: IssueMessage,
     /**Issue severity level.
 
-Known values: "ERROR", "WARNING". Other values may be returned by Amazon.*/
+Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.*/
     pub severity: ::std::string::String,
 }
 ///Issue description.
@@ -737,7 +741,7 @@ pub struct ItemBenefit {
     pub price: ::std::option::Option<Currency>,
     /**The benefit type for item-level pricing.
 
-Known values: "FIXED_PRICE", "DISCOUNTED_PRICE". Other values may be returned by Amazon.*/
+Known values: `FIXED_PRICE`, `DISCOUNTED_PRICE`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -762,7 +766,7 @@ pub struct ItemIssue {
     pub message: ItemIssueMessage,
     /**Issue severity level.
 
-Known values: "ERROR", "WARNING". Other values may be returned by Amazon.*/
+Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.*/
     pub severity: ::std::string::String,
 }
 ///Issue description.
@@ -828,7 +832,9 @@ pub struct LatestRevision {
     ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /**The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+
+Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -866,7 +872,9 @@ pub struct LatestRevision {
     ///The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /**The promotion type.
+
+Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.*/
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
     ///Purchase requirements for `BASKET_BUILDING` promotions.
@@ -877,7 +885,7 @@ pub struct LatestRevision {
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
     /**The processing status of the latest revision.
 
-Known values: "PROCESSING", "FAILED". Other values may be returned by Amazon.*/
+Known values: `PROCESSING`, `FAILED`. Other values may be returned by Amazon.*/
     #[serde(rename = "revisionStatus")]
     pub revision_status: ::std::string::String,
     ///The promotion schedule configuration.
@@ -893,7 +901,7 @@ Known values: "PROCESSING", "FAILED". Other values may be returned by Amazon.*/
 pub struct Merchandising {
     /**Whether the promotion badge and details are displayed on the product detail pages and search results on the retail website.
 
-Known values: "ALLOWED", "NOT_ALLOWED". Other values may be returned by Amazon.*/
+Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "displayOnWebsite",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -950,7 +958,7 @@ pub struct PromotionBenefit {
     pub per_customer_uses: ::std::option::Option<::std::num::NonZeroU64>,
     /**Whether this benefit can be stacked with other promotions.
 
-Known values: "ALLOWED", "NOT_ALLOWED". Other values may be returned by Amazon.*/
+Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.*/
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub stacking: ::std::option::Option<::std::string::String>,
 }
@@ -992,7 +1000,9 @@ pub struct PromotionRevisionAttributes {
     ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /**The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+
+Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1030,7 +1040,9 @@ pub struct PromotionRevisionAttributes {
     ///The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /**The promotion type.
+
+Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.*/
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
     ///Purchase requirements for `BASKET_BUILDING` promotions.
@@ -1056,7 +1068,9 @@ pub struct PromotionSummary {
     ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /**The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+
+Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1100,7 +1114,9 @@ pub struct PromotionSummary {
     ///The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /**The promotion type.
+
+Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.*/
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
     ///Purchase requirements for `BASKET_BUILDING` promotions.
@@ -1115,7 +1131,7 @@ pub struct PromotionSummary {
     pub selection: Selection,
     /**Current promotion status indicating the lifecycle state of the promotion.
 
-Known values: "PROCESSING", "UPCOMING", "RUNNING", "EXPIRED", "FAILED", "CANCELLING", "CANCELLED". Other values may be returned by Amazon.*/
+Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
@@ -1123,7 +1139,7 @@ Known values: "PROCESSING", "UPCOMING", "RUNNING", "EXPIRED", "FAILED", "CANCELL
 }
 /**The type of promotion, categorized by the discount rules and eligibility criteria.
 
-Known values: "BASKET_BUILDING", "DEAL", "PRICE_DISCOUNT", "COUPON". Other values may be returned by Amazon.*/
+Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1201,7 +1217,7 @@ pub struct QuantityThreshold {
     pub quantity: ::std::num::NonZeroU64,
     /**How the quantity requirement is evaluated.
 
-Known values: "AT_LEAST", "FOR_EACH". Other values may be returned by Amazon.*/
+Known values: `AT_LEAST`, `FOR_EACH`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -1256,7 +1272,7 @@ pub struct Selection {
     pub selection_id: ::std::option::Option<::std::string::String>,
     /**Selection type.
 
-Known values: "CATALOG", "ITEMS". Other values may be returned by Amazon.*/
+Known values: `CATALOG`, `ITEMS`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -1289,6 +1305,7 @@ pub struct SelectionRules {
 ///Upfront fee (or a flat fee) for each promotion submitted.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpfrontFee {
+    ///Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.
     pub frequency: FeeFrequency,
     pub rate: Currency,
 }

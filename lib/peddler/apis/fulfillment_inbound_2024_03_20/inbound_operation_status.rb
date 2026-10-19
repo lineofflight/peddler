@@ -18,6 +18,7 @@ module Peddler
         # The problems in the processing of the asynchronous operation.
         attribute(:operation_problems, [OperationProblem], null: false, from: "operationProblems")
 
+        # Known values: `SUCCESS`, `FAILED`, `IN_PROGRESS`.
         attribute(:operation_status, String, null: false, from: "operationStatus")
       end
     end

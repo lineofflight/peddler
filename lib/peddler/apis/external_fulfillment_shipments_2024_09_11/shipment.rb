@@ -40,7 +40,8 @@ module Peddler
         # Shipping information for the packages in this shipment.
         attribute(:shipping_info, ShippingInfo, null: false, from: "shippingInfo")
 
-        # The current status of the shipment.
+        # The current status of the shipment. Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`,
+        # `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.
         attribute(:status, String, null: false)
 
         # The time when the shipment becomes eligible for processing.
@@ -59,7 +60,9 @@ module Peddler
         # The reason for the sub-status.
         attribute?(:reason, String)
 
-        # The sub status of the shipment.
+        # The sub status of the shipment. Known values: `PENDING_SCHEDULE`, `PENDING_PICKUP`, `PENDING_DROP_OFF`,
+        # `LABEL_CANCELED`, `PICKED_UP`, `DROPPED_OFF`, `AT_ORIGIN_FC`, `AT_DESTINATION_FC`, `DELIVERED`,
+        # `NOT_DELIVERED`, `UNDELIVERABLE`, `LOST`, `OUT_FOR_DELIVERY`, `DAMAGED`.
         attribute?(:sub_status, String, from: "subStatus")
       end
     end

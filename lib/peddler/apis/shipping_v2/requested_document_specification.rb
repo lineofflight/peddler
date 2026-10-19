@@ -10,11 +10,12 @@ module Peddler
       # The document specifications requested. For calls to the purchaseShipment operation, the shipment purchase fails
       # if the specified document specifications are not among those returned in the response to the getRates operation.
       RequestedDocumentSpecification = Structure.new do
+        # Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
         attribute(:need_file_joining, :boolean, null: false, from: "needFileJoining")
 
-        # A list of the document types requested.
+        # A list of the document types requested. Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
         attribute(:requested_document_types, Array, null: false, from: "requestedDocumentTypes")
 
         attribute(:size, DocumentSize, null: false)

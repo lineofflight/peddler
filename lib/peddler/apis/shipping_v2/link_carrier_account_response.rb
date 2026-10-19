@@ -11,6 +11,7 @@ module Peddler
       LinkCarrierAccountResponse = Structure.new do
         attribute?(:account_id, String, from: "accountId")
 
+        # Known values: `ACTIVE`, `INACTIVE`, `PENDING`, `SUSPENDED`.
         attribute?(:registration_status, String, from: "registrationStatus")
       end
     end

@@ -15,6 +15,7 @@ module Peddler
         # groupName value .
         attribute?(:group_name, String, from: "groupName")
 
+        # Known values: `TEXTBOX`, `PASSWORD`.
         attribute?(:input_type, String, from: "inputType")
 
         # is value is Confidential .

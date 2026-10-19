@@ -46,7 +46,7 @@ pub struct Link {
     pub type_: ::std::option::Option<::std::string::String>,
     /**The HTTP verb used to interact with the related resource.
 
-Known values: "GET". Other values may be returned by Amazon.*/
+Known values: `GET`. Other values may be returned by Amazon.*/
     pub verb: ::std::string::String,
 }
 ///A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
@@ -59,7 +59,7 @@ pub struct Reason {
     pub message: ::std::string::String,
     /**A code indicating why the listing is restricted.
 
-Known values: "APPROVAL_REQUIRED", "ASIN_NOT_FOUND", "NOT_ELIGIBLE". Other values may be returned by Amazon.*/
+Known values: `APPROVAL_REQUIRED`, `ASIN_NOT_FOUND`, `NOT_ELIGIBLE`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "reasonCode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -71,7 +71,7 @@ Known values: "APPROVAL_REQUIRED", "ASIN_NOT_FOUND", "NOT_ELIGIBLE". Other value
 pub struct Restriction {
     /**The condition that applies to the restriction.
 
-Known values: "new_new", "new_open_box", "new_oem", "refurbished_refurbished", "used_like_new", "used_very_good", "used_good", "used_acceptable", "collectible_like_new", "collectible_very_good", "collectible_good", "collectible_acceptable", "club_club". Other values may be returned by Amazon.*/
+Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "conditionType",
         skip_serializing_if = "::std::option::Option::is_none"

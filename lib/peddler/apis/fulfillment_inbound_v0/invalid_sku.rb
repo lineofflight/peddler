@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentInboundV0
       # Contains detail about an invalid SKU
       InvalidSKU = Structure.new do
-        # The reason why the seller SKU is invalid.
+        # The reason why the seller SKU is invalid. Known values: `DoesNotExist`, `InvalidASIN`.
         attribute?(:error_reason, String, from: "ErrorReason")
 
         # The seller SKU of the item.

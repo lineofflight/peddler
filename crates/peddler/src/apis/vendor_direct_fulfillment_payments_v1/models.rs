@@ -15,7 +15,7 @@ pub struct AdditionalDetails {
     pub language_code: ::std::option::Option<::std::string::String>,
     /**The type of the additional information provided by the selling party.
 
-Known values: "SUR", "OCR", "TaxExemptReason", "LegalTerms", "RegulatoryNote". Other values may be returned by Amazon.*/
+Known values: `SUR`, `OCR`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -27,7 +27,7 @@ pub struct AdditionalPartyIdentification {
     pub identification_number: ::std::string::String,
     /**The type of the additional party identifier.
 
-Known values: "FR_SIREN", "DE_WIDNR". Other values may be returned by Amazon.*/
+Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.*/
     #[serde(rename = "identificationType")]
     pub identification_type: ::std::string::String,
 }
@@ -89,7 +89,7 @@ pub struct AllowanceDetails {
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
     /**Type of the allowance applied.
 
-Known values: "Discount", "DiscountIncentive", "Defective", "Promotional", "UnsaleableMerchandise", "Special". Other values may be returned by Amazon.*/
+Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -106,7 +106,7 @@ pub struct ChargeDetails {
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
     /**Type of charge applied.
 
-Known values: "GIFTWRAP", "FULFILLMENT", "MARKETINGINSERT", "PACKAGING", "LOADING", "FREIGHTOUT", "TAX_COLLECTED_AT_SOURCE". Other values may be returned by Amazon.*/
+Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -436,7 +436,7 @@ pub struct TaxDetail {
     pub tax_rate: ::std::option::Option<Decimal>,
     /**Type of the tax applied.
 
-Known values: "CGST", "SGST", "CESS", "UTGST", "IGST", "MwSt.", "PST", "TVA", "VAT", "GST", "ST", "Consumption", "MutuallyDefined", "DomesticVAT". Other values may be returned by Amazon.*/
+Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.*/
     #[serde(rename = "taxType")]
     pub tax_type: ::std::string::String,
     ///This field will contain the invoice amount that is taxable at the rate specified in the tax rate field.
@@ -466,7 +466,7 @@ pub struct TaxRegistrationDetail {
     pub tax_registration_number: ::std::string::String,
     /**Tax registration type for the entity.
 
-Known values: "VAT", "GST", "LocalTaxNumber". Other values may be returned by Amazon.*/
+Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"

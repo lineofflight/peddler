@@ -95,9 +95,7 @@ pub enum FeedMessage {
         ///Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        /**Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
-
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
         ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
@@ -144,9 +142,7 @@ Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other val
 ///Individual JSON Patch operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemJsonPatchOperationsItem {
-    /**Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
-
-Known values: "add", "replace", "merge", "delete". Other values may be returned by Amazon.*/
+    ///Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
     pub op: ::std::string::String,
     ///JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
     pub path: ::std::string::String,
@@ -161,10 +157,12 @@ Known values: "add", "replace", "merge", "delete". Other values may be returned 
 pub struct Report {
     /**The version of the Selling Partner Listings Items API to use to retrieve the listing items.
 
-Known values: "2021-08-01". Other values may be returned by Amazon.*/
+Known values: `2021-08-01`. Other values may be returned by Amazon.*/
     #[serde(rename = "apiVersion")]
     pub api_version: ::std::string::String,
-    ///When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
+    /**When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
+
+Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`. Other values may be returned by Amazon.*/
     #[serde(rename = "includedData")]
     pub included_data: ::std::vec::Vec<::std::string::String>,
 }
@@ -269,9 +267,7 @@ enum FeedMessageDecode {
         ///Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        /**Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
-
-Known values: "LISTING", "LISTING_PRODUCT_ONLY", "LISTING_OFFER_ONLY". Other values may be returned by Amazon.*/
+        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
         ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.

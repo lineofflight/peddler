@@ -9,7 +9,7 @@ module Peddler
     module Vehicles20241101
       # Combination of vehicle standard and id that can uniquely identify a vehicle from Amazon's catalog.
       VehicleIdentifiers = Structure.new do
-        # Vehicle standard used to uniquely identify a vehicle.
+        # Vehicle standard used to uniquely identify a vehicle. Known values: `KTYPE`, `AMAZON_ID`.
         attribute(:standard, String, null: false)
 
         # Id that can uniquely identify a vehicle based the vehicle identification standard.

@@ -10,6 +10,7 @@ module Peddler
       # An item that is associated with an order item. For example, a tire installation service that is purchased with
       # tires.
       AssociatedItem = Structure.new do
+        # Known values: `VALUE_ADD_SERVICE`.
         attribute?(:association_type, String, from: "AssociationType")
 
         # The order item's order identifier, in 3-7-7 format.

@@ -9,7 +9,8 @@ module Peddler
     module ApplicationIntegrations20240401
       # The request for the `deleteNotifications` operation.
       DeleteNotificationsRequest = Structure.new do
-        # The unique identifier that maps each notification status to a reason code.
+        # The unique identifier that maps each notification status to a reason code. Known values: `INCORRECT_CONTENT`,
+        # `INCORRECT_RECIPIENT`.
         attribute(:deletion_reason, String, null: false, from: "deletionReason")
 
         # The unique identifier of the notification template you used to onboard your application.

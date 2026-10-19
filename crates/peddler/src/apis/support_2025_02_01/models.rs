@@ -7,7 +7,7 @@
 pub struct Appointment {
     /**The person who is expected to answer the call.
 
-Known values: "RECEPTIONIST". Other values may be returned by Amazon.*/
+Known values: `RECEPTIONIST`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "answeringParty",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -24,7 +24,7 @@ Known values: "RECEPTIONIST". Other values may be returned by Amazon.*/
     pub phone_number: PhoneNumber,
     /**The appointment status.
 
-Known values: "SCHEDULED", "CANCELLED", "MISSED", "COMPLETED". Other values may be returned by Amazon.*/
+Known values: `SCHEDULED`, `CANCELLED`, `MISSED`, `COMPLETED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
 }
 ///A file attachment.
@@ -86,7 +86,7 @@ pub struct Case {
     pub resolved_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
     /**The current status of the case.
 
-Known values: "RESOLVED", "TRANSFERRED", "PENDING_MERCHANT_ACTION", "PENDING_AMAZON_ACTION". Other values may be returned by Amazon.*/
+Known values: `RESOLVED`, `TRANSFERRED`, `PENDING_MERCHANT_ACTION`, `PENDING_AMAZON_ACTION`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
     ///The subject of the case.
     pub subject: ::std::string::String,
@@ -94,7 +94,9 @@ Known values: "RESOLVED", "TRANSFERRED", "PENDING_MERCHANT_ACTION", "PENDING_AMA
 ///Optional filters for case search. All filters are optional — when absent, no filtering is applied for that field. Different filters are combined with AND logic, and multiple values of the same field are combined with OR logic.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CaseFilters {
-    ///Filter the collection by one or more case statuses.
+    /**Filter the collection by one or more case statuses.
+
+Known values: `RESOLVED`, `TRANSFERRED`, `PENDING_MERCHANT_ACTION`, `PENDING_AMAZON_ACTION`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "caseStatuses",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -215,7 +217,7 @@ pub struct ChatEvent {
     pub timestamp: ::chrono::DateTime<::chrono::offset::Utc>,
     /**The type of chat event.
 
-Known values: "MESSAGE", "ATTACHMENT", "PARTICIPANT_JOINED", "PARTICIPANT_LEFT", "PARTICIPANT_IDLE", "CHAT_ENDED". Other values may be returned by Amazon.*/
+Known values: `MESSAGE`, `ATTACHMENT`, `PARTICIPANT_JOINED`, `PARTICIPANT_LEFT`, `PARTICIPANT_IDLE`, `CHAT_ENDED`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -224,7 +226,7 @@ Known values: "MESSAGE", "ATTACHMENT", "PARTICIPANT_JOINED", "PARTICIPANT_LEFT",
 pub struct Contact {
     /**The contact channel for communication between the selling partner and Amazon.
 
-Known values: "PHONE", "CHAT", "EMAIL". Other values may be returned by Amazon.*/
+Known values: `PHONE`, `CHAT`, `EMAIL`. Other values may be returned by Amazon.*/
     pub channel: ::std::string::String,
     ///The content of the contact. Only available if the contact channel is `CHAT`.
     #[serde(
@@ -318,7 +320,7 @@ pub struct ListCasesRequest {
     pub next_token: ::std::option::Option<::std::string::String>,
     /**The field to sort cases by. Defaults to CREATION_DATE when absent.
 
-Known values: "CASE_ID", "STATUS", "SUBJECT", "PRIMARY_EMAIL", "CREATION_DATE", "LAST_OUTBOUND_DATE", "RESOLUTION_DATE". Other values may be returned by Amazon.*/
+Known values: `CASE_ID`, `STATUS`, `SUBJECT`, `PRIMARY_EMAIL`, `CREATION_DATE`, `LAST_OUTBOUND_DATE`, `RESOLUTION_DATE`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "sortField",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -326,7 +328,7 @@ Known values: "CASE_ID", "STATUS", "SUBJECT", "PRIMARY_EMAIL", "CREATION_DATE", 
     pub sort_field: ::std::option::Option<::std::string::String>,
     /**The sort direction. Defaults to DESC when absent.
 
-Known values: "ASC", "DESC". Other values may be returned by Amazon.*/
+Known values: `ASC`, `DESC`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "sortOrder",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -365,7 +367,7 @@ pub struct Participant {
     pub display_name: ::std::string::String,
     /**The role of the participant.
 
-Known values: "AMAZON", "SELLING_PARTNER". Other values may be returned by Amazon.*/
+Known values: `AMAZON`, `SELLING_PARTNER`. Other values may be returned by Amazon.*/
     pub role: ::std::string::String,
 }
 ///The content for a phone contact.

@@ -13,7 +13,7 @@ module Peddler
         # Provides the details of the packages in this shipment.
         attribute(:label_data, [LabelData], null: false, from: "labelData")
 
-        # Format of the label.
+        # Format of the label. Known values: `PNG`, `ZPL`.
         attribute(:label_format, String, null: false, from: "labelFormat")
 
         # This field will contain the Purchase Order Number for this order.

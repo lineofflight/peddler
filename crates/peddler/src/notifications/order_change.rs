@@ -46,14 +46,12 @@ pub struct TheOrderChangeNotificationSchema {
     pub amazon_order_id: ::std::string::String,
     /**The notification level of current notification.
 
-Known values: "OrderItemLevel", "OrderLevel". Other values may be returned by Amazon.*/
+Known values: `OrderItemLevel`, `OrderLevel`. Other values may be returned by Amazon.*/
     #[serde(rename = "NotificationLevel")]
     pub notification_level: ::std::string::String,
     #[serde(rename = "OrderChangeTrigger")]
     pub order_change_trigger: TheOrderChangeTriggerSchema,
-    /**Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange, OrderStatusChange.
-
-Known values: "BuyerRequestedChange", "DeliveryTipChange", "OrderStatusChange". Other values may be returned by Amazon.*/
+    ///Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange, OrderStatusChange.
     #[serde(rename = "OrderChangeType")]
     pub order_change_type: ::std::string::String,
     ///The selling partner identifier.
@@ -101,7 +99,7 @@ pub struct TheOrderItemSchema {
     pub order_item_id: ::std::string::String,
     /**The current status of the order item. Will display it when items' status are different.
 
-Known values: "Unshipped", "Shipped". Other values may be returned by Amazon.*/
+Known values: `Unshipped`, `Shipped`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "OrderItemStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -161,7 +159,7 @@ pub struct TheSummarySchema {
     pub earliest_ship_date: ::std::option::Option<::std::string::String>,
     /**The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders.
 
-Known values: "PendingSchedule", "PendingPickUp", "PendingDropOff", "LabelCanceled", "PickedUp", "DroppedOff", "AtOriginFC", "AtDestinationFC", "Delivered", "RejectedByBuyer", "Undeliverable", "ReturningToSeller", "ReturnedToSeller", "Lost", "OutForDelivery", "Damaged". Other values may be returned by Amazon.*/
+Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`, `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`, `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "EasyShipShipmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -169,15 +167,13 @@ Known values: "PendingSchedule", "PendingPickUp", "PendingDropOff", "LabelCancel
     pub easy_ship_shipment_status: ::std::option::Option<::std::string::String>,
     /**The status of the electronic invoice.
 
-Known values: "NotRequired", "NotFound", "Processing", "Errored", "Accepted". Other values may be returned by Amazon.*/
+Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "ElectronicInvoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub electronic_invoice_status: ::std::option::Option<::std::string::String>,
-    /**Fulfillment type of the affected order, MFN or AFN.
-
-Known values: "AFN", "MFN". Other values may be returned by Amazon.*/
+    ///Fulfillment type of the affected order, MFN or AFN.
     #[serde(rename = "FulfillmentType")]
     pub fulfillment_type: ::std::string::String,
     ///The end of the time period within which you have committed to fulfill the order, presented in ISO-8601 date/time format. Returned only for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status.
@@ -210,7 +206,9 @@ Known values: "AFN", "MFN". Other values may be returned by Amazon.*/
     ///Information about order items included in this order. For OrderItemLevel notification, one payload include one item, while for OrderLevel notification, one payload include all items.
     #[serde(rename = "OrderItems")]
     pub order_items: ::std::vec::Vec<TheOrderItemSchema>,
-    ///The order programs, if any, in which this order participates.
+    /**The order programs, if any, in which this order participates.
+
+Known values: `Business`, `Prime`, `Premium`, `IBA`, `Replacement`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "OrderPrograms",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -218,12 +216,12 @@ Known values: "AFN", "MFN". Other values may be returned by Amazon.*/
     pub order_programs: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**The current order status.
 
-Known values: "Pending", "Unshipped", "PartiallyShipped", "Shipped", "Canceled", "Unfulfillable", "InvoiceUnconfirmed", "PendingAvailability". Other values may be returned by Amazon.*/
+Known values: `Pending`, `Unshipped`, `PartiallyShipped`, `Shipped`, `Canceled`, `Unfulfillable`, `InvoiceUnconfirmed`, `PendingAvailability`. Other values may be returned by Amazon.*/
     #[serde(rename = "OrderStatus")]
     pub order_status: ::std::string::String,
     /**The type of the order.
 
-Known values: "StandardOrder", "LongLeadTimeOrder", "Preorder", "BackOrder", "SourcingOnDemandOrder". Other values may be returned by Amazon.*/
+Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`, `BackOrder`, `SourcingOnDemandOrder`. Other values may be returned by Amazon.*/
     #[serde(rename = "OrderType")]
     pub order_type: ::std::string::String,
     ///The purchase date of the order, presented in ISO-8601 date/time format. It will be null when there is no related information.
@@ -232,7 +230,9 @@ Known values: "StandardOrder", "LongLeadTimeOrder", "Preorder", "BackOrder", "So
         deserialize_with = "::std::option::Option::deserialize"
     )]
     pub purchase_date: ::std::option::Option<::std::string::String>,
-    ///The shipping programs, if any, in which this order participates.
+    /**The shipping programs, if any, in which this order participates.
+
+Known values: `ShipDateSet`, `GlobalExpress`, `ISPU`, `AccessPoint`, `TFM`, `EasyShip`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "ShippingPrograms",
         skip_serializing_if = "::std::option::Option::is_none"

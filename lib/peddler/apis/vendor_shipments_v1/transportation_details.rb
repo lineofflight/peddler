@@ -23,7 +23,7 @@ module Peddler
         # Estimated Date on which shipment will be delivered from Vendor to Buyer
         attribute?(:estimated_delivery_date, Time, from: "estimatedDeliveryDate")
 
-        # The type of shipment.
+        # The type of shipment. Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`.
         attribute?(:ship_mode, String, from: "shipMode")
 
         # Date on which shipment will be delivered from Vendor to Buyer
@@ -32,7 +32,7 @@ module Peddler
         # Date when shipment is performed by the Vendor to Buyer
         attribute?(:shipped_date, Time, from: "shippedDate")
 
-        # The mode of transportation for this shipment.
+        # The mode of transportation for this shipment. Known values: `Road`, `Air`, `Ocean`.
         attribute?(:transportation_mode, String, from: "transportationMode")
       end
     end

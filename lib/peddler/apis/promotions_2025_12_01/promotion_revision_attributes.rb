@@ -29,7 +29,7 @@ module Peddler
         # The name of the promotion for the selling partner. This value is not displayed to buyers.
         attribute(:promotion_title, String, null: false, from: "promotionTitle")
 
-        # The promotion type.
+        # The promotion type. Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
         attribute(:promotion_type, String, null: false, from: "promotionType")
 
         # The promotion schedule configuration.
@@ -53,7 +53,7 @@ module Peddler
         attribute?(:budget, Budget)
 
         # The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is
-        # treated as `STANDARD`.
+        # treated as `STANDARD`. Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`.
         attribute?(:coupon_type, String, from: "couponType")
 
         # The target customer segments for the promotion.

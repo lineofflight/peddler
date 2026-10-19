@@ -24,7 +24,7 @@ module Peddler
         # discount is applicable).
         attribute(:invoice_total, Money, null: false, from: "invoiceTotal")
 
-        # Identifies the type of invoice.
+        # Identifies the type of invoice. Known values: `Invoice`, `CreditNote`.
         attribute(:invoice_type, String, null: false, from: "invoiceType")
 
         # Name, address and tax details of the party receiving the payment of this invoice.

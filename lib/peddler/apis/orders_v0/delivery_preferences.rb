@@ -16,7 +16,8 @@ module Peddler
         # Drop-off location selected by the customer.
         attribute?(:drop_off_location, String, from: "DropOffLocation")
 
-        # Enumerated list of miscellaneous delivery attributes associated with the shipping address.
+        # Enumerated list of miscellaneous delivery attributes associated with the shipping address. Known values:
+        # `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`.
         attribute?(:other_attributes, Array, from: "OtherAttributes")
 
         # Business hours and days when the delivery is preferred.

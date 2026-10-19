@@ -9,7 +9,7 @@ module Peddler
     module Vehicles20241101
       # Engine power output of vehicle.
       EngineOutput = Structure.new do
-        # Unit for measuring engine power.
+        # Unit for measuring engine power. Known values: `KILOWATT`, `HORSEPOWER`.
         attribute(:unit, String, null: false)
 
         # Engine power value in specified unit.

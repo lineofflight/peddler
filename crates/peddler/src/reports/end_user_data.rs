@@ -129,9 +129,7 @@ pub struct ReportReportSpecification {
 ///Used to specify the report period.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReportReportSpecificationReportOptions {
-    /**The granularity of the data in the report. Valid values are: DAY, WEEK, and MONTH. If no granularity is specified, reportPeriod defaults to MONTH.
-
-Known values: "DAY", "WEEK", "MONTH". Other values may be returned by Amazon.*/
+    ///The granularity of the data in the report. Valid values are: DAY, WEEK, and MONTH. If no granularity is specified, reportPeriod defaults to MONTH.
     #[serde(
         rename = "reportPeriod",
         skip_serializing_if = "::std::option::Option::is_none"

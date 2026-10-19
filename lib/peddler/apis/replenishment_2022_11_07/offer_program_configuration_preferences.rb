@@ -10,7 +10,7 @@ module Peddler
       # An object which contains the preferences applied to the offer.
       OfferProgramConfigurationPreferences = Structure.new do
         # The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's
-        # auto-enrollment feature.
+        # auto-enrollment feature. Known values: `OPTED_IN`, `OPTED_OUT`.
         attribute?(:auto_enrollment, String, from: "autoEnrollment")
       end
     end

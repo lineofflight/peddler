@@ -11,6 +11,7 @@ module Peddler
       SKUEligibility = Structure.new do
         attribute(:package_quantity, DistributionPackageQuantity, null: false, from: "packageQuantity")
 
+        # Known values: `ELIGIBLE`, `INELIGIBLE`.
         attribute(:status, String, null: false)
 
         # If not eligible, these are list of error codes and descriptions.

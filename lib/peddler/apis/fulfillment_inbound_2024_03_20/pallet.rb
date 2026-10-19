@@ -18,6 +18,7 @@ module Peddler
         # The number of containers where all other properties like weight or dimensions are identical.
         attribute?(:quantity, Integer)
 
+        # Known values: `STACKABLE`, `NON_STACKABLE`.
         attribute?(:stackability, String)
 
         attribute?(:weight, Weight)

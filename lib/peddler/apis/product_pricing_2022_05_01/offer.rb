@@ -9,7 +9,7 @@ module Peddler
     module ProductPricing20220501
       # The offer data of a product.
       Offer = Structure.new do
-        # Item Condition.
+        # Item Condition. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute(:condition, String, null: false)
 
         # The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant
@@ -35,7 +35,8 @@ module Peddler
         # A list of shipping options associated with this offer
         attribute?(:shipping_options, [ShippingOption], from: "shippingOptions")
 
-        # The item subcondition of the offer.
+        # The item subcondition of the offer. Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`,
+        # `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`.
         attribute?(:sub_condition, String, from: "subCondition")
       end
     end

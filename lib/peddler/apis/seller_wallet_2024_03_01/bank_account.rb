@@ -20,7 +20,8 @@ module Peddler
         # accounts.
         attribute(:bank_account_number_tail, String, null: false, from: "bankAccountNumberTail")
 
-        # Type of ownership of the bank account. This value is `SELF` for Amazon Seller Wallet accounts.
+        # Type of ownership of the bank account. This value is `SELF` for Amazon Seller Wallet accounts. Known values:
+        # `THIRD_PARTY`, `SELF`.
         attribute(:bank_account_ownership_type, String, null: false, from: "bankAccountOwnershipType")
 
         # The bank account holder's name (expected to be an Amazon customer). There is a 50 character limit.
@@ -33,16 +34,19 @@ module Peddler
         # required.
         attribute?(:account_id, String, from: "accountId")
 
-        # The compliance status of the bank account holder.
+        # The compliance status of the bank account holder. Known values: `ACTIVE`, `INACTIVE`, `UNDER_REVIEW`,
+        # `VERIFICATION_FAILED`.
         attribute?(:bank_account_holder_status, String, from: "bankAccountHolderStatus")
 
-        # The format in which the bank account number is provided for `THIRD_PARTY` transaction requests.
+        # The format in which the bank account number is provided for `THIRD_PARTY` transaction requests. Known values:
+        # `IBAN`, `BBAN`.
         attribute?(:bank_account_number_format, String, from: "bankAccountNumberFormat")
 
         # The name of the bank. This value is Amazon Seller Wallet for Amazon Seller Wallet accounts.
         attribute?(:bank_name, String, from: "bankName")
 
-        # The bank number format or routing number type for `THIRD_PARTY` transaction requests.
+        # The bank number format or routing number type for `THIRD_PARTY` transaction requests. Known values: `BIC`,
+        # `BASIC`.
         attribute?(:bank_number_format, String, from: "bankNumberFormat")
 
         # Routing number for automated clearing house transfers for `THIRD_PARTY` transaction requests. This value is

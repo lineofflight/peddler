@@ -9,6 +9,7 @@ module Peddler
     module MerchantFulfillmentV0
       # The length.
       Length = Structure.new do
+        # Known values: `inches`, `centimeters`.
         attribute?(:unit, String)
 
         # The value in units.

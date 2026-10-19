@@ -13,7 +13,8 @@ module Peddler
         # The time at which the event occurred.
         attribute(:timestamp, Time, null: false)
 
-        # The type of chat event.
+        # The type of chat event. Known values: `MESSAGE`, `ATTACHMENT`, `PARTICIPANT_JOINED`, `PARTICIPANT_LEFT`,
+        # `PARTICIPANT_IDLE`, `CHAT_ENDED`.
         attribute(:type, String, null: false)
 
         # All attachments included in the event. Only present if the event type is `ATTACHMENT`.

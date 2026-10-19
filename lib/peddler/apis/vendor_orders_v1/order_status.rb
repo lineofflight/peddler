@@ -19,7 +19,7 @@ module Peddler
         # The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
         attribute(:purchase_order_number, String, null: false, from: "purchaseOrderNumber")
 
-        # The status of the buyer's purchase order for this order.
+        # The status of the buyer's purchase order for this order. Known values: `OPEN`, `CLOSED`.
         attribute(:purchase_order_status, String, null: false, from: "purchaseOrderStatus")
 
         # Name/Address and tax details of the selling party.

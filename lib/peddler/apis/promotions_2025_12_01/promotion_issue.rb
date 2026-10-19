@@ -15,7 +15,7 @@ module Peddler
         # Issue description.
         attribute(:message, String, null: false)
 
-        # Issue severity level.
+        # Issue severity level. Known values: `ERROR`, `WARNING`.
         attribute(:severity, String, null: false)
       end
     end

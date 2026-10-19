@@ -9,6 +9,7 @@ module Peddler
     module FulfillmentInboundV0
       # The monetary value.
       Amount = Structure.new do
+        # Known values: `USD`, `GBP`.
         attribute(:currency_code, String, null: false, from: "CurrencyCode")
 
         # The amount.

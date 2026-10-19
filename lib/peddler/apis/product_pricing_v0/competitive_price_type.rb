@@ -31,10 +31,10 @@ module Peddler
 
         # Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity
         # discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because
-        # they have a quantity discount on the ASIN.
+        # they have a quantity discount on the ASIN. Known values: `B2C`, `B2B`.
         attribute?(:offer_type, String, from: "offerType")
 
-        # Indicates the type of quantity discount this price applies to.
+        # Indicates the type of quantity discount this price applies to. Known values: `QUANTITY_DISCOUNT`.
         attribute?(:quantity_discount_type, String, from: "quantityDiscountType")
 
         # Indicates at what quantity this price becomes active.

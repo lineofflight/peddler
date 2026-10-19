@@ -9,6 +9,7 @@ module Peddler
     module SupplySources20200701
       # The duration of time.
       Duration = Structure.new do
+        # Known values: `Hours`, `Minutes`, `Days`.
         attribute?(:time_unit, String, from: "timeUnit")
 
         attribute?(:value, Integer)

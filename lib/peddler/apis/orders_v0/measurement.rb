@@ -9,7 +9,10 @@ module Peddler
     module OrdersV0
       # Measurement information for an order item.
       Measurement = Structure.new do
-        # The unit of measure.
+        # The unit of measure. Known values: `OUNCES`, `POUNDS`, `KILOGRAMS`, `GRAMS`, `MILLIGRAMS`, `INCHES`, `FEET`,
+        # `METERS`, `CENTIMETERS`, `MILLIMETERS`, `SQUARE_METERS`, `SQUARE_CENTIMETERS`, `SQUARE_FEET`, `SQUARE_INCHES`,
+        # `GALLONS`, `PINTS`, `QUARTS`, `FLUID_OUNCES`, `LITERS`, `CUBIC_METERS`, `CUBIC_FEET`, `CUBIC_INCHES`,
+        # `CUBIC_CENTIMETERS`, `COUNT`.
         attribute(:unit, String, null: false, from: "Unit")
 
         # The measurement value.

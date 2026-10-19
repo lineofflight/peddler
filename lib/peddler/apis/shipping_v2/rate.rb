@@ -36,6 +36,7 @@ module Peddler
 
         attribute?(:billed_weight, Weight, from: "billedWeight")
 
+        # Known values: `PAY_THROUGH_AMAZON`, `PAY_DIRECT_TO_CARRIER`.
         attribute?(:payment_type, String, from: "paymentType")
 
         attribute?(:rate_item_list, [RateItem], from: "rateItemList")

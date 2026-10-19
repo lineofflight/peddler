@@ -18,7 +18,7 @@ module Peddler
         # Name/Address of the destination warehouse where the shipment is being shipped to.
         attribute?(:ship_from_party, PartyIdentification, from: "shipFromParty")
 
-        # Type of shipment whether it is Small Parcel
+        # Type of shipment whether it is Small Parcel. Known values: `SmallParcel`, `LTL`.
         attribute?(:ship_mode, String, from: "shipMode")
 
         # The name and address of the destination warehouse where the shipment is being shipped.

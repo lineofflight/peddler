@@ -11,6 +11,7 @@ module Peddler
       UpdateShipmentStatusRequest = Structure.new do
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
+        # Known values: `ReadyForPickup`, `PickedUp`, `RefusedPickup`.
         attribute(:shipment_status, String, null: false, from: "shipmentStatus")
 
         attribute?(:order_items, Array, from: "orderItems")

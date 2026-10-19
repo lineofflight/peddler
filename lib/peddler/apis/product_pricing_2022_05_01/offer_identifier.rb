@@ -15,7 +15,7 @@ module Peddler
         # An Amazon store identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # The fulfillment type for the offer.
+        # The fulfillment type for the offer. Known values: `AFN`, `MFN`.
         attribute?(:fulfillment_type, String, from: "fulfillmentType")
 
         # The seller identifier for the offer.

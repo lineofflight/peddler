@@ -45,7 +45,7 @@ impl ::std::str::FromStr for AmazonOrderId {
 }
 /**An error code that identifies the type of error that occurred. The error codes listed below are specific to the Easy Ship section.
 
-Known values: "InvalidInput", "InvalidTimeSlotId", "ScheduledPackageAlreadyExists", "ScheduleWindowExpired", "RetryableAfterGettingNewSlots", "TimeSlotNotAvailable", "ResourceNotFound", "InvalidOrderState", "RegionNotSupported", "OrderNotEligibleForRescheduling", "InternalServerError". Other values may be returned by Amazon.*/
+Known values: `InvalidInput`, `InvalidTimeSlotId`, `ScheduledPackageAlreadyExists`, `ScheduleWindowExpired`, `RetryableAfterGettingNewSlots`, `TimeSlotNotAvailable`, `ResourceNotFound`, `InvalidOrderState`, `RegionNotSupported`, `OrderNotEligibleForRescheduling`, `InternalServerError`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -99,6 +99,7 @@ pub struct CreateScheduledPackageRequest {
 ///The request body for the POST /easyShip/2022-03-23/packages/bulk API.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateScheduledPackagesRequest {
+    ///Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
     #[serde(rename = "labelFormat")]
     pub label_format: LabelFormat,
     #[serde(rename = "marketplaceId")]
@@ -226,6 +227,7 @@ pub struct Dimensions {
     ///The length dimension.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub length: ::std::option::Option<Dimension>,
+    ///Known values: `cm`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub unit: ::std::option::Option<UnitOfLength>,
     ///The width dimension.
@@ -251,7 +253,7 @@ pub struct ErrorList {
 }
 /**Identifies the method by which a seller will hand a package over to Amazon Logistics.
 
-Known values: "PICKUP", "DROPOFF". Other values may be returned by Amazon.*/
+Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -341,7 +343,7 @@ impl ::std::convert::From<::std::vec::Vec<Item>> for Items {
 }
 /**The file format in which the shipping label will be created.
 
-Known values: "PDF", "ZPL". Other values may be returned by Amazon.*/
+Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -560,6 +562,7 @@ pub struct Package {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub package_items: ::std::option::Option<Items>,
+    ///Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
     #[serde(
         rename = "packageStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -677,7 +680,7 @@ impl ::std::str::FromStr for PackageIdentifier {
 }
 /**The status of the package.
 
-Known values: "ReadyForPickup", "PickedUp", "AtOriginFC", "AtDestinationFC", "Delivered", "Rejected", "Undeliverable", "ReturnedToSeller", "LostInTransit", "LabelCanceled", "DamagedInTransit", "OutForDelivery". Other values may be returned by Amazon.*/
+Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -806,7 +809,9 @@ pub struct TimeSlot {
     ///The end date and time of the time slot.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<DateTime>,
-    ///The method by which a seller will hand a package over to Amazon Logistics.
+    /**The method by which a seller will hand a package over to Amazon Logistics.
+
+Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "handoverMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -854,7 +859,7 @@ pub struct TrackingDetails {
 }
 /**The unit of measurement used to measure the length.
 
-Known values: "cm". Other values may be returned by Amazon.*/
+Known values: `cm`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -897,7 +902,7 @@ impl ::std::str::FromStr for UnitOfLength {
 }
 /**The unit of measurement used to measure the weight.
 
-Known values: "grams", "g". Other values may be returned by Amazon.*/
+Known values: `grams`, `g`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1020,6 +1025,7 @@ impl ::std::str::FromStr for Url {
 ///The weight of the scheduled package
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Weight {
+    ///Known values: `grams`, `g`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub unit: ::std::option::Option<UnitOfWeight>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]

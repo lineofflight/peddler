@@ -13,7 +13,7 @@ pub struct Notification {
     pub notification_metadata: NotificationMetadata,
     /**The notification type.
 
-Known values: "TAX_INVOICE_ISSUANCE_ELIGIBILITY_STATUS_CHANGE". Other values may be returned by Amazon.*/
+Known values: `TAX_INVOICE_ISSUANCE_ELIGIBILITY_STATUS_CHANGE`. Other values may be returned by Amazon.*/
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
     ///The version for this notification type.
@@ -53,11 +53,11 @@ pub struct Payload {
     pub message: ::std::option::Option<::std::vec::Vec<PayloadMessageItem>>,
     /**The invoice issuance operation available to the seller.
 
-Known values: "inbound", "outbound-fba-offers", "c-returns", "removals". Other values may be returned by Amazon.*/
+Known values: `inbound`, `outbound-fba-offers`, `c-returns`, `removals`. Other values may be returned by Amazon.*/
     pub operation: ::std::string::String,
     /**The status of the seller invoice issuance operation.
 
-Known values: "BLOCKED", "ALLOWED". Other values may be returned by Amazon.*/
+Known values: `BLOCKED`, `ALLOWED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
 }
 ///`PayloadMessageItem`
@@ -65,7 +65,7 @@ Known values: "BLOCKED", "ALLOWED". Other values may be returned by Amazon.*/
 pub struct PayloadMessageItem {
     /**The language locale identifier in POSIX-style format.
 
-Known values: "en-US", "pt-BR", "es-MX". Other values may be returned by Amazon.*/
+Known values: `en-US`, `pt-BR`, `es-MX`. Other values may be returned by Amazon.*/
     pub locale: ::std::string::String,
     ///The localized message text for the specified locale.
     pub text: ::std::string::String,

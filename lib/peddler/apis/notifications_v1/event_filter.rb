@@ -13,13 +13,15 @@ module Peddler
         # An `eventFilterType` value that the `notificationType` supports. The subscription service uses the
         # `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType`
         # supports an `eventFilterType`, refer to [Notification Type Values](
-        # https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+        # https://developer-docs.amazon.com/sp-api/docs/notification-type-values). Known values: `ANY_OFFER_CHANGED`,
+        # `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`.
         attribute(:event_filter_type, String, null: false, from: "eventFilterType")
 
         attribute?(:aggregation_settings, AggregationSettings, from: "aggregationSettings")
 
         attribute?(:marketplace_ids, [String], from: "marketplaceIds")
 
+        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
 
         attribute?(:tracking_identifier, TrackingIdentifier, from: "trackingIdentifier")

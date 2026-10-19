@@ -15,7 +15,7 @@ module Peddler
         # `PRIME_EXCLUSIVE`, `MOM`, `STUDENT` etc).
         attribute(:segment_id, String, null: false, from: "segmentId")
 
-        # Top-level segment type.
+        # Top-level segment type. Known values: `BRAND`, `PROGRAM`.
         attribute(:segment_type, String, null: false, from: "segmentType")
 
         # Additional segment-specific details. Required for `BRAND` segments type.

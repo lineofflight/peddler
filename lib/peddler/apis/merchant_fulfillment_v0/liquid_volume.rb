@@ -9,7 +9,7 @@ module Peddler
     module MerchantFulfillmentV0
       # Liquid volume.
       LiquidVolume = Structure.new do
-        # The unit of measurement.
+        # The unit of measurement. Known values: `ML`, `L`, `FL_OZ`, `GAL`, `PT`, `QT`, `C`.
         attribute(:unit, String, null: false, from: "Unit")
 
         # The measurement value.

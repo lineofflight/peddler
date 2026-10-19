@@ -1,23 +1,240 @@
 module Peddler
   module Notifications
     module ShipmentTrackingMilestoneChanged
-      class Notification < Data
-        def self.new: (payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
-                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
-        def self.[]: (payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
-                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+      class BoundedInterval < Data
+        def self.new: (end_time: String, start_time: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
+                    | (String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
+        def self.[]: (end_time: String, start_time: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
+                   | (String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
 
-        def self.members: () -> [ :payload ]
+        def self.members: () -> [ :end_time, :start_time ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
+
+        attr_reader end_time: String
+        attr_reader start_time: String
+
+        def members: () -> [ :end_time, :start_time ]
+        def to_h: () -> { end_time: String, start_time: String }
+      end
+
+      class CarrierTracking < Data
+        def self.new: (tracking_number: String, ?carrier_code: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking
+                    | (String, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking
+        def self.[]: (tracking_number: String, ?carrier_code: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking
+                   | (String, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking
+
+        def self.members: () -> [ :tracking_number, :carrier_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking
+
+        attr_reader carrier_code: String?
+        attr_reader tracking_number: String
+
+        def members: () -> [ :tracking_number, :carrier_code ]
+        def to_h: () -> { tracking_number: String, carrier_code: String? }
+      end
+
+      class Notification < Data
+        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload, payload_version: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+                    | (String, String, String, String, Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload, payload_version: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+                   | (String, String, String, String, Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
+
+        def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification
 
+        attr_reader event_time: String
+        attr_reader notification_metadata: String
+        attr_reader notification_type: String
+        attr_reader notification_version: String
         attr_reader payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+        attr_reader payload_version: String
 
-        def members: () -> [ :payload ]
-        def to_h: () -> { payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload }
+        def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
+        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload, payload_version: String }
+      end
+
+      class NotificationMetadata < Data
+        def self.new: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::NotificationMetadata
+                    | (String, String, String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::NotificationMetadata
+        def self.[]: (application_id: String, notification_id: String, publish_time: String, subscription_id: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::NotificationMetadata
+                   | (String, String, String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::NotificationMetadata
+
+        def self.members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::NotificationMetadata
+
+        attr_reader application_id: String
+        attr_reader notification_id: String
+        attr_reader publish_time: String
+        attr_reader subscription_id: String
+
+        def members: () -> [ :application_id, :notification_id, :publish_time, :subscription_id ]
+        def to_h: () -> { application_id: String, notification_id: String, publish_time: String, subscription_id: String }
       end
 
       class Payload < Data
+        def self.new: (shipment_tracking_milestone_changed_notification: Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+        def self.[]: (shipment_tracking_milestone_changed_notification: Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+
+        def self.members: () -> [ :shipment_tracking_milestone_changed_notification ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Payload
+
+        attr_reader shipment_tracking_milestone_changed_notification: Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+
+        def members: () -> [ :shipment_tracking_milestone_changed_notification ]
+        def to_h: () -> { shipment_tracking_milestone_changed_notification: Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification }
+      end
+
+      class ShipmentTrackingMilestoneChangedNotification < Data
+        def self.new: (tracking_detail: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+        def self.[]: (tracking_detail: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+
+        def self.members: () -> [ :tracking_detail ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::ShipmentTrackingMilestoneChangedNotification
+
+        attr_reader tracking_detail: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+
+        def members: () -> [ :tracking_detail ]
+        def to_h: () -> { tracking_detail: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail }
+      end
+
+      class TrackingDetail < Data
+        def self.new: (identifier: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier, milestone_history: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone], ?latest_milestone: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?, ?tracking_estimates: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?, ?tracking_url: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier, Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone], Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?, Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+        def self.[]: (identifier: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier, milestone_history: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone], ?latest_milestone: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?, ?tracking_estimates: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?, ?tracking_url: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier, Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone], Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?, Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+
+        def self.members: () -> [ :identifier, :milestone_history, :latest_milestone, :tracking_estimates, :tracking_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingDetail
+
+        attr_reader identifier: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+        attr_reader latest_milestone: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?
+        attr_reader milestone_history: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone]
+        attr_reader tracking_estimates: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?
+        attr_reader tracking_url: String?
+
+        def members: () -> [ :identifier, :milestone_history, :latest_milestone, :tracking_estimates, :tracking_url ]
+        def to_h: () -> { identifier: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier, milestone_history: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone], latest_milestone: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone?, tracking_estimates: Array[Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate]?, tracking_url: String? }
+      end
+
+      class TrackingEstimate < Data
+        def self.new: (estimated_interval: Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval, last_updated_time: String, type: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval, String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate
+        def self.[]: (estimated_interval: Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval, last_updated_time: String, type: String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval, String, String) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate
+
+        def self.members: () -> [ :estimated_interval, :last_updated_time, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingEstimate
+
+        attr_reader estimated_interval: Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval
+        attr_reader last_updated_time: String
+        attr_reader type: String
+
+        def members: () -> [ :estimated_interval, :last_updated_time, :type ]
+        def to_h: () -> { estimated_interval: Peddler::Notifications::ShipmentTrackingMilestoneChanged::BoundedInterval, last_updated_time: String, type: String }
+      end
+
+      class TrackingIdentifier < Data
+        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+                    | (String?, String?, Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?, String?, String?, String?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+                   | (String?, String?, Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?, String?, String?, String?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+
+        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingIdentifier
+
+        attr_reader acsin: String?
+        attr_reader aftn: String?
+        attr_reader carrier_tracking: Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?
+        attr_reader container_number: String?
+        attr_reader house_bill_of_lading_number: String?
+        attr_reader id: String?
+        attr_reader pro_number: String?
+
+        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
+        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Peddler::Notifications::ShipmentTrackingMilestoneChanged::CarrierTracking?, container_number: String?, house_bill_of_lading_number: String?, id: String?, pro_number: String? }
+      end
+
+      class TrackingMilestone < Data
+        def self.new: (occurred_at: String, status: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus, ?location: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone
+                    | (String, Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus, Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone
+        def self.[]: (occurred_at: String, status: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus, ?location: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone
+                   | (String, Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus, Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone
+
+        def self.members: () -> [ :occurred_at, :status, :location ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestone
+
+        attr_reader location: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation?
+        attr_reader occurred_at: String
+        attr_reader status: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+
+        def members: () -> [ :occurred_at, :status, :location ]
+        def to_h: () -> { occurred_at: String, status: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus, location: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation? }
+      end
+
+      class TrackingMilestoneAddress < Data
+        def self.new: (?city: String?, ?country_code: String?, ?region: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress
+                    | (String?, String?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress
+        def self.[]: (?city: String?, ?country_code: String?, ?region: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress
+                   | (String?, String?, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress
+
+        def self.members: () -> [ :city, :country_code, :region ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress
+
+        attr_reader city: String?
+        attr_reader country_code: String?
+        attr_reader region: String?
+
+        def members: () -> [ :city, :country_code, :region ]
+        def to_h: () -> { city: String?, country_code: String?, region: String? }
+      end
+
+      class TrackingMilestoneLocation < Data
+        def self.new: (?address: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation
+                    | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation
+        def self.[]: (?address: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation
+                   | (Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation
+
+        def self.members: () -> [ :address ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneLocation
+
+        attr_reader address: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress?
+
+        def members: () -> [ :address ]
+        def to_h: () -> { address: Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneAddress? }
+      end
+
+      class TrackingMilestoneStatus < Data
+        def self.new: (code: String, description: String, ?sub_code: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+                    | (String, String, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+        def self.[]: (code: String, description: String, ?sub_code: String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+                   | (String, String, String?) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+
+        def self.members: () -> [ :code, :description, :sub_code ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::TrackingMilestoneStatus
+
+        attr_reader code: String
+        attr_reader description: String
+        attr_reader sub_code: String?
+
+        def members: () -> [ :code, :description, :sub_code ]
+        def to_h: () -> { code: String, description: String, sub_code: String? }
       end
 
       def self.parse: (Hash[String | Symbol, untyped]) -> Peddler::Notifications::ShipmentTrackingMilestoneChanged::Notification

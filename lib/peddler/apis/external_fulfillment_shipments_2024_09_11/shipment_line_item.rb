@@ -51,7 +51,7 @@ module Peddler
         # `getShipments` response.
         attribute?(:item_value, Amount, from: "itemValue")
 
-        # Whether the line item has multiple pieces.
+        # Whether the line item has multiple pieces. Known values: `SINGLE`, `MULTIPLE`.
         attribute?(:piece_type, String, from: "pieceType")
 
         # The country of origin recommended by the marketplace, represented as a two-letter country code following the

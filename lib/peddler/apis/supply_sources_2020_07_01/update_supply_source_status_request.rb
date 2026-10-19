@@ -9,6 +9,7 @@ module Peddler
     module SupplySources20200701
       # A request to update the status of a supply source.
       UpdateSupplySourceStatusRequest = Structure.new do
+        # Known values: `Active`, `Inactive`.
         attribute?(:status, String)
       end
     end

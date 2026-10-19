@@ -19,6 +19,7 @@ module Peddler
 
         attribute?(:created_at, String, from: "createdAt")
 
+        # Known values: `Active`, `Inactive`, `Archived`.
         attribute?(:status, String)
 
         attribute?(:supply_source_code, String, from: "supplySourceCode")

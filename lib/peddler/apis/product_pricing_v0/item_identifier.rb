@@ -9,7 +9,7 @@ module Peddler
     module ProductPricingV0
       # Information that identifies an item.
       ItemIdentifier = Structure.new do
-        # The condition of the item.
+        # The condition of the item. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # A marketplace identifier. Specifies the marketplace from which prices are returned.

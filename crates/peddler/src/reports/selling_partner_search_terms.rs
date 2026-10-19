@@ -53,16 +53,14 @@ pub struct ReportReportSpecification {
     pub report_options: ReportReportSpecificationReportOptions,
     /**The report type.
 
-Known values: "GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT". Other values may be returned by Amazon.*/
+Known values: `GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT`. Other values may be returned by Amazon.*/
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
 ///Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    /**Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
-
-Known values: "DAY", "WEEK", "MONTH", "QUARTER". Other values may be returned by Amazon.*/
+    ///Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

@@ -32,7 +32,8 @@ module Peddler
         # Individual contributors to the creation of the item, such as the authors or actors.
         attribute?(:contributors, [ItemContributor])
 
-        # Classification type that is associated with the Amazon catalog item.
+        # Classification type that is associated with the Amazon catalog item. Known values: `BASE_PRODUCT`, `OTHER`,
+        # `PRODUCT_BUNDLE`, `VARIATION_PARENT`.
         attribute?(:item_classification, String, from: "itemClassification")
 
         # The name that is associated with the Amazon catalog item.

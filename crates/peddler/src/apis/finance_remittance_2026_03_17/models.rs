@@ -138,7 +138,7 @@ pub struct GetRemittancesResponse {
 pub struct RelatedIdentifier {
     /**An enumerated set of related business identifier names.
 
-Known values: "VENDOR_CODE", "PAYEE_CODE". Other values may be returned by Amazon.*/
+Known values: `VENDOR_CODE`, `PAYEE_CODE`. Other values may be returned by Amazon.*/
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding values for `relatedIdentifierName`.
@@ -150,7 +150,7 @@ Known values: "VENDOR_CODE", "PAYEE_CODE". Other values may be returned by Amazo
 pub struct RelatedItemIdentifier {
     /**An enumerated set of related business identifier names for a line item.
 
-Known values: "VENDOR_CODE". Other values may be returned by Amazon.*/
+Known values: `VENDOR_CODE`. Other values may be returned by Amazon.*/
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding values for `relatedIdentifierName`.
@@ -208,7 +208,9 @@ pub struct RemittanceHeader {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<::std::vec::Vec<RelatedIdentifier>>,
-    ///The status of the remittance.
+    /**The status of the remittance.
+
+Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.*/
     #[serde(rename = "remittanceStatus")]
     pub remittance_status: RemittanceStatus,
     ///The unique internal identifier for the payment record in the remittance system.
@@ -298,7 +300,7 @@ pub struct RemittanceItem {
 }
 /**The status of a remittance.
 
-Known values: "IN_PROGRESS", "SUCCESSFUL", "FAILED". Other values may be returned by Amazon.*/
+Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

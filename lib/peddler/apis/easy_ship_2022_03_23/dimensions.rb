@@ -18,6 +18,7 @@ module Peddler
         # The length dimension.
         attribute?(:length, Float)
 
+        # Known values: `cm`.
         attribute?(:unit, String)
 
         # The width dimension.

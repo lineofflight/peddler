@@ -13,7 +13,7 @@ module Peddler
         # The date and time when the report was created.
         attribute(:created_time, Time, null: false, from: "createdTime")
 
-        # The processing status of the report.
+        # The processing status of the report. Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
         attribute(:processing_status, String, null: false, from: "processingStatus")
 
         # The identifier for the report. This identifier is unique only in combination with a seller ID.

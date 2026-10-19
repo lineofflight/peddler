@@ -15,10 +15,15 @@ module Peddler
 
         attribute?(:amazon_prep_fees_details_list, [AmazonPrepFeesDetails], from: "AmazonPrepFeesDetailsList")
 
+        # Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`.
         attribute?(:barcode_instruction, String, from: "BarcodeInstruction")
 
+        # Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`.
         attribute?(:prep_guidance, String, from: "PrepGuidance")
 
+        # Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`,
+        # `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`,
+        # `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`.
         attribute?(:prep_instruction_list, Array, from: "PrepInstructionList")
 
         # The seller SKU of the item.

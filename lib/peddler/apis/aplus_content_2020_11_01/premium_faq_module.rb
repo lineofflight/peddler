@@ -12,6 +12,7 @@ module Peddler
         # The collection of FAQ entries, which must contain between 2 and 5 FAQs.
         attribute(:faqs, [Faqs], null: false)
 
+        # Known values: `DARK`, `LIGHT`.
         attribute?(:color_type, String, from: "colorType")
       end
     end

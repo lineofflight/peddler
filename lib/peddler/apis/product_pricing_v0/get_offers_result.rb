@@ -12,7 +12,7 @@ module Peddler
         # Metadata that identifies the item.
         attribute(:identifier, ItemIdentifier, null: false, from: "Identifier")
 
-        # The condition of the item.
+        # The condition of the item. Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`.
         attribute(:item_condition, String, null: false, from: "ItemCondition")
 
         # A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is

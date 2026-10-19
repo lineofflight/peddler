@@ -13,6 +13,7 @@ module Peddler
       ASINMetadata = Structure.new do
         attribute(:asin, String, null: false)
 
+        # Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`.
         attribute?(:badge_set, Array, from: "badgeSet")
 
         attribute?(:content_reference_key_set, Array, from: "contentReferenceKeySet")

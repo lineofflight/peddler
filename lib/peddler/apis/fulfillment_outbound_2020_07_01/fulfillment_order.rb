@@ -24,6 +24,8 @@ module Peddler
         # identifier in recipient-facing materials such as the packing slip.
         attribute(:displayable_order_id, String, null: false, from: "displayableOrderId")
 
+        # Known values: `New`, `Received`, `Planning`, `Processing`, `Cancelled`, `Complete`, `CompletePartialled`,
+        # `Unfulfillable`, `Invalid`.
         attribute(:fulfillment_order_status, String, null: false, from: "fulfillmentOrderStatus")
 
         # The identifier for the marketplace the fulfillment order is placed against.
@@ -35,6 +37,7 @@ module Peddler
         # The fulfillment order identifier submitted with the `createFulfillmentOrder` operation.
         attribute(:seller_fulfillment_order_id, String, null: false, from: "sellerFulfillmentOrderId")
 
+        # Known values: `Standard`, `Expedited`, `Priority`, `ScheduledDelivery`.
         attribute(:shipping_speed_category, String, null: false, from: "shippingSpeedCategory")
 
         # The date and time that the status of the fulfillment order last changed, in ISO 8601 date time format.
@@ -47,8 +50,10 @@ module Peddler
         # A list of features and their fulfillment policies to apply to the order.
         attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
 
+        # Known values: `Ship`, `Hold`.
         attribute?(:fulfillment_action, String, from: "fulfillmentAction")
 
+        # Known values: `FillOrKill`, `FillAll`, `FillAllAvailable`.
         attribute?(:fulfillment_policy, String, from: "fulfillmentPolicy")
 
         attribute?(:notification_emails, [String], from: "notificationEmails")

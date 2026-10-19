@@ -15,7 +15,7 @@ module Peddler
         # The length of the container.
         attribute(:length, Float, null: false)
 
-        # The unit of these measurements.
+        # The unit of these measurements. Known values: `IN`, `CM`.
         attribute(:unit, String, null: false)
 
         # The width of the container.

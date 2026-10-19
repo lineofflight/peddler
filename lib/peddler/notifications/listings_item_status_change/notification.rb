@@ -16,7 +16,7 @@ module Peddler
         # The metadata of the notification.
         attribute(:notification_metadata, Hash, null: false, from: "NotificationMetadata")
 
-        # The type of the notification.
+        # The type of the notification. Known values: `LISTINGS_ITEM_STATUS_CHANGED`.
         attribute(:notification_type, String, null: false, from: "NotificationType")
 
         # The version of the notification.

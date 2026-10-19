@@ -34,7 +34,7 @@ module Peddler
         # The current listing price for Business buyers.
         attribute?(:business_price, Money, from: "businessPrice")
 
-        # Indicates the type of customer that the offer is valid for.
+        # Indicates the type of customer that the offer is valid for. Known values: `B2C`, `B2B`.
         attribute?(:offer_type, String, from: "offerType")
 
         # List of `QuantityDiscountPrice` that contains item's pricing information when buy in bulk.

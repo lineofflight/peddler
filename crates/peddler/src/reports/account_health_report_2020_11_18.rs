@@ -52,7 +52,9 @@ pub struct ListingLevelViolation {
     pub defects_count: DefectsCount,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -117,7 +119,9 @@ pub struct OrderDefectRate {
     pub rate: Rate,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -128,6 +132,7 @@ pub struct OrderDefectRate {
 pub struct OrderDefectRateChargebacks {
     ///Order defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Order defects due to claims
@@ -135,6 +140,7 @@ pub struct OrderDefectRateChargebacks {
 pub struct OrderDefectRateClaims {
     ///Order defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Order defects due to negative feedback
@@ -142,6 +148,7 @@ pub struct OrderDefectRateClaims {
 pub struct OrderDefectRateNegativeFeedback {
     ///Order defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Order defects.
@@ -149,6 +156,7 @@ pub struct OrderDefectRateNegativeFeedback {
 pub struct OrderDefectRateOrderWithDefects {
     ///Order defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Performance metric rate in percentage within a given reporting date range for 1 requested marketplace.
@@ -212,7 +220,7 @@ pub struct ReportAccountStatusesItem {
     pub marketplace_id: ::std::string::String,
     /**Seller's account status for a requested marketplace.
 
-Known values: "NORMAL", "AT_RISK", "DEACTIVATED". Other values may be returned by Amazon.*/
+Known values: `NORMAL`, `AT_RISK`, `DEACTIVATED`. Other values may be returned by Amazon.*/
     pub status: ::std::string::String,
 }
 ///Report data for the program.
@@ -264,9 +272,7 @@ pub struct ReportPerformanceMetricsItem {
 ///Seller's account health rating within a given reporting date range for 1 requested marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportPerformanceMetricsItemAccountHealthRating {
-    /**Seller's overall Account Health Rating status within a given reporting date range for 1 requested marketplace. It could be GREAT or WARNED
-
-Known values: "GREAT", "WARNED". Other values may be returned by Amazon.*/
+    ///Seller's overall Account Health Rating status within a given reporting date range for 1 requested marketplace. It could be GREAT or WARNED
     #[serde(
         rename = "accountHealthRatingStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -291,7 +297,9 @@ pub struct ReportPerformanceMetricsItemInvoiceDefectRate {
     pub rate: Rate,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -302,6 +310,7 @@ pub struct ReportPerformanceMetricsItemInvoiceDefectRate {
 pub struct ReportPerformanceMetricsItemInvoiceDefectRateInvoiceDefect {
     ///Invoice defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Total late invoice count in the time window.
@@ -309,6 +318,7 @@ pub struct ReportPerformanceMetricsItemInvoiceDefectRateInvoiceDefect {
 pub struct ReportPerformanceMetricsItemInvoiceDefectRateLateInvoice {
     ///Late invoice defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Total missing invoice count in the time window.
@@ -316,6 +326,7 @@ pub struct ReportPerformanceMetricsItemInvoiceDefectRateLateInvoice {
 pub struct ReportPerformanceMetricsItemInvoiceDefectRateMissingInvoice {
     ///Missing invoice defects count.
     pub count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
 }
 ///Seller's late shipment rate within a given reporting date range for 1 requested marketplace.
@@ -329,7 +340,9 @@ pub struct ReportPerformanceMetricsItemLateShipmentRate {
     pub rate: Rate,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -347,7 +360,9 @@ pub struct ReportPerformanceMetricsItemOnTimeDeliveryRate {
     ///The number of shipments with valid tracking associated within a given reporting date range for 1 requested marketplace.
     #[serde(rename = "shipmentCountWithValidTracking")]
     pub shipment_count_with_valid_tracking: ::serde_json::Number,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -370,7 +385,9 @@ pub struct ReportPerformanceMetricsItemPreFulfillmentCancellationRate {
     pub rate: Rate,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -382,7 +399,9 @@ pub struct ReportPerformanceMetricsItemUnitOnTimeDeliveryRate {
     pub rate: Rate,
     #[serde(rename = "reportingDateRange")]
     pub reporting_date_range: ReportingDateRange,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -403,7 +422,9 @@ pub struct ReportPerformanceMetricsItemValidTrackingRate {
     ///The number of shipments within a given reporting date range for 1 requested marketplace.
     #[serde(rename = "shipmentCount")]
     pub shipment_count: i64,
+    ///Known values: `GOOD`, `BAD`, `NONE`. Other values may be returned by Amazon.
     pub status: Status,
+    ///Known values: `GREATER_THAN`, `LESS_THAN`, `EQUALS`. Other values may be returned by Amazon.
     #[serde(rename = "targetCondition")]
     pub target_condition: TargetCondition,
     #[serde(rename = "targetValue")]
@@ -415,9 +436,7 @@ pub struct ReportPerformanceMetricsItemValidTrackingRate {
 ///Seller account warning state for 1 requested marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportPerformanceMetricsItemWarningStatesItem {
-    /**Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or NONE.
-
-Known values: "GOOD", "BAD", "NONE". Other values may be returned by Amazon.*/
+    ///Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or NONE.
     pub status: ::std::string::String,
     ///Seller account warning type for 1 requested marketplace.
     #[serde(rename = "warningType")]
@@ -433,9 +452,7 @@ pub struct ReportingDateRange {
     #[serde(rename = "reportingDateTo")]
     pub reporting_date_to: ::std::string::String,
 }
-/**Listing level violations status within a given reporting date range for 1 requested marketplace. It could be GOOD or BAD or NONE.
-
-Known values: "GOOD", "BAD", "NONE". Other values may be returned by Amazon.*/
+///Listing level violations status within a given reporting date range for 1 requested marketplace. It could be GOOD or BAD or NONE.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -476,9 +493,7 @@ impl ::std::str::FromStr for Status {
         Ok(Self(value.to_string()))
     }
 }
-/**Performance metric target condition to stay in good status. Possible values are GREATER_THAN, LESS_THAN and EQUALS.
-
-Known values: "GREATER_THAN", "LESS_THAN", "EQUALS". Other values may be returned by Amazon.*/
+///Performance metric target condition to stay in good status. Possible values are GREATER_THAN, LESS_THAN and EQUALS.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

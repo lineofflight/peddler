@@ -15,7 +15,8 @@ module Peddler
         # The start time of the window.
         attribute(:start_time, Integer, null: false, from: "startTime")
 
-        # Whether the seller picks up from Amazon Logistics or drops off to Amazon Logistics.
+        # Whether the seller picks up from Amazon Logistics or drops off to Amazon Logistics. Known values: `PICKUP`,
+        # `DROPOFF`.
         attribute?(:handover_method, String, from: "handoverMethod")
       end
     end

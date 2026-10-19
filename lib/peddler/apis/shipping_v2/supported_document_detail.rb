@@ -12,6 +12,7 @@ module Peddler
         # When true, the supported document type is required.
         attribute(:mandatory, :boolean, null: false, from: "isMandatory")
 
+        # Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
         attribute(:name, String, null: false)
       end
     end

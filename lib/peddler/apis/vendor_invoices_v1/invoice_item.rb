@@ -43,7 +43,7 @@ module Peddler
         attribute?(:item_description, String, from: "itemDescription")
 
         # This field represents weight unit of measure of items that are ordered by cases and supporting priced by
-        # weight.
+        # weight. Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`.
         attribute?(:net_cost_unit_of_measure, String, from: "netCostUnitOfMeasure")
 
         # The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character alpha-numeric

@@ -9,7 +9,7 @@ module Peddler
     module Finances20240619
       # Information about the line of business associated with a transaction.
       BusinessContext = Structure.new do
-        # The store name associated with the transaction.
+        # The store name associated with the transaction. Known values: `AMAZON_HAUL`.
         attribute?(:store_name, String, from: "storeName")
       end
     end

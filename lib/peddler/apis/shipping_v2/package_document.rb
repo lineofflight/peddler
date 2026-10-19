@@ -11,8 +11,10 @@ module Peddler
       PackageDocument = Structure.new do
         attribute(:contents, String, null: false)
 
+        # Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
+        # Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
         attribute(:type, String, null: false)
       end
     end

@@ -63,7 +63,7 @@ pub struct RestrictedResource {
     pub data_elements: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     /**The HTTP method in the restricted resource.
 
-Known values: "GET", "PUT", "POST", "DELETE". Other values may be returned by Amazon.*/
+Known values: `GET`, `PUT`, `POST`, `DELETE`. Other values may be returned by Amazon.*/
     pub method: ::std::string::String,
     /**The path in the restricted resource. Here are some path examples:
 - ```/orders/v0/orders```. For getting an RDT for the getOrders operation of the Orders API. For bulk orders.

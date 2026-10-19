@@ -10,7 +10,7 @@ module Peddler
     module ExternalFulfillmentShipments20240911
       # Shipping options for a single package.
       ShippingOptions = Structure.new do
-        # The shipper type.
+        # The shipper type. Known values: `MARKETPLACE`, `SELLER`, `THIRD_PARTY_CARRIER`, `OTHER`.
         attribute(:ship_by, String, null: false, from: "shipBy")
 
         # An identifier for the shipping option.

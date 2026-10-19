@@ -15,7 +15,7 @@ pub struct AdditionalDetails {
     pub language_code: ::std::option::Option<::std::string::String>,
     /**The type of the additional information provided by the selling party.
 
-Known values: "SUR", "OCR", "CartonCount", "TaxExemptReason", "LegalTerms", "RegulatoryNote". Other values may be returned by Amazon.*/
+Known values: `SUR`, `OCR`, `CartonCount`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -27,7 +27,7 @@ pub struct AdditionalPartyIdentification {
     pub identification_number: ::std::string::String,
     /**The type of the additional party identifier.
 
-Known values: "FR_SIREN", "DE_WIDNR". Other values may be returned by Amazon.*/
+Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.*/
     #[serde(rename = "identificationType")]
     pub identification_type: ::std::string::String,
 }
@@ -150,7 +150,7 @@ pub struct AllowanceDetails {
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
     /**Type of the allowance applied.
 
-Known values: "Discount", "DiscountIncentive", "Defective", "Promotional", "UnsaleableMerchandise", "Special". Other values may be returned by Amazon.*/
+Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -171,7 +171,7 @@ pub struct ChargeDetails {
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
     /**Type of the charge applied.
 
-Known values: "Freight", "Packing", "Duty", "Service", "SmallOrder", "InsurancePlacementCost", "InsuranceFee", "SpecialHandlingService", "CollectionAndRecyclingService", "EnvironmentalProtectionService", "TaxCollectedAtSource". Other values may be returned by Amazon.*/
+Known values: `Freight`, `Packing`, `Duty`, `Service`, `SmallOrder`, `InsurancePlacementCost`, `InsuranceFee`, `SpecialHandlingService`, `CollectionAndRecyclingService`, `EnvironmentalProtectionService`, `TaxCollectedAtSource`. Other values may be returned by Amazon.*/
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -387,7 +387,7 @@ pub struct Invoice {
     pub invoice_total: Money,
     /**Identifies the type of invoice.
 
-Known values: "Invoice", "CreditNote". Other values may be returned by Amazon.*/
+Known values: `Invoice`, `CreditNote`. Other values may be returned by Amazon.*/
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
     ///The list of invoice items.
@@ -496,7 +496,9 @@ pub struct InvoiceItem {
     ///The item cost to Amazon, which should match the cost on the order. Price information should not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
     #[serde(rename = "netCost")]
     pub net_cost: Money,
-    ///This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
+    /**This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
+
+Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "netCostUnitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -533,7 +535,7 @@ pub struct ItemQuantity {
     pub total_weight: ::std::option::Option<TotalWeight>,
     /**Unit of measure for the quantity.
 
-Known values: "Cases", "Eaches". Other values may be returned by Amazon.*/
+Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The case size, if the unit of measure value is Cases.
@@ -554,7 +556,7 @@ pub struct Money {
 }
 /**This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
 
-Known values: "POUNDS", "OUNCES", "GRAMS", "KILOGRAMS". Other values may be returned by Amazon.*/
+Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -644,7 +646,7 @@ pub struct PaymentTerms {
     pub net_due_days: ::std::option::Option<::serde_json::Number>,
     /**The payment term type for the invoice.
 
-Known values: "Basic", "EndOfMonth", "FixedDate", "Proximo", "PaymentDueUponReceiptOfInvoice", "LetterofCredit". Other values may be returned by Amazon.*/
+Known values: `Basic`, `EndOfMonth`, `FixedDate`, `Proximo`, `PaymentDueUponReceiptOfInvoice`, `LetterofCredit`. Other values may be returned by Amazon.*/
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
 }
@@ -675,7 +677,7 @@ pub struct TaxDetails {
     pub tax_rate: ::std::option::Option<Decimal>,
     /**Type of the tax applied.
 
-Known values: "CGST", "SGST", "CESS", "UTGST", "IGST", "MwSt.", "PST", "TVA", "VAT", "GST", "ST", "Consumption", "MutuallyDefined", "DomesticVAT". Other values may be returned by Amazon.*/
+Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.*/
     #[serde(rename = "taxType")]
     pub tax_type: ::std::string::String,
     ///The invoice amount that is taxable at the rate specified in the tax rate field.
@@ -693,7 +695,7 @@ pub struct TaxRegistrationDetails {
     pub tax_registration_number: ::std::string::String,
     /**The tax registration type for the entity.
 
-Known values: "VAT", "GST", "LocalTaxNumber". Other values may be returned by Amazon.*/
+Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.*/
     #[serde(rename = "taxRegistrationType")]
     pub tax_registration_type: ::std::string::String,
 }
@@ -703,7 +705,7 @@ pub struct TotalWeight {
     pub amount: Decimal,
     /**The unit of measure for items sold by weight.
 
-Known values: "POUNDS", "OUNCES", "GRAMS", "KILOGRAMS". Other values may be returned by Amazon.*/
+Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }

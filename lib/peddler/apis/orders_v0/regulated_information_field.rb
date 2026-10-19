@@ -15,7 +15,7 @@ module Peddler
         # The name of the field.
         attribute(:field_label, String, null: false, from: "FieldLabel")
 
-        # The type of field.
+        # The type of field. Known values: `Text`, `FileAttachment`.
         attribute(:field_type, String, null: false, from: "FieldType")
 
         # The content of the field as collected in regulatory form. Note that `FileAttachment` type fields contain a URL

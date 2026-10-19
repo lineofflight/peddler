@@ -14,6 +14,7 @@ module Peddler
         # regions.
         attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
+        # Known values: `GST`.
         attribute(:tax_type, String, null: false, from: "taxType")
       end
     end

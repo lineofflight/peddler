@@ -20,7 +20,7 @@ module Peddler
         attribute?(:ship_label_metadata, ShipLabelMetadata, from: "shipLabelMetadata")
 
         # Whether label generation failed for the current package. If `FAILURE`, use `errorDetails` to determine details
-        # of the failure.
+        # of the failure. Known values: `SUCCESS`, `FAILURE`.
         attribute?(:status, String)
       end
     end

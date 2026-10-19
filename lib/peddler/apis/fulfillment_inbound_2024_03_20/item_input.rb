@@ -9,11 +9,13 @@ module Peddler
     module FulfillmentInbound20240320
       # Defines an item's input parameters.
       ItemInput = Structure.new do
+        # Known values: `AMAZON`, `SELLER`, `NONE`.
         attribute(:label_owner, String, null: false, from: "labelOwner")
 
         # The merchant SKU, a merchant-supplied identifier of a specific SKU.
         attribute(:msku, String, null: false)
 
+        # Known values: `AMAZON`, `SELLER`, `NONE`.
         attribute(:prep_owner, String, null: false, from: "prepOwner")
 
         # The number of units of the specified MSKU that will be shipped.

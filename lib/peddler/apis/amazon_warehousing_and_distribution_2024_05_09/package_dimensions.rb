@@ -15,7 +15,7 @@ module Peddler
         # Length of the package.
         attribute(:length, Float, null: false)
 
-        # Unit of measurement for package dimensions.
+        # Unit of measurement for package dimensions. Known values: `INCHES`, `CENTIMETERS`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
 
         # Width of the package.

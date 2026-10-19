@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20200701
       # A quantity based on the specified unit of measurement.
       Amount = Structure.new do
-        # The unit of measure for the amount.
+        # The unit of measure for the amount. Known values: `Eaches`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         # The amount of a product in the associated unit of measurement.

@@ -9,10 +9,11 @@ module Peddler
     module OrdersV0
       # Information about withheld taxes.
       TaxCollection = Structure.new do
-        # The tax collection model applied to the item.
+        # The tax collection model applied to the item. Known values: `MarketplaceFacilitator`.
         attribute?(:model, String, from: "Model")
 
-        # The party responsible for withholding the taxes and remitting them to the taxing authority.
+        # The party responsible for withholding the taxes and remitting them to the taxing authority. Known values:
+        # `Amazon Services, Inc.`.
         attribute?(:responsible_party, String, from: "ResponsibleParty")
       end
     end

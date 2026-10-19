@@ -14,13 +14,15 @@ pub struct AggregationFilter {
 ///A container that holds all of the necessary properties to configure the aggregation of notifications.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AggregationSettings {
-    ///The supported time period to use to perform marketplace-ASIN level aggregation.
+    /**The supported time period to use to perform marketplace-ASIN level aggregation.
+
+Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.*/
     #[serde(rename = "aggregationTimePeriod")]
     pub aggregation_time_period: AggregationTimePeriod,
 }
 /**The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
 
-Known values: "FiveMinutes", "TenMinutes". Other values may be returned by Amazon.*/
+Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -345,7 +347,7 @@ pub struct EventFilter {
     pub aggregation_settings: ::std::option::Option<AggregationSettings>,
     /**An `eventFilterType` value that the `notificationType` supports. The subscription service uses the `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType` supports an `eventFilterType`, refer to [Notification Type Values]( https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
 
-Known values: "ANY_OFFER_CHANGED", "ORDER_CHANGE", "SHIPMENT_TRACKING_MILESTONE_CHANGED". Other values may be returned by Amazon.*/
+Known values: `ANY_OFFER_CHANGED`, `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`. Other values may be returned by Amazon.*/
     #[serde(rename = "eventFilterType")]
     pub event_filter_type: ::std::string::String,
     #[serde(
@@ -353,6 +355,7 @@ Known values: "ANY_OFFER_CHANGED", "ORDER_CHANGE", "SHIPMENT_TRACKING_MILESTONE_
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<MarketplaceIds>,
+    ///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -458,7 +461,7 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for Marketplac
 }
 /**The supported order change type of ORDER_CHANGE notification.
 
-Known values: "BuyerRequestedChange", "DeliveryTipChange", "OrderStatusChange". Other values may be returned by Amazon.*/
+Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -502,13 +505,16 @@ impl ::std::str::FromStr for OrderChangeTypeEnum {
 ///An event filter you can use to customize your subscription to send notifications for a specific `orderChangeType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OrderChangeTypeFilter {
+    ///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_change_types: ::std::option::Option<OrderChangeTypes>,
 }
-///A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
+/**A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
+
+Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderChangeTypes(pub ::std::vec::Vec<OrderChangeTypeEnum>);

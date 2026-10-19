@@ -37,7 +37,7 @@ module Peddler
         # If the purchase order is an import order, the details for the import order.
         attribute?(:import_details, ImportDetails, from: "importDetails")
 
-        # Payment method used.
+        # Payment method used. Known values: `Invoice`, `Consignment`, `CreditCard`, `Prepaid`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
         # The date when purchase order was last changed by Amazon after the order was placed. This date will be greater
@@ -46,7 +46,7 @@ module Peddler
         # will not be present in orders that have not changed after creation. Must be in ISO-8601 date/time format.
         attribute?(:purchase_order_changed_date, Time, from: "purchaseOrderChangedDate")
 
-        # Type of purchase order.
+        # Type of purchase order. Known values: `RegularOrder`, `ConsignedOrder`, `NewProductIntroduction`, `RushOrder`.
         attribute?(:purchase_order_type, String, from: "purchaseOrderType")
 
         # Name/Address and tax details of the selling party.

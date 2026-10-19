@@ -13,6 +13,7 @@ pub struct AcceptedRate {
     pub billed_weight: ::std::option::Option<Weight>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promise: ::std::option::Option<ShippingPromiseSet>,
+    ///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -644,9 +645,7 @@ impl<'de> ::serde::Deserialize<'de> for ClientReferenceId {
 pub struct Container {
     #[serde(rename = "containerReferenceId")]
     pub container_reference_id: ContainerReferenceId,
-    /**The type of physical container being used. (always 'PACKAGE')
-
-Known values: "PACKAGE". Other values may be returned by Amazon.*/
+    ///The type of physical container being used. (always 'PACKAGE')
     #[serde(
         rename = "containerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -993,7 +992,7 @@ pub struct Dimensions {
     pub length: ::serde_json::Number,
     /**The unit of these measurements.
 
-Known values: "IN", "CM". Other values may be returned by Amazon.*/
+Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
     pub unit: ::std::string::String,
     ///The width of the container.
     pub width: ::serde_json::Number,
@@ -1132,6 +1131,7 @@ pub struct GetAccountResponse {
 pub struct GetRatesRequest {
     #[serde(rename = "containerSpecifications")]
     pub container_specifications: ContainerSpecificationList,
+    ///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
     #[serde(rename = "serviceTypes")]
     pub service_types: ServiceTypeList,
     ///The start date and time. This defaults to the current date and time.
@@ -1232,14 +1232,10 @@ impl ::std::convert::From<::std::vec::Vec<LabelResult>> for LabelResultList {
 ///The label specification info.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LabelSpecification {
-    /**The format of the label. Enum of PNG only for now.
-
-Known values: "PNG". Other values may be returned by Amazon.*/
+    ///The format of the label. Enum of PNG only for now.
     #[serde(rename = "labelFormat")]
     pub label_format: ::std::string::String,
-    /**The label stock size specification in length and height. Enum of 4x6 only for now.
-
-Known values: "4x6". Other values may be returned by Amazon.*/
+    ///The label stock size specification in length and height. Enum of 4x6 only for now.
     #[serde(rename = "labelStockSize")]
     pub label_stock_size: ::std::string::String,
 }
@@ -1457,6 +1453,7 @@ pub struct PurchaseShipmentRequest {
     pub containers: ContainerList,
     #[serde(rename = "labelSpecification")]
     pub label_specification: LabelSpecification,
+    ///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
     #[serde(rename = "serviceType")]
     pub service_type: ServiceType,
     ///The start date and time. This defaults to the current date and time.
@@ -1509,6 +1506,7 @@ pub struct Rate {
     ///An identifier for the rate.
     #[serde(rename = "rateId", skip_serializing_if = "::std::option::Option::is_none")]
     pub rate_id: ::std::option::Option<::std::string::String>,
+    ///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1613,6 +1611,7 @@ pub struct ServiceRate {
     #[serde(rename = "billableWeight")]
     pub billable_weight: Weight,
     pub promise: ShippingPromiseSet,
+    ///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
     #[serde(rename = "serviceType")]
     pub service_type: ServiceType,
     ///The total charge that will be billed for the rate.
@@ -1641,7 +1640,7 @@ impl ::std::convert::From<::std::vec::Vec<ServiceRate>> for ServiceRateList {
 }
 /**The type of shipping service that will be used for the service offering.
 
-Known values: "Amazon Shipping Ground", "Amazon Shipping Standard", "Amazon Shipping Premium". Other values may be returned by Amazon.*/
+Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1682,7 +1681,9 @@ impl ::std::str::FromStr for ServiceType {
         Ok(Self(value.to_string()))
     }
 }
-///A list of service types that can be used to send the shipment.
+/**A list of service types that can be used to send the shipment.
+
+Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ServiceTypeList(pub ::std::vec::Vec<ServiceType>);
@@ -1967,7 +1968,7 @@ impl<'de> ::serde::Deserialize<'de> for TrackingSummaryStatus {
 pub struct Weight {
     /**The unit of measurement.
 
-Known values: "g", "kg", "oz", "lb". Other values may be returned by Amazon.*/
+Known values: `g`, `kg`, `oz`, `lb`. Other values may be returned by Amazon.*/
     pub unit: ::std::string::String,
     ///The measurement value.
     pub value: ::serde_json::Number,

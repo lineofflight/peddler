@@ -36,7 +36,7 @@ module Peddler
         # Report options specifying parameters such as dateGranularity and asinGranularity.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # Type of the report.
+        # Type of the report. Known values: `GET_SALES_AND_TRAFFIC_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

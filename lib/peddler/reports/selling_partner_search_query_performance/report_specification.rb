@@ -28,7 +28,7 @@ module Peddler
         # The report options that specify parameters, such as reportPeriod and asin.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # The type of the report.
+        # The type of the report. Known values: `GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

@@ -12,6 +12,7 @@ module Peddler
         # The attribute key.
         attribute?(:key, String)
 
+        # Known values: `STRING`, `BOOLEAN`, `INTEGER`, `DOUBLE`, `JSON_STRING`.
         attribute?(:type, String)
 
         # The attribute value.

@@ -42,7 +42,8 @@ module Peddler
         # level.
         attribute?(:containers, [Containers])
 
-        # Indicates the current shipment status.
+        # Indicates the current shipment status. Known values: `Created`, `TransportationRequested`, `CarrierAssigned`,
+        # `Shipped`.
         attribute?(:current_shipment_status, String, from: "currentShipmentStatus")
 
         # Date and time when the last status was updated.

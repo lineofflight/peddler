@@ -13,7 +13,7 @@ module Peddler
         # The URI of the related resource.
         attribute(:resource, URI, null: false)
 
-        # The HTTP verb used to interact with the related resource.
+        # The HTTP verb used to interact with the related resource. Known values: `GET`.
         attribute(:verb, String, null: false)
 
         # The title of the related resource.

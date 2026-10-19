@@ -375,6 +375,7 @@ pub struct AmazonPrepFeesDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_per_unit: ::std::option::Option<Amount>,
+    ///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
     #[serde(
         rename = "PrepInstruction",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -406,6 +407,7 @@ for AmazonPrepFeesDetailsList {
 ///The monetary value.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Amount {
+    ///Known values: `USD`, `GBP`. Other values may be returned by Amazon.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: CurrencyCode,
     ///The amount.
@@ -418,16 +420,19 @@ pub struct AsinPrepInstructions {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
+    ///Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`. Other values may be returned by Amazon.
     #[serde(
         rename = "BarcodeInstruction",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub barcode_instruction: ::std::option::Option<BarcodeInstruction>,
+    ///Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`. Other values may be returned by Amazon.
     #[serde(
         rename = "PrepGuidance",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_guidance: ::std::option::Option<PrepGuidance>,
+    ///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
     #[serde(
         rename = "PrepInstructionList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -458,7 +463,7 @@ for AsinPrepInstructionsList {
 }
 /**Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
 
-Known values: "RequiresFNSKULabel", "CanUseOriginalBarcode", "MustProvideSellerSKU". Other values may be returned by Amazon.*/
+Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -573,7 +578,7 @@ pub struct BoxContentsFeeDetails {
 }
 /**Where the seller provided box contents information for a shipment.
 
-Known values: "NONE", "FEED", "2D_BARCODE", "INTERACTIVE". Other values may be returned by Amazon.*/
+Known values: `NONE`, `FEED`, `2D_BARCODE`, `INTERACTIVE`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -616,7 +621,7 @@ impl ::std::str::FromStr for BoxContentsSource {
 }
 /**The currency code.
 
-Known values: "USD", "GBP". Other values may be returned by Amazon.*/
+Known values: `USD`, `GBP`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -733,7 +738,7 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
 }
 /**The reason that the ASIN is invalid.
 
-Known values: "DoesNotExist", "InvalidASIN". Other values may be returned by Amazon.*/
+Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -878,6 +883,7 @@ pub struct InboundShipmentInfo {
     ///Indicates whether or not an inbound shipment contains case-packed boxes. When AreCasesRequired = true for an inbound shipment, all items in the inbound shipment must be case packed.
     #[serde(rename = "AreCasesRequired")]
     pub are_cases_required: bool,
+    ///Known values: `NONE`, `FEED`, `2D_BARCODE`, `INTERACTIVE`. Other values may be returned by Amazon.
     #[serde(
         rename = "BoxContentsSource",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -901,6 +907,7 @@ pub struct InboundShipmentInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub estimated_box_contents_fee: ::std::option::Option<BoxContentsFeeDetails>,
+    ///Known values: `NO_LABEL`, `SELLER_LABEL`, `AMAZON_LABEL`. Other values may be returned by Amazon.
     #[serde(
         rename = "LabelPrepType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -921,6 +928,7 @@ pub struct InboundShipmentInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_name: ::std::option::Option<::std::string::String>,
+    ///Known values: `WORKING`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`. Other values may be returned by Amazon.
     #[serde(
         rename = "ShipmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1020,7 +1028,9 @@ pub struct InvalidAsin {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The reason that the ASIN is invalid.
+    /**The reason that the ASIN is invalid.
+
+Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "ErrorReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1050,7 +1060,9 @@ impl ::std::convert::From<::std::vec::Vec<InvalidAsin>> for InvalidAsinList {
 ///Contains detail about an invalid SKU
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvalidSku {
-    ///The reason why the seller SKU is invalid.
+    /**The reason why the seller SKU is invalid.
+
+Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
     #[serde(
         rename = "ErrorReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1095,7 +1107,7 @@ pub struct LabelDownloadUrl {
 }
 /**The type of label preparation that is required for the inbound shipment.
 
-Known values: "NO_LABEL", "SELLER_LABEL", "AMAZON_LABEL". Other values may be returned by Amazon.*/
+Known values: `NO_LABEL`, `SELLER_LABEL`, `AMAZON_LABEL`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1139,8 +1151,10 @@ impl ::std::str::FromStr for LabelPrepType {
 ///Preparation instructions and who is responsible for the preparation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PrepDetails {
+    ///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
     #[serde(rename = "PrepInstruction")]
     pub prep_instruction: PrepInstruction,
+    ///Known values: `AMAZON`, `SELLER`. Other values may be returned by Amazon.
     #[serde(rename = "PrepOwner")]
     pub prep_owner: PrepOwner,
 }
@@ -1166,7 +1180,7 @@ impl ::std::convert::From<::std::vec::Vec<PrepDetails>> for PrepDetailsList {
 }
 /**Item preparation instructions.
 
-Known values: "ConsultHelpDocuments", "NoAdditionalPrepRequired", "SeePrepInstructionsList". Other values may be returned by Amazon.*/
+Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1209,7 +1223,7 @@ impl ::std::str::FromStr for PrepGuidance {
 }
 /**Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
 
-Known values: "Polybagging", "BubbleWrapping", "Taping", "BlackShrinkWrapping", "Labeling", "HangGarment", "SetCreation", "Boxing", "RemoveFromHanger", "Debundle", "SuffocationStickering", "CapSealing", "SetStickering", "BlankStickering", "ShipsInProductPackaging", "NoPrep". Other values may be returned by Amazon.*/
+Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1250,7 +1264,9 @@ impl ::std::str::FromStr for PrepInstruction {
         Ok(Self(value.to_string()))
     }
 }
-///A list of preparation instructions to help with item sourcing decisions.
+/**A list of preparation instructions to help with item sourcing decisions.
+
+Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PrepInstructionList(pub ::std::vec::Vec<PrepInstruction>);
@@ -1272,7 +1288,7 @@ impl ::std::convert::From<::std::vec::Vec<PrepInstruction>> for PrepInstructionL
 }
 /**Indicates who will prepare the item.
 
-Known values: "AMAZON", "SELLER". Other values may be returned by Amazon.*/
+Known values: `AMAZON`, `SELLER`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1358,7 +1374,7 @@ impl ::std::convert::TryFrom<String> for Quantity {
 }
 /**Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
 
-Known values: "WORKING", "SHIPPED", "RECEIVING", "CANCELLED", "DELETED", "CLOSED", "ERROR", "IN_TRANSIT", "DELIVERED", "CHECKED_IN". Other values may be returned by Amazon.*/
+Known values: `WORKING`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`. Other values may be returned by Amazon.*/
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1410,16 +1426,19 @@ pub struct SkuPrepInstructions {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
+    ///Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`. Other values may be returned by Amazon.
     #[serde(
         rename = "BarcodeInstruction",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub barcode_instruction: ::std::option::Option<BarcodeInstruction>,
+    ///Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`. Other values may be returned by Amazon.
     #[serde(
         rename = "PrepGuidance",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_guidance: ::std::option::Option<PrepGuidance>,
+    ///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
     #[serde(
         rename = "PrepInstructionList",
         skip_serializing_if = "::std::option::Option::is_none"

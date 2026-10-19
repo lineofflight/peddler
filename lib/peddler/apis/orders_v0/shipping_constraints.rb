@@ -9,17 +9,18 @@ module Peddler
     module OrdersV0
       # Delivery constraints applicable to this order.
       ShippingConstraints = Structure.new do
-        # Indicates if the line item needs to be delivered by pallet.
+        # Indicates if the line item needs to be delivered by pallet. Known values: `MANDATORY`.
         attribute?(:pallet_delivery, String, from: "PalletDelivery")
 
         # Indicates that the carrier must confirm the recipient is of the legal age to receive the line item upon
-        # delivery.
+        # delivery. Known values: `MANDATORY`.
         attribute?(:recipient_age_verification, String, from: "RecipientAgeVerification")
 
         # Indicates that the person receiving the line item must be the same as the intended recipient of the order.
+        # Known values: `MANDATORY`.
         attribute?(:recipient_identity_verification, String, from: "RecipientIdentityVerification")
 
-        # Indicates that the recipient of the line item must sign to confirm its delivery.
+        # Indicates that the recipient of the line item must sign to confirm its delivery. Known values: `MANDATORY`.
         attribute?(:signature_confirmation, String, from: "SignatureConfirmation")
       end
     end

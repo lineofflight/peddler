@@ -11,7 +11,7 @@ module Peddler
       # at the promotion level and applies to the entire promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types, the
       # budget is set at the item level within each item in the selection.
       Budget = Structure.new do
-        # The budget type, either monetary or unit-based.
+        # The budget type, either monetary or unit-based. Known values: `AMOUNT`, `UNITS`.
         attribute(:type, String, null: false)
 
         # Budget value (amount or unit count).

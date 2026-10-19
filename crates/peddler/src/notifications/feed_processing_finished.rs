@@ -57,7 +57,7 @@ pub struct NotificationPayloadFeedProcessingFinishedNotification {
     pub feed_type: ::std::string::String,
     /**The processing status of the feed.
 
-Known values: "CANCELLED", "DONE", "FATAL". Other values may be returned by Amazon.*/
+Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.*/
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The feed document identifier. This identifier is unique only in combination with a seller ID.

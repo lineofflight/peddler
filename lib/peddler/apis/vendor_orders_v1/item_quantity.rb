@@ -12,7 +12,7 @@ module Peddler
         # Acknowledged quantity. This value should not be zero.
         attribute?(:amount, Integer)
 
-        # Unit of measure for the acknowledged quantity.
+        # Unit of measure for the acknowledged quantity. Known values: `Cases`, `Eaches`.
         attribute?(:unit_of_measure, String, from: "unitOfMeasure")
 
         # The case size, in the event that we ordered using cases.

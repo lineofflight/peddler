@@ -15,6 +15,7 @@ module Peddler
         # Minimum allowed weight.
         attribute(:minimum, Float, null: false)
 
+        # Known values: `LB`, `KG`.
         attribute(:unit, String, null: false)
       end
     end

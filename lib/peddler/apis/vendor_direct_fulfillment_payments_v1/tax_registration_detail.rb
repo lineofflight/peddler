@@ -18,7 +18,7 @@ module Peddler
         # Tax registration message that can be used for additional tax related details.
         attribute?(:tax_registration_message, String, from: "taxRegistrationMessage")
 
-        # Tax registration type for the entity.
+        # Tax registration type for the entity. Known values: `VAT`, `GST`, `LocalTaxNumber`.
         attribute?(:tax_registration_type, String, from: "taxRegistrationType")
       end
     end

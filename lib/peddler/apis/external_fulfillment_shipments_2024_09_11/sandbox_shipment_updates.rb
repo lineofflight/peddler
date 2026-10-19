@@ -13,11 +13,11 @@ module Peddler
       # Date (EPD).
       SandboxShipmentUpdates = Structure.new do
         # The target shipment status. Mutually exclusive with `subStatus`. Used with `SHIPMENT_STATUS_CHANGE` update
-        # type.
+        # type. Known values: `SHIPPED`, `DELIVERED`, `CANCELLED`.
         attribute?(:status, String)
 
         # The target shipment sub-status. Mutually exclusive with `status`. Used with `SHIPMENT_STATUS_CHANGE` update
-        # type.
+        # type. Known values: `OUT_FOR_DELIVERY`.
         attribute?(:sub_status, String, from: "subStatus")
 
         # The Expected Pickup Date (EPD) for the shipment. Used with `TRANSPORT_CAPACITY_CHANGE` update type. In [ISO

@@ -12,7 +12,8 @@ module Peddler
         # Total tax amount applied on invoice total or an item total.
         attribute(:tax_amount, Money, null: false, from: "taxAmount")
 
-        # Type of the tax applied.
+        # Type of the tax applied. Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`,
+        # `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`.
         attribute(:tax_type, String, null: false, from: "taxType")
 
         # Tax percentage applied. Expressed as a whole-percent integer string. For example, "20" for 20% VAT.

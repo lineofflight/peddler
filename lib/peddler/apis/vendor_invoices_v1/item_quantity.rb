@@ -12,7 +12,7 @@ module Peddler
         # Quantity of an item. This value should not be zero.
         attribute(:amount, Integer, null: false)
 
-        # Unit of measure for the quantity.
+        # Unit of measure for the quantity. Known values: `Cases`, `Eaches`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
         attribute?(:total_weight, TotalWeight, from: "totalWeight")

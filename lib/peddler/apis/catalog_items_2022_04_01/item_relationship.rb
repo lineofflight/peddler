@@ -9,7 +9,7 @@ module Peddler
     module CatalogItems20220401
       # Relationship details for an Amazon catalog item.
       ItemRelationship = Structure.new do
-        # Type of relationship.
+        # Type of relationship. Known values: `VARIATION`, `PACKAGE_HIERARCHY`.
         attribute(:type, String, null: false)
 
         # ASINs of the related items that are children of this item.

@@ -9,6 +9,7 @@ module Peddler
     module ShippingV2
       # The request schema for the NdrFeedback operation
       SubmitNdrFeedbackRequest = Structure.new do
+        # Known values: `RESCHEDULE`, `REATTEMPT`, `RTO`.
         attribute(:ndr_action, String, null: false, from: "ndrAction")
 
         attribute(:tracking_id, String, null: false, from: "trackingId")

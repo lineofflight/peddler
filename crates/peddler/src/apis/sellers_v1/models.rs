@@ -9,7 +9,7 @@ pub struct Account {
     pub business: ::std::option::Option<Business>,
     /**The type of business registered for the seller account.
 
-Known values: "CHARITY", "CRAFTSMAN", "NATURAL_PERSON_COMPANY", "PUBLIC_LISTED", "PRIVATE_LIMITED", "SOLE_PROPRIETORSHIP", "STATE_OWNED", "INDIVIDUAL". Other values may be returned by Amazon.*/
+Known values: `CHARITY`, `CRAFTSMAN`, `NATURAL_PERSON_COMPANY`, `PUBLIC_LISTED`, `PRIVATE_LIMITED`, `SOLE_PROPRIETORSHIP`, `STATE_OWNED`, `INDIVIDUAL`. Other values may be returned by Amazon.*/
     #[serde(rename = "businessType")]
     pub business_type: ::std::string::String,
     #[serde(rename = "marketplaceParticipationList")]
@@ -21,7 +21,7 @@ Known values: "CHARITY", "CRAFTSMAN", "NATURAL_PERSON_COMPANY", "PUBLIC_LISTED",
     pub primary_contact: ::std::option::Option<PrimaryContact>,
     /**The selling plan details.
 
-Known values: "PROFESSIONAL", "INDIVIDUAL". Other values may be returned by Amazon.*/
+Known values: `PROFESSIONAL`, `INDIVIDUAL`. Other values may be returned by Amazon.*/
     #[serde(rename = "sellingPlan")]
     pub selling_plan: ::std::string::String,
 }

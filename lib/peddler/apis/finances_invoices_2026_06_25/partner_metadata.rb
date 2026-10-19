@@ -12,7 +12,7 @@ module Peddler
         # The unique identifier for the partner. If the partner is a vendor, then this value is the `vendorGroupID`.
         attribute(:partner_id, String, null: false, from: "partnerId")
 
-        # The type of partner.
+        # The type of partner. Known values: `SELLER`, `VENDOR`, `AMAZON`.
         attribute(:partner_type, String, null: false, from: "partnerType")
 
         # The address of the partner.

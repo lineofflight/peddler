@@ -15,7 +15,7 @@ module Peddler
         attribute(:shipping_service_id, String, null: false, from: "ShippingServiceId")
 
         # Hazardous materials options for a package. Consult the terms and conditions for each carrier for more
-        # information about hazardous materials.
+        # information about hazardous materials. Known values: `None`, `LQHazmat`.
         attribute?(:hazmat_type, String, from: "HazmatType")
 
         attribute?(:label_format_option, LabelFormatOptionRequest, from: "LabelFormatOption")

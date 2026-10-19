@@ -18,7 +18,7 @@ module Peddler
         # The unique identifier assigned to the fees / foreign exchange rate of a transaction.
         attribute(:fx_rate_id, String, null: false, from: "fxRateId")
 
-        # Whether the customer is buying or selling the source currency.
+        # Whether the customer is buying or selling the source currency. Known values: `BUY`, `SELL`.
         attribute(:rate_direction, String, null: false, from: "rateDirection")
       end
     end

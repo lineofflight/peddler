@@ -9,11 +9,11 @@ module Peddler
     module SellerWallet20240301
       # The configuration of the schedule.
       ScheduleExpression = Structure.new do
-        # The type of the scheduled transfer.
+        # The type of the scheduled transfer. Known values: `RECURRING`, `ONE_TIME`.
         attribute(:schedule_expression_type, String, null: false, from: "scheduleExpressionType")
 
         # How often the scheduled transfer happens. This field is required if `scheduleExpressionType` is `RECURRING`;
-        # otherwise it should be empty.
+        # otherwise it should be empty. Known values: `DAILY`, `WEEKLY`, `BIWEEKLY`, `MONTHLY`.
         attribute?(:recurring_frequency, String, from: "recurringFrequency")
       end
     end

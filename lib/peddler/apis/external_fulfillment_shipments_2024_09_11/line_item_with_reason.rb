@@ -11,7 +11,7 @@ module Peddler
       LineItemWithReason = Structure.new do
         attribute(:line_item, LineItem, null: false, from: "lineItem")
 
-        # The reason for the rejection of the line item.
+        # The reason for the rejection of the line item. Known values: `OUT_OF_STOCK`, `CUSTOMER_REQUESTED`.
         attribute?(:reason, String)
       end
     end

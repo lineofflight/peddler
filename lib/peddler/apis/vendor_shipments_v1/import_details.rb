@@ -17,7 +17,8 @@ module Peddler
         # 60 days out in the future.
         attribute?(:estimated_ship_by_date, Time, from: "estimatedShipByDate")
 
-        # Identification of the instructions on how specified item/carton/pallet should be handled.
+        # Identification of the instructions on how specified item/carton/pallet should be handled. Known values:
+        # `Oversized`, `Fragile`, `Food`, `HandleWithCare`.
         attribute?(:handling_instructions, String, from: "handlingInstructions")
 
         # Types and numbers of container(s) for import purchase orders. Can be a comma-separated list if shipment has
@@ -25,7 +26,8 @@ module Peddler
         attribute?(:import_containers, String, from: "importContainers")
 
         # This is used for import purchase orders only. If the recipient requests, this field will contain the shipment
-        # method of payment.
+        # method of payment. Known values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`,
+        # `FOBPortOfCall`, `PrepaidBySeller`, `PaidBySeller`.
         attribute?(:method_of_payment, String, from: "methodOfPayment")
 
         # The route and stop details for this shipment.
