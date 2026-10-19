@@ -1,6 +1,6 @@
 # peddler
 
-A Rust client for Amazon's [Selling Partner API (SP-API)][api-docs]. It is the core of the [Peddler Ruby gem][gem], and works on its own.
+A Rust client for Amazon's [Selling Partner API (SP-API)][api-docs]. It is the Rust half of Peddler, and the core of the Ruby gem on the repository's [front page][gem]. It works on its own.
 
 The crate provides:
 
