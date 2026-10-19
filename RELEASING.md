@@ -1,6 +1,6 @@
 # Releasing Peddler
 
-A release is 5 gems and 1 crate: 4 platform gems with the compiled extension, the source gem, and the `peddler` crate. Nothing publishes them for you. `rake release` refuses to run, since it would push the source gem alone.
+A release is 10 gems and 1 crate: 9 platform gems with the compiled extension, the source gem, and the `peddler` crate. Nothing publishes them for you. `rake release` refuses to run, since it would push the source gem alone.
 
 Steps marked **never run** have not been done once on this repository. Expect the first release to find something.
 
@@ -36,8 +36,9 @@ Packaging builds and tests everything and publishes nothing:
 
 - `crate`: `cargo package`, then a fresh consumer that builds against the packaged crate. Run by hand on macOS only
 - `source-gem`: built, audited, installed and smoke tested on Ruby 3.3, 3.4 and 4.0. Run by hand on macOS only
-- `cross-gem`: the 4 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates and of the standard library in its binary. **Never run**
-- `smoke`: each platform gem installed without Rust on its own platform and Ruby, 12 legs. **Never run**
+- `cross-gem`: the 9 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates and of the standard library in its binary. **Never run**
+- `smoke`: the macOS, glibc Linux and Windows gems, each installed without Rust on a runner of its platform, for each Ruby, 15 legs. **Never run**
+- `smoke-container`: the musl and 32-bit ARM gems, each installed in the official Ruby image of its platform, which has no Rust, for each Ruby, 12 legs. 32-bit ARM runs under QEMU. **Never run**
 
 Every job must pass. Then download what it built.
 
@@ -45,11 +46,11 @@ Every job must pass. Then download what it built.
 gh run download <run-id> --dir artifacts
 ```
 
-`artifacts` holds `peddler-6.0.0-arm64-darwin.gem`, `peddler-6.0.0-x86_64-darwin.gem`, `peddler-6.0.0-aarch64-linux-gnu.gem`, `peddler-6.0.0-x86_64-linux-gnu.gem`, `peddler-6.0.0.gem` and `peddler-0.1.0.crate`, each in a directory of its own.
+`artifacts` holds `peddler-6.0.0-arm64-darwin.gem`, `peddler-6.0.0-x86_64-darwin.gem`, `peddler-6.0.0-aarch64-linux-gnu.gem`, `peddler-6.0.0-x86_64-linux-gnu.gem`, `peddler-6.0.0-arm-linux-gnu.gem`, `peddler-6.0.0-aarch64-linux-musl.gem`, `peddler-6.0.0-x86_64-linux-musl.gem`, `peddler-6.0.0-arm-linux-musl.gem`, `peddler-6.0.0-x64-mingw-ucrt.gem`, `peddler-6.0.0.gem` and `peddler-0.1.0.crate`, each in a directory of its own.
 
 ### The license notices
 
-A platform gem links 105 to 108 Rust crates into its binary, by platform, so it ships their licenses. `tools/third_party_licenses.rb` writes `THIRD_PARTY_LICENSES.html` for a platform from `Cargo.lock`: the crates linked into the extension for that platform, each with its version, its license and the text, and then the notices of the Rust standard library, which is linked too. It is never edited by hand and never committed. The gem task runs the tool, and `tools/gem_audit.rb` refuses a platform gem without the file.
+A platform gem links 104 to 108 Rust crates into its binary, by platform, so it ships their licenses. `tools/third_party_licenses.rb` writes `THIRD_PARTY_LICENSES.html` for a platform from `Cargo.lock`: the crates linked into the extension for that platform, each with its version, its license and the text, and then the notices of the Rust standard library, which is linked too. It is never edited by hand and never committed. The gem task runs the tool, and `tools/gem_audit.rb` refuses a platform gem without the file.
 
 The tool needs cargo-about, at the version it names:
 
@@ -62,7 +63,7 @@ Build into an empty `pkg`. The gem task does not add a new file to a package dir
 
 `tools/third_party_licenses/about.toml` lists the licenses a crate may have. When a dependency arrives under another one, the tool fails and names the crate, and so does the `cross-gem` job. Read the license. If Peddler can ship under it, add it to `accepted`. If not, replace the crate.
 
-The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 5 today, which points at the file the crate ships and holds a checksum of the text. A sixth, for `encoding_rs`, keeps cargo-about from printing a source file as a license. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
+The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 7 today, which points at the file the crate ships and holds a checksum of the text. An eighth, for `encoding_rs`, keeps cargo-about from printing a source file as a license. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
 
 The notices of the standard library are a document the toolchain ships, `share/doc/rust/COPYRIGHT-library.html`: std, core, alloc and the crates they bundle. The tool copies it in and names the toolchain. A toolchain without it fails the tool.
 
@@ -70,7 +71,7 @@ The `cross-gem` job writes the notices on the runner, and a container builds the
 
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 
-On the first run, read the glibc version the Linux binaries need and state it in the README's platform table.
+On the first run, read the glibc version each glibc binary needs and state it in the README's platform table.
 
 ```sh
 gem unpack artifacts/gem-x86_64-linux/peddler-6.0.0-x86_64-linux-gnu.gem
@@ -79,13 +80,18 @@ objdump -T peddler-6.0.0-x86_64-linux-gnu/lib/peddler/4.0/peddler_native.so | gr
 
 ## 4. Push the gems
 
-Push the 4 platform gems first and the source gem last. While only the source gem is out, Bundler gives it to everyone, and they compile Rust.
+Push the 9 platform gems first and the source gem last. While only the source gem is out, Bundler gives it to everyone, and they compile Rust.
 
 ```sh
 gem push artifacts/gem-arm64-darwin/peddler-6.0.0-arm64-darwin.gem
 gem push artifacts/gem-x86_64-darwin/peddler-6.0.0-x86_64-darwin.gem
 gem push artifacts/gem-aarch64-linux/peddler-6.0.0-aarch64-linux-gnu.gem
 gem push artifacts/gem-x86_64-linux/peddler-6.0.0-x86_64-linux-gnu.gem
+gem push artifacts/gem-arm-linux/peddler-6.0.0-arm-linux-gnu.gem
+gem push artifacts/gem-aarch64-linux-musl/peddler-6.0.0-aarch64-linux-musl.gem
+gem push artifacts/gem-x86_64-linux-musl/peddler-6.0.0-x86_64-linux-musl.gem
+gem push artifacts/gem-arm-linux-musl/peddler-6.0.0-arm-linux-musl.gem
+gem push artifacts/gem-x64-mingw-ucrt/peddler-6.0.0-x64-mingw-ucrt.gem
 gem push artifacts/source-gem/peddler-6.0.0.gem
 ```
 
@@ -105,9 +111,9 @@ It packages and builds the crate again before it uploads. The first publish need
 
 ## 6. Check
 
-- [rubygems.org/gems/peddler/versions](https://rubygems.org/gems/peddler/versions) lists the version 5 times: once plain and once for each platform.
+- [rubygems.org/gems/peddler/versions](https://rubygems.org/gems/peddler/versions) lists the version 10 times: once plain and once for each platform.
 - On a machine without Rust, `gem install peddler -v 6.0.0` installs a platform gem, and `ruby tools/native_smoke.rb --binary` passes when run from outside the repository.
-- On Alpine, or with `gem install peddler -v 6.0.0 --platform ruby`, the source gem compiles and `ruby tools/native_smoke.rb` passes.
+- With `gem install peddler -v 6.0.0 --platform ruby`, the source gem compiles and `ruby tools/native_smoke.rb` passes.
 - [docs.rs/peddler](https://docs.rs/peddler) built the crate's documentation.
 - The GitHub Release exists, with the changelog entry, and is a prerelease only if the version is one.
 - The [documentation site](https://lineofflight.github.io/peddler/) was deployed. `build-docs.yml` builds it with `bundle exec rake rdoc`. A tag of 3 numbers deploys it, and so does `main`.

@@ -96,17 +96,22 @@ Bundler installs a precompiled gem where one exists:
 | macOS, Intel | `x86_64-darwin` |
 | Linux with glibc, ARM | `aarch64-linux-gnu` |
 | Linux with glibc, x86 | `x86_64-linux-gnu` |
+| Linux with glibc, 32-bit ARM with hardware floating point | `arm-linux-gnu` |
+| Linux with musl, such as Alpine, ARM | `aarch64-linux-musl` |
+| Linux with musl, x86 | `x86_64-linux-musl` |
+| Linux with musl, 32-bit ARM with hardware floating point | `arm-linux-musl` |
+| Windows, x64, with RubyInstaller's Ruby | `x64-mingw-ucrt` |
 
 Each carries a build for Ruby 3.3, 3.4 and 4.0 and needs no compiler.
 
-On any other platform, including Alpine and other musl Linux, Bundler installs the source gem and compiles the extension during installation. That needs:
+On any other platform, Bundler installs the source gem and compiles the extension during installation. That needs:
 
 - Rust 1.88 or later with `cargo` on `PATH` (see [rustup](https://rustup.rs)); Peddler is built and tested with the current stable release
 - the Ruby headers (`ruby-dev` or `ruby-devel` on Linux)
 - `clang` and `libclang`
 - network access to crates.io
 
-Windows is not supported.
+On Windows, compiling needs Rust's GNU toolchain, `stable-x86_64-pc-windows-gnu`, and the MSYS2 toolchain that `ridk install` sets up: RubyInstaller builds Ruby with MinGW.
 
 To compile from source where a precompiled gem exists, run `gem install peddler --platform ruby` or `bundle config set force_ruby_platform true`.
 
