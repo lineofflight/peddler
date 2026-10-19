@@ -1400,7 +1400,6 @@ pub struct PackageStatus {
     /// - `LOST` (Package location unknown or confirmed lost)
     /// - `OUT_FOR_DELIVERY` (Package on delivery vehicle for final delivery)
     /// - `DAMAGED` (Package damaged during transit)
-    ///
     #[serde(
         rename = "detailedStatus",
         skip_serializing_if = "::std::option::Option::is_none"

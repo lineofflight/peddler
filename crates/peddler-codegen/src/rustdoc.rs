@@ -72,11 +72,18 @@ fn split(text: &str) -> Result<Vec<String>, GenerationError> {
     let text = inert(&crate::docs::doc_links(
         &lines.collect::<Vec<_>>().join("\n"),
     ))?;
-    let lines = text.split('\n').map(|line| match blank(line) {
-        true => String::new(),
-        false => format!(" {line}"),
-    });
-    Ok(lines.collect())
+    let mut lines: Vec<String> = text
+        .split('\n')
+        .map(|line| match blank(line) {
+            true => String::new(),
+            false => format!(" {line}"),
+        })
+        .collect();
+    // Blank lines at the end are no text, and rustc dropped them from a block comment.
+    while lines.len() > 1 && lines.last().is_some_and(String::is_empty) {
+        lines.pop();
+    }
+    Ok(lines)
 }
 
 /// The Markdown rustdoc reads.
@@ -251,14 +258,21 @@ mod tests {
     /// stays as it is.
     #[test]
     fn a_line_starts_after_a_space() {
-        let source = format("#[doc = \"A list:\\n  - item\\n\\n    code\\n \\t\"] fn f() {}");
+        let source = format("#[doc = \"A list:\\n  - item\\n \\t\\n    code\"] fn f() {}");
         assert_eq!(
             source,
-            "/// A list:\n///   - item\n///\n///     code\n///\nfn f() {}\n"
+            "/// A list:\n///   - item\n///\n///     code\nfn f() {}\n"
         );
         assert_eq!(format(&source), source);
         let indented = format("#[doc = \"  a\\n    b\"] fn f() {}");
         assert_eq!(indented, "/// a\n///   b\nfn f() {}\n");
+    }
+
+    /// A doc ends on its last line of text, as rustc ended one of a block comment.
+    #[test]
+    fn a_doc_ends_on_its_last_line_of_text() {
+        let source = format("#[doc = \"a\\n\"] #[doc = \"\\n \\t\"] fn f() {}");
+        assert_eq!(source, "/// a\nfn f() {}\n");
     }
 
     /// Each kind of code block rustdoc would run, and where it stands.
