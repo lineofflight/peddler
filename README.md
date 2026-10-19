@@ -126,9 +126,7 @@ npx skills add lineofflight/peddler -s amazon-sp-api
 - `building-with-peddler`: Ruby integration, tokens, retries, pagination, documents, tests, and Ractors.
 - `amazon-sp-api`: Language-agnostic OpenAPI spec research, issue hunting, and discussions.
 
-### Usage
-
-#### Authorization
+### Authorization
 
 Before using Peddler, you must [register as a developer][register-as-developer], [register your application][register-application], and [obtain your Login with Amazon (LWA) credentials][view-credentials]; Amazon's [official SP-API code samples][api-samples] can help you get started.
 
@@ -217,7 +215,7 @@ lwa = Peddler::LWA.new(
 
 If Amazon rejects a request, it raises `Peddler::AuthenticationError` with the HTTP `status` and Amazon's `code`, such as `"invalid_grant"`. A blank argument raises `ArgumentError` before anything is sent, such as `refresh_token must be a UTF-8 String that is not blank`.
 
-#### The client
+### The client
 
 A single client reaches every API. Create it with the AWS region of the seller and an access token.
 
@@ -282,7 +280,7 @@ All clients and views in a process share 1 connection pool, so creating a client
 
 After `fork`, create your clients in the child process. A client, a `Peddler::LWA` or a token source created before the fork raises `Peddler::ForkError` in the child, and the message says which to create again. With a preloading server such as Puma or Unicorn, create clients when you need them, not at boot.
 
-#### Restricted Data Tokens (RDT) and PII
+### Restricted Data Tokens (RDT) and PII
 
 Some operations are restricted because they return Personally Identifiable Information (PII), such as a buyer's name and shipping address. To call one, exchange your access token for a Restricted Data Token (RDT) scoped to the specific resources you need, then send the RDT in place of the access token.
 
@@ -322,7 +320,7 @@ restricted_data_token = response.parse.restricted_data_token
 
 An RDT is valid for 1 hour. Like access tokens, cache and reuse it across calls. See the [Tokens API Use Case Guide][tokens-guide] for the full list of restricted operations.
 
-#### Rate limiting
+### Rate limiting
 
 Amazon's SP-API imposes [rate limits][rate-limits] on operations. Peddler does not pace your calls: a client cannot know how many processes share a seller's quota. Space calls in your application, for example in your job queue. Amazon returns the limit of most operations in the `x-amzn-RateLimit-Limit` response header.
 
@@ -363,7 +361,7 @@ A token given as a String is sent on every attempt: give a call that may wait fo
 
 When Peddler stops retrying, the last response raises `Peddler::Error` like any other. If the last attempt got no response, it raises `Peddler::TransportError` or `Peddler::TimeoutError`.
 
-#### Typed Responses
+### Typed Responses
 
 Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support. Types are based on Ruby's [Data class](https://docs.ruby-lang.org/en/4.0/Data.html) and are lazy-loaded.
 
@@ -384,7 +382,7 @@ order.order_total.currency_code # => "USD"
 order.order_total.to_d          # => 0.9999e2
 ```
 
-##### Hash Access
+#### Hash Access
 
 If you prefer working with plain hashes instead of typed Data objects:
 
@@ -396,7 +394,7 @@ orders = response.to_h["payload"]["Orders"]
 orders = response.dig("payload", "Orders")
 ```
 
-##### Status, headers and body
+#### Status, headers and body
 
 ```ruby
 response.status.success?                 # => true
@@ -411,7 +409,7 @@ response.inspect                         # => "#<Peddler::Response 200>"
 
 A response is its text wherever a String is taken, as in `JSON.parse(response)`. `inspect` shows the class and the status only, since a body can hold a token.
 
-#### Error Handling
+### Error Handling
 
 Every response outside 2xx raises `Peddler::Error`: a 4xx, a 5xx, and a 3xx too, since Peddler follows no redirect. Errors expose Amazon's `message`, the HTTP `status`, Amazon's error `code`, the `request_id` and the underlying `response`, and support pattern matching on `status` and `code`:
 
@@ -449,7 +447,7 @@ A failure that is not an HTTP error response from the API has a class of its own
 | `Peddler::ForkError` | A client, a `Peddler::LWA` or a token source created before `fork` is used in the child. |
 | `ArgumentError` | An option or argument breaks its rule. The message names it, such as `order_id is required` or `page_size must be an Integer`. Nothing was sent. |
 
-#### Sandbox and custom endpoints
+### Sandbox and custom endpoints
 
 Get a view of a client on Amazon's hosted sandbox with `sandbox`:
 
@@ -468,7 +466,7 @@ local = Peddler::Client.new(base_url: "http://localhost:9001", access_token: "te
 
 `base_url` is a scheme, a host and an optional port, with no path. Plain `http` is accepted for `localhost` and loopback addresses only, so that a token is never sent unencrypted over a network. A client with a `base_url` has no sandbox: `sandbox` raises `ArgumentError`.
 
-#### Testing
+### Testing
 
 Once WebMock is loaded, Peddler's requests go through it: Peddler loads an adapter of its own before the next one. A test suite requires nothing of Peddler's.
 
@@ -522,7 +520,7 @@ end
 
 A test can also run against a server it starts. Point the client at it with `base_url:`, and `Peddler::LWA` with `lwa_endpoint:`.
 
-#### Pagination
+### Pagination
 
 An operation that returns its results in pages has a twin that ends in `_pages`. It takes the same arguments and returns a lazy `Enumerator` of responses, 1 per page.
 
@@ -541,7 +539,7 @@ A page that is an HTTP error raises `Peddler::Error`. If a page returns the toke
 
 Where an operation has no twin, read the token from the response and pass it to the next call yourself.
 
-#### Documents and workflows
+### Documents and workflows
 
 Reports, feeds and Data Kiosk queries exchange documents through signed URLs. Peddler waits for a job to finish and downloads or uploads its document. These helpers are on `client.reports`, `client.feeds` and `client.data_kiosk`, beside the operations of each API.
 
@@ -576,7 +574,7 @@ end
 
 Given an ID, they decompress a document that Amazon compressed. Given a URL, they decompress it when the reply says `Content-Encoding: gzip`. `to_s` returns the text in the charset Amazon declares, and `body` the bytes.
 
-##### Streaming a document
+#### Streaming a document
 
 A large document doesn't need to fit in memory. `open_report_document`, `open_feed_document` and `open_query_document` take a document ID and yield a `Peddler::Document` that reads the download as it arrives.
 
@@ -625,7 +623,7 @@ client.reports.open_report_document(report.report_document_id) do |document|
 end
 ```
 
-##### Uploading a feed
+#### Uploading a feed
 
 `create_and_upload_feed_document` creates a feed document and uploads your content to it. It takes a String or anything that responds to `read(length)`, such as a File, and returns the feed document ID. It doesn't create the feed.
 
@@ -652,7 +650,7 @@ An upload declares its length when it can tell it: a String, and a source that a
 
 If creating the feed document takes longer than the upload's `timeout:` (30 seconds), it raises `Peddler::TimeoutError`. If the upload does, it raises `Peddler::DocumentTimeoutError`. Creating the document is retried as the client's `retries:` says, which for a write means after a 429 only. The upload is never retried.
 
-##### Signed URLs
+#### Signed URLs
 
 For a signed URL you already hold, use `download_document` and `upload_document` on the client: a signed URL belongs to no API. Neither sends the access token, and both take `timeout:`. Pass `compression: :gzip` to `download_document` when the document's metadata says `GZIP`.
 
@@ -668,7 +666,7 @@ A signed URL that answers outside 2xx raises `Peddler::Error`. Its `response` ho
 
 A token source is asked before every poll of a `wait_for_*` method, and before a document is looked up by its ID or a feed document is created, with each retry of those. A signed URL takes no token, so a transfer asks for none.
 
-#### Ractors
+### Ractors
 
 Peddler works in a Ractor other than the main one: operations, `request`, `*_pages`, the document and wait helpers, and `Peddler::LWA`.
 
@@ -689,7 +687,7 @@ participations = ractor.value # ractor.take before Ruby 4.0
 
 How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, 4 Ractors together parse less than 1 does alone: about half as many typed responses. On Ruby 4.0 they parse 2 to 3 times as many.
 
-#### Available APIs
+### Available APIs
 
 Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the client:
 
@@ -705,7 +703,7 @@ client.<api_name>.<operation>(...)
 
 Available APIs by category:
 
-##### Orders and Financial APIs
+#### Orders and Financial APIs
 
 - **Orders API**: Retrieve and manage orders
 - **Finances API**: Financial data, payments, refunds
@@ -720,7 +718,7 @@ response = client.orders.search_orders(
 orders = response.parse.orders
 ```
 
-##### Catalog and Listing APIs
+#### Catalog and Listing APIs
 
 - **Catalog Items API**: Access Amazon's catalog data
 - **Listings Items API**: Create and update listings
@@ -739,7 +737,7 @@ response = client.catalog_items.get_catalog_item(
 item = response.parse
 ```
 
-##### Fulfillment and Inventory APIs
+#### Fulfillment and Inventory APIs
 
 - **Fulfillment Inbound API**: Send inventory to FBA
 - **Fulfillment Outbound API**: Create and track FBA orders
@@ -764,7 +762,7 @@ response = client.fba_inventory.get_inventory_summaries(
 summaries = response.parse.payload.inventory_summaries
 ```
 
-##### Data Management APIs
+#### Data Management APIs
 
 - **Feeds API**: Upload data to Amazon (listings, prices, inventory, etc.)
 - **Reports API**: Request and download reports (orders, inventory, fulfillment, etc.)
@@ -783,7 +781,7 @@ feed = feeds.create_feed({
 })
 ```
 
-##### Data Kiosk API
+#### Data Kiosk API
 
 The Data Kiosk API provides access to Amazon's analytical data through GraphQL queries. Peddler supports 4 Data Kiosk schemas, each with type-safe classes for parsing responses.
 
@@ -808,7 +806,7 @@ client.data_kiosk.open_query_document(query.data_document_id) do |document|
 end
 ```
 
-##### Vendor APIs
+#### Vendor APIs
 
 - **Vendor Orders API**: Retrieve purchase orders
 - **Vendor Direct Fulfillment Orders API**: Manage direct fulfillment orders
@@ -825,7 +823,7 @@ end
 orders = client.vendor_orders.get_purchase_orders(limit: 10, created_after: "2026-01-01T00:00:00Z").parse
 ```
 
-##### Authorization and Account Management APIs
+#### Authorization and Account Management APIs
 
 - **Application Management API**: Manage application authorization
 - **Tokens API**: Generate restricted data tokens for accessing PII
@@ -835,7 +833,7 @@ orders = client.vendor_orders.get_purchase_orders(limit: 10, created_after: "202
 - **Application Integrations API**: Manage app integrations
 - **Vehicles API**: Manage vehicle data for automotive products
 
-#### Complex Workflows
+### Complex Workflows
 
 Peddler parses notifications, JSON reports, feed processing reports and Data Kiosk rows into typed objects too. Each has a `parse` method that takes the parsed JSON.
 

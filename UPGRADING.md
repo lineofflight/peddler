@@ -405,7 +405,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 
 ### New in v6
 
-These need no change to existing code. The [README](README.md#usage) describes each.
+These need no change to existing code. The [README](README.md#ruby-guide) describes each.
 
 - `*_pages` methods that enumerate the pages of an operation
 - `wait_for_report`, `wait_for_feed` and `wait_for_query`, on `client.reports`, `client.feeds` and `client.data_kiosk`, beside v5's helpers
