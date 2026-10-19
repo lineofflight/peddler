@@ -32,7 +32,11 @@ if cargo
       spec.extensions.clear
       # A plain "-linux" gem would also be picked by musl hosts, so the glibc gems are named "-gnu".
       if spec.platform.os == "linux" && spec.platform.version.nil?
-        spec.platform = Gem::Platform.new([spec.platform.cpu, "linux", "gnu"])
+        gnu = Gem::Platform.new([spec.platform.cpu, "linux", "gnu"])
+        spec.platform = gnu
+        # RubyGems 3.5, which the rb-sys-dock containers run, would keep the first platform, "-linux", in the
+        # gem's metadata and name the file "-gnu".
+        spec.original_platform = gnu
       end
       # The binary links Rust crates statically, so the gem carries their licenses.
       sh RbConfig.ruby, "tools/third_party_licenses.rb", spec.platform.to_s, NOTICES
