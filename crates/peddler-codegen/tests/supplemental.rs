@@ -23,31 +23,6 @@ fn amazon_single_schema_items_dialect_becomes_a_typed_list() {
 }
 
 #[test]
-fn broken_shipment_schema_reuses_canonical_pinned_tracking_types() {
-    let checkout = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../selling-partner-api-models");
-    let definitions = peddler_codegen::supplemental::json_definitions(
-        &checkout,
-        "schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json",
-        "Notification",
-        None,
-    )
-    .unwrap();
-    assert_eq!(
-        definitions.schemas["TrackingDetail"]["properties"]["identifier"]["$ref"],
-        "#/definitions/TrackingIdentifier"
-    );
-    assert!(
-        definitions.schemas["Notification"]["properties"]
-            .get("notificationMetadata")
-            .is_some()
-    );
-    assert_eq!(
-        definitions.schemas["Notification"]["additionalProperties"],
-        serde_json::json!({})
-    );
-}
-
-#[test]
 fn every_source_has_a_public_root_and_renders_the_same_twice() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
     let checkout = root.join("selling-partner-api-models");

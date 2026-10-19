@@ -37,8 +37,6 @@ The models follow the rules of the API models: a number keeps every digit, a str
 - The tax invoice eligibility notification requires an `en-US` entry among its messages. The generated type checks that when it decodes.
 - The 4 patches in `lib/generator/patches/` are applied to the notification schemas they name, as in the Ruby generator.
 
-The schema of the `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification refers to a definition it doesn't contain. The generator repairs this 1 schema with `TrackingDetail` from the Tracking API model, and says so in the header of the generated file. Its envelope and payload fields are optional, and every repaired object keeps fields the schema doesn't name.
-
 ## What the models are not
 
 They decode JSON into types. They are not a JSON Schema validator: array lengths, property counts and most rules that span several fields are not checked.

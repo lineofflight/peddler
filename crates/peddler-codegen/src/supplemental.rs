@@ -169,9 +169,6 @@ pub fn json_definitions(
     let path = safe_source(checkout, Path::new(source))?;
     let mut doc: Value = serde_json::from_slice(&fs::read(&path)?)?;
     let mut notice = String::new();
-    if repair_shipment_schema(checkout, source, &mut doc)? {
-        notice.push_str("// Missing upstream definitions repaired with pinned tracking_2026-01-30.json\n// and the established notification envelope. Envelope requiredness is conservative;\n// unknown object fields are retained. See tools/graphql/README.md.\n\n");
-    }
     let contains_en_us = take_eligibility_contains(source, &mut doc)?;
     if let Some(reference) = doc
         .get("$ref")
@@ -464,99 +461,6 @@ pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationE
         }
     }
     Ok(())
-}
-
-const SHIPMENT_SOURCE: &str =
-    "schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json";
-const TRACKING_SOURCE: &str = "models/tracking-api-model/tracking_2026-01-30.json";
-
-/// Returns whether the schema needed the repair.
-fn repair_shipment_schema(
-    checkout: &Path,
-    source: &str,
-    doc: &mut Value,
-) -> Result<bool, GenerationError> {
-    if source != SHIPMENT_SOURCE
-        || doc.get("$ref").and_then(Value::as_str) != Some("#/definitions/Notification")
-        || doc.get("definitions") != Some(&json!({}))
-    {
-        return Ok(false);
-    }
-    let tracking: Value = serde_json::from_slice(&fs::read(checkout.join(TRACKING_SOURCE))?)?;
-    let tracking_definitions = tracking["definitions"]
-        .as_object()
-        .ok_or_else(|| GenerationError("tracking definitions missing".into()))?;
-    let mut definitions = serde_json::Map::new();
-    let mut pending = vec!["TrackingDetail".to_owned()];
-    while let Some(name) = pending.pop() {
-        if definitions.contains_key(&name) {
-            continue;
-        }
-        let mut schema = tracking_definitions
-            .get(&name)
-            .cloned()
-            .ok_or_else(|| GenerationError(format!("missing canonical tracking type {name}")))?;
-        tracking_references(&schema, &mut pending);
-        retain_extensions(&mut schema);
-        definitions.insert(name, schema);
-    }
-    definitions.insert(
-        "NotificationMetadata".into(),
-        json!({"type":"object", "additionalProperties":true,"properties":{
-            "applicationId":{"type":"string"},"subscriptionId":{"type":"string"},
-            "publishTime":{"type":"string","format":"date-time"},"notificationId":{"type":"string"}
-        }}),
-    );
-    definitions.insert("Notification".into(), json!({"type":"object","additionalProperties":true,"description":"Repaired notification envelope; upstream has no definitions. Envelope fields are conservatively optional.","properties":{
-        "notificationVersion":{"type":"string"},"notificationType":{"type":"string"},"payloadVersion":{"type":"string"},
-        "eventTime":{"type":"string","format":"date-time"},"notificationMetadata":{"$ref":"#/definitions/NotificationMetadata"},
-        "payload":{"type":"object","additionalProperties":true,"properties":{
-            "shipmentTrackingMilestoneChangedNotification":{"type":"object","additionalProperties":true,"properties":{
-                "trackingDetail":{"$ref":"#/definitions/TrackingDetail"}
-            }}
-        }}
-    }}));
-    doc["definitions"] = Value::Object(definitions);
-    Ok(true)
-}
-
-fn tracking_references(schema: &Value, pending: &mut Vec<String>) {
-    match schema {
-        Value::Object(node) => {
-            if let Some(name) = node
-                .get("$ref")
-                .and_then(Value::as_str)
-                .and_then(|value| value.strip_prefix("#/definitions/"))
-            {
-                pending.push(name.into());
-            }
-            for child in node.values() {
-                tracking_references(child, pending);
-            }
-        }
-        Value::Array(children) => {
-            for child in children {
-                tracking_references(child, pending);
-            }
-        }
-        _ => {}
-    }
-}
-
-fn retain_extensions(schema: &mut Value) {
-    if let Some(node) = schema.as_object_mut() {
-        if node.get("type").and_then(Value::as_str) == Some("object") {
-            node.insert("additionalProperties".into(), Value::Bool(true));
-        }
-        if let Some(children) = node.get_mut("properties").and_then(Value::as_object_mut) {
-            for child in children.values_mut() {
-                retain_extensions(child);
-            }
-        }
-        if let Some(child) = node.get_mut("items") {
-            retain_extensions(child);
-        }
-    }
 }
 
 // Typify 0.8 cannot generate an array with `contains`. Move this one audited
