@@ -53,9 +53,9 @@ impl<B> CreateQueryParams<B> {
         Self { body }
     }
 }
-/**Creates a Data Kiosk query request.
-
-**Note:** The retention of a query varies based on the fields requested. Each field within a schema is annotated with a `@resultRetention` directive that defines how long a query containing that field will be retained. When a query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The retention of a query's resulting documents always matches the retention of the query.*/
+///Creates a Data Kiosk query request.
+///
+///**Note:** The retention of a query varies based on the fields requested. Each field within a schema is annotated with a `@resultRetention` directive that defines how long a query containing that field will be retained. When a query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The retention of a query's resulting documents always matches the retention of the query.
 pub async fn create_query<B: serde::Serialize>(
     client: &Client,
     params: CreateQueryParams<B>,
@@ -117,9 +117,9 @@ fn get_queries_page_size_default() -> Option<i64> {
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetQueriesParams {
-    /**A list of processing statuses used to filter queries.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.*/
+    ///A list of processing statuses used to filter queries.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
     pub processing_statuses: Option<Vec<String>>,
     ///The maximum number of queries to return in a single call.
     #[serde(default = "get_queries_page_size_default")]
@@ -148,9 +148,9 @@ impl Default for GetQueriesParams {
         Self::new()
     }
 }
-/**Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for details about query retention.
-
-Its pages: [`get_queries_pages`].*/
+///Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for details about query retention.
+///
+///Its pages: [`get_queries_pages`].
 pub async fn get_queries(
     client: &Client,
     params: GetQueriesParams,

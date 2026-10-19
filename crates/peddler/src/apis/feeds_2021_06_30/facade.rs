@@ -201,9 +201,9 @@ pub struct GetFeedsParams {
     ///The maximum number of feeds to return in a single call.
     #[serde(default = "get_feeds_page_size_default")]
     pub page_size: Option<i64>,
-    /**A list of processing statuses used to filter feeds.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.*/
+    ///A list of processing statuses used to filter feeds.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
     pub processing_statuses: Option<Vec<String>>,
     ///The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
     pub created_since: Option<String>,
@@ -231,9 +231,9 @@ impl Default for GetFeedsParams {
         Self::new()
     }
 }
-/**Returns feed details for the feeds that match the filters that you specify.
-
-Its pages: [`get_feeds_pages`].*/
+///Returns feed details for the feeds that match the filters that you specify.
+///
+///Its pages: [`get_feeds_pages`].
 pub async fn get_feeds(
     client: &Client,
     params: GetFeedsParams,

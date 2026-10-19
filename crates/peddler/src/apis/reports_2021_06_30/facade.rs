@@ -303,9 +303,9 @@ fn get_reports_page_size_default() -> Option<i64> {
 pub struct GetReportsParams {
     ///A list of report types used to filter reports. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
     pub report_types: Option<Vec<String>>,
-    /**A list of processing statuses used to filter reports.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.*/
+    ///A list of processing statuses used to filter reports.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
     pub processing_statuses: Option<Vec<String>>,
     ///A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify.
     pub marketplace_ids: Option<Vec<String>>,
@@ -338,9 +338,9 @@ impl Default for GetReportsParams {
         Self::new()
     }
 }
-/**Returns report details for the reports that match the filters that you specify.
-
-Its pages: [`get_reports_pages`].*/
+///Returns report details for the reports that match the filters that you specify.
+///
+///Its pages: [`get_reports_pages`].
 pub async fn get_reports(
     client: &Client,
     params: GetReportsParams,

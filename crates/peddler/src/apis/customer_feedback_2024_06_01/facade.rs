@@ -140,9 +140,9 @@ pub struct GetBrowseNodeReviewTopicsParams {
     pub browse_node_id: String,
     ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
-    /**The metric by which to sort the data in the response.
-
-Known values: `MENTIONS`, `STAR_RATING_IMPACT`.*/
+    ///The metric by which to sort the data in the response.
+    ///
+    ///Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
     pub sort_by: String,
 }
 impl GetBrowseNodeReviewTopicsParams {
@@ -331,9 +331,9 @@ pub struct GetItemReviewTopicsParams {
     pub asin: String,
     ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
-    /**The metric by which to sort data in the response.
-
-Known values: `MENTIONS`, `STAR_RATING_IMPACT`.*/
+    ///The metric by which to sort data in the response.
+    ///
+    ///Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
     pub sort_by: String,
 }
 impl GetItemReviewTopicsParams {

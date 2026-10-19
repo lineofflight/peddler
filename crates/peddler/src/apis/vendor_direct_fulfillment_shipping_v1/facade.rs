@@ -70,9 +70,9 @@ impl GetCustomerInvoicesParams {
         }
     }
 }
-/**Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
-
-Its pages: [`get_customer_invoices_pages`].*/
+///Returns a list of customer invoices created during a time frame that you specify. You define the  time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+///
+///Its pages: [`get_customer_invoices_pages`].
 pub async fn get_customer_invoices(
     client: &Client,
     params: GetCustomerInvoicesParams,
@@ -190,9 +190,9 @@ impl GetPackingSlipsParams {
         }
     }
 }
-/**Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
-
-Its pages: [`get_packing_slips_pages`].*/
+///Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+///
+///Its pages: [`get_packing_slips_pages`].
 pub async fn get_packing_slips(
     client: &Client,
     params: GetPackingSlipsParams,
@@ -310,9 +310,9 @@ impl GetShippingLabelsParams {
         }
     }
 }
-/**Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
-
-Its pages: [`get_shipping_labels_pages`].*/
+///Returns a list of shipping labels created during the time frame that you specify. You define that time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must not be more than 7 days.
+///
+///Its pages: [`get_shipping_labels_pages`].
 pub async fn get_shipping_labels(
     client: &Client,
     params: GetShippingLabelsParams,

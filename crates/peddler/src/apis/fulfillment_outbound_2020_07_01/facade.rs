@@ -173,9 +173,9 @@ impl GetFeatureInventoryParams {
         }
     }
 }
-/**Returns a list of inventory items that are eligible for the fulfillment feature you specify.
-
-Its pages: [`get_feature_inventory_pages`].*/
+///Returns a list of inventory items that are eligible for the fulfillment feature you specify.
+///
+///Its pages: [`get_feature_inventory_pages`].
 pub async fn get_feature_inventory(
     client: &Client,
     params: GetFeatureInventoryParams,
@@ -437,9 +437,9 @@ impl Default for ListAllFulfillmentOrdersParams {
         Self::new()
     }
 }
-/**Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the `nextToken` parameter.
-
-Its pages: [`list_all_fulfillment_orders_pages`].*/
+///Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the `nextToken` parameter.
+///
+///Its pages: [`list_all_fulfillment_orders_pages`].
 pub async fn list_all_fulfillment_orders(
     client: &Client,
     params: ListAllFulfillmentOrdersParams,

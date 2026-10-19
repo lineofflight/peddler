@@ -10,9 +10,9 @@ use crate::operation::{self, DecodeError, TypedResponse};
 pub struct CancelShipmentParams {
     ///The shipment identifier originally returned by the purchaseShipment operation.
     pub shipment_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl CancelShipmentParams {
@@ -58,9 +58,9 @@ pub async fn cancel_shipment(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateClaimParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///Request body for the createClaim operation
     pub body: B,
@@ -105,13 +105,13 @@ pub async fn create_claim<B: serde::Serialize>(
 pub struct DirectPurchaseShipmentParams<B = serde_json::Value> {
     ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
-    /**The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA).
-The secondary language subtag is almost always a regional designation.
-This does not support additional subtags beyond the primary and secondary language subtags.*/
+    ///The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA).
+    ///The secondary language subtag is almost always a regional designation.
+    ///This does not support additional subtags beyond the primary and secondary language subtags.
     pub locale: Option<String>,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///DirectPurchaseRequest body
     pub body: B,
@@ -164,9 +164,9 @@ pub async fn direct_purchase_shipment<B: serde::Serialize>(
 pub struct GenerateCollectionFormParams<B = serde_json::Value> {
     ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///GenerateCollectionFormRequest body
     pub body: B,
@@ -215,17 +215,17 @@ pub async fn generate_collection_form<B: serde::Serialize>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAccessPointsParams {
-    /**Access point types
-
-Known values: `HELIX`, `CAMPUS_LOCKER`, `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.*/
+    ///Access point types
+    ///
+    ///Known values: `HELIX`, `CAMPUS_LOCKER`, `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.
     pub access_point_types: Vec<String>,
     ///Country code for access point
     pub country_code: String,
     ///postal code for access point
     pub postal_code: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetAccessPointsParams {
@@ -281,9 +281,9 @@ pub struct GetAdditionalInputsParams {
     pub request_token: String,
     ///The rate identifier for the shipping offering (rate) returned in the response to the getRates operation.
     pub rate_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetAdditionalInputsParams {
@@ -328,9 +328,9 @@ pub async fn get_additional_inputs(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCarrierAccountFormInputsParams {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetCarrierAccountFormInputsParams {
@@ -375,9 +375,9 @@ pub async fn get_carrier_account_form_inputs(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCarrierAccountsParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///GetCarrierAccountsRequest body
     pub body: B,
@@ -422,9 +422,9 @@ pub async fn get_carrier_accounts<B: serde::Serialize>(
 pub struct GetCollectionFormParams {
     ///collection form Id to reprint a collection.
     pub collection_form_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetCollectionFormParams {
@@ -469,9 +469,9 @@ pub async fn get_collection_form(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCollectionFormHistoryParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///GetCollectionFormHistoryRequest body
     pub body: B,
@@ -514,9 +514,9 @@ pub async fn get_collection_form_history<B: serde::Serialize>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRatesParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///GetRatesRequest body
     pub body: B,
@@ -567,9 +567,9 @@ pub struct GetShipmentDocumentsParams {
     pub format: Option<String>,
     ///The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation.
     pub dpi: Option<serde_json::Number>,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetShipmentDocumentsParams {
@@ -630,9 +630,9 @@ pub struct GetTrackingParams {
     pub tracking_id: String,
     ///A carrier identifier originally returned by the getRates operation for the selected rate.
     pub carrier_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetTrackingParams {
@@ -677,9 +677,9 @@ pub async fn get_tracking(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetUnmanifestedShipmentsParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///GetUmanifestedShipmentsRequest body
     pub body: B,
@@ -693,8 +693,8 @@ impl<B> GetUnmanifestedShipmentsParams<B> {
         }
     }
 }
-/**This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
-        with an eligible carrier for manifesting shall be returned.*/
+///This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+///        with an eligible carrier for manifesting shall be returned.
 pub async fn get_unmanifested_shipments<B: serde::Serialize>(
     client: &Client,
     params: GetUnmanifestedShipmentsParams<B>,
@@ -725,9 +725,9 @@ pub async fn get_unmanifested_shipments<B: serde::Serialize>(
 pub struct LinkCarrierAccountParams<B = serde_json::Value> {
     ///An identifier for the carrier with which the seller's account is being linked.
     pub carrier_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///LinkCarrierAccountRequest body
     pub body: B,
@@ -777,9 +777,9 @@ pub async fn link_carrier_account<B: serde::Serialize>(
 pub struct LinkCarrierAccountPutParams<B = serde_json::Value> {
     ///An identifier for the carrier with which the seller's account is being linked.
     pub carrier_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///LinkCarrierAccountRequest body
     pub body: B,
@@ -827,9 +827,9 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct OneClickShipmentParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///OneClickShipmentRequest body
     pub body: B,
@@ -874,9 +874,9 @@ pub async fn one_click_shipment<B: serde::Serialize>(
 pub struct PurchaseShipmentParams<B = serde_json::Value> {
     ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///PurchaseShipmentRequest body
     pub body: B,
@@ -891,9 +891,9 @@ impl<B> PurchaseShipmentParams<B> {
         }
     }
 }
-/**Purchases a shipping service and returns purchase related details and documents.
-
-Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.*/
+///Purchases a shipping service and returns purchase related details and documents.
+///
+///Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.
 pub async fn purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: PurchaseShipmentParams<B>,
@@ -927,9 +927,9 @@ pub async fn purchase_shipment<B: serde::Serialize>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitNdrFeedbackParams<B = serde_json::Value> {
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///Request body for ndrFeedback operation
     pub body: B,
@@ -974,9 +974,9 @@ pub async fn submit_ndr_feedback<B: serde::Serialize>(
 pub struct UnlinkCarrierAccountParams<B = serde_json::Value> {
     ///carrier Id to unlink with merchant.
     pub carrier_id: String,
-    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
-
-Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
+    ///Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+    ///
+    ///Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.
     pub x_amzn_shipping_business_id: Option<String>,
     ///UnlinkCarrierAccountRequest body
     pub body: B,

@@ -10,9 +10,9 @@ use crate::operation::{self, DecodeError, TypedResponse};
 pub struct GetShipmentDetailsParams {
     ///The limit to the number of records returned. Default value is 50 records.
     pub limit: Option<i64>,
-    /**Sort in ascending or descending order by purchase order creation date.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort in ascending or descending order by purchase order creation date.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///Used for pagination when there are more shipments than the specified result size limit.
     pub next_token: Option<String>,
@@ -95,9 +95,9 @@ impl Default for GetShipmentDetailsParams {
         Self::new()
     }
 }
-/**Returns the Details about Shipment, Carrier Details,  status of the shipment, container details and other details related to shipment based on the filter parameters value that you specify.
-
-Its pages: [`get_shipment_details_pages`].*/
+///Returns the Details about Shipment, Carrier Details,  status of the shipment, container details and other details related to shipment based on the filter parameters value that you specify.
+///
+///Its pages: [`get_shipment_details_pages`].
 pub async fn get_shipment_details(
     client: &Client,
     params: GetShipmentDetailsParams,
@@ -236,9 +236,9 @@ pub fn get_shipment_details_pages<'a>(
 pub struct GetShipmentLabelsParams {
     ///The limit to the number of records returned. Default value is 50 records.
     pub limit: Option<i64>,
-    /**Sort the list by shipment label creation date in ascending or descending order.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort the list by shipment label creation date in ascending or descending order.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///A token that you use to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
@@ -273,9 +273,9 @@ impl Default for GetShipmentLabelsParams {
         Self::new()
     }
 }
-/**Returns small parcel shipment labels based on the filters that you specify.
-
-Its pages: [`get_shipment_labels_pages`].*/
+///Returns small parcel shipment labels based on the filters that you specify.
+///
+///Its pages: [`get_shipment_labels_pages`].
 pub async fn get_shipment_labels(
     client: &Client,
     params: GetShipmentLabelsParams,

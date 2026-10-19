@@ -49,9 +49,9 @@ fn get_orders_include_details_default() -> Option<bool> {
 pub struct GetOrdersParams {
     ///The vendor warehouse identifier for the fulfillment warehouse. If not specified, the result will contain orders for all warehouses.
     pub ship_from_party_id: Option<String>,
-    /**Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status.
-
-Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.*/
+    ///Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status.
+    ///
+    ///Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.
     pub status: Option<String>,
     ///The limit to the number of purchase orders returned.
     pub limit: Option<i64>,
@@ -59,9 +59,9 @@ Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.*/
     pub created_after: String,
     ///Purchase orders that became available before this date and time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_before: String,
-    /**Sort the list in ascending or descending order by order creation date.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort the list in ascending or descending order by order creation date.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
     pub next_token: Option<String>,
@@ -84,9 +84,9 @@ impl GetOrdersParams {
         }
     }
 }
-/**Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
-
-Its pages: [`get_orders_pages`].*/
+///Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
+///
+///Its pages: [`get_orders_pages`].
 pub async fn get_orders(
     client: &Client,
     params: GetOrdersParams,

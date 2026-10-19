@@ -37,12 +37,15 @@ pub(crate) fn module_doc(api: &ModelSpec, info: &Value) -> String {
     let parts: Vec<&str> = parts.into_iter().filter(|part| !part.is_empty()).collect();
     doc(&parts.join("\n\n"))
 }
-/// Text as a doc comment. A spec is data: the attribute holds it as a string, and the
-/// formatter writes it as a comment only where nothing in it ends one. Rust refuses a
-/// carriage return in a doc comment, so each line break is a line feed.
+/// Text as a doc comment, an attribute for each line. A spec is data: the attribute
+/// holds the line as a string, and the formatter writes it as a comment only where
+/// nothing in it ends one. In 1 block comment, rustc would drop the `*` that starts each
+/// line after the first, when they all start with one. Rust refuses a carriage return
+/// in a doc comment, so each line break is a line feed.
 fn doc(text: &str) -> String {
     let text = text.replace("\r\n", "\n").replace('\r', "\n");
-    format!("#[doc = {text:?}]\n")
+    let lines = text.split('\n');
+    lines.map(|line| format!("#[doc = {line:?}]\n")).collect()
 }
 /// A parameter's doc: its description, then the values it is known to take, as a
 /// model field's doc lists them. Empty when the spec says nothing of it.
@@ -854,25 +857,27 @@ mod tests {
         rust(&clients[0].1, &mapped).unwrap()
     }
 
+    /// The doc of an item, as rustdoc joins its attributes.
+    fn doc_of(attrs: &[syn::Attribute]) -> Option<String> {
+        let lines: Vec<String> = attrs
+            .iter()
+            .filter_map(|attr| match &attr.meta {
+                syn::Meta::NameValue(meta) if meta.path.is_ident("doc") => match &meta.value {
+                    syn::Expr::Lit(syn::ExprLit {
+                        lit: syn::Lit::Str(text),
+                        ..
+                    }) => Some(text.value()),
+                    _ => None,
+                },
+                _ => None,
+            })
+            .collect();
+        (!lines.is_empty()).then(|| lines.join("\n"))
+    }
+
     /// The doc of each item of a source, by its name: `Type.field`, `Type::method`, or
     /// the name of a struct or a function.
     fn docs_of(source: &str) -> BTreeMap<String, String> {
-        fn doc(attrs: &[syn::Attribute]) -> Option<String> {
-            let lines: Vec<String> = attrs
-                .iter()
-                .filter_map(|attr| match &attr.meta {
-                    syn::Meta::NameValue(meta) if meta.path.is_ident("doc") => match &meta.value {
-                        syn::Expr::Lit(syn::ExprLit {
-                            lit: syn::Lit::Str(text),
-                            ..
-                        }) => Some(text.value()),
-                        _ => None,
-                    },
-                    _ => None,
-                })
-                .collect();
-            (!lines.is_empty()).then(|| lines.join("\n"))
-        }
         let mut docs = BTreeMap::new();
         for item in syn::parse_file(source).unwrap().items {
             match item {
@@ -880,14 +885,14 @@ mod tests {
                     let name = item.ident.to_string();
                     for field in &item.fields {
                         let field_name = field.ident.as_ref().unwrap();
-                        if let Some(text) = doc(&field.attrs) {
+                        if let Some(text) = doc_of(&field.attrs) {
                             docs.insert(format!("{name}.{field_name}"), text);
                         }
                     }
-                    docs.extend(doc(&item.attrs).map(|text| (name, text)));
+                    docs.extend(doc_of(&item.attrs).map(|text| (name, text)));
                 }
                 syn::Item::Fn(item) => {
-                    docs.extend(doc(&item.attrs).map(|text| (item.sig.ident.to_string(), text)));
+                    docs.extend(doc_of(&item.attrs).map(|text| (item.sig.ident.to_string(), text)));
                 }
                 syn::Item::Impl(item) if item.trait_.is_none() => {
                     let syn::Type::Path(ty) = &*item.self_ty else {
@@ -897,7 +902,7 @@ mod tests {
                     for item in &item.items {
                         if let syn::ImplItem::Fn(method) = item {
                             let name = format!("{ty}::{}", method.sig.ident);
-                            docs.extend(doc(&method.attrs).map(|text| (name, text)));
+                            docs.extend(doc_of(&method.attrs).map(|text| (name, text)));
                         }
                     }
                 }
@@ -980,6 +985,28 @@ mod tests {
         assert_eq!(docs["list_things"], "Lists things.");
     }
 
+    /// A doc is a line comment for each line. Of a block comment, rustc would read
+    /// `*Note**:` for the `**Note**:` that starts its last line.
+    #[test]
+    fn a_doc_is_written_in_line_comments() {
+        let text = "Lists things.\n\n**Note**: slowly.";
+        let operation = json!({"operationId":"listThings","description":text,"parameters":[
+            {"name":"id","in":"path","required":true,"type":"string","description":text}],
+            "responses":{"200":{"description":"ok"}}});
+        let source = rust_of(operation, false);
+        assert_eq!(
+            source.matches("///**Note**: slowly.\n").count(),
+            2,
+            "{source}"
+        );
+        let blocks = source
+            .lines()
+            .filter(|line| line.trim_start().starts_with("/**"));
+        assert_eq!(blocks.count(), 0, "{source}");
+        let docs = docs_of(&source);
+        assert_eq!(docs["ListThingsParams.id"], text);
+    }
+
     /// A spec is data: whatever its text holds, a doc says it as text, and none of it
     /// ends the comment or adds an item.
     #[test]
@@ -1024,18 +1051,8 @@ mod tests {
             json!({"title":"Things API","description":"For things. See [the guide](doc:guide).\n"});
         let source = format!("{}pub mod things;", module_doc(api, &info));
         let item: syn::ItemMod = syn::parse_str(&source).unwrap();
-        let syn::Meta::NameValue(meta) = &item.attrs[0].meta else {
-            panic!("{source}")
-        };
-        let syn::Expr::Lit(syn::ExprLit {
-            lit: syn::Lit::Str(text),
-            ..
-        }) = &meta.value
-        else {
-            panic!("{source}")
-        };
         assert_eq!(
-            text.value(),
+            doc_of(&item.attrs).unwrap(),
             format!(
                 "Things API\n\nFor things. See [the guide](https://developer-docs.amazon.com/sp-api/docs/guide).\n\n<https://github.com/amzn/selling-partner-api-models/blob/main/models/{}>",
                 api.source

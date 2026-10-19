@@ -427,9 +427,9 @@ impl<B> GetFixedSlotCapacityParams<B> {
         }
     }
 }
-/**Provides capacity in fixed-size slots.
-
-Its pages: [`get_fixed_slot_capacity_pages`].*/
+///Provides capacity in fixed-size slots.
+///
+///Its pages: [`get_fixed_slot_capacity_pages`].
 pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetFixedSlotCapacityParams<B>,
@@ -502,9 +502,9 @@ impl<B> GetRangeSlotCapacityParams<B> {
         }
     }
 }
-/**Provides capacity slots in a format similar to availability records.
-
-Its pages: [`get_range_slot_capacity_pages`].*/
+///Provides capacity slots in a format similar to availability records.
+///
+///Its pages: [`get_range_slot_capacity_pages`].
 pub async fn get_range_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetRangeSlotCapacityParams<B>,
@@ -602,22 +602,22 @@ pub struct GetServiceJobsParams {
     pub product_order_ids: Option<Vec<String>>,
     ///A list of up to 20 associated product tracking IDs. You can use these IDs to query service jobs.
     pub tracking_ids: Option<Vec<String>>,
-    /**A list of one or more job status by which to filter the list of jobs.
-
-Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.*/
+    ///A list of one or more job status by which to filter the list of jobs.
+    ///
+    ///Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.
     pub service_job_status: Option<Vec<String>>,
     ///String returned in the response of your previous request.
     pub page_token: Option<String>,
     ///A non-negative integer that indicates the maximum number of jobs to return in the list, Value must be 1 - 20. Default 20.
     #[serde(default = "get_service_jobs_page_size_default")]
     pub page_size: Option<i64>,
-    /**Sort fields on which you want to sort the output.
-
-Known values: `JOB_DATE`, `JOB_STATUS`.*/
+    ///Sort fields on which you want to sort the output.
+    ///
+    ///Known values: `JOB_DATE`, `JOB_STATUS`.
     pub sort_field: Option<String>,
-    /**Sort order for the query you want to perform.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort order for the query you want to perform.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///A date used for selecting jobs created at or after a specified time. Must be in ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
     pub created_after: Option<String>,
@@ -665,9 +665,9 @@ impl GetServiceJobsParams {
         }
     }
 }
-/**Gets service job details for the specified filter query.
-
-Its pages: [`get_service_jobs_pages`].*/
+///Gets service job details for the specified filter query.
+///
+///Its pages: [`get_service_jobs_pages`].
 pub async fn get_service_jobs(
     client: &Client,
     params: GetServiceJobsParams,

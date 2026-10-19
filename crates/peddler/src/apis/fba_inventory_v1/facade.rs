@@ -129,9 +129,9 @@ pub struct GetInventorySummariesParams {
     ///true to return inventory summaries with additional summarized inventory details and quantities. Otherwise, returns inventory summaries only (default value).
     #[serde(default = "get_inventory_summaries_details_default")]
     pub details: Option<bool>,
-    /**The granularity type for the inventory aggregation level.
-
-Known values: `Marketplace`.*/
+    ///The granularity type for the inventory aggregation level.
+    ///
+    ///Known values: `Marketplace`.
     pub granularity_type: String,
     ///The granularity ID for the inventory aggregation level.
     pub granularity_id: String,
@@ -165,16 +165,16 @@ impl GetInventorySummariesParams {
         }
     }
 }
-/**Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime, sellerSkus and sellerSku parameters:
-
-- All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku parameters are omitted.
-- When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and time specified.
-- When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus. The sellerSku parameter is ignored.
-- When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified sellerSku.
-
-Note: The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-
-Its pages: [`get_inventory_summaries_pages`].*/
+///Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime, sellerSkus and sellerSku parameters:
+///
+///- All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku parameters are omitted.
+///- When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and time specified.
+///- When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus. The sellerSku parameter is ignored.
+///- When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified sellerSku.
+///
+///Note: The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+///
+///Its pages: [`get_inventory_summaries_pages`].
 pub async fn get_inventory_summaries(
     client: &Client,
     params: GetInventorySummariesParams,

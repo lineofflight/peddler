@@ -25,9 +25,9 @@ impl GetInvoiceParams {
         }
     }
 }
-/**Returns invoice details, including header and line items, for the specified invoice.
-
-Its pages: [`get_invoice_pages`].*/
+///Returns invoice details, including header and line items, for the specified invoice.
+///
+///Its pages: [`get_invoice_pages`].
 pub async fn get_invoice(
     client: &Client,
     params: GetInvoiceParams,
@@ -105,9 +105,9 @@ impl GetInvoiceHeadersParams {
         }
     }
 }
-/**Returns invoice headers for all invoices matching filters that you specify.
-
-Its pages: [`get_invoice_headers_pages`].*/
+///Returns invoice headers for all invoices matching filters that you specify.
+///
+///Its pages: [`get_invoice_headers_pages`].
 pub async fn get_invoice_headers(
     client: &Client,
     params: GetInvoiceHeadersParams,

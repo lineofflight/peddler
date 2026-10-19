@@ -50,9 +50,9 @@ pub struct GetPurchaseOrdersParams {
     pub created_after: Option<String>,
     ///Purchase orders that became available before this time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_before: Option<String>,
-    /**Sort in ascending or descending order by purchase order creation date.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort in ascending or descending order by purchase order creation date.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///Used for pagination when there is more purchase orders than the specified result size limit. The token value is returned in the previous API call
     pub next_token: Option<String>,
@@ -66,9 +66,9 @@ Known values: `ASC`, `DESC`.*/
     pub po_item_state: Option<String>,
     ///When true, returns purchase orders which were modified after the order was placed. Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the original one. Default value is false.
     pub is_po_changed: Option<bool>,
-    /**Filters purchase orders based on the purchase order state.
-
-Known values: `New`, `Acknowledged`, `Closed`.*/
+    ///Filters purchase orders based on the purchase order state.
+    ///
+    ///Known values: `New`, `Acknowledged`, `Closed`.
     pub purchase_order_state: Option<String>,
     ///Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
     pub ordering_vendor_code: Option<String>,
@@ -97,9 +97,9 @@ impl Default for GetPurchaseOrdersParams {
         Self::new()
     }
 }
-/**Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range must not exceed 7 days and is available to pull data from the past 6 months. You can choose to get only the purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific purchase order.
-
-Its pages: [`get_purchase_orders_pages`].*/
+///Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range must not exceed 7 days and is available to pull data from the past 6 months. You can choose to get only the purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific purchase order.
+///
+///Its pages: [`get_purchase_orders_pages`].
 pub async fn get_purchase_orders(
     client: &Client,
     params: GetPurchaseOrdersParams,
@@ -166,9 +166,9 @@ pub fn get_purchase_orders_pages<'a>(
 pub struct GetPurchaseOrdersStatusParams {
     ///The limit to the number of records returned. Default value is 100 records.
     pub limit: Option<i64>,
-    /**Sort in ascending or descending order by purchase order creation date.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort in ascending or descending order by purchase order creation date.
+    ///
+    ///Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
     ///Used for pagination when there are more purchase orders than the specified result size limit.
     pub next_token: Option<String>,
@@ -182,17 +182,17 @@ Known values: `ASC`, `DESC`.*/
     pub updated_before: Option<String>,
     ///Provides purchase order status for the specified purchase order number.
     pub purchase_order_number: Option<String>,
-    /**Filters purchase orders based on the specified purchase order status. If not included in filter, this will return purchase orders for all statuses.
-
-Known values: `OPEN`, `CLOSED`.*/
+    ///Filters purchase orders based on the specified purchase order status. If not included in filter, this will return purchase orders for all statuses.
+    ///
+    ///Known values: `OPEN`, `CLOSED`.
     pub purchase_order_status: Option<String>,
-    /**Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included.
-
-Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.*/
+    ///Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included.
+    ///
+    ///Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.
     pub item_confirmation_status: Option<String>,
-    /**Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included.
-
-Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.*/
+    ///Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included.
+    ///
+    ///Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.
     pub item_receive_status: Option<String>,
     ///Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase orders for all the vendor codes that exist in the vendor group used to authorize API client application are returned.
     pub ordering_vendor_code: Option<String>,
@@ -224,9 +224,9 @@ impl Default for GetPurchaseOrdersStatusParams {
         Self::new()
     }
 }
-/**Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
-
-Its pages: [`get_purchase_orders_status_pages`].*/
+///Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
+///
+///Its pages: [`get_purchase_orders_status_pages`].
 pub async fn get_purchase_orders_status(
     client: &Client,
     params: GetPurchaseOrdersStatusParams,

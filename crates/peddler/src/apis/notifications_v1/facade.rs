@@ -40,9 +40,9 @@ pub async fn create_destination<B: serde::Serialize>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateSubscriptionParams<B = serde_json::Value> {
-    /**The type of notification.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///The type of notification.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_type: String,
     ///The request schema for the `createSubscription` operation.
     pub body: B,
@@ -118,9 +118,9 @@ pub async fn delete_destination(
 pub struct DeleteSubscriptionByIdParams {
     ///The identifier for the subscription that you want to delete.
     pub subscription_id: String,
-    /**The type of notification.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///The type of notification.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_type: String,
 }
 impl DeleteSubscriptionByIdParams {
@@ -231,9 +231,9 @@ pub async fn get_destinations(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSubscriptionParams {
-    /**The type of notification.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///The type of notification.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_type: String,
     ///The version of the payload object to be used in the notification.
     pub payload_version: Option<String>,
@@ -278,9 +278,9 @@ pub async fn get_subscription(
 pub struct GetSubscriptionByIdParams {
     ///The identifier for the subscription that you want to get.
     pub subscription_id: String,
-    /**The type of notification.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///The type of notification.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_type: String,
 }
 impl GetSubscriptionByIdParams {
@@ -324,9 +324,9 @@ fn get_subscriptions_page_size_default() -> Option<i64> {
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSubscriptionsParams {
-    /**A list of notification types to retrieve subscriptions for. Currently limited to a single notification type per request.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///A list of notification types to retrieve subscriptions for. Currently limited to a single notification type per request.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_types: Vec<String>,
     ///The version of the payload object to be used in the notification.
     pub payload_version: Option<String>,
@@ -347,13 +347,13 @@ impl GetSubscriptionsParams {
         }
     }
 }
-/**Returns information about subscriptions of the specified notification type. You can use this API to retrieve all subscriptions when multiple subscriptions exist for a notification type (for example, when using filter expressions).
-
-The operation returns all subscriptions for the caller's party.
-
-`payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns subscriptions across all payload versions.
-
-Its pages: [`get_subscriptions_pages`].*/
+///Returns information about subscriptions of the specified notification type. You can use this API to retrieve all subscriptions when multiple subscriptions exist for a notification type (for example, when using filter expressions).
+///
+///The operation returns all subscriptions for the caller's party.
+///
+///`payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns subscriptions across all payload versions.
+///
+///Its pages: [`get_subscriptions_pages`].
 pub async fn get_subscriptions(
     client: &Client,
     params: GetSubscriptionsParams,
@@ -403,9 +403,9 @@ pub fn get_subscriptions_pages<'a>(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SendTestNotificationParams<B = serde_json::Value> {
-    /**The type of notification.
-
- For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
+    ///The type of notification.
+    ///
+    /// For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     pub notification_type: String,
     ///The request schema for the `sendTestNotification` operation.
     pub body: B,

@@ -37,9 +37,9 @@ impl Default for ListFinancialEventGroupsParams {
         Self::new()
     }
 }
-/**Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.
-
-Its pages: [`list_financial_event_groups_pages`].*/
+///Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.
+///
+///Its pages: [`list_financial_event_groups_pages`].
 pub async fn list_financial_event_groups(
     client: &Client,
     params: ListFinancialEventGroupsParams,
@@ -108,11 +108,11 @@ pub struct ListFinancialEventsParams {
     pub max_results_per_page: Option<i32>,
     ///The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
     pub posted_after: Option<String>,
-    /**The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-
-The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
-
-**Default:** Two minutes before the time of the request.*/
+    ///The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    ///
+    ///The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+    ///
+    ///**Default:** Two minutes before the time of the request.
     pub posted_before: Option<String>,
     ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
@@ -133,11 +133,11 @@ impl Default for ListFinancialEventsParams {
         Self::new()
     }
 }
-/**Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.
-
-**Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
-
-Its pages: [`list_financial_events_pages`].*/
+///Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.
+///
+///**Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
+///
+///Its pages: [`list_financial_events_pages`].
 pub async fn list_financial_events(
     client: &Client,
     params: ListFinancialEventsParams,
@@ -198,11 +198,11 @@ pub struct ListFinancialEventsByGroupIdParams {
     pub max_results_per_page: Option<i32>,
     ///The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
     pub posted_after: Option<String>,
-    /**The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-
-The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
-
-**Default:** Two minutes before the time of the request.*/
+    ///The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    ///
+    ///The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+    ///
+    ///**Default:** Two minutes before the time of the request.
     pub posted_before: Option<String>,
     ///The identifier of the financial event group to which the events belong.
     pub event_group_id: String,
@@ -221,13 +221,13 @@ impl ListFinancialEventsByGroupIdParams {
         }
     }
 }
-/**Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.
-
-**Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
-
-**Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more than two years produces an empty response.
-
-Its pages: [`list_financial_events_by_group_id_pages`].*/
+///Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.
+///
+///**Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
+///
+///**Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more than two years produces an empty response.
+///
+///Its pages: [`list_financial_events_by_group_id_pages`].
 pub async fn list_financial_events_by_group_id(
     client: &Client,
     params: ListFinancialEventsByGroupIdParams,
@@ -306,11 +306,11 @@ impl ListFinancialEventsByOrderIdParams {
         }
     }
 }
-/**Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.
-
-**Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
-
-Its pages: [`list_financial_events_by_order_id_pages`].*/
+///Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.
+///
+///**Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
+///
+///Its pages: [`list_financial_events_by_order_id_pages`].
 pub async fn list_financial_events_by_order_id(
     client: &Client,
     params: ListFinancialEventsByOrderIdParams,

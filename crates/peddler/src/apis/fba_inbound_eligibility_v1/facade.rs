@@ -12,9 +12,9 @@ pub struct GetItemEligibilityPreviewParams {
     pub marketplace_ids: Option<Vec<String>>,
     ///The ASIN of the item for which you want an eligibility preview.
     pub asin: String,
-    /**The program that you want to check eligibility against.
-
-Known values: `INBOUND`, `COMMINGLING`.*/
+    ///The program that you want to check eligibility against.
+    ///
+    ///Known values: `INBOUND`, `COMMINGLING`.
     pub program: String,
 }
 impl GetItemEligibilityPreviewParams {

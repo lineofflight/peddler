@@ -53,11 +53,11 @@ impl<B> CreateMediaParams<B> {
         Self { body }
     }
 }
-/**Create a media asset record. The `mediaType` field determines the type of asset to create.
-
-This operation is idempotent; if the asset or pairing already exists with identical metadata, this operation returns a `200` response with existing data. Returns `201` when a new asset or pairing is created. Returns `409` if the asset or pairing already exists but the metadata fields differ.
-
-If an `uploadDestinationId` is provided, it is resolved to its `mediaId` before any further processing. A request that references an asset by `uploadDestinationId` and a subsequent request that uses the resulting `mediaId` are treated as referring to the same identity.*/
+///Create a media asset record. The `mediaType` field determines the type of asset to create.
+///
+///This operation is idempotent; if the asset or pairing already exists with identical metadata, this operation returns a `200` response with existing data. Returns `201` when a new asset or pairing is created. Returns `409` if the asset or pairing already exists but the metadata fields differ.
+///
+///If an `uploadDestinationId` is provided, it is resolved to its `mediaId` before any further processing. A request that references an asset by `uploadDestinationId` and a subsequent request that uses the resulting `mediaId` are treated as referring to the same identity.
 pub async fn create_media<B: serde::Serialize>(
     client: &Client,
     params: CreateMediaParams<B>,
@@ -84,9 +84,9 @@ pub struct GetContentDocumentParams {
     pub content_reference_key: String,
     ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
-    /**The set of A+ Content data types to include in the response.
-
-Known values: `CONTENTS`, `METADATA`.*/
+    ///The set of A+ Content data types to include in the response.
+    ///
+    ///Known values: `CONTENTS`, `METADATA`.
     pub included_data_set: Vec<String>,
 }
 impl GetContentDocumentParams {
@@ -148,9 +148,9 @@ impl GetMediaParams {
         }
     }
 }
-/**Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape. Related media associations are also included in the response.
-
-When `associatedMediaId` is provided, `relatedMedia` is filtered to the specific pairing. When omitted, all related media are returned.*/
+///Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape. Related media associations are also included in the response.
+///
+///When `associatedMediaId` is provided, `relatedMedia` is filtered to the specific pairing. When omitted, all related media are returned.
 pub async fn get_media(
     client: &Client,
     params: GetMediaParams,
@@ -187,9 +187,9 @@ pub struct ListContentDocumentAsinRelationsParams {
     pub content_reference_key: String,
     ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
-    /**The set of A+ Content data types to include in the response. If you do not include this parameter, the operation returns the related ASINs without metadata.
-
-Known values: `METADATA`.*/
+    ///The set of A+ Content data types to include in the response. If you do not include this parameter, the operation returns the related ASINs without metadata.
+    ///
+    ///Known values: `METADATA`.
     pub included_data_set: Option<Vec<String>>,
     ///The set of ASINs.
     pub asin_set: Option<Vec<String>>,
@@ -208,9 +208,9 @@ impl ListContentDocumentAsinRelationsParams {
         }
     }
 }
-/**Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the `asinSet` parameter, the operation returns all ASINs related to the content document.
-
-Its pages: [`list_content_document_asin_relations_pages`].*/
+///Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the `asinSet` parameter, the operation returns all ASINs related to the content document.
+///
+///Its pages: [`list_content_document_asin_relations_pages`].
 pub async fn list_content_document_asin_relations(
     client: &Client,
     params: ListContentDocumentAsinRelationsParams,
@@ -430,9 +430,9 @@ impl SearchContentDocumentsParams {
         }
     }
 }
-/**Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the `getContentDocument` operation to get the actual contents of the A+ Content documents.
-
-Its pages: [`search_content_documents_pages`].*/
+///Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the `getContentDocument` operation to get the actual contents of the A+ Content documents.
+///
+///Its pages: [`search_content_documents_pages`].
 pub async fn search_content_documents(
     client: &Client,
     params: SearchContentDocumentsParams,
@@ -496,9 +496,9 @@ impl SearchContentPublishRecordsParams {
         }
     }
 }
-/**Searches for A+ Content publishing records, if available.
-
-Its pages: [`search_content_publish_records_pages`].*/
+///Searches for A+ Content publishing records, if available.
+///
+///Its pages: [`search_content_publish_records_pages`].
 pub async fn search_content_publish_records(
     client: &Client,
     params: SearchContentPublishRecordsParams,
@@ -610,11 +610,11 @@ impl<B> UpdateMediaParams<B> {
         }
     }
 }
-/**Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For video-image pairing title updates, provide `associatedMediaId` as a query parameter. For video-level description updates or standalone image title updates, omit `associatedMediaId`.
-
-Each request updates either title or descriptions, but not both. Descriptions are upserted by locale; only provided locales are modified, and existing locales not in the request are preserved.
-
-The response contains the full unified Media shape. When `associatedMediaId` is provided, `relatedMedia` contains only the specified pairing. When `associatedMediaId` is absent, `relatedMedia` contains all affected pairings.*/
+///Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For video-image pairing title updates, provide `associatedMediaId` as a query parameter. For video-level description updates or standalone image title updates, omit `associatedMediaId`.
+///
+///Each request updates either title or descriptions, but not both. Descriptions are upserted by locale; only provided locales are modified, and existing locales not in the request are preserved.
+///
+///The response contains the full unified Media shape. When `associatedMediaId` is provided, `relatedMedia` contains only the specified pairing. When `associatedMediaId` is absent, `relatedMedia` contains all affected pairings.
 pub async fn update_media<B: serde::Serialize>(
     client: &Client,
     params: UpdateMediaParams<B>,

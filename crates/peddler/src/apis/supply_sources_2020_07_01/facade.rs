@@ -135,9 +135,9 @@ impl Default for GetSupplySourcesParams {
         Self::new()
     }
 }
-/**The path to retrieve paginated supply sources.
-
-Its pages: [`get_supply_sources_pages`].*/
+///The path to retrieve paginated supply sources.
+///
+///Its pages: [`get_supply_sources_pages`].
 pub async fn get_supply_sources(
     client: &Client,
     params: GetSupplySourcesParams,

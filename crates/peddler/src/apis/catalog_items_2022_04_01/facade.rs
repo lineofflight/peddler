@@ -15,9 +15,9 @@ pub struct GetCatalogItemParams {
     pub asin: String,
     ///A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Vec<String>,
-    /**A comma-delimited list of datasets to include in the response.
-
-Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.*/
+    ///A comma-delimited list of datasets to include in the response.
+    ///
+    ///Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
     #[serde(default = "get_catalog_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
     ///The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
@@ -75,15 +75,15 @@ fn search_catalog_items_page_size_default() -> Option<i64> {
 pub struct SearchCatalogItemsParams {
     ///A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
     pub identifiers: Option<Vec<String>>,
-    /**The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
-
-Known values: `ASIN`, `EAN`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.*/
+    ///The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
+    ///
+    ///Known values: `ASIN`, `EAN`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
     pub identifiers_type: Option<String>,
     ///A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Vec<String>,
-    /**A comma-delimited list of datasets to include in the response.
-
-Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.*/
+    ///A comma-delimited list of datasets to include in the response.
+    ///
+    ///Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
     #[serde(default = "search_catalog_items_included_data_default")]
     pub included_data: Option<Vec<String>>,
     ///The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
@@ -123,9 +123,9 @@ impl SearchCatalogItemsParams {
         }
     }
 }
-/**Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.
-
-Its pages: [`search_catalog_items_pages`].*/
+///Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.
+///
+///Its pages: [`search_catalog_items_pages`].
 pub async fn search_catalog_items(
     client: &Client,
     params: SearchCatalogItemsParams,

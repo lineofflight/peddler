@@ -120,9 +120,9 @@ pub struct GenerateShipLabelsParams<B = serde_json::Value> {
     pub shipment_id: String,
     ///The ID of the shipping option whose shipping labels you want.
     pub shipping_option_id: Option<String>,
-    /**Specify whether you want to generate or regenerate a label.
-
-Known values: `GENERATE`, `REGENERATE`.*/
+    ///Specify whether you want to generate or regenerate a label.
+    ///
+    ///Known values: `GENERATE`, `REGENERATE`.
     pub operation: String,
     ///Shipping details for when shipping is not done by the marketplace channel.
     pub body: Option<B>,
@@ -211,9 +211,9 @@ pub struct GetShipmentsParams {
     pub marketplace_id: Option<String>,
     ///The channel name associated with the location.
     pub channel_name: Option<String>,
-    /**The status of shipment you want to include in the response. To retrieve all new shipments, set this value to `ACCEPTED`.
-
-Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.*/
+    ///The status of shipment you want to include in the response. To retrieve all new shipments, set this value to `ACCEPTED`.
+    ///
+    ///Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.
     pub status: String,
     ///The response includes shipments whose latest update is after the specified time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub last_updated_after: Option<String>,
@@ -239,9 +239,9 @@ impl GetShipmentsParams {
         }
     }
 }
-/**Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered based on the fulfillment node or the time of the shipments' last update.
-
-Its pages: [`get_shipments_pages`].*/
+///Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered based on the fulfillment node or the time of the shipments' last update.
+///
+///Its pages: [`get_shipments_pages`].
 pub async fn get_shipments(
     client: &Client,
     params: GetShipmentsParams,
@@ -301,9 +301,9 @@ pub fn get_shipments_pages<'a>(
 pub struct ProcessShipmentParams<B = serde_json::Value> {
     ///The ID of the shipment you want to confirm or reject.
     pub shipment_id: String,
-    /**The status of the shipment.
-
-Known values: `CONFIRM`, `REJECT`.*/
+    ///The status of the shipment.
+    ///
+    ///Known values: `CONFIRM`, `REJECT`.
     pub operation: String,
     ///Information about the shipment and its line items.
     pub body: Option<B>,
@@ -475,7 +475,9 @@ pub struct UpdatePackageStatusParams<B = serde_json::Value> {
     pub shipment_id: String,
     ///The ID of the package whose status you want to update.
     pub package_id: String,
-    #[doc = "**This field is only used for the Seller Flex program**. For the Self Delivery program, package statuses are defined in the body parameter.\n\nKnown values: `SHIPPED`."]
+    ///**This field is only used for the Seller Flex program**. For the Self Delivery program, package statuses are defined in the body parameter.
+    ///
+    ///Known values: `SHIPPED`.
     pub status: Option<String>,
     ///The body of the request.
     pub body: Option<B>,

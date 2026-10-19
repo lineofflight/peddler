@@ -15,9 +15,9 @@ pub struct GetCatalogItemParams {
     pub asin: String,
     ///A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
     pub marketplace_ids: Vec<String>,
-    /**A comma-delimited list of data sets to include in the response. Default: summaries.
-
-Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.*/
+    ///A comma-delimited list of data sets to include in the response. Default: summaries.
+    ///
+    ///Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
     #[serde(default = "get_catalog_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
     ///Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
@@ -77,9 +77,9 @@ pub struct SearchCatalogItemsParams {
     pub keywords: Vec<String>,
     ///A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    /**A comma-delimited list of data sets to include in the response. Default: summaries.
-
-Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.*/
+    ///A comma-delimited list of data sets to include in the response. Default: summaries.
+    ///
+    ///Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
     #[serde(default = "search_catalog_items_included_data_default")]
     pub included_data: Option<Vec<String>>,
     ///A comma-delimited list of brand names to limit the search to.
@@ -112,9 +112,9 @@ impl SearchCatalogItemsParams {
         }
     }
 }
-/**Search for and return a list of Amazon catalog items and associated information.
-
-Its pages: [`search_catalog_items_pages`].*/
+///Search for and return a list of Amazon catalog items and associated information.
+///
+///Its pages: [`search_catalog_items_pages`].
 pub async fn search_catalog_items(
     client: &Client,
     params: SearchCatalogItemsParams,

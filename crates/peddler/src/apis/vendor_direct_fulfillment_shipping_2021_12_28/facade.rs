@@ -144,9 +144,9 @@ impl GetCustomerInvoicesParams {
         }
     }
 }
-/**Returns a list of customer invoices created during a time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
-
-Its pages: [`get_customer_invoices_pages`].*/
+///Returns a list of customer invoices created during a time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+///
+///Its pages: [`get_customer_invoices_pages`].
 pub async fn get_customer_invoices(
     client: &Client,
     params: GetCustomerInvoicesParams,
@@ -246,9 +246,9 @@ pub struct GetPackingSlipsParams {
     pub created_after: String,
     ///Packing slips that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_before: String,
-    /**The packing slip creation dates, which are sorted by ascending or descending order.
-
-Known values: `ASC`, `DESC`.*/
+    ///The packing slip creation dates, which are sorted by ascending or descending order.
+    ///
+    ///Known values: `ASC`, `DESC`.
     #[serde(default = "get_packing_slips_sort_order_default")]
     pub sort_order: Option<String>,
     ///Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
@@ -267,9 +267,9 @@ impl GetPackingSlipsParams {
         }
     }
 }
-/**Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
-
-Its pages: [`get_packing_slips_pages`].*/
+///Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+///
+///Its pages: [`get_packing_slips_pages`].
 pub async fn get_packing_slips(
     client: &Client,
     params: GetPackingSlipsParams,
@@ -388,9 +388,9 @@ impl GetShippingLabelsParams {
         }
     }
 }
-/**Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to search must not be more than seven days.
-
-Its pages: [`get_shipping_labels_pages`].*/
+///Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to search must not be more than seven days.
+///
+///Its pages: [`get_shipping_labels_pages`].
 pub async fn get_shipping_labels(
     client: &Client,
     params: GetShippingLabelsParams,

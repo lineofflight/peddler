@@ -165,11 +165,11 @@ impl GetOrderItemsParams {
         Self { order_id, next_token: None }
     }
 }
-/**Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.
-
-**Note**: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
-
-Its pages: [`get_order_items_pages`].*/
+///Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.
+///
+///**Note**: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
+///
+///Its pages: [`get_order_items_pages`].
 pub async fn get_order_items(
     client: &Client,
     params: GetOrderItemsParams,
@@ -231,9 +231,9 @@ impl GetOrderItemsBuyerInfoParams {
         Self { order_id, next_token: None }
     }
 }
-/**Returns buyer information for the order items in the order that you specify.
-
-Its pages: [`get_order_items_buyer_info_pages`].*/
+///Returns buyer information for the order items in the order that you specify.
+///
+///Its pages: [`get_order_items_buyer_info_pages`].
 pub async fn get_order_items_buyer_info(
     client: &Client,
     params: GetOrderItemsBuyerInfoParams,
@@ -321,45 +321,45 @@ pub async fn get_order_regulated_info(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrdersParams {
-    /**Use this date to select orders created after (or at) a specified time. Only orders placed after the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-
-**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `LastUpdatedAfter` and `LastUpdatedBefore` cannot be set when `CreatedAfter` is set.*/
+    ///Use this date to select orders created after (or at) a specified time. Only orders placed after the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    ///
+    ///**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `LastUpdatedAfter` and `LastUpdatedBefore` cannot be set when `CreatedAfter` is set.
     pub created_after: Option<String>,
-    /**Use this date to select orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-
-**Note**: `CreatedBefore` is optional when `CreatedAfter` is set. If specified, `CreatedBefore` must be equal to or after the `CreatedAfter` date and at least two minutes before current time.*/
+    ///Use this date to select orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    ///
+    ///**Note**: `CreatedBefore` is optional when `CreatedAfter` is set. If specified, `CreatedBefore` must be equal to or after the `CreatedAfter` date and at least two minutes before current time.
     pub created_before: Option<String>,
-    /**Use this date to select orders that were last updated after (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-
-**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `CreatedAfter` or `CreatedBefore` cannot be set when `LastUpdatedAfter` is set.*/
+    ///Use this date to select orders that were last updated after (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    ///
+    ///**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `CreatedAfter` or `CreatedBefore` cannot be set when `LastUpdatedAfter` is set.
     pub last_updated_after: Option<String>,
-    /**Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-
-**Note**: `LastUpdatedBefore` is optional when `LastUpdatedAfter` is set. But if specified, `LastUpdatedBefore` must be equal to or after the `LastUpdatedAfter` date and at least two minutes before current time.*/
+    ///Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    ///
+    ///**Note**: `LastUpdatedBefore` is optional when `LastUpdatedAfter` is set. But if specified, `LastUpdatedBefore` must be equal to or after the `LastUpdatedAfter` date and at least two minutes before current time.
     pub last_updated_before: Option<String>,
-    /**A list of `OrderStatus` values used to filter the results.
-
-**Possible values:**
-- `PendingAvailability` (This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future.)
-- `Pending` (The order has been placed but payment has not been authorized.)
-- `Unshipped` (Payment has been authorized and the order is ready for shipment, but no items in the order have been shipped.)
-- `PartiallyShipped` (One or more, but not all, items in the order have been shipped.)
-- `Shipped` (All items in the order have been shipped.)
-- `InvoiceUnconfirmed` (All items in the order have been shipped. The seller has not yet given confirmation to Amazon that the invoice has been shipped to the buyer.)
-- `Canceled` (The order has been canceled.)
-- `Unfulfillable` (The order cannot be fulfilled. This state applies only to Multi-Channel Fulfillment orders.)*/
+    ///A list of `OrderStatus` values used to filter the results.
+    ///
+    ///**Possible values:**
+    ///- `PendingAvailability` (This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future.)
+    ///- `Pending` (The order has been placed but payment has not been authorized.)
+    ///- `Unshipped` (Payment has been authorized and the order is ready for shipment, but no items in the order have been shipped.)
+    ///- `PartiallyShipped` (One or more, but not all, items in the order have been shipped.)
+    ///- `Shipped` (All items in the order have been shipped.)
+    ///- `InvoiceUnconfirmed` (All items in the order have been shipped. The seller has not yet given confirmation to Amazon that the invoice has been shipped to the buyer.)
+    ///- `Canceled` (The order has been canceled.)
+    ///- `Unfulfillable` (The order cannot be fulfilled. This state applies only to Multi-Channel Fulfillment orders.)
     pub order_statuses: Option<Vec<String>>,
-    /**A list of `MarketplaceId` values. Used to select orders that were placed in the specified marketplaces.
-
-Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.*/
+    ///A list of `MarketplaceId` values. Used to select orders that were placed in the specified marketplaces.
+    ///
+    ///Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.
     pub marketplace_ids: Vec<String>,
-    /**A list that indicates how an order was fulfilled. Filters the results by fulfillment channel.
-
-**Possible values**: `AFN` (fulfilled by Amazon), `MFN` (fulfilled by seller).*/
+    ///A list that indicates how an order was fulfilled. Filters the results by fulfillment channel.
+    ///
+    ///**Possible values**: `AFN` (fulfilled by Amazon), `MFN` (fulfilled by seller).
     pub fulfillment_channels: Option<Vec<String>>,
-    /**A list of payment method values. Use this field to select orders that were paid with the specified payment methods.
-
-**Possible values**: `COD` (cash on delivery), `CVS` (convenience store), `Other` (Any payment method other than COD or CVS).*/
+    ///A list of payment method values. Use this field to select orders that were paid with the specified payment methods.
+    ///
+    ///**Possible values**: `COD` (cash on delivery), `CVS` (convenience store), `Other` (Any payment method other than COD or CVS).
     pub payment_methods: Option<Vec<String>>,
     ///The email address of a buyer. Used to select orders that contain the specified email address.
     pub buyer_email: Option<String>,
@@ -367,34 +367,34 @@ Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketp
     pub seller_order_id: Option<String>,
     ///A number that indicates the maximum number of orders that can be returned per page. Value must be 1 - 100. Default 100.
     pub max_results_per_page: Option<i64>,
-    /**A list of `EasyShipShipmentStatus` values. Used to select Easy Ship orders with statuses that match the specified values. If `EasyShipShipmentStatus` is specified, only Amazon Easy Ship orders are returned.
-
-**Possible values:**
-- `PendingSchedule` (The package is awaiting the schedule for pick-up.)
-- `PendingPickUp` (Amazon has not yet picked up the package from the seller.)
-- `PendingDropOff` (The seller will deliver the package to the carrier.)
-- `LabelCanceled` (The seller canceled the pickup.)
-- `PickedUp` (Amazon has picked up the package from the seller.)
-- `DroppedOff` (The package is delivered to the carrier by the seller.)
-- `AtOriginFC` (The packaged is at the origin fulfillment center.)
-- `AtDestinationFC` (The package is at the destination fulfillment center.)
-- `Delivered` (The package has been delivered.)
-- `RejectedByBuyer` (The package has been rejected by the buyer.)
-- `Undeliverable` (The package cannot be delivered.)
-- `ReturningToSeller` (The package was not delivered and is being returned to the seller.)
-- `ReturnedToSeller` (The package was not delivered and was returned to the seller.)
-- `Lost` (The package is lost.)
-- `OutForDelivery` (The package is out for delivery.)
-- `Damaged` (The package was damaged by the carrier.)*/
+    ///A list of `EasyShipShipmentStatus` values. Used to select Easy Ship orders with statuses that match the specified values. If `EasyShipShipmentStatus` is specified, only Amazon Easy Ship orders are returned.
+    ///
+    ///**Possible values:**
+    ///- `PendingSchedule` (The package is awaiting the schedule for pick-up.)
+    ///- `PendingPickUp` (Amazon has not yet picked up the package from the seller.)
+    ///- `PendingDropOff` (The seller will deliver the package to the carrier.)
+    ///- `LabelCanceled` (The seller canceled the pickup.)
+    ///- `PickedUp` (Amazon has picked up the package from the seller.)
+    ///- `DroppedOff` (The package is delivered to the carrier by the seller.)
+    ///- `AtOriginFC` (The packaged is at the origin fulfillment center.)
+    ///- `AtDestinationFC` (The package is at the destination fulfillment center.)
+    ///- `Delivered` (The package has been delivered.)
+    ///- `RejectedByBuyer` (The package has been rejected by the buyer.)
+    ///- `Undeliverable` (The package cannot be delivered.)
+    ///- `ReturningToSeller` (The package was not delivered and is being returned to the seller.)
+    ///- `ReturnedToSeller` (The package was not delivered and was returned to the seller.)
+    ///- `Lost` (The package is lost.)
+    ///- `OutForDelivery` (The package is out for delivery.)
+    ///- `Damaged` (The package was damaged by the carrier.)
     pub easy_ship_shipment_statuses: Option<Vec<String>>,
-    /**A list of `ElectronicInvoiceStatus` values. Used to select orders with electronic invoice statuses that match the specified values.
-
-**Possible values:**
-- `NotRequired` (Electronic invoice submission is not required for this order.)
-- `NotFound` (The electronic invoice was not submitted for this order.)
-- `Processing` (The electronic invoice is being processed for this order.)
-- `Errored` (The last submitted electronic invoice was rejected for this order.)
-- `Accepted` (The last submitted electronic invoice was submitted and accepted.)*/
+    ///A list of `ElectronicInvoiceStatus` values. Used to select orders with electronic invoice statuses that match the specified values.
+    ///
+    ///**Possible values:**
+    ///- `NotRequired` (Electronic invoice submission is not required for this order.)
+    ///- `NotFound` (The electronic invoice was not submitted for this order.)
+    ///- `Processing` (The electronic invoice is being processed for this order.)
+    ///- `Errored` (The last submitted electronic invoice was rejected for this order.)
+    ///- `Accepted` (The last submitted electronic invoice was submitted and accepted.)
     pub electronic_invoice_statuses: Option<Vec<String>>,
     ///A string token returned in the response of your previous request.
     pub next_token: Option<String>,
@@ -444,9 +444,9 @@ impl GetOrdersParams {
         }
     }
 }
-/**Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response.
-
-Its pages: [`get_orders_pages`].*/
+///Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response.
+///
+///Its pages: [`get_orders_pages`].
 pub async fn get_orders(
     client: &Client,
     params: GetOrdersParams,

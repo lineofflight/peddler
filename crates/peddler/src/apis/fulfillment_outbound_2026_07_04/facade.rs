@@ -168,9 +168,9 @@ pub struct GetOrderParams {
     pub x_amzn_fulfillment_service_id: Option<String>,
     ///The ID of the order you want to retrieve.
     pub order_id: String,
-    /**Whether to include shipment data in the response. Included by default.
-
-Known values: `INCLUDE`, `EXCLUDE`.*/
+    ///Whether to include shipment data in the response. Included by default.
+    ///
+    ///Known values: `INCLUDE`, `EXCLUDE`.
     pub shipments: Option<String>,
 }
 impl GetOrderParams {
@@ -267,9 +267,9 @@ pub struct ListOrdersParams {
     pub updated_after: Option<String>,
     ///A token that you use to retrieve the next page of results. The response includes `pageToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `pageToken` is `null`.
     pub page_token: Option<String>,
-    /**Whether to include shipment data in the response. Included by default.
-
-Known values: `INCLUDE`, `EXCLUDE`.*/
+    ///Whether to include shipment data in the response. Included by default.
+    ///
+    ///Known values: `INCLUDE`, `EXCLUDE`.
     pub shipments: Option<String>,
 }
 impl ListOrdersParams {
@@ -288,9 +288,9 @@ impl Default for ListOrdersParams {
         Self::new()
     }
 }
-/**Retrieve a list of fulfillment orders that match the criteria you specify.
-
-Its pages: [`list_orders_pages`].*/
+///Retrieve a list of fulfillment orders that match the criteria you specify.
+///
+///Its pages: [`list_orders_pages`].
 pub async fn list_orders(
     client: &Client,
     params: ListOrdersParams,

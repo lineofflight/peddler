@@ -25,9 +25,9 @@ impl GetRemittanceParams {
         }
     }
 }
-/**Returns detailed line items for a specific remittance. Results are paginated.
-
-Its pages: [`get_remittance_pages`].*/
+///Returns detailed line items for a specific remittance. Results are paginated.
+///
+///Its pages: [`get_remittance_pages`].
 pub async fn get_remittance(
     client: &Client,
     params: GetRemittanceParams,
@@ -102,9 +102,9 @@ impl GetRemittanceHeadersParams {
         }
     }
 }
-/**Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are paginated.
-
-Its pages: [`get_remittance_headers_pages`].*/
+///Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are paginated.
+///
+///Its pages: [`get_remittance_headers_pages`].
 pub async fn get_remittance_headers(
     client: &Client,
     params: GetRemittanceHeadersParams,

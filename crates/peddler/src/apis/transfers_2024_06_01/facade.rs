@@ -10,9 +10,9 @@ use crate::operation::{self, DecodeError, TypedResponse};
 pub struct GetPaymentMethodsParams {
     ///The identifier of the Amazon store from which you want to retrieve payment methods. For the list of store identifiers, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
-    /**A comma-separated list of the payment method types you want to include in the response.
-
-Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.*/
+    ///A comma-separated list of the payment method types you want to include in the response.
+    ///
+    ///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
     pub payment_method_types: Option<Vec<String>>,
 }
 impl GetPaymentMethodsParams {
@@ -113,9 +113,9 @@ impl Default for ListExpectedPayoutsParams {
         Self::new()
     }
 }
-/**Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified parameters.
-
-Its pages: [`list_expected_payouts_pages`].*/
+///Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified parameters.
+///
+///Its pages: [`list_expected_payouts_pages`].
 pub async fn list_expected_payouts(
     client: &Client,
     params: ListExpectedPayoutsParams,
@@ -195,9 +195,9 @@ impl Default for ListPayoutsParams {
         Self::new()
     }
 }
-/**Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`, `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the response includes payouts for all available marketplaces and account types. Results are grouped by the seller's account groups. Within each account group results are sorted by their creation date, with the most recent appearing first.
-
-Its pages: [`list_payouts_pages`].*/
+///Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`, `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the response includes payouts for all available marketplaces and account types. Results are grouped by the seller's account groups. Within each account group results are sorted by their creation date, with the most recent appearing first.
+///
+///Its pages: [`list_payouts_pages`].
 pub async fn list_payouts(
     client: &Client,
     params: ListPayoutsParams,

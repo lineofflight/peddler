@@ -48,9 +48,9 @@ pub struct ListReturnsParams {
     pub return_location_id: Option<String>,
     ///The RMA ID of the return items you want to list.
     pub rma_id: Option<String>,
-    /**The status of return items you want to list. You can retrieve all new return items with the `CREATED` status.
-
-Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.*/
+    ///The status of return items you want to list. You can retrieve all new return items with the `CREATED` status.
+    ///
+    ///Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
     pub status: Option<String>,
     ///The reverse tracking ID of the return items you want to list.
     pub reverse_tracking_id: Option<String>,
@@ -66,11 +66,11 @@ Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_O
     pub last_updated_after: Option<String>,
     ///DEPRECATED. Use the `createdUntil` parameter.
     pub last_updated_before: Option<String>,
-    /**The number of return items you want to include in the response.
-
-**Default:** 10
-
-**Maximum:** 100*/
+    ///The number of return items you want to include in the response.
+    ///
+    ///**Default:** 10
+    ///
+    ///**Maximum:** 100
     pub max_results: Option<i64>,
     ///A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
@@ -99,9 +99,9 @@ impl Default for ListReturnsParams {
         Self::new()
     }
 }
-/**Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
-
-Its pages: [`list_returns_pages`].*/
+///Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
+///
+///Its pages: [`list_returns_pages`].
 pub async fn list_returns(
     client: &Client,
     params: ListReturnsParams,

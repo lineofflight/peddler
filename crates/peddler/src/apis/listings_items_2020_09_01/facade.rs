@@ -28,9 +28,9 @@ impl DeleteListingsItemParams {
         }
     }
 }
-/**Delete a listings item for a selling partner.
-
-**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Delete a listings item for a selling partner.
+///
+///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
@@ -91,9 +91,9 @@ impl<B> PatchListingsItemParams<B> {
         }
     }
 }
-/**Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
-
-**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+///
+///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn patch_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PatchListingsItemParams<B>,
@@ -154,9 +154,9 @@ impl<B> PutListingsItemParams<B> {
         }
     }
 }
-/**Creates a new or fully-updates an existing listings item for a selling partner.
-
-**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Creates a new or fully-updates an existing listings item for a selling partner.
+///
+///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,

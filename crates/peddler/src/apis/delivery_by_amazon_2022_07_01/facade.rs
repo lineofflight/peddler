@@ -16,13 +16,13 @@ pub struct GetInvoiceStatusParams {
     pub invoice_id: Option<String>,
     ///The Amazon store identifier.
     pub marketplace_id: String,
-    /**The invoice's type.
-
-Known values: `Outbound`.*/
+    ///The invoice's type.
+    ///
+    ///Known values: `Outbound`.
     pub invoice_type: String,
-    /**The Amazon program that seller is currently enrolled.
-
-Known values: `EasyShip`, `FbaOnSite`, `SelfShip`.*/
+    ///The Amazon program that seller is currently enrolled.
+    ///
+    ///Known values: `EasyShip`, `FbaOnSite`, `SelfShip`.
     pub program_type: String,
 }
 impl GetInvoiceStatusParams {

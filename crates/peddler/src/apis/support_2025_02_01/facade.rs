@@ -53,9 +53,9 @@ impl<B> ListCasesParams<B> {
         Self { body }
     }
 }
-/**Retrieve support cases for a selling partner.
-
-Its pages: [`list_cases_pages`].*/
+///Retrieve support cases for a selling partner.
+///
+///Its pages: [`list_cases_pages`].
 pub async fn list_cases<B: serde::Serialize>(
     client: &Client,
     params: ListCasesParams<B>,
@@ -112,9 +112,9 @@ pub struct ListContactsParams {
     pub max_results: Option<i32>,
     ///A token to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
-    /**Sort the returned contacts by `createdDate` in either ascending or descending order.
-
-Known values: `ASC`, `DESC`.*/
+    ///Sort the returned contacts by `createdDate` in either ascending or descending order.
+    ///
+    ///Known values: `ASC`, `DESC`.
     #[serde(default = "list_contacts_sort_order_default")]
     pub sort_order: Option<String>,
 }
@@ -129,9 +129,9 @@ impl ListContactsParams {
         }
     }
 }
-/**Retrieve contacts for a specific support case.
-
-Its pages: [`list_contacts_pages`].*/
+///Retrieve contacts for a specific support case.
+///
+///Its pages: [`list_contacts_pages`].
 pub async fn list_contacts(
     client: &Client,
     params: ListContactsParams,

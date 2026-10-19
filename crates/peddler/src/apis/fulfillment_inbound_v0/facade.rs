@@ -47,19 +47,19 @@ pub async fn get_bill_of_lading(
 pub struct GetLabelsParams {
     ///A shipment identifier originally returned by the createInboundShipmentPlan operation.
     pub shipment_id: String,
-    /**The page type to use to print the labels. Submitting a PageType value that is not supported in your marketplace returns an error.
-
-Known values: `PackageLabel_Letter_2`, `PackageLabel_Letter_4`, `PackageLabel_Letter_6`, `PackageLabel_Letter_6_CarrierLeft`, `PackageLabel_A4_2`, `PackageLabel_A4_4`, `PackageLabel_Plain_Paper`, `PackageLabel_Plain_Paper_CarrierBottom`, `PackageLabel_Thermal`, `PackageLabel_Thermal_Unified`, `PackageLabel_Thermal_NonPCP`, `PackageLabel_Thermal_No_Carrier_Rotation`.*/
+    ///The page type to use to print the labels. Submitting a PageType value that is not supported in your marketplace returns an error.
+    ///
+    ///Known values: `PackageLabel_Letter_2`, `PackageLabel_Letter_4`, `PackageLabel_Letter_6`, `PackageLabel_Letter_6_CarrierLeft`, `PackageLabel_A4_2`, `PackageLabel_A4_4`, `PackageLabel_Plain_Paper`, `PackageLabel_Plain_Paper_CarrierBottom`, `PackageLabel_Thermal`, `PackageLabel_Thermal_Unified`, `PackageLabel_Thermal_NonPCP`, `PackageLabel_Thermal_No_Carrier_Rotation`.
     pub page_type: String,
-    /**The type of labels requested.
-
-Known values: `BARCODE_2D`, `UNIQUE`, `PALLET`.*/
+    ///The type of labels requested.
+    ///
+    ///Known values: `BARCODE_2D`, `UNIQUE`, `PALLET`.
     pub label_type: String,
     ///The number of packages in the shipment.
     pub number_of_packages: Option<i64>,
-    /**A list of identifiers that specify packages for which you want package labels printed.
-
-If you provide box content information with the [FBA Inbound Shipment Carton Information Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed), then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the `boxID` values from the [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.*/
+    ///A list of identifiers that specify packages for which you want package labels printed.
+    ///
+    ///If you provide box content information with the [FBA Inbound Shipment Carton Information Feed](https://developer-docs.amazon.com/sp-api/docs/fulfillment-by-amazon-feed-type-values#fba-inbound-shipment-carton-information-feed), then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the `boxID` values from the [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
     pub package_labels_to_print: Option<Vec<String>>,
     ///The number of pallets in the shipment. This returns four identical labels for each pallet.
     pub number_of_pallets: Option<i64>,
@@ -130,13 +130,13 @@ pub async fn get_labels(
 pub struct GetPrepInstructionsParams {
     ///The country code of the country to which the items will be shipped. Note that labeling requirements and item preparation instructions can vary by country.
     pub ship_to_country_code: String,
-    /**A list of SellerSKU values. Used to identify items for which you want labeling requirements and item preparation instructions for shipment to Amazon's fulfillment network. The SellerSKU is qualified by the Seller ID, which is included with every call to the Seller Partner API.
-
-Note: Include seller SKUs that you have used to list items on Amazon's retail website. If you include a seller SKU that you have never used to list an item on Amazon's retail website, the seller SKU is returned in the InvalidSKUList property in the response.*/
+    ///A list of SellerSKU values. Used to identify items for which you want labeling requirements and item preparation instructions for shipment to Amazon's fulfillment network. The SellerSKU is qualified by the Seller ID, which is included with every call to the Seller Partner API.
+    ///
+    ///Note: Include seller SKUs that you have used to list items on Amazon's retail website. If you include a seller SKU that you have never used to list an item on Amazon's retail website, the seller SKU is returned in the InvalidSKUList property in the response.
     pub seller_sku_list: Option<Vec<String>>,
-    /**A list of ASIN values. Used to identify items for which you want item preparation instructions to help with item sourcing decisions.
-
-Note: ASINs must be included in the product catalog for at least one of the marketplaces that the seller  participates in. Any ASIN that is not included in the product catalog for at least one of the marketplaces that the seller participates in is returned in the InvalidASINList property in the response. You can find out which marketplaces a seller participates in by calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.*/
+    ///A list of ASIN values. Used to identify items for which you want item preparation instructions to help with item sourcing decisions.
+    ///
+    ///Note: ASINs must be included in the product catalog for at least one of the marketplaces that the seller  participates in. Any ASIN that is not included in the product catalog for at least one of the marketplaces that the seller participates in is returned in the InvalidASINList property in the response. You can find out which marketplaces a seller participates in by calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
     pub asin_list: Option<Vec<String>>,
 }
 impl GetPrepInstructionsParams {
@@ -182,9 +182,9 @@ pub struct GetShipmentItemsParams {
     pub last_updated_after: Option<String>,
     ///A date used for selecting inbound shipment items that were last updated before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
     pub last_updated_before: Option<String>,
-    /**Indicates whether items are returned using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items specified in a previous request.
-
-Known values: `DATE_RANGE`, `NEXT_TOKEN`.*/
+    ///Indicates whether items are returned using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or using NextToken, which continues returning items specified in a previous request.
+    ///
+    ///Known values: `DATE_RANGE`, `NEXT_TOKEN`.
     pub query_type: String,
     ///A string token returned in the response to your previous request.
     pub next_token: Option<String>,
@@ -203,9 +203,9 @@ impl GetShipmentItemsParams {
         }
     }
 }
-/**Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
-
-Its pages: [`get_shipment_items_pages`].*/
+///Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified time frame.
+///
+///Its pages: [`get_shipment_items_pages`].
 pub async fn get_shipment_items(
     client: &Client,
     params: GetShipmentItemsParams,
@@ -305,9 +305,9 @@ pub async fn get_shipment_items_by_shipment_id(
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentsParams {
-    /**A list of ShipmentStatus values. Used to select shipments with a current status that matches the status values that you specify.
-
-Known values: `WORKING`, `READY_TO_SHIP`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`.*/
+    ///A list of ShipmentStatus values. Used to select shipments with a current status that matches the status values that you specify.
+    ///
+    ///Known values: `WORKING`, `READY_TO_SHIP`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`.
     pub shipment_status_list: Option<Vec<String>>,
     ///A list of shipment IDs used to select the shipments that you want. If both ShipmentStatusList and ShipmentIdList are specified, only shipments that match both parameters are returned.
     pub shipment_id_list: Option<Vec<String>>,
@@ -315,9 +315,9 @@ Known values: `WORKING`, `READY_TO_SHIP`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `
     pub last_updated_after: Option<String>,
     ///A date used for selecting inbound shipments that were last updated before (or at) a specified time. The selection includes updates made by Amazon and by the seller.
     pub last_updated_before: Option<String>,
-    /**Indicates whether shipments are returned using shipment information (by providing the ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous request.
-
-Known values: `SHIPMENT`, `DATE_RANGE`, `NEXT_TOKEN`.*/
+    ///Indicates whether shipments are returned using shipment information (by providing the ShipmentStatusList or ShipmentIdList parameters), using a date range (by providing the LastUpdatedAfter and LastUpdatedBefore parameters), or by using NextToken to continue returning items specified in a previous request.
+    ///
+    ///Known values: `SHIPMENT`, `DATE_RANGE`, `NEXT_TOKEN`.
     pub query_type: String,
     ///A string token returned in the response to your previous request.
     pub next_token: Option<String>,
@@ -338,9 +338,9 @@ impl GetShipmentsParams {
         }
     }
 }
-/**Returns a list of inbound shipments based on criteria that you specify.
-
-Its pages: [`get_shipments_pages`].*/
+///Returns a list of inbound shipments based on criteria that you specify.
+///
+///Its pages: [`get_shipments_pages`].
 pub async fn get_shipments(
     client: &Client,
     params: GetShipmentsParams,

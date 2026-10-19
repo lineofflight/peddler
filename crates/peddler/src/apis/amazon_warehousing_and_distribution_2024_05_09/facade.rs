@@ -160,8 +160,8 @@ impl ConfirmReplenishmentOrderParams {
         Self { order_id }
     }
 }
-/**Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed to be replenished to an FBA node.
-Order can only be confirmed in ELIGIBLE state.*/
+///Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed to be replenished to an FBA node.
+///Order can only be confirmed in ELIGIBLE state.
 pub async fn confirm_replenishment_order(
     client: &Client,
     params: ConfirmReplenishmentOrderParams,
@@ -262,9 +262,9 @@ impl<B> CreateReplenishmentOrderParams<B> {
         Self { body }
     }
 }
-/**Creates an AWD replenishment order with given products to replenish.
-The API will return the order ID of the newly created order and also start an async validation check on the products to e.
-The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check*/
+///Creates an AWD replenishment order with given products to replenish.
+///The API will return the order ID of the newly created order and also start an async validation check on the products to e.
+///The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check
 pub async fn create_replenishment_order<B: serde::Serialize>(
     client: &Client,
     params: CreateReplenishmentOrderParams<B>,
@@ -325,9 +325,9 @@ pub async fn get_inbound(
 pub struct GetInboundShipmentParams {
     ///ID for the shipment. A shipment contains the cases being inbounded.
     pub shipment_id: String,
-    /**If equal to `SHOW`, the response includes the shipment SKU quantity details.
-
-Defaults to `HIDE`, in which case the response does not contain SKU quantities*/
+    ///If equal to `SHOW`, the response includes the shipment SKU quantity details.
+    ///
+    ///Defaults to `HIDE`, in which case the response does not contain SKU quantities
     pub sku_quantities: Option<String>,
 }
 impl GetInboundShipmentParams {
@@ -528,15 +528,15 @@ fn list_inbound_shipments_max_results_default() -> Option<i32> {
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundShipmentsParams {
-    /**Field to sort results by. By default, the response will be sorted by UPDATED_AT.
-
-Known values: `UPDATED_AT`, `CREATED_AT`.*/
+    ///Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+    ///
+    ///Known values: `UPDATED_AT`, `CREATED_AT`.
     pub sort_by: Option<String>,
     ///Sort the response in ASCENDING or DESCENDING order. By default, the response will be sorted in DESCENDING order.
     pub sort_order: Option<String>,
-    /**Filter by inbound shipment status.
-
-Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.*/
+    ///Filter by inbound shipment status.
+    ///
+    ///Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.
     pub shipment_status: Option<String>,
     ///List the inbound shipments that were updated after a certain time (inclusive). The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub updated_after: Option<String>,
@@ -567,9 +567,9 @@ impl Default for ListInboundShipmentsParams {
         Self::new()
     }
 }
-/**Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply optional filters.
-
-Its pages: [`list_inbound_shipments_pages`].*/
+///Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply optional filters.
+///
+///Its pages: [`list_inbound_shipments_pages`].
 pub async fn list_inbound_shipments(
     client: &Client,
     params: ListInboundShipmentsParams,
@@ -654,9 +654,9 @@ impl Default for ListInventoryParams {
         Self::new()
     }
 }
-/**Lists AWD inventory associated with a merchant with the ability to apply optional filters.
-
-Its pages: [`list_inventory_pages`].*/
+///Lists AWD inventory associated with a merchant with the ability to apply optional filters.
+///
+///Its pages: [`list_inventory_pages`].
 pub async fn list_inventory(
     client: &Client,
     params: ListInventoryParams,
@@ -739,9 +739,9 @@ impl Default for ListOutboundsParams {
         Self::new()
     }
 }
-/**Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are sorted by the `updatedAt` attribute in descending order.
-
-Its pages: [`list_outbounds_pages`].*/
+///Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are sorted by the `updatedAt` attribute in descending order.
+///
+///Its pages: [`list_outbounds_pages`].
 pub async fn list_outbounds(
     client: &Client,
     params: ListOutboundsParams,
@@ -795,11 +795,11 @@ fn list_replenishment_orders_max_results_default() -> Option<i32> {
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListReplenishmentOrdersParams {
-    /**Get the replenishment orders updated after certain time (Inclusive)
-Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.*/
+    ///Get the replenishment orders updated after certain time (Inclusive)
+    ///Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
     pub updated_after: Option<String>,
-    /**Get the replenishment orders updated before certain time (Inclusive)
-Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.*/
+    ///Get the replenishment orders updated before certain time (Inclusive)
+    ///Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.
     pub updated_before: Option<String>,
     ///Sort the response in ASCENDING or DESCENDING order. The default sort order is DESCENDING.
     pub sort_order: Option<String>,
@@ -826,10 +826,10 @@ impl Default for ListReplenishmentOrdersParams {
         Self::new()
     }
 }
-/**Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
-API by default will sort orders by updatedAt attribute in descending order.
-
-Its pages: [`list_replenishment_orders_pages`].*/
+///Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
+///API by default will sort orders by updatedAt attribute in descending order.
+///
+///Its pages: [`list_replenishment_orders_pages`].
 pub async fn list_replenishment_orders(
     client: &Client,
     params: ListReplenishmentOrdersParams,

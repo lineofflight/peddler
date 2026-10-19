@@ -12,9 +12,9 @@ pub struct GetVehiclesParams {
     pub page_token: Option<String>,
     ///An identifier for the marketplace in which the resource operates.
     pub marketplace_id: String,
-    /**An identifier for vehicle type.
-
-Known values: `CAR`, `MOTORBIKE`.*/
+    ///An identifier for vehicle type.
+    ///
+    ///Known values: `CAR`, `MOTORBIKE`.
     pub vehicle_type: String,
     ///Date in ISO 8601 format, if provided only vehicles which are modified/added to Amazon's catalog after this date will be returned.
     pub updated_after: Option<String>,
@@ -30,9 +30,9 @@ impl GetVehiclesParams {
         }
     }
 }
-/**Get the latest collection of vehicles
-
-Its pages: [`get_vehicles_pages`].*/
+///Get the latest collection of vehicles
+///
+///Its pages: [`get_vehicles_pages`].
 pub async fn get_vehicles(
     client: &Client,
     params: GetVehiclesParams,

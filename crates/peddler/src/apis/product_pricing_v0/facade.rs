@@ -31,9 +31,9 @@ impl GetCompetitivePricingParams {
         }
     }
 }
-/**Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
-
-**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+///
+///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_competitive_pricing(
     client: &Client,
     params: GetCompetitivePricingParams,
@@ -172,9 +172,9 @@ impl GetListingOffersParams {
         }
     }
 }
-/**Returns the lowest priced offers for a single SKU listing.
-
-**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Returns the lowest priced offers for a single SKU listing.
+///
+///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_listing_offers(
     client: &Client,
     params: GetListingOffersParams,
@@ -264,9 +264,9 @@ impl GetPricingParams {
         }
     }
 }
-/**Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
-
-**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).*/
+///Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+///
+///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_pricing(
     client: &Client,
     params: GetPricingParams,

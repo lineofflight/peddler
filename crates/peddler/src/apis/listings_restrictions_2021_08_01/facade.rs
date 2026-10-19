@@ -10,9 +10,9 @@ use crate::operation::{self, DecodeError, TypedResponse};
 pub struct GetListingsRestrictionsParams {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
-    /**The condition used to filter restrictions.
-
-Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.*/
+    ///The condition used to filter restrictions.
+    ///
+    ///Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.
     pub condition_type: Option<String>,
     ///A selling partner identifier, such as a merchant account.
     pub seller_id: String,

@@ -432,9 +432,9 @@ impl ListAccountTransactionsParams {
         }
     }
 }
-/**Retrieve a list of transactions for a given Seller Wallet bank account.
-
-Its pages: [`list_account_transactions_pages`].*/
+///Retrieve a list of transactions for a given Seller Wallet bank account.
+///
+///Its pages: [`list_account_transactions_pages`].
 pub async fn list_account_transactions(
     client: &Client,
     params: ListAccountTransactionsParams,
@@ -533,9 +533,9 @@ impl ListTransferSchedulesParams {
         }
     }
 }
-/**Retrieve transfer schedules of a Seller Wallet bank account.
-
-Its pages: [`list_transfer_schedules_pages`].*/
+///Retrieve transfer schedules of a Seller Wallet bank account.
+///
+///Its pages: [`list_transfer_schedules_pages`].
 pub async fn list_transfer_schedules(
     client: &Client,
     params: ListTransferSchedulesParams,

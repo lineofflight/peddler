@@ -210,8 +210,8 @@ impl GetInvoiceParams {
         }
     }
 }
-/**Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer to the response definition to get all the possible attributes.
-To get the full invoice, use the `createInvoicesExport` operation to start an export request.*/
+///Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer to the response definition to get all the possible attributes.
+///To get the full invoice, use the `createInvoicesExport` operation to start an export request.
 pub async fn get_invoice(
     client: &Client,
     params: GetInvoiceParams,
@@ -243,11 +243,11 @@ pub async fn get_invoice(
 pub struct GetInvoicesParams {
     ///The name of the transaction identifier filter. If you provide a value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
     pub transaction_identifier_name: Option<String>,
-    /**The maximum number of invoices you want to return in a single call.
-
-Minimum: 1
-
-Maximum: 200*/
+    ///The maximum number of invoices you want to return in a single call.
+    ///
+    ///Minimum: 1
+    ///
+    ///Maximum: 200
     pub page_size: Option<i64>,
     ///The latest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the current date-time.
     pub date_end: Option<String>,
@@ -263,21 +263,21 @@ Maximum: 200*/
     pub series: Option<String>,
     ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
-    /**Sort the invoices in the response in ascending or descending order.
-
-Known values: `DESC`, `ASC`.*/
+    ///Sort the invoices in the response in ascending or descending order.
+    ///
+    ///Known values: `DESC`, `ASC`.
     pub sort_order: Option<String>,
     ///The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
     pub invoice_type: Option<String>,
-    /**A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
-
-Min count: 1*/
+    ///A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
+    ///
+    ///Min count: 1
     pub statuses: Option<Vec<String>>,
     ///Return invoices that match this external ID. This is typically the Government Invoice ID.
     pub external_invoice_id: Option<String>,
-    /**The attribute by which you want to sort the invoices in the response.
-
-Known values: `START_DATE_TIME`.*/
+    ///The attribute by which you want to sort the invoices in the response.
+    ///
+    ///Known values: `START_DATE_TIME`.
     pub sort_by: Option<String>,
     ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
@@ -304,9 +304,9 @@ impl GetInvoicesParams {
         }
     }
 }
-/**Returns invoice details for the invoices that match the filters that you specify.
-
-Its pages: [`get_invoices_pages`].*/
+///Returns invoice details for the invoices that match the filters that you specify.
+///
+///Its pages: [`get_invoices_pages`].
 pub async fn get_invoices(
     client: &Client,
     params: GetInvoicesParams,
@@ -511,17 +511,17 @@ pub struct GetInvoicesExportsParams {
     pub date_start: Option<String>,
     ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
-    /**The maximum number of invoices to return in a single call.
-
-Minimum: 1
-
-Maximum: 100*/
+    ///The maximum number of invoices to return in a single call.
+    ///
+    ///Minimum: 1
+    ///
+    ///Maximum: 100
     pub page_size: Option<i64>,
     ///The latest export creation date and time for exports that you want to include in the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default value is the time of the request.
     pub date_end: Option<String>,
-    /**Return exports matching the status specified.
-
-Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`.*/
+    ///Return exports matching the status specified.
+    ///
+    ///Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`.
     pub status: Option<String>,
     ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
@@ -540,9 +540,9 @@ impl GetInvoicesExportsParams {
         }
     }
 }
-/**Returns invoice exports details for exports that match the filters that you specify.
-
-Its pages: [`get_invoices_exports_pages`].*/
+///Returns invoice exports details for exports that match the filters that you specify.
+///
+///Its pages: [`get_invoices_exports_pages`].
 pub async fn get_invoices_exports(
     client: &Client,
     params: GetInvoicesExportsParams,
