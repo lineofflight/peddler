@@ -103,10 +103,20 @@ jobs:
   cross-gem:
     # rb-sys-dock builds every platform inside rb-sys containers on Linux; the
     # fat gem carries Ruby 3.3, 3.4 and 4.0 binaries under lib/peddler/<minor>/.
+    # "arm-linux" is 32-bit ARM with hardware floating point, for glibc.
     strategy:
       fail-fast: false
       matrix:
-        platform: [arm64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux]
+        platform:
+          - arm64-darwin
+          - x86_64-darwin
+          - aarch64-linux
+          - x86_64-linux
+          - aarch64-linux-musl
+          - x86_64-linux-musl
+          - arm-linux
+          - arm-linux-musl
+          - x64-mingw-ucrt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -151,14 +161,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [arm64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux]
+        platform: [arm64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux, x64-mingw-ucrt]
         ruby: ["3.3", "3.4", "4.0"]
         include:
           - { platform: arm64-darwin, runner: macos-15 }
           - { platform: x86_64-darwin, runner: macos-15-intel }
           - { platform: aarch64-linux, runner: ubuntu-22.04-arm }
           - { platform: x86_64-linux, runner: ubuntu-22.04 }
+          # RubyInstaller's Rubies, which are built with UCRT
+          - { platform: x64-mingw-ucrt, runner: windows-latest }
     runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
@@ -177,3 +192,36 @@ jobs:
           cd "$RUNNER_TEMP"
           PATH="$ruby_dir:/usr/bin:/bin" gem install --no-document "$gem_file"
           PATH="$ruby_dir:/usr/bin:/bin" ruby "$script" --binary
+
+  # musl and 32-bit ARM Linux have no runner of their own. Each gem is installed and smoke tested in the official
+  # Ruby image of its platform, which has no Rust: Alpine for musl, Debian for glibc. 32-bit ARM runs under QEMU.
+  # The image keeps the bigdecimal that ships with its Ruby on the gem path, built: Alpine has no compiler to build
+  # another.
+  smoke-container:
+    needs: cross-gem
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [aarch64-linux-musl, x86_64-linux-musl, arm-linux, arm-linux-musl]
+        ruby: ["3.3", "3.4", "4.0"]
+        include:
+          - { platform: aarch64-linux-musl, runner: ubuntu-24.04-arm, image: alpine, docker: linux/arm64 }
+          - { platform: x86_64-linux-musl, runner: ubuntu-24.04, image: alpine, docker: linux/amd64 }
+          - { platform: arm-linux, runner: ubuntu-24.04, image: slim, docker: linux/arm/v7 }
+          - { platform: arm-linux-musl, runner: ubuntu-24.04, image: alpine, docker: linux/arm/v7 }
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+        if: matrix.docker == 'linux/arm/v7'
+        with:
+          platforms: arm
+      - uses: actions/download-artifact@v5
+        with:
+          name: gem-${{ matrix.platform }}
+          path: gems
+      - name: Install the platform gem and smoke test it in a Ruby image without Rust
+        run: >-
+          docker run --rm --platform ${{ matrix.docker }} --volume "$PWD:/work:ro" --workdir /tmp
+          ruby:${{ matrix.ruby }}-${{ matrix.image }}
+          sh -c 'gem install --no-document /work/gems/peddler-*.gem && ruby /work/tools/native_smoke.rb --binary'
