@@ -1,12 +1,13 @@
 //! The docs of the generated Rust. Most are spec text, which rustdoc must read as the text
 //! it is, whatever it holds. Amazon's links to its docs are full URLs, as in Ruby.
+use crate::GenerationError;
 use proc_macro2::{Delimiter, Group, TokenStream, TokenTree};
 use pulldown_cmark::{CodeBlockKind, Event, Options, Parser, Tag};
 
 /// Every doc of a source as a `///` line for each of its lines. Of a doc of several
 /// lines the formatter writes 1 block comment, and in a block comment rustc drops the `*`
 /// that starts each line after the first when they all start with one.
-pub(crate) fn lines(tokens: TokenStream) -> TokenStream {
+pub(crate) fn lines(tokens: TokenStream) -> Result<TokenStream, GenerationError> {
     let tokens: Vec<TokenTree> = tokens.into_iter().collect();
     let mut output = TokenStream::new();
     let mut i = 0;
@@ -18,14 +19,14 @@ pub(crate) fn lines(tokens: TokenStream) -> TokenStream {
             i += 2;
         }
         if !docs.is_empty() {
-            for line in split(&docs.join("\n")) {
+            for line in split(&docs.join("\n"))? {
                 output.extend(quote::quote!(#[doc = #line]));
             }
             continue;
         }
         output.extend([match &tokens[i] {
             TokenTree::Group(group) => {
-                let mut copy = Group::new(group.delimiter(), lines(group.stream()));
+                let mut copy = Group::new(group.delimiter(), lines(group.stream())?);
                 copy.set_span(group.span());
                 TokenTree::Group(copy)
             }
@@ -33,7 +34,7 @@ pub(crate) fn lines(tokens: TokenStream) -> TokenStream {
         }]);
         i += 1;
     }
-    output
+    Ok(output)
 }
 
 /// The text of the outer doc attribute that `tokens` start with: `#` and `[doc = "..."]`.
@@ -58,7 +59,7 @@ fn doc(tokens: &[TokenTree]) -> Option<String> {
 /// The text is what rustdoc reads: without the whitespace every line starts with, and
 /// with a line feed for each line break, as Rust refuses a carriage return in a doc
 /// comment.
-fn split(text: &str) -> Vec<String> {
+fn split(text: &str) -> Result<Vec<String>, GenerationError> {
     let text = text.replace("\r\n", "\n").replace('\r', "\n");
     let lines: Vec<&str> = text.split('\n').collect();
     let blank = |line: &str| line.trim().is_empty();
@@ -70,26 +71,28 @@ fn split(text: &str) -> Vec<String> {
         .map(|line| line.get(common..).unwrap_or_default());
     let text = inert(&crate::docs::doc_links(
         &lines.collect::<Vec<_>>().join("\n"),
-    ));
+    ))?;
     let lines = text.split('\n').map(|line| match blank(line) {
         true => String::new(),
         false => format!(" {line}"),
     });
-    lines.collect()
+    Ok(lines.collect())
 }
+
+/// The Markdown rustdoc reads.
+const OPTIONS: Options = Options::ENABLE_TABLES
+    .union(Options::ENABLE_FOOTNOTES)
+    .union(Options::ENABLE_STRIKETHROUGH)
+    .union(Options::ENABLE_TASKLISTS)
+    .union(Options::ENABLE_SMART_PUNCTUATION);
 
 /// A doc whose code blocks rustdoc won't compile and run as doctests: a fenced one is
 /// marked `text`, and an indented one is fenced as `text`. The parser is rustdoc's, so
 /// the blocks are the ones it finds. An indented block's lines keep their indent.
-fn inert(text: &str) -> String {
+fn inert(text: &str) -> Result<String, GenerationError> {
     // Where to put what, from the end back so that each place is still where it was.
     let mut edits: Vec<(std::ops::Range<usize>, String)> = Vec::new();
-    let options = Options::ENABLE_TABLES
-        | Options::ENABLE_FOOTNOTES
-        | Options::ENABLE_STRIKETHROUGH
-        | Options::ENABLE_TASKLISTS
-        | Options::ENABLE_SMART_PUNCTUATION;
-    for (event, range) in Parser::new_ext(text, options).into_offset_iter() {
+    for (event, range) in Parser::new_ext(text, OPTIONS).into_offset_iter() {
         let Event::Start(Tag::CodeBlock(kind)) = event else {
             continue;
         };
@@ -106,10 +109,14 @@ fn inert(text: &str) -> String {
                     - text[range.start..end].trim_start_matches(fence).len();
                 edits.push((range.start + run..end, "text".into()));
             }
-            // The fences stand where the block's container does: before its 4 columns of
-            // indent, and with a list's marker as spaces on the lines after the first.
+            // The fences stand where the block's container does, before its 4 columns of
+            // indent. The opening one takes the first line's place in front of the block,
+            // a list's marker with it: the block's lines go on after it with the marker
+            // as spaces, as do the lines after the first already.
             CodeBlockKind::Indented => {
-                let opening = outdent(&text[start..range.start]);
+                let prefix = &text[start..range.start];
+                let opening = outdent(prefix);
+                let indent = &prefix[opening.len()..];
                 let rest: String = opening
                     .chars()
                     .map(|c| {
@@ -126,7 +133,10 @@ fn inert(text: &str) -> String {
                     format!("\n{rest}```")
                 };
                 edits.push((range.end..range.end, close));
-                edits.push((start..start, format!("{opening}```text\n")));
+                edits.push((
+                    start..range.start,
+                    format!("{opening}```text\n{rest}{indent}"),
+                ));
             }
         }
     }
@@ -135,7 +145,23 @@ fn inert(text: &str) -> String {
     for (range, replacement) in edits {
         text.replace_range(range, &replacement);
     }
-    text
+    // What the parser finds in the result is the proof: a doc that would still run is
+    // refused, and none is written.
+    if runs(&text) {
+        return Err(GenerationError(format!(
+            "a doc holds a code block that can't be made text: {text:?}"
+        )));
+    }
+    Ok(text)
+}
+
+/// Whether the parser finds a code block in a doc that isn't marked `text`.
+fn runs(text: &str) -> bool {
+    Parser::new_ext(text, OPTIONS).any(|event| match event {
+        Event::Start(Tag::CodeBlock(CodeBlockKind::Fenced(info))) => info.as_ref() != "text",
+        Event::Start(Tag::CodeBlock(CodeBlockKind::Indented)) => true,
+        _ => false,
+    })
 }
 
 /// What stands before an indented code block on its line, less the 4 columns of indent
@@ -230,7 +256,7 @@ mod tests {
     }
 
     /// Each kind of code block rustdoc would run, and where it stands.
-    const PLANTED: [&str; 10] = [
+    const PLANTED: [&str; 13] = [
         "Fenced:\n\n```\npanic!(\"a spec ran\");\n```",
         "Fenced as Rust:\n\n```rust\npanic!(\"a spec ran\");\n```\nAfter.",
         "With tildes:\n\n~~~\npanic!(\"a spec ran\");\n~~~",
@@ -241,6 +267,9 @@ mod tests {
         "> Indented in a quote:\n>\n>     panic!(\"a spec ran\");\n> After.",
         "# Indented after a heading\n    panic!(\"a spec ran\");",
         "Indented at the end:\n\n\tpanic!(\"a spec ran\");",
+        "Indented in a list item of its own:\n\n-     panic!(\"a spec ran\");",
+        "Indented in a numbered one:\n\n1.     panic!(\"a spec ran\");\n\n       panic!(\"a spec ran\");",
+        "Indented in a quote's list:\n\n> -     panic!(\"a spec ran\");",
     ];
 
     /// What rustdoc's doctests of a source say, and whether they pass.
@@ -270,7 +299,7 @@ mod tests {
         // As the spec has it, each block runs and fails.
         let (passed, output) = doctests(&source);
         assert!(!passed, "{output}");
-        assert!(output.contains("10 failed"), "{output}");
+        assert!(output.contains("13 failed"), "{output}");
         // As the crate has it, none runs.
         let formatted = format(&source);
         let (passed, output) = doctests(&formatted);
@@ -313,13 +342,38 @@ mod tests {
                 PLANTED[9],
                 "Indented at the end:\n\n```text\n\tpanic!(\"a spec ran\");\n```",
             ),
+            // A list's marker stays on the fence alone. On a line of its own, it would
+            // start an item whose block runs.
+            (
+                PLANTED[10],
+                "Indented in a list item of its own:\n\n- ```text\n      panic!(\"a spec ran\");\n  ```",
+            ),
+            (
+                PLANTED[11],
+                "Indented in a numbered one:\n\n1. ```text\n       panic!(\"a spec ran\");\n\n       panic!(\"a spec ran\");\n   ```",
+            ),
+            (
+                PLANTED[12],
+                "Indented in a quote's list:\n\n> - ```text\n>       panic!(\"a spec ran\");\n>   ```",
+            ),
             // Inline code and a lazy line are no blocks.
             (
                 "Use ```/orders```.\n\n- ```/a``` or\n    lazy",
                 "Use ```/orders```.\n\n- ```/a``` or\n    lazy",
             ),
         ] {
-            assert_eq!(inert(planted), expected, "{planted:?}");
+            assert_eq!(inert(planted).unwrap(), expected, "{planted:?}");
         }
+    }
+
+    /// The proof `inert` asks of its result: no block that rustdoc would compile.
+    #[test]
+    fn only_a_text_block_is_inert() {
+        for planted in PLANTED {
+            assert!(runs(planted), "{planted:?}");
+            assert!(!runs(&inert(planted).unwrap()), "{planted:?}");
+        }
+        assert!(runs("```json\n{}\n```"));
+        assert!(!runs("```text\nx\n```\n\nUse ```/orders```."));
     }
 }

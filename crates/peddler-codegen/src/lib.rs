@@ -49,7 +49,7 @@ pub(crate) fn format_source(source: &str) -> Result<String, GenerationError> {
         .parse()
         .map_err(|error: proc_macro2::LexError| GenerationError(error.to_string()))?;
     let file: syn::File =
-        syn::parse2(rustdoc::lines(tokens)).map_err(|error| GenerationError(error.to_string()))?;
+        syn::parse2(rustdoc::lines(tokens)?).map_err(|error| GenerationError(error.to_string()))?;
     Ok(prettyplease::unparse(&file))
 }
 
