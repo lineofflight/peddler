@@ -17,6 +17,9 @@
 #   has no copyright line of the crate. That fails here: about.toml has an entry for each such crate.
 # - The toolchain ships the license and copyright notices of the standard library: std, core, alloc and the
 #   crates they bundle. They are copied in, with the toolchain's version. A toolchain without them fails.
+# - The Windows binary also links MinGW-w64's runtime and its winpthreads library statically, from the MinGW-w64
+#   of the rb-sys-dock image. Their notices are kept here, as MinGW-w64 ships them, and follow the standard
+#   library's in the Windows gem. cargo-about covers crates only.
 #
 # The file is stamped with what it was written from. When that is unchanged, the file is left as it is and
 # cargo-about is not needed: the containers that cross-compile have none, so the packaging workflow writes the
@@ -35,6 +38,11 @@ ROOT = File.expand_path("..", __dir__)
 CONFIG = "tools/third_party_licenses/about.toml"
 TEMPLATE = "tools/third_party_licenses/notices.html.erb"
 MANIFEST = "crates/peddler-ruby/Cargo.toml"
+# The notices of what MinGW-w64 7.0.0, in the rb-sys-dock image, links into the Windows binary, by what they cover
+MINGW = {
+  "The MinGW-w64 runtime" => "tools/third_party_licenses/COPYING.MinGW-w64-runtime-v7.0.0.txt",
+  "winpthreads" => "tools/third_party_licenses/winpthreads-COPYING-v7.0.0.txt",
+}.freeze
 # What the notices are written from, beside the toolchain. The manifests are among them: a feature can link
 # another crate without a change to the lockfile.
 INPUTS = [
@@ -46,6 +54,7 @@ INPUTS = [
   TEMPLATE,
   "tools/third_party_licenses.rb",
   "lib/peddler/version.rb",
+  *MINGW.values,
 ].freeze
 # Where a toolchain keeps the notices of the standard library, under its sysroot
 STANDARD_LIBRARY = "share/doc/rust/COPYRIGHT-library.html"
@@ -165,6 +174,7 @@ crates = crates.map do |name, version|
 end
 
 version = File.read(File.join(ROOT, "lib/peddler/version.rb"))[/VERSION = "(.+)"/, 1]
+mingw = platform == "x64-mingw-ucrt" ? MINGW.transform_values { |path| File.read(File.join(ROOT, path)) } : {}
 # Written beside the file and renamed, so that a run that is cut off leaves no half of it.
 draft = "#{output}.#{Process.pid}.tmp"
 File.write(draft, ERB.new(File.read(File.join(ROOT, TEMPLATE)), trim_mode: "-").result(binding))

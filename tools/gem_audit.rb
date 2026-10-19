@@ -18,6 +18,8 @@ BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
 LIBCS = ["gnu", "musl"].freeze
 # The licenses of the crates linked into a binary. See tools/third_party_licenses.rb.
 NOTICES = "THIRD_PARTY_LICENSES.html"
+# A line of each MinGW-w64 notice, its runtime's and winpthreads', which the Windows binary links statically
+MINGW = ["MinGW-w64 runtime licensing", "Copyright (c) 2011 mingw-w64 project"].freeze
 
 # The Ruby that carries inline RBS. An application's Steep reads a gem's sig/ and nothing else, so each of these
 # files ships with the signatures rake rbs:export wrote from it.
@@ -62,6 +64,9 @@ problems = ARGV.flat_map do |path|
     found << "#{path}: platform gem lacks #{NOTICES}" unless notices
     found << "#{path}: #{NOTICES} lists no crate" if notices && !notices.include?('<tr class="crate">')
     found << "#{path}: #{NOTICES} is cut short" if notices && !notices.rstrip.end_with?("</body>\n</html>")
+    if spec.platform.os == "mingw" && notices && !MINGW.all? { |line| notices.include?(line) }
+      found << "#{path}: #{NOTICES} lacks the notices of MinGW-w64"
+    end
     if spec.platform.os == "linux" && !LIBCS.include?(spec.platform.version)
       found << "#{path}: Linux gem is neither -gnu nor -musl (#{spec.platform})"
     end

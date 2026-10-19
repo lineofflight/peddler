@@ -67,6 +67,8 @@ The notices carry each crate's own license file, with its copyright line. cargo-
 
 The notices of the standard library are a document the toolchain ships, `share/doc/rust/COPYRIGHT-library.html`: std, core, alloc and the crates they bundle. The tool copies it in and names the toolchain. A toolchain without it fails the tool.
 
+The Windows binary also links the MinGW-w64 runtime and winpthreads statically, from the MinGW-w64 of the rb-sys-dock image, 7.0.0 today. Their notices are in `tools/third_party_licenses/`, as MinGW-w64 ships them, and the tool adds them to the Windows gem's file; `tools/gem_audit.rb` refuses a Windows gem without them. When the image moves to another MinGW-w64, replace the 2 files with that version's.
+
 The `cross-gem` job writes the notices on the runner, and a container builds the binary with a toolchain of its own. When the 2 differ, the gem task says so in the job's log, and the notices name the runner's toolchain. Read the log on the first run. If they differ, install the container's version on the runner before the notices are written.
 
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
