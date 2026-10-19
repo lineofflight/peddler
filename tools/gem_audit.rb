@@ -34,7 +34,7 @@ def content(path, name)
   Dir.mktmpdir do |dir|
     Gem::Package.new(path).extract_files(dir, name)
     file = File.join(dir, name)
-    File.read(file) if File.file?(file)
+    File.read(file, encoding: Encoding::UTF_8) if File.file?(file)
   end
 end
 

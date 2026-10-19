@@ -27,6 +27,9 @@ require "json"
 require "open3"
 require "rubygems"
 
+# The containers that cross-compile run in the C locale, where Ruby would read the notices as US-ASCII.
+Encoding.default_external = Encoding::UTF_8
+
 CARGO_ABOUT = "0.9.2"
 ROOT = File.expand_path("..", __dir__)
 CONFIG = "tools/third_party_licenses/about.toml"
