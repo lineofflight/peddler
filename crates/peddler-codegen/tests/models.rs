@@ -38,6 +38,18 @@ fn an_enum_of_strings_without_a_type_is_a_string() {
 }
 
 #[test]
+fn a_string_enum_that_holds_null_lists_its_strings() {
+    let output = normalize(json!({"Option": {
+        "type": "string", "enum": ["DEFAULT", null], "description": "The kind."
+    }}));
+    assert!(output["Option"].get("enum").is_none());
+    assert_eq!(
+        output["Option"]["description"],
+        "The kind.\n\nKnown values: `DEFAULT`. Other values may be returned by Amazon."
+    );
+}
+
+#[test]
 fn fields_document_known_values_through_a_ref_and_on_items() {
     let output = normalize(json!({
         "Status": {"type": "string", "enum": ["OPEN", "CLOSED"]},

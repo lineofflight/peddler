@@ -20,7 +20,7 @@ fn normalize_schema(
     definitions: &Map<String, Value>,
 ) -> Result<(), GenerationError> {
     // Fields stay strings, and the values a schema lists for one are documentation.
-    let known = known_values::enum_values(schema, Some(definitions)).to_vec();
+    let mut known = known_values::enum_values(schema, Some(definitions)).to_vec();
     let Some(node) = schema.as_object_mut() else {
         return Ok(());
     };
@@ -78,8 +78,12 @@ fn normalize_schema(
     }
     let description = node.get("description").and_then(Value::as_str);
     let description = description.unwrap_or_default();
-    // An enum of other values stays an enum: no other value can come.
-    let open = known.iter().all(Value::is_string);
+    // An enum of other values stays an enum: no other value can come. A string may be
+    // null, which is no value to list.
+    let open = known
+        .iter()
+        .all(|value| value.is_string() || value.is_null());
+    known.retain(|value| !value.is_null());
     if let Some(sentence) = known_values::sentence(description, &known).filter(|_| open) {
         let documentation =
             format!("{description}\n\n{sentence} Other values may be returned by Amazon.");
