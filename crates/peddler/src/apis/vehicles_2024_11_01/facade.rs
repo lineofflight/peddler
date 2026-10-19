@@ -4,23 +4,23 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_vehicles`] and [`get_vehicles_pages`].
+/// The parameters of [`get_vehicles`] and [`get_vehicles_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetVehiclesParams {
-    ///A token to fetch a certain page when there are multiple pages worth of results.
+    /// A token to fetch a certain page when there are multiple pages worth of results.
     pub page_token: Option<String>,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_id: String,
-    ///An identifier for vehicle type.
+    /// An identifier for vehicle type.
     ///
-    ///Known values: `CAR`, `MOTORBIKE`.
+    /// Known values: `CAR`, `MOTORBIKE`.
     pub vehicle_type: String,
-    ///Date in ISO 8601 format, if provided only vehicles which are modified/added to Amazon's catalog after this date will be returned.
+    /// Date in ISO 8601 format, if provided only vehicles which are modified/added to Amazon's catalog after this date will be returned.
     pub updated_after: Option<String>,
 }
 impl GetVehiclesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, vehicle_type: String) -> Self {
         Self {
             page_token: None,
@@ -30,9 +30,9 @@ impl GetVehiclesParams {
         }
     }
 }
-///Get the latest collection of vehicles
+/// Get the latest collection of vehicles
 ///
-///Its pages: [`get_vehicles_pages`].
+/// Its pages: [`get_vehicles_pages`].
 pub async fn get_vehicles(
     client: &Client,
     params: GetVehiclesParams,
@@ -56,7 +56,7 @@ pub async fn get_vehicles(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_vehicles`].
+/// Each page of [`get_vehicles`].
 pub fn get_vehicles_pages<'a>(
     client: &'a Client,
     params: GetVehiclesParams,

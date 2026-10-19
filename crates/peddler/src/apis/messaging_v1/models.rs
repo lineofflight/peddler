@@ -2,27 +2,27 @@
 // Source: messaging-api-model/messaging.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Represents a file that was uploaded to a destination that was created by the Uploads API [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource) operation.
+/// Represents a file that was uploaded to a destination that was created by the Uploads API [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource) operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Attachment {
-    ///The name of the file, including the extension. This is the file name that will appear in the message. This does not need to match the file name of the file that you uploaded.
+    /// The name of the file, including the extension. This is the file name that will appear in the message. This does not need to match the file name of the file that you uploaded.
     #[serde(rename = "fileName")]
     pub file_name: ::std::string::String,
-    ///The identifier for the upload destination. To retrieve this value, call the Uploads API [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource) operation.
+    /// The identifier for the upload destination. To retrieve this value, call the Uploads API [`createUploadDestinationForResource`](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource) operation.
     #[serde(rename = "uploadDestinationId")]
     pub upload_destination_id: ::std::string::String,
 }
-///The request schema for the confirmCustomizationDetails operation.
+/// The request schema for the confirmCustomizationDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmCustomizationDetailsRequest {
-    ///Attachments to include in the message to the buyer.
+    /// Attachments to include in the message to the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attachments: ::std::option::Option<::std::vec::Vec<Attachment>>,
-    ///The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateConfirmCustomizationDetailsRequestText>,
 }
-///The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+/// The text to be sent to the buyer. Only links related to customization details are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateConfirmCustomizationDetailsRequestText(::std::string::String);
@@ -81,20 +81,20 @@ impl<'de> ::serde::Deserialize<'de> for CreateConfirmCustomizationDetailsRequest
             })
     }
 }
-///The response schema for the confirmCustomizationDetails operation.
+/// The response schema for the confirmCustomizationDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmCustomizationDetailsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createConfirmDeliveryDetails operation.
+/// The request schema for the createConfirmDeliveryDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmDeliveryDetailsRequest {
-    ///The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateConfirmDeliveryDetailsRequestText>,
 }
-///The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+/// The text to be sent to the buyer. Only links related to order delivery are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateConfirmDeliveryDetailsRequestText(::std::string::String);
@@ -153,20 +153,20 @@ impl<'de> ::serde::Deserialize<'de> for CreateConfirmDeliveryDetailsRequestText 
             })
     }
 }
-///The response schema for the createConfirmDeliveryDetails operation.
+/// The response schema for the createConfirmDeliveryDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmDeliveryDetailsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createConfirmOrderDetails operation.
+/// The request schema for the createConfirmOrderDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmOrderDetailsRequest {
-    ///The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateConfirmOrderDetailsRequestText>,
 }
-///The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+/// The text to be sent to the buyer. Only links related to order completion are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateConfirmOrderDetailsRequestText(::std::string::String);
@@ -225,20 +225,20 @@ impl<'de> ::serde::Deserialize<'de> for CreateConfirmOrderDetailsRequestText {
             })
     }
 }
-///The response schema for the createConfirmOrderDetails operation.
+/// The response schema for the createConfirmOrderDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmOrderDetailsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createConfirmServiceDetails operation.
+/// The request schema for the createConfirmServiceDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmServiceDetailsRequest {
-    ///The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateConfirmServiceDetailsRequestText>,
 }
-///The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+/// The text to be sent to the buyer. Only links related to Home Service calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateConfirmServiceDetailsRequestText(::std::string::String);
@@ -297,23 +297,23 @@ impl<'de> ::serde::Deserialize<'de> for CreateConfirmServiceDetailsRequestText {
             })
     }
 }
-///The response schema for the createConfirmServiceDetails operation.
+/// The response schema for the createConfirmServiceDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateConfirmServiceDetailsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the `createDigitalAccessKey` operation.
+/// The request schema for the `createDigitalAccessKey` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateDigitalAccessKeyRequest {
-    ///Attachments that you want to include in the message to the buyer.
+    /// Attachments that you want to include in the message to the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attachments: ::std::option::Option<::std::vec::Vec<Attachment>>,
-    ///The text that is sent to the buyer. Only links that are related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language, which you can retrieve from the `GetAttributes` operation.
+    /// The text that is sent to the buyer. Only links that are related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language, which you can retrieve from the `GetAttributes` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateDigitalAccessKeyRequestText>,
 }
-///The text that is sent to the buyer. Only links that are related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language, which you can retrieve from the `GetAttributes` operation.
+/// The text that is sent to the buyer. Only links that are related to the digital access key are allowed. Do not include HTML or email addresses. The text must be written in the buyer's preferred language, which you can retrieve from the `GetAttributes` operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateDigitalAccessKeyRequestText(::std::string::String);
@@ -371,33 +371,33 @@ impl<'de> ::serde::Deserialize<'de> for CreateDigitalAccessKeyRequestText {
             })
     }
 }
-///The response schema for the `createDigitalAccessKey` operation.
+/// The response schema for the `createDigitalAccessKey` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateDigitalAccessKeyResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createLegalDisclosure operation.
+/// The request schema for the createLegalDisclosure operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateLegalDisclosureRequest {
-    ///Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attachments: ::std::option::Option<::std::vec::Vec<Attachment>>,
 }
-///The response schema for the createLegalDisclosure operation.
+/// The response schema for the createLegalDisclosure operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateLegalDisclosureResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createUnexpectedProblem operation.
+/// The request schema for the createUnexpectedProblem operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateUnexpectedProblemRequest {
-    ///The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text: ::std::option::Option<CreateUnexpectedProblemRequestText>,
 }
-///The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+/// The text to be sent to the buyer. Only links related to unexpected problem calls are allowed. Do not include HTML or email addresses. The text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateUnexpectedProblemRequestText(::std::string::String);
@@ -455,19 +455,19 @@ impl<'de> ::serde::Deserialize<'de> for CreateUnexpectedProblemRequestText {
             })
     }
 }
-///The response schema for the createUnexpectedProblem operation.
+/// The response schema for the createUnexpectedProblem operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateUnexpectedProblemResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The request schema for the createWarranty operation.
+/// The request schema for the createWarranty operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateWarrantyRequest {
-    ///Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
+    /// Attachments to include in the message to the buyer. If any text is included in the attachment, the text must be written in the buyer's language of preference, which can be retrieved from the GetAttributes operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attachments: ::std::option::Option<::std::vec::Vec<Attachment>>,
-    ///The end date of the warranty coverage to include in the message to the buyer.
+    /// The end date of the warranty coverage to include in the message to the buyer.
     #[serde(
         rename = "coverageEndDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -475,7 +475,7 @@ pub struct CreateWarrantyRequest {
     pub coverage_end_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The start date of the warranty coverage to include in the message to the buyer.
+    /// The start date of the warranty coverage to include in the message to the buyer.
     #[serde(
         rename = "coverageStartDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -484,24 +484,24 @@ pub struct CreateWarrantyRequest {
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
 }
-///The response schema for the createWarranty operation.
+/// The response schema for the createWarranty operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateWarrantyResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -521,7 +521,7 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the GetAttributes operation.
+/// The response schema for the GetAttributes operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetAttributesResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -529,14 +529,14 @@ pub struct GetAttributesResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The list of attributes related to the buyer.
+/// The list of attributes related to the buyer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetAttributesResponseBuyer {
-    ///The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
+    /// The buyer's language of preference, indicated with a locale-specific language tag. Examples: "en-US", "zh-CN", and "en-GB".
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub locale: ::std::option::Option<::std::string::String>,
 }
-///Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+/// Describes a messaging action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMessagingActionResponse {
     #[serde(
@@ -551,20 +551,20 @@ pub struct GetMessagingActionResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<MessagingAction>,
 }
-///The embedded response associated with the messaging action.
+/// The embedded response associated with the messaging action.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMessagingActionResponseEmbedded {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub schema: ::std::option::Option<GetSchemaResponse>,
 }
-///The links response that is associated with the messaging action.
+/// The links response that is associated with the messaging action.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetMessagingActionResponseLinks {
     pub schema: LinkObject,
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///The response schema for the `getMessagingActionsForOrder` operation.
+/// The response schema for the `getMessagingActionsForOrder` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMessagingActionsForOrderResponse {
     #[serde(
@@ -577,20 +577,20 @@ pub struct GetMessagingActionsForOrderResponse {
     #[serde(rename = "_links", skip_serializing_if = "::std::option::Option::is_none")]
     pub links: ::std::option::Option<GetMessagingActionsForOrderResponseLinks>,
 }
-///The messaging actions response that is associated with the specified `amazonOrderId`.
+/// The messaging actions response that is associated with the specified `amazonOrderId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetMessagingActionsForOrderResponseEmbedded {
     pub actions: ::std::vec::Vec<GetMessagingActionResponse>,
 }
-///The links response that is associated with the specified `amazonOrderId`.
+/// The links response that is associated with the specified `amazonOrderId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetMessagingActionsForOrderResponseLinks {
-    ///Eligible actions for the specified amazonOrderId.
+    /// Eligible actions for the specified amazonOrderId.
     pub actions: ::std::vec::Vec<LinkObject>,
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///The `GET` request schema response.
+/// The `GET` request schema response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSchemaResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -600,41 +600,41 @@ pub struct GetSchemaResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Schema>,
 }
-///The links response that is associated with the object.
+/// The links response that is associated with the object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSchemaResponseLinks {
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///The request schema for the `sendInvoice` operation.
+/// The request schema for the `sendInvoice` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceRequest {
-    ///Attachments to include in the message to the buyer.
+    /// Attachments to include in the message to the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attachments: ::std::option::Option<::std::vec::Vec<Attachment>>,
 }
-///The response schema for the sendInvoice operation.
+/// The response schema for the sendInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///A Link object.
+/// A Link object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LinkObject {
-    ///A URI for this object.
+    /// A URI for this object.
     pub href: ::std::string::String,
-    ///An identifier for this object.
+    /// An identifier for this object.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
 }
-///A simple object containing the name of the template.
+/// A simple object containing the name of the template.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MessagingAction {
-    ///The name of the template.
+    /// The name of the template.
     pub name: ::std::string::String,
 }
-///A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+/// A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Schema(pub ::serde_json::Map<::std::string::String, ::serde_json::Value>);

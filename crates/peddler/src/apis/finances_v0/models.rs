@@ -2,35 +2,35 @@
 // Source: finances-api-model/financesV0.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///An event related to an Adhoc Disbursement.
+/// An event related to an Adhoc Disbursement.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AdhocDisbursementEvent {
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The amount of the transaction.
+    /// The amount of the transaction.
     #[serde(
         rename = "TransactionAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_amount: ::std::option::Option<Currency>,
-    ///The identifier for the transaction.
+    /// The identifier for the transaction.
     #[serde(
         rename = "TransactionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_id: ::std::option::Option<::std::string::String>,
-    ///The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
+    /// The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of `AdhocDisbursement` events.
+/// A list of `AdhocDisbursement` events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AdhocDisbursementEventList(pub ::std::vec::Vec<AdhocDisbursementEvent>);
@@ -52,52 +52,52 @@ for AdhocDisbursementEventList {
         Self(value)
     }
 }
-///An adjustment to the seller's account.
+/// An adjustment to the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AdjustmentEvent {
-    ///The amount adjusted as part of this event.
+    /// The amount adjusted as part of this event.
     #[serde(
         rename = "AdjustmentAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjustment_amount: ::std::option::Option<Currency>,
-    ///A list of information about adjustments to an account.
+    /// A list of information about adjustments to an account.
     #[serde(
         rename = "AdjustmentItemList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjustment_item_list: ::std::option::Option<AdjustmentItemList>,
-    ///The type of adjustment.
+    /// The type of adjustment.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `FBAInventoryReimbursement`: An FBA inventory reimbursement to a seller's account. This occurs if a seller's inventory is damaged.
-    ///* `ReserveEvent`: A reserve event that is generated at the time a settlement period closes. This occurs when some money from a seller's account is held back.
-    ///* `PostageBilling`: The amount paid by a seller for shipping labels.
-    ///* `PostageRefund`: The reimbursement of shipping labels purchased for orders that were canceled or refunded.
-    ///* `LostOrDamagedReimbursement`: An Amazon Easy Ship reimbursement to a seller's account for a package that we lost or damaged.
-    ///* `CanceledButPickedUpReimbursement`: An Amazon Easy Ship reimbursement to a seller's account. This occurs when a package is picked up and the order is subsequently canceled. This value is used only in the India marketplace.
-    ///* `ReimbursementClawback`: An Amazon Easy Ship reimbursement clawback from a seller's account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
-    ///* `SellerRewards`: An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.
+    /// * `FBAInventoryReimbursement`: An FBA inventory reimbursement to a seller's account. This occurs if a seller's inventory is damaged.
+    /// * `ReserveEvent`: A reserve event that is generated at the time a settlement period closes. This occurs when some money from a seller's account is held back.
+    /// * `PostageBilling`: The amount paid by a seller for shipping labels.
+    /// * `PostageRefund`: The reimbursement of shipping labels purchased for orders that were canceled or refunded.
+    /// * `LostOrDamagedReimbursement`: An Amazon Easy Ship reimbursement to a seller's account for a package that we lost or damaged.
+    /// * `CanceledButPickedUpReimbursement`: An Amazon Easy Ship reimbursement to a seller's account. This occurs when a package is picked up and the order is subsequently canceled. This value is used only in the India marketplace.
+    /// * `ReimbursementClawback`: An Amazon Easy Ship reimbursement clawback from a seller's account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
+    /// * `SellerRewards`: An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.
     #[serde(
         rename = "AdjustmentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjustment_type: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The name of the store where the event occurred.
+    /// The name of the store where the event occurred.
     #[serde(
         rename = "StoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///A list of adjustment event information for the seller's account.
+/// A list of adjustment event information for the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AdjustmentEventList(pub ::std::vec::Vec<AdjustmentEvent>);
@@ -117,50 +117,50 @@ impl ::std::convert::From<::std::vec::Vec<AdjustmentEvent>> for AdjustmentEventL
         Self(value)
     }
 }
-///An item in an adjustment to the seller's account.
+/// An item in an adjustment to the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AdjustmentItem {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
+    /// A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
     #[serde(rename = "FnSKU", skip_serializing_if = "::std::option::Option::is_none")]
     pub fn_sku: ::std::option::Option<::std::string::String>,
-    ///The per-unit value of the item.
+    /// The per-unit value of the item.
     #[serde(
         rename = "PerUnitAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub per_unit_amount: ::std::option::Option<Currency>,
-    ///A short description of the item.
+    /// A short description of the item.
     #[serde(
         rename = "ProductDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_description: ::std::option::Option<::std::string::String>,
-    ///Represents the number of units in the seller's inventory when the `AdjustmentType` is `FBAInventoryReimbursement`.
+    /// Represents the number of units in the seller's inventory when the `AdjustmentType` is `FBAInventoryReimbursement`.
     #[serde(rename = "Quantity", skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<::std::string::String>,
-    ///The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+    /// The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     #[serde(
         rename = "SellerSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
-    ///The total value of the item.
+    /// The total value of the item.
     #[serde(
         rename = "TotalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
-    ///The transaction number that is related to the adjustment.
+    /// The transaction number that is related to the adjustment.
     #[serde(
         rename = "TransactionNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_number: ::std::option::Option<::std::string::String>,
 }
-///A list of information about items in an adjustment to the seller's account.
+/// A list of information about items in an adjustment to the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AdjustmentItemList(pub ::std::vec::Vec<AdjustmentItem>);
@@ -180,61 +180,61 @@ impl ::std::convert::From<::std::vec::Vec<AdjustmentItem>> for AdjustmentItemLis
         Self(value)
     }
 }
-///An expense related to an affordability promotion.
+/// An expense related to an affordability promotion.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AffordabilityExpenseEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The amount charged for clicks incurred under the Sponsored Products program.
+    /// The amount charged for clicks incurred under the Sponsored Products program.
     #[serde(
         rename = "BaseExpense",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub base_expense: ::std::option::Option<Currency>,
-    ///The Amazon-defined marketplace identifier.
+    /// The Amazon-defined marketplace identifier.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was created.
+    /// The date and time when the financial event was created.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///Central Goods and Service Tax, charged and collected by the central government.
+    /// Central Goods and Service Tax, charged and collected by the central government.
     #[serde(rename = "TaxTypeCGST")]
     pub tax_type_cgst: Currency,
-    ///Integrated Goods and Service Tax, charged and collected by the central government.
+    /// Integrated Goods and Service Tax, charged and collected by the central government.
     #[serde(rename = "TaxTypeIGST")]
     pub tax_type_igst: Currency,
-    ///State Goods and Service Tax, charged and collected by the state government.
+    /// State Goods and Service Tax, charged and collected by the state government.
     #[serde(rename = "TaxTypeSGST")]
     pub tax_type_sgst: Currency,
-    ///The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` + `TaxTypeCGST` + `TaxTypeSGST`.
+    /// The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` + `TaxTypeCGST` + `TaxTypeSGST`.
     #[serde(
         rename = "TotalExpense",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_expense: ::std::option::Option<Currency>,
-    ///The type of transaction.
+    /// The type of transaction.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `Charge`: an affordability promotion expense.
-    ///* `Refund`: an affordability promotion expense reversal.
+    /// * `Charge`: an affordability promotion expense.
+    /// * `Refund`: an affordability promotion expense reversal.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of expense information related to an affordability promotion.
+/// A list of expense information related to an affordability promotion.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AffordabilityExpenseEventList(pub ::std::vec::Vec<AffordabilityExpenseEvent>);
@@ -256,7 +256,7 @@ for AffordabilityExpenseEventList {
         Self(value)
     }
 }
-///A signed decimal number.
+/// A signed decimal number.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BigDecimal(pub ::serde_json::Number);
@@ -299,35 +299,35 @@ impl ::std::convert::TryFrom<String> for BigDecimal {
         value.parse()
     }
 }
-///An event related to a capacity reservation billing charge.
+/// An event related to a capacity reservation billing charge.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CapacityReservationBillingEvent {
-    ///A short description of the capacity reservation billing event.
+    /// A short description of the capacity reservation billing event.
     #[serde(
         rename = "Description",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The amount of the capacity reservation billing event.
+    /// The amount of the capacity reservation billing event.
     #[serde(
         rename = "TransactionAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_amount: ::std::option::Option<Currency>,
-    ///The transaction type. For example, FBA Inventory Fee.
+    /// The transaction type. For example, FBA Inventory Fee.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of `CapacityReservationBillingEvent` events.
+/// A list of `CapacityReservationBillingEvent` events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct CapacityReservationBillingEventList(
@@ -351,89 +351,89 @@ for CapacityReservationBillingEventList {
         Self(value)
     }
 }
-///A charge on the seller's account.
+/// A charge on the seller's account.
 ///
-///Possible values:
+/// Possible values:
 ///
-///* `Principal`: The selling price of the order item, which is equal to the selling price of the item multiplied by the quantity ordered.
+/// * `Principal`: The selling price of the order item, which is equal to the selling price of the item multiplied by the quantity ordered.
 ///
-///* `Tax`: The tax on the principal that is collected by the seller.
+/// * `Tax`: The tax on the principal that is collected by the seller.
 ///
-///* `MarketplaceFacilitatorTax-Principal`: The tax that is withheld on the principal.
+/// * `MarketplaceFacilitatorTax-Principal`: The tax that is withheld on the principal.
 ///
-///* `MarketplaceFacilitatorTax-Shipping`: The tax that is withheld on the `ShippingCharge`.
+/// * `MarketplaceFacilitatorTax-Shipping`: The tax that is withheld on the `ShippingCharge`.
 ///
-///* `MarketplaceFacilitatorTax-Giftwrap`: The tax that is withheld on the Giftwrap charge.
+/// * `MarketplaceFacilitatorTax-Giftwrap`: The tax that is withheld on the Giftwrap charge.
 ///
-///* `MarketplaceFacilitatorTax-Other`: The tax that is withheld on other miscellaneous charges.
+/// * `MarketplaceFacilitatorTax-Other`: The tax that is withheld on other miscellaneous charges.
 ///
-///* `Discount`: The promotional discount for an order item.
+/// * `Discount`: The promotional discount for an order item.
 ///
-///* `TaxDiscount`: The tax that is deducted for promotional rebates.
+/// * `TaxDiscount`: The tax that is deducted for promotional rebates.
 ///
-///* `CODItemCharge`: The COD charge for an order item.
+/// * `CODItemCharge`: The COD charge for an order item.
 ///
-///* `CODItemTaxCharge`: The tax that is collected by the seller on a `CODItemCharge`.
+/// * `CODItemTaxCharge`: The tax that is collected by the seller on a `CODItemCharge`.
 ///
-///* `CODOrderCharge`: The COD charge for an order.
+/// * `CODOrderCharge`: The COD charge for an order.
 ///
-///* `CODOrderTaxCharge`: The tax that is collected by the seller on a `CODOrderCharge`.
+/// * `CODOrderTaxCharge`: The tax that is collected by the seller on a `CODOrderCharge`.
 ///
-///* `CODShippingCharge`: Shipping charges for a COD order.
+/// * `CODShippingCharge`: Shipping charges for a COD order.
 ///
-///* `CODShippingTaxCharge`: The tax that is collected by the seller on a `CODShippingCharge`.
+/// * `CODShippingTaxCharge`: The tax that is collected by the seller on a `CODShippingCharge`.
 ///
-///* `ShippingCharge`: The shipping charge.
+/// * `ShippingCharge`: The shipping charge.
 ///
-///* `ShippingTax`: The tax that is collected by the seller on a `ShippingCharge`.
+/// * `ShippingTax`: The tax that is collected by the seller on a `ShippingCharge`.
 ///
-///* `Goodwill`: The amount of money that is given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+/// * `Goodwill`: The amount of money that is given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
 ///
-///* `Giftwrap`: The gift wrap charge.
+/// * `Giftwrap`: The gift wrap charge.
 ///
-///* `GiftwrapTax`: The tax that is collected by the seller on a gift wrap charge.
+/// * `GiftwrapTax`: The tax that is collected by the seller on a gift wrap charge.
 ///
-///* `RestockingFee`: The charge that is applied to the buyer when returning a product in certain categories.
+/// * `RestockingFee`: The charge that is applied to the buyer when returning a product in certain categories.
 ///
-///* `ReturnShipping`: The amount of money that is given to the buyer to compensate for shipping the item back if we are at fault.
+/// * `ReturnShipping`: The amount of money that is given to the buyer to compensate for shipping the item back if we are at fault.
 ///
-///* `PointsFee`: The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+/// * `PointsFee`: The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
 ///
-///* `GenericDeduction`: A generic bad debt deduction.
+/// * `GenericDeduction`: A generic bad debt deduction.
 ///
-///* `FreeReplacementReturnShipping`: The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+/// * `FreeReplacementReturnShipping`: The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
 ///
-///* `PaymentMethodFee`: The fee that is collected for certain payment methods in certain marketplaces.
+/// * `PaymentMethodFee`: The fee that is collected for certain payment methods in certain marketplaces.
 ///
-///* `ExportCharge`: The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+/// * `ExportCharge`: The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
 ///
-///* `SAFE-TReimbursement`: The SAFE-T claim amount for the item.
+/// * `SAFE-TReimbursement`: The SAFE-T claim amount for the item.
 ///
-///* `TCS-CGST`: Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+/// * `TCS-CGST`: Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
 ///
-///* `TCS-SGST`: Tax Collected at Source for State Goods and Services Tax (SGST).
+/// * `TCS-SGST`: Tax Collected at Source for State Goods and Services Tax (SGST).
 ///
-///* `TCS-IGST`: Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+/// * `TCS-IGST`: Tax Collected at Source for Integrated Goods and Services Tax (IGST).
 ///
-///* `TCS-UTGST`: Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+/// * `TCS-UTGST`: Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
 ///
-///* `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.
+/// * `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChargeComponent {
-    ///The amount of the charge.
+    /// The amount of the charge.
     #[serde(
         rename = "ChargeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_amount: ::std::option::Option<Currency>,
-    ///The type of charge.
+    /// The type of charge.
     #[serde(
         rename = "ChargeType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_type: ::std::option::Option<::std::string::String>,
 }
-///A list of charge information on the seller's account.
+/// A list of charge information on the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ChargeComponentList(pub ::std::vec::Vec<ChargeComponent>);
@@ -453,23 +453,23 @@ impl ::std::convert::From<::std::vec::Vec<ChargeComponent>> for ChargeComponentL
         Self(value)
     }
 }
-///A payment instrument.
+/// A payment instrument.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChargeInstrument {
-    ///The amount charged to this charge instrument.
+    /// The amount charged to this charge instrument.
     #[serde(rename = "Amount", skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Currency>,
-    ///A short description of the charge instrument.
+    /// A short description of the charge instrument.
     #[serde(
         rename = "Description",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The account tail (trailing digits) of the charge instrument.
+    /// The account tail (trailing digits) of the charge instrument.
     #[serde(rename = "Tail", skip_serializing_if = "::std::option::Option::is_none")]
     pub tail: ::std::option::Option<::std::string::String>,
 }
-///A list of payment instruments.
+/// A list of payment instruments.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ChargeInstrumentList(pub ::std::vec::Vec<ChargeInstrument>);
@@ -489,35 +489,35 @@ impl ::std::convert::From<::std::vec::Vec<ChargeInstrument>> for ChargeInstrumen
         Self(value)
     }
 }
-///An event related to charge refund.
+/// An event related to charge refund.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChargeRefundEvent {
-    ///The amount of the charge refund credit.
+    /// The amount of the charge refund credit.
     #[serde(
         rename = "ChargeRefundTransactions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_refund_transactions: ::std::option::Option<ChargeRefundTransactions>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
+    /// The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
     #[serde(
         rename = "ReasonCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_code: ::std::option::Option<::std::string::String>,
-    ///A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
+    /// A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
     #[serde(
         rename = "ReasonCodeDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_code_description: ::std::option::Option<::std::string::String>,
 }
-///A list of charge refund events.
+/// A list of charge refund events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ChargeRefundEventList(pub ::std::vec::Vec<ChargeRefundEvent>);
@@ -537,23 +537,23 @@ impl ::std::convert::From<::std::vec::Vec<ChargeRefundEvent>> for ChargeRefundEv
         Self(value)
     }
 }
-///The charge refund transaction.
+/// The charge refund transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChargeRefundTransaction {
-    ///The amount of the charge refund credit.
+    /// The amount of the charge refund credit.
     #[serde(
         rename = "ChargeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_amount: ::std::option::Option<Currency>,
-    ///The type of charge.
+    /// The type of charge.
     #[serde(
         rename = "ChargeType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_type: ::std::option::Option<::std::string::String>,
 }
-///A list of `ChargeRefund` transactions
+/// A list of `ChargeRefund` transactions
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ChargeRefundTransactions(pub ::std::vec::Vec<ChargeRefundTransaction>);
@@ -575,7 +575,7 @@ for ChargeRefundTransactions {
         Self(value)
     }
 }
-///An event related to coupon payments.
+/// An event related to coupon payments.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CouponPaymentEvent {
     #[serde(
@@ -583,13 +583,13 @@ pub struct CouponPaymentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_component: ::std::option::Option<ChargeComponent>,
-    ///The number of coupon clips or redemptions.
+    /// The number of coupon clips or redemptions.
     #[serde(
         rename = "ClipOrRedemptionCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub clip_or_redemption_count: ::std::option::Option<i64>,
-    ///A coupon identifier.
+    /// A coupon identifier.
     #[serde(rename = "CouponId", skip_serializing_if = "::std::option::Option::is_none")]
     pub coupon_id: ::std::option::Option<::std::string::String>,
     #[serde(
@@ -597,32 +597,32 @@ pub struct CouponPaymentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_component: ::std::option::Option<FeeComponent>,
-    ///A payment event identifier.
+    /// A payment event identifier.
     #[serde(
         rename = "PaymentEventId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_event_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The description provided by the seller when they created the coupon.
+    /// The description provided by the seller when they created the coupon.
     #[serde(
         rename = "SellerCouponDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_coupon_description: ::std::option::Option<::std::string::String>,
-    ///The `FeeComponent` value plus the `ChargeComponent` value.
+    /// The `FeeComponent` value plus the `ChargeComponent` value.
     #[serde(
         rename = "TotalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
 }
-///A list of coupon payment event information.
+/// A list of coupon payment event information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct CouponPaymentEventList(pub ::std::vec::Vec<CouponPaymentEvent>);
@@ -644,23 +644,23 @@ for CouponPaymentEventList {
         Self(value)
     }
 }
-///A currency type and amount.
+/// A currency type and amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Currency {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(
         rename = "CurrencyAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_amount: ::std::option::Option<BigDecimal>,
-    ///The three-digit currency code in ISO 4217 format.
+    /// The three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "CurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+/// A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Date(pub ::chrono::DateTime<::chrono::offset::Utc>);
@@ -703,7 +703,7 @@ impl ::std::convert::TryFrom<String> for Date {
         value.parse()
     }
 }
-///A debt payment or debt adjustment.
+/// A debt payment or debt adjustment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DebtRecoveryEvent {
     #[serde(
@@ -716,32 +716,32 @@ pub struct DebtRecoveryEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub debt_recovery_item_list: ::std::option::Option<DebtRecoveryItemList>,
-    ///The debt recovery type.
+    /// The debt recovery type.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `DebtPayment`
-    ///* `DebtPaymentFailure`
-    ///* `DebtAdjustment`
+    /// * `DebtPayment`
+    /// * `DebtPaymentFailure`
+    /// * `DebtAdjustment`
     #[serde(
         rename = "DebtRecoveryType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub debt_recovery_type: ::std::option::Option<::std::string::String>,
-    ///The amount returned for overpayment.
+    /// The amount returned for overpayment.
     #[serde(
         rename = "OverPaymentCredit",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub over_payment_credit: ::std::option::Option<Currency>,
-    ///The amount applied for recovery.
+    /// The amount applied for recovery.
     #[serde(
         rename = "RecoveryAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recovery_amount: ::std::option::Option<Currency>,
 }
-///A list of debt recovery event information.
+/// A list of debt recovery event information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DebtRecoveryEventList(pub ::std::vec::Vec<DebtRecoveryEvent>);
@@ -761,35 +761,35 @@ impl ::std::convert::From<::std::vec::Vec<DebtRecoveryEvent>> for DebtRecoveryEv
         Self(value)
     }
 }
-///An item of a debt payment or debt adjustment.
+/// An item of a debt payment or debt adjustment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DebtRecoveryItem {
-    ///The start date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The start date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "GroupBeginDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub group_begin_date: ::std::option::Option<Date>,
-    ///The end date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The end date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "GroupEndDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub group_end_date: ::std::option::Option<Date>,
-    ///The original debt amount.
+    /// The original debt amount.
     #[serde(
         rename = "OriginalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub original_amount: ::std::option::Option<Currency>,
-    ///The amount applied for the recovery item.
+    /// The amount applied for the recovery item.
     #[serde(
         rename = "RecoveryAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recovery_amount: ::std::option::Option<Currency>,
 }
-///A list of debt recovery item information.
+/// A list of debt recovery item information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DebtRecoveryItemList(pub ::std::vec::Vec<DebtRecoveryItem>);
@@ -809,37 +809,37 @@ impl ::std::convert::From<::std::vec::Vec<DebtRecoveryItem>> for DebtRecoveryIte
         Self(value)
     }
 }
-///A payment made directly to a seller.
+/// A payment made directly to a seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DirectPayment {
-    ///The amount of the direct payment.
+    /// The amount of the direct payment.
     #[serde(
         rename = "DirectPaymentAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub direct_payment_amount: ::std::option::Option<Currency>,
-    ///The type of payment.
+    /// The type of payment.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `StoredValueCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a stored value card.
+    /// * `StoredValueCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a stored value card.
     ///
-    ///* `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
+    /// * `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
     ///
-    ///* `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a private label credit card offered by Amazon.
+    /// * `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a private label credit card offered by Amazon.
     ///
-    ///* `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
+    /// * `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
     ///
-    ///* `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
+    /// * `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
     ///
-    ///* `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.
+    /// * `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.
     #[serde(
         rename = "DirectPaymentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub direct_payment_type: ::std::option::Option<::std::string::String>,
 }
-///A list of direct payment information.
+/// A list of direct payment information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DirectPaymentList(pub ::std::vec::Vec<DirectPayment>);
@@ -859,23 +859,23 @@ impl ::std::convert::From<::std::vec::Vec<DirectPayment>> for DirectPaymentList 
         Self(value)
     }
 }
-///An EBT refund reimbursement event.
+/// An EBT refund reimbursement event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct EbtRefundReimbursementOnlyEvent {
-    ///The amount reimbursed during this event.
+    /// The amount reimbursed during this event.
     #[serde(rename = "Amount", skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Currency>,
-    ///The identifier of an order.
+    /// The identifier of an order.
     #[serde(rename = "OrderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
 }
-///A list of EBT refund reimbursement events.
+/// A list of EBT refund reimbursement events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct EbtRefundReimbursementOnlyEventList(
@@ -899,18 +899,18 @@ for EbtRefundReimbursementOnlyEventList {
         Self(value)
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -930,50 +930,50 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///Failed ad hoc disbursement event list.
+/// Failed ad hoc disbursement event list.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FailedAdhocDisbursementEvent {
-    ///The disbursement identifier.
+    /// The disbursement identifier.
     #[serde(
         rename = "DisbursementId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub disbursement_id: ::std::option::Option<::std::string::String>,
-    ///The type of fund transfer. For example, `Refund`.
+    /// The type of fund transfer. For example, `Refund`.
     #[serde(
         rename = "FundsTransfersType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub funds_transfers_type: ::std::option::Option<::std::string::String>,
-    ///The type of payment for disbursement. For example, `CREDIT_CARD`.
+    /// The type of payment for disbursement. For example, `CREDIT_CARD`.
     #[serde(
         rename = "PaymentDisbursementType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_disbursement_type: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
+    /// The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
     #[serde(rename = "Status", skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<::std::string::String>,
-    ///The amount of the Adhoc Disbursement.
+    /// The amount of the Adhoc Disbursement.
     #[serde(
         rename = "TransferAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transfer_amount: ::std::option::Option<Currency>,
-    ///The transfer identifier.
+    /// The transfer identifier.
     #[serde(
         rename = "TransferId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transfer_id: ::std::option::Option<::std::string::String>,
 }
-///A list of `FailedAdhocDisbursementEvent`.
+/// A list of `FailedAdhocDisbursementEvent`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FailedAdhocDisbursementEventList(
@@ -997,35 +997,35 @@ for FailedAdhocDisbursementEventList {
         Self(value)
     }
 }
-///A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
+/// A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FbaLiquidationEvent {
-    ///The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
+    /// The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
     #[serde(
         rename = "LiquidationFeeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub liquidation_fee_amount: ::std::option::Option<Currency>,
-    ///The amount paid by the liquidator for the seller's inventory. The seller receives this amount minus `LiquidationFeeAmount`.
+    /// The amount paid by the liquidator for the seller's inventory. The seller receives this amount minus `LiquidationFeeAmount`.
     #[serde(
         rename = "LiquidationProceedsAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub liquidation_proceeds_amount: ::std::option::Option<Currency>,
-    ///The identifier for the original removal order.
+    /// The identifier for the original removal order.
     #[serde(
         rename = "OriginalRemovalOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub original_removal_order_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
 }
-///A list of FBA inventory liquidation payment events.
+/// A list of FBA inventory liquidation payment events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FbaLiquidationEventList(pub ::std::vec::Vec<FbaLiquidationEvent>);
@@ -1047,20 +1047,20 @@ for FbaLiquidationEventList {
         Self(value)
     }
 }
-///A fee associated with the event.
+/// A fee associated with the event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeeComponent {
-    ///The amount of the fee.
+    /// The amount of the fee.
     #[serde(
         rename = "FeeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_amount: ::std::option::Option<Currency>,
-    ///The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
+    /// The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
     #[serde(rename = "FeeType", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_type: ::std::option::Option<::std::string::String>,
 }
-///A list of fee component information.
+/// A list of fee component information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeeComponentList(pub ::std::vec::Vec<FeeComponent>);
@@ -1080,79 +1080,79 @@ impl ::std::convert::From<::std::vec::Vec<FeeComponent>> for FeeComponentList {
         Self(value)
     }
 }
-///Information related to a financial event group.
+/// Information related to a financial event group.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FinancialEventGroup {
-    ///The account tail of the payment instrument.
+    /// The account tail of the payment instrument.
     #[serde(
         rename = "AccountTail",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_tail: ::std::option::Option<::std::string::String>,
-    ///The balance at the start of the settlement period.
+    /// The balance at the start of the settlement period.
     #[serde(
         rename = "BeginningBalance",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub beginning_balance: ::std::option::Option<Currency>,
-    ///The total amount in the currency of the marketplace in which the funds were disbursed.
+    /// The total amount in the currency of the marketplace in which the funds were disbursed.
     #[serde(
         rename = "ConvertedTotal",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub converted_total: ::std::option::Option<Currency>,
-    ///The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "FinancialEventGroupEnd",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_event_group_end: ::std::option::Option<Date>,
-    ///A unique identifier for the financial event group.
+    /// A unique identifier for the financial event group.
     #[serde(
         rename = "FinancialEventGroupId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_event_group_id: ::std::option::Option<::std::string::String>,
-    ///The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "FinancialEventGroupStart",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_event_group_start: ::std::option::Option<Date>,
-    ///The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "FundTransferDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fund_transfer_date: ::std::option::Option<Date>,
-    ///The status of the fund transfer.
+    /// The status of the fund transfer.
     #[serde(
         rename = "FundTransferStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fund_transfer_status: ::std::option::Option<::std::string::String>,
-    ///The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.
+    /// The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.
     #[serde(
         rename = "OriginalTotal",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub original_total: ::std::option::Option<Currency>,
-    ///The processing status of the financial event group indicates whether the balance of the financial event group is settled.
+    /// The processing status of the financial event group indicates whether the balance of the financial event group is settled.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `Open`
-    ///* `Closed`
+    /// * `Open`
+    /// * `Closed`
     #[serde(
         rename = "ProcessingStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub processing_status: ::std::option::Option<::std::string::String>,
-    ///The trace identifier used by sellers to look up transactions externally.
+    /// The trace identifier used by sellers to look up transactions externally.
     #[serde(rename = "TraceId", skip_serializing_if = "::std::option::Option::is_none")]
     pub trace_id: ::std::option::Option<::std::string::String>,
 }
-///A list of financial event group information.
+/// A list of financial event group information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FinancialEventGroupList(pub ::std::vec::Vec<FinancialEventGroup>);
@@ -1174,7 +1174,7 @@ for FinancialEventGroupList {
         Self(value)
     }
 }
-///All the information that is related to a financial event.
+/// All the information that is related to a financial event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FinancialEvents {
     #[serde(
@@ -1213,7 +1213,7 @@ pub struct FinancialEvents {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_refund_event_list: ::std::option::Option<ChargeRefundEventList>,
-    ///A list of chargeback events.
+    /// A list of chargeback events.
     #[serde(
         rename = "ChargebackEventList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1229,7 +1229,7 @@ pub struct FinancialEvents {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub debt_recovery_event_list: ::std::option::Option<DebtRecoveryEventList>,
-    ///A list of EBT refund reimbursement events.
+    /// A list of EBT refund reimbursement events.
     #[serde(
         rename = "EBTRefundReimbursementOnlyEventList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1249,7 +1249,7 @@ pub struct FinancialEvents {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fba_liquidation_event_list: ::std::option::Option<FbaLiquidationEventList>,
-    ///A list of guarantee claim events.
+    /// A list of guarantee claim events.
     #[serde(
         rename = "GuaranteeClaimEventList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1286,7 +1286,7 @@ pub struct FinancialEvents {
     pub product_ads_payment_event_list: ::std::option::Option<
         ProductAdsPaymentEventList,
     >,
-    ///A list of refund events.
+    /// A list of refund events.
     #[serde(
         rename = "RefundEventList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1347,13 +1347,13 @@ pub struct FinancialEvents {
     pub service_provider_credit_event_list: ::std::option::Option<
         SolutionProviderCreditEventList,
     >,
-    ///A list of shipment events.
+    /// A list of shipment events.
     #[serde(
         rename = "ShipmentEventList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_event_list: ::std::option::Option<ShipmentEventList>,
-    ///A list of Shipment Settle events.
+    /// A list of Shipment Settle events.
     #[serde(
         rename = "ShipmentSettleEventList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1382,29 +1382,29 @@ pub struct FinancialEvents {
         ValueAddedServiceChargeEventList,
     >,
 }
-///A fee event related to Amazon Imaging services.
+/// A fee event related to Amazon Imaging services.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ImagingServicesFeeEvent {
-    ///The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
+    /// The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///A list of fees associated with the event.
+    /// A list of fees associated with the event.
     #[serde(rename = "FeeList", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_list: ::std::option::Option<FeeComponentList>,
-    ///The identifier for the imaging services request.
+    /// The identifier for the imaging services request.
     #[serde(
         rename = "ImagingRequestBillingItemID",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub imaging_request_billing_item_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
 }
-///A list of fee events related to Amazon Imaging services.
+/// A list of fee events related to Amazon Imaging services.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ImagingServicesFeeEventList(pub ::std::vec::Vec<ImagingServicesFeeEvent>);
@@ -1426,7 +1426,7 @@ for ImagingServicesFeeEventList {
         Self(value)
     }
 }
-///The payload for the `listFinancialEventGroups` operation.
+/// The payload for the `listFinancialEventGroups` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListFinancialEventGroupsPayload {
     #[serde(
@@ -1434,24 +1434,24 @@ pub struct ListFinancialEventGroupsPayload {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_event_group_list: ::std::option::Option<FinancialEventGroupList>,
-    ///When present and not empty, pass this string token in the next request to return the next response page.
+    /// When present and not empty, pass this string token in the next request to return the next response page.
     #[serde(
         rename = "NextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The response schema for the `listFinancialEventGroups` operation.
+/// The response schema for the `listFinancialEventGroups` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListFinancialEventGroupsResponse {
-    ///One or more unexpected errors occurred during the `listFinancialEventGroups` operation.
+    /// One or more unexpected errors occurred during the `listFinancialEventGroups` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `listFinancialEventGroups` operation.
+    /// The payload for the `listFinancialEventGroups` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ListFinancialEventGroupsPayload>,
 }
-///The payload for the `listFinancialEvents` operation.
+/// The payload for the `listFinancialEvents` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListFinancialEventsPayload {
     #[serde(
@@ -1459,48 +1459,48 @@ pub struct ListFinancialEventsPayload {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_events: ::std::option::Option<FinancialEvents>,
-    ///When present and not empty, pass this string token in the next request to return the next response page.
+    /// When present and not empty, pass this string token in the next request to return the next response page.
     #[serde(
         rename = "NextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The response schema for the `listFinancialEvents` operation.
+/// The response schema for the `listFinancialEvents` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListFinancialEventsResponse {
-    ///One or more unexpected errors occurred during the `listFinancialEvents` operation.
+    /// One or more unexpected errors occurred during the `listFinancialEvents` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `listFinancialEvents` operation.
+    /// The payload for the `listFinancialEvents` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ListFinancialEventsPayload>,
 }
-///A loan advance, loan payment, or loan refund.
+/// A loan advance, loan payment, or loan refund.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct LoanServicingEvent {
-    ///The amount of the loan.
+    /// The amount of the loan.
     #[serde(
         rename = "LoanAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub loan_amount: ::std::option::Option<Currency>,
-    ///The type of event.
+    /// The type of event.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `LoanAdvance`
+    /// * `LoanAdvance`
     ///
-    ///* `LoanPayment`
+    /// * `LoanPayment`
     ///
-    ///* `LoanRefund`
+    /// * `LoanRefund`
     #[serde(
         rename = "SourceBusinessEventType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub source_business_event_type: ::std::option::Option<::std::string::String>,
 }
-///A list of loan servicing events.
+/// A list of loan servicing events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct LoanServicingEventList(pub ::std::vec::Vec<LoanServicingEvent>);
@@ -1522,62 +1522,62 @@ for LoanServicingEventList {
         Self(value)
     }
 }
-///A network commingling transaction event.
+/// A network commingling transaction event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct NetworkComminglingTransactionEvent {
-    ///The Amazon Standard Identification Number (ASIN) of the swapped item.
+    /// The Amazon Standard Identification Number (ASIN) of the swapped item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The marketplace in which the event took place.
+    /// The marketplace in which the event took place.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The identifier for the network item swap.
+    /// The identifier for the network item swap.
     #[serde(
         rename = "NetCoTransactionID",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_co_transaction_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The reason for the network item swap.
+    /// The reason for the network item swap.
     #[serde(
         rename = "SwapReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub swap_reason: ::std::option::Option<::std::string::String>,
-    ///The tax on the network item swap paid by the seller.
+    /// The tax on the network item swap paid by the seller.
     #[serde(
         rename = "TaxAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<Currency>,
-    ///The price of the swapped item minus `TaxAmount`.
+    /// The price of the swapped item minus `TaxAmount`.
     #[serde(
         rename = "TaxExclusiveAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_exclusive_amount: ::std::option::Option<Currency>,
-    ///The type of network item swap.
+    /// The type of network item swap.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
+    /// * `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
     ///
-    ///* `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.
+    /// * `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of network commingling transaction events.
+/// A list of network commingling transaction events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct NetworkComminglingTransactionEventList(
@@ -1601,75 +1601,75 @@ for NetworkComminglingTransactionEventList {
         Self(value)
     }
 }
-///An event related to the seller's Pay with Amazon account.
+/// An event related to the seller's Pay with Amazon account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PayWithAmazonEvent {
-    ///A short description of this payment event.
+    /// A short description of this payment event.
     #[serde(
         rename = "AmountDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_description: ::std::option::Option<::std::string::String>,
-    ///The type of business object.
+    /// The type of business object.
     #[serde(
         rename = "BusinessObjectType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub business_object_type: ::std::option::Option<::std::string::String>,
-    ///The charge associated with the event.
+    /// The charge associated with the event.
     #[serde(rename = "Charge", skip_serializing_if = "::std::option::Option::is_none")]
     pub charge: ::std::option::Option<ChargeComponent>,
-    ///A list of fees associated with the event.
+    /// A list of fees associated with the event.
     #[serde(rename = "FeeList", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_list: ::std::option::Option<FeeComponentList>,
-    ///The fulfillment channel.
+    /// The fulfillment channel.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
+    /// * `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
     ///
-    ///* `MFN`: Merchant Fulfillment Network (self-fulfilled)
+    /// * `MFN`: Merchant Fulfillment Network (self-fulfilled)
     #[serde(
         rename = "FulfillmentChannel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_channel: ::std::option::Option<::std::string::String>,
-    ///The type of payment.
+    /// The type of payment.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `Sales`
+    /// * `Sales`
     #[serde(
         rename = "PaymentAmountType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_amount_type: ::std::option::Option<::std::string::String>,
-    ///The sales channel for the transaction.
+    /// The sales channel for the transaction.
     #[serde(
         rename = "SalesChannel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sales_channel: ::std::option::Option<::std::string::String>,
-    ///An order identifier that is specified by the seller.
+    /// An order identifier that is specified by the seller.
     #[serde(
         rename = "SellerOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_order_id: ::std::option::Option<::std::string::String>,
-    ///The name of the store where the event occurred.
+    /// The name of the store where the event occurred.
     #[serde(
         rename = "StoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
-    ///The date and time when the payment transaction is posted. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time when the payment transaction is posted. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "TransactionPostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_posted_date: ::std::option::Option<Date>,
 }
-///A list of events related to the seller's Pay with Amazon account.
+/// A list of events related to the seller's Pay with Amazon account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PayWithAmazonEventList(pub ::std::vec::Vec<PayWithAmazonEvent>);
@@ -1691,50 +1691,50 @@ for PayWithAmazonEventList {
         Self(value)
     }
 }
-///A Sponsored Products payment event.
+/// A Sponsored Products payment event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ProductAdsPaymentEvent {
-    ///Base amount of the transaction, before tax.
+    /// Base amount of the transaction, before tax.
     #[serde(
         rename = "baseValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub base_value: ::std::option::Option<Currency>,
-    ///The identifier for the invoice that includes the transaction.
+    /// The identifier for the invoice that includes the transaction.
     #[serde(
         rename = "invoiceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "postedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///Tax amount of the transaction.
+    /// Tax amount of the transaction.
     #[serde(rename = "taxValue", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_value: ::std::option::Option<Currency>,
-    ///Indicates if the transaction is for a charge or a refund.
+    /// Indicates if the transaction is for a charge or a refund.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `charge`
+    /// * `charge`
     ///
-    ///* `refund`
+    /// * `refund`
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
-    ///The total amount of the transaction. Equal to `baseValue` + `taxValue`.
+    /// The total amount of the transaction. Equal to `baseValue` + `taxValue`.
     #[serde(
         rename = "transactionValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_value: ::std::option::Option<Currency>,
 }
-///A list of sponsored products payment events.
+/// A list of sponsored products payment events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ProductAdsPaymentEventList(pub ::std::vec::Vec<ProductAdsPaymentEvent>);
@@ -1756,29 +1756,29 @@ for ProductAdsPaymentEventList {
         Self(value)
     }
 }
-///A promotion applied to an item.
+/// A promotion applied to an item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Promotion {
-    ///The amount of promotional discount applied to the item.
+    /// The amount of promotional discount applied to the item.
     #[serde(
         rename = "PromotionAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_amount: ::std::option::Option<Currency>,
-    ///The seller-specified identifier for the promotion.
+    /// The seller-specified identifier for the promotion.
     #[serde(
         rename = "PromotionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_id: ::std::option::Option<::std::string::String>,
-    ///The type of promotion.
+    /// The type of promotion.
     #[serde(
         rename = "PromotionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_type: ::std::option::Option<::std::string::String>,
 }
-///A list of promotions.
+/// A list of promotions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PromotionList(pub ::std::vec::Vec<Promotion>);
@@ -1798,31 +1798,31 @@ impl ::std::convert::From<::std::vec::Vec<Promotion>> for PromotionList {
         Self(value)
     }
 }
-///A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
+/// A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RemovalShipmentAdjustmentEvent {
-    ///The unique identifier for the adjustment event.
+    /// The unique identifier for the adjustment event.
     #[serde(
         rename = "AdjustmentEventId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjustment_event_id: ::std::option::Option<::std::string::String>,
-    ///The merchant removal orderId.
+    /// The merchant removal orderId.
     #[serde(
         rename = "MerchantOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub merchant_order_id: ::std::option::Option<::std::string::String>,
-    ///The orderId for shipping inventory.
+    /// The orderId for shipping inventory.
     #[serde(rename = "OrderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<::std::string::String>,
-    ///The date when the financial event was posted.
+    /// The date when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///A comma-delimited list of `RemovalShipmentItemAdjustment` details for FBA inventory.
+    /// A comma-delimited list of `RemovalShipmentItemAdjustment` details for FBA inventory.
     #[serde(
         rename = "RemovalShipmentItemAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1830,18 +1830,18 @@ pub struct RemovalShipmentAdjustmentEvent {
     pub removal_shipment_item_adjustment_list: ::std::option::Option<
         ::std::vec::Vec<RemovalShipmentItemAdjustment>,
     >,
-    ///The type of removal order.
+    /// The type of removal order.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `WHOLESALE_LIQUIDATION`.
+    /// * `WHOLESALE_LIQUIDATION`.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
+/// A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RemovalShipmentAdjustmentEventList(
@@ -1865,48 +1865,48 @@ for RemovalShipmentAdjustmentEventList {
         Self(value)
     }
 }
-///A removal shipment event for a removal order.
+/// A removal shipment event for a removal order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RemovalShipmentEvent {
-    ///The merchant removal `orderId`.
+    /// The merchant removal `orderId`.
     #[serde(
         rename = "MerchantOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub merchant_order_id: ::std::option::Option<::std::string::String>,
-    ///The identifier for the removal shipment order.
+    /// The identifier for the removal shipment order.
     #[serde(rename = "OrderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///A list of removal shipment items.
+    /// A list of removal shipment items.
     #[serde(
         rename = "RemovalShipmentItemList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub removal_shipment_item_list: ::std::option::Option<RemovalShipmentItemList>,
-    ///The name of the store where the event occurred.
+    /// The name of the store where the event occurred.
     #[serde(
         rename = "StoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
-    ///The type of removal order.
+    /// The type of removal order.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `WHOLESALE_LIQUIDATION`
+    /// * `WHOLESALE_LIQUIDATION`
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of removal shipment event information.
+/// A list of removal shipment event information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RemovalShipmentEventList(pub ::std::vec::Vec<RemovalShipmentEvent>);
@@ -1928,109 +1928,109 @@ for RemovalShipmentEventList {
         Self(value)
     }
 }
-///Item-level information for a removal shipment.
+/// Item-level information for a removal shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RemovalShipmentItem {
-    ///The fee that Amazon charged to the seller for the removal of the item. The amount is a negative number.
+    /// The fee that Amazon charged to the seller for the removal of the item. The amount is a negative number.
     #[serde(
         rename = "FeeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_amount: ::std::option::Option<Currency>,
-    ///The Amazon fulfillment network SKU for the item.
+    /// The Amazon fulfillment network SKU for the item.
     #[serde(
         rename = "FulfillmentNetworkSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_network_sku: ::std::option::Option<::std::string::String>,
-    ///The quantity of the item.
+    /// The quantity of the item.
     #[serde(rename = "Quantity", skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<i32>,
-    ///An identifier for an item in a removal shipment.
+    /// An identifier for an item in a removal shipment.
     #[serde(
         rename = "RemovalShipmentItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub removal_shipment_item_id: ::std::option::Option<::std::string::String>,
-    ///The total amount paid to the seller for the removed item.
+    /// The total amount paid to the seller for the removed item.
     #[serde(rename = "Revenue", skip_serializing_if = "::std::option::Option::is_none")]
     pub revenue: ::std::option::Option<Currency>,
-    ///Tax collected on the revenue.
+    /// Tax collected on the revenue.
     #[serde(
         rename = "TaxAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<Currency>,
-    ///The tax collection model that is applied to the item.
+    /// The tax collection model that is applied to the item.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+    /// * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    /// * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_collection_model: ::std::option::Option<::std::string::String>,
-    ///The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+    /// The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
     #[serde(
         rename = "TaxWithheld",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_withheld: ::std::option::Option<Currency>,
 }
-///Item-level information for a removal shipment item adjustment.
+/// Item-level information for a removal shipment item adjustment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RemovalShipmentItemAdjustment {
-    ///Adjusted quantity of `RemovalShipmentItemAdjustment` items.
+    /// Adjusted quantity of `RemovalShipmentItemAdjustment` items.
     #[serde(
         rename = "AdjustedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjusted_quantity: ::std::option::Option<i32>,
-    ///The Amazon fulfillment network SKU for the item.
+    /// The Amazon fulfillment network SKU for the item.
     #[serde(
         rename = "FulfillmentNetworkSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_network_sku: ::std::option::Option<::std::string::String>,
-    ///An identifier for an item in a removal shipment.
+    /// An identifier for an item in a removal shipment.
     #[serde(
         rename = "RemovalShipmentItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub removal_shipment_item_id: ::std::option::Option<::std::string::String>,
-    ///The total amount adjusted for disputed items.
+    /// The total amount adjusted for disputed items.
     #[serde(
         rename = "RevenueAdjustment",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub revenue_adjustment: ::std::option::Option<Currency>,
-    ///Adjustment on the tax collected amount on the adjusted revenue.
+    /// Adjustment on the tax collected amount on the adjusted revenue.
     #[serde(
         rename = "TaxAmountAdjustment",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount_adjustment: ::std::option::Option<Currency>,
-    ///The tax collection model that is applied to the item.
+    /// The tax collection model that is applied to the item.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+    /// * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    /// * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_collection_model: ::std::option::Option<::std::string::String>,
-    ///Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+    /// Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
     #[serde(
         rename = "TaxWithheldAdjustment",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_withheld_adjustment: ::std::option::Option<Currency>,
 }
-///A list of `RemovalShipmentItem`.
+/// A list of `RemovalShipmentItem`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RemovalShipmentItemList(pub ::std::vec::Vec<RemovalShipmentItem>);
@@ -2052,87 +2052,87 @@ for RemovalShipmentItemList {
         Self(value)
     }
 }
-///An event related to a rental transaction.
+/// An event related to a rental transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RentalTransactionEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The number of days that the buyer extended an already rented item. This value is only returned for `RentalCustomerPayment-Extension` and `RentalCustomerRefund-Extension` events.
+    /// The number of days that the buyer extended an already rented item. This value is only returned for `RentalCustomerPayment-Extension` and `RentalCustomerRefund-Extension` events.
     #[serde(
         rename = "ExtensionLength",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub extension_length: ::std::option::Option<i32>,
-    ///The name of the marketplace.
+    /// The name of the marketplace.
     #[serde(
         rename = "MarketplaceName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_name: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///A list of charges associated with the rental event.
+    /// A list of charges associated with the rental event.
     #[serde(
         rename = "RentalChargeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_charge_list: ::std::option::Option<ChargeComponentList>,
-    ///The type of rental event.
+    /// The type of rental event.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
+    /// * `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
     ///
-    ///* `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
+    /// * `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
     ///
-    ///* `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
+    /// * `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
     ///
-    ///* `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
+    /// * `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
     ///
-    ///* `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
+    /// * `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
     ///
-    ///* `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
+    /// * `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
     ///
-    ///* `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
+    /// * `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
     #[serde(
         rename = "RentalEventType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_event_type: ::std::option::Option<::std::string::String>,
-    ///A list of fees associated with the rental event.
+    /// A list of fees associated with the rental event.
     #[serde(
         rename = "RentalFeeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_fee_list: ::std::option::Option<FeeComponentList>,
-    ///The amount of money that the customer originally paid to rent the item. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+    /// The amount of money that the customer originally paid to rent the item. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
     #[serde(
         rename = "RentalInitialValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_initial_value: ::std::option::Option<Currency>,
-    ///The amount of money that Amazon sends the seller to compensate for a lost item or a failed charge. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+    /// The amount of money that Amazon sends the seller to compensate for a lost item or a failed charge. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
     #[serde(
         rename = "RentalReimbursement",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_reimbursement: ::std::option::Option<Currency>,
-    ///A list of taxes withheld information for a rental item.
+    /// A list of taxes withheld information for a rental item.
     #[serde(
         rename = "RentalTaxWithheldList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_tax_withheld_list: ::std::option::Option<TaxWithheldComponentList>,
 }
-///A list of rental transaction event information.
+/// A list of rental transaction event information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RentalTransactionEventList(pub ::std::vec::Vec<RentalTransactionEvent>);
@@ -2154,56 +2154,56 @@ for RentalTransactionEventList {
         Self(value)
     }
 }
-///A retrocharge or retrocharge reversal.
+/// A retrocharge or retrocharge reversal.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RetrochargeEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The base tax associated with the retrocharge event.
+    /// The base tax associated with the retrocharge event.
     #[serde(rename = "BaseTax", skip_serializing_if = "::std::option::Option::is_none")]
     pub base_tax: ::std::option::Option<Currency>,
-    ///The name of the marketplace where the retrocharge event occurred.
+    /// The name of the marketplace where the retrocharge event occurred.
     #[serde(
         rename = "MarketplaceName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_name: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The type of event.
+    /// The type of event.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `Retrocharge`
+    /// * `Retrocharge`
     ///
-    ///* `RetrochargeReversal`
+    /// * `RetrochargeReversal`
     #[serde(
         rename = "RetrochargeEventType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub retrocharge_event_type: ::std::option::Option<::std::string::String>,
-    ///A list of information about taxes withheld.
+    /// A list of information about taxes withheld.
     #[serde(
         rename = "RetrochargeTaxWithheldList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub retrocharge_tax_withheld_list: ::std::option::Option<TaxWithheldComponentList>,
-    ///The shipping tax associated with the retrocharge event.
+    /// The shipping tax associated with the retrocharge event.
     #[serde(
         rename = "ShippingTax",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_tax: ::std::option::Option<Currency>,
 }
-///A list of information about `Retrocharge` or `RetrochargeReversal` events.
+/// A list of information about `Retrocharge` or `RetrochargeReversal` events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RetrochargeEventList(pub ::std::vec::Vec<RetrochargeEvent>);
@@ -2223,28 +2223,28 @@ impl ::std::convert::From<::std::vec::Vec<RetrochargeEvent>> for RetrochargeEven
         Self(value)
     }
 }
-///A SAFE-T claim reimbursement on the seller's account.
+/// A SAFE-T claim reimbursement on the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SafetReimbursementEvent {
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///Indicates why the seller was reimbursed.
+    /// Indicates why the seller was reimbursed.
     #[serde(
         rename = "ReasonCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_code: ::std::option::Option<::std::string::String>,
-    ///The amount of the reimbursement.
+    /// The amount of the reimbursement.
     #[serde(
         rename = "ReimbursedAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reimbursed_amount: ::std::option::Option<Currency>,
-    ///A SAFE-T claim identifier.
+    /// A SAFE-T claim identifier.
     #[serde(
         rename = "SAFETClaimId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2256,7 +2256,7 @@ pub struct SafetReimbursementEvent {
     )]
     pub safet_reimbursement_item_list: ::std::option::Option<SafetReimbursementItemList>,
 }
-///A list of `SAFETReimbursementEvent`.
+/// A list of `SAFETReimbursementEvent`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SafetReimbursementEventList(pub ::std::vec::Vec<SafetReimbursementEvent>);
@@ -2278,26 +2278,26 @@ for SafetReimbursementEventList {
         Self(value)
     }
 }
-///An item from a SAFE-T claim reimbursement.
+/// An item from a SAFE-T claim reimbursement.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SafetReimbursementItem {
-    ///A list of charges associated with the item.
+    /// A list of charges associated with the item.
     #[serde(
         rename = "itemChargeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_charge_list: ::std::option::Option<ChargeComponentList>,
-    ///The description of the item as shown on the product detail page on the retail website.
+    /// The description of the item as shown on the product detail page on the retail website.
     #[serde(
         rename = "productDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_description: ::std::option::Option<::std::string::String>,
-    ///The number of units of the item being reimbursed.
+    /// The number of units of the item being reimbursed.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<::std::string::String>,
 }
-///A list of `SAFETReimbursementItem`.
+/// A list of `SAFETReimbursementItem`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SafetReimbursementItemList(pub ::std::vec::Vec<SafetReimbursementItem>);
@@ -2319,53 +2319,53 @@ for SafetReimbursementItemList {
         Self(value)
     }
 }
-///An event linked to the payment of a fee related to the specified deal.
+/// An event linked to the payment of a fee related to the specified deal.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerDealPaymentEvent {
-    ///The internal description of the deal.
+    /// The internal description of the deal.
     #[serde(
         rename = "dealDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub deal_description: ::std::option::Option<::std::string::String>,
-    ///The unique identifier of the deal.
+    /// The unique identifier of the deal.
     #[serde(rename = "dealId", skip_serializing_if = "::std::option::Option::is_none")]
     pub deal_id: ::std::option::Option<::std::string::String>,
-    ///The type of event: `SellerDealComplete`.
+    /// The type of event: `SellerDealComplete`.
     #[serde(
         rename = "eventType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_type: ::std::option::Option<::std::string::String>,
-    ///The monetary amount of the fee.
+    /// The monetary amount of the fee.
     #[serde(
         rename = "feeAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_amount: ::std::option::Option<Currency>,
-    ///The type of fee: `RunLightningDealFee`.
+    /// The type of fee: `RunLightningDealFee`.
     #[serde(rename = "feeType", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_type: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "postedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The monetary amount of the tax applied.
+    /// The monetary amount of the tax applied.
     #[serde(
         rename = "taxAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<Currency>,
-    ///The total monetary amount paid.
+    /// The total monetary amount paid.
     #[serde(
         rename = "totalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
 }
-///A list of payment events for deal-related fees.
+/// A list of payment events for deal-related fees.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SellerDealPaymentEventList(pub ::std::vec::Vec<SellerDealPaymentEvent>);
@@ -2387,7 +2387,7 @@ for SellerDealPaymentEventList {
         Self(value)
     }
 }
-///A fee payment event for the Early Reviewer Program.
+/// A fee payment event for the Early Reviewer Program.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerReviewEnrollmentPaymentEvent {
     #[serde(
@@ -2395,7 +2395,7 @@ pub struct SellerReviewEnrollmentPaymentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_component: ::std::option::Option<ChargeComponent>,
-    ///An enrollment identifier.
+    /// An enrollment identifier.
     #[serde(
         rename = "EnrollmentId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2406,26 +2406,26 @@ pub struct SellerReviewEnrollmentPaymentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_component: ::std::option::Option<FeeComponent>,
-    ///The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
+    /// The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
     #[serde(
         rename = "ParentASIN",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_asin: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The `FeeComponent` value plus the `ChargeComponent` value.
+    /// The `FeeComponent` value plus the `ChargeComponent` value.
     #[serde(
         rename = "TotalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
 }
-///A list of information about fee events for the Early Reviewer Program.
+/// A list of information about fee events for the Early Reviewer Program.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SellerReviewEnrollmentPaymentEventList(
@@ -2449,50 +2449,50 @@ for SellerReviewEnrollmentPaymentEventList {
         Self(value)
     }
 }
-///A service fee on the seller's account.
+/// A service fee on the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServiceFeeEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///A short description of the service fee event.
+    /// A short description of the service fee event.
     #[serde(
         rename = "FeeDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_description: ::std::option::Option<::std::string::String>,
-    ///A list of fee components associated with the service fee.
+    /// A list of fee components associated with the service fee.
     #[serde(rename = "FeeList", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_list: ::std::option::Option<FeeComponentList>,
-    ///A short description of the service fee reason.
+    /// A short description of the service fee reason.
     #[serde(
         rename = "FeeReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_reason: ::std::option::Option<::std::string::String>,
-    ///A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
+    /// A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
     #[serde(rename = "FnSKU", skip_serializing_if = "::std::option::Option::is_none")]
     pub fn_sku: ::std::option::Option<::std::string::String>,
-    ///The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+    /// The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     #[serde(
         rename = "SellerSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
-    ///The name of the store where the event occurred.
+    /// The name of the store where the event occurred.
     #[serde(
         rename = "StoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///A list of information about service fee events.
+/// A list of information about service fee events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ServiceFeeEventList(pub ::std::vec::Vec<ServiceFeeEvent>);
@@ -2512,76 +2512,76 @@ impl ::std::convert::From<::std::vec::Vec<ServiceFeeEvent>> for ServiceFeeEventL
         Self(value)
     }
 }
-///A shipment, refund, guarantee claim, or chargeback.
+/// A shipment, refund, guarantee claim, or chargeback.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///A list of transactions where buyers pay Amazon through one of the credit cards offered by Amazon or where buyers pay a seller directly through COD.
+    /// A list of transactions where buyers pay Amazon through one of the credit cards offered by Amazon or where buyers pay a seller directly through COD.
     #[serde(
         rename = "DirectPaymentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub direct_payment_list: ::std::option::Option<DirectPaymentList>,
-    ///The name of the marketplace where the event occurred.
+    /// The name of the marketplace where the event occurred.
     #[serde(
         rename = "MarketplaceName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_name: ::std::option::Option<::std::string::String>,
-    ///A list of order-level charge adjustments. These adjustments are applicable to Multi-Channel Fulfillment COD orders.
+    /// A list of order-level charge adjustments. These adjustments are applicable to Multi-Channel Fulfillment COD orders.
     #[serde(
         rename = "OrderChargeAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_charge_adjustment_list: ::std::option::Option<ChargeComponentList>,
-    ///A list of order-level charges. These charges are applicable to Multi-Channel Fulfillment COD orders.
+    /// A list of order-level charges. These charges are applicable to Multi-Channel Fulfillment COD orders.
     #[serde(
         rename = "OrderChargeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_charge_list: ::std::option::Option<ChargeComponentList>,
-    ///A list of order-level fee adjustments. These adjustments are applicable to Multi-Channel Fulfillment orders.
+    /// A list of order-level fee adjustments. These adjustments are applicable to Multi-Channel Fulfillment orders.
     #[serde(
         rename = "OrderFeeAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_fee_adjustment_list: ::std::option::Option<FeeComponentList>,
-    ///A list of order-level fees. These charges are applicable to Multi-Channel Fulfillment orders.
+    /// A list of order-level fees. These charges are applicable to Multi-Channel Fulfillment orders.
     #[serde(
         rename = "OrderFeeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_fee_list: ::std::option::Option<FeeComponentList>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///A seller-defined identifier for an order.
+    /// A seller-defined identifier for an order.
     #[serde(
         rename = "SellerOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_order_id: ::std::option::Option<::std::string::String>,
-    ///A list of shipment-level fee adjustments.
+    /// A list of shipment-level fee adjustments.
     #[serde(
         rename = "ShipmentFeeAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_fee_adjustment_list: ::std::option::Option<FeeComponentList>,
-    ///A list of shipment-level fees.
+    /// A list of shipment-level fees.
     #[serde(
         rename = "ShipmentFeeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_fee_list: ::std::option::Option<FeeComponentList>,
-    ///A list of shipment item adjustments.
+    /// A list of shipment item adjustments.
     #[serde(
         rename = "ShipmentItemAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2592,14 +2592,14 @@ pub struct ShipmentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_item_list: ::std::option::Option<ShipmentItemList>,
-    ///The name of the store where the event occurred.
+    /// The name of the store where the event occurred.
     #[serde(
         rename = "StoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///A list of shipment event information.
+/// A list of shipment event information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ShipmentEventList(pub ::std::vec::Vec<ShipmentEvent>);
@@ -2619,64 +2619,64 @@ impl ::std::convert::From<::std::vec::Vec<ShipmentEvent>> for ShipmentEventList 
         Self(value)
     }
 }
-///An item of a shipment, refund, guarantee claim, or chargeback.
+/// An item of a shipment, refund, guarantee claim, or chargeback.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentItem {
-    ///The cost of Amazon Points granted for a shipment item.
+    /// The cost of Amazon Points granted for a shipment item.
     #[serde(
         rename = "CostOfPointsGranted",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cost_of_points_granted: ::std::option::Option<Currency>,
-    ///The cost of Amazon Points returned for a shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+    /// The cost of Amazon Points returned for a shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
     #[serde(
         rename = "CostOfPointsReturned",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cost_of_points_returned: ::std::option::Option<Currency>,
-    ///A list of charge adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+    /// A list of charge adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
     #[serde(
         rename = "ItemChargeAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_charge_adjustment_list: ::std::option::Option<ChargeComponentList>,
-    ///A list of charges associated with the shipment item.
+    /// A list of charges associated with the shipment item.
     #[serde(
         rename = "ItemChargeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_charge_list: ::std::option::Option<ChargeComponentList>,
-    ///A list of fee adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+    /// A list of fee adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
     #[serde(
         rename = "ItemFeeAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_fee_adjustment_list: ::std::option::Option<FeeComponentList>,
-    ///A list of fees associated with the shipment item.
+    /// A list of fees associated with the shipment item.
     #[serde(
         rename = "ItemFeeList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_fee_list: ::std::option::Option<FeeComponentList>,
-    ///A list of taxes withheld information for a shipment item.
+    /// A list of taxes withheld information for a shipment item.
     #[serde(
         rename = "ItemTaxWithheldList",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_tax_withheld_list: ::std::option::Option<TaxWithheldComponentList>,
-    ///An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+    /// An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
     #[serde(
         rename = "OrderAdjustmentItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_adjustment_item_id: ::std::option::Option<::std::string::String>,
-    ///An Amazon-defined order item identifier.
+    /// An Amazon-defined order item identifier.
     #[serde(
         rename = "OrderItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_item_id: ::std::option::Option<::std::string::String>,
-    ///A list of promotion adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+    /// A list of promotion adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
     #[serde(
         rename = "PromotionAdjustmentList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2687,20 +2687,20 @@ pub struct ShipmentItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_list: ::std::option::Option<PromotionList>,
-    ///The number of items shipped.
+    /// The number of items shipped.
     #[serde(
         rename = "QuantityShipped",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_shipped: ::std::option::Option<i32>,
-    ///The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+    /// The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     #[serde(
         rename = "SellerSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
 }
-///A list of shipment items.
+/// A list of shipment items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ShipmentItemList(pub ::std::vec::Vec<ShipmentItem>);
@@ -2720,7 +2720,7 @@ impl ::std::convert::From<::std::vec::Vec<ShipmentItem>> for ShipmentItemList {
         Self(value)
     }
 }
-///A list of `ShipmentEvent` items.
+/// A list of `ShipmentEvent` items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ShipmentSettleEventList(pub ::std::vec::Vec<ShipmentEvent>);
@@ -2740,68 +2740,68 @@ impl ::std::convert::From<::std::vec::Vec<ShipmentEvent>> for ShipmentSettleEven
         Self(value)
     }
 }
-///A credit given to a solution provider.
+/// A credit given to a solution provider.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SolutionProviderCreditEvent {
-    ///The two-letter country code of the country associated with the marketplace where the order was placed.
+    /// The two-letter country code of the country associated with the marketplace where the order was placed.
     #[serde(
         rename = "MarketplaceCountryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_country_code: ::std::option::Option<::std::string::String>,
-    ///The identifier of the marketplace where the order was placed.
+    /// The identifier of the marketplace where the order was placed.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon-defined identifier of the solution provider.
+    /// The Amazon-defined identifier of the solution provider.
     #[serde(
         rename = "ProviderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub provider_id: ::std::option::Option<::std::string::String>,
-    ///The store name where the payment event occurred.
+    /// The store name where the payment event occurred.
     #[serde(
         rename = "ProviderStoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub provider_store_name: ::std::option::Option<::std::string::String>,
-    ///The transaction type.
+    /// The transaction type.
     #[serde(
         rename = "ProviderTransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub provider_transaction_type: ::std::option::Option<::std::string::String>,
-    ///The Amazon-defined identifier of the seller.
+    /// The Amazon-defined identifier of the seller.
     #[serde(rename = "SellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
-    ///A seller-defined identifier for an order.
+    /// A seller-defined identifier for an order.
     #[serde(
         rename = "SellerOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_order_id: ::std::option::Option<::std::string::String>,
-    ///The store name where the payment event occurred.
+    /// The store name where the payment event occurred.
     #[serde(
         rename = "SellerStoreName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_store_name: ::std::option::Option<::std::string::String>,
-    ///The amount of the credit.
+    /// The amount of the credit.
     #[serde(
         rename = "TransactionAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_amount: ::std::option::Option<Currency>,
-    ///The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "TransactionCreationDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_creation_date: ::std::option::Option<Date>,
 }
-///A list of `SolutionProviderCreditEvent`.
+/// A list of `SolutionProviderCreditEvent`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SolutionProviderCreditEventList(
@@ -2825,28 +2825,28 @@ for SolutionProviderCreditEventList {
         Self(value)
     }
 }
-///Information about the taxes withheld.
+/// Information about the taxes withheld.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxWithheldComponent {
-    ///The tax collection model applied to the item.
+    /// The tax collection model applied to the item.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+    /// * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    /// * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_collection_model: ::std::option::Option<::std::string::String>,
-    ///A list of charges that represent the types and amounts of taxes withheld.
+    /// A list of charges that represent the types and amounts of taxes withheld.
     #[serde(
         rename = "TaxesWithheld",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxes_withheld: ::std::option::Option<ChargeComponentList>,
 }
-///A list of information about taxes withheld.
+/// A list of information about taxes withheld.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TaxWithheldComponentList(pub ::std::vec::Vec<TaxWithheldComponent>);
@@ -2868,35 +2868,35 @@ for TaxWithheldComponentList {
         Self(value)
     }
 }
-///A tax withholding event on a seller's account.
+/// A tax withholding event on a seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxWithholdingEvent {
-    ///The amount which tax was withheld against.
+    /// The amount which tax was withheld against.
     #[serde(
         rename = "BaseAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub base_amount: ::std::option::Option<Currency>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///Time period for which tax is withheld.
+    /// Time period for which tax is withheld.
     #[serde(
         rename = "TaxWithholdingPeriod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_withholding_period: ::std::option::Option<TaxWithholdingPeriod>,
-    ///The amount of the tax withholding deducted from seller's account.
+    /// The amount of the tax withholding deducted from seller's account.
     #[serde(
         rename = "WithheldAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub withheld_amount: ::std::option::Option<Currency>,
 }
-///A list of tax withholding events.
+/// A list of tax withholding events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TaxWithholdingEventList(pub ::std::vec::Vec<TaxWithholdingEvent>);
@@ -2918,42 +2918,42 @@ for TaxWithholdingEventList {
         Self(value)
     }
 }
-///The period during which tax withholding on a seller's account is calculated.
+/// The period during which tax withholding on a seller's account is calculated.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxWithholdingPeriod {
-    ///End of the time range.
+    /// End of the time range.
     #[serde(rename = "EndDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_date: ::std::option::Option<Date>,
-    ///Start of the time range.
+    /// Start of the time range.
     #[serde(
         rename = "StartDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_date: ::std::option::Option<Date>,
 }
-///An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
+/// An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TdsReimbursementEvent {
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The amount reimbursed.
+    /// The amount reimbursed.
     #[serde(
         rename = "ReimbursedAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reimbursed_amount: ::std::option::Option<Currency>,
-    ///The Tax-Deducted-at-Source (TDS) identifier.
+    /// The Tax-Deducted-at-Source (TDS) identifier.
     #[serde(
         rename = "TDSOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tds_order_id: ::std::option::Option<::std::string::String>,
 }
-///A list of `TDSReimbursementEvent` items.
+/// A list of `TDSReimbursementEvent` items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TdsReimbursementEventList(pub ::std::vec::Vec<TdsReimbursementEvent>);
@@ -2975,35 +2975,35 @@ for TdsReimbursementEventList {
         Self(value)
     }
 }
-///An event related to a trial shipment.
+/// An event related to a trial shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TrialShipmentEvent {
-    ///An Amazon-defined identifier for an order.
+    /// An Amazon-defined identifier for an order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///A list of fees charged by Amazon for trial shipments.
+    /// A list of fees charged by Amazon for trial shipments.
     #[serde(rename = "FeeList", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_list: ::std::option::Option<FeeComponentList>,
-    ///The identifier of the financial event group.
+    /// The identifier of the financial event group.
     #[serde(
         rename = "FinancialEventGroupId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub financial_event_group_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+    /// The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
     #[serde(rename = "SKU", skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
 }
-///A list of information about trial shipment financial events.
+/// A list of information about trial shipment financial events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TrialShipmentEventList(pub ::std::vec::Vec<TrialShipmentEvent>);
@@ -3025,35 +3025,35 @@ for TrialShipmentEventList {
         Self(value)
     }
 }
-///An event related to a value added service charge.
+/// An event related to a value added service charge.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ValueAddedServiceChargeEvent {
-    ///A short description of the service charge event.
+    /// A short description of the service charge event.
     #[serde(
         rename = "Description",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The date and time when the financial event was posted.
+    /// The date and time when the financial event was posted.
     #[serde(
         rename = "PostedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///The amount of the service charge event.
+    /// The amount of the service charge event.
     #[serde(
         rename = "TransactionAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_amount: ::std::option::Option<Currency>,
-    ///The transaction type. For example, 'Other Support Service fees'
+    /// The transaction type. For example, 'Other Support Service fees'
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of `ValueAddedServiceCharge` events.
+/// A list of `ValueAddedServiceCharge` events.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ValueAddedServiceChargeEventList(

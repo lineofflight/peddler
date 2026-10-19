@@ -2,7 +2,7 @@
 // Source: sales-api-model/sales.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
+/// A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -43,18 +43,18 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occured.
+    /// An error code that identifies the type of error that occured.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -74,47 +74,47 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the getOrderMetrics operation.
+/// The response schema for the getOrderMetrics operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetOrderMetricsResponse {
-    ///Encountered errors for the getOrderMetrics operation.
+    /// Encountered errors for the getOrderMetrics operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the getOrderMetrics operation.
+    /// The payload for the getOrderMetrics operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<OrderMetricsList>,
 }
-///The currency type and the amount.
+/// The currency type and the amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Money {
-    ///The currency amount.
+    /// The currency amount.
     pub amount: Decimal,
-    ///Three-digit currency code. In ISO 4217 format.
+    /// Three-digit currency code. In ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///Contains order metrics.
+/// Contains order metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OrderMetricsInterval {
-    ///The average price for an item based on the specified filters. Formula is totalSales/unitCount.
+    /// The average price for an item based on the specified filters. Formula is totalSales/unitCount.
     #[serde(rename = "averageUnitPrice")]
     pub average_unit_price: Money,
-    ///The interval of time based on requested granularity (ex. Hour, Day, etc.) If this is the first or the last interval from the list, it might contain incomplete data if the requested interval doesn't align with the requested granularity (ex. request interval 2018-09-01T02:00:00Z--2018-09-04T19:00:00Z and granularity day will result in Sept 1st UTC day and Sept 4th UTC days having partial data).
+    /// The interval of time based on requested granularity (ex. Hour, Day, etc.) If this is the first or the last interval from the list, it might contain incomplete data if the requested interval doesn't align with the requested granularity (ex. request interval 2018-09-01T02:00:00Z--2018-09-04T19:00:00Z and granularity day will result in Sept 1st UTC day and Sept 4th UTC days having partial data).
     pub interval: ::std::string::String,
-    ///The number of orders based on the specified filters.
+    /// The number of orders based on the specified filters.
     #[serde(rename = "orderCount")]
     pub order_count: i64,
-    ///The number of order items based on the specified filters.
+    /// The number of order items based on the specified filters.
     #[serde(rename = "orderItemCount")]
     pub order_item_count: i64,
-    ///The total ordered product sales for all orders based on the specified filters.
+    /// The total ordered product sales for all orders based on the specified filters.
     #[serde(rename = "totalSales")]
     pub total_sales: Money,
-    ///The number of units in orders based on the specified filters.
+    /// The number of units in orders based on the specified filters.
     #[serde(rename = "unitCount")]
     pub unit_count: i64,
 }
-///A set of order metrics, each scoped to a particular time interval.
+/// A set of order metrics, each scoped to a particular time interval.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderMetricsList(pub ::std::vec::Vec<OrderMetricsInterval>);

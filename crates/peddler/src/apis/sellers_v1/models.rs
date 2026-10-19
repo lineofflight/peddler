@@ -2,14 +2,14 @@
 // Source: sellers-api-model/sellers.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The response schema for the `getAccount` operation.
+/// The response schema for the `getAccount` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Account {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub business: ::std::option::Option<Business>,
-    ///The type of business registered for the seller account.
+    /// The type of business registered for the seller account.
     ///
-    ///Known values: `CHARITY`, `CRAFTSMAN`, `NATURAL_PERSON_COMPANY`, `PUBLIC_LISTED`, `PRIVATE_LIMITED`, `SOLE_PROPRIETORSHIP`, `STATE_OWNED`, `INDIVIDUAL`. Other values may be returned by Amazon.
+    /// Known values: `CHARITY`, `CRAFTSMAN`, `NATURAL_PERSON_COMPANY`, `PUBLIC_LISTED`, `PRIVATE_LIMITED`, `SOLE_PROPRIETORSHIP`, `STATE_OWNED`, `INDIVIDUAL`. Other values may be returned by Amazon.
     #[serde(rename = "businessType")]
     pub business_type: ::std::string::String,
     #[serde(rename = "marketplaceParticipationList")]
@@ -19,82 +19,82 @@ pub struct Account {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub primary_contact: ::std::option::Option<PrimaryContact>,
-    ///The selling plan details.
+    /// The selling plan details.
     ///
-    ///Known values: `PROFESSIONAL`, `INDIVIDUAL`. Other values may be returned by Amazon.
+    /// Known values: `PROFESSIONAL`, `INDIVIDUAL`. Other values may be returned by Amazon.
     #[serde(rename = "sellingPlan")]
     pub selling_plan: ::std::string::String,
 }
-///Represents an address
+/// Represents an address
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///Street address information.
+    /// Street address information.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Additional street address information.
+    /// Additional street address information.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///The city.
+    /// The city.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The country code in two-character ISO 3166-1 alpha-2 format.
+    /// The country code in two-character ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The postal code.
+    /// The postal code.
     #[serde(
         rename = "postalCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_code: ::std::option::Option<::std::string::String>,
-    ///The state or province code.
+    /// The state or province code.
     #[serde(
         rename = "stateOrProvinceCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub state_or_province_code: ::std::option::Option<::std::string::String>,
 }
-///Information about the seller's business. Certain fields may be omitted depending on the seller's `businessType`.
+/// Information about the seller's business. Certain fields may be omitted depending on the seller's `businessType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Business {
-    ///The seller's company registration number, if applicable. This field will be absent for individual sellers and sole proprietorships.
+    /// The seller's company registration number, if applicable. This field will be absent for individual sellers and sole proprietorships.
     #[serde(
         rename = "companyRegistrationNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub company_registration_number: ::std::option::Option<::std::string::String>,
-    ///The seller's company tax identification number, if applicable. This field will be present for certain business types only, such as sole proprietorships.
+    /// The seller's company tax identification number, if applicable. This field will be present for certain business types only, such as sole proprietorships.
     #[serde(
         rename = "companyTaxIdentificationNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub company_tax_identification_number: ::std::option::Option<::std::string::String>,
-    ///The registered business name.
+    /// The registered business name.
     pub name: ::std::string::String,
-    ///The non-Latin script version of the registered business name, if applicable.
+    /// The non-Latin script version of the registered business name, if applicable.
     #[serde(
         rename = "nonLatinName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub non_latin_name: ::std::option::Option<::std::string::String>,
-    ///The registered business address.
+    /// The registered business address.
     #[serde(rename = "registeredBusinessAddress")]
     pub registered_business_address: Address,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help you understand or fix the issue.
+    /// Additional details that can help you understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -114,46 +114,46 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the `getAccount` operation.
+/// The response schema for the `getAccount` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetAccountResponse {
-    ///The errors encountered by the `getAccount` operation.
+    /// The errors encountered by the `getAccount` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Account>,
 }
-///The response schema for the `getMarketplaceParticipations` operation.
+/// The response schema for the `getMarketplaceParticipations` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMarketplaceParticipationsResponse {
-    ///The errors encountered by the `getMarketplaceParticipations` operation.
+    /// The errors encountered by the `getMarketplaceParticipations` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getMarketplaceParticipations` operation.
+    /// The payload for the `getMarketplaceParticipations` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<MarketplaceParticipationList>,
 }
-///Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
+/// Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Marketplace {
-    ///The ISO 3166-1 alpha-2 format country code of the marketplace.
+    /// The ISO 3166-1 alpha-2 format country code of the marketplace.
     #[serde(rename = "countryCode")]
     pub country_code: MarketplaceCountryCode,
-    ///The ISO 4217 format currency code of the marketplace.
+    /// The ISO 4217 format currency code of the marketplace.
     #[serde(rename = "defaultCurrencyCode")]
     pub default_currency_code: ::std::string::String,
-    ///The ISO 639-1 format language code of the marketplace.
+    /// The ISO 639-1 format language code of the marketplace.
     #[serde(rename = "defaultLanguageCode")]
     pub default_language_code: ::std::string::String,
-    ///The domain name of the marketplace.
+    /// The domain name of the marketplace.
     #[serde(rename = "domainName")]
     pub domain_name: ::std::string::String,
-    ///The encrypted marketplace value.
+    /// The encrypted marketplace value.
     pub id: ::std::string::String,
-    ///The marketplace name.
+    /// The marketplace name.
     pub name: ::std::string::String,
 }
-///The ISO 3166-1 alpha-2 format country code of the marketplace.
+/// The ISO 3166-1 alpha-2 format country code of the marketplace.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct MarketplaceCountryCode(::std::string::String);
@@ -209,16 +209,16 @@ impl<'de> ::serde::Deserialize<'de> for MarketplaceCountryCode {
             })
     }
 }
-///`MarketplaceParticipation`
+/// `MarketplaceParticipation`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MarketplaceParticipation {
     pub marketplace: Marketplace,
     pub participation: Participation,
-    ///The name of the seller's store as displayed in the marketplace.
+    /// The name of the seller's store as displayed in the marketplace.
     #[serde(rename = "storeName")]
     pub store_name: ::std::string::String,
 }
-///List of marketplace participations.
+/// List of marketplace participations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct MarketplaceParticipationList(pub ::std::vec::Vec<MarketplaceParticipation>);
@@ -240,24 +240,24 @@ for MarketplaceParticipationList {
         Self(value)
     }
 }
-///Information that is specific to a seller in a marketplace.
+/// Information that is specific to a seller in a marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Participation {
-    ///Specifies if the seller has suspended listings. `true` if the seller Listing Status is set to Inactive, otherwise `false`.
+    /// Specifies if the seller has suspended listings. `true` if the seller Listing Status is set to Inactive, otherwise `false`.
     #[serde(rename = "hasSuspendedListings")]
     pub has_suspended_listings: bool,
-    ///If `true`, the seller participates in the marketplace. Otherwise `false`.
+    /// If `true`, the seller participates in the marketplace. Otherwise `false`.
     #[serde(rename = "isParticipating")]
     pub is_participating: bool,
 }
-///Information about the seller's primary contact.
+/// Information about the seller's primary contact.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PrimaryContact {
-    ///The primary contact's residential address.
+    /// The primary contact's residential address.
     pub address: Address,
-    ///The full name of the seller's primary contact.
+    /// The full name of the seller's primary contact.
     pub name: ::std::string::String,
-    ///The non-Latin script version of the primary contact's name, if applicable.
+    /// The non-Latin script version of the primary contact's name, if applicable.
     #[serde(
         rename = "nonLatinName",
         skip_serializing_if = "::std::option::Option::is_none"

@@ -7,22 +7,22 @@ use crate::operation::{self, DecodeError, TypedResponse};
 fn get_promotion_locale_default() -> Option<String> {
     Some(serde_json::from_str("\"en_US\"").expect("validated schema default"))
 }
-///The parameters of [`get_promotion`].
+/// The parameters of [`get_promotion`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPromotionParams {
-    ///The ID of the promotion.
+    /// The ID of the promotion.
     pub promotion_id: String,
-    ///A comma-delimited list of datasets to include in the response.
+    /// A comma-delimited list of datasets to include in the response.
     ///
-    ///Known values: `ISSUES`, `SELECTION`, `CUSTOMER_SEGMENTS`.
+    /// Known values: `ISSUES`, `SELECTION`, `CUSTOMER_SEGMENTS`.
     pub included_data: Option<Vec<String>>,
-    ///The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
+    /// The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
     #[serde(default = "get_promotion_locale_default")]
     pub locale: Option<String>,
 }
 impl GetPromotionParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(promotion_id: String) -> Self {
         Self {
             promotion_id,
@@ -31,7 +31,7 @@ impl GetPromotionParams {
         }
     }
 }
-///Retrieve details of a specified promotion.
+/// Retrieve details of a specified promotion.
 pub async fn get_promotion(
     client: &Client,
     params: GetPromotionParams,
@@ -64,31 +64,31 @@ fn get_selection_locale_default() -> Option<String> {
 fn get_selection_limit_default() -> Option<i64> {
     Some(serde_json::from_str("20").expect("validated schema default"))
 }
-///The parameters of [`get_selection`] and [`get_selection_pages`].
+/// The parameters of [`get_selection`] and [`get_selection_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSelectionParams {
-    ///The ID of the promotion.
+    /// The ID of the promotion.
     pub promotion_id: String,
-    ///The ID of the selection.
+    /// The ID of the selection.
     pub selection_id: String,
-    ///The revision identifier for the selection. Use the `revisionId` from the `getPromotion` response. A promotion may have multiple selection revisions when an update is in progress. Passing the correct `revisionId` ensures you retrieve the expected data.
+    /// The revision identifier for the selection. Use the `revisionId` from the `getPromotion` response. A promotion may have multiple selection revisions when an update is in progress. Passing the correct `revisionId` ensures you retrieve the expected data.
     pub revision_id: i64,
-    ///The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
+    /// The locale of the promotion. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
     #[serde(default = "get_selection_locale_default")]
     pub locale: Option<String>,
-    ///A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
     pub pagination_token: Option<String>,
-    ///The maximum number of response results per page.
+    /// The maximum number of response results per page.
     #[serde(default = "get_selection_limit_default")]
     pub limit: Option<i64>,
-    ///A comma-delimited list of datasets to include in the response.
+    /// A comma-delimited list of datasets to include in the response.
     ///
-    ///Known values: `ISSUES`.
+    /// Known values: `ISSUES`.
     pub included_data: Option<Vec<String>>,
 }
 impl GetSelectionParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(promotion_id: String, selection_id: String, revision_id: i64) -> Self {
         Self {
             promotion_id,
@@ -101,9 +101,9 @@ impl GetSelectionParams {
         }
     }
 }
-///Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports items found in `SelectionType.ITEMS`. Items found in `SelectionType.CATALOG` are not supported. Selection objects always include `selectionDetails` with item information.
+/// Retrieve up to 100 product items that are associated with a specified promotion. This operation only supports items found in `SelectionType.ITEMS`. Items found in `SelectionType.CATALOG` are not supported. Selection objects always include `selectionDetails` with item information.
 ///
-///Its pages: [`get_selection_pages`].
+/// Its pages: [`get_selection_pages`].
 pub async fn get_selection(
     client: &Client,
     params: GetSelectionParams,
@@ -135,7 +135,7 @@ pub async fn get_selection(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_selection`].
+/// Each page of [`get_selection`].
 pub fn get_selection_pages<'a>(
     client: &'a Client,
     params: GetSelectionParams,
@@ -165,56 +165,56 @@ fn search_promotions_revision_default() -> Option<String> {
 fn search_promotions_limit_default() -> Option<i64> {
     Some(serde_json::from_str("20").expect("validated schema default"))
 }
-///The parameters of [`search_promotions`] and [`search_promotions_pages`].
+/// The parameters of [`search_promotions`] and [`search_promotions_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchPromotionsParams {
-    ///The Amazon stores from which to retrieve promotions. Refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers) for a list of Amazon store values.
+    /// The Amazon stores from which to retrieve promotions. Refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers) for a list of Amazon store values.
     pub marketplace_ids: Vec<String>,
-    ///The locale from which to retrieve promotions. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
+    /// The locale from which to retrieve promotions. Formatted as an ISO 639 language code, followed by an underscore, followed by an ISO 3166-1 alpha-2 country code.
     #[serde(default = "search_promotions_locale_default")]
     pub locale: Option<String>,
-    ///The statuses of promotions to retrieve, formatted as a comma-delimited list.
+    /// The statuses of promotions to retrieve, formatted as a comma-delimited list.
     ///
-    ///Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`.
+    /// Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`.
     pub statuses: Option<Vec<String>>,
-    ///The ASINs to which promotions apply, formatted as a comma-delimited list.
+    /// The ASINs to which promotions apply, formatted as a comma-delimited list.
     pub asins: Option<Vec<String>>,
-    ///The SKUs to which promotions apply, formatted as a comma-delimited list.
+    /// The SKUs to which promotions apply, formatted as a comma-delimited list.
     pub skus: Option<Vec<String>>,
-    ///The promotion types to which promotions apply, formatted as a comma-delimited list.
+    /// The promotion types to which promotions apply, formatted as a comma-delimited list.
     ///
-    ///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
+    /// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`.
     pub promotion_types: Option<Vec<String>>,
-    ///Promotions that start before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// Promotions that start before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     pub start_date_before: Option<String>,
-    ///Promotions that start after this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// Promotions that start after this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     pub start_date_after: Option<String>,
-    ///Promotions that end before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// Promotions that end before this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     pub end_date_before: Option<String>,
-    ///Promotions that end after this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// Promotions that end after this date are returned. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     pub end_date_after: Option<String>,
-    ///Filter promotions that were last modified after this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
+    /// Filter promotions that were last modified after this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
     pub update_date_after: Option<String>,
-    ///Filter promotions that were last modified before this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
+    /// Filter promotions that were last modified before this timestamp. Zoned Datetime in ISO 8601 format (e.g., 1970-01-01T00:00:00-07:00).
     pub update_date_before: Option<String>,
-    ///A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `paginationToken` when the number of results exceeds the specified `limit` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `paginationToken` is null. Note that this operation can return empty pages.
     pub pagination_token: Option<String>,
-    ///Specifies which promotion revision or revisions to match against when filtering. This controls which promotions are included in search results, not the shape of the response. The response always returns the published revision in the main body, with `latestRevision` included when the latest revision diverges.
+    /// Specifies which promotion revision or revisions to match against when filtering. This controls which promotions are included in search results, not the shape of the response. The response always returns the published revision in the main body, with `latestRevision` included when the latest revision diverges.
     ///
-    ///Known values: `LATEST`, `PUBLISHED`, `ANY`.
+    /// Known values: `LATEST`, `PUBLISHED`, `ANY`.
     #[serde(default = "search_promotions_revision_default")]
     pub revision: Option<String>,
-    ///The maximum number of response results per page.
+    /// The maximum number of response results per page.
     #[serde(default = "search_promotions_limit_default")]
     pub limit: Option<i64>,
-    ///A comma-delimited list of datasets to include in the response.
+    /// A comma-delimited list of datasets to include in the response.
     ///
-    ///Known values: `ISSUES`, `CUSTOMER_SEGMENTS`.
+    /// Known values: `ISSUES`, `CUSTOMER_SEGMENTS`.
     pub included_data: Option<Vec<String>>,
 }
 impl SearchPromotionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_ids: Vec<String>) -> Self {
         Self {
             marketplace_ids,
@@ -236,9 +236,9 @@ impl SearchPromotionsParams {
         }
     }
 }
-///Search and filter promotions based on various criteria. Returns a paginated list of promotion summaries.
+/// Search and filter promotions based on various criteria. Returns a paginated list of promotion summaries.
 ///
-///Its pages: [`search_promotions_pages`].
+/// Its pages: [`search_promotions_pages`].
 pub async fn search_promotions(
     client: &Client,
     params: SearchPromotionsParams,
@@ -280,7 +280,7 @@ pub async fn search_promotions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`search_promotions`].
+/// Each page of [`search_promotions`].
 pub fn search_promotions_pages<'a>(
     client: &'a Client,
     params: SearchPromotionsParams,

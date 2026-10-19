@@ -2,19 +2,19 @@
 // Source: fba-inbound-eligibility-api-model/fbaInbound.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional information that can help the caller understand or fix the issue.
+    /// Additional information that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub message: ::std::option::Option<::std::string::String>,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -34,24 +34,24 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the getItemEligibilityPreview operation.
+/// The response schema for the getItemEligibilityPreview operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetItemEligibilityPreviewResponse {
-    ///An unexpected condition occurred during the GetItemEligibilityPreview operation.
+    /// An unexpected condition occurred during the GetItemEligibilityPreview operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the getItemEligibilityPreview operation.
+    /// The payload for the getItemEligibilityPreview operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ItemEligibilityPreview>,
 }
-///The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
+/// The response object which contains the ASIN, marketplaceId if required, eligibility program, the eligibility status (boolean), and a list of ineligibility reason codes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemEligibilityPreview {
-    ///The ASIN for which eligibility was determined.
+    /// The ASIN for which eligibility was determined.
     pub asin: ::std::string::String,
-    ///Potential Ineligibility Reason Codes.
+    /// Potential Ineligibility Reason Codes.
     ///
-    ///Known values: `FBA_INB_0004`, `FBA_INB_0006`, `FBA_INB_0007`, `FBA_INB_0008`, `FBA_INB_0009`, `FBA_INB_0010`, `FBA_INB_0011`, `FBA_INB_0012`, `FBA_INB_0013`, `FBA_INB_0014`, `FBA_INB_0015`, `FBA_INB_0016`, `FBA_INB_0017`, `FBA_INB_0018`, `FBA_INB_0019`, `FBA_INB_0034`, `FBA_INB_0035`, `FBA_INB_0036`, `FBA_INB_0037`, `FBA_INB_0038`, `FBA_INB_0050`, `FBA_INB_0051`, `FBA_INB_0053`, `FBA_INB_0055`, `FBA_INB_0056`, `FBA_INB_0059`, `FBA_INB_0065`, `FBA_INB_0066`, `FBA_INB_0067`, `FBA_INB_0068`, `FBA_INB_0095`, `FBA_INB_0097`, `FBA_INB_0098`, `FBA_INB_0099`, `FBA_INB_0100`, `FBA_INB_0103`, `FBA_INB_0104`, `FBA_INB_0197`, `FBA_INB_0342`, `FBA_INB_0465`, `UNKNOWN_INB_ERROR_CODE`. Other values may be returned by Amazon.
+    /// Known values: `FBA_INB_0004`, `FBA_INB_0006`, `FBA_INB_0007`, `FBA_INB_0008`, `FBA_INB_0009`, `FBA_INB_0010`, `FBA_INB_0011`, `FBA_INB_0012`, `FBA_INB_0013`, `FBA_INB_0014`, `FBA_INB_0015`, `FBA_INB_0016`, `FBA_INB_0017`, `FBA_INB_0018`, `FBA_INB_0019`, `FBA_INB_0034`, `FBA_INB_0035`, `FBA_INB_0036`, `FBA_INB_0037`, `FBA_INB_0038`, `FBA_INB_0050`, `FBA_INB_0051`, `FBA_INB_0053`, `FBA_INB_0055`, `FBA_INB_0056`, `FBA_INB_0059`, `FBA_INB_0065`, `FBA_INB_0066`, `FBA_INB_0067`, `FBA_INB_0068`, `FBA_INB_0095`, `FBA_INB_0097`, `FBA_INB_0098`, `FBA_INB_0099`, `FBA_INB_0100`, `FBA_INB_0103`, `FBA_INB_0104`, `FBA_INB_0197`, `FBA_INB_0342`, `FBA_INB_0465`, `UNKNOWN_INB_ERROR_CODE`. Other values may be returned by Amazon.
     #[serde(
         rename = "ineligibilityReasonList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -59,18 +59,18 @@ pub struct ItemEligibilityPreview {
     pub ineligibility_reason_list: ::std::option::Option<
         ::std::vec::Vec<::std::string::String>,
     >,
-    ///Indicates if the item is eligible for the program.
+    /// Indicates if the item is eligible for the program.
     #[serde(rename = "isEligibleForProgram")]
     pub is_eligible_for_program: bool,
-    ///The marketplace for which eligibility was determined.
+    /// The marketplace for which eligibility was determined.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The program for which eligibility was determined.
+    /// The program for which eligibility was determined.
     ///
-    ///Known values: `INBOUND`, `COMMINGLING`. Other values may be returned by Amazon.
+    /// Known values: `INBOUND`, `COMMINGLING`. Other values may be returned by Amazon.
     pub program: ::std::string::String,
 }
 /// Error types.

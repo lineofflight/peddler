@@ -2,40 +2,40 @@
 // Source: seller-wallet-api-model/sellerWallet_2024-03-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The balance amount in the Amazon Seller Wallet bank account.
+/// The balance amount in the Amazon Seller Wallet bank account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Balance {
-    ///The unique identifier provided by Amazon to identify the account.
+    /// The unique identifier provided by Amazon to identify the account.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The balance amount in number format.
+    /// The balance amount in number format.
     #[serde(rename = "balanceAmount")]
     pub balance_amount: BigDecimal,
-    ///The Amazon Seller Wallet bank account currency code in ISO 4217 format.
+    /// The Amazon Seller Wallet bank account currency code in ISO 4217 format.
     #[serde(rename = "balanceCurrency")]
     pub balance_currency: ::std::string::String,
-    ///The type of balance.
+    /// The type of balance.
     ///
-    ///Known values: `AVAILABLE`, `LOCKED_IN`, `LOCKED_OUT`, `TOTAL`. Other values may be returned by Amazon.
+    /// Known values: `AVAILABLE`, `LOCKED_IN`, `LOCKED_OUT`, `TOTAL`. Other values may be returned by Amazon.
     #[serde(
         rename = "balanceType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub balance_type: ::std::option::Option<BalanceType>,
-    ///The date of the most recent account balance update.
+    /// The date of the most recent account balance update.
     #[serde(rename = "lastUpdateDate")]
     pub last_update_date: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///A list of balances in the seller account.
+/// A list of balances in the seller account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BalanceListing {
-    ///A list of balances in the seller account.
+    /// A list of balances in the seller account.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub balances: ::std::option::Option<::std::vec::Vec<Balance>>,
 }
-///The type of bank account balance.
+/// The type of bank account balance.
 ///
-///Known values: `AVAILABLE`, `LOCKED_IN`, `LOCKED_OUT`, `TOTAL`. Other values may be returned by Amazon.
+/// Known values: `AVAILABLE`, `LOCKED_IN`, `LOCKED_OUT`, `TOTAL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -76,72 +76,72 @@ impl ::std::str::FromStr for BalanceType {
         Ok(Self(value.to_string()))
     }
 }
-///Details of an Amazon Seller Wallet bank account. This account is used to hold the money that a Seller Wallet customer earns by selling items.
+/// Details of an Amazon Seller Wallet bank account. This account is used to hold the money that a Seller Wallet customer earns by selling items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BankAccount {
-    ///The two-digit country code in ISO 3166 format.
+    /// The two-digit country code in ISO 3166 format.
     #[serde(rename = "accountCountryCode")]
     pub account_country_code: ::std::string::String,
-    ///Bank account currency code in ISO 4217 format.
+    /// Bank account currency code in ISO 4217 format.
     #[serde(rename = "accountCurrency")]
     pub account_currency: ::std::string::String,
-    ///The bank account holder's name (expected to be an Amazon customer). There is a 50 character limit.
+    /// The bank account holder's name (expected to be an Amazon customer). There is a 50 character limit.
     #[serde(
         rename = "accountHolderName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_holder_name: ::std::option::Option<::std::string::String>,
-    ///The unique bank account identifier provided by Amazon. To initiate a `SELF` transaction with Seller Wallet, you must choose `BANK_ACCOUNT` as the payment method type in the [getPaymentMethod](https://developer-docs.amazon.com/sp-api/reference/getpaymentmethods) request. Your Amazon Seller Wallet bank account identifier should match the `paymentMethodId` in the response. This field is required.
+    /// The unique bank account identifier provided by Amazon. To initiate a `SELF` transaction with Seller Wallet, you must choose `BANK_ACCOUNT` as the payment method type in the [getPaymentMethod](https://developer-docs.amazon.com/sp-api/reference/getpaymentmethods) request. Your Amazon Seller Wallet bank account identifier should match the `paymentMethodId` in the response. This field is required.
     #[serde(
         rename = "accountId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_id: ::std::option::Option<::std::string::String>,
-    ///The compliance status of the bank account holder.
+    /// The compliance status of the bank account holder.
     ///
-    ///Known values: `ACTIVE`, `INACTIVE`, `UNDER_REVIEW`, `VERIFICATION_FAILED`. Other values may be returned by Amazon.
+    /// Known values: `ACTIVE`, `INACTIVE`, `UNDER_REVIEW`, `VERIFICATION_FAILED`. Other values may be returned by Amazon.
     #[serde(
         rename = "bankAccountHolderStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_account_holder_status: ::std::option::Option<BankAccountHolderStatus>,
-    ///The format in which the bank account number is provided for `THIRD_PARTY` transaction requests.
+    /// The format in which the bank account number is provided for `THIRD_PARTY` transaction requests.
     ///
-    ///Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
+    /// Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
     #[serde(
         rename = "bankAccountNumberFormat",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_account_number_format: ::std::option::Option<BankAccountNumberFormat>,
-    ///The last 3 digit of the bank account number. This value is three consecutive zeros for Amazon Seller Wallet accounts.
+    /// The last 3 digit of the bank account number. This value is three consecutive zeros for Amazon Seller Wallet accounts.
     #[serde(rename = "bankAccountNumberTail")]
     pub bank_account_number_tail: ::std::string::String,
-    ///Type of ownership of the bank account. This value is `SELF` for Amazon Seller Wallet accounts.
+    /// Type of ownership of the bank account. This value is `SELF` for Amazon Seller Wallet accounts.
     ///
-    ///Known values: `THIRD_PARTY`, `SELF`. Other values may be returned by Amazon.
+    /// Known values: `THIRD_PARTY`, `SELF`. Other values may be returned by Amazon.
     #[serde(rename = "bankAccountOwnershipType")]
     pub bank_account_ownership_type: BankAccountOwnershipType,
-    ///The name of the bank. This value is Amazon Seller Wallet for Amazon Seller Wallet accounts.
+    /// The name of the bank. This value is Amazon Seller Wallet for Amazon Seller Wallet accounts.
     #[serde(rename = "bankName", skip_serializing_if = "::std::option::Option::is_none")]
     pub bank_name: ::std::option::Option<::std::string::String>,
-    ///The bank number format or routing number type for `THIRD_PARTY` transaction requests.
+    /// The bank number format or routing number type for `THIRD_PARTY` transaction requests.
     ///
-    ///Known values: `BIC`, `BASIC`. Other values may be returned by Amazon.
+    /// Known values: `BIC`, `BASIC`. Other values may be returned by Amazon.
     #[serde(
         rename = "bankNumberFormat",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_number_format: ::std::option::Option<BankNumberFormat>,
-    ///Routing number for automated clearing house transfers for `THIRD_PARTY` transaction requests. This value is nine consecutive zeros for Amazon Seller Wallet accounts.
+    /// Routing number for automated clearing house transfers for `THIRD_PARTY` transaction requests. This value is nine consecutive zeros for Amazon Seller Wallet accounts.
     #[serde(
         rename = "routingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub routing_number: ::std::option::Option<::std::string::String>,
 }
-///The status of the Amazon Seller Wallet account holder.
+/// The status of the Amazon Seller Wallet account holder.
 ///
-///Known values: `ACTIVE`, `INACTIVE`, `UNDER_REVIEW`, `VERIFICATION_FAILED`. Other values may be returned by Amazon.
+/// Known values: `ACTIVE`, `INACTIVE`, `UNDER_REVIEW`, `VERIFICATION_FAILED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -182,15 +182,15 @@ impl ::std::str::FromStr for BankAccountHolderStatus {
         Ok(Self(value.to_string()))
     }
 }
-///A list of bank accounts.
+/// A list of bank accounts.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BankAccountListing {
-    ///A list of bank accounts.
+    /// A list of bank accounts.
     pub accounts: ::std::vec::Vec<BankAccount>,
 }
-///The format of the bank account number.
+/// The format of the bank account number.
 ///
-///Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
+/// Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -231,9 +231,9 @@ impl ::std::str::FromStr for BankAccountNumberFormat {
         Ok(Self(value.to_string()))
     }
 }
-///The destination bank account's ownership type.
+/// The destination bank account's ownership type.
 ///
-///Known values: `THIRD_PARTY`, `SELF`. Other values may be returned by Amazon.
+/// Known values: `THIRD_PARTY`, `SELF`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -274,9 +274,9 @@ impl ::std::str::FromStr for BankAccountOwnershipType {
         Ok(Self(value.to_string()))
     }
 }
-///The format of the bank number. Also known as the routing number type.
+/// The format of the bank number. Also known as the routing number type.
 ///
-///Known values: `BIC`, `BASIC`. Other values may be returned by Amazon.
+/// Known values: `BIC`, `BASIC`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -317,7 +317,7 @@ impl ::std::str::FromStr for BankNumberFormat {
         Ok(Self(value.to_string()))
     }
 }
-///A decimal number, such as an amount or FX rate.
+/// A decimal number, such as an amount or FX rate.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BigDecimal(pub ::serde_json::Number);
@@ -360,80 +360,80 @@ impl ::std::convert::TryFrom<String> for BigDecimal {
         value.parse()
     }
 }
-///The transaction response and historical details related to it.
+/// The transaction response and historical details related to it.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateTransactionResponse {
-    ///The callback URL for the transaction which the user have to click to approve/consent the transaction
+    /// The callback URL for the transaction which the user have to click to approve/consent the transaction
     #[serde(rename = "callBackURL")]
     pub call_back_url: ::std::string::String,
-    ///The transaction response details.
+    /// The transaction response details.
     pub transaction: Transaction,
 }
-///A currency type and amount.
+/// A currency type and amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Currency {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(
         rename = "currencyAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_amount: ::std::option::Option<BigDecimal>,
-    ///The three-digit currency code in ISO 4217 format.
+    /// The three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///The response returned when the schedule transfer's delete request is successful.
+/// The response returned when the schedule transfer's delete request is successful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DeleteTransferSchedule {
-    ///A success code that specifies that the delete operation was successful. For example, HTTP 200.
+    /// A success code that specifies that the delete operation was successful. For example, HTTP 200.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand the operation execution.
+    /// Additional details that can help the caller understand the operation execution.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the success condition of the delete schedule transaction.
+    /// A message that describes the success condition of the delete schedule transaction.
     pub message: ::std::string::String,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///List of errors
+    /// List of errors
     pub errors: ::std::vec::Vec<Error>,
 }
-///Details of the fee.
+/// Details of the fee.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Fee {
-    ///The actual value of the fee in numeric format.
+    /// The actual value of the fee in numeric format.
     #[serde(rename = "feeAmount")]
     pub fee_amount: Currency,
-    ///The unique identifier assigned to the fee.
+    /// The unique identifier assigned to the fee.
     #[serde(rename = "feeId")]
     pub fee_id: ::std::string::String,
-    ///The value of the fee in percentage format.
+    /// The value of the fee in percentage format.
     #[serde(rename = "feeRateValue")]
     pub fee_rate_value: ::std::string::String,
-    ///The type of the fee.
+    /// The type of the fee.
     ///
-    ///Known values: `MISCELLANEOUS_FEE`, `TAX`, `TRANSACTION_FEE`. Other values may be returned by Amazon.
+    /// Known values: `MISCELLANEOUS_FEE`, `TAX`, `TRANSACTION_FEE`. Other values may be returned by Amazon.
     #[serde(rename = "feeType")]
     pub fee_type: FeeType,
 }
-///The type of fee on the transaction.
+/// The type of fee on the transaction.
 ///
-///Known values: `MISCELLANEOUS_FEE`, `TAX`, `TRANSACTION_FEE`. Other values may be returned by Amazon.
+/// Known values: `MISCELLANEOUS_FEE`, `TAX`, `TRANSACTION_FEE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -474,76 +474,76 @@ impl ::std::str::FromStr for FeeType {
         Ok(Self(value.to_string()))
     }
 }
-///Foreign exchange rate details.
+/// Foreign exchange rate details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FxRateDetails {
-    ///The market foreign exchange rate.
+    /// The market foreign exchange rate.
     #[serde(rename = "baseRate")]
     pub base_rate: BigDecimal,
-    ///The total rate applied to the money transfer. This includes all exchange rates, markups, and fees.
+    /// The total rate applied to the money transfer. This includes all exchange rates, markups, and fees.
     #[serde(rename = "effectiveFxRate")]
     pub effective_fx_rate: BigDecimal,
-    ///The unique identifier assigned to the fees / foreign exchange rate of a transaction.
+    /// The unique identifier assigned to the fees / foreign exchange rate of a transaction.
     #[serde(rename = "fxRateId")]
     pub fx_rate_id: ::std::string::String,
-    ///Whether the customer is buying or selling the source currency.
+    /// Whether the customer is buying or selling the source currency.
     ///
-    ///Known values: `BUY`, `SELL`. Other values may be returned by Amazon.
+    /// Known values: `BUY`, `SELL`. Other values may be returned by Amazon.
     #[serde(rename = "rateDirection")]
     pub rate_direction: RateDirection,
 }
-///The contact information of the payee. This field is required when the request `bankAccountOwnershipType` is `THIRD_PARTY`. The contact information is used for payee verification and registration purposes.
+/// The contact information of the payee. This field is required when the request `bankAccountOwnershipType` is `THIRD_PARTY`. The contact information is used for payee verification and registration purposes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PayeeContactInformation {
-    ///Address Line 1 of the public address.
+    /// Address Line 1 of the public address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Address Line 2 of the public address.
+    /// Address Line 2 of the public address.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///City name of the public address.
+    /// City name of the public address.
     pub city: ::std::string::String,
-    ///Country name of the public address.
+    /// Country name of the public address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub country: ::std::option::Option<::std::string::String>,
-    ///The two digit country code, in ISO 3166 format.
+    /// The two digit country code, in ISO 3166 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///Email address of the payee.
+    /// Email address of the payee.
     #[serde(rename = "emailAddress")]
     pub email_address: ::std::string::String,
-    ///Type of entity of the payee.
+    /// Type of entity of the payee.
     ///
-    ///Known values: `INDIVIDUAL`, `BUSINESS`, `TAX_AUTHORITY`. Other values may be returned by Amazon.
+    /// Known values: `INDIVIDUAL`, `BUSINESS`, `TAX_AUTHORITY`. Other values may be returned by Amazon.
     #[serde(rename = "payeeEntityType")]
     pub payee_entity_type: PayeeEntityType,
-    ///First name of the payee. There is a 50 character limit.
+    /// First name of the payee. There is a 50 character limit.
     #[serde(rename = "payeeFirstName")]
     pub payee_first_name: ::std::string::String,
-    ///Last name of the payee. There is a 50 character limit.
+    /// Last name of the payee. There is a 50 character limit.
     #[serde(rename = "payeeLastName")]
     pub payee_last_name: ::std::string::String,
-    ///Middle name of the payee. There is a 50 character limit.
+    /// Middle name of the payee. There is a 50 character limit.
     #[serde(
         rename = "payeeMiddleName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payee_middle_name: ::std::option::Option<::std::string::String>,
-    ///Valid phone number of the payee.
+    /// Valid phone number of the payee.
     #[serde(rename = "phoneNumber")]
     pub phone_number: ::std::string::String,
-    ///Postal code of the public address.
+    /// Postal code of the public address.
     #[serde(rename = "postalCode")]
     pub postal_code: ::std::string::String,
-    ///State name of the public address. This is the state or region for China-based addresses.
+    /// State name of the public address. This is the state or region for China-based addresses.
     pub state: ::std::string::String,
 }
-///The entity type of the transaction payee when the bank account ownership type is `THIRD_PARTY`.
+/// The entity type of the transaction payee when the bank account ownership type is `THIRD_PARTY`.
 ///
-///Known values: `INDIVIDUAL`, `BUSINESS`, `TAX_AUTHORITY`. Other values may be returned by Amazon.
+/// Known values: `INDIVIDUAL`, `BUSINESS`, `TAX_AUTHORITY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -584,18 +584,18 @@ impl ::std::str::FromStr for PayeeEntityType {
         Ok(Self(value.to_string()))
     }
 }
-///The type of payment preference in which the transfer is being scheduled.
+/// The type of payment preference in which the transfer is being scheduled.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PaymentPreference {
-    ///The preferred payment type for the scheduled transaction. Can be `PERCENTAGE` or `AMOUNT`.
+    /// The preferred payment type for the scheduled transaction. Can be `PERCENTAGE` or `AMOUNT`.
     #[serde(rename = "paymentPreferencePaymentType")]
     pub payment_preference_payment_type: PaymentPreferencePaymentType,
-    ///The value of the payment preference.
+    /// The value of the payment preference.
     pub value: BigDecimal,
 }
-///The type of payment preference.
+/// The type of payment preference.
 ///
-///Known values: `PERCENTAGE`, `AMOUNT`. Other values may be returned by Amazon.
+/// Known values: `PERCENTAGE`, `AMOUNT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -636,9 +636,9 @@ impl ::std::str::FromStr for PaymentPreferencePaymentType {
         Ok(Self(value.to_string()))
     }
 }
-///Whether the customer is buying or selling the source currency.
+/// Whether the customer is buying or selling the source currency.
 ///
-///Known values: `BUY`, `SELL`. Other values may be returned by Amazon.
+/// Known values: `BUY`, `SELL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -679,9 +679,9 @@ impl ::std::str::FromStr for RateDirection {
         Ok(Self(value.to_string()))
     }
 }
-///The frequency at which the transaction is repeated.
+/// The frequency at which the transaction is repeated.
 ///
-///Known values: `DAILY`, `WEEKLY`, `BIWEEKLY`, `MONTHLY`. Other values may be returned by Amazon.
+/// Known values: `DAILY`, `WEEKLY`, `BIWEEKLY`, `MONTHLY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -722,26 +722,26 @@ impl ::std::str::FromStr for RecurringFrequency {
         Ok(Self(value.to_string()))
     }
 }
-///The configuration of the schedule.
+/// The configuration of the schedule.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ScheduleExpression {
-    ///How often the scheduled transfer happens. This field is required if `scheduleExpressionType` is `RECURRING`; otherwise it should be empty.
+    /// How often the scheduled transfer happens. This field is required if `scheduleExpressionType` is `RECURRING`; otherwise it should be empty.
     ///
-    ///Known values: `DAILY`, `WEEKLY`, `BIWEEKLY`, `MONTHLY`. Other values may be returned by Amazon.
+    /// Known values: `DAILY`, `WEEKLY`, `BIWEEKLY`, `MONTHLY`. Other values may be returned by Amazon.
     #[serde(
         rename = "recurringFrequency",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recurring_frequency: ::std::option::Option<RecurringFrequency>,
-    ///The type of the scheduled transfer.
+    /// The type of the scheduled transfer.
     ///
-    ///Known values: `RECURRING`, `ONE_TIME`. Other values may be returned by Amazon.
+    /// Known values: `RECURRING`, `ONE_TIME`. Other values may be returned by Amazon.
     #[serde(rename = "scheduleExpressionType")]
     pub schedule_expression_type: ScheduleExpressionType,
 }
-///The type of scheduled transfer expression.
+/// The type of scheduled transfer expression.
 ///
-///Known values: `RECURRING`, `ONE_TIME`. Other values may be returned by Amazon.
+/// Known values: `RECURRING`, `ONE_TIME`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -782,9 +782,9 @@ impl ::std::str::FromStr for ScheduleExpressionType {
         Ok(Self(value.to_string()))
     }
 }
-///The type of schedule the transfer is on. Schedules based on time patterns use EventBridge.
+/// The type of schedule the transfer is on. Schedules based on time patterns use EventBridge.
 ///
-///Known values: `TIME_BASED`. Other values may be returned by Amazon.
+/// Known values: `TIME_BASED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -825,13 +825,13 @@ impl ::std::str::FromStr for ScheduleTransferType {
         Ok(Self(value.to_string()))
     }
 }
-///The current transaction status and related historical details.
+/// The current transaction status and related historical details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Transaction {
-    ///The unique identifier of the Amazon Seller Wallet bank account from which the money is debited.
+    /// The unique identifier of the Amazon Seller Wallet bank account from which the money is debited.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The expected completion date of the transaction.
+    /// The expected completion date of the transaction.
     #[serde(
         rename = "expectedCompletionDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -839,16 +839,16 @@ pub struct Transaction {
     pub expected_completion_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The date of the most recent account balance update.
+    /// The date of the most recent account balance update.
     #[serde(rename = "lastUpdateDate")]
     pub last_update_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The Amazon Seller Wallet customer who requested the transaction.
+    /// The Amazon Seller Wallet customer who requested the transaction.
     #[serde(
         rename = "requesterName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub requester_name: ::std::option::Option<::std::string::String>,
-    ///The transaction's completion date.
+    /// The transaction's completion date.
     #[serde(
         rename = "transactionActualCompletionDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -856,173 +856,173 @@ pub struct Transaction {
     pub transaction_actual_completion_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///A description of the transaction that the requester provides when they initiate the transaction.
+    /// A description of the transaction that the requester provides when they initiate the transaction.
     #[serde(rename = "transactionDescription")]
     pub transaction_description: ::std::string::String,
-    ///The destination bank account details in the transaction.
+    /// The destination bank account details in the transaction.
     #[serde(rename = "transactionDestinationAccount")]
     pub transaction_destination_account: TransactionAccount,
-    ///The reason the transaction failed, if applicable.
+    /// The reason the transaction failed, if applicable.
     #[serde(
         rename = "transactionFailureReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_failure_reason: ::std::option::Option<::std::string::String>,
-    ///The amount of completed transaction in the destination account currency. This value is only populated for international transactions
+    /// The amount of completed transaction in the destination account currency. This value is only populated for international transactions
     #[serde(
         rename = "transactionFinalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_final_amount: ::std::option::Option<Currency>,
-    ///The unique identifier provided by Amazon to the transaction.
+    /// The unique identifier provided by Amazon to the transaction.
     #[serde(rename = "transactionId")]
     pub transaction_id: ::std::string::String,
-    ///The amount for which the transfer was initiated.
+    /// The amount for which the transfer was initiated.
     #[serde(rename = "transactionRequestAmount")]
     pub transaction_request_amount: Currency,
-    ///The date when the transaction was initiated.
+    /// The date when the transaction was initiated.
     #[serde(rename = "transactionRequestDate")]
     pub transaction_request_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The transaction initiation source. This value is either the Amazon portal or PISP name that the customer used to start the transaction.
+    /// The transaction initiation source. This value is either the Amazon portal or PISP name that the customer used to start the transaction.
     #[serde(rename = "transactionRequesterSource")]
     pub transaction_requester_source: ::std::string::String,
-    ///The source bank account details in the transaction.
+    /// The source bank account details in the transaction.
     #[serde(
         rename = "transactionSourceAccount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_source_account: ::std::option::Option<TransactionAccount>,
-    ///The status of the transaction.
+    /// The status of the transaction.
     ///
-    ///Known values: `EXPIRED`, `FAILED`, `FAILED_CREDITS_APPLIED`, `IN_PROGRESS`, `PENDING_USER_APPROVAL`, `SUCCESSFUL`. Other values may be returned by Amazon.
+    /// Known values: `EXPIRED`, `FAILED`, `FAILED_CREDITS_APPLIED`, `IN_PROGRESS`, `PENDING_USER_APPROVAL`, `SUCCESSFUL`. Other values may be returned by Amazon.
     #[serde(rename = "transactionStatus")]
     pub transaction_status: TransactionStatus,
-    ///The type of the transaction.
+    /// The type of the transaction.
     ///
-    ///Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
+    /// Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
     #[serde(rename = "transactionType")]
     pub transaction_type: TransactionType,
-    ///The fees and rates that apply to the transaction, as applicable.
+    /// The fees and rates that apply to the transaction, as applicable.
     #[serde(rename = "transferRateDetails")]
     pub transfer_rate_details: TransferRatePreview,
 }
-///Details of the bank account involved in the transaction.
+/// Details of the bank account involved in the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransactionAccount {
-    ///The unique identifier provided by Amazon to identify the account.
+    /// The unique identifier provided by Amazon to identify the account.
     #[serde(
         rename = "accountId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_id: ::std::option::Option<::std::string::String>,
-    ///The two-digit country code, in ISO 3166 format. This field is optional for `transactionSourceAccount`, but is mandatory for `transactionDestinationAccount`.
+    /// The two-digit country code, in ISO 3166 format. This field is optional for `transactionSourceAccount`, but is mandatory for `transactionDestinationAccount`.
     #[serde(
         rename = "bankAccountCountryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_account_country_code: ::std::option::Option<::std::string::String>,
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     #[serde(rename = "bankAccountCurrency")]
     pub bank_account_currency: ::std::string::String,
-    ///The account holder's name.
+    /// The account holder's name.
     #[serde(
         rename = "bankAccountHolderName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_account_holder_name: ::std::option::Option<::std::string::String>,
-    ///The format for the bank account number.
+    /// The format for the bank account number.
     ///
-    ///Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
+    /// Known values: `IBAN`, `BBAN`. Other values may be returned by Amazon.
     #[serde(rename = "bankAccountNumberFormat")]
     pub bank_account_number_format: BankAccountNumberFormat,
-    ///The last three digits of the bank account number.
+    /// The last three digits of the bank account number.
     #[serde(
         rename = "bankAccountNumberTail",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bank_account_number_tail: ::std::option::Option<::std::string::String>,
-    ///The name of the bank.
+    /// The name of the bank.
     #[serde(rename = "bankName")]
     pub bank_name: ::std::string::String,
 }
-///Request body to initiate a transaction from a Seller Wallet bank account to another customer-defined bank account.
+/// Request body to initiate a transaction from a Seller Wallet bank account to another customer-defined bank account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransactionInitiationRequest {
-    ///If the payment is for VAT (Value-Added-Tax) then enter VAT identification number in this field which will be mandatory. The length constraint is 140 characters and do not allow user to enter any sensitive information other than VAT-ID.
+    /// If the payment is for VAT (Value-Added-Tax) then enter VAT identification number in this field which will be mandatory. The length constraint is 140 characters and do not allow user to enter any sensitive information other than VAT-ID.
     #[serde(
         rename = "customerPaymentReference",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_payment_reference: ::std::option::Option<::std::string::String>,
-    ///The unique identifier of the destination bank account where the money is deposited.
+    /// The unique identifier of the destination bank account where the money is deposited.
     #[serde(
         rename = "destinationAccountId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub destination_account_id: ::std::option::Option<::std::string::String>,
-    ///Details of the destination bank account in the transaction request.
+    /// Details of the destination bank account in the transaction request.
     #[serde(rename = "destinationTransactionInstrument")]
     pub destination_transaction_instrument: TransactionInstrumentDetails,
-    ///The contact information of a payee.
+    /// The contact information of a payee.
     #[serde(
         rename = "payeeContactInformation",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payee_contact_information: ::std::option::Option<PayeeContactInformation>,
-    ///The time at which the transaction was initiated in [ISO 8601 date time format](https://developer-docs.amazon.com/sp-api/docs/iso-8601).
+    /// The time at which the transaction was initiated in [ISO 8601 date time format](https://developer-docs.amazon.com/sp-api/docs/iso-8601).
     #[serde(rename = "requestTime")]
     pub request_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The unique identifier of the source Amazon Seller Wallet bank account from which the money is debited.
+    /// The unique identifier of the source Amazon Seller Wallet bank account from which the money is debited.
     #[serde(rename = "sourceAccountId")]
     pub source_account_id: ::std::string::String,
-    ///The transaction amount in the source account's currency format. Requests that use a currency other than the source bank account currency fail.
+    /// The transaction amount in the source account's currency format. Requests that use a currency other than the source bank account currency fail.
     #[serde(rename = "sourceAmount")]
     pub source_amount: Currency,
-    ///A description of the transaction.
+    /// A description of the transaction.
     #[serde(
         rename = "transactionDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_description: ::std::option::Option<::std::string::String>,
-    ///The fees and foreign exchange rates that apply to the transaction. Transfer Rate Preview is currently optional. This field is required when the third party honors the fees and rates of the Seller Wallet transaction.
+    /// The fees and foreign exchange rates that apply to the transaction. Transfer Rate Preview is currently optional. This field is required when the third party honors the fees and rates of the Seller Wallet transaction.
     #[serde(
         rename = "transferRateDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transfer_rate_details: ::std::option::Option<TransferRatePreview>,
 }
-///Details of the destination bank account in the transaction request.
+/// Details of the destination bank account in the transaction request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransactionInstrumentDetails {
-    ///The bank account holder's name (expected to be an Amazon customer).
+    /// The bank account holder's name (expected to be an Amazon customer).
     ///
-    ///**Note:** This field is encrypted before Amazon receives it, so should not be used to generate `destAccountDigitalSignature`, and should not be included in the request signature.
+    /// **Note:** This field is encrypted before Amazon receives it, so should not be used to generate `destAccountDigitalSignature`, and should not be included in the request signature.
     #[serde(rename = "accountHolderName")]
     pub account_holder_name: ::std::string::String,
-    ///Details of the destination bank account.
+    /// Details of the destination bank account.
     #[serde(rename = "bankAccount")]
     pub bank_account: BankAccount,
-    ///The bank account number of the destination payment method.
+    /// The bank account number of the destination payment method.
     ///
-    ///**Note:** This field is encrypted before Amazon receives it, so should not be used to generate `destAccountDigitalSignature`, and should not be included in the request signature.
+    /// **Note:** This field is encrypted before Amazon receives it, so should not be used to generate `destAccountDigitalSignature`, and should not be included in the request signature.
     #[serde(rename = "bankAccountNumber")]
     pub bank_account_number: ::std::string::String,
 }
-///A list of transactions.
+/// A list of transactions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransactionListing {
-    ///A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_page_token: ::std::option::Option<::std::string::String>,
-    ///A list of transactions.
+    /// A list of transactions.
     pub transactions: ::std::vec::Vec<Transaction>,
 }
-///The current status of the transaction.
+/// The current status of the transaction.
 ///
-///Known values: `EXPIRED`, `FAILED`, `FAILED_CREDITS_APPLIED`, `IN_PROGRESS`, `PENDING_USER_APPROVAL`, `SUCCESSFUL`. Other values may be returned by Amazon.
+/// Known values: `EXPIRED`, `FAILED`, `FAILED_CREDITS_APPLIED`, `IN_PROGRESS`, `PENDING_USER_APPROVAL`, `SUCCESSFUL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1063,9 +1063,9 @@ impl ::std::str::FromStr for TransactionStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The type of transaction.
+/// The type of transaction.
 ///
-///Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
+/// Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1106,79 +1106,79 @@ impl ::std::str::FromStr for TransactionType {
         Ok(Self(value.to_string()))
     }
 }
-///The fees and foreign exchange rates that apply to the transaction.
+/// The fees and foreign exchange rates that apply to the transaction.
 ///
-///If the fees are in terms of the `baseAmount` (source account) currency, then the effective rate is equal to **1 - (fees * `baseRate` / `baseAmount`)**.
+/// If the fees are in terms of the `baseAmount` (source account) currency, then the effective rate is equal to **1 - (fees * `baseRate` / `baseAmount`)**.
 ///
-///If the fees are in terms of the `transferAmount` (destination account) currency, then the effective rate is equal to **`baseRate` - (fees / `baseAmount`)**.
+/// If the fees are in terms of the `transferAmount` (destination account) currency, then the effective rate is equal to **`baseRate` - (fees / `baseAmount`)**.
 ///
-///In the preceding expressions, **fees** is equal to the sum of all `feeAmount.currencyAmount` values in the `fees` array.
+/// In the preceding expressions, **fees** is equal to the sum of all `feeAmount.currencyAmount` values in the `fees` array.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransferRatePreview {
-    ///The base amount of the transaction.
+    /// The base amount of the transaction.
     #[serde(rename = "baseAmount")]
     pub base_amount: Currency,
-    ///A list of fees.
+    /// A list of fees.
     pub fees: ::std::vec::Vec<Fee>,
-    ///The foreign exchange rate value of the transaction.
+    /// The foreign exchange rate value of the transaction.
     #[serde(rename = "fxRateDetails")]
     pub fx_rate_details: FxRateDetails,
-    ///The final amount transferred, which includes both the fee deduction and currency conversion rate.
+    /// The final amount transferred, which includes both the fee deduction and currency conversion rate.
     #[serde(rename = "transferAmount")]
     pub transfer_amount: Currency,
 }
-///Transfer schedule details and related historical details.
+/// Transfer schedule details and related historical details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransferSchedule {
-    ///The payment preference of the scheduled transfer. This information can be modified when you update a transfer schedule.
+    /// The payment preference of the scheduled transfer. This information can be modified when you update a transfer schedule.
     #[serde(
         rename = "paymentPreference",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_preference: ::std::option::Option<PaymentPreference>,
-    ///Details of the destination bank account in the scheduled transfer. Here `bankAccountCountryCode` is a required field.
+    /// Details of the destination bank account in the scheduled transfer. Here `bankAccountCountryCode` is a required field.
     #[serde(rename = "transactionDestinationAccount")]
     pub transaction_destination_account: TransactionAccount,
-    ///Details of the source bank account in the scheduled transfer.
+    /// Details of the source bank account in the scheduled transfer.
     #[serde(
         rename = "transactionSourceAccount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_source_account: ::std::option::Option<TransactionAccount>,
-    ///The type of transfer.
+    /// The type of transfer.
     ///
-    ///Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
+    /// Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
     #[serde(rename = "transactionType")]
     pub transaction_type: TransactionType,
-    ///A list of transfer schedule failures.
+    /// A list of transfer schedule failures.
     #[serde(rename = "transferScheduleFailures")]
     pub transfer_schedule_failures: ::std::vec::Vec<TransferScheduleFailures>,
-    ///The unique identifier provided by Amazon to the scheduled transfer.
+    /// The unique identifier provided by Amazon to the scheduled transfer.
     #[serde(rename = "transferScheduleId")]
     pub transfer_schedule_id: ::std::string::String,
-    ///The fields required for the scheduled transfer. This information can be modified when you update a transfer schedule.
+    /// The fields required for the scheduled transfer. This information can be modified when you update a transfer schedule.
     #[serde(rename = "transferScheduleInformation")]
     pub transfer_schedule_information: TransferScheduleInformation,
-    ///The type of transfer schedule. This information can be modified when you update a transfer schedule.
+    /// The type of transfer schedule. This information can be modified when you update a transfer schedule.
     ///
-    ///Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
+    /// Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
     #[serde(rename = "transferScheduleStatus")]
     pub transfer_schedule_status: TransferScheduleStatus,
 }
-///The time of and reason for the transfer schedule failure.
+/// The time of and reason for the transfer schedule failure.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransferScheduleFailures {
-    ///The transfer schedule failure date.
+    /// The transfer schedule failure date.
     #[serde(rename = "transferScheduleFailureDate")]
     pub transfer_schedule_failure_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The reason listed for the failure of the transfer schedule.
+    /// The reason listed for the failure of the transfer schedule.
     #[serde(rename = "transferScheduleFailureReason")]
     pub transfer_schedule_failure_reason: ::std::string::String,
 }
-///Mandatory information for initiating a schedule transfer.
+/// Mandatory information for initiating a schedule transfer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransferScheduleInformation {
-    ///The end date of the scheduled transfer.
+    /// The end date of the scheduled transfer.
     #[serde(
         rename = "scheduleEndDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1186,13 +1186,13 @@ pub struct TransferScheduleInformation {
     pub schedule_end_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///How often the scheduled transfer repeats.
+    /// How often the scheduled transfer repeats.
     #[serde(
         rename = "scheduleExpression",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub schedule_expression: ::std::option::Option<ScheduleExpression>,
-    ///The start date of the scheduled transfer.
+    /// The start date of the scheduled transfer.
     #[serde(
         rename = "scheduleStartDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1200,66 +1200,66 @@ pub struct TransferScheduleInformation {
     pub schedule_start_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The type of schedule.
+    /// The type of schedule.
     ///
-    ///Known values: `TIME_BASED`. Other values may be returned by Amazon.
+    /// Known values: `TIME_BASED`. Other values may be returned by Amazon.
     #[serde(
         rename = "scheduleType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub schedule_type: ::std::option::Option<ScheduleTransferType>,
 }
-///A list of transfer schedules.
+/// A list of transfer schedules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransferScheduleListing {
-    ///A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_page_token: ::std::option::Option<::std::string::String>,
-    ///A list of transfer schedules.
+    /// A list of transfer schedules.
     #[serde(rename = "transferSchedules")]
     pub transfer_schedules: ::std::vec::Vec<TransferSchedule>,
 }
-///Request body to initiate a scheduled transfer from a Seller Wallet bank account to another customer-defined bank account.
+/// Request body to initiate a scheduled transfer from a Seller Wallet bank account to another customer-defined bank account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TransferScheduleRequest {
-    ///The unique identifier of the destination bank account where the money is deposited.
+    /// The unique identifier of the destination bank account where the money is deposited.
     #[serde(rename = "destinationAccountId")]
     pub destination_account_id: ::std::string::String,
-    ///Details of the destination bank account in the transaction request.
+    /// Details of the destination bank account in the transaction request.
     #[serde(rename = "destinationTransactionInstrument")]
     pub destination_transaction_instrument: TransactionInstrumentDetails,
-    ///The payment preference of the scheduled transfer.
+    /// The payment preference of the scheduled transfer.
     #[serde(rename = "paymentPreference")]
     pub payment_preference: PaymentPreference,
-    ///The unique identifier of the source Amazon Seller Wallet bank account from which money is debited.
+    /// The unique identifier of the source Amazon Seller Wallet bank account from which money is debited.
     #[serde(rename = "sourceAccountId")]
     pub source_account_id: ::std::string::String,
-    ///The three-letter currency code of the source payment method country, in ISO 4217 format.
+    /// The three-letter currency code of the source payment method country, in ISO 4217 format.
     #[serde(rename = "sourceCurrencyCode")]
     pub source_currency_code: ::std::string::String,
-    ///The type of the scheduled transaction.
+    /// The type of the scheduled transaction.
     ///
-    ///Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
+    /// Known values: `CREDIT`, `DEBIT`. Other values may be returned by Amazon.
     #[serde(rename = "transactionType")]
     pub transaction_type: TransactionType,
-    ///The configuration of the scheduled transfer.
+    /// The configuration of the scheduled transfer.
     #[serde(rename = "transferScheduleInformation")]
     pub transfer_schedule_information: TransferScheduleInformation,
-    ///The type of transaction schedule. This field is required when you update a transfer schedule.
+    /// The type of transaction schedule. This field is required when you update a transfer schedule.
     ///
-    ///Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
+    /// Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
     #[serde(
         rename = "transferScheduleStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transfer_schedule_status: ::std::option::Option<TransferScheduleStatus>,
 }
-///The schedule status of the transfer.
+/// The schedule status of the transfer.
 ///
-///Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
+/// Known values: `ENABLED`, `DISABLED`, `EXPIRED`, `DELETED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

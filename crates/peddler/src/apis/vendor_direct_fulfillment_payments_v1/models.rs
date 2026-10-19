@@ -2,115 +2,115 @@
 // Source: vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A field where the selling party can provide additional information for tax-related or any other purposes.
+/// A field where the selling party can provide additional information for tax-related or any other purposes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AdditionalDetails {
-    ///The detail of the additional information provided by the selling party.
+    /// The detail of the additional information provided by the selling party.
     pub detail: ::std::string::String,
-    ///The language code of the additional information detail.
+    /// The language code of the additional information detail.
     #[serde(
         rename = "languageCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub language_code: ::std::option::Option<::std::string::String>,
-    ///The type of the additional information provided by the selling party.
+    /// The type of the additional information provided by the selling party.
     ///
-    ///Known values: `SUR`, `OCR`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.
+    /// Known values: `SUR`, `OCR`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///An additional corporate or fiscal registration identifier for a party.
+/// An additional corporate or fiscal registration identifier for a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AdditionalPartyIdentification {
-    ///The value of the additional party identifier.
+    /// The value of the additional party identifier.
     #[serde(rename = "identificationNumber")]
     pub identification_number: ::std::string::String,
-    ///The type of the additional party identifier.
+    /// The type of the additional party identifier.
     ///
-    ///Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.
+    /// Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.
     #[serde(rename = "identificationType")]
     pub identification_type: ::std::string::String,
 }
-///Address of the party.
+/// Address of the party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///First line of the address.
+    /// First line of the address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "addressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///The city where the person, business or institution is located.
+    /// The city where the person, business or institution is located.
     pub city: ::std::string::String,
-    ///The two digit country code in ISO 3166-1 alpha-2 format.
+    /// The two digit country code in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The county where person, business or institution is located.
+    /// The county where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district where person, business or institution is located.
+    /// The district where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name of the person, business or institution at that address.
+    /// The name of the person, business or institution at that address.
     pub name: ::std::string::String,
-    ///The phone number of the person, business or institution located at that address.
+    /// The phone number of the person, business or institution located at that address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
+    /// The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     #[serde(rename = "postalCode")]
     pub postal_code: ::std::string::String,
-    ///The state or region where person, business or institution is located.
+    /// The state or region where person, business or institution is located.
     #[serde(rename = "stateOrRegion")]
     pub state_or_region: ::std::string::String,
 }
-///Monetary and tax details of the allowance.
+/// Monetary and tax details of the allowance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AllowanceDetails {
-    ///Total monetary amount related to this allowance.
+    /// Total monetary amount related to this allowance.
     #[serde(rename = "allowanceAmount")]
     pub allowance_amount: Money,
-    ///Description of the allowance.
+    /// Description of the allowance.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///Tax amount details applied on this allowance.
+    /// Tax amount details applied on this allowance.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    ///Type of the allowance applied.
+    /// Type of the allowance applied.
     ///
-    ///Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.
+    /// Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///Monetary and tax details of the charge.
+/// Monetary and tax details of the charge.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ChargeDetails {
     #[serde(rename = "chargeAmount")]
     pub charge_amount: Money,
-    ///Individual tax details per line item.
+    /// Individual tax details per line item.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    ///Type of charge applied.
+    /// Type of charge applied.
     ///
-    ///Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`. Other values may be returned by Amazon.
+    /// Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -151,18 +151,18 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -182,211 +182,211 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///Represents the details of an invoice, including invoice number, date, parties involved, payment terms, totals, taxes, charges, and line items.
+/// Represents the details of an invoice, including invoice number, date, parties involved, payment terms, totals, taxes, charges, and line items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceDetail {
-    ///Additional details provided by the selling party, for tax-related or other purposes.
+    /// Additional details provided by the selling party, for tax-related or other purposes.
     #[serde(
         rename = "additionalDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_details: ::std::option::Option<::std::vec::Vec<AdditionalDetails>>,
-    ///Total allowance amount details for all line items.
+    /// Total allowance amount details for all line items.
     #[serde(
         rename = "allowanceDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub allowance_details: ::std::option::Option<::std::vec::Vec<AllowanceDetails>>,
-    ///Name, address and tax details of the party that issues this invoice.
+    /// Name, address and tax details of the party that issues this invoice.
     #[serde(
         rename = "billFromParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bill_from_party: ::std::option::Option<PartyIdentification>,
-    ///Name, address and tax details of the party to whom this invoice is issued.
+    /// Name, address and tax details of the party to whom this invoice is issued.
     #[serde(
         rename = "billToParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bill_to_party: ::std::option::Option<PartyIdentification>,
-    ///Total charge amount details for all line items.
+    /// Total charge amount details for all line items.
     #[serde(
         rename = "chargeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_details: ::std::option::Option<::std::vec::Vec<ChargeDetails>>,
-    ///Date of delivery of the goods or completion of the service.
+    /// Date of delivery of the goods or completion of the service.
     #[serde(
         rename = "deliveryDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub delivery_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Currency exchange rate applied on the invoice, where amounts are shown in a foreign currency.
+    /// Currency exchange rate applied on the invoice, where amounts are shown in a foreign currency.
     #[serde(
         rename = "exchangeRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub exchange_rate: ::std::option::Option<Decimal>,
-    ///Sum of all invoice line net amounts, excluding tax, charges and allowances. Provided for EU e-invoice interoperability.
+    /// Sum of all invoice line net amounts, excluding tax, charges and allowances. Provided for EU e-invoice interoperability.
     #[serde(
         rename = "invoiceBaseAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_base_amount: ::std::option::Option<Money>,
-    ///Invoice date.
+    /// Invoice date.
     #[serde(rename = "invoiceDate")]
     pub invoice_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The unique invoice number.
+    /// The unique invoice number.
     #[serde(rename = "invoiceNumber")]
     pub invoice_number: ::std::string::String,
-    ///Total amount details of the invoice.
+    /// Total amount details of the invoice.
     #[serde(rename = "invoiceTotal")]
     pub invoice_total: Money,
-    ///Provides the details of the items in this invoice.
+    /// Provides the details of the items in this invoice.
     pub items: ::std::vec::Vec<InvoiceItem>,
-    ///The payment terms for the invoice.
+    /// The payment terms for the invoice.
     #[serde(
         rename = "paymentTermsCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_terms_code: ::std::option::Option<::std::string::String>,
-    ///An additional unique reference number used for regulatory or other purposes.
+    /// An additional unique reference number used for regulatory or other purposes.
     #[serde(
         rename = "referenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reference_number: ::std::option::Option<::std::string::String>,
-    ///Name, address and tax details of the party receiving the payment of this invoice.
+    /// Name, address and tax details of the party receiving the payment of this invoice.
     #[serde(rename = "remitToParty")]
     pub remit_to_party: PartyIdentification,
-    ///Warehouse code of the vendor as in the order.
+    /// Warehouse code of the vendor as in the order.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
-    ///Ship-to country code.
+    /// Ship-to country code.
     #[serde(
         rename = "shipToCountryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_to_country_code: ::std::option::Option<::std::string::String>,
-    ///Name, address and tax details of the party receiving a shipment of products. Provided when the full ship-to address is required in addition to shipToCountryCode.
+    /// Name, address and tax details of the party receiving a shipment of products. Provided when the full ship-to address is required in addition to shipToCountryCode.
     #[serde(
         rename = "shipToParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_to_party: ::std::option::Option<PartyIdentification>,
-    ///The date on which the tax becomes chargeable, if different from the invoice date. When absent, the invoice date applies.
+    /// The date on which the tax becomes chargeable, if different from the invoice date. When absent, the invoice date applies.
     #[serde(
         rename = "taxPointDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_point_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Name, address and tax registration details of the supplier's fiscal or tax representative, where one is required.
+    /// Name, address and tax registration details of the supplier's fiscal or tax representative, where one is required.
     #[serde(
         rename = "taxRepresentativeParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_representative_party: ::std::option::Option<PartyIdentification>,
-    ///Individual tax details per line item.
+    /// Individual tax details per line item.
     #[serde(
         rename = "taxTotals",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_totals: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    ///Name, address and tax registration details of the VAT group representative member, when the supplier reports VAT as part of a VAT group.
+    /// Name, address and tax registration details of the VAT group representative member, when the supplier reports VAT as part of a VAT group.
     #[serde(
         rename = "vatGroupParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vat_group_party: ::std::option::Option<PartyIdentification>,
 }
-///Provides the details of the items in this invoice.
+/// Provides the details of the items in this invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceItem {
-    ///Line-level additional details provided by the selling party, e.g. tax exemption reason code and text.
+    /// Line-level additional details provided by the selling party, e.g. tax exemption reason code and text.
     #[serde(
         rename = "additionalDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_details: ::std::option::Option<::std::vec::Vec<AdditionalDetails>>,
-    ///Individual allowance details per line item.
+    /// Individual allowance details per line item.
     #[serde(
         rename = "allowanceDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub allowance_details: ::std::option::Option<::std::vec::Vec<AllowanceDetails>>,
-    ///Buyer's standard identification number (ASIN) of an item.
+    /// Buyer's standard identification number (ASIN) of an item.
     #[serde(
         rename = "buyerProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_product_identifier: ::std::option::Option<::std::string::String>,
-    ///Individual charge details per line item.
+    /// Individual charge details per line item.
     #[serde(
         rename = "chargeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_details: ::std::option::Option<::std::vec::Vec<ChargeDetails>>,
-    ///Harmonized System of Nomenclature (HSN) tax code. The HSN number cannot contain alphabets.
+    /// Harmonized System of Nomenclature (HSN) tax code. The HSN number cannot contain alphabets.
     #[serde(rename = "hsnCode", skip_serializing_if = "::std::option::Option::is_none")]
     pub hsn_code: ::std::option::Option<::std::string::String>,
-    ///Item quantity invoiced.
+    /// Item quantity invoiced.
     #[serde(rename = "invoicedQuantity")]
     pub invoiced_quantity: ItemQuantity,
-    ///Product or service description for the invoiced line item.
+    /// Product or service description for the invoiced line item.
     #[serde(
         rename = "itemDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_description: ::std::option::Option<::std::string::String>,
-    ///Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
+    /// Numbering of the item on the purchase order. The first item will be 1, the second 2, and so on.
     #[serde(rename = "itemSequenceNumber")]
     pub item_sequence_number: ::std::string::String,
-    ///Net price (before tax) to vendor with currency details.
+    /// Net price (before tax) to vendor with currency details.
     #[serde(rename = "netCost")]
     pub net_cost: Money,
-    ///The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
+    /// The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ::std::string::String,
-    ///Individual tax details per line item.
+    /// Individual tax details per line item.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    ///The vendor's order number for this order.
+    /// The vendor's order number for this order.
     #[serde(
         rename = "vendorOrderNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_order_number: ::std::option::Option<::std::string::String>,
-    ///The vendor selected product identification of the item.
+    /// The vendor selected product identification of the item.
     #[serde(
         rename = "vendorProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_product_identifier: ::std::option::Option<::std::string::String>,
 }
-///Details of item quantity.
+/// Details of item quantity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemQuantity {
-    ///Quantity of units available for a specific item.
+    /// Quantity of units available for a specific item.
     pub amount: i64,
-    ///Unit of measure for the available quantity.
+    /// Unit of measure for the available quantity.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }
-///An amount of money, including units in the form of currency.
+/// An amount of money, including units in the form of currency.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Money {
     pub amount: Decimal,
-    ///Three digit currency code in ISO 4217 format.
+    /// Three digit currency code in ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///Name, address and tax details of a party.
+/// Name, address and tax details of a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartyIdentification {
-    ///Additional corporate or fiscal registration identifiers for the party that are not VAT/GST registrations (e.g. FR SIREN, or DE W-IdNr.).
+    /// Additional corporate or fiscal registration identifiers for the party that are not VAT/GST registrations (e.g. FR SIREN, or DE W-IdNr.).
     #[serde(
         rename = "additionalPartyIdentifications",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -394,13 +394,13 @@ pub struct PartyIdentification {
     pub additional_party_identifications: ::std::option::Option<
         ::std::vec::Vec<AdditionalPartyIdentification>,
     >,
-    ///Identification of the party by address.
+    /// Identification of the party by address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    ///Assigned Identification for the party.
+    /// Assigned Identification for the party.
     #[serde(rename = "partyId")]
     pub party_id: ::std::string::String,
-    ///Tax registration details of the entity.
+    /// Tax registration details of the entity.
     #[serde(
         rename = "taxRegistrationDetails",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -409,74 +409,74 @@ pub struct PartyIdentification {
         ::std::vec::Vec<TaxRegistrationDetail>,
     >,
 }
-///The request schema for the submitInvoice operation.
+/// The request schema for the submitInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoiceRequest {
-    ///An array of invoice details to be submitted.
+    /// An array of invoice details to be submitted.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoices: ::std::option::Option<::std::vec::Vec<InvoiceDetail>>,
 }
-///The response schema for the submitInvoice operation.
+/// The response schema for the submitInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoiceResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The response payload for the submitInvoice operation.
+    /// The response payload for the submitInvoice operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionReference>,
 }
-///Details of tax amount applied.
+/// Details of tax amount applied.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxDetail {
-    ///Total tax amount applied on invoice total or an item total.
+    /// Total tax amount applied on invoice total or an item total.
     #[serde(rename = "taxAmount")]
     pub tax_amount: Money,
-    ///Tax percentage applied. Percentage must be expressed in decimal.
+    /// Tax percentage applied. Percentage must be expressed in decimal.
     #[serde(rename = "taxRate", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_rate: ::std::option::Option<Decimal>,
-    ///Type of the tax applied.
+    /// Type of the tax applied.
     ///
-    ///Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.
+    /// Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.
     #[serde(rename = "taxType")]
     pub tax_type: ::std::string::String,
-    ///This field will contain the invoice amount that is taxable at the rate specified in the tax rate field.
+    /// This field will contain the invoice amount that is taxable at the rate specified in the tax rate field.
     #[serde(
         rename = "taxableAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxable_amount: ::std::option::Option<Money>,
 }
-///Tax registration details of the entity.
+/// Tax registration details of the entity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxRegistrationDetail {
-    ///Address associated with the tax registration number.
+    /// Address associated with the tax registration number.
     #[serde(
         rename = "taxRegistrationAddress",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_address: ::std::option::Option<Address>,
-    ///Tax registration message that can be used for additional tax related details.
+    /// Tax registration message that can be used for additional tax related details.
     #[serde(
         rename = "taxRegistrationMessage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_message: ::std::option::Option<::std::string::String>,
-    ///Tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
+    /// Tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    ///Tax registration type for the entity.
+    /// Tax registration type for the entity.
     ///
-    ///Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.
+    /// Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_type: ::std::option::Option<::std::string::String>,
 }
-///Response containing the transaction ID.
+/// Response containing the transaction ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionReference {
-    ///GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    /// GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     #[serde(
         rename = "transactionId",
         skip_serializing_if = "::std::option::Option::is_none"

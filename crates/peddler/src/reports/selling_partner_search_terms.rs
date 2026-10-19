@@ -2,32 +2,32 @@
 // Source: schemas/reports/sellingPartnerSearchTermsReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Contains search term analytics by department name and search term.
+/// Contains search term analytics by department name and search term.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByDepartmentAndSearchTerm {
-    ///The fraction of clicks that the product received compared to the total clicks for the searchTerm within the departmentName for the specified reportPeriod. Multiply the value by 100 to represent as a percentage.
+    /// The fraction of clicks that the product received compared to the total clicks for the searchTerm within the departmentName for the specified reportPeriod. Multiply the value by 100 to represent as a percentage.
     #[serde(rename = "clickShare")]
     pub click_share: ::serde_json::Number,
-    ///The relative ranking of the clickedAsin based on clickShare.
+    /// The relative ranking of the clickedAsin based on clickShare.
     #[serde(rename = "clickShareRank")]
     pub click_share_rank: ::std::num::NonZeroU64,
-    ///The Amazon Standard Identification Number of a product that the customer clicked on after using the searchTerm within a departmentName.
+    /// The Amazon Standard Identification Number of a product that the customer clicked on after using the searchTerm within a departmentName.
     #[serde(rename = "clickedAsin")]
     pub clicked_asin: ::std::string::String,
-    ///The fraction of conversions that the product achieved in comparison to the total conversions that resulted from the departmentName and searchTerm in the respective reportPeriod. For example, if overall conversions for searchTerm=batteries was 98, and the conversions for clickedAsin were 13, conversionShare would be 13/98=0.1327. Multiply by 100 to express as a percentage.
+    /// The fraction of conversions that the product achieved in comparison to the total conversions that resulted from the departmentName and searchTerm in the respective reportPeriod. For example, if overall conversions for searchTerm=batteries was 98, and the conversions for clickedAsin were 13, conversionShare would be 13/98=0.1327. Multiply by 100 to express as a percentage.
     #[serde(rename = "conversionShare")]
     pub conversion_share: ::serde_json::Number,
-    ///The name of the Amazon search department the searchTerm was searched within. For example, customers may search across all of Amazon.com or within the Beauty department within Amazon.com.
+    /// The name of the Amazon search department the searchTerm was searched within. For example, customers may search across all of Amazon.com or within the Beauty department within Amazon.com.
     #[serde(rename = "departmentName")]
     pub department_name: ::std::string::String,
-    ///The relative ranking of the searchTerm within a departmentName based on frequency of searches for the specified reportPeriod.
+    /// The relative ranking of the searchTerm within a departmentName based on frequency of searches for the specified reportPeriod.
     #[serde(rename = "searchFrequencyRank")]
     pub search_frequency_rank: ::std::num::NonZeroU64,
-    ///The term the customer used when searching for products.
+    /// The term the customer used when searching for products.
     #[serde(rename = "searchTerm")]
     pub search_term: ::std::string::String,
 }
-///The Search Terms report shares data on the top-3 clicked ASINs by search keyword and department for a marketplace. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER. Requests cannot span multiple periods. For example, a request at WEEK level could not start on 2021-06-06 and end on 2021-06-19 as this would span two weeks.
+/// The Search Terms report shares data on the top-3 clicked ASINs by search keyword and department for a marketplace. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER. Requests cannot span multiple periods. For example, a request at WEEK level could not start on 2021-06-06 and end on 2021-06-19 as this would span two weeks.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "dataByDepartmentAndSearchTerm")]
@@ -37,30 +37,30 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to one marketplaceId.
+    /// This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to one marketplaceId.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod.
+/// Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
+    /// Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

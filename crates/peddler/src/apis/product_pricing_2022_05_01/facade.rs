@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_competitive_summary`].
+/// The parameters of [`get_competitive_summary`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCompetitiveSummaryParams<B = serde_json::Value> {
-    ///The batch of `getCompetitiveSummary` requests.
+    /// The batch of `getCompetitiveSummary` requests.
     pub body: B,
 }
 impl<B> GetCompetitiveSummaryParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId` combination.
+/// Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId` combination.
 pub async fn get_competitive_summary<B: serde::Serialize>(
     client: &Client,
     params: GetCompetitiveSummaryParams<B>,
@@ -37,20 +37,20 @@ pub async fn get_competitive_summary<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_featured_offer_expected_price_batch`].
+/// The parameters of [`get_featured_offer_expected_price_batch`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeaturedOfferExpectedPriceBatchParams<B = serde_json::Value> {
-    ///The batch of `getFeaturedOfferExpectedPrice` requests.
+    /// The batch of `getFeaturedOfferExpectedPrice` requests.
     pub body: B,
 }
 impl<B> GetFeaturedOfferExpectedPriceBatchParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request body. The response for each successful (HTTP status code 200) request in the set includes the computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions). This is called the featured offer expected price (FOEP). Featured offer is not guaranteed because competing offers might change. Other offers might be featured based on factors such as fulfillment capabilities to a specific customer. The response to an unsuccessful request includes the available error text.
+/// Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request body. The response for each successful (HTTP status code 200) request in the set includes the computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions). This is called the featured offer expected price (FOEP). Featured offer is not guaranteed because competing offers might change. Other offers might be featured based on factors such as fulfillment capabilities to a specific customer. The response to an unsuccessful request includes the available error text.
 pub async fn get_featured_offer_expected_price_batch<B: serde::Serialize>(
     client: &Client,
     params: GetFeaturedOfferExpectedPriceBatchParams<B>,

@@ -4,17 +4,17 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`cancel_order`].
+/// The parameters of [`cancel_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelOrderParams {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The ID of the order that you want to cancel.
+    /// The ID of the order that you want to cancel.
     pub order_id: String,
 }
 impl CancelOrderParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -22,7 +22,7 @@ impl CancelOrderParams {
         }
     }
 }
-///Request that Amazon stop attempting to fulfill a fulfillment order.
+/// Request that Amazon stop attempting to fulfill a fulfillment order.
 pub async fn cancel_order(
     client: &Client,
     params: CancelOrderParams,
@@ -52,17 +52,17 @@ pub async fn cancel_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_order`].
+/// The parameters of [`create_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateOrderParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The request body schema for the `createOrder` operation.
+    /// The request body schema for the `createOrder` operation.
     pub body: B,
 }
 impl<B> CreateOrderParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -70,29 +70,29 @@ impl<B> CreateOrderParams<B> {
         }
     }
 }
-///The response of [`create_order`]. Nothing is parsed until asked.
+/// The response of [`create_order`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct CreateOrderResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl CreateOrderResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(&self) -> Result<super::models::CreateOrderResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
-    ///Parses the body into the model of a 202 response.
+    /// Parses the body into the model of a 202 response.
     pub fn json_202(
         &self,
     ) -> Result<super::models::CreateOrderAcceptedResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 202)
     }
 }
-///Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
+/// Request that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
 pub async fn create_order<B: serde::Serialize>(
     client: &Client,
     params: CreateOrderParams<B>,
@@ -117,17 +117,17 @@ pub async fn create_order<B: serde::Serialize>(
         .await?;
     Ok(CreateOrderResponse { raw })
 }
-///The parameters of [`get_offers`].
+/// The parameters of [`get_offers`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOffersParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The request body schema for the `getOffers` operation.
+    /// The request body schema for the `getOffers` operation.
     pub body: B,
 }
 impl<B> GetOffersParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -135,7 +135,7 @@ impl<B> GetOffersParams<B> {
         }
     }
 }
-///Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that you specify.
+/// Retrieve delivery options that include an estimated delivery date and offer expiration, based on criteria that you specify.
 pub async fn get_offers<B: serde::Serialize>(
     client: &Client,
     params: GetOffersParams<B>,
@@ -160,21 +160,21 @@ pub async fn get_offers<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order`].
+/// The parameters of [`get_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The ID of the order you want to retrieve.
+    /// The ID of the order you want to retrieve.
     pub order_id: String,
-    ///Whether to include shipment data in the response. Included by default.
+    /// Whether to include shipment data in the response. Included by default.
     ///
-    ///Known values: `INCLUDE`, `EXCLUDE`.
+    /// Known values: `INCLUDE`, `EXCLUDE`.
     pub shipments: Option<String>,
 }
 impl GetOrderParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -183,7 +183,7 @@ impl GetOrderParams {
         }
     }
 }
-///Retrieve a fulfillment order.
+/// Retrieve a fulfillment order.
 pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
@@ -214,17 +214,17 @@ pub async fn get_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order_preview`].
+/// The parameters of [`get_order_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderPreviewParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The request body schema for the `getOrderPreview` operation.
+    /// The request body schema for the `getOrderPreview` operation.
     pub body: B,
 }
 impl<B> GetOrderPreviewParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -232,7 +232,7 @@ impl<B> GetOrderPreviewParams<B> {
         }
     }
 }
-///Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
+/// Retrieve a list of fulfillment order previews based on shipping criteria that you specify.
 pub async fn get_order_preview<B: serde::Serialize>(
     client: &Client,
     params: GetOrderPreviewParams<B>,
@@ -257,23 +257,23 @@ pub async fn get_order_preview<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`list_orders`] and [`list_orders_pages`].
+/// The parameters of [`list_orders`] and [`list_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListOrdersParams {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The response includes orders updated after this time. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// The response includes orders updated after this time. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     pub updated_after: Option<String>,
-    ///A token that you use to retrieve the next page of results. The response includes `pageToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `pageToken` is `null`.
+    /// A token that you use to retrieve the next page of results. The response includes `pageToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `pageToken` is `null`.
     pub page_token: Option<String>,
-    ///Whether to include shipment data in the response. Included by default.
+    /// Whether to include shipment data in the response. Included by default.
     ///
-    ///Known values: `INCLUDE`, `EXCLUDE`.
+    /// Known values: `INCLUDE`, `EXCLUDE`.
     pub shipments: Option<String>,
 }
 impl ListOrdersParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -288,9 +288,9 @@ impl Default for ListOrdersParams {
         Self::new()
     }
 }
-///Retrieve a list of fulfillment orders that match the criteria you specify.
+/// Retrieve a list of fulfillment orders that match the criteria you specify.
 ///
-///Its pages: [`list_orders_pages`].
+/// Its pages: [`list_orders_pages`].
 pub async fn list_orders(
     client: &Client,
     params: ListOrdersParams,
@@ -319,7 +319,7 @@ pub async fn list_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_orders`].
+/// Each page of [`list_orders`].
 pub fn list_orders_pages<'a>(
     client: &'a Client,
     params: ListOrdersParams,
@@ -340,19 +340,19 @@ pub fn list_orders_pages<'a>(
         &params,
     )
 }
-///The parameters of [`update_order`].
+/// The parameters of [`update_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateOrderParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The ID of the order that you want to update and/or request shipment of.
+    /// The ID of the order that you want to update and/or request shipment of.
     pub order_id: String,
-    ///The request body schema for the `updateOrder` operation.
+    /// The request body schema for the `updateOrder` operation.
     pub body: B,
 }
 impl<B> UpdateOrderParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String, body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -361,7 +361,7 @@ impl<B> UpdateOrderParams<B> {
         }
     }
 }
-///Update and/or request shipment for a fulfillment order with an order hold on it.
+/// Update and/or request shipment for a fulfillment order with an order hold on it.
 pub async fn update_order<B: serde::Serialize>(
     client: &Client,
     params: UpdateOrderParams<B>,
@@ -390,19 +390,19 @@ pub async fn update_order<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`update_order_status`].
+/// The parameters of [`update_order_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateOrderStatusParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The ID of the order that you want to update.
+    /// The ID of the order that you want to update.
     pub order_id: String,
-    ///The new status of the fulfillment order.
+    /// The new status of the fulfillment order.
     pub body: B,
 }
 impl<B> UpdateOrderStatusParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String, body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -411,7 +411,7 @@ impl<B> UpdateOrderStatusParams<B> {
         }
     }
 }
-///Request that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
+/// Request that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn update_order_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateOrderStatusParams<B>,
@@ -441,21 +441,21 @@ pub async fn update_order_status<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`update_package`].
+/// The parameters of [`update_package`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdatePackageParams<B = serde_json::Value> {
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     pub x_amzn_fulfillment_service_id: Option<String>,
-    ///The ID of the order that contains the package that you want to update.
+    /// The ID of the order that contains the package that you want to update.
     pub order_id: String,
-    ///The ID of the package that you want to update.
+    /// The ID of the package that you want to update.
     pub package_id: String,
-    ///The new package information.
+    /// The new package information.
     pub body: B,
 }
 impl<B> UpdatePackageParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String, package_id: String, body: B) -> Self {
         Self {
             x_amzn_fulfillment_service_id: None,
@@ -465,7 +465,7 @@ impl<B> UpdatePackageParams<B> {
         }
     }
 }
-///Update package information for a specific package in a fulfillment order. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
+/// Update package information for a specific package in a fulfillment order. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn update_package<B: serde::Serialize>(
     client: &Client,
     params: UpdatePackageParams<B>,

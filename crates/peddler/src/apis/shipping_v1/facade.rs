@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`cancel_shipment`].
+/// The parameters of [`cancel_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
-    ///Shipment Id to cancel a shipment
+    /// Shipment Id to cancel a shipment
     pub shipment_id: String,
 }
 impl CancelShipmentParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
-///Cancel a shipment by the given shipmentId.
+/// Cancel a shipment by the given shipmentId.
 pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
@@ -41,20 +41,20 @@ pub async fn cancel_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_shipment`].
+/// The parameters of [`create_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateShipmentParams<B = serde_json::Value> {
-    ///CreateShipmentRequest Body
+    /// CreateShipmentRequest Body
     pub body: B,
 }
 impl<B> CreateShipmentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Create a new shipment.
+/// Create a new shipment.
 pub async fn create_shipment<B: serde::Serialize>(
     client: &Client,
     params: CreateShipmentParams<B>,
@@ -73,12 +73,12 @@ pub async fn create_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_account`].
+/// The parameters of [`get_account`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAccountParams {}
 impl GetAccountParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new() -> Self {
         Self {}
     }
@@ -88,7 +88,7 @@ impl Default for GetAccountParams {
         Self::new()
     }
 }
-///Verify if the current account is valid.
+/// Verify if the current account is valid.
 pub async fn get_account(
     client: &Client,
     params: GetAccountParams,
@@ -107,20 +107,20 @@ pub async fn get_account(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_rates`].
+/// The parameters of [`get_rates`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRatesParams<B = serde_json::Value> {
-    ///GetRatesRequest body
+    /// GetRatesRequest body
     pub body: B,
 }
 impl<B> GetRatesParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Get service rates.
+/// Get service rates.
 pub async fn get_rates<B: serde::Serialize>(
     client: &Client,
     params: GetRatesParams<B>,
@@ -139,20 +139,20 @@ pub async fn get_rates<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_shipment`].
+/// The parameters of [`get_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentParams {
-    ///Shipment id to return the entire shipment object
+    /// Shipment id to return the entire shipment object
     pub shipment_id: String,
 }
 impl GetShipmentParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
-///Return the entire shipment object for the shipmentId.
+/// Return the entire shipment object for the shipmentId.
 pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
@@ -175,20 +175,20 @@ pub async fn get_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_tracking_information`].
+/// The parameters of [`get_tracking_information`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTrackingInformationParams {
-    ///Tracking Id
+    /// Tracking Id
     pub tracking_id: String,
 }
 impl GetTrackingInformationParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(tracking_id: String) -> Self {
         Self { tracking_id }
     }
 }
-///Return the tracking information of a shipment.
+/// Return the tracking information of a shipment.
 pub async fn get_tracking_information(
     client: &Client,
     params: GetTrackingInformationParams,
@@ -211,22 +211,22 @@ pub async fn get_tracking_information(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`purchase_labels`].
+/// The parameters of [`purchase_labels`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PurchaseLabelsParams<B = serde_json::Value> {
-    ///Shipment id for purchase shipping label
+    /// Shipment id for purchase shipping label
     pub shipment_id: String,
-    ///PurchaseShippingLabelRequest body
+    /// PurchaseShippingLabelRequest body
     pub body: B,
 }
 impl<B> PurchaseLabelsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String, body: B) -> Self {
         Self { shipment_id, body }
     }
 }
-///Purchase shipping labels based on a given rate.
+/// Purchase shipping labels based on a given rate.
 pub async fn purchase_labels<B: serde::Serialize>(
     client: &Client,
     params: PurchaseLabelsParams<B>,
@@ -250,20 +250,20 @@ pub async fn purchase_labels<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`purchase_shipment`].
+/// The parameters of [`purchase_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PurchaseShipmentParams<B = serde_json::Value> {
-    ///PurchaseShipmentRequest body
+    /// PurchaseShipmentRequest body
     pub body: B,
 }
 impl<B> PurchaseShipmentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Purchase shipping labels.
+/// Purchase shipping labels.
 pub async fn purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: PurchaseShipmentParams<B>,
@@ -282,19 +282,19 @@ pub async fn purchase_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`retrieve_shipping_label`].
+/// The parameters of [`retrieve_shipping_label`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RetrieveShippingLabelParams<B = serde_json::Value> {
-    ///Shipment Id to retreive label
+    /// Shipment Id to retreive label
     pub shipment_id: String,
-    ///Tracking Id
+    /// Tracking Id
     pub tracking_id: String,
-    ///RetrieveShippingLabelRequest body
+    /// RetrieveShippingLabelRequest body
     pub body: B,
 }
 impl<B> RetrieveShippingLabelParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String, tracking_id: String, body: B) -> Self {
         Self {
             shipment_id,
@@ -303,7 +303,7 @@ impl<B> RetrieveShippingLabelParams<B> {
         }
     }
 }
-///Retrieve shipping label based on the shipment id and tracking id.
+/// Retrieve shipping label based on the shipment id and tracking id.
 pub async fn retrieve_shipping_label<B: serde::Serialize>(
     client: &Client,
     params: RetrieveShippingLabelParams<B>,

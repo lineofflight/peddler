@@ -2,7 +2,7 @@
 // Source: delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Shipment invoice document content.
+/// Shipment invoice document content.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -43,18 +43,18 @@ impl ::std::str::FromStr for Blob {
         Ok(Self(value.to_string()))
     }
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -74,57 +74,57 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the getInvoiceStatus operation.
+/// The response schema for the getInvoiceStatus operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoiceStatusResponse {
-    ///The Amazon-defined order identifier.
+    /// The Amazon-defined order identifier.
     #[serde(
         rename = "amazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon-defined shipment identifier.
+    /// The Amazon-defined shipment identifier.
     #[serde(
         rename = "amazonShipmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_shipment_id: ::std::option::Option<::std::string::String>,
-    ///A list of errors returned by this API.
+    /// A list of errors returned by this API.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The current processing status of a shipment invoice.
+    /// The current processing status of a shipment invoice.
     ///
-    ///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
+    /// Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
     #[serde(
         rename = "invoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_status: ::std::option::Option<ShipmentInvoiceStatus>,
-    ///List of individual invoice statuses for the order.
+    /// List of individual invoice statuses for the order.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoices: ::std::option::Option<::std::vec::Vec<InvoiceStatus>>,
-    ///The invoicing status of the order, considering the aggregated results of all invoices sent.
+    /// The invoicing status of the order, considering the aggregated results of all invoices sent.
     ///
-    ///Known values: `Processing`, `Accepted`, `PartiallyAccepted`, `Rejected`. Other values may be returned by Amazon.
+    /// Known values: `Processing`, `Accepted`, `PartiallyAccepted`, `Rejected`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderInvoicingStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_invoicing_status: ::std::option::Option<::std::string::String>,
 }
-///Individual invoice status entry.
+/// Individual invoice status entry.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceStatus {
-    ///The unique invoice identifier (NF-e access key for Brazilian invoices).
+    /// The unique invoice identifier (NF-e access key for Brazilian invoices).
     pub id: ::std::string::String,
-    ///The current status of this invoice.
+    /// The current status of this invoice.
     ///
-    ///Known values: `Processing`, `Accepted`, `Rejected`, `NotFound`. Other values may be returned by Amazon.
+    /// Known values: `Processing`, `Accepted`, `Rejected`, `NotFound`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
-///The invoice type.
+/// The invoice type.
 ///
-///Known values: `Outbound`. Other values may be returned by Amazon.
+/// Known values: `Outbound`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -165,9 +165,9 @@ impl ::std::str::FromStr for InvoiceType {
         Ok(Self(value.to_string()))
     }
 }
-///The Amazon program type.
+/// The Amazon program type.
 ///
-///Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.
+/// Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -208,9 +208,9 @@ impl ::std::str::FromStr for ProgramType {
         Ok(Self(value.to_string()))
     }
 }
-///The shipment invoice status.
+/// The shipment invoice status.
 ///
-///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
+/// Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -251,33 +251,33 @@ impl ::std::str::FromStr for ShipmentInvoiceStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The request schema for the `submitInvoice` operation.
+/// The request schema for the `submitInvoice` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SubmitInvoiceRequest {
-    ///MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
+    /// MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     #[serde(rename = "contentMD5Value")]
     pub content_md5_value: ::std::string::String,
-    ///The binary object representing an invoice's content.
+    /// The binary object representing an invoice's content.
     #[serde(rename = "invoiceContent")]
     pub invoice_content: Blob,
-    ///The type of an invoice.
+    /// The type of an invoice.
     ///
-    ///Known values: `Outbound`. Other values may be returned by Amazon.
+    /// Known values: `Outbound`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceType")]
     pub invoice_type: InvoiceType,
-    ///An Amazon store identifier.
+    /// An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The Amazon program that the seller is currently enrolled.
+    /// The Amazon program that the seller is currently enrolled.
     ///
-    ///Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.
+    /// Known values: `EasyShip`, `FbaOnSite`, `SelfShip`. Other values may be returned by Amazon.
     #[serde(rename = "programType")]
     pub program_type: ProgramType,
 }
-///The response schema for the submitInvoice operation.
+/// The response schema for the submitInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoiceResponse {
-    ///A list of errors returned by this API.
+    /// A list of errors returned by this API.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }

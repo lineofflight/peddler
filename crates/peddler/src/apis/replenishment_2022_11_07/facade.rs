@@ -4,15 +4,15 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_selling_partner_metrics`].
+/// The parameters of [`get_selling_partner_metrics`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSellingPartnerMetricsParams<B = serde_json::Value> {
-    ///The request body for the `getSellingPartnerMetrics` operation.
+    /// The request body for the `getSellingPartnerMetrics` operation.
     pub body: Option<B>,
 }
 impl<B> GetSellingPartnerMetricsParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self { body: None }
     }
@@ -22,7 +22,7 @@ impl<B> Default for GetSellingPartnerMetricsParams<B> {
         Self::new()
     }
 }
-///Returns aggregated replenishment program metrics for a selling partner.
+/// Returns aggregated replenishment program metrics for a selling partner.
 pub async fn get_selling_partner_metrics<B: serde::Serialize>(
     client: &Client,
     params: GetSellingPartnerMetricsParams<B>,
@@ -41,15 +41,15 @@ pub async fn get_selling_partner_metrics<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`list_offer_metrics`].
+/// The parameters of [`list_offer_metrics`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListOfferMetricsParams<B = serde_json::Value> {
-    ///The request body for the `listOfferMetrics` operation.
+    /// The request body for the `listOfferMetrics` operation.
     pub body: Option<B>,
 }
 impl<B> ListOfferMetricsParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self { body: None }
     }
@@ -59,7 +59,7 @@ impl<B> Default for ListOfferMetricsParams<B> {
         Self::new()
     }
 }
-///Returns aggregated replenishment program metrics for a selling partner's offers.
+/// Returns aggregated replenishment program metrics for a selling partner's offers.
 pub async fn list_offer_metrics<B: serde::Serialize>(
     client: &Client,
     params: ListOfferMetricsParams<B>,
@@ -78,15 +78,15 @@ pub async fn list_offer_metrics<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`list_offers`].
+/// The parameters of [`list_offers`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListOffersParams<B = serde_json::Value> {
-    ///The request body for the `listOffers` operation.
+    /// The request body for the `listOffers` operation.
     pub body: Option<B>,
 }
 impl<B> ListOffersParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self { body: None }
     }
@@ -96,7 +96,7 @@ impl<B> Default for ListOffersParams<B> {
         Self::new()
     }
 }
-///Returns the details of a selling partner's replenishment program offers.
+/// Returns the details of a selling partner's replenishment program offers.
 pub async fn list_offers<B: serde::Serialize>(
     client: &Client,
     params: ListOffersParams<B>,

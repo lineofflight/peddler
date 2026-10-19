@@ -2,62 +2,62 @@
 // Source: application-integrations-api-model/appIntegrations-2024-04-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The request for the `createNotification` operation.
+/// The request for the `createNotification` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateNotificationRequest {
-    ///An encrypted marketplace identifier for the posted notification.
+    /// An encrypted marketplace identifier for the posted notification.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The parameters specified in the template you used to onboard your application.
+    /// The parameters specified in the template you used to onboard your application.
     #[serde(rename = "notificationParameters")]
     pub notification_parameters: NotificationParameters,
-    ///The unique identifier of the notification template you used to onboard your application.
+    /// The unique identifier of the notification template you used to onboard your application.
     #[serde(rename = "templateId")]
     pub template_id: ::std::string::String,
 }
-///The response for the `createNotification` operation.
+/// The response for the `createNotification` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateNotificationResponse {
-    ///The unique identifier assigned to each notification.
+    /// The unique identifier assigned to each notification.
     #[serde(
         rename = "notificationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub notification_id: ::std::option::Option<::std::string::String>,
 }
-///The request for the `deleteNotifications` operation.
+/// The request for the `deleteNotifications` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DeleteNotificationsRequest {
-    ///The unique identifier that maps each notification status to a reason code.
+    /// The unique identifier that maps each notification status to a reason code.
     ///
-    ///Known values: `INCORRECT_CONTENT`, `INCORRECT_RECIPIENT`. Other values may be returned by Amazon.
+    /// Known values: `INCORRECT_CONTENT`, `INCORRECT_RECIPIENT`. Other values may be returned by Amazon.
     #[serde(rename = "deletionReason")]
     pub deletion_reason: ::std::string::String,
-    ///The unique identifier of the notification template you used to onboard your application.
+    /// The unique identifier of the notification template you used to onboard your application.
     #[serde(rename = "templateId")]
     pub template_id: ::std::string::String,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///Error response returned when the request is unsuccessful.
+    /// Error response returned when the request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The dynamic parameters required by the notification templated specified by `templateId`.
+/// The dynamic parameters required by the notification templated specified by `templateId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct NotificationParameters(
@@ -83,12 +83,12 @@ for NotificationParameters {
         Self(value)
     }
 }
-///The request for the `recordActionFeedback` operation.
+/// The request for the `recordActionFeedback` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RecordActionFeedbackRequest {
-    ///The unique identifier for each notification status.
+    /// The unique identifier for each notification status.
     ///
-    ///Known values: `SELLER_ACTION_COMPLETED`. Other values may be returned by Amazon.
+    /// Known values: `SELLER_ACTION_COMPLETED`. Other values may be returned by Amazon.
     #[serde(rename = "feedbackActionCode")]
     pub feedback_action_code: ::std::string::String,
 }

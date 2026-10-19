@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`submit_invoices`].
+/// The parameters of [`submit_invoices`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitInvoicesParams<B = serde_json::Value> {
-    ///The request body containing the invoice data to submit.
+    /// The request body containing the invoice data to submit.
     pub body: B,
 }
 impl<B> SubmitInvoicesParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Submit new invoices to Amazon.
+/// Submit new invoices to Amazon.
 pub async fn submit_invoices<B: serde::Serialize>(
     client: &Client,
     params: SubmitInvoicesParams<B>,

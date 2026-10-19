@@ -2,55 +2,55 @@
 // Source: schemas/reports/b2bProductOpportunitiesNotYetOnAmazonReport-2020-11-19.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Provides B2B product recommendations based on predicted incremental units sold, unmet buyer demand, and other factors for products not yet listed on Amazon. The recommendations are personalized to the seller based on past sales activity.
+/// Provides B2B product recommendations based on predicted incremental units sold, unmet buyer demand, and other factors for products not yet listed on Amazon. The recommendations are personalized to the seller based on past sales activity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///A list of B2B product opportunity recommendation objects.
+    /// A list of B2B product opportunity recommendation objects.
     pub recommendations: ::std::vec::Vec<ReportRecommendationsItem>,
 }
-///The recommendation result object.
+/// The recommendation result object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReportRecommendationsItem {
-    ///The brand name of the product.
+    /// The brand name of the product.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub brand: ::std::option::Option<::std::string::String>,
-    ///The primary product category.
+    /// The primary product category.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub category: ::std::option::Option<::std::string::String>,
-    ///The European Article Number (EAN) of the product.
+    /// The European Article Number (EAN) of the product.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub ean: ::std::option::Option<::std::string::String>,
-    ///The industry of the first customer who requested the product.
+    /// The industry of the first customer who requested the product.
     #[serde(
         rename = "initialB2bBuyerIndustry",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub initial_b2b_buyer_industry: ::std::option::Option<::std::string::String>,
-    ///The date the product may not be on Amazon as the result of the customer request.
+    /// The date the product may not be on Amazon as the result of the customer request.
     #[serde(
         rename = "initialB2bBuyerRequestedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub initial_b2b_buyer_requested_date: ::std::option::Option<::std::string::String>,
-    ///The International Standard Book Number (ISBN) of the product.
+    /// The International Standard Book Number (ISBN) of the product.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub isbn: ::std::option::Option<::std::string::String>,
-    ///The title of the product.
+    /// The title of the product.
     #[serde(rename = "itemName", skip_serializing_if = "::std::option::Option::is_none")]
     pub item_name: ::std::option::Option<::std::string::String>,
-    ///The Model Number of the product.
+    /// The Model Number of the product.
     #[serde(
         rename = "modelNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub model_number: ::std::option::Option<::std::string::String>,
-    ///The Manufacturer Part Number (MPN) of the product.
+    /// The Manufacturer Part Number (MPN) of the product.
     #[serde(
         rename = "partNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub part_number: ::std::option::Option<::std::string::String>,
-    ///The Universal Product Code (UPC) of the product.
+    /// The Universal Product Code (UPC) of the product.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub upc: ::std::option::Option<::std::string::String>,
 }

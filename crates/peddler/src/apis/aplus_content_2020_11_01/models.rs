@@ -2,7 +2,7 @@
 // Source: aplus-content-api-model/aplusContent_2020-11-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The base response data for paginated A+ Content operations. Individual operations may extend this with additional data. If `nextPageToken` is not returned, there are no more pages to return.
+/// The base response data for paginated A+ Content operations. Individual operations may extend this with additional data. If `nextPageToken` is not returned, there are no more pages to return.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AplusPaginatedResponse {
     #[serde(
@@ -13,13 +13,13 @@ pub struct AplusPaginatedResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
+/// The base response data for all A+ Content operations when a request is successful or partially successful. Individual operations may extend this with additional data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AplusResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///The Amazon Standard Identification Number (ASIN).
+/// The Amazon Standard Identification Number (ASIN).
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct Asin(::std::string::String);
@@ -73,9 +73,9 @@ impl<'de> ::serde::Deserialize<'de> for Asin {
             })
     }
 }
-///A flag that provides additional information about an ASIN. This is contextual and may change depending on the request that generated it.
+/// A flag that provides additional information about an ASIN. This is contextual and may change depending on the request that generated it.
 ///
-///Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
+/// Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -116,9 +116,9 @@ impl ::std::str::FromStr for AsinBadge {
         Ok(Self(value.to_string()))
     }
 }
-///The set of ASIN badges.
+/// The set of ASIN badges.
 ///
-///Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
+/// Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AsinBadgeSet(pub ::std::vec::Vec<AsinBadge>);
@@ -138,7 +138,7 @@ impl ::std::convert::From<::std::vec::Vec<AsinBadge>> for AsinBadgeSet {
         Self(value)
     }
 }
-///A single ASIN product with its associated image.
+/// A single ASIN product with its associated image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AsinImage {
     #[serde(rename = "productAsin")]
@@ -146,17 +146,17 @@ pub struct AsinImage {
     #[serde(rename = "productImage")]
     pub product_image: ImageComponent,
 }
-///Wrapper for a single ASIN image entry.
+/// Wrapper for a single ASIN image entry.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AsinImages {
     #[serde(rename = "asinImage")]
     pub asin_image: AsinImage,
 }
-///The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the `listContentDocumentAsinRelations` operation, the related ASINs are returned without metadata.
+/// The A+ Content ASIN with additional metadata for content management. If you don't include the `includedDataSet` parameter in a call to the `listContentDocumentAsinRelations` operation, the related ASINs are returned without metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AsinMetadata {
     pub asin: Asin,
-    ///Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
+    /// Known values: `BRAND_NOT_ELIGIBLE`, `CATALOG_NOT_FOUND`, `CONTENT_NOT_PUBLISHED`, `CONTENT_PUBLISHED`. Other values may be returned by Amazon.
     #[serde(rename = "badgeSet", skip_serializing_if = "::std::option::Option::is_none")]
     pub badge_set: ::std::option::Option<AsinBadgeSet>,
     #[serde(
@@ -164,16 +164,16 @@ pub struct AsinMetadata {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_reference_key_set: ::std::option::Option<ContentReferenceKeySet>,
-    ///The default image for the ASIN in the Amazon catalog.
+    /// The default image for the ASIN in the Amazon catalog.
     #[serde(rename = "imageUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub image_url: ::std::option::Option<AsinMetadataImageUrl>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub parent: ::std::option::Option<Asin>,
-    ///The title for the ASIN in the Amazon catalog.
+    /// The title for the ASIN in the Amazon catalog.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<AsinMetadataTitle>,
 }
-///The default image for the ASIN in the Amazon catalog.
+/// The default image for the ASIN in the Amazon catalog.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AsinMetadataImageUrl(::std::string::String);
@@ -227,7 +227,7 @@ impl<'de> ::serde::Deserialize<'de> for AsinMetadataImageUrl {
             })
     }
 }
-///The set of ASIN metadata.
+/// The set of ASIN metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AsinMetadataSet(pub ::std::vec::Vec<AsinMetadata>);
@@ -247,7 +247,7 @@ impl ::std::convert::From<::std::vec::Vec<AsinMetadata>> for AsinMetadataSet {
         Self(value)
     }
 }
-///The title for the ASIN in the Amazon catalog.
+/// The title for the ASIN in the Amazon catalog.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AsinMetadataTitle(::std::string::String);
@@ -301,7 +301,7 @@ impl<'de> ::serde::Deserialize<'de> for AsinMetadataTitle {
             })
     }
 }
-///The set of ASINs.
+/// The set of ASINs.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AsinSet(pub ::std::vec::Vec<Asin>);
@@ -321,9 +321,9 @@ impl ::std::convert::From<::std::vec::Vec<Asin>> for AsinSet {
         Self(value)
     }
 }
-///The type of relationship between media assets.
+/// The type of relationship between media assets.
 ///
-///Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
+/// Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -364,7 +364,7 @@ impl ::std::str::FromStr for AssociationType {
         Ok(Self(value.to_string()))
     }
 }
-///A Brand Story card with text-focused content for telling your Brand's story, mission, or values.
+/// A Brand Story card with text-focused content for telling your Brand's story, mission, or values.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandStoryAboutModule {
     #[serde(rename = "logoImage")]
@@ -374,10 +374,10 @@ pub struct BrandStoryAboutModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A Brand Story card displaying up to four product ASINs with images, enabling cross-selling to other products in your catalog.
+/// A Brand Story card displaying up to four product ASINs with images, enabling cross-selling to other products in your catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandStoryFourAsinModule {
-    ///Exactly 4 ASIN image entries.
+    /// Exactly 4 ASIN image entries.
     #[serde(rename = "asinImages")]
     pub asin_images: [AsinImages; 4usize],
     #[serde(
@@ -387,7 +387,7 @@ pub struct BrandStoryFourAsinModule {
     pub brand_store_id: ::std::option::Option<TextComponent>,
     pub title: TextComponent,
 }
-///The required background card for all Brand Story Content. Provides a full-width background image with a Brand logo overlay, headline, and body text. All other Brand Story modules appear within this carousel.
+/// The required background card for all Brand Story Content. Provides a full-width background image with a Brand logo overlay, headline, and body text. All other Brand Story modules appear within this carousel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandStoryImageWithLogoModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -399,7 +399,7 @@ pub struct BrandStoryImageWithLogoModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A Brand Story card featuring a single image as the primary visual element.
+/// A Brand Story card featuring a single image as the primary visual element.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandStoryMediaAssetModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -408,16 +408,16 @@ pub struct BrandStoryMediaAssetModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A Brand Story card with question-and-answer pairs about your Brand.
+/// A Brand Story card with question-and-answer pairs about your Brand.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandStoryQuestionsModule {
-    ///Exactly 3 question-answer pairs.
+    /// Exactly 3 question-answer pairs.
     #[serde(rename = "questionAnswerPairs")]
     pub question_answer_pairs: [QuestionAnswerPairs; 3usize],
 }
-///The relative color scheme of content.
+/// The relative color scheme of content.
 ///
-///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
+/// Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -458,19 +458,19 @@ impl ::std::str::FromStr for ColorType {
         Ok(Self(value.to_string()))
     }
 }
-///A wrapper object for a single comparison field.
+/// A wrapper object for a single comparison field.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ComparisonFields {
     #[serde(rename = "comparisonField")]
     pub comparison_field: PlainTextItem,
 }
-///A wrapper object for a single comparison row.
+/// A wrapper object for a single comparison row.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ComparisonMetrics {
     #[serde(rename = "comparisonRow")]
     pub comparison_row: ComparisonRow,
 }
-///A product in the comparison table carousel modules.
+/// A product in the comparison table carousel modules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ComparisonProduct {
     #[serde(
@@ -483,7 +483,7 @@ pub struct ComparisonProduct {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_image: ::std::option::Option<ImageComponent>,
-    ///The position of the product in comparison display.
+    /// The position of the product in comparison display.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub position: ::std::option::Option<::std::num::NonZeroU64>,
     #[serde(
@@ -497,13 +497,13 @@ pub struct ComparisonProduct {
     )]
     pub product_title: ::std::option::Option<TextComponent>,
 }
-///A wrapper object for a single comparison product.
+/// A wrapper object for a single comparison product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ComparisonProducts {
     #[serde(rename = "comparisonProduct")]
     pub comparison_product: ComparisonProduct,
 }
-///Comparison row for table-based comparison modules.
+/// Comparison row for table-based comparison modules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ComparisonRow {
     #[serde(
@@ -511,7 +511,7 @@ pub struct ComparisonRow {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_info: ::std::option::Option<TextComponent>,
-    ///Collection of comparison field values, one set per product.
+    /// Collection of comparison field values, one set per product.
     #[serde(
         rename = "comparisonFields",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -527,13 +527,13 @@ pub struct ComparisonRow {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub metric_name: ::std::option::Option<TextComponent>,
-    ///The position of the comparison row.
+    /// The position of the comparison row.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub position: ::std::option::Option<::std::num::NonZeroU64>,
 }
-///A flag that provides additional information about an A+ Content document.
+/// A flag that provides additional information about an A+ Content document.
 ///
-///Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
+/// Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -574,9 +574,9 @@ impl ::std::str::FromStr for ContentBadge {
         Ok(Self(value.to_string()))
     }
 }
-///The set of content badges.
+/// The set of content badges.
 ///
-///Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
+/// Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ContentBadgeSet(pub ::std::vec::Vec<ContentBadge>);
@@ -596,7 +596,7 @@ impl ::std::convert::From<::std::vec::Vec<ContentBadge>> for ContentBadgeSet {
         Self(value)
     }
 }
-///The A+ Content document. This is the enhanced content that is published to product detail pages.
+/// The A+ Content document. This is the enhanced content that is published to product detail pages.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentDocument {
     #[serde(rename = "contentModuleList")]
@@ -606,14 +606,14 @@ pub struct ContentDocument {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_sub_type: ::std::option::Option<ContentSubType>,
-    ///Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
+    /// Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ContentType,
     pub locale: LanguageTag,
-    ///The A+ Content document name.
+    /// The A+ Content document name.
     pub name: ContentDocumentName,
 }
-///The A+ Content document name.
+/// The A+ Content document name.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ContentDocumentName(::std::string::String);
@@ -670,23 +670,23 @@ impl<'de> ::serde::Deserialize<'de> for ContentDocumentName {
             })
     }
 }
-///The metadata of an A+ Content document.
+/// The metadata of an A+ Content document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentMetadata {
-    ///Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
+    /// Known values: `BULK`, `GENERATED`, `LAUNCHPAD`, `PREMIUM`, `STANDARD`. Other values may be returned by Amazon.
     #[serde(rename = "badgeSet")]
     pub badge_set: ContentBadgeSet,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///The A+ Content document name.
+    /// The A+ Content document name.
     pub name: ContentMetadataName,
-    ///Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.
+    /// Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.
     pub status: ContentStatus,
-    ///The approximate age of the A+ Content document and metadata.
+    /// The approximate age of the A+ Content document and metadata.
     #[serde(rename = "updateTime")]
     pub update_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///The A+ Content document name.
+/// The A+ Content document name.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ContentMetadataName(::std::string::String);
@@ -743,7 +743,7 @@ impl<'de> ::serde::Deserialize<'de> for ContentMetadataName {
             })
     }
 }
-///The metadata for an A+ Content document, with additional information for content management.
+/// The metadata for an A+ Content document, with additional information for content management.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentMetadataRecord {
     #[serde(rename = "contentMetadata")]
@@ -751,7 +751,7 @@ pub struct ContentMetadataRecord {
     #[serde(rename = "contentReferenceKey")]
     pub content_reference_key: ContentReferenceKey,
 }
-///A list of A+ Content metadata records.
+/// A list of A+ Content metadata records.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ContentMetadataRecordList(pub ::std::vec::Vec<ContentMetadataRecord>);
@@ -773,7 +773,7 @@ for ContentMetadataRecordList {
         Self(value)
     }
 }
-///An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
+/// An A+ Content module. An A+ Content document is composed of content modules. The contentModuleType property selects which content module types to use.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentModule {
     #[serde(
@@ -803,7 +803,7 @@ pub struct ContentModule {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_story_questions: ::std::option::Option<BrandStoryQuestionsModule>,
-    ///Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.
+    /// Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.
     #[serde(rename = "contentModuleType")]
     pub content_module_type: ContentModuleType,
     #[serde(
@@ -1003,7 +1003,7 @@ pub struct ContentModule {
     )]
     pub standard_three_image_text: ::std::option::Option<StandardThreeImageTextModule>,
 }
-///A list of A+ Content modules.
+/// A list of A+ Content modules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ContentModuleList(pub ::std::vec::Vec<ContentModule>);
@@ -1023,9 +1023,9 @@ impl ::std::convert::From<::std::vec::Vec<ContentModule>> for ContentModuleList 
         Self(value)
     }
 }
-///The type of A+ Content module.
+/// The type of A+ Content module.
 ///
-///Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.
+/// Known values: `STANDARD_COMPANY_LOGO`, `STANDARD_COMPARISON_TABLE`, `STANDARD_FOUR_IMAGE_TEXT`, `STANDARD_FOUR_IMAGE_TEXT_QUADRANT`, `STANDARD_HEADER_IMAGE_TEXT`, `STANDARD_IMAGE_SIDEBAR`, `STANDARD_IMAGE_TEXT_OVERLAY`, `STANDARD_MULTIPLE_IMAGE_TEXT`, `STANDARD_PRODUCT_DESCRIPTION`, `STANDARD_SINGLE_IMAGE_HIGHLIGHTS`, `STANDARD_SINGLE_IMAGE_SPECS_DETAIL`, `STANDARD_SINGLE_SIDE_IMAGE`, `STANDARD_TECH_SPECS`, `STANDARD_TEXT`, `STANDARD_THREE_IMAGE_TEXT`, `PREMIUM_IMAGE_TEXT`, `PREMIUM_TEXT`, `PREMIUM_FULL_BACKGROUND_TEXT`, `PREMIUM_FULL_BACKGROUND_IMAGE`, `PREMIUM_FOUR_COLUMN_IMAGES`, `PREMIUM_DUAL_IMAGE_TEXT`, `PREMIUM_IMAGE_CAROUSEL`, `PREMIUM_NAVIGATION_CAROUSEL`, `PREMIUM_REGIMEN_CAROUSEL`, `PREMIUM_THREE_COLUMN_COMPARISON`, `PREMIUM_COMPARISON_CAROUSEL`, `PREMIUM_COMPARISON_SCROLLER`, `PREMIUM_HOTSPOT_IMAGE`, `PREMIUM_HOTSPOT_IMAGE_TEXT`, `PREMIUM_FAQ`, `PREMIUM_TECH_SPECS`, `PREMIUM_VIDEO_TEXT`, `PREMIUM_HERO_VIDEO`, `PREMIUM_VIDEO_IMAGE_CAROUSEL`, `BRAND_STORY_IMAGE_WITH_LOGO`, `BRAND_STORY_FOUR_ASIN`, `BRAND_STORY_MEDIA_ASSET`, `BRAND_STORY_ABOUT`, `BRAND_STORY_QUESTIONS`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1066,7 +1066,7 @@ impl ::std::str::FromStr for ContentModuleType {
         Ok(Self(value.to_string()))
     }
 }
-///A content document with additional information for content management.
+/// A content document with additional information for content management.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContentRecord {
     #[serde(
@@ -1082,7 +1082,7 @@ pub struct ContentRecord {
     #[serde(rename = "contentReferenceKey")]
     pub content_reference_key: ContentReferenceKey,
 }
-///A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
+/// A unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ContentReferenceKey(::std::string::String);
@@ -1136,7 +1136,7 @@ impl<'de> ::serde::Deserialize<'de> for ContentReferenceKey {
             })
     }
 }
-///A set of content reference keys.
+/// A set of content reference keys.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ContentReferenceKeySet(pub ::std::vec::Vec<ContentReferenceKey>);
@@ -1158,9 +1158,9 @@ for ContentReferenceKeySet {
         Self(value)
     }
 }
-///The submission status of the content document.
+/// The submission status of the content document.
 ///
-///Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.
+/// Known values: `APPROVED`, `DRAFT`, `REJECTED`, `SUBMITTED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1201,7 +1201,7 @@ impl ::std::str::FromStr for ContentStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
+/// The A+ Content document subtype. This represents a special-purpose type of an A+ Content document. Not every A+ Content document type will have a subtype, and subtypes may change at any time.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ContentSubType(::std::string::String);
@@ -1255,9 +1255,9 @@ impl<'de> ::serde::Deserialize<'de> for ContentSubType {
             })
     }
 }
-///The A+ Content document type.
+/// The A+ Content document type.
 ///
-///Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
+/// Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1298,88 +1298,88 @@ impl ::std::str::FromStr for ContentType {
         Ok(Self(value.to_string()))
     }
 }
-///The request body for creating a media asset. Uses the unified media shape as a subset, omitting system-derived fields.
+/// The request body for creating a media asset. Uses the unified media shape as a subset, omitting system-derived fields.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateMediaRequest {
-    ///Accessibility descriptions for video assets. Required when `mediaType` is `VIDEO`. At least one entry required.
+    /// Accessibility descriptions for video assets. Required when `mediaType` is `VIDEO`. At least one entry required.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///An existing media asset identifier for reuse. Mutually exclusive with `uploadDestinationId`.
+    /// An existing media asset identifier for reuse. Mutually exclusive with `uploadDestinationId`.
     #[serde(rename = "mediaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_id: ::std::option::Option<::std::string::String>,
-    ///The type of media asset to create.
+    /// The type of media asset to create.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///Related media to associate during creation. Required when `mediaType` is `VIDEO` (at least one `VIDEO_PAIRING` entry with an image must be provided). Ignored when `mediaType` is `IMAGE`.
+    /// Related media to associate during creation. Required when `mediaType` is `VIDEO` (at least one `VIDEO_PAIRING` entry with an image must be provided). Ignored when `mediaType` is `IMAGE`.
     #[serde(
         rename = "relatedMedia",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaInputList>,
-    ///An optional title for the media asset. For standalone images, defaults to filename if not provided. Not applicable for videos (video title is derived from the filename).
+    /// An optional title for the media asset. For standalone images, defaults to filename if not provided. Not applicable for videos (video title is derived from the filename).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
-    ///The S3 upload destination identifier from the `createUploadDestination` operation. Mutually exclusive with `mediaId`.
+    /// The S3 upload destination identifier from the `createUploadDestination` operation. Mutually exclusive with `mediaId`.
     #[serde(
         rename = "uploadDestinationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub upload_destination_id: ::std::option::Option<::std::string::String>,
 }
-///The response for the `createMedia` operation. Returns the full unified Media shape.
+/// The response for the `createMedia` operation. Returns the full unified Media shape.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateMediaResponse {
-    ///Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
+    /// Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///Issues associated with the media asset.
+    /// Issues associated with the media asset.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The unique identifier for the media asset.
+    /// The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
+    /// The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///Related media associations, one level deep. Empty list when no associations exist.
+    /// Related media associations, one level deep. Empty list when no associations exist.
     #[serde(
         rename = "relatedMedia",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
+    /// The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///A decorator applied to a content string value in order to create rich text.
+/// A decorator applied to a content string value in order to create rich text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Decorator {
-    ///The relative intensity or variation of this decorator. Decorators such as bullet-points, for example, can have multiple indentation depths.
+    /// The relative intensity or variation of this decorator. Decorators such as bullet-points, for example, can have multiple indentation depths.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub depth: ::std::option::Option<i64>,
-    ///The number of content characters to alter with this decorator. Decorators such as line breaks can have zero length and fit between characters.
+    /// The number of content characters to alter with this decorator. Decorators such as line breaks can have zero length and fit between characters.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub length: ::std::option::Option<i64>,
-    ///The starting character of this decorator within the content string. Use zero for the first character.
+    /// The starting character of this decorator within the content string. Use zero for the first character.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offset: ::std::option::Option<i64>,
-    ///Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.
+    /// Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<DecoratorType>,
 }
-///A set of content decorators.
+/// A set of content decorators.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DecoratorSet(pub ::std::vec::Vec<Decorator>);
@@ -1399,9 +1399,9 @@ impl ::std::convert::From<::std::vec::Vec<Decorator>> for DecoratorSet {
         Self(value)
     }
 }
-///The type of rich text decorator.
+/// The type of rich text decorator.
 ///
-///Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.
+/// Known values: `LIST_ITEM`, `LIST_ORDERED`, `LIST_UNORDERED`, `STYLE_BOLD`, `STYLE_ITALIC`, `STYLE_LINEBREAK`, `STYLE_PARAGRAPH`, `STYLE_UNDERLINE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1442,15 +1442,15 @@ impl ::std::str::FromStr for DecoratorType {
         Ok(Self(value.to_string()))
     }
 }
-///An accessibility description for a specific locale.
+/// An accessibility description for a specific locale.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Description {
-    ///A locale identifier (for example, `en-US`, `de-DE`).
+    /// A locale identifier (for example, `en-US`, `de-DE`).
     pub locale: ::std::string::String,
-    ///The accessibility description text for the locale.
+    /// The accessibility description text for the locale.
     pub value: ::std::string::String,
 }
-///A list of locale-keyed accessibility descriptions. At least one entry is required for video assets.
+/// A list of locale-keyed accessibility descriptions. At least one entry is required for video assets.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DescriptionList(pub ::std::vec::Vec<Description>);
@@ -1470,18 +1470,18 @@ impl ::std::convert::From<::std::vec::Vec<Description>> for DescriptionList {
         Self(value)
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ErrorCode,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<ErrorDetails>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ErrorMessage,
 }
-///An error code that identifies the type of error that occurred.
+/// An error code that identifies the type of error that occurred.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ErrorCode(::std::string::String);
@@ -1535,7 +1535,7 @@ impl<'de> ::serde::Deserialize<'de> for ErrorCode {
             })
     }
 }
-///Additional details that can help the caller understand or fix the issue.
+/// Additional details that can help the caller understand or fix the issue.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ErrorDetails(::std::string::String);
@@ -1589,13 +1589,13 @@ impl<'de> ::serde::Deserialize<'de> for ErrorDetails {
             })
     }
 }
-///The error response for when a request is unsuccessful.
+/// The error response for when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///A message that describes the error condition.
+/// A message that describes the error condition.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ErrorMessage(::std::string::String);
@@ -1649,18 +1649,18 @@ impl<'de> ::serde::Deserialize<'de> for ErrorMessage {
             })
     }
 }
-///A single frequently asked question with its corresponding answer.
+/// A single frequently asked question with its corresponding answer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Faq {
     pub answer: ParagraphComponent,
     pub question: ParagraphComponent,
 }
-///A wrapper object for a single FAQ entry.
+/// A wrapper object for a single FAQ entry.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Faqs {
     pub faq: Faq,
 }
-///`GetContentDocumentResponse`
+/// `GetContentDocumentResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetContentDocumentResponse {
     #[serde(rename = "contentRecord")]
@@ -1668,42 +1668,42 @@ pub struct GetContentDocumentResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///The response for the `getMedia` operation. Returns the full unified Media shape.
+/// The response for the `getMedia` operation. Returns the full unified Media shape.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetMediaResponse {
-    ///Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
+    /// Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///Issues associated with the media asset.
+    /// Issues associated with the media asset.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The unique identifier for the media asset.
+    /// The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
+    /// The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///Related media associations, one level deep. Empty list when no associations exist.
+    /// Related media associations, one level deep. Empty list when no associations exist.
     #[serde(
         rename = "relatedMedia",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
+    /// The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///A single panel within the image carousel that features rich text elements, a direct link to a product ASIN, and an image.
+/// A single panel within the image carousel that features rich text elements, a direct link to a product ASIN, and an image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageCarouselPanel {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -1719,18 +1719,18 @@ pub struct ImageCarouselPanel {
     pub desktop_image: ImageComponent,
     #[serde(rename = "mobileImage")]
     pub mobile_image: ImageComponent,
-    ///The position of the panel within the carousel. Must be a value between 1 and 6.
+    /// The position of the panel within the carousel. Must be a value between 1 and 6.
     pub position: ::std::num::NonZeroU64,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A wrapper object for a single image carousel panel.
+/// A wrapper object for a single image carousel panel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageCarouselPanels {
     #[serde(rename = "imagePanel")]
     pub image_panel: ImageCarouselPanel,
 }
-///A single column within a multi-column premium image module, containing an image, an optional headline, and an optional description.
+/// A single column within a multi-column premium image module, containing an image, an optional headline, and an optional description.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageColumn {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -1738,28 +1738,28 @@ pub struct ImageColumn {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
     pub image: ImageComponent,
-    ///Location of the column within the module.
+    /// Location of the column within the module.
     pub position: ::std::num::NonZeroU64,
 }
-///Wrapper for a repeated image column entry in a multi-column premium image module.
+/// Wrapper for a repeated image column entry in a multi-column premium image module.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageColumns {
     #[serde(rename = "imageColumn")]
     pub image_column: ImageColumn,
 }
-///A reference to an image, hosted in the A+ Content media library.
+/// A reference to an image, hosted in the A+ Content media library.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageComponent {
-    ///The alternative text for the image.
+    /// The alternative text for the image.
     #[serde(rename = "altText")]
     pub alt_text: ImageComponentAltText,
     #[serde(rename = "imageCropSpecification")]
     pub image_crop_specification: ImageCropSpecification,
-    ///This identifier is provided by the Selling Partner API for Uploads.
+    /// This identifier is provided by the Selling Partner API for Uploads.
     #[serde(rename = "uploadDestinationId")]
     pub upload_destination_id: ImageComponentUploadDestinationId,
 }
-///The alternative text for the image.
+/// The alternative text for the image.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ImageComponentAltText(::std::string::String);
@@ -1816,7 +1816,7 @@ impl<'de> ::serde::Deserialize<'de> for ImageComponentAltText {
             })
     }
 }
-///This identifier is provided by the Selling Partner API for Uploads.
+/// This identifier is provided by the Selling Partner API for Uploads.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ImageComponentUploadDestinationId(::std::string::String);
@@ -1871,20 +1871,20 @@ impl<'de> ::serde::Deserialize<'de> for ImageComponentUploadDestinationId {
             })
     }
 }
-///The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
+/// The instructions for optionally cropping an image. If no cropping is desired, set the dimensions to the original image size. If the image is cropped and no offset values are provided, then the coordinates of the top left corner of the cropped image, relative to the original image, are defaulted to (0,0).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageCropSpecification {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offset: ::std::option::Option<ImageOffsets>,
     pub size: ImageDimensions,
 }
-///The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
+/// The dimensions extending from the top left corner of the cropped image, or the top left corner of the original image if there is no cropping. Only `pixels` is allowed as the units value for ImageDimensions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageDimensions {
     pub height: IntegerWithUnits,
     pub width: IntegerWithUnits,
 }
-///A hotspot with mobile image, title, description, and coordinates.
+/// A hotspot with mobile image, title, description, and coordinates.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageHotSpot {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -1897,19 +1897,19 @@ pub struct ImageHotSpot {
     #[serde(rename = "yCoordinate")]
     pub y_coordinate: TextComponent,
 }
-///A wrapper object for a single ImageHotSpot.
+/// A wrapper object for a single ImageHotSpot.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageHotSpots {
     #[serde(rename = "imageHotSpot")]
     pub image_hot_spot: ImageHotSpot,
 }
-///The top left corner of the cropped image, specified in the original image's coordinate space.
+/// The top left corner of the cropped image, specified in the original image's coordinate space.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageOffsets {
     pub x: IntegerWithUnits,
     pub y: IntegerWithUnits,
 }
-///A hotspot with mobile image, title, and coordinates.
+/// A hotspot with mobile image, title, and coordinates.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageTextHotSpot {
     #[serde(rename = "mobileImage")]
@@ -1920,49 +1920,49 @@ pub struct ImageTextHotSpot {
     #[serde(rename = "yCoordinate")]
     pub y_coordinate: TextComponent,
 }
-///A wrapper object for a single ImageTextHotSpot.
+/// A wrapper object for a single ImageTextHotSpot.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ImageTextHotSpots {
     #[serde(rename = "imageTextHotSpot")]
     pub image_text_hot_spot: ImageTextHotSpot,
 }
-///A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
+/// A whole number dimension and its unit of measurement. For example, this can represent 100 pixels.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IntegerWithUnits {
-    ///The unit of measurement.
+    /// The unit of measurement.
     pub units: ::std::string::String,
-    ///The dimension value.
+    /// The dimension value.
     pub value: i64,
 }
-///An issue associated with a media asset or pairing.
+/// An issue associated with a media asset or pairing.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Issue {
-    ///List of issue categories.
+    /// List of issue categories.
     ///
-    ///**Possible values:**
+    /// **Possible values:**
     ///
-    ///* `PROCESSING_ISSUE` - Media file could not be processed (codec, duration, corrupt file).
+    /// * `PROCESSING_ISSUE` - Media file could not be processed (codec, duration, corrupt file).
     ///
-    ///* `CONTENT_POLICY` - Media asset is subject to content policy restrictions.
+    /// * `CONTENT_POLICY` - Media asset is subject to content policy restrictions.
     ///
-    ///* `METADATA_VALIDATION` - Media metadata does not meet requirements (title, descriptions).
+    /// * `METADATA_VALIDATION` - Media metadata does not meet requirements (title, descriptions).
     pub categories: ::std::vec::Vec<::std::string::String>,
-    ///An issue code that identifies the type of issue.
+    /// An issue code that identifies the type of issue.
     pub code: ::std::string::String,
-    ///A message that describes the issue.
+    /// A message that describes the issue.
     pub message: ::std::string::String,
-    ///Names of the properties associated with the issue, if applicable.
+    /// Names of the properties associated with the issue, if applicable.
     #[serde(
         rename = "propertyNames",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub property_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The severity of the issue.
+    /// The severity of the issue.
     ///
-    ///Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
-///A list of issues associated with a media asset or pairing.
+/// A list of issues associated with a media asset or pairing.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct IssueList(pub ::std::vec::Vec<Issue>);
@@ -1982,8 +1982,8 @@ impl ::std::convert::From<::std::vec::Vec<Issue>> for IssueList {
         Self(value)
     }
 }
-///The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
-///**Pattern:** `^[a-z]{2,}-[A-Z0-9]{2,}$`
+/// The IETF language tag. This only supports the primary language subtag with one secondary language subtag. The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary subtags.
+/// **Pattern:** `^[a-z]{2,}-[A-Z0-9]{2,}$`
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct LanguageTag(::std::string::String);
@@ -2037,7 +2037,7 @@ impl<'de> ::serde::Deserialize<'de> for LanguageTag {
             })
     }
 }
-///`ListContentDocumentAsinRelationsResponse`
+/// `ListContentDocumentAsinRelationsResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListContentDocumentAsinRelationsResponse {
     #[serde(rename = "asinMetadataSet")]
@@ -2050,7 +2050,7 @@ pub struct ListContentDocumentAsinRelationsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///The identifier for the Amazon store where the A+ Content is published.
+/// The identifier for the Amazon store where the A+ Content is published.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct MarketplaceId(::std::string::String);
@@ -2104,90 +2104,90 @@ impl<'de> ::serde::Deserialize<'de> for MarketplaceId {
             })
     }
 }
-///A media entity with its related media associations. This is the unified shape used across all media operations.
+/// A media entity with its related media associations. This is the unified shape used across all media operations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Media {
-    ///Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
+    /// Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///Issues associated with the media asset.
+    /// Issues associated with the media asset.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The unique identifier for the media asset.
+    /// The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
+    /// The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///Related media associations, one level deep. Empty list when no associations exist.
+    /// Related media associations, one level deep. Empty list when no associations exist.
     #[serde(
         rename = "relatedMedia",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
+    /// The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
 }
-///The core media entity attributes without associations.
+/// The core media entity attributes without associations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MediaInfo {
-    ///Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
+    /// Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///Issues associated with the media asset.
+    /// Issues associated with the media asset.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The unique identifier for the media asset.
+    /// The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
+    /// The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
+    /// The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
 }
-///Input for referencing a media asset during creation. Exactly one of `uploadDestinationId` or `mediaId` must be provided.
+/// Input for referencing a media asset during creation. Exactly one of `uploadDestinationId` or `mediaId` must be provided.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MediaInput {
-    ///An existing media asset identifier for reuse in a new association. Mutually exclusive with `uploadDestinationId`.
+    /// An existing media asset identifier for reuse in a new association. Mutually exclusive with `uploadDestinationId`.
     #[serde(rename = "mediaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_id: ::std::option::Option<::std::string::String>,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///An optional title for the media asset. Defaults to the filename if not provided.
+    /// An optional title for the media asset. Defaults to the filename if not provided.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
-    ///The S3 upload destination identifier from the `createUploadDestination` operation, for a newly uploaded asset. Mutually exclusive with `mediaId`.
+    /// The S3 upload destination identifier from the `createUploadDestination` operation, for a newly uploaded asset. Mutually exclusive with `mediaId`.
     #[serde(
         rename = "uploadDestinationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub upload_destination_id: ::std::option::Option<::std::string::String>,
 }
-///A status value for a media asset or pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor. Workflow statuses describe the processing stage; actor statuses indicate who must take the next action.
+/// A status value for a media asset or pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor. Workflow statuses describe the processing stage; actor statuses indicate who must take the next action.
 ///
-///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+/// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2228,9 +2228,9 @@ impl ::std::str::FromStr for MediaStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The type of media asset.
+/// The type of media asset.
 ///
-///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+/// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2271,7 +2271,7 @@ impl ::std::str::FromStr for MediaType {
         Ok(Self(value.to_string()))
     }
 }
-///A set of messages to the user, such as warnings or comments.
+/// A set of messages to the user, such as warnings or comments.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct MessageSet(pub ::std::vec::Vec<Error>);
@@ -2291,7 +2291,7 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for MessageSet {
         Self(value)
     }
 }
-///A wrapper to hold the metric name and metric value.
+/// A wrapper to hold the metric name and metric value.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MetricValueItem {
     #[serde(
@@ -2305,7 +2305,7 @@ pub struct MetricValueItem {
     )]
     pub metric_value: ::std::option::Option<ParagraphComponent>,
 }
-///A single panel within the navigation carousel that features rich text elements and an image.
+/// A single panel within the navigation carousel that features rich text elements and an image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NavigationCarouselPanel {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2316,20 +2316,20 @@ pub struct NavigationCarouselPanel {
     pub mobile_image: ImageComponent,
     #[serde(rename = "navText")]
     pub nav_text: TextComponent,
-    ///The position of this panel within the carousel. Must be a value between 1 and 5.
+    /// The position of this panel within the carousel. Must be a value between 1 and 5.
     pub position: ::std::num::NonZeroU64,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subtitle: ::std::option::Option<TextComponent>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A wrapper object for a single navigation carousel panel.
+/// A wrapper object for a single navigation carousel panel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NavigationCarouselPanels {
     #[serde(rename = "navigationPanel")]
     pub navigation_panel: NavigationCarouselPanel,
 }
-///A page token that is returned when the results of the call exceed the page size. To get another page of results, call the operation again, passing in this value with the `pageToken` parameter.
+/// A page token that is returned when the results of the call exceed the page size. To get another page of results, call the operation again, passing in this value with the `pageToken` parameter.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PageToken(::std::string::String);
@@ -2383,21 +2383,21 @@ impl<'de> ::serde::Deserialize<'de> for PageToken {
             })
     }
 }
-///A list of rich text content, usually presented in a text box.
+/// A list of rich text content, usually presented in a text box.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ParagraphComponent {
     #[serde(rename = "textList")]
     pub text_list: ::std::vec::Vec<TextComponent>,
 }
-///Plain positional text, used in collections of brief labels and descriptors.
+/// Plain positional text, used in collections of brief labels and descriptors.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PlainTextItem {
-    ///The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
+    /// The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
     pub position: ::std::num::NonZeroU64,
-    ///The actual plain text.
+    /// The actual plain text.
     pub value: PlainTextItemValue,
 }
-///The actual plain text.
+/// The actual plain text.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PlainTextItemValue(::std::string::String);
@@ -2454,9 +2454,9 @@ impl<'de> ::serde::Deserialize<'de> for PlainTextItemValue {
             })
     }
 }
-///The relative positioning of content.
+/// The relative positioning of content.
 ///
-///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+/// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2497,7 +2497,7 @@ impl ::std::str::FromStr for PositionType {
         Ok(Self(value.to_string()))
     }
 }
-///`PostContentDocumentApprovalSubmissionResponse`
+/// `PostContentDocumentApprovalSubmissionResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PostContentDocumentApprovalSubmissionResponse(pub AplusResponse);
@@ -2519,13 +2519,13 @@ for PostContentDocumentApprovalSubmissionResponse {
         Self(value)
     }
 }
-///`PostContentDocumentAsinRelationsRequest`
+/// `PostContentDocumentAsinRelationsRequest`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PostContentDocumentAsinRelationsRequest {
     #[serde(rename = "asinSet")]
     pub asin_set: AsinSet,
 }
-///`PostContentDocumentAsinRelationsResponse`
+/// `PostContentDocumentAsinRelationsResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PostContentDocumentAsinRelationsResponse(pub AplusResponse);
@@ -2545,13 +2545,13 @@ impl ::std::convert::From<AplusResponse> for PostContentDocumentAsinRelationsRes
         Self(value)
     }
 }
-///`PostContentDocumentRequest`
+/// `PostContentDocumentRequest`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PostContentDocumentRequest {
     #[serde(rename = "contentDocument")]
     pub content_document: ContentDocument,
 }
-///`PostContentDocumentResponse`
+/// `PostContentDocumentResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PostContentDocumentResponse {
     #[serde(rename = "contentReferenceKey")]
@@ -2559,7 +2559,7 @@ pub struct PostContentDocumentResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///`PostContentDocumentSuspendSubmissionResponse`
+/// `PostContentDocumentSuspendSubmissionResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PostContentDocumentSuspendSubmissionResponse(pub AplusResponse);
@@ -2581,72 +2581,72 @@ for PostContentDocumentSuspendSubmissionResponse {
         Self(value)
     }
 }
-///A comparison table with product images, headline per product, and feature rows with text.
+/// A comparison table with product images, headline per product, and feature rows with text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumComparisonCarouselModule {
-    ///The collection of comparison metrics, which must contain between 3 and 7 metrics.
+    /// The collection of comparison metrics, which must contain between 3 and 7 metrics.
     #[serde(rename = "comparisonMetrics")]
     pub comparison_metrics: ::std::vec::Vec<ComparisonMetrics>,
-    ///The collection of comparison products, which must contain between 3 and 5 products.
+    /// The collection of comparison products, which must contain between 3 and 5 products.
     #[serde(rename = "comparisonProducts")]
     pub comparison_products: ::std::vec::Vec<ComparisonProducts>,
     pub headline: TextComponent,
 }
-///A scrollable comparison view with full-height product images, chart headline, and feature rows with text per product.
+/// A scrollable comparison view with full-height product images, chart headline, and feature rows with text per product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumComparisonScrollerModule {
-    ///The collection of comparison products, which must contain between 3 and 7 products.
+    /// The collection of comparison products, which must contain between 3 and 7 products.
     #[serde(rename = "comparisonProducts")]
     pub comparison_products: ::std::vec::Vec<ComparisonProducts>,
-    ///The collection of comparison rows, which must contain between 5 and 12 rows.
+    /// The collection of comparison rows, which must contain between 5 and 12 rows.
     #[serde(rename = "comparisonRows")]
     pub comparison_rows: ::std::vec::Vec<ComparisonMetrics>,
     pub headline: TextComponent,
-    ///Whether to show Add to Cart buttons.
+    /// Whether to show Add to Cart buttons.
     #[serde(rename = "showATC", skip_serializing_if = "::std::option::Option::is_none")]
     pub show_atc: ::std::option::Option<bool>,
-    ///Whether to show product prices.
+    /// Whether to show product prices.
     #[serde(
         rename = "showPrices",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub show_prices: ::std::option::Option<bool>,
-    ///Whether to show product reviews.
+    /// Whether to show product reviews.
     #[serde(
         rename = "showReviews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub show_reviews: ::std::option::Option<bool>,
 }
-///Two images displayed side by side with a single headline above. Each image has its own subheadline and body text.
+/// Two images displayed side by side with a single headline above. Each image has its own subheadline and body text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumDualImageTextModule {
-    ///The collection of image columns, which must contain exactly 2 columns.
+    /// The collection of image columns, which must contain exactly 2 columns.
     pub columns: [ImageColumns; 2usize],
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A list of question-and-answer pairs with a configurable background color scheme of light or dark.
+/// A list of question-and-answer pairs with a configurable background color scheme of light or dark.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFaqModule {
-    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
+    /// Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(
         rename = "colorType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub color_type: ::std::option::Option<ColorType>,
-    ///The collection of FAQ entries, which must contain between 2 and 5 FAQs.
+    /// The collection of FAQ entries, which must contain between 2 and 5 FAQs.
     pub faqs: ::std::vec::Vec<Faqs>,
 }
-///Four images displayed in a row with a single headline above. Each image has its own subheadline and body text.
+/// Four images displayed in a row with a single headline above. Each image has its own subheadline and body text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFourColumnImagesModule {
-    ///The collection of image columns, which must contain between 3 and 4 columns.
+    /// The collection of image columns, which must contain between 3 and 4 columns.
     pub columns: ::std::vec::Vec<ImageColumns>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A full-width background image that spans the entire module width, with optional headline and body text below.
+/// A full-width background image that spans the entire module width, with optional headline and body text below.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFullBackgroundImageModule {
     #[serde(rename = "desktopImage")]
@@ -2658,10 +2658,10 @@ pub struct PremiumFullBackgroundImageModule {
     #[serde(rename = "mobileImage")]
     pub mobile_image: ImageComponent,
 }
-///A full-width background image with a text overlay box containing subheadline, headline, and body text. The text box can be positioned to the left or right, and styled light or dark.
+/// A full-width background image with a text overlay box containing subheadline, headline, and body text. The text box can be positioned to the left or right, and styled light or dark.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumFullBackgroundTextModule {
-    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
+    /// Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "colorType")]
     pub color_type: ColorType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2672,13 +2672,13 @@ pub struct PremiumFullBackgroundTextModule {
     pub headline: ::std::option::Option<TextComponent>,
     #[serde(rename = "mobileImage")]
     pub mobile_image: ImageComponent,
-    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+    /// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subheadline: ::std::option::Option<TextComponent>,
 }
-///A full-width video with optional headline and body text below.
+/// A full-width video with optional headline and body text below.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumHeroVideoModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2688,22 +2688,22 @@ pub struct PremiumHeroVideoModule {
     #[serde(rename = "heroVideo")]
     pub hero_video: VideoComponent,
 }
-///A full-width image with clickable hotspot markers that reveal headline and descriptive text for each point of interest.
+/// A full-width image with clickable hotspot markers that reveal headline and descriptive text for each point of interest.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumHotspotImageModule {
     #[serde(rename = "desktopImage")]
     pub desktop_image: ImageComponent,
-    ///The collection of hotspots, which must contain between 2 and 6 hotspots.
+    /// The collection of hotspots, which must contain between 2 and 6 hotspots.
     #[serde(rename = "hotSpots")]
     pub hot_spots: ::std::vec::Vec<ImageHotSpots>,
 }
-///A full-width image with clickable hotspot markers, plus a module headline and body text above the image.
+/// A full-width image with clickable hotspot markers, plus a module headline and body text above the image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumHotspotImageTextModule {
     #[serde(rename = "desktopImage")]
     pub desktop_image: ImageComponent,
     pub headline: TextComponent,
-    ///The collection of hotspots, which must contain between 2 and 6 hotspots.
+    /// The collection of hotspots, which must contain between 2 and 6 hotspots.
     #[serde(rename = "hotSpots")]
     pub hot_spots: ::std::vec::Vec<ImageTextHotSpots>,
     #[serde(
@@ -2712,10 +2712,10 @@ pub struct PremiumHotspotImageTextModule {
     )]
     pub main_description: ::std::option::Option<ParagraphComponent>,
 }
-///A carousel of full-width image panels, each with its own headline and body text. Users swipe or click through panels.
+/// A carousel of full-width image panels, each with its own headline and body text. Users swipe or click through panels.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumImageCarouselModule {
-    ///The collection of image panels, which must contain between 2 and 6 panels.
+    /// The collection of image panels, which must contain between 2 and 6 panels.
     #[serde(rename = "carouselCards")]
     pub carousel_cards: ::std::vec::Vec<ImageCarouselPanels>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2723,90 +2723,90 @@ pub struct PremiumImageCarouselModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A single image paired with text, positioned side by side. The image can appear on the left or right of the text block.
+/// A single image paired with text, positioned side by side. The image can appear on the left or right of the text block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumImageTextModule {
     #[serde(rename = "bodyText", skip_serializing_if = "::std::option::Option::is_none")]
     pub body_text: ::std::option::Option<ParagraphComponent>,
     pub headline: TextComponent,
     pub image: ImageComponent,
-    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+    /// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subheadline: ::std::option::Option<TextComponent>,
 }
-///A carousel of full-width image panels with clickable navigation tabs. Each panel has its own navigation text, subheadline, headline, and body text.
+/// A carousel of full-width image panels with clickable navigation tabs. Each panel has its own navigation text, subheadline, headline, and body text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumNavigationCarouselModule {
-    ///The collection of navigation panels, which must contain between 2 and 5 panels.
+    /// The collection of navigation panels, which must contain between 2 and 5 panels.
     #[serde(rename = "carouselCards")]
     pub carousel_cards: ::std::vec::Vec<NavigationCarouselPanels>,
 }
-///A carousel with a module headline, full-width image panels, and navigation tabs. Each panel has its own inset headline, inset body text, and navigation text.
+/// A carousel with a module headline, full-width image panels, and navigation tabs. Each panel has its own inset headline, inset body text, and navigation text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumRegimenCarouselModule {
-    ///The collection of regimen panels, which must contain between 2 and 5 panels.
+    /// The collection of regimen panels, which must contain between 2 and 5 panels.
     #[serde(rename = "carouselCards")]
     pub carousel_cards: ::std::vec::Vec<RegimenCarouselPanels>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A structured list of specification-definition pairs with a headline, for presenting key technical details of your product.
+/// A structured list of specification-definition pairs with a headline, for presenting key technical details of your product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumTechSpecsModule {
-    ///The number of columns to display in the technical specifications table, with options between 1 and 2 columns.
+    /// The number of columns to display in the technical specifications table, with options between 1 and 2 columns.
     #[serde(
         rename = "columnCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub column_count: ::std::option::Option<::std::num::NonZeroU64>,
     pub headline: TextComponent,
-    ///The collection of technical specifications, which must contain between 4 and 16 technical specifications.
+    /// The collection of technical specifications, which must contain between 4 and 16 technical specifications.
     #[serde(rename = "techSpecs")]
     pub tech_specs: ::std::vec::Vec<TechSpecs>,
 }
-///A text-only module with headline and body text, allowing greater character limits than other modules for explaining more details or instructions on your product.
+/// A text-only module with headline and body text, allowing greater character limits than other modules for explaining more details or instructions on your product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumTextModule {
     pub description: ParagraphComponent,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A comparison table displaying products side by side with features, tooltips, and detail rows.
+/// A comparison table displaying products side by side with features, tooltips, and detail rows.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumThreeColumnComparisonModule {
-    ///The three products being compared. Exactly three products are required.
+    /// The three products being compared. Exactly three products are required.
     #[serde(rename = "comparisonProducts")]
     pub comparison_products: [ThreeColumnComparisonProduct; 3usize],
-    ///The rows of the comparison table. Each row represents a metric compared across all three products.
+    /// The rows of the comparison table. Each row represents a metric compared across all three products.
     #[serde(rename = "comparisonRows")]
     pub comparison_rows: ::std::vec::Vec<ThreeColumnComparisonRow>,
     pub headline: TextComponent,
 }
-///A carousel of panels, each containing a video or image with its own panel headline, subheadline, and body text. A module headline appears above the carousel.
+/// A carousel of panels, each containing a video or image with its own panel headline, subheadline, and body text. A module headline appears above the carousel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumVideoImageCarouselModule {
-    ///The list of carousel panels, between 2 and 6 items.
+    /// The list of carousel panels, between 2 and 6 items.
     #[serde(rename = "carouselCards")]
     pub carousel_cards: ::std::vec::Vec<VideoImageCarouselPanels>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A video paired with text containing subheadline, headline, and body text. The video can appear on the left or right of the text block.
+/// A video paired with text containing subheadline, headline, and body text. The video can appear on the left or right of the text block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PremiumVideoTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<ParagraphComponent>,
     pub headline: TextComponent,
-    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+    /// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "positionType")]
     pub position_type: PositionType,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
     pub video: VideoComponent,
 }
-///The full context for an A+ Content publishing event.
+/// The full context for an A+ Content publishing event.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PublishRecord {
     pub asin: Asin,
@@ -2817,14 +2817,14 @@ pub struct PublishRecord {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_sub_type: ::std::option::Option<ContentSubType>,
-    ///Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
+    /// Known values: `EBC`, `EMC`, `BrandStory`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ContentType,
     pub locale: LanguageTag,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
 }
-///A list of A+ Content publishing records.
+/// A list of A+ Content publishing records.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PublishRecordList(pub ::std::vec::Vec<PublishRecord>);
@@ -2844,19 +2844,19 @@ impl ::std::convert::From<::std::vec::Vec<PublishRecord>> for PublishRecordList 
         Self(value)
     }
 }
-///A single question and answer pair.
+/// A single question and answer pair.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct QuestionAnswerPair {
     pub answer: ParagraphComponent,
     pub question: TextComponent,
 }
-///Wrapper for a single question-answer pair.
+/// Wrapper for a single question-answer pair.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct QuestionAnswerPairs {
     #[serde(rename = "questionAnswerPair")]
     pub question_answer_pair: QuestionAnswerPair,
 }
-///A single panel within the regimen carousel that features rich text elements and an image.
+/// A single panel within the regimen carousel that features rich text elements and an image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RegimenCarouselPanel {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -2867,51 +2867,51 @@ pub struct RegimenCarouselPanel {
     pub mobile_image: ImageComponent,
     #[serde(rename = "navText")]
     pub nav_text: TextComponent,
-    ///The position of the panel within the carousel. Must be a value between 1 and 5.
+    /// The position of the panel within the carousel. Must be a value between 1 and 5.
     pub position: ::std::num::NonZeroU64,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<TextComponent>,
 }
-///A wrapper object for a single regimen carousel panel.
+/// A wrapper object for a single regimen carousel panel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RegimenCarouselPanels {
     #[serde(rename = "regimenPanel")]
     pub regimen_panel: RegimenCarouselPanel,
 }
-///A relationship between media assets, representing a pairing with its own title, status, and lifecycle.
+/// A relationship between media assets, representing a pairing with its own title, status, and lifecycle.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedMedia {
-    ///The type of relationship.
+    /// The type of relationship.
     ///
-    ///Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
     #[serde(rename = "associationType")]
     pub association_type: AssociationType,
-    ///Issues associated with this pairing.
+    /// Issues associated with this pairing.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The associated media asset, without nested associations.
+    /// The associated media asset, without nested associations.
     pub media: MediaInfo,
-    ///The composite status of this pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of this pairing. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for this pairing. For `VIDEO_PAIRING`, this is the user-provided pairing title. Minimum three words; must not be all capital letters.
+    /// The title for this pairing. For `VIDEO_PAIRING`, this is the user-provided pairing title. Minimum three words; must not be all capital letters.
     pub title: ::std::string::String,
 }
-///Input for creating a media association.
+/// Input for creating a media association.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedMediaInput {
-    ///The type of relationship to create.
+    /// The type of relationship to create.
     ///
-    ///Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO_PAIRING`. Other values may be returned by Amazon.
     #[serde(rename = "associationType")]
     pub association_type: AssociationType,
-    ///The media asset to associate.
+    /// The media asset to associate.
     pub media: MediaInput,
-    ///The title for this pairing. Minimum three words for `VIDEO_PAIRING`; must not be all capital letters.
+    /// The title for this pairing. Minimum three words for `VIDEO_PAIRING`; must not be all capital letters.
     pub title: ::std::string::String,
 }
-///A list of related media inputs for creation.
+/// A list of related media inputs for creation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RelatedMediaInputList(pub ::std::vec::Vec<RelatedMediaInput>);
@@ -2931,7 +2931,7 @@ impl ::std::convert::From<::std::vec::Vec<RelatedMediaInput>> for RelatedMediaIn
         Self(value)
     }
 }
-///A list of related media associations.
+/// A list of related media associations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RelatedMediaList(pub ::std::vec::Vec<RelatedMedia>);
@@ -2951,10 +2951,10 @@ impl ::std::convert::From<::std::vec::Vec<RelatedMedia>> for RelatedMediaList {
         Self(value)
     }
 }
-///`SearchContentDocumentsResponse`
+/// `SearchContentDocumentsResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchContentDocumentsResponse {
-    ///The content metadata records.
+    /// The content metadata records.
     #[serde(rename = "contentMetadataRecords")]
     pub content_metadata_records: ContentMetadataRecordList,
     #[serde(
@@ -2965,7 +2965,7 @@ pub struct SearchContentDocumentsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///`SearchContentPublishRecordsResponse`
+/// `SearchContentPublishRecordsResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchContentPublishRecordsResponse {
     #[serde(
@@ -2978,32 +2978,32 @@ pub struct SearchContentPublishRecordsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///The standard company logo image.
+/// The standard company logo image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardCompanyLogoModule {
     #[serde(rename = "companyLogo")]
     pub company_logo: ImageComponent,
 }
-///The A+ Content standard comparison product block.
+/// The A+ Content standard comparison product block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardComparisonProductBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<Asin>,
-    ///Determines whether this block of content is visually highlighted.
+    /// Determines whether this block of content is visually highlighted.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub highlight: ::std::option::Option<bool>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub image: ::std::option::Option<ImageComponent>,
-    ///Comparison metrics for the product.
+    /// Comparison metrics for the product.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub metrics: ::std::option::Option<::std::vec::Vec<PlainTextItem>>,
-    ///The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
+    /// The rank or index of this comparison product block within the module. Different blocks cannot occupy the same position within a single module.
     pub position: ::std::num::NonZeroU64,
-    ///The comparison product title.
+    /// The comparison product title.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<StandardComparisonProductBlockTitle>,
 }
-///The comparison product title.
+/// The comparison product title.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct StandardComparisonProductBlockTitle(::std::string::String);
@@ -3062,7 +3062,7 @@ impl<'de> ::serde::Deserialize<'de> for StandardComparisonProductBlockTitle {
             })
     }
 }
-///The standard product comparison table.
+/// The standard product comparison table.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardComparisonTableModule {
     #[serde(
@@ -3078,7 +3078,7 @@ pub struct StandardComparisonTableModule {
         ::std::vec::Vec<StandardComparisonProductBlock>,
     >,
 }
-///Four standard images with text, presented across a single row.
+/// Four standard images with text, presented across a single row.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardFourImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3092,7 +3092,7 @@ pub struct StandardFourImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///Four standard images with text, presented on a grid of four quadrants.
+/// Four standard images with text, presented on a grid of four quadrants.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardFourImageTextQuadrantModule {
     pub block1: StandardImageTextBlock,
@@ -3100,7 +3100,7 @@ pub struct StandardFourImageTextQuadrantModule {
     pub block3: StandardImageTextBlock,
     pub block4: StandardImageTextBlock,
 }
-///Standard headline text, an image, and body text.
+/// Standard headline text, an image, and body text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardHeaderImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3108,7 +3108,7 @@ pub struct StandardHeaderImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///The A+ standard fixed-length list of text, with a related headline.
+/// The A+ standard fixed-length list of text, with a related headline.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardHeaderTextListBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3116,7 +3116,7 @@ pub struct StandardHeaderTextListBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///The A+ Content standard image and caption block.
+/// The A+ Content standard image and caption block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardImageCaptionBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3124,7 +3124,7 @@ pub struct StandardImageCaptionBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub image: ::std::option::Option<ImageComponent>,
 }
-///Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
+/// Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardImageSidebarModule {
     #[serde(
@@ -3155,7 +3155,7 @@ pub struct StandardImageSidebarModule {
     )]
     pub sidebar_list_block: ::std::option::Option<StandardTextListBlock>,
 }
-///The A+ Content standard image and text box block.
+/// The A+ Content standard image and text box block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardImageTextBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3165,7 +3165,7 @@ pub struct StandardImageTextBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub image: ::std::option::Option<ImageComponent>,
 }
-///The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
+/// The A+ Content standard image and text block, with a related caption. The caption may not display on all devices.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardImageTextCaptionBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3173,27 +3173,27 @@ pub struct StandardImageTextCaptionBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub caption: ::std::option::Option<TextComponent>,
 }
-///A standard background image with a floating text box.
+/// A standard background image with a floating text box.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardImageTextOverlayModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub block: ::std::option::Option<StandardImageTextBlock>,
-    ///Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
+    /// Known values: `DARK`, `LIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "overlayColorType")]
     pub overlay_color_type: ColorType,
 }
-///Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
+/// Standard images with text, presented one at a time. The user clicks on thumbnails to view each block.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardMultipleImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub blocks: ::std::option::Option<::std::vec::Vec<StandardImageTextCaptionBlock>>,
 }
-///Standard product description text.
+/// Standard product description text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardProductDescriptionModule {
     pub body: ParagraphComponent,
 }
-///A standard image with several paragraphs and a bulleted list.
+/// A standard image with several paragraphs and a bulleted list.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardSingleImageHighlightsModule {
     #[serde(
@@ -3221,7 +3221,7 @@ pub struct StandardSingleImageHighlightsModule {
     )]
     pub text_block3: ::std::option::Option<StandardTextBlock>,
 }
-///A standard image with paragraphs and a bulleted list, and extra space for technical details.
+/// A standard image with paragraphs and a bulleted list, and extra space for technical details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardSingleImageSpecsDetailModule {
     #[serde(
@@ -3259,31 +3259,31 @@ pub struct StandardSingleImageSpecsDetailModule {
     )]
     pub specification_text_block: ::std::option::Option<StandardTextBlock>,
 }
-///A standard headline and body text with an image on the side.
+/// A standard headline and body text with an image on the side.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardSingleSideImageModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub block: ::std::option::Option<StandardImageTextBlock>,
-    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+    /// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(rename = "imagePositionType")]
     pub image_position_type: PositionType,
 }
-///The standard table of technical feature names and definitions.
+/// The standard table of technical feature names and definitions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardTechSpecsModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
-    ///The specification list.
+    /// The specification list.
     #[serde(rename = "specificationList")]
     pub specification_list: ::std::vec::Vec<StandardTextPairBlock>,
-    ///The number of tables to present. Features are evenly divided between the tables.
+    /// The number of tables to present. Features are evenly divided between the tables.
     #[serde(
         rename = "tableCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub table_count: ::std::option::Option<::std::num::NonZeroU64>,
 }
-///The A+ Content standard text box block, comprised of a paragraph with a headline.
+/// The A+ Content standard text box block, comprised of a paragraph with a headline.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardTextBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3291,20 +3291,20 @@ pub struct StandardTextBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///The A+ Content standard fixed length list of text, usually presented as bullet points.
+/// The A+ Content standard fixed length list of text, usually presented as bullet points.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardTextListBlock {
     #[serde(rename = "textList")]
     pub text_list: ::std::vec::Vec<TextItem>,
 }
-///A standard headline and body text.
+/// A standard headline and body text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StandardTextModule {
     pub body: ParagraphComponent,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///The A+ Content standard label and description block, comprised of a pair of text components.
+/// The A+ Content standard label and description block, comprised of a pair of text components.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardTextPairBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3312,7 +3312,7 @@ pub struct StandardTextPairBlock {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub label: ::std::option::Option<TextComponent>,
 }
-///Three standard images with text, presented across a single row.
+/// Three standard images with text, presented across a single row.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct StandardThreeImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3324,7 +3324,7 @@ pub struct StandardThreeImageTextModule {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headline: ::std::option::Option<TextComponent>,
 }
-///A single technical specification with a key-value pair.
+/// A single technical specification with a key-value pair.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TechSpec {
     #[serde(rename = "specKey")]
@@ -3332,13 +3332,13 @@ pub struct TechSpec {
     #[serde(rename = "specValue")]
     pub spec_value: TextComponent,
 }
-///A wrapper object for a single technical specification.
+/// A wrapper object for a single technical specification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TechSpecs {
     #[serde(rename = "techSpec")]
     pub tech_spec: TechSpec,
 }
-///Rich text content.
+/// Rich text content.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TextComponent {
     #[serde(
@@ -3346,10 +3346,10 @@ pub struct TextComponent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub decorator_set: ::std::option::Option<DecoratorSet>,
-    ///The actual plain text.
+    /// The actual plain text.
     pub value: TextComponentValue,
 }
-///The actual plain text.
+/// The actual plain text.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct TextComponentValue(::std::string::String);
@@ -3406,19 +3406,19 @@ impl<'de> ::serde::Deserialize<'de> for TextComponentValue {
             })
     }
 }
-///Rich positional text, usually presented as a collection of bullet points.
+/// Rich positional text, usually presented as a collection of bullet points.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TextItem {
-    ///The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
+    /// The rank or index of this text item within the collection. Different items cannot occupy the same position within a single collection.
     pub position: ::std::num::NonZeroU64,
     pub text: TextComponent,
 }
-///A product in the three-column comparison table.
+/// A product in the three-column comparison table.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ThreeColumnComparisonProduct {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub image: ::std::option::Option<ImageComponent>,
-    ///Location of the product within the comparison table. Must be a value between 1 and 3.
+    /// Location of the product within the comparison table. Must be a value between 1 and 3.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub position: ::std::option::Option<::std::num::NonZeroU64>,
     #[serde(
@@ -3432,85 +3432,85 @@ pub struct ThreeColumnComparisonProduct {
     )]
     pub product_title: ::std::option::Option<TextComponent>,
 }
-///A comparison row with metric values for each product.
+/// A comparison row with metric values for each product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ThreeColumnComparisonRow {
-    ///The metric values for each of the three products in this row. Exactly three items are required.
+    /// The metric values for each of the three products in this row. Exactly three items are required.
     #[serde(
         rename = "metricValues",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub metric_values: ::std::option::Option<[MetricValueItem; 3usize]>,
-    ///Location of the row within the comparison table. Must be a value between 1 and 5.
+    /// Location of the row within the comparison table. Must be a value between 1 and 5.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub position: ::std::option::Option<::std::num::NonZeroU64>,
 }
-///The request body for updating media metadata. Exactly one of title or descriptions must be provided.
+/// The request body for updating media metadata. Exactly one of title or descriptions must be provided.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateMediaRequest {
-    ///Updated accessibility descriptions. Upserts provided locale entries; omitted locales are preserved. Only valid when `mediaId` refers to a video and `associatedMediaId` is not provided.
+    /// Updated accessibility descriptions. Upserts provided locale entries; omitted locales are preserved. Only valid when `mediaId` refers to a video and `associatedMediaId` is not provided.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///The updated title. When `associatedMediaId` query parameter is provided, updates the pairing title (minimum 3 words). When absent and `mediaId` is an image, updates the image title.
+    /// The updated title. When `associatedMediaId` query parameter is provided, updates the pairing title (minimum 3 words). When absent and `mediaId` is an image, updates the image title.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
 }
-///The response for the updateMedia operation. Returns the full unified Media shape.
+/// The response for the updateMedia operation. Returns the full unified Media shape.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpdateMediaResponse {
-    ///Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
+    /// Accessibility descriptions for the media asset. Present for video assets only. Shared across all pairings.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub descriptions: ::std::option::Option<DescriptionList>,
-    ///Issues associated with the media asset.
+    /// Issues associated with the media asset.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<IssueList>,
-    ///The unique identifier for the media asset.
+    /// The unique identifier for the media asset.
     #[serde(rename = "mediaId")]
     pub media_id: ::std::string::String,
-    ///The type of media asset.
+    /// The type of media asset.
     ///
-    ///Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
+    /// Known values: `VIDEO`, `IMAGE`. Other values may be returned by Amazon.
     #[serde(rename = "mediaType")]
     pub media_type: MediaType,
-    ///The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
+    /// The CDN URL for downloading or viewing the media asset. The URL is provisioned at upload time and available in all statuses. The media is non-permanent; you should re-retrieve using `getMedia` rather than caching indefinitely.
     #[serde(rename = "mediaUrl", skip_serializing_if = "::std::option::Option::is_none")]
     pub media_url: ::std::option::Option<::std::string::String>,
-    ///Related media associations, one level deep. Empty list when no associations exist.
+    /// Related media associations, one level deep. Empty list when no associations exist.
     #[serde(
         rename = "relatedMedia",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_media: ::std::option::Option<RelatedMediaList>,
-    ///The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
+    /// The composite status of the media asset. Multiple statuses can apply simultaneously to represent both the workflow stage and the responsible actor.
     ///
-    ///Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
+    /// Known values: `PENDING_PROCESSING`, `PENDING_REVIEW`, `UNABLE_TO_PROCESS`, `NOT_APPROVED`, `AVAILABLE`, `PENDING_AMAZON`, `PENDING_SELLING_PARTNER`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<MediaStatus>,
-    ///The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
+    /// The title for the media asset. For videos, this is the original filename. For images, this is the user-provided title or filename.
     pub title: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///`ValidateContentDocumentAsinRelationsResponse`
+/// `ValidateContentDocumentAsinRelationsResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ValidateContentDocumentAsinRelationsResponse {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<MessageSet>,
 }
-///A reference to a video asset hosted within A+, including metadata and a preview thumbnail image.
+/// A reference to a video asset hosted within A+, including metadata and a preview thumbnail image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VideoComponent {
     #[serde(rename = "imageCropSpecification")]
     pub image_crop_specification: ImageCropSpecification,
-    ///This identifier is provided by the create media response, used to locate an uploaded image file.
+    /// This identifier is provided by the create media response, used to locate an uploaded image file.
     #[serde(rename = "imageMediaId")]
     pub image_media_id: VideoComponentImageMediaId,
-    ///This identifier is provided by the create media response, used to locate an uploaded video file.
+    /// This identifier is provided by the create media response, used to locate an uploaded video file.
     #[serde(rename = "videoMediaId")]
     pub video_media_id: VideoComponentVideoMediaId,
 }
-///This identifier is provided by the create media response, used to locate an uploaded image file.
+/// This identifier is provided by the create media response, used to locate an uploaded image file.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct VideoComponentImageMediaId(::std::string::String);
@@ -3564,7 +3564,7 @@ impl<'de> ::serde::Deserialize<'de> for VideoComponentImageMediaId {
             })
     }
 }
-///This identifier is provided by the create media response, used to locate an uploaded video file.
+/// This identifier is provided by the create media response, used to locate an uploaded video file.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct VideoComponentVideoMediaId(::std::string::String);
@@ -3618,7 +3618,7 @@ impl<'de> ::serde::Deserialize<'de> for VideoComponentVideoMediaId {
             })
     }
 }
-///A single panel within the video/image carousel containing a video or image with optional text.
+/// A single panel within the video/image carousel containing a video or image with optional text.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VideoImageCarouselPanel {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -3633,9 +3633,9 @@ pub struct VideoImageCarouselPanel {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_image: ::std::option::Option<ImageComponent>,
-    ///The position of the panel within the carousel. Must be a value between 1 and 6.
+    /// The position of the panel within the carousel. Must be a value between 1 and 6.
     pub position: ::std::num::NonZeroU64,
-    ///Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
+    /// Known values: `LEFT`, `RIGHT`. Other values may be returned by Amazon.
     #[serde(
         rename = "positionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -3648,7 +3648,7 @@ pub struct VideoImageCarouselPanel {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub video: ::std::option::Option<VideoComponent>,
 }
-///A wrapper object for a single video/image carousel panel.
+/// A wrapper object for a single video/image carousel panel.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VideoImageCarouselPanels {
     #[serde(rename = "videoCarouselPanel")]

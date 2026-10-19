@@ -4,19 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_remittance`] and [`get_remittance_pages`].
+/// The parameters of [`get_remittance`] and [`get_remittance_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRemittanceParams {
-    ///The unique identifier for the payment.
+    /// The unique identifier for the payment.
     pub unique_payment_id: String,
-    ///The `marketplaceId` is a globally unique identifier used to specify which Amazon store a request is targeting. For more information, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The `marketplaceId` is a globally unique identifier used to specify which Amazon store a request is targeting. For more information, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     pub marketplace_id: String,
-    ///A token to fetch the next page of results. Use the value returned in the previous response.
+    /// A token to fetch the next page of results. Use the value returned in the previous response.
     pub next_token_for_line_items: Option<String>,
 }
 impl GetRemittanceParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(unique_payment_id: String, marketplace_id: String) -> Self {
         Self {
             unique_payment_id,
@@ -25,9 +25,9 @@ impl GetRemittanceParams {
         }
     }
 }
-///Returns detailed line items for a specific remittance. Results are paginated.
+/// Returns detailed line items for a specific remittance. Results are paginated.
 ///
-///Its pages: [`get_remittance_pages`].
+/// Its pages: [`get_remittance_pages`].
 pub async fn get_remittance(
     client: &Client,
     params: GetRemittanceParams,
@@ -57,7 +57,7 @@ pub async fn get_remittance(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_remittance`].
+/// Each page of [`get_remittance`].
 pub fn get_remittance_pages<'a>(
     client: &'a Client,
     params: GetRemittanceParams,
@@ -78,21 +78,21 @@ pub fn get_remittance_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_remittance_headers`] and [`get_remittance_headers_pages`].
+/// The parameters of [`get_remittance_headers`] and [`get_remittance_headers_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRemittanceHeadersParams {
-    ///The `marketplaceId` is a globally unique identifier used to specify which Amazon store a request is targeting. For more information, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The `marketplaceId` is a globally unique identifier used to specify which Amazon store a request is targeting. For more information, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     pub marketplace_id: String,
-    ///The earliest payment date for remittances to include in the response. Dates are in ISO 8601 date-time format. The default is 30 days prior to the time of the request. The minimum start date is one year ago from the current date.
+    /// The earliest payment date for remittances to include in the response. Dates are in ISO 8601 date-time format. The default is 30 days prior to the time of the request. The minimum start date is one year ago from the current date.
     pub start_date: Option<String>,
-    ///The latest payment date for remittances to include in the response. Dates are in ISO 8601 date-time format. The default is the current date-time. The maximum date range between `startDate` and `endDate` is 90 days.
+    /// The latest payment date for remittances to include in the response. Dates are in ISO 8601 date-time format. The default is the current date-time. The maximum date range between `startDate` and `endDate` is 90 days.
     pub end_date: Option<String>,
-    ///A token to fetch the next page of results. Use the value returned in the previous response.
+    /// A token to fetch the next page of results. Use the value returned in the previous response.
     pub next_token: Option<String>,
 }
 impl GetRemittanceHeadersParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -102,9 +102,9 @@ impl GetRemittanceHeadersParams {
         }
     }
 }
-///Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are paginated.
+/// Returns a list of remittance summaries for the specified Amazon store, filtered by date range. Results are paginated.
 ///
-///Its pages: [`get_remittance_headers_pages`].
+/// Its pages: [`get_remittance_headers_pages`].
 pub async fn get_remittance_headers(
     client: &Client,
     params: GetRemittanceHeadersParams,
@@ -128,7 +128,7 @@ pub async fn get_remittance_headers(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_remittance_headers`].
+/// Each page of [`get_remittance_headers`].
 pub fn get_remittance_headers_pages<'a>(
     client: &'a Client,
     params: GetRemittanceHeadersParams,

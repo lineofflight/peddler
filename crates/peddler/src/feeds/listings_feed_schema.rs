@@ -2,7 +2,7 @@
 // Source: schemas/feeds/listings-feed-schema-v2.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Amazon product type of the listings data submission in this message.
+/// Amazon product type of the listings data submission in this message.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AmazonProductType(::std::string::String);
@@ -56,17 +56,17 @@ impl<'de> ::serde::Deserialize<'de> for AmazonProductType {
             })
     }
 }
-///`Feed`
+/// `Feed`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Feed {
     pub header: FeedHeader,
-    ///Messages containing listings data submissions for the Selling Partner.
+    /// Messages containing listings data submissions for the Selling Partner.
     pub messages: ::std::vec::Vec<FeedMessage>,
 }
-///Header information about the feed submission.
+/// Header information about the feed submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeedHeader {
-    ///Locale for issue localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+    /// Locale for issue localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
     #[serde(
         rename = "issueLocale",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -74,99 +74,99 @@ pub struct FeedHeader {
     pub issue_locale: ::std::option::Option<::std::string::String>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub report: ::std::option::Option<Report>,
-    ///Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
+    /// Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
     #[serde(rename = "sellerId")]
     pub seller_id: ::std::string::String,
-    ///Version of the JSON Selling Partner Listings Feeds specification used for the feed submission.
+    /// Version of the JSON Selling Partner Listings Feeds specification used for the feed submission.
     pub version: ::std::string::String,
 }
-///Message containing an individual listings data submission.
+/// Message containing an individual listings data submission.
 #[derive(::serde::Serialize, Clone, Debug)]
 #[serde(tag = "operationType")]
 pub enum FeedMessage {
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "UPDATE")]
     Update {
-        ///Attributes data for the listings data submission.
+        /// Attributes data for the listings data submission.
         attributes: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
+        /// Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "DELETE")]
     Delete {
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "PARTIAL_UPDATE")]
     PartialUpdate {
-        ///Attributes data for the listings data submission.
+        /// Attributes data for the listings data submission.
         attributes: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "PATCH")]
     Patch {
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Attributes data in the form of JSON Patch operations to update or delete.
+        /// Attributes data in the form of JSON Patch operations to update or delete.
         patches: ::std::vec::Vec<ListingsItemJsonPatchOperationsItem>,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
 }
-///Individual JSON Patch operation.
+/// Individual JSON Patch operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemJsonPatchOperationsItem {
-    ///Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
+    /// Type of JSON Patch operation. Supported JSON Patch operations include add, replace, merge, and delete. See https://tools.ietf.org/html/rfc6902.
     pub op: ::std::string::String,
-    ///JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
+    /// JSON Pointer path of the attribute to patch. See https://tools.ietf.org/html/rfc6902.
     pub path: ::std::string::String,
-    ///JSON value to add, replace, or delete.
+    /// JSON value to add, replace, or delete.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<
         ::std::vec::Vec<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
     >,
 }
-///The report information for the feed submission.
+/// The report information for the feed submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///The version of the Selling Partner Listings Items API to use to retrieve the listing items.
+    /// The version of the Selling Partner Listings Items API to use to retrieve the listing items.
     ///
-    ///Known values: `2021-08-01`. Other values may be returned by Amazon.
+    /// Known values: `2021-08-01`. Other values may be returned by Amazon.
     #[serde(rename = "apiVersion")]
     pub api_version: ::std::string::String,
-    ///When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
+    /// When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
     ///
-    ///Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`. Other values may be returned by Amazon.
+    /// Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`. Other values may be returned by Amazon.
     #[serde(rename = "includedData")]
     pub included_data: ::std::vec::Vec<::std::string::String>,
 }
-///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+/// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct SkuStockKeepingUnit(::std::string::String);
@@ -252,62 +252,62 @@ pub mod error {
         }
     }
 }
-///Message containing an individual listings data submission.
+/// Message containing an individual listings data submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(tag = "operationType")]
 enum FeedMessageDecode {
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "UPDATE")]
     Update {
-        ///Attributes data for the listings data submission.
+        /// Attributes data for the listings data submission.
         attributes: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
+        /// Name of the requirements type for the listings data submission in this message. "LISTING" indicates requirements inclusive of product facts and sales terms. "LISTING_PRODUCT_ONLY" indicates requirements inclusive of product facts only. "LISTING_OFFER_ONLY" indicates requirements inclusive of sales terms only.
         #[serde(skip_serializing_if = "::std::option::Option::is_none")]
         requirements: ::std::option::Option<::std::string::String>,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "DELETE")]
     Delete {
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "PARTIAL_UPDATE")]
     PartialUpdate {
-        ///Attributes data for the listings data submission.
+        /// Attributes data for the listings data submission.
         attributes: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
-    ///Message containing an individual listings data submission.
+    /// Message containing an individual listings data submission.
     #[serde(rename = "PATCH")]
     Patch {
-        ///Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
+        /// Identifier for the message that is unique within this feed submission. Response messages are correlated to this identifier.
         #[serde(rename = "messageId")]
         message_id: ::std::num::NonZeroU64,
-        ///Attributes data in the form of JSON Patch operations to update or delete.
+        /// Attributes data in the form of JSON Patch operations to update or delete.
         patches: ::std::vec::Vec<ListingsItemJsonPatchOperationsItem>,
-        ///Amazon product type of the listings data submission in this message.
+        /// Amazon product type of the listings data submission in this message.
         #[serde(rename = "productType")]
         product_type: AmazonProductType,
-        ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+        /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
         sku: SkuStockKeepingUnit,
     },
 }

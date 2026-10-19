@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_invoice_status`].
+/// The parameters of [`get_invoice_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoiceStatusParams {
-    ///The shipment identifier for the shipment.
+    /// The shipment identifier for the shipment.
     pub shipment_id: String,
 }
 impl GetInvoiceStatusParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
-///Returns the invoice status for the shipment you specify.
+/// Returns the invoice status for the shipment you specify.
 pub async fn get_invoice_status(
     client: &Client,
     params: GetInvoiceStatusParams,
@@ -41,20 +41,20 @@ pub async fn get_invoice_status(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_shipment_details`].
+/// The parameters of [`get_shipment_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentDetailsParams {
-    ///The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
+    /// The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
     pub shipment_id: String,
 }
 impl GetShipmentDetailsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
-///Returns the shipment details required to issue an invoice for the specified shipment.
+/// Returns the shipment details required to issue an invoice for the specified shipment.
 pub async fn get_shipment_details(
     client: &Client,
     params: GetShipmentDetailsParams,
@@ -77,21 +77,21 @@ pub async fn get_shipment_details(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`submit_invoice`].
+/// The parameters of [`submit_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitInvoiceParams<B = serde_json::Value> {
-    ///The identifier for the shipment.
+    /// The identifier for the shipment.
     pub shipment_id: String,
     pub body: B,
 }
 impl<B> SubmitInvoiceParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(shipment_id: String, body: B) -> Self {
         Self { shipment_id, body }
     }
 }
-///Submits a shipment invoice document for a given shipment.
+/// Submits a shipment invoice document for a given shipment.
 pub async fn submit_invoice<B: serde::Serialize>(
     client: &Client,
     params: SubmitInvoiceParams<B>,

@@ -4,21 +4,21 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`delete_listings_item`].
+/// The parameters of [`delete_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteListingsItemParams {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner provided identifier for an Amazon listing.
+    /// A selling partner provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
     pub issue_locale: Option<String>,
 }
 impl DeleteListingsItemParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(seller_id: String, sku: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             seller_id,
@@ -28,9 +28,9 @@ impl DeleteListingsItemParams {
         }
     }
 }
-///Delete a listings item for a selling partner.
+/// Delete a listings item for a selling partner.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
@@ -59,23 +59,23 @@ pub async fn delete_listings_item(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`patch_listings_item`].
+/// The parameters of [`patch_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PatchListingsItemParams<B = serde_json::Value> {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner provided identifier for an Amazon listing.
+    /// A selling partner provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
     pub issue_locale: Option<String>,
-    ///The request body schema for the patchListingsItem operation.
+    /// The request body schema for the patchListingsItem operation.
     pub body: B,
 }
 impl<B> PatchListingsItemParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         seller_id: String,
         sku: String,
@@ -91,9 +91,9 @@ impl<B> PatchListingsItemParams<B> {
         }
     }
 }
-///Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+/// Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn patch_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PatchListingsItemParams<B>,
@@ -122,23 +122,23 @@ pub async fn patch_listings_item<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`put_listings_item`].
+/// The parameters of [`put_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PutListingsItemParams<B = serde_json::Value> {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner provided identifier for an Amazon listing.
+    /// A selling partner provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
     pub issue_locale: Option<String>,
-    ///The request body schema for the putListingsItem operation.
+    /// The request body schema for the putListingsItem operation.
     pub body: B,
 }
 impl<B> PutListingsItemParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         seller_id: String,
         sku: String,
@@ -154,9 +154,9 @@ impl<B> PutListingsItemParams<B> {
         }
     }
 }
-///Creates a new or fully-updates an existing listings item for a selling partner.
+/// Creates a new or fully-updates an existing listings item for a selling partner.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,

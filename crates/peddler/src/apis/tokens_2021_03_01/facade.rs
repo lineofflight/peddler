@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`create_restricted_data_token`].
+/// The parameters of [`create_restricted_data_token`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateRestrictedDataTokenParams<B = serde_json::Value> {
-    ///The restricted data token request details.
+    /// The restricted data token request details.
     pub body: B,
 }
 impl<B> CreateRestrictedDataTokenParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.
+/// Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.
 pub async fn create_restricted_data_token<B: serde::Serialize>(
     client: &Client,
     params: CreateRestrictedDataTokenParams<B>,

@@ -2,7 +2,7 @@
 // Source: schemas/feeds/listings-feed-processing-report-schema-v2.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///An Optional error code that maps to documentation.
+/// An Optional error code that maps to documentation.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ErrorCode(::std::string::String);
@@ -56,58 +56,58 @@ impl<'de> ::serde::Deserialize<'de> for ErrorCode {
             })
     }
 }
-///`Feed`
+/// `Feed`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Feed {
     pub header: ProcessingReportHeader,
-    ///Issues containing message processing information for the Selling Partner.
+    /// Issues containing message processing information for the Selling Partner.
     pub issues: ::std::vec::Vec<Issue>,
-    ///A set of listings items and their specific data sets that originates from the feed request’s "includedData" header parameter.
+    /// A set of listings items and their specific data sets that originates from the feed request’s "includedData" header parameter.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub items: ::std::option::Option<
         ::std::vec::Vec<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
     >,
     pub summary: ProcessingReportSummary,
 }
-///Issue containing message processing information corresponding to an individual listings data submission.
+/// Issue containing message processing information corresponding to an individual listings data submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Issue {
-    ///Name of the attribute associated with the issue, if applicable.
+    /// Name of the attribute associated with the issue, if applicable.
     #[serde(
         rename = "attributeName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub attribute_name: ::std::option::Option<::std::string::String>,
-    ///An Optional error code that maps to documentation.
+    /// An Optional error code that maps to documentation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub code: ::std::option::Option<ErrorCode>,
-    ///Localized Error Message Associated with the issue encountered.
+    /// Localized Error Message Associated with the issue encountered.
     pub message: LocalizedErrorMessage,
-    ///Identifier for the message that is unique within this feed submission. Correlated to Identifiers provided in the submitted feed. Not provided if the error is not related to a message (e.g. feed formatting issue).
+    /// Identifier for the message that is unique within this feed submission. Correlated to Identifiers provided in the submitted feed. Not provided if the error is not related to a message (e.g. feed formatting issue).
     #[serde(
         rename = "messageId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub message_id: ::std::option::Option<::std::num::NonZeroU64>,
-    ///The severity of the issue.
+    /// The severity of the issue.
     ///
-    ///Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
-    ///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+    /// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<SkuStockKeepingUnit>,
 }
-///Aggregate counts of items, errors, and warnings related to the listing items created or updated by this feed submission and included in the Items section of this report.
+/// Aggregate counts of items, errors, and warnings related to the listing items created or updated by this feed submission and included in the Items section of this report.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemSummary {
-    ///Number of errors across all listing items created or updated by this feed submission.
+    /// Number of errors across all listing items created or updated by this feed submission.
     pub errors: u64,
-    ///Number of listing items created or updated by this feed submission and included in the Items section of this report.
+    /// Number of listing items created or updated by this feed submission and included in the Items section of this report.
     pub items: u64,
-    ///Number of warnings across all listing items created or updated by this feed submission.
+    /// Number of warnings across all listing items created or updated by this feed submission.
     pub warnings: u64,
 }
-///Localized Error Message Associated with the issue encountered.
+/// Localized Error Message Associated with the issue encountered.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct LocalizedErrorMessage(::std::string::String);
@@ -161,57 +161,57 @@ impl<'de> ::serde::Deserialize<'de> for LocalizedErrorMessage {
             })
     }
 }
-///Header information about the feed submission.
+/// Header information about the feed submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProcessingReportHeader {
-    ///The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "feedId")]
     pub feed_id: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub report: ::std::option::Option<Report>,
-    ///Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
+    /// Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
     #[serde(rename = "sellerId")]
     pub seller_id: ::std::string::String,
-    ///Version of the JSON Selling Partner Listings Feeds specification used for the feed submission.
+    /// Version of the JSON Selling Partner Listings Feeds specification used for the feed submission.
     pub version: ::std::string::String,
 }
-///Aggregate counts of errors, warnings, and statuses related to the acceptance of feed messages. When requested, Item Summary includes aggregate counts of items, errors, and warnings related to the listing items created or updated by this feed submission.
+/// Aggregate counts of errors, warnings, and statuses related to the acceptance of feed messages. When requested, Item Summary includes aggregate counts of items, errors, and warnings related to the listing items created or updated by this feed submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProcessingReportSummary {
-    ///Number of errors encountered processing the feed.
+    /// Number of errors encountered processing the feed.
     pub errors: u64,
     #[serde(
         rename = "itemSummary",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_summary: ::std::option::Option<ItemSummary>,
-    ///Number of messages that were accepted, the associated updates are being applied.
+    /// Number of messages that were accepted, the associated updates are being applied.
     #[serde(rename = "messagesAccepted")]
     pub messages_accepted: u64,
-    ///Number of messages that were invalid, the associated updates will not be applied.
+    /// Number of messages that were invalid, the associated updates will not be applied.
     #[serde(rename = "messagesInvalid")]
     pub messages_invalid: u64,
-    ///Number of messages processed.
+    /// Number of messages processed.
     #[serde(rename = "messagesProcessed")]
     pub messages_processed: u64,
-    ///Number of warnings encountered processing the feed.
+    /// Number of warnings encountered processing the feed.
     pub warnings: u64,
 }
-///The report information for the feed submission.
+/// The report information for the feed submission.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///The version of the Selling Partner Listings Items API to use to retrieve the listing items.
+    /// The version of the Selling Partner Listings Items API to use to retrieve the listing items.
     ///
-    ///Known values: `2021-08-01`. Other values may be returned by Amazon.
+    /// Known values: `2021-08-01`. Other values may be returned by Amazon.
     #[serde(rename = "apiVersion")]
     pub api_version: ::std::string::String,
-    ///When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
+    /// When "includedData" elements are in the feed submission, the processing report that generates for the feed submission includes the listings items output from the Selling Partner Listings Items API with the "includedData" elements from the request. The report includes issues that prevent the acceptance of messages regardless of the "includedData" elements in the feed request.
     ///
-    ///Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`. Other values may be returned by Amazon.
+    /// Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`. Other values may be returned by Amazon.
     #[serde(rename = "includedData")]
     pub included_data: ::std::vec::Vec<::std::string::String>,
 }
-///Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
+/// Selling Partner SKU (stock keeping unit) identifier for the listing. SKU uniquely identifies a listing for a Selling Partner.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct SkuStockKeepingUnit(::std::string::String);

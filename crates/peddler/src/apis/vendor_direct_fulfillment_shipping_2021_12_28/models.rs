@@ -2,57 +2,57 @@
 // Source: vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Address of the party.
+/// Address of the party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///First line of the address.
+    /// First line of the address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "addressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///The city where the person, business or institution is located.
+    /// The city where the person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The two-letter country code in [ISO 3166-1 alpha-2](https://www.iban.com/country-codes) format.
+    /// The two-letter country code in [ISO 3166-1 alpha-2](https://www.iban.com/country-codes) format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The county where person, business or institution is located.
+    /// The county where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district where person, business or institution is located.
+    /// The district where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name of the person, business or institution at that address.
+    /// The name of the person, business or institution at that address.
     pub name: ::std::string::String,
-    ///The phone number of the person, business or institution located at that address.
+    /// The phone number of the person, business or institution located at that address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    /// The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
     #[serde(
         rename = "postalCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_code: ::std::option::Option<::std::string::String>,
-    ///The state or region where person, business or institution is located.
+    /// The state or region where person, business or institution is located.
     #[serde(
         rename = "stateOrRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-///The unique carrier code for the carrier for whom container labels are requested.
+/// The unique carrier code for the carrier for whom container labels are requested.
 ///
-///Known values: `SWA`. Other values may be returned by Amazon.
+/// Known values: `SWA`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -93,53 +93,53 @@ impl ::std::str::FromStr for CarrierId {
         Ok(Self(value.to_string()))
     }
 }
-///A container used for shipping and packing items.
+/// A container used for shipping and packing items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Container {
-    ///Carrier required for EU VOC vendors only.
+    /// Carrier required for EU VOC vendors only.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub carrier: ::std::option::Option<::std::string::String>,
-    ///The container identifier.
+    /// The container identifier.
     #[serde(rename = "containerIdentifier")]
     pub container_identifier: ::std::string::String,
-    ///An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
+    /// An integer that must be submitted for multi-box shipments only, where one item may come in separate packages.
     #[serde(
         rename = "containerSequenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_sequence_number: ::std::option::Option<i64>,
-    ///The type of container.
+    /// The type of container.
     ///
-    ///Known values: `Carton`, `Pallet`. Other values may be returned by Amazon.
+    /// Known values: `Carton`, `Pallet`. Other values may be returned by Amazon.
     #[serde(rename = "containerType")]
     pub container_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub dimensions: ::std::option::Option<Dimensions>,
-    ///The date of the manifest.
+    /// The date of the manifest.
     #[serde(
         rename = "manifestDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub manifest_date: ::std::option::Option<::std::string::String>,
-    ///The manifest identifier.
+    /// The manifest identifier.
     #[serde(
         rename = "manifestId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub manifest_id: ::std::option::Option<::std::string::String>,
-    ///A list of packed items.
+    /// A list of packed items.
     #[serde(rename = "packedItems")]
     pub packed_items: ::std::vec::Vec<PackedItem>,
-    ///SCAC code required for NA VOC vendors only.
+    /// SCAC code required for NA VOC vendors only.
     #[serde(rename = "scacCode", skip_serializing_if = "::std::option::Option::is_none")]
     pub scac_code: ::std::option::Option<::std::string::String>,
-    ///The shipment method. This property is required when calling the `submitShipmentConfirmations` operation, and optional otherwise.
+    /// The shipment method. This property is required when calling the `submitShipmentConfirmations` operation, and optional otherwise.
     #[serde(
         rename = "shipMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_method: ::std::option::Option<::std::string::String>,
-    ///The tracking number.
+    /// The tracking number.
     #[serde(
         rename = "trackingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -147,25 +147,25 @@ pub struct Container {
     pub tracking_number: ::std::option::Option<::std::string::String>,
     pub weight: Weight,
 }
-///The details of the container label.
+/// The details of the container label.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ContainerLabel {
-    ///The container (pallet) tracking identifier from the shipping carrier.
+    /// The container (pallet) tracking identifier from the shipping carrier.
     #[serde(
         rename = "containerTrackingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_tracking_number: ::std::option::Option<::std::string::String>,
-    ///The container label content encoded into a Base64 string.
+    /// The container label content encoded into a Base64 string.
     pub content: ::std::string::String,
-    ///The format of the container label.
+    /// The format of the container label.
     ///
-    ///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
+    /// Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
     pub format: ContainerLabelFormat,
 }
-///The format of the container label.
+/// The format of the container label.
 ///
-///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
+/// Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -206,69 +206,69 @@ impl ::std::str::FromStr for ContainerLabelFormat {
         Ok(Self(value.to_string()))
     }
 }
-///The request body schema for the `createContainerLabel` operation.
+/// The request body schema for the `createContainerLabel` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateContainerLabelRequest {
-    ///The container (pallet) label's carrier.
+    /// The container (pallet) label's carrier.
     ///
-    ///Known values: `SWA`. Other values may be returned by Amazon.
+    /// Known values: `SWA`. Other values may be returned by Amazon.
     #[serde(rename = "carrierId")]
     pub carrier_id: CarrierId,
-    ///An array of package objects that associate shipment packages with a container.
+    /// An array of package objects that associate shipment packages with a container.
     pub packages: Packages,
-    ///The ID of the selling party or vendor.
+    /// The ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///The warehouse code of the vendor.
+    /// The warehouse code of the vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
-    ///The vendor's unique identifier for the container.
+    /// The vendor's unique identifier for the container.
     #[serde(rename = "vendorContainerId")]
     pub vendor_container_id: VendorContainerId,
 }
-///The response schema for the `createContainerLabel` operation.
+/// The response schema for the `createContainerLabel` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateContainerLabelResponse {
-    ///The label data for the container label.
+    /// The label data for the container label.
     #[serde(rename = "containerLabel")]
     pub container_label: ContainerLabel,
 }
-///The request body for the createShippingLabels operation.
+/// The request body for the createShippingLabels operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateShippingLabelsRequest {
-    ///A list of the packages in this shipment.
+    /// A list of the packages in this shipment.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub containers: ::std::option::Option<::std::vec::Vec<Container>>,
-    ///ID of the selling party or vendor.
+    /// ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///Warehouse code of vendor.
+    /// Warehouse code of vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
 }
-///Represents a customer invoice associated with a purchase order.
+/// Represents a customer invoice associated with a purchase order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CustomerInvoice {
-    ///The Base64 customer invoice.
+    /// The Base64 customer invoice.
     pub content: ::std::string::String,
-    ///The purchase order number for this order.
+    /// The purchase order number for this order.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: CustomerInvoicePurchaseOrderNumber,
 }
-///Represents a list of customer invoices, potentially paginated.
+/// Represents a list of customer invoices, potentially paginated.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CustomerInvoiceList {
-    ///Represents a customer invoice within the `CustomerInvoiceList`.
+    /// Represents a customer invoice within the `CustomerInvoiceList`.
     #[serde(
         rename = "customerInvoices",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_invoices: ::std::option::Option<::std::vec::Vec<CustomerInvoice>>,
-    ///The pagination elements required to retrieve the remaining data.
+    /// The pagination elements required to retrieve the remaining data.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
 }
-///The purchase order number for this order.
+/// The purchase order number for this order.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CustomerInvoicePurchaseOrderNumber(::std::string::String);
@@ -325,7 +325,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomerInvoicePurchaseOrderNumber {
             })
     }
 }
-///A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
+/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.  <br>**Pattern** : `^-?(0|([1-9]\\d*))(\\.\\d+)?([eE][+-]?\\d+)?$`.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -366,107 +366,107 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///Physical dimensional measurements of a container.
+/// Physical dimensional measurements of a container.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Dimensions {
-    ///The height of the container.
+    /// The height of the container.
     pub height: Decimal,
-    ///The length of the container.
+    /// The length of the container.
     pub length: Decimal,
-    ///The unit of measure for dimensions.
+    /// The unit of measure for dimensions.
     ///
-    ///Known values: `IN`, `CM`. Other values may be returned by Amazon.
+    /// Known values: `IN`, `CM`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
-    ///The width of the container.
+    /// The width of the container.
     pub width: Decimal,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///An array of Error objects representing individual errors encountered during the request.
+    /// An array of Error objects representing individual errors encountered during the request.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Details of the item being shipped.
+/// Details of the item being shipped.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Item {
-    ///The buyer's Amazon Standard Identification Number (ASIN) of an item. Either `buyerProductIdentifier` or `vendorProductIdentifier` is required.
+    /// The buyer's Amazon Standard Identification Number (ASIN) of an item. Either `buyerProductIdentifier` or `vendorProductIdentifier` is required.
     #[serde(
         rename = "buyerProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_product_identifier: ::std::option::Option<::std::string::String>,
-    ///The sequence number of the item. The number must be the same as the order number of the item.
+    /// The sequence number of the item. The number must be the same as the order number of the item.
     #[serde(rename = "itemSequenceNumber")]
     pub item_sequence_number: i64,
-    ///The total quantity of items that are in this shipment.
+    /// The total quantity of items that are in this shipment.
     #[serde(rename = "shippedQuantity")]
     pub shipped_quantity: ItemQuantity,
-    ///An item's product identifier, which the vendor selects. This identifier should be the same as the identifier, such as a SKU, in the purchase order.
+    /// An item's product identifier, which the vendor selects. This identifier should be the same as the identifier, such as a SKU, in the purchase order.
     #[serde(
         rename = "vendorProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_product_identifier: ::std::option::Option<::std::string::String>,
 }
-///Details of item quantity.
+/// Details of item quantity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemQuantity {
-    ///Quantity of units shipped for a specific item at a shipment level. If the item is present only in certain packages or pallets within the shipment, please provide this at the appropriate package or pallet level.
+    /// Quantity of units shipped for a specific item at a shipment level. If the item is present only in certain packages or pallets within the shipment, please provide this at the appropriate package or pallet level.
     pub amount: i64,
-    ///Unit of measure for the shipped quantity.
+    /// Unit of measure for the shipped quantity.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }
-///Details of the shipment label.
+/// Details of the shipment label.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LabelData {
-    ///This field will contain the Base64 string of the shipment label content.
+    /// This field will contain the Base64 string of the shipment label content.
     pub content: ::std::string::String,
-    ///Identifier for the package. The first package will be 001, the second 002, and so on. This number is used as a reference to refer to this package from the pallet level.
+    /// Identifier for the package. The first package will be 001, the second 002, and so on. This number is used as a reference to refer to this package from the pallet level.
     #[serde(
         rename = "packageIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub package_identifier: ::std::option::Option<::std::string::String>,
-    ///Ship method to be used for shipping the order. Amazon defines Ship Method Codes indicating shipping carrier and shipment service level. Ship Method Codes are case and format sensitive. The same ship method code should returned on the shipment confirmation. Note that the Ship Method Codes are vendor specific and will be provided to each vendor during the implementation.
+    /// Ship method to be used for shipping the order. Amazon defines Ship Method Codes indicating shipping carrier and shipment service level. Ship Method Codes are case and format sensitive. The same ship method code should returned on the shipment confirmation. Note that the Ship Method Codes are vendor specific and will be provided to each vendor during the implementation.
     #[serde(
         rename = "shipMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_method: ::std::option::Option<::std::string::String>,
-    ///Shipping method name for internal reference.
+    /// Shipping method name for internal reference.
     #[serde(
         rename = "shipMethodName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_method_name: ::std::option::Option<::std::string::String>,
-    ///Package tracking identifier from the shipping carrier.
+    /// Package tracking identifier from the shipping carrier.
     #[serde(
         rename = "trackingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tracking_number: ::std::option::Option<::std::string::String>,
 }
-///The package that is associated with the container.
+/// The package that is associated with the container.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Package {
-    ///The tracking number on the label of shipment package, that you can fetch from the `shippingLabels` response. You can also scan the bar code on the shipping label to get the tracking number.
+    /// The tracking number on the label of shipment package, that you can fetch from the `shippingLabels` response. You can also scan the bar code on the shipping label to get the tracking number.
     #[serde(rename = "packageTrackingNumber")]
     pub package_tracking_number: ::std::string::String,
 }
-///An array of package objects in a container.
+/// An array of package objects in a container.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Packages(pub ::std::vec::Vec<Package>);
@@ -486,65 +486,65 @@ impl ::std::convert::From<::std::vec::Vec<Package>> for Packages {
         Self(value)
     }
 }
-///An item that has been packed into a container for shipping.
+/// An item that has been packed into a container for shipping.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PackedItem {
-    ///The buyer's Amazon Standard Identification Number (ASIN) of an item. Either `buyerProductIdentifier` or `vendorProductIdentifier` is required.
+    /// The buyer's Amazon Standard Identification Number (ASIN) of an item. Either `buyerProductIdentifier` or `vendorProductIdentifier` is required.
     #[serde(
         rename = "buyerProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_product_identifier: ::std::option::Option<::std::string::String>,
-    ///The sequence number of the item. The number must be the same as the order number of the item.
+    /// The sequence number of the item. The number must be the same as the order number of the item.
     #[serde(rename = "itemSequenceNumber")]
     pub item_sequence_number: i64,
-    ///The total quantity of items that are packed in the shipment.
+    /// The total quantity of items that are packed in the shipment.
     #[serde(rename = "packedQuantity")]
     pub packed_quantity: ItemQuantity,
-    ///The piece number of the item in this container. This is required when the item is split across different containers.
+    /// The piece number of the item in this container. This is required when the item is split across different containers.
     #[serde(
         rename = "pieceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub piece_number: ::std::option::Option<i64>,
-    ///An item's product identifier, which the vendor selects. This identifier should be the same as the identifier, such as a SKU, in the purchase order.
+    /// An item's product identifier, which the vendor selects. This identifier should be the same as the identifier, such as a SKU, in the purchase order.
     #[serde(
         rename = "vendorProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_product_identifier: ::std::option::Option<::std::string::String>,
 }
-///Packing slip information.
+/// Packing slip information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PackingSlip {
-    ///A Base64 string of the packing slip PDF.
+    /// A Base64 string of the packing slip PDF.
     pub content: ::std::string::String,
-    ///The format of the file such as PDF, JPEG etc.
+    /// The format of the file such as PDF, JPEG etc.
     ///
-    ///Known values: `application/pdf`. Other values may be returned by Amazon.
+    /// Known values: `application/pdf`. Other values may be returned by Amazon.
     #[serde(
         rename = "contentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_type: ::std::option::Option<::std::string::String>,
-    ///Purchase order number of the shipment that the packing slip is for.
+    /// Purchase order number of the shipment that the packing slip is for.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: PackingSlipPurchaseOrderNumber,
 }
-///A list of packing slips.
+/// A list of packing slips.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PackingSlipList {
-    ///An array of packing slip objects.
+    /// An array of packing slip objects.
     #[serde(
         rename = "packingSlips",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub packing_slips: ::std::option::Option<::std::vec::Vec<PackingSlip>>,
-    ///The pagination elements required to retrieve the remaining data.
+    /// The pagination elements required to retrieve the remaining data.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
 }
-///Purchase order number of the shipment that the packing slip is for.
+/// Purchase order number of the shipment that the packing slip is for.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PackingSlipPurchaseOrderNumber(::std::string::String);
@@ -600,26 +600,26 @@ impl<'de> ::serde::Deserialize<'de> for PackingSlipPurchaseOrderNumber {
             })
     }
 }
-///The pagination elements required to retrieve the remaining data.
+/// The pagination elements required to retrieve the remaining data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
-    ///Pagination occurs when a request produces a response that exceeds the `pageSize`. This means that the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. There is no `nextToken` in the pagination object on the last page.
+    /// Pagination occurs when a request produces a response that exceeds the `pageSize`. This means that the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. There is no `nextToken` in the pagination object on the last page.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The name, address, and tax details of a party.
+/// The name, address, and tax details of a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartyIdentification {
-    ///The address of the party.
+    /// The address of the party.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    ///The identifier of the party.
+    /// The identifier of the party.
     #[serde(rename = "partyId")]
     pub party_id: ::std::string::String,
-    ///The tax registration details of the party.
+    /// The tax registration details of the party.
     #[serde(
         rename = "taxRegistrationDetails",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -628,28 +628,28 @@ pub struct PartyIdentification {
         ::std::vec::Vec<TaxRegistrationDetails>,
     >,
 }
-///Represents the confirmation details of a shipment, including the purchase order number and other shipment details.
+/// Represents the confirmation details of a shipment, including the purchase order number and other shipment details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipmentConfirmation {
-    ///Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
+    /// Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub containers: ::std::option::Option<::std::vec::Vec<Container>>,
-    ///Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
+    /// Provide the details of the items in this shipment. If any of the item details field is common at a package or a pallet level, then provide them at the corresponding package.
     pub items: ::std::vec::Vec<Item>,
-    ///Purchase order number corresponding to the shipment.
+    /// Purchase order number corresponding to the shipment.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ShipmentConfirmationPurchaseOrderNumber,
-    ///ID of the selling party or vendor.
+    /// ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///Warehouse code of vendor.
+    /// Warehouse code of vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
-    ///Shipment information.
+    /// Shipment information.
     #[serde(rename = "shipmentDetails")]
     pub shipment_details: ShipmentDetails,
 }
-///Purchase order number corresponding to the shipment.
+/// Purchase order number corresponding to the shipment.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShipmentConfirmationPurchaseOrderNumber(::std::string::String);
@@ -707,10 +707,10 @@ impl<'de> ::serde::Deserialize<'de> for ShipmentConfirmationPurchaseOrderNumber 
             })
     }
 }
-///Details about a shipment.
+/// Details about a shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipmentDetails {
-    ///The date on which the shipment is expected to reach the buyer's warehouse. The date is estimated based on the average transit time between the ship-from location and the destination. Usually, the exact appointment time is unknown when creating the shipment confirmation and is later provided by the buyer.
+    /// The date on which the shipment is expected to reach the buyer's warehouse. The date is estimated based on the average transit time between the ship-from location and the destination. Usually, the exact appointment time is unknown when creating the shipment confirmation and is later provided by the buyer.
     #[serde(
         rename = "estimatedDeliveryDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -718,31 +718,31 @@ pub struct ShipmentDetails {
     pub estimated_delivery_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///Provide the priority of the shipment.
+    /// Provide the priority of the shipment.
     #[serde(
         rename = "isPriorityShipment",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_priority_shipment: ::std::option::Option<bool>,
-    ///The shipment status.
+    /// The shipment status.
     ///
-    ///Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.
+    /// Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: ::std::string::String,
-    ///The date of the shipment's departure from vendor's location. Vendors send ASNs within 30 minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the future.
+    /// The date of the shipment's departure from vendor's location. Vendors send ASNs within 30 minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the future.
     #[serde(rename = "shippedDate")]
     pub shipped_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The vendor order number is a unique identifier generated by a vendor for their reference.
+    /// The vendor order number is a unique identifier generated by a vendor for their reference.
     #[serde(
         rename = "vendorOrderNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_order_number: ::std::option::Option<::std::string::String>,
 }
-///Details about the estimated delivery window.
+/// Details about the estimated delivery window.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentSchedule {
-    ///The date and time at the end of the appointment window when the shipment is expected to be delivered. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
+    /// The date and time at the end of the appointment window when the shipment is expected to be delivered. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
     #[serde(
         rename = "apptWindowEndDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -750,7 +750,7 @@ pub struct ShipmentSchedule {
     pub appt_window_end_date_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The date and time at the start of the appointment window when the shipment is expected to be delivered. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
+    /// The date and time at the start of the appointment window when the shipment is expected to be delivered. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
     #[serde(
         rename = "apptWindowStartDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -758,7 +758,7 @@ pub struct ShipmentSchedule {
     pub appt_window_start_date_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///Date on which the shipment is expected to reach the customer delivery location. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
+    /// Date on which the shipment is expected to reach the customer delivery location. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
     #[serde(
         rename = "estimatedDeliveryDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -767,23 +767,23 @@ pub struct ShipmentSchedule {
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
 }
-///Represents an update to the status of a shipment.
+/// Represents an update to the status of a shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipmentStatusUpdate {
-    ///Purchase order number of the shipment for which to update the shipment status.
+    /// Purchase order number of the shipment for which to update the shipment status.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ShipmentStatusUpdatePurchaseOrderNumber,
-    ///ID of the selling party or vendor.
+    /// ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///Warehouse code of vendor.
+    /// Warehouse code of vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
-    ///Provide the details about the status of the shipment at that particular point of time.
+    /// Provide the details about the status of the shipment at that particular point of time.
     #[serde(rename = "statusUpdateDetails")]
     pub status_update_details: StatusUpdateDetails,
 }
-///Purchase order number of the shipment for which to update the shipment status.
+/// Purchase order number of the shipment for which to update the shipment status.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShipmentStatusUpdatePurchaseOrderNumber(::std::string::String);
@@ -841,40 +841,40 @@ impl<'de> ::serde::Deserialize<'de> for ShipmentStatusUpdatePurchaseOrderNumber 
             })
     }
 }
-///Shipping label information for an order, including the purchase order number, selling party, ship from party, label format, and package details.
+/// Shipping label information for an order, including the purchase order number, selling party, ship from party, label format, and package details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingLabel {
-    ///Provides the details of the packages in this shipment.
+    /// Provides the details of the packages in this shipment.
     #[serde(rename = "labelData")]
     pub label_data: ::std::vec::Vec<LabelData>,
-    ///Format of the label.
+    /// Format of the label.
     ///
-    ///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
+    /// Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
     #[serde(rename = "labelFormat")]
     pub label_format: ::std::string::String,
-    ///This field will contain the Purchase Order Number for this order.
+    /// This field will contain the Purchase Order Number for this order.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ShippingLabelPurchaseOrderNumber,
-    ///ID of the selling party or vendor.
+    /// ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///Warehouse code of vendor.
+    /// Warehouse code of vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
 }
-///Response payload with the list of shipping labels.
+/// Response payload with the list of shipping labels.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShippingLabelList {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
-    ///An array containing the details of the generated shipping labels.
+    /// An array containing the details of the generated shipping labels.
     #[serde(
         rename = "shippingLabels",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_labels: ::std::option::Option<::std::vec::Vec<ShippingLabel>>,
 }
-///This field will contain the Purchase Order Number for this order.
+/// This field will contain the Purchase Order Number for this order.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShippingLabelPurchaseOrderNumber(::std::string::String);
@@ -931,23 +931,23 @@ impl<'de> ::serde::Deserialize<'de> for ShippingLabelPurchaseOrderNumber {
             })
     }
 }
-///Represents the request payload for creating a shipping label, containing the purchase order number, selling party, ship from party, and a list of containers or packages in the shipment.
+/// Represents the request payload for creating a shipping label, containing the purchase order number, selling party, ship from party, and a list of containers or packages in the shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingLabelRequest {
-    ///A list of the packages in this shipment.
+    /// A list of the packages in this shipment.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub containers: ::std::option::Option<::std::vec::Vec<Container>>,
-    ///The purchase order number of the order for which to create a shipping label.
+    /// The purchase order number of the order for which to create a shipping label.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ShippingLabelRequestPurchaseOrderNumber,
-    ///The ID of the selling party or vendor.
+    /// The ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
-    ///The warehouse code of the vendor.
+    /// The warehouse code of the vendor.
     #[serde(rename = "shipFromParty")]
     pub ship_from_party: PartyIdentification,
 }
-///The purchase order number of the order for which to create a shipping label.
+/// The purchase order number of the order for which to create a shipping label.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShippingLabelRequestPurchaseOrderNumber(::std::string::String);
@@ -1005,10 +1005,10 @@ impl<'de> ::serde::Deserialize<'de> for ShippingLabelRequestPurchaseOrderNumber 
             })
     }
 }
-///Details for the shipment status update given by the vendor for the specific package.
+/// Details for the shipment status update given by the vendor for the specific package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct StatusUpdateDetails {
-    ///Provides a reason code for the status of the package that will provide additional information about the transportation status. For more information, refer to the [Additional Fields Explanation](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-use-case-guide#additional-fields-explanation).
+    /// Provides a reason code for the status of the package that will provide additional information about the transportation status. For more information, refer to the [Additional Fields Explanation](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-use-case-guide#additional-fields-explanation).
     #[serde(rename = "reasonCode")]
     pub reason_code: ::std::string::String,
     #[serde(
@@ -1016,22 +1016,22 @@ pub struct StatusUpdateDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_schedule: ::std::option::Option<ShipmentSchedule>,
-    ///Indicates the shipment status code of the package that provides transportation information for Amazon tracking systems and ultimately for the final customer. For more information, refer to the [Additional Fields Explanation](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-use-case-guide#additional-fields-explanation).
+    /// Indicates the shipment status code of the package that provides transportation information for Amazon tracking systems and ultimately for the final customer. For more information, refer to the [Additional Fields Explanation](https://developer-docs.amazon.com/sp-api/docs/vendor-direct-fulfillment-shipping-api-use-case-guide#additional-fields-explanation).
     #[serde(rename = "statusCode")]
     pub status_code: ::std::string::String,
-    ///The date and time when the shipment status was updated. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
+    /// The date and time when the shipment status was updated. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format, with UTC time zone or UTC offset. For example, 2020-07-16T23:00:00Z or 2020-07-16T23:00:00+01:00.
     #[serde(rename = "statusDateTime")]
     pub status_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(rename = "statusLocationAddress")]
     pub status_location_address: Address,
-    ///The shipment tracking number is required for every package and should match the `trackingNumber` sent for the shipment confirmation.
+    /// The shipment tracking number is required for every package and should match the `trackingNumber` sent for the shipment confirmation.
     #[serde(rename = "trackingNumber")]
     pub tracking_number: ::std::string::String,
 }
-///The request schema for the submitShipmentConfirmations operation.
+/// The request schema for the submitShipmentConfirmations operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitShipmentConfirmationsRequest {
-    ///Array of `ShipmentConfirmation` objects. Each `ShipmentConfirmation` object represents the confirmation details for a specific shipment.
+    /// Array of `ShipmentConfirmation` objects. Each `ShipmentConfirmation` object represents the confirmation details for a specific shipment.
     #[serde(
         rename = "shipmentConfirmations",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1040,10 +1040,10 @@ pub struct SubmitShipmentConfirmationsRequest {
         ::std::vec::Vec<ShipmentConfirmation>,
     >,
 }
-///The request schema for the `submitShipmentStatusUpdates` operation.
+/// The request schema for the `submitShipmentStatusUpdates` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitShipmentStatusUpdatesRequest {
-    ///Contains a list of one or more `ShipmentStatusUpdate` objects. Each `ShipmentStatusUpdate` object represents an update to the status of a specific shipment.
+    /// Contains a list of one or more `ShipmentStatusUpdate` objects. Each `ShipmentStatusUpdate` object represents an update to the status of a specific shipment.
     #[serde(
         rename = "shipmentStatusUpdates",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1052,10 +1052,10 @@ pub struct SubmitShipmentStatusUpdatesRequest {
         ::std::vec::Vec<ShipmentStatusUpdate>,
     >,
 }
-///The request schema for the `submitShippingLabelRequest` operation.
+/// The request schema for the `submitShippingLabelRequest` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitShippingLabelsRequest {
-    ///An array of shipping label requests to be processed.
+    /// An array of shipping label requests to be processed.
     #[serde(
         rename = "shippingLabelRequests",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1064,44 +1064,44 @@ pub struct SubmitShippingLabelsRequest {
         ::std::vec::Vec<ShippingLabelRequest>,
     >,
 }
-///Tax registration details of the entity.
+/// Tax registration details of the entity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxRegistrationDetails {
-    ///Address associated with the tax registration number.
+    /// Address associated with the tax registration number.
     #[serde(
         rename = "taxRegistrationAddress",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_address: ::std::option::Option<Address>,
-    ///Tax registration message that can be used for additional tax related details.
+    /// Tax registration message that can be used for additional tax related details.
     #[serde(
         rename = "taxRegistrationMessages",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_messages: ::std::option::Option<::std::string::String>,
-    ///Tax registration number for the party. For example, VAT ID.
+    /// Tax registration number for the party. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    ///Tax registration type for the entity.
+    /// Tax registration type for the entity.
     ///
-    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
+    /// Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_type: ::std::option::Option<::std::string::String>,
 }
-///Response containing the transaction ID.
+/// Response containing the transaction ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionReference {
-    ///GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    /// GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     #[serde(
         rename = "transactionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_id: ::std::option::Option<::std::string::String>,
 }
-///The unique, vendor-provided identifier for the container.
+/// The unique, vendor-provided identifier for the container.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1142,15 +1142,15 @@ impl ::std::str::FromStr for VendorContainerId {
         Ok(Self(value.to_string()))
     }
 }
-///The weight.
+/// The weight.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
-    ///The unit of measurement.
+    /// The unit of measurement.
     ///
-    ///Known values: `KG`, `LB`. Other values may be returned by Amazon.
+    /// Known values: `KG`, `LB`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
-    ///The measurement value.
+    /// The measurement value.
     pub value: Decimal,
 }
 /// Error types.

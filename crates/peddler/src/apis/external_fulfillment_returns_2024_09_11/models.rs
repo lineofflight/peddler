@@ -2,7 +2,7 @@
 // Source: external-fulfillment/externalFulfillmentReturns_2024-09-11.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A date and time in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+/// A date and time in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -43,61 +43,61 @@ impl ::std::str::FromStr for DateTime {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///An object containing a list of error responses returned when a request is unsuccessful.
+/// An object containing a list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Invoice-related information for the return created for Amazon SmartConnect.
+/// Invoice-related information for the return created for Amazon SmartConnect.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceInformation {
-    ///The unique ID of the invoice that corresponds to the return.
+    /// The unique ID of the invoice that corresponds to the return.
     pub id: ::std::string::String,
 }
-///The marketplace and channel name.
+/// The marketplace and channel name.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceChannel {
-    ///The name of the channel within the marketplace.
+    /// The name of the channel within the marketplace.
     #[serde(
         rename = "channelName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub channel_name: ::std::option::Option<::std::string::String>,
-    ///The name of the marketplace.
+    /// The name of the marketplace.
     #[serde(
         rename = "marketplaceName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_name: ::std::option::Option<::std::string::String>,
 }
-///Marketplace channel-specific attributes for the return. These attributes are not mandatory and each channel can provide them differently.
+/// Marketplace channel-specific attributes for the return. These attributes are not mandatory and each channel can provide them differently.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceChannelDetails {
-    ///The Amazon SmartConnect SKU of the channel.
+    /// The Amazon SmartConnect SKU of the channel.
     #[serde(
         rename = "channelSku",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub channel_sku: ::std::option::Option<::std::string::String>,
-    ///The marketplace-specific customer order ID.
+    /// The marketplace-specific customer order ID.
     #[serde(
         rename = "customerOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_order_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon SmartConnect ID of the exchange order.
+    /// The Amazon SmartConnect ID of the exchange order.
     #[serde(
         rename = "exchangeOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -108,130 +108,130 @@ pub struct MarketplaceChannelDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_channel: ::std::option::Option<MarketplaceChannel>,
-    ///The ID of the merchant or seller to whom this return is created in the marketplace.
+    /// The ID of the merchant or seller to whom this return is created in the marketplace.
     #[serde(
         rename = "merchantId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub merchant_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon SmartConnect ID of the location to which this return is created.
+    /// The Amazon SmartConnect ID of the location to which this return is created.
     #[serde(
         rename = "returnLocationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_location_id: ::std::option::Option<::std::string::String>,
-    ///The marketplace-specific shipment ID.
+    /// The marketplace-specific shipment ID.
     #[serde(
         rename = "shipmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_id: ::std::option::Option<::std::string::String>,
 }
-///One-time password (OTP) details of the return item.
+/// One-time password (OTP) details of the return item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OtpDetails {
-    ///One-time password to validate the return delivered to the seller.
+    /// One-time password to validate the return delivered to the seller.
     pub otp: ::std::string::String,
-    ///The UNIX timestamp of when the verification code expires.
+    /// The UNIX timestamp of when the verification code expires.
     #[serde(rename = "validTill")]
     pub valid_till: i64,
 }
-///Provides details about the replanned returns.
+/// Provides details about the replanned returns.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReplanningDetails {
-    ///A list of all the previous tracking information for the return.
+    /// A list of all the previous tracking information for the return.
     #[serde(
         rename = "previousTrackingInfo",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub previous_tracking_info: ::std::option::Option<::std::vec::Vec<TrackingInfo>>,
 }
-///Information about the return item.
+/// Information about the return item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Return {
-    ///The date and time when the return was created.
+    /// The date and time when the return was created.
     #[serde(
         rename = "creationDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub creation_date_time: ::std::option::Option<DateTime>,
-    ///The ID of the location that fulfilled the order.
+    /// The ID of the location that fulfilled the order.
     #[serde(rename = "fulfillmentLocationId")]
     pub fulfillment_location_id: ::std::string::String,
-    ///The return item's ID.
+    /// The return item's ID.
     pub id: ::std::string::String,
-    ///The date and time of the most recent update to the return.
+    /// The date and time of the most recent update to the return.
     #[serde(rename = "lastUpdatedDateTime")]
     pub last_updated_date_time: DateTime,
-    ///Channel-specific attributes for the return. These attributes are not mandatory and each channel can provide them differently.
+    /// Channel-specific attributes for the return. These attributes are not mandatory and each channel can provide them differently.
     #[serde(rename = "marketplaceChannelDetails")]
     pub marketplace_channel_details: MarketplaceChannelDetails,
-    ///The seller's identifier for the SKU.
+    /// The seller's identifier for the SKU.
     #[serde(
         rename = "merchantSku",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub merchant_sku: ::std::option::Option<::std::string::String>,
-    ///The total number of units in the return.
+    /// The total number of units in the return.
     #[serde(
         rename = "numberOfUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_units: ::std::option::Option<::std::num::NonZeroU32>,
-    ///The one-time password (OTP) details of the return item.
+    /// The one-time password (OTP) details of the return item.
     #[serde(
         rename = "otpDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub otp_details: ::std::option::Option<OtpDetails>,
-    ///The package delivery mode. This indicates whether the return was delivered to the seller with or without a one-time password (OTP).
+    /// The package delivery mode. This indicates whether the return was delivered to the seller with or without a one-time password (OTP).
     ///
-    ///Known values: `WITH_OTP`, `WITHOUT_OTP`. Other values may be returned by Amazon.
+    /// Known values: `WITH_OTP`, `WITHOUT_OTP`. Other values may be returned by Amazon.
     #[serde(
         rename = "packageDeliveryMode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub package_delivery_mode: ::std::option::Option<::std::string::String>,
-    ///Details about the replanned returns.
+    /// Details about the replanned returns.
     #[serde(
         rename = "replanningDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub replanning_details: ::std::option::Option<ReplanningDetails>,
-    ///The SmartConnect identifier for where the return item was dropped for delivery.
+    /// The SmartConnect identifier for where the return item was dropped for delivery.
     #[serde(
         rename = "returnLocationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_location_id: ::std::option::Option<::std::string::String>,
-    ///Metadata about the return item.
+    /// Metadata about the return item.
     #[serde(rename = "returnMetadata")]
     pub return_metadata: ReturnMetadata,
-    ///Information about the shipping of the return packages.
+    /// Information about the shipping of the return packages.
     #[serde(rename = "returnShippingInfo")]
     pub return_shipping_info: ReturnShippingInfo,
-    ///The sub-type of return.
+    /// The sub-type of return.
     ///
-    ///Known values: `NORMAL`, `REPLACEMENT`, `EXCHANGE`. Other values may be returned by Amazon.
+    /// Known values: `NORMAL`, `REPLACEMENT`, `EXCHANGE`. Other values may be returned by Amazon.
     #[serde(
         rename = "returnSubType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_sub_type: ::std::option::Option<::std::string::String>,
-    ///The type of return.
+    /// The type of return.
     ///
-    ///Known values: `CUSTOMER`, `REJECT`. Other values may be returned by Amazon.
+    /// Known values: `CUSTOMER`, `REJECT`. Other values may be returned by Amazon.
     #[serde(rename = "returnType")]
     pub return_type: ::std::string::String,
-    ///The current status of the return.
+    /// The current status of the return.
     ///
-    ///Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`. Other values may be returned by Amazon.
+    /// Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
-///Metadata about the return item.
+/// Metadata about the return item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReturnMetadata {
-    ///The SmartConnect ID of the fulfillment order for which the return was placed.
+    /// The SmartConnect ID of the fulfillment order for which the return was placed.
     #[serde(
         rename = "fulfillmentOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -242,17 +242,17 @@ pub struct ReturnMetadata {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_information: ::std::option::Option<InvoiceInformation>,
-    ///The reason for the return.
+    /// The reason for the return.
     #[serde(rename = "returnReason")]
     pub return_reason: ::std::string::String,
-    ///The RMA ID of the return.
+    /// The RMA ID of the return.
     #[serde(rename = "rmaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub rma_id: ::std::option::Option<::std::string::String>,
 }
-///Information about the shipping of the return packages.
+/// Information about the shipping of the return packages.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReturnShippingInfo {
-    ///The date and time when the seller received the return.
+    /// The date and time when the seller received the return.
     #[serde(
         rename = "deliveryDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -263,7 +263,7 @@ pub struct ReturnShippingInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub forward_tracking_info: ::std::option::Option<TrackingInfo>,
-    ///The date and time when the return was picked up.
+    /// The date and time when the return was picked up.
     #[serde(
         rename = "pickupDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -275,26 +275,26 @@ pub struct ReturnShippingInfo {
     )]
     pub reverse_tracking_info: ::std::option::Option<TrackingInfo>,
 }
-///The response to the `listReturns` operation.
+/// The response to the `listReturns` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReturnsResponse {
-    ///A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A list of returns.
+    /// A list of returns.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub returns: ::std::option::Option<::std::vec::Vec<Return>>,
 }
-///Information for tracking a return.
+/// Information for tracking a return.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TrackingInfo {
-    ///The name of the third party courier service used to ship the return package.
+    /// The name of the third party courier service used to ship the return package.
     #[serde(rename = "carrierName")]
     pub carrier_name: ::std::string::String,
-    ///The tracking ID of the return package.
+    /// The tracking ID of the return package.
     #[serde(rename = "trackingId")]
     pub tracking_id: ::std::string::String,
 }

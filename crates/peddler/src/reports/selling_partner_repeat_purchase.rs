@@ -2,41 +2,41 @@
 // Source: schemas/reports/sellingPartnerRepeatPurchaseReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Contains repeat purchase analytics data for each ASIN in the selling partner's catalog
+/// Contains repeat purchase analytics data for each ASIN in the selling partner's catalog
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DataByAsin {
-    ///Amazon Standard Identification Number.
+    /// Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///The end date of the data contained within the object.
+    /// The end date of the data contained within the object.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///The number of orders. An order may include multiple quantities of a product and differs from ordered units.
+    /// The number of orders. An order may include multiple quantities of a product and differs from ordered units.
     pub orders: i64,
-    ///Fraction of unique customers that are repeat customers.
+    /// Fraction of unique customers that are repeat customers.
     #[serde(rename = "repeatCustomersPctTotal")]
     pub repeat_customers_pct_total: ::serde_json::Number,
     #[serde(rename = "repeatPurchaseRevenue")]
     pub repeat_purchase_revenue: DataByAsinRepeatPurchaseRevenue,
-    ///Fraction of repeatPurchaseRevenue versus total revenue.
+    /// Fraction of repeatPurchaseRevenue versus total revenue.
     #[serde(rename = "repeatPurchaseRevenuePctTotal")]
     pub repeat_purchase_revenue_pct_total: ::serde_json::Number,
-    ///The start date of the data contained within the object. If the request spans multiple reportPeriods, byAsin data will be shared for each of these reportPeriods.
+    /// The start date of the data contained within the object. If the request spans multiple reportPeriods, byAsin data will be shared for each of these reportPeriods.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
-    ///Number of unique customers who placed an order containing the asin.
+    /// Number of unique customers who placed an order containing the asin.
     #[serde(rename = "uniqueCustomers")]
     pub unique_customers: i64,
 }
-///Ordered revenue from repeat customers. Returns are not reflected.
+/// Ordered revenue from repeat customers. Returns are not reflected.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DataByAsinRepeatPurchaseRevenue {
-    ///The amount.
+    /// The amount.
     pub amount: ::serde_json::Number,
-    ///The currency code of the amount.
+    /// The currency code of the amount.
     #[serde(rename = "currencyCode")]
     pub currency_code: DataByAsinRepeatPurchaseRevenueCurrencyCode,
 }
-///The currency code of the amount.
+/// The currency code of the amount.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct DataByAsinRepeatPurchaseRevenueCurrencyCode(::std::string::String);
@@ -94,7 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for DataByAsinRepeatPurchaseRevenueCurrencyC
             })
     }
 }
-///The Repeat Purchase report shares data on the quantity of repeated purchases of the selling partner's items. Data is available at different date range aggregation levels: WEEK, MONTH, QUARTER. Requests can span multiple reporting periods. In this report, "asin" is an ASIN in the selling partner's catalog.
+/// The Repeat Purchase report shares data on the quantity of repeated purchases of the selling partner's items. Data is available at different date range aggregation levels: WEEK, MONTH, QUARTER. Requests can span multiple reporting periods. In this report, "asin" is an ASIN in the selling partner's catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "dataByAsin")]
@@ -102,30 +102,30 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. Specifying multiple marketplaces will result in failure to generate the report.
+    /// This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. Specifying multiple marketplaces will result in failure to generate the report.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod.
+/// Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///Determines what granularity of data is expected in the report. Valid values are: WEEK, MONTH, QUARTER.
+    /// Determines what granularity of data is expected in the report. Valid values are: WEEK, MONTH, QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

@@ -4,22 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`add_appointment_for_service_job_by_service_job_id`].
+/// The parameters of [`add_appointment_for_service_job_by_service_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AddAppointmentForServiceJobByServiceJobIdParams<B = serde_json::Value> {
-    ///An Amazon defined service job identifier.
+    /// An Amazon defined service job identifier.
     pub service_job_id: String,
-    ///Add appointment operation input details.
+    /// Add appointment operation input details.
     pub body: B,
 }
 impl<B> AddAppointmentForServiceJobByServiceJobIdParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String, body: B) -> Self {
         Self { service_job_id, body }
     }
 }
-///Adds an appointment to the service job indicated by the service job identifier specified.
+/// Adds an appointment to the service job indicated by the service job identifier specified.
 pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Serialize>(
     client: &Client,
     params: AddAppointmentForServiceJobByServiceJobIdParams<B>,
@@ -43,19 +43,19 @@ pub async fn add_appointment_for_service_job_by_service_job_id<B: serde::Seriali
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`assign_appointment_resources`].
+/// The parameters of [`assign_appointment_resources`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AssignAppointmentResourcesParams<B = serde_json::Value> {
-    ///An Amazon-defined service job identifier. Get this value by calling the `getServiceJobs` operation of the Services API.
+    /// An Amazon-defined service job identifier. Get this value by calling the `getServiceJobs` operation of the Services API.
     pub service_job_id: String,
-    ///An Amazon-defined identifier of active service job appointment.
+    /// An Amazon-defined identifier of active service job appointment.
     pub appointment_id: String,
-    ///Input containing the resource details to be assigned to the appointment.
+    /// Input containing the resource details to be assigned to the appointment.
     pub body: B,
 }
 impl<B> AssignAppointmentResourcesParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String, appointment_id: String, body: B) -> Self {
         Self {
             service_job_id,
@@ -64,7 +64,7 @@ impl<B> AssignAppointmentResourcesParams<B> {
         }
     }
 }
-///Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
+/// Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
 pub async fn assign_appointment_resources<B: serde::Serialize>(
     client: &Client,
     params: AssignAppointmentResourcesParams<B>,
@@ -90,17 +90,17 @@ pub async fn assign_appointment_resources<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`cancel_reservation`].
+/// The parameters of [`cancel_reservation`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelReservationParams {
-    ///Reservation Identifier
+    /// Reservation Identifier
     pub reservation_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
 }
 impl CancelReservationParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(reservation_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             reservation_id,
@@ -108,7 +108,7 @@ impl CancelReservationParams {
         }
     }
 }
-///Cancel a reservation.
+/// Cancel a reservation.
 pub async fn cancel_reservation(
     client: &Client,
     params: CancelReservationParams,
@@ -134,17 +134,17 @@ pub async fn cancel_reservation(
         .await?;
     Ok(raw)
 }
-///The parameters of [`cancel_service_job_by_service_job_id`].
+/// The parameters of [`cancel_service_job_by_service_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelServiceJobByServiceJobIdParams {
-    ///An Amazon defined service job identifier.
+    /// An Amazon defined service job identifier.
     pub service_job_id: String,
-    ///A cancel reason code that specifies the reason for cancelling a service job.
+    /// A cancel reason code that specifies the reason for cancelling a service job.
     pub cancellation_reason_code: String,
 }
 impl CancelServiceJobByServiceJobIdParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String, cancellation_reason_code: String) -> Self {
         Self {
             service_job_id,
@@ -152,7 +152,7 @@ impl CancelServiceJobByServiceJobIdParams {
         }
     }
 }
-///Cancels the service job indicated by the service job identifier specified.
+/// Cancels the service job indicated by the service job identifier specified.
 pub async fn cancel_service_job_by_service_job_id(
     client: &Client,
     params: CancelServiceJobByServiceJobIdParams,
@@ -185,20 +185,20 @@ pub async fn cancel_service_job_by_service_job_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`complete_service_job_by_service_job_id`].
+/// The parameters of [`complete_service_job_by_service_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CompleteServiceJobByServiceJobIdParams {
-    ///An Amazon defined service job identifier.
+    /// An Amazon defined service job identifier.
     pub service_job_id: String,
 }
 impl CompleteServiceJobByServiceJobIdParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String) -> Self {
         Self { service_job_id }
     }
 }
-///Completes the service job indicated by the service job identifier specified.
+/// Completes the service job indicated by the service job identifier specified.
 pub async fn complete_service_job_by_service_job_id(
     client: &Client,
     params: CompleteServiceJobByServiceJobIdParams,
@@ -225,22 +225,22 @@ pub async fn complete_service_job_by_service_job_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_reservation`].
+/// The parameters of [`create_reservation`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateReservationParams<B = serde_json::Value> {
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///Reservation details
+    /// Reservation details
     pub body: B,
 }
 impl<B> CreateReservationParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(marketplace_ids: Vec<String>, body: B) -> Self {
         Self { marketplace_ids, body }
     }
 }
-///Create a reservation.
+/// Create a reservation.
 pub async fn create_reservation<B: serde::Serialize>(
     client: &Client,
     params: CreateReservationParams<B>,
@@ -262,20 +262,20 @@ pub async fn create_reservation<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_service_document_upload_destination`].
+/// The parameters of [`create_service_document_upload_destination`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateServiceDocumentUploadDestinationParams<B = serde_json::Value> {
-    ///Upload document operation input details.
+    /// Upload document operation input details.
     pub body: B,
 }
 impl<B> CreateServiceDocumentUploadDestinationParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates an upload destination.
+/// Creates an upload destination.
 pub async fn create_service_document_upload_destination<B: serde::Serialize>(
     client: &Client,
     params: CreateServiceDocumentUploadDestinationParams<B>,
@@ -297,23 +297,23 @@ pub async fn create_service_document_upload_destination<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_appointment_slots`].
+/// The parameters of [`get_appointment_slots`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAppointmentSlotsParams {
-    ///ASIN associated with the service.
+    /// ASIN associated with the service.
     pub asin: String,
-    ///Store identifier defining the region scope to retrive appointment slots.
+    /// Store identifier defining the region scope to retrive appointment slots.
     pub store_id: String,
-    ///An identifier for the marketplace for which appointment slots are queried
+    /// An identifier for the marketplace for which appointment slots are queried
     pub marketplace_ids: Vec<String>,
-    ///A time from which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per business configuration.
+    /// A time from which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per business configuration.
     pub start_time: Option<String>,
-    ///A time up to which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per business configuration. Maximum range of appointment slots can be 90 days.
+    /// A time up to which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per business configuration. Maximum range of appointment slots can be 90 days.
     pub end_time: Option<String>,
 }
 impl GetAppointmentSlotsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(asin: String, store_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             asin,
@@ -324,7 +324,7 @@ impl GetAppointmentSlotsParams {
         }
     }
 }
-///Gets appointment slots as per the service context specified.
+/// Gets appointment slots as per the service context specified.
 pub async fn get_appointment_slots(
     client: &Client,
     params: GetAppointmentSlotsParams,
@@ -350,21 +350,21 @@ pub async fn get_appointment_slots(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_appointmment_slots_by_job_id`].
+/// The parameters of [`get_appointmment_slots_by_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAppointmmentSlotsByJobIdParams {
-    ///A service job identifier to retrive appointment slots for associated service.
+    /// A service job identifier to retrive appointment slots for associated service.
     pub service_job_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///A time from which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per business configuration.
+    /// A time from which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `startTime` is provided, `endTime` should also be provided. Default value is as per business configuration.
     pub start_time: Option<String>,
-    ///A time up to which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per business configuration. Maximum range of appointment slots can be 90 days.
+    /// A time up to which the appointment slots will be retrieved. The specified time must be in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per business configuration. Maximum range of appointment slots can be 90 days.
     pub end_time: Option<String>,
 }
 impl GetAppointmmentSlotsByJobIdParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(service_job_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             service_job_id,
@@ -374,7 +374,7 @@ impl GetAppointmmentSlotsByJobIdParams {
         }
     }
 }
-///Gets appointment slots for the service associated with the service job id specified.
+/// Gets appointment slots for the service associated with the service job id specified.
 pub async fn get_appointmment_slots_by_job_id(
     client: &Client,
     params: GetAppointmmentSlotsByJobIdParams,
@@ -403,21 +403,21 @@ pub async fn get_appointmment_slots_by_job_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_fixed_slot_capacity`] and [`get_fixed_slot_capacity_pages`].
+/// The parameters of [`get_fixed_slot_capacity`] and [`get_fixed_slot_capacity_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFixedSlotCapacityParams<B = serde_json::Value> {
-    ///Resource Identifier.
+    /// Resource Identifier.
     pub resource_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///Next page token returned in the response of your previous request.
+    /// Next page token returned in the response of your previous request.
     pub next_page_token: Option<String>,
-    ///Request body.
+    /// Request body.
     pub body: B,
 }
 impl<B> GetFixedSlotCapacityParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(resource_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             resource_id,
@@ -427,9 +427,9 @@ impl<B> GetFixedSlotCapacityParams<B> {
         }
     }
 }
-///Provides capacity in fixed-size slots.
+/// Provides capacity in fixed-size slots.
 ///
-///Its pages: [`get_fixed_slot_capacity_pages`].
+/// Its pages: [`get_fixed_slot_capacity_pages`].
 pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetFixedSlotCapacityParams<B>,
@@ -457,7 +457,7 @@ pub async fn get_fixed_slot_capacity<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_fixed_slot_capacity`].
+/// Each page of [`get_fixed_slot_capacity`].
 pub fn get_fixed_slot_capacity_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: GetFixedSlotCapacityParams<B>,
@@ -478,21 +478,21 @@ pub fn get_fixed_slot_capacity_pages<'a, B: serde::Serialize>(
         &params,
     )
 }
-///The parameters of [`get_range_slot_capacity`] and [`get_range_slot_capacity_pages`].
+/// The parameters of [`get_range_slot_capacity`] and [`get_range_slot_capacity_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRangeSlotCapacityParams<B = serde_json::Value> {
-    ///Resource Identifier.
+    /// Resource Identifier.
     pub resource_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///Next page token returned in the response of your previous request.
+    /// Next page token returned in the response of your previous request.
     pub next_page_token: Option<String>,
-    ///Request body.
+    /// Request body.
     pub body: B,
 }
 impl<B> GetRangeSlotCapacityParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(resource_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             resource_id,
@@ -502,9 +502,9 @@ impl<B> GetRangeSlotCapacityParams<B> {
         }
     }
 }
-///Provides capacity slots in a format similar to availability records.
+/// Provides capacity slots in a format similar to availability records.
 ///
-///Its pages: [`get_range_slot_capacity_pages`].
+/// Its pages: [`get_range_slot_capacity_pages`].
 pub async fn get_range_slot_capacity<B: serde::Serialize>(
     client: &Client,
     params: GetRangeSlotCapacityParams<B>,
@@ -532,7 +532,7 @@ pub async fn get_range_slot_capacity<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_range_slot_capacity`].
+/// Each page of [`get_range_slot_capacity`].
 pub fn get_range_slot_capacity_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: GetRangeSlotCapacityParams<B>,
@@ -553,20 +553,20 @@ pub fn get_range_slot_capacity_pages<'a, B: serde::Serialize>(
         &params,
     )
 }
-///The parameters of [`get_service_job_by_service_job_id`].
+/// The parameters of [`get_service_job_by_service_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetServiceJobByServiceJobIdParams {
-    ///A service job identifier.
+    /// A service job identifier.
     pub service_job_id: String,
 }
 impl GetServiceJobByServiceJobIdParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String) -> Self {
         Self { service_job_id }
     }
 }
-///Gets details of service job indicated by the provided `serviceJobID`.
+/// Gets details of service job indicated by the provided `serviceJobID`.
 pub async fn get_service_job_by_service_job_id(
     client: &Client,
     params: GetServiceJobByServiceJobIdParams,
@@ -592,56 +592,56 @@ pub async fn get_service_job_by_service_job_id(
 fn get_service_jobs_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("20").expect("validated schema default"))
 }
-///The parameters of [`get_service_jobs`] and [`get_service_jobs_pages`].
+/// The parameters of [`get_service_jobs`] and [`get_service_jobs_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetServiceJobsParams {
-    ///List of service order ids for the query you want to perform.Max values supported 20.
+    /// List of service order ids for the query you want to perform.Max values supported 20.
     pub service_order_ids: Option<Vec<String>>,
-    ///A list of up to 20 associated product order IDs. You can use these IDs to query service jobs.
+    /// A list of up to 20 associated product order IDs. You can use these IDs to query service jobs.
     pub product_order_ids: Option<Vec<String>>,
-    ///A list of up to 20 associated product tracking IDs. You can use these IDs to query service jobs.
+    /// A list of up to 20 associated product tracking IDs. You can use these IDs to query service jobs.
     pub tracking_ids: Option<Vec<String>>,
-    ///A list of one or more job status by which to filter the list of jobs.
+    /// A list of one or more job status by which to filter the list of jobs.
     ///
-    ///Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.
+    /// Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`.
     pub service_job_status: Option<Vec<String>>,
-    ///String returned in the response of your previous request.
+    /// String returned in the response of your previous request.
     pub page_token: Option<String>,
-    ///A non-negative integer that indicates the maximum number of jobs to return in the list, Value must be 1 - 20. Default 20.
+    /// A non-negative integer that indicates the maximum number of jobs to return in the list, Value must be 1 - 20. Default 20.
     #[serde(default = "get_service_jobs_page_size_default")]
     pub page_size: Option<i64>,
-    ///Sort fields on which you want to sort the output.
+    /// Sort fields on which you want to sort the output.
     ///
-    ///Known values: `JOB_DATE`, `JOB_STATUS`.
+    /// Known values: `JOB_DATE`, `JOB_STATUS`.
     pub sort_field: Option<String>,
-    ///Sort order for the query you want to perform.
+    /// Sort order for the query you want to perform.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
-    ///A date used for selecting jobs created at or after a specified time. Must be in ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
+    /// A date used for selecting jobs created at or after a specified time. Must be in ISO 8601 format. Required if `LastUpdatedAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
     pub created_after: Option<String>,
-    ///A date used for selecting jobs created at or before a specified time. Must be in ISO 8601 format.
+    /// A date used for selecting jobs created at or before a specified time. Must be in ISO 8601 format.
     pub created_before: Option<String>,
-    ///A date used for selecting jobs updated at or after a specified time. Must be in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
+    /// A date used for selecting jobs updated at or after a specified time. Must be in ISO 8601 format. Required if `createdAfter` is not specified. Specifying both `CreatedAfter` and `LastUpdatedAfter` returns an error.
     pub last_updated_after: Option<String>,
-    ///A date used for selecting jobs updated at or before a specified time. Must be in ISO 8601 format.
+    /// A date used for selecting jobs updated at or before a specified time. Must be in ISO 8601 format.
     pub last_updated_before: Option<String>,
-    ///A date used for filtering jobs schedules at or after a specified time. Must be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+    /// A date used for filtering jobs schedules at or after a specified time. Must be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
     pub schedule_start_date: Option<String>,
-    ///A date used for filtering jobs schedules at or before a specified time. Must be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
+    /// A date used for filtering jobs schedules at or before a specified time. Must be in ISO 8601 format. Schedule end date should not be earlier than schedule start date.
     pub schedule_end_date: Option<String>,
-    ///Used to select jobs that were placed in the specified marketplaces.
+    /// Used to select jobs that were placed in the specified marketplaces.
     pub marketplace_ids: Vec<String>,
-    ///List of Amazon Standard Identification Numbers (ASIN) of the items. Max values supported is 20.
+    /// List of Amazon Standard Identification Numbers (ASIN) of the items. Max values supported is 20.
     pub asins: Option<Vec<String>>,
-    ///A defined set of related knowledge, skills, experience, tools, materials, and work processes common to service delivery for a set of products and/or service scenarios. Max values supported is 20.
+    /// A defined set of related knowledge, skills, experience, tools, materials, and work processes common to service delivery for a set of products and/or service scenarios. Max values supported is 20.
     pub required_skills: Option<Vec<String>>,
-    ///List of Amazon-defined identifiers for the region scope. Max values supported is 50.
+    /// List of Amazon-defined identifiers for the region scope. Max values supported is 50.
     pub store_ids: Option<Vec<String>>,
 }
 impl GetServiceJobsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_ids: Vec<String>) -> Self {
         Self {
             service_order_ids: None,
@@ -665,9 +665,9 @@ impl GetServiceJobsParams {
         }
     }
 }
-///Gets service job details for the specified filter query.
+/// Gets service job details for the specified filter query.
 ///
-///Its pages: [`get_service_jobs_pages`].
+/// Its pages: [`get_service_jobs_pages`].
 pub async fn get_service_jobs(
     client: &Client,
     params: GetServiceJobsParams,
@@ -721,7 +721,7 @@ pub async fn get_service_jobs(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_service_jobs`].
+/// Each page of [`get_service_jobs`].
 pub fn get_service_jobs_pages<'a>(
     client: &'a Client,
     params: GetServiceJobsParams,
@@ -742,21 +742,21 @@ pub fn get_service_jobs_pages<'a>(
         &params,
     )
 }
-///The parameters of [`reschedule_appointment_for_service_job_by_service_job_id`].
+/// The parameters of [`reschedule_appointment_for_service_job_by_service_job_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RescheduleAppointmentForServiceJobByServiceJobIdParams<
     B = serde_json::Value,
 > {
-    ///An Amazon defined service job identifier.
+    /// An Amazon defined service job identifier.
     pub service_job_id: String,
-    ///An existing appointment identifier for the Service Job.
+    /// An existing appointment identifier for the Service Job.
     pub appointment_id: String,
-    ///Reschedule appointment operation input details.
+    /// Reschedule appointment operation input details.
     pub body: B,
 }
 impl<B> RescheduleAppointmentForServiceJobByServiceJobIdParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String, appointment_id: String, body: B) -> Self {
         Self {
             service_job_id,
@@ -765,7 +765,7 @@ impl<B> RescheduleAppointmentForServiceJobByServiceJobIdParams<B> {
         }
     }
 }
-///Reschedules an appointment for the service job indicated by the service job identifier specified.
+/// Reschedules an appointment for the service job indicated by the service job identifier specified.
 pub async fn reschedule_appointment_for_service_job_by_service_job_id<
     B: serde::Serialize,
 >(
@@ -792,19 +792,19 @@ pub async fn reschedule_appointment_for_service_job_by_service_job_id<
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`set_appointment_fulfillment_data`].
+/// The parameters of [`set_appointment_fulfillment_data`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SetAppointmentFulfillmentDataParams<B = serde_json::Value> {
-    ///An Amazon-defined service job identifier. Get this value by calling the `getServiceJobs` operation of the Services API.
+    /// An Amazon-defined service job identifier. Get this value by calling the `getServiceJobs` operation of the Services API.
     pub service_job_id: String,
-    ///An Amazon-defined identifier of active service job appointment.
+    /// An Amazon-defined identifier of active service job appointment.
     pub appointment_id: String,
-    ///Appointment fulfillment data collection details.
+    /// Appointment fulfillment data collection details.
     pub body: B,
 }
 impl<B> SetAppointmentFulfillmentDataParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(service_job_id: String, appointment_id: String, body: B) -> Self {
         Self {
             service_job_id,
@@ -813,7 +813,7 @@ impl<B> SetAppointmentFulfillmentDataParams<B> {
         }
     }
 }
-///Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
+/// Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
 pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
     client: &Client,
     params: SetAppointmentFulfillmentDataParams<B>,
@@ -839,19 +839,19 @@ pub async fn set_appointment_fulfillment_data<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`update_reservation`].
+/// The parameters of [`update_reservation`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateReservationParams<B = serde_json::Value> {
-    ///Reservation Identifier
+    /// Reservation Identifier
     pub reservation_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///Reservation details
+    /// Reservation details
     pub body: B,
 }
 impl<B> UpdateReservationParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(reservation_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             reservation_id,
@@ -860,7 +860,7 @@ impl<B> UpdateReservationParams<B> {
         }
     }
 }
-///Update a reservation.
+/// Update a reservation.
 pub async fn update_reservation<B: serde::Serialize>(
     client: &Client,
     params: UpdateReservationParams<B>,
@@ -886,19 +886,19 @@ pub async fn update_reservation<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`update_schedule`].
+/// The parameters of [`update_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateScheduleParams<B = serde_json::Value> {
-    ///Resource (store) Identifier
+    /// Resource (store) Identifier
     pub resource_id: String,
-    ///An identifier for the marketplace in which the resource operates.
+    /// An identifier for the marketplace in which the resource operates.
     pub marketplace_ids: Vec<String>,
-    ///Schedule details
+    /// Schedule details
     pub body: B,
 }
 impl<B> UpdateScheduleParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(resource_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             resource_id,
@@ -907,7 +907,7 @@ impl<B> UpdateScheduleParams<B> {
         }
     }
 }
-///Update the schedule of the given resource.
+/// Update the schedule of the given resource.
 pub async fn update_schedule<B: serde::Serialize>(
     client: &Client,
     params: UpdateScheduleParams<B>,

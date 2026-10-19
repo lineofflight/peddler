@@ -2,22 +2,22 @@
 // Source: external-fulfillment/externalFulfillmentLocation_2026-07-30.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The request object for creating a sandbox location.
+/// The request object for creating a sandbox location.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateSandboxLocationRequest {
-    ///The list of channels to enable for the location. Defaults to ["FBA", "MFN"] if not specified.
+    /// The list of channels to enable for the location. Defaults to ["FBA", "MFN"] if not specified.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub channels: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The name for the sandbox location. Idempotency is ensured on this field.
+    /// The name for the sandbox location. Idempotency is ensured on this field.
     #[serde(rename = "locationName")]
     pub location_name: CreateSandboxLocationRequestLocationName,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///The list of merchant identifiers to create the location for. This list will have more than one entry only in case of MSF (Multi-Seller Fulfillment) location creation. In other cases, only one merchant should be passed in.
+    /// The list of merchant identifiers to create the location for. This list will have more than one entry only in case of MSF (Multi-Seller Fulfillment) location creation. In other cases, only one merchant should be passed in.
     #[serde(rename = "merchantIds")]
     pub merchant_ids: ::std::vec::Vec<CreateSandboxLocationRequestMerchantIdsItem>,
 }
-///The name for the sandbox location. Idempotency is ensured on this field.
+/// The name for the sandbox location. Idempotency is ensured on this field.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateSandboxLocationRequestLocationName(::std::string::String);
@@ -76,7 +76,7 @@ impl<'de> ::serde::Deserialize<'de> for CreateSandboxLocationRequestLocationName
             })
     }
 }
-///`CreateSandboxLocationRequestMerchantIdsItem`
+/// `CreateSandboxLocationRequestMerchantIdsItem`
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CreateSandboxLocationRequestMerchantIdsItem(::std::string::String);
@@ -135,7 +135,7 @@ impl<'de> ::serde::Deserialize<'de> for CreateSandboxLocationRequestMerchantIdsI
             })
     }
 }
-///The response object for creating a sandbox location.
+/// The response object for creating a sandbox location.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateSandboxLocationResponse {
     #[serde(
@@ -144,34 +144,34 @@ pub struct CreateSandboxLocationResponse {
     )]
     pub location_ids: ::std::option::Option<LocationIdMap>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses.
+    /// A list of error responses.
     pub errors: ::std::vec::Vec<Error>,
 }
-///A map of channel to location identifier.
+/// A map of channel to location identifier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct LocationIdMap {
-    ///The location identifier for the FBA channel.
+    /// The location identifier for the FBA channel.
     #[serde(rename = "FBA", skip_serializing_if = "::std::option::Option::is_none")]
     pub fba: ::std::option::Option<::std::string::String>,
-    ///The location identifier for the MFN channel.
+    /// The location identifier for the MFN channel.
     #[serde(rename = "MFN", skip_serializing_if = "::std::option::Option::is_none")]
     pub mfn: ::std::option::Option<::std::string::String>,
 }
-///The identifier for the marketplace. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for the full list of supported marketplace IDs.
+/// The identifier for the marketplace. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for the full list of supported marketplace IDs.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

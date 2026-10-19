@@ -2,54 +2,54 @@
 // Source: schemas/notifications/DataKioskQueryProcessingFinishedNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///This notification is delivered when a Data Kiosk query finishes processing.
+/// This notification is delivered when a Data Kiosk query finishes processing.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The time the notification was sent in ISO 8601 format.
+    /// The time the notification was sent in ISO 8601 format.
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationNotificationMetadata,
-    ///The notification type.
+    /// The notification type.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version.
+    /// The notification version.
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
     pub payload: NotificationPayload,
-    ///The payload version of the notification.
+    /// The payload version of the notification.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The notification's metadata.
+/// The notification's metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationNotificationMetadata {
-    ///The application identifier.
+    /// The application identifier.
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///The notification identifier.
+    /// The notification identifier.
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The time the notification was published in ISO 8601 format.
+    /// The time the notification was published in ISO 8601 format.
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription identifier.
+    /// The subscription identifier.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///The Data Kiosk query processing notification payload.
+/// The Data Kiosk query processing notification payload.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationPayload {
-    ///The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the query was submitted.
+    /// The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the query was submitted.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The data document identifier. This document identifier is only present when there is data available as a result of the query. This identifier is unique only in combination with the `accountId`. Pass this identifier into the `getDocument` operation to get the information required to retrieve the data document's contents.
+    /// The data document identifier. This document identifier is only present when there is data available as a result of the query. This identifier is unique only in combination with the `accountId`. Pass this identifier into the `getDocument` operation to get the information required to retrieve the data document's contents.
     #[serde(
         rename = "dataDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub data_document_id: ::std::option::Option<::std::string::String>,
-    ///The error document identifier. This document identifier is only present when an error occurs during query processing. This identifier is unique only in combination with the `accountId`. Pass this identifier into the `getDocument` operation to get the information required to retrieve the error document's contents.
+    /// The error document identifier. This document identifier is only present when an error occurs during query processing. This identifier is unique only in combination with the `accountId`. Pass this identifier into the `getDocument` operation to get the information required to retrieve the error document's contents.
     #[serde(
         rename = "errorDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -57,21 +57,21 @@ pub struct NotificationPayload {
     pub error_document_id: ::std::option::Option<::std::string::String>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<NotificationPayloadPagination>,
-    ///The processing status of the query.
+    /// The processing status of the query.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
-    ///The submitted query.
+    /// The submitted query.
     pub query: ::std::string::String,
-    ///The query identifier. This identifier is unique only in combination with the `accountId`.
+    /// The query identifier. This identifier is unique only in combination with the `accountId`.
     #[serde(rename = "queryId")]
     pub query_id: ::std::string::String,
 }
-///When a query produces results that are not included in the data document, pagination occurs. This means that results are divided into pages. To retrieve the next page, you must pass a `CreateQuerySpecification` object with `paginationToken` set to this object's `nextToken` and with `query` set to this object's `query` in the subsequent `createQuery` request. When there are no more pages to fetch, the `nextToken` field will be absent.
+/// When a query produces results that are not included in the data document, pagination occurs. This means that results are divided into pages. To retrieve the next page, you must pass a `CreateQuerySpecification` object with `paginationToken` set to this object's `nextToken` and with `query` set to this object's `query` in the subsequent `createQuery` request. When there are no more pages to fetch, the `nextToken` field will be absent.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct NotificationPayloadPagination {
-    ///A token that can be used to fetch the next page of results.
+    /// A token that can be used to fetch the next page of results.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"

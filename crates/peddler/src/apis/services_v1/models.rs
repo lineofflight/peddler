@@ -2,104 +2,104 @@
 // Source: services-api-model/services.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Input for add appointment operation.
+/// Input for add appointment operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AddAppointmentRequest {
-    ///Input appointment time details.
+    /// Input appointment time details.
     #[serde(rename = "appointmentTime")]
     pub appointment_time: AppointmentTimeInput,
 }
-///The shipping address for the service job.
+/// The shipping address for the service job.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///The first line of the address.
+    /// The first line of the address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Additional address information, if required.
+    /// Additional address information, if required.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///Additional address information, if required.
+    /// Additional address information, if required.
     #[serde(
         rename = "addressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///The city.
+    /// The city.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The two digit country code, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code, in ISO 3166-1 alpha-2 format.
     #[serde(
         rename = "countryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub country_code: ::std::option::Option<::std::string::String>,
-    ///The county.
+    /// The county.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district.
+    /// The district.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name of the person, business, or institution.
+    /// The name of the person, business, or institution.
     pub name: ::std::string::String,
-    ///The phone number.
+    /// The phone number.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal code. This can contain letters, digits, spaces, and/or punctuation.
+    /// The postal code. This can contain letters, digits, spaces, and/or punctuation.
     #[serde(
         rename = "postalCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_code: ::std::option::Option<::std::string::String>,
-    ///The state or region.
+    /// The state or region.
     #[serde(
         rename = "stateOrRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-///The details of an appointment.
+/// The details of an appointment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Appointment {
-    ///The appointment identifier.
+    /// The appointment identifier.
     #[serde(
         rename = "appointmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_id: ::std::option::Option<AppointmentId>,
-    ///The status of the appointment.
+    /// The status of the appointment.
     ///
-    ///Known values: `ACTIVE`, `CANCELLED`, `COMPLETED`. Other values may be returned by Amazon.
+    /// Known values: `ACTIVE`, `CANCELLED`, `COMPLETED`. Other values may be returned by Amazon.
     #[serde(
         rename = "appointmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_status: ::std::option::Option<::std::string::String>,
-    ///The time of the appointment window.
+    /// The time of the appointment window.
     #[serde(
         rename = "appointmentTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_time: ::std::option::Option<AppointmentTime>,
-    ///A list of technicians assigned to the service job.
+    /// A list of technicians assigned to the service job.
     #[serde(
         rename = "assignedTechnicians",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub assigned_technicians: ::std::option::Option<::std::vec::Vec<Technician>>,
-    ///Proof of Appointment (POA) details.
+    /// Proof of Appointment (POA) details.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub poa: ::std::option::Option<Poa>,
-    ///The identifier of a rescheduled appointment.
+    /// The identifier of a rescheduled appointment.
     #[serde(
         rename = "rescheduledAppointmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rescheduled_appointment_id: ::std::option::Option<AppointmentId>,
 }
-///The appointment identifier.
+/// The appointment identifier.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AppointmentId(::std::string::String);
@@ -156,17 +156,17 @@ impl<'de> ::serde::Deserialize<'de> for AppointmentId {
             })
     }
 }
-///The resource that performs or performed appointment fulfillment.
+/// The resource that performs or performed appointment fulfillment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AppointmentResource {
-    ///The resource identifier.
+    /// The resource identifier.
     #[serde(
         rename = "resourceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub resource_id: ::std::option::Option<::std::string::String>,
 }
-///List of resources that performs or performed job appointment fulfillment.
+/// List of resources that performs or performed job appointment fulfillment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AppointmentResources(pub ::std::vec::Vec<AppointmentResource>);
@@ -188,153 +188,153 @@ for AppointmentResources {
         Self(value)
     }
 }
-///A time window along with associated capacity in which the service can be performed.
+/// A time window along with associated capacity in which the service can be performed.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AppointmentSlot {
-    ///Number of resources for which a slot can be reserved.
+    /// Number of resources for which a slot can be reserved.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub capacity: ::std::option::Option<u64>,
-    ///Time window end time in ISO 8601 format.
+    /// Time window end time in ISO 8601 format.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Time window start time in ISO 8601 format.
+    /// Time window start time in ISO 8601 format.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-///Availability information as per the service context queried.
+/// Availability information as per the service context queried.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AppointmentSlotReport {
-    ///A list of time windows along with associated capacity in which the service can be performed.
+    /// A list of time windows along with associated capacity in which the service can be performed.
     #[serde(
         rename = "appointmentSlots",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_slots: ::std::option::Option<::std::vec::Vec<AppointmentSlot>>,
-    ///End Time up to which the appointment slots are generated in ISO 8601 format.
+    /// End Time up to which the appointment slots are generated in ISO 8601 format.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Defines the type of slots.
+    /// Defines the type of slots.
     ///
-    ///Known values: `REAL_TIME_SCHEDULING`, `NON_REAL_TIME_SCHEDULING`. Other values may be returned by Amazon.
+    /// Known values: `REAL_TIME_SCHEDULING`, `NON_REAL_TIME_SCHEDULING`. Other values may be returned by Amazon.
     #[serde(
         rename = "schedulingType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scheduling_type: ::std::option::Option<::std::string::String>,
-    ///Start Time from which the appointment slots are generated in ISO 8601 format.
+    /// Start Time from which the appointment slots are generated in ISO 8601 format.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-///The time of the appointment window.
+/// The time of the appointment window.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AppointmentTime {
-    ///The duration of the appointment window, in minutes.
+    /// The duration of the appointment window, in minutes.
     #[serde(rename = "durationInMinutes")]
     pub duration_in_minutes: ::std::num::NonZeroU64,
-    ///The date and time of the start of the appointment window in ISO 8601 format.
+    /// The date and time of the start of the appointment window in ISO 8601 format.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///The input appointment time details.
+/// The input appointment time details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AppointmentTimeInput {
-    ///The duration of an appointment in minutes.
+    /// The duration of an appointment in minutes.
     #[serde(
         rename = "durationInMinutes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub duration_in_minutes: ::std::option::Option<i64>,
-    ///The date, time in UTC for the start time of an appointment in ISO 8601 format.
+    /// The date, time in UTC for the start time of an appointment in ISO 8601 format.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Request schema for the `assignAppointmentResources` operation.
+/// Request schema for the `assignAppointmentResources` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AssignAppointmentResourcesRequest {
-    ///List of resource objects to be assigned.
+    /// List of resource objects to be assigned.
     pub resources: AppointmentResources,
 }
-///Response schema for the `assignAppointmentResources` operation.
+/// Response schema for the `assignAppointmentResources` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AssignAppointmentResourcesResponse {
-    ///Errors occurred during during the `assignAppointmentResources` operation.
+    /// Errors occurred during during the `assignAppointmentResources` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<AssignAppointmentResourcesResponsePayload>,
 }
-///The payload for the `assignAppointmentResource` operation.
+/// The payload for the `assignAppointmentResource` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AssignAppointmentResourcesResponsePayload {
-    ///Warnings generated during the `assignAppointmentResources` operation.
+    /// Warnings generated during the `assignAppointmentResources` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<WarningList>,
 }
-///Information about an item associated with the service job.
+/// Information about an item associated with the service job.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AssociatedItem {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The brand name of the item.
+    /// The brand name of the item.
     #[serde(
         rename = "brandName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_name: ::std::option::Option<::std::string::String>,
-    ///Delivery information for the item.
+    /// Delivery information for the item.
     #[serde(
         rename = "itemDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_delivery: ::std::option::Option<ItemDelivery>,
-    ///The status of the item.
+    /// The status of the item.
     ///
-    ///Known values: `ACTIVE`, `CANCELLED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
+    /// Known values: `ACTIVE`, `CANCELLED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
     #[serde(
         rename = "itemStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_status: ::std::option::Option<::std::string::String>,
-    ///A list of customer-owned assets on which the service must be performed.
+    /// A list of customer-owned assets on which the service must be performed.
     #[serde(
         rename = "linkedAssets",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub linked_assets: ::std::option::Option<::std::vec::Vec<LinkedAsset>>,
-    ///The Amazon-defined identifier for an order placed by the buyer in 3-7-7 format.
+    /// The Amazon-defined identifier for an order placed by the buyer in 3-7-7 format.
     #[serde(rename = "orderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<OrderId>,
-    ///The total number of items included in the order.
+    /// The total number of items included in the order.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<i64>,
-    ///The title of the item.
+    /// The title of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
 }
-///`AvailabilityRecord` to represent the capacity of a resource over a time range.
+/// `AvailabilityRecord` to represent the capacity of a resource over a time range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AvailabilityRecord {
-    ///Signifies the capacity of a resource which is available.
+    /// Signifies the capacity of a resource which is available.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub capacity: ::std::option::Option<::std::num::NonZeroU64>,
-    ///Denotes the time till when the resource is available in a day in ISO-8601 format.
+    /// Denotes the time till when the resource is available in a day in ISO-8601 format.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Recurrence object containing the recurrence pattern of schedule.
+    /// Recurrence object containing the recurrence pattern of schedule.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub recurrence: ::std::option::Option<Recurrence>,
-    ///Denotes the time from when the resource is available in a day in ISO-8601 format.
+    /// Denotes the time from when the resource is available in a day in ISO-8601 format.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///List of `AvailabilityRecord`s to represent the capacity of a resource over a time range.
+/// List of `AvailabilityRecord`s to represent the capacity of a resource over a time range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AvailabilityRecords(pub ::std::vec::Vec<AvailabilityRecord>);
@@ -354,26 +354,26 @@ impl ::std::convert::From<::std::vec::Vec<AvailabilityRecord>> for AvailabilityR
         Self(value)
     }
 }
-///Information about the buyer.
+/// Information about the buyer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Buyer {
-    ///The identifier of the buyer.
+    /// The identifier of the buyer.
     #[serde(rename = "buyerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub buyer_id: ::std::option::Option<BuyerBuyerId>,
-    ///When true, the service is for an Amazon Prime buyer.
+    /// When true, the service is for an Amazon Prime buyer.
     #[serde(
         rename = "isPrimeMember",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_prime_member: ::std::option::Option<bool>,
-    ///The name of the buyer.
+    /// The name of the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///The phone number of the buyer.
+    /// The phone number of the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
 }
-///The identifier of the buyer.
+/// The identifier of the buyer.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct BuyerBuyerId(::std::string::String);
@@ -429,23 +429,23 @@ impl<'de> ::serde::Deserialize<'de> for BuyerBuyerId {
             })
     }
 }
-///Response schema for the `cancelReservation` operation.
+/// Response schema for the `cancelReservation` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CancelReservationResponse {
-    ///Errors encountered, if any
+    /// Errors encountered, if any
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Response schema for the `cancelServiceJobByServiceJobId` operation.
+/// Response schema for the `cancelServiceJobByServiceJobId` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CancelServiceJobByServiceJobIdResponse {
-    ///Encountered errors for the `cancelServiceJobByServiceJobId` operation.
+    /// Encountered errors for the `cancelServiceJobByServiceJobId` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Type of capacity
+/// Type of capacity
 ///
-///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
+/// Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -486,46 +486,46 @@ impl ::std::str::FromStr for CapacityType {
         Ok(Self(value.to_string()))
     }
 }
-///Response schema for the `completeServiceJobByServiceJobId` operation.
+/// Response schema for the `completeServiceJobByServiceJobId` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CompleteServiceJobByServiceJobIdResponse {
-    ///Encountered errors for the `completeServiceJobByServiceJobId` operation.
+    /// Encountered errors for the `completeServiceJobByServiceJobId` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///`CreateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the requested operation on it, otherwise it will contain the new `reservationId`.
+/// `CreateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the requested operation on it, otherwise it will contain the new `reservationId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateReservationRecord {
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Reservation record if the operation failed. It will only contain the new `reservationId` if the operation is successful.
+    /// Reservation record if the operation failed. It will only contain the new `reservationId` if the operation is successful.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reservation: ::std::option::Option<Reservation>,
-    ///Warnings encountered, if any.
+    /// Warnings encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<WarningList>,
 }
-///Request schema for the `createReservation` operation.
+/// Request schema for the `createReservation` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateReservationRequest {
-    ///`Reservation` object to reduce the capacity of a resource.
+    /// `Reservation` object to reduce the capacity of a resource.
     pub reservation: Reservation,
-    ///Resource (store) identifier.
+    /// Resource (store) identifier.
     #[serde(rename = "resourceId")]
     pub resource_id: ::std::string::String,
 }
-///Response schema for the `createReservation` operation.
+/// Response schema for the `createReservation` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateReservationResponse {
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///`CreateReservationRecord` contains only the new `reservationId` if the operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
+    /// `CreateReservationRecord` contains only the new `reservationId` if the operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<CreateReservationRecord>,
 }
-///The response schema for the `createServiceDocumentUploadDestination` operation.
+/// The response schema for the `createServiceDocumentUploadDestination` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateServiceDocumentUploadDestination {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -533,19 +533,19 @@ pub struct CreateServiceDocumentUploadDestination {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ServiceDocumentUploadDestination>,
 }
-///A range of time.
+/// A range of time.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DateTimeRange {
-    ///The end of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// The end of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The beginning of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// The beginning of the time range. Must be in UTC in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///The day of the week.
+/// The day of the week.
 ///
-///Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
+/// Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -586,39 +586,39 @@ impl ::std::str::FromStr for DayOfWeek {
         Ok(Self(value.to_string()))
     }
 }
-///Encryption details for required client-side encryption and decryption of document contents.
+/// Encryption details for required client-side encryption and decryption of document contents.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EncryptionDetails {
-    ///The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
+    /// The vector to encrypt or decrypt the document contents using Cipher Block Chaining (CBC).
     #[serde(rename = "initializationVector")]
     pub initialization_vector: ::std::string::String,
-    ///The encryption key used to encrypt or decrypt the document contents.
+    /// The encryption key used to encrypt or decrypt the document contents.
     pub key: ::std::string::String,
-    ///The encryption standard required to encrypt or decrypt the document contents.
+    /// The encryption standard required to encrypt or decrypt the document contents.
     ///
-    ///Known values: `AES`. Other values may be returned by Amazon.
+    /// Known values: `AES`. Other values may be returned by Amazon.
     pub standard: ::std::string::String,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///The type of error.
+    /// The type of error.
     ///
-    ///Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
     #[serde(
         rename = "errorLevel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_level: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -638,34 +638,34 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///In this slot format each slot only has the requested capacity types. This slot size is as specified by slot duration.
+/// In this slot format each slot only has the requested capacity types. This slot size is as specified by slot duration.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FixedSlot {
-    ///Available capacity corresponding to the slot. This capacity represents the capacity available for allocation to reservations.
+    /// Available capacity corresponding to the slot. This capacity represents the capacity available for allocation to reservations.
     #[serde(
         rename = "availableCapacity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub available_capacity: ::std::option::Option<i32>,
-    ///Encumbered capacity corresponding to the slot. This capacity represents the capacity allocated for Amazon Jobs/Appointments/Orders.
+    /// Encumbered capacity corresponding to the slot. This capacity represents the capacity allocated for Amazon Jobs/Appointments/Orders.
     #[serde(
         rename = "encumberedCapacity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub encumbered_capacity: ::std::option::Option<i32>,
-    ///Reserved capacity corresponding to the slot. This capacity represents the capacity made unavailable due to events like Breaks/Leaves/Lunch.
+    /// Reserved capacity corresponding to the slot. This capacity represents the capacity made unavailable due to events like Breaks/Leaves/Lunch.
     #[serde(
         rename = "reservedCapacity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reserved_capacity: ::std::option::Option<i32>,
-    ///Scheduled capacity corresponding to the slot. This capacity represents the originally allocated capacity as per resource schedule.
+    /// Scheduled capacity corresponding to the slot. This capacity represents the originally allocated capacity as per resource schedule.
     #[serde(
         rename = "scheduledCapacity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scheduled_capacity: ::std::option::Option<i32>,
-    ///Start date time of slot in ISO 8601 format with precision of seconds.
+    /// Start date time of slot in ISO 8601 format with precision of seconds.
     #[serde(
         rename = "startDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -674,79 +674,79 @@ pub struct FixedSlot {
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
 }
-///Response schema for the `getFixedSlotCapacity` operation.
+/// Response schema for the `getFixedSlotCapacity` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FixedSlotCapacity {
-    ///Array of capacity slots in fixed slot format.
+    /// Array of capacity slots in fixed slot format.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub capacities: ::std::option::Option<::std::vec::Vec<FixedSlot>>,
-    ///Next page token, if there are more pages.
+    /// Next page token, if there are more pages.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_page_token: ::std::option::Option<::std::string::String>,
-    ///Resource Identifier.
+    /// Resource Identifier.
     #[serde(
         rename = "resourceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub resource_id: ::std::option::Option<::std::string::String>,
-    ///The duration of each slot which is returned. This value will be a multiple of 5 and fall in the following range: 5 <= `slotDuration` <= 360.
+    /// The duration of each slot which is returned. This value will be a multiple of 5 and fall in the following range: 5 <= `slotDuration` <= 360.
     #[serde(
         rename = "slotDuration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub slot_duration: ::std::option::Option<::serde_json::Number>,
 }
-///The error response schema for the `getFixedSlotCapacity` operation.
+/// The error response schema for the `getFixedSlotCapacity` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FixedSlotCapacityErrors {
-    ///Errors encountered during the `getFixedSlotCapacity` operation.
+    /// Errors encountered during the `getFixedSlotCapacity` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Request schema for the `getFixedSlotCapacity` operation. This schema is used to define the time range, capacity types and slot duration which are being queried.
+/// Request schema for the `getFixedSlotCapacity` operation. This schema is used to define the time range, capacity types and slot duration which are being queried.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FixedSlotCapacityQuery {
-    ///An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
+    /// An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
     ///
-    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
+    /// Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub capacity_types: ::std::option::Option<::std::vec::Vec<CapacityType>>,
-    ///End date time up to which the capacity slots are being requested in ISO 8601 format.
+    /// End date time up to which the capacity slots are being requested in ISO 8601 format.
     #[serde(rename = "endDateTime")]
     pub end_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Size in which slots are being requested. This value should be a multiple of 5 and fall in the range: 5 <= `slotDuration` <= 360.
+    /// Size in which slots are being requested. This value should be a multiple of 5 and fall in the range: 5 <= `slotDuration` <= 360.
     #[serde(
         rename = "slotDuration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub slot_duration: ::std::option::Option<::serde_json::Number>,
-    ///Start date time from which the capacity slots are being requested in ISO 8601 format.
+    /// Start date time from which the capacity slots are being requested in ISO 8601 format.
     #[serde(rename = "startDateTime")]
     pub start_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Document that captured during service appointment fulfillment that portrays proof of completion
+/// Document that captured during service appointment fulfillment that portrays proof of completion
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FulfillmentDocument {
-    ///Sha256 hash of the file content. This value is used to determine if the file has been corrupted or tampered with during transit.
+    /// Sha256 hash of the file content. This value is used to determine if the file has been corrupted or tampered with during transit.
     #[serde(
         rename = "contentSha256",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_sha256: ::std::option::Option<::std::string::String>,
-    ///The identifier of the upload destination. Get this value by calling the `createServiceDocumentUploadDestination` operation of the Services API.
+    /// The identifier of the upload destination. Get this value by calling the `createServiceDocumentUploadDestination` operation of the Services API.
     #[serde(
         rename = "uploadDestinationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub upload_destination_id: ::std::option::Option<::std::string::String>,
 }
-///List of documents captured during service appointment fulfillment.
+/// List of documents captured during service appointment fulfillment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FulfillmentDocuments(pub ::std::vec::Vec<FulfillmentDocument>);
@@ -768,53 +768,53 @@ for FulfillmentDocuments {
         Self(value)
     }
 }
-///Input for fulfillment time details
+/// Input for fulfillment time details
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FulfillmentTime {
-    ///The date, time in UTC of the fulfillment end time in ISO 8601 format.
+    /// The date, time in UTC of the fulfillment end time in ISO 8601 format.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The date, time in UTC of the fulfillment start time in ISO 8601 format.
+    /// The date, time in UTC of the fulfillment start time in ISO 8601 format.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-///The response of fetching appointment slots based on service context.
+/// The response of fetching appointment slots based on service context.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetAppointmentSlotsResponse {
-    ///Errors occurred in getting schedule.
+    /// Errors occurred in getting schedule.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The appointment slots fetched based on service context.
+    /// The appointment slots fetched based on service context.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<AppointmentSlotReport>,
 }
-///The response schema for the `getServiceJobByServiceJobId` operation.
+/// The response schema for the `getServiceJobByServiceJobId` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetServiceJobByServiceJobIdResponse {
-    ///An unexpected condition occurred during the `getServiceJobByServiceJobId` operation.
+    /// An unexpected condition occurred during the `getServiceJobByServiceJobId` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getServiceJobByServiceJobId` operation.
+    /// The payload for the `getServiceJobByServiceJobId` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ServiceJob>,
 }
-///Response schema for the `getServiceJobs` operation.
+/// Response schema for the `getServiceJobs` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetServiceJobsResponse {
-    ///An unexpected condition occurred during the `getServiceJobs` operation.
+    /// An unexpected condition occurred during the `getServiceJobs` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getServiceJobs` operation.
+    /// The payload for the `getServiceJobs` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<JobListing>,
 }
-///Delivery information for the item.
+/// Delivery information for the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemDelivery {
-    ///The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In ISO 8601 format.
+    /// The date and time of the latest Estimated Delivery Date (EDD) of all the items with an EDD. In ISO 8601 format.
     #[serde(
         rename = "estimatedDeliveryDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -822,55 +822,55 @@ pub struct ItemDelivery {
     pub estimated_delivery_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///Promised delivery information for the item.
+    /// Promised delivery information for the item.
     #[serde(
         rename = "itemDeliveryPromise",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_delivery_promise: ::std::option::Option<ItemDeliveryPromise>,
 }
-///Promised delivery information for the item.
+/// Promised delivery information for the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemDeliveryPromise {
-    ///The date and time of the end of the promised delivery window in ISO 8601 format.
+    /// The date and time of the end of the promised delivery window in ISO 8601 format.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The date and time of the start of the promised delivery window in ISO 8601 format.
+    /// The date and time of the start of the promised delivery window in ISO 8601 format.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-///The payload for the `getServiceJobs` operation.
+/// The payload for the `getServiceJobs` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct JobListing {
-    ///List of job details for the given input.
+    /// List of job details for the given input.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub jobs: ::std::option::Option<::std::vec::Vec<ServiceJob>>,
-    ///A generated string used to pass information to your next request. If `nextPageToken` is returned, pass the value of `nextPageToken` to the `pageToken` to get next results.
+    /// A generated string used to pass information to your next request. If `nextPageToken` is returned, pass the value of `nextPageToken` to the `pageToken` to get next results.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_page_token: ::std::option::Option<::std::string::String>,
-    ///A generated string used to pass information to your next request. If `previousPageToken` is returned, pass the value of `previousPageToken` to the `pageToken` to get previous page results.
+    /// A generated string used to pass information to your next request. If `previousPageToken` is returned, pass the value of `previousPageToken` to the `pageToken` to get previous page results.
     #[serde(
         rename = "previousPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub previous_page_token: ::std::option::Option<::std::string::String>,
-    ///Total result size of the query result.
+    /// Total result size of the query result.
     #[serde(
         rename = "totalResultSize",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_result_size: ::std::option::Option<i64>,
 }
-///Information about an asset linked to an associated item, such as vehicle information for Ship-to-Store orders.
+/// Information about an asset linked to an associated item, such as vehicle information for Ship-to-Store orders.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct LinkedAsset {
-    ///Additional attributes of the linked asset, such as vehicle make, model, year, and engine details.
+    /// Additional attributes of the linked asset, such as vehicle make, model, year, and engine details.
     #[serde(
         rename = "additionalAttributes",
         default,
@@ -880,28 +880,28 @@ pub struct LinkedAsset {
         ::std::string::String,
         ::std::string::String,
     >,
-    ///The name of the linked asset. For example: `2024 Polaris Slingshot SLR AutoDrive`.
+    /// The name of the linked asset. For example: `2024 Polaris Slingshot SLR AutoDrive`.
     #[serde(
         rename = "assetName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub asset_name: ::std::option::Option<::std::string::String>,
-    ///The type of the linked asset. For example: `VEHICLE`.
+    /// The type of the linked asset. For example: `VEHICLE`.
     #[serde(
         rename = "assetType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub asset_type: ::std::option::Option<::std::string::String>,
 }
-///The monetary amount and type of currency.
+/// The monetary amount and type of currency.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MoneyAmount {
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     pub currency: ::std::string::String,
-    ///The monetary value.
+    /// The monetary value.
     pub value: ::serde_json::Number,
 }
-///The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
+/// The Amazon-defined identifier for an order placed by the buyer, in 3-7-7 format.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct OrderId(::std::string::String);
@@ -958,47 +958,47 @@ impl<'de> ::serde::Deserialize<'de> for OrderId {
             })
     }
 }
-///Payment information for the service job.
+/// Payment information for the service job.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Payment {
-    ///The payment amount.
+    /// The payment amount.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<MoneyAmount>,
-    ///The payment instrument used for the transaction.
+    /// The payment instrument used for the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub instrument: ::std::option::Option<::std::string::String>,
 }
-///Proof of Appointment (POA) details.
+/// Proof of Appointment (POA) details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Poa {
-    ///The time of the appointment window.
+    /// The time of the appointment window.
     #[serde(
         rename = "appointmentTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_time: ::std::option::Option<AppointmentTime>,
-    ///The type of POA uploaded.
+    /// The type of POA uploaded.
     ///
-    ///Known values: `NO_SIGNATURE_DUMMY_POS`, `CUSTOMER_SIGNATURE`, `DUMMY_RECEIPT`, `POA_RECEIPT`. Other values may be returned by Amazon.
+    /// Known values: `NO_SIGNATURE_DUMMY_POS`, `CUSTOMER_SIGNATURE`, `DUMMY_RECEIPT`, `POA_RECEIPT`. Other values may be returned by Amazon.
     #[serde(rename = "poaType", skip_serializing_if = "::std::option::Option::is_none")]
     pub poa_type: ::std::option::Option<::std::string::String>,
-    ///A list of technicians.
+    /// A list of technicians.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub technicians: ::std::option::Option<::std::vec::Vec<Technician>>,
-    ///The date and time when the POA was uploaded in ISO 8601 format.
+    /// The date and time when the POA was uploaded in ISO 8601 format.
     #[serde(
         rename = "uploadTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub upload_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The identifier of the technician who uploaded the POA.
+    /// The identifier of the technician who uploaded the POA.
     #[serde(
         rename = "uploadingTechnician",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub uploading_technician: ::std::option::Option<PoaUploadingTechnician>,
 }
-///The identifier of the technician who uploaded the POA.
+/// The identifier of the technician who uploaded the POA.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PoaUploadingTechnician(::std::string::String);
@@ -1054,34 +1054,34 @@ impl<'de> ::serde::Deserialize<'de> for PoaUploadingTechnician {
             })
     }
 }
-///Range capacity entity where each entry has a capacity type and corresponding slots.
+/// Range capacity entity where each entry has a capacity type and corresponding slots.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RangeCapacity {
-    ///Capacity type corresponding to the slots.
+    /// Capacity type corresponding to the slots.
     ///
-    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
+    /// Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub capacity_type: ::std::option::Option<CapacityType>,
-    ///Array of capacity slots in range slot format.
+    /// Array of capacity slots in range slot format.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub slots: ::std::option::Option<::std::vec::Vec<RangeSlot>>,
 }
-///Capacity slots represented in a format similar to availability rules.
+/// Capacity slots represented in a format similar to availability rules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RangeSlot {
-    ///Capacity of the slot.
+    /// Capacity of the slot.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub capacity: ::std::option::Option<i32>,
-    ///End date time of slot in ISO 8601 format with precision of seconds.
+    /// End date time of slot in ISO 8601 format with precision of seconds.
     #[serde(
         rename = "endDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub end_date_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Start date time of slot in ISO 8601 format with precision of seconds.
+    /// Start date time of slot in ISO 8601 format with precision of seconds.
     #[serde(
         rename = "startDateTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1090,82 +1090,82 @@ pub struct RangeSlot {
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
 }
-///Response schema for the `getRangeSlotCapacity` operation.
+/// Response schema for the `getRangeSlotCapacity` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RangeSlotCapacity {
-    ///Array of range capacities where each entry is for a specific capacity type.
+    /// Array of range capacities where each entry is for a specific capacity type.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub capacities: ::std::option::Option<::std::vec::Vec<RangeCapacity>>,
-    ///Next page token, if there are more pages.
+    /// Next page token, if there are more pages.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_page_token: ::std::option::Option<::std::string::String>,
-    ///Resource Identifier.
+    /// Resource Identifier.
     #[serde(
         rename = "resourceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub resource_id: ::std::option::Option<::std::string::String>,
 }
-///The error response schema for the `getRangeSlotCapacity` operation.
+/// The error response schema for the `getRangeSlotCapacity` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RangeSlotCapacityErrors {
-    ///Errors encountered during the `getRangeSlotCapacity` operation.
+    /// Errors encountered during the `getRangeSlotCapacity` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Request schema for the `getRangeSlotCapacity` operation. This schema is used to define the time range and capacity types that are being queried.
+/// Request schema for the `getRangeSlotCapacity` operation. This schema is used to define the time range and capacity types that are being queried.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RangeSlotCapacityQuery {
-    ///An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
+    /// An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
     ///
-    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
+    /// Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub capacity_types: ::std::option::Option<::std::vec::Vec<CapacityType>>,
-    ///End date time up to which the capacity slots are being requested in ISO 8601 format.
+    /// End date time up to which the capacity slots are being requested in ISO 8601 format.
     #[serde(rename = "endDateTime")]
     pub end_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Start date time from which the capacity slots are being requested in ISO 8601 format.
+    /// Start date time from which the capacity slots are being requested in ISO 8601 format.
     #[serde(rename = "startDateTime")]
     pub start_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Repeated occurrence of an event in a time range.
+/// Repeated occurrence of an event in a time range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Recurrence {
-    ///Days of the month when recurrence is valid.
+    /// Days of the month when recurrence is valid.
     #[serde(
         rename = "daysOfMonth",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub days_of_month: ::std::option::Option<::std::vec::Vec<::std::num::NonZeroU64>>,
-    ///Days of the week when recurrence is valid. If the schedule is valid every Monday, input will only contain `MONDAY` in the list.
+    /// Days of the week when recurrence is valid. If the schedule is valid every Monday, input will only contain `MONDAY` in the list.
     ///
-    ///Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
+    /// Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
     #[serde(
         rename = "daysOfWeek",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub days_of_week: ::std::option::Option<::std::vec::Vec<DayOfWeek>>,
-    ///End time of the recurrence.
+    /// End time of the recurrence.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Input for rescheduled appointment operation.
+/// Input for rescheduled appointment operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RescheduleAppointmentRequest {
-    ///Input appointment time details.
+    /// Input appointment time details.
     #[serde(rename = "appointmentTime")]
     pub appointment_time: AppointmentTimeInput,
-    ///Input appointment reschedule reason.
+    /// Input appointment reschedule reason.
     #[serde(rename = "rescheduleReasonCode")]
     pub reschedule_reason_code: RescheduleReasonCode,
 }
-///The appointment reschedule reason code.
+/// The appointment reschedule reason code.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1206,50 +1206,50 @@ impl ::std::str::FromStr for RescheduleReasonCode {
         Ok(Self(value.to_string()))
     }
 }
-///Reservation object reduces the capacity of a resource.
+/// Reservation object reduces the capacity of a resource.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Reservation {
-    ///`AvailabilityRecord` to represent the capacity of a resource over a time range.
+    /// `AvailabilityRecord` to represent the capacity of a resource over a time range.
     pub availability: AvailabilityRecord,
-    ///Unique identifier for a reservation. If present, it is treated as an update reservation request and will update the corresponding reservation. Otherwise, it is treated as a new create reservation request.
+    /// Unique identifier for a reservation. If present, it is treated as an update reservation request and will update the corresponding reservation. Otherwise, it is treated as a new create reservation request.
     #[serde(
         rename = "reservationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reservation_id: ::std::option::Option<::std::string::String>,
-    ///Type of reservation.
+    /// Type of reservation.
     ///
-    ///Known values: `APPOINTMENT`, `TRAVEL`, `VACATION`, `BREAK`, `TRAINING`. Other values may be returned by Amazon.
+    /// Known values: `APPOINTMENT`, `TRAVEL`, `VACATION`, `BREAK`, `TRAINING`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///The scope of work for the order.
+/// The scope of work for the order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ScopeOfWork {
-    ///The Amazon Standard Identification Number (ASIN) of the service job.
+    /// The Amazon Standard Identification Number (ASIN) of the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The number of service jobs.
+    /// The number of service jobs.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<i64>,
-    ///A list of skills required to perform the job.
+    /// A list of skills required to perform the job.
     #[serde(
         rename = "requiredSkills",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub required_skills: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The title of the service job.
+    /// The title of the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
 }
-///Information about the seller of the service job.
+/// Information about the seller of the service job.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Seller {
-    ///The identifier of the seller of the service job.
+    /// The identifier of the seller of the service job.
     #[serde(rename = "sellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<SellerSellerId>,
 }
-///The identifier of the seller of the service job.
+/// The identifier of the seller of the service job.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct SellerSellerId(::std::string::String);
@@ -1305,51 +1305,51 @@ impl<'de> ::serde::Deserialize<'de> for SellerSellerId {
             })
     }
 }
-///Information about an upload destination.
+/// Information about an upload destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ServiceDocumentUploadDestination {
     #[serde(rename = "encryptionDetails")]
     pub encryption_details: EncryptionDetails,
-    ///The headers to include in the upload request.
+    /// The headers to include in the upload request.
     #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
     pub headers: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-    ///The unique identifier to be used by APIs that reference the upload destination.
+    /// The unique identifier to be used by APIs that reference the upload destination.
     #[serde(rename = "uploadDestinationId")]
     pub upload_destination_id: ::std::string::String,
-    ///The URL to which to upload the file.
+    /// The URL to which to upload the file.
     pub url: ::std::string::String,
 }
-///The job details of a service.
+/// The job details of a service.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServiceJob {
-    ///A list of appointments.
+    /// A list of appointments.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub appointments: ::std::option::Option<::std::vec::Vec<Appointment>>,
-    ///A list of items associated with the service job.
+    /// A list of items associated with the service job.
     #[serde(
         rename = "associatedItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub associated_items: ::std::option::Option<::std::vec::Vec<AssociatedItem>>,
-    ///Information about the buyer.
+    /// Information about the buyer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub buyer: ::std::option::Option<Buyer>,
-    ///The date and time of the creation of the job in ISO 8601 format.
+    /// The date and time of the creation of the job in ISO 8601 format.
     #[serde(
         rename = "createTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub create_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The marketplace identifier.
+    /// The marketplace identifier.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<ServiceJobMarketplaceId>,
-    ///A list that contains payment information for the service job.
+    /// A list that contains payment information for the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payments: ::std::option::Option<::std::vec::Vec<Payment>>,
-    ///A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
+    /// A list of appointment windows preferred by the buyer. Included only if the buyer selected appointment windows when creating the order.
     #[serde(
         rename = "preferredAppointmentTimes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1357,64 +1357,64 @@ pub struct ServiceJob {
     pub preferred_appointment_times: ::std::option::Option<
         ::std::vec::Vec<AppointmentTime>,
     >,
-    ///A list of associated product order IDs for the service job.
+    /// A list of associated product order IDs for the service job.
     #[serde(
         rename = "productOrderIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_order_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The scope of work for the order.
+    /// The scope of work for the order.
     #[serde(
         rename = "scopeOfWork",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scope_of_work: ::std::option::Option<ScopeOfWork>,
-    ///Information about the seller of the service job.
+    /// Information about the seller of the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub seller: ::std::option::Option<Seller>,
-    ///The service job identifier.
+    /// The service job identifier.
     #[serde(
         rename = "serviceJobId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_job_id: ::std::option::Option<ServiceJobId>,
-    ///Information about the service job provider.
+    /// Information about the service job provider.
     #[serde(
         rename = "serviceJobProvider",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_job_provider: ::std::option::Option<ServiceJobProvider>,
-    ///The status of the service job.
+    /// The status of the service job.
     ///
-    ///Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`. Other values may be returned by Amazon.
+    /// Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceJobStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_job_status: ::std::option::Option<::std::string::String>,
-    ///Information about the location of the service job.
+    /// Information about the location of the service job.
     #[serde(
         rename = "serviceLocation",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_location: ::std::option::Option<ServiceLocation>,
-    ///The Amazon-defined identifier for an order placed by the buyer in 3-7-7 format.
+    /// The Amazon-defined identifier for an order placed by the buyer in 3-7-7 format.
     #[serde(
         rename = "serviceOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_order_id: ::std::option::Option<OrderId>,
-    ///The Amazon-defined identifier for the region scope.
+    /// The Amazon-defined identifier for the region scope.
     #[serde(rename = "storeId", skip_serializing_if = "::std::option::Option::is_none")]
     pub store_id: ::std::option::Option<ServiceJobStoreId>,
-    ///A list of associated product tracking IDs for the service job.
+    /// A list of associated product tracking IDs for the service job.
     #[serde(
         rename = "trackingIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tracking_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
 }
-///Amazon identifier for the service job.
+/// Amazon identifier for the service job.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ServiceJobId(::std::string::String);
@@ -1471,7 +1471,7 @@ impl<'de> ::serde::Deserialize<'de> for ServiceJobId {
             })
     }
 }
-///The marketplace identifier.
+/// The marketplace identifier.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ServiceJobMarketplaceId(::std::string::String);
@@ -1527,10 +1527,10 @@ impl<'de> ::serde::Deserialize<'de> for ServiceJobMarketplaceId {
             })
     }
 }
-///Information about the service job provider.
+/// Information about the service job provider.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServiceJobProvider {
-    ///The identifier of the service job provider.
+    /// The identifier of the service job provider.
     #[serde(
         rename = "serviceJobProviderId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1539,7 +1539,7 @@ pub struct ServiceJobProvider {
         ServiceJobProviderServiceJobProviderId,
     >,
 }
-///The identifier of the service job provider.
+/// The identifier of the service job provider.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ServiceJobProviderServiceJobProviderId(::std::string::String);
@@ -1597,7 +1597,7 @@ impl<'de> ::serde::Deserialize<'de> for ServiceJobProviderServiceJobProviderId {
             })
     }
 }
-///The Amazon-defined identifier for the region scope.
+/// The Amazon-defined identifier for the region scope.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ServiceJobStoreId(::std::string::String);
@@ -1654,40 +1654,40 @@ impl<'de> ::serde::Deserialize<'de> for ServiceJobStoreId {
             })
     }
 }
-///Information about the location of the service job.
+/// Information about the location of the service job.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServiceLocation {
-    ///The shipping address for the service job.
+    /// The shipping address for the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    ///The location of the service job.
+    /// The location of the service job.
     ///
-    ///Known values: `IN_HOME`, `IN_STORE`, `ONLINE`. Other values may be returned by Amazon.
+    /// Known values: `IN_HOME`, `IN_STORE`, `ONLINE`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceLocationType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_location_type: ::std::option::Option<::std::string::String>,
 }
-///Input for to be uploaded document.
+/// Input for to be uploaded document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ServiceUploadDocument {
-    ///The content length of the to-be-uploaded file
+    /// The content length of the to-be-uploaded file
     #[serde(rename = "contentLength")]
     pub content_length: ::serde_json::Number,
-    ///An MD5 hash of the content to be submitted to the upload destination. This value is used to determine if the data has been corrupted or tampered with during transit.
+    /// An MD5 hash of the content to be submitted to the upload destination. This value is used to determine if the data has been corrupted or tampered with during transit.
     #[serde(
         rename = "contentMD5",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_md5: ::std::option::Option<ServiceUploadDocumentContentMd5>,
-    ///The content type of the to-be-uploaded file
+    /// The content type of the to-be-uploaded file
     ///
-    ///Known values: `TIFF`, `JPG`, `PNG`, `JPEG`, `GIF`, `PDF`. Other values may be returned by Amazon.
+    /// Known values: `TIFF`, `JPG`, `PNG`, `JPEG`, `GIF`, `PDF`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ::std::string::String,
 }
-///An MD5 hash of the content to be submitted to the upload destination. This value is used to determine if the data has been corrupted or tampered with during transit.
+/// An MD5 hash of the content to be submitted to the upload destination. This value is used to determine if the data has been corrupted or tampered with during transit.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ServiceUploadDocumentContentMd5(::std::string::String);
@@ -1743,64 +1743,64 @@ impl<'de> ::serde::Deserialize<'de> for ServiceUploadDocumentContentMd5 {
             })
     }
 }
-///Input for set appointment fulfillment data operation.
+/// Input for set appointment fulfillment data operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SetAppointmentFulfillmentDataRequest {
-    ///Resources involved in appointment fulfillment.
+    /// Resources involved in appointment fulfillment.
     #[serde(
         rename = "appointmentResources",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_resources: ::std::option::Option<AppointmentResources>,
-    ///The range of time when the technician is expected to arrive at the fulfillment location.
+    /// The range of time when the technician is expected to arrive at the fulfillment location.
     #[serde(
         rename = "estimatedArrivalTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub estimated_arrival_time: ::std::option::Option<DateTimeRange>,
-    ///Documents specific to appointment fulfillment.
+    /// Documents specific to appointment fulfillment.
     #[serde(
         rename = "fulfillmentDocuments",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_documents: ::std::option::Option<FulfillmentDocuments>,
-    ///Input appointment time details.
+    /// Input appointment time details.
     #[serde(
         rename = "fulfillmentTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_time: ::std::option::Option<FulfillmentTime>,
 }
-///Response schema for the `addAppointmentForServiceJobByServiceJobId` and `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+/// Response schema for the `addAppointmentForServiceJobByServiceJobId` and `rescheduleAppointmentForServiceJobByServiceJobId` operations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SetAppointmentResponse {
-    ///New appointment identifier generated during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+    /// New appointment identifier generated during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
     #[serde(
         rename = "appointmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_id: ::std::option::Option<AppointmentId>,
-    ///Errors occurred during during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+    /// Errors occurred during during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Warnings generated during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+    /// Warnings generated during the `addAppointmentForServiceJobByServiceJobId` or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<WarningList>,
 }
-///A technician who is assigned to perform the service job in part or in full.
+/// A technician who is assigned to perform the service job in part or in full.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Technician {
-    ///The name of the technician.
+    /// The name of the technician.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///The technician identifier.
+    /// The technician identifier.
     #[serde(
         rename = "technicianId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub technician_id: ::std::option::Option<TechnicianTechnicianId>,
 }
-///The technician identifier.
+/// The technician identifier.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct TechnicianTechnicianId(::std::string::String);
@@ -1857,79 +1857,79 @@ impl<'de> ::serde::Deserialize<'de> for TechnicianTechnicianId {
             })
     }
 }
-///`UpdateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the requested operation on it, otherwise it will contain the new `reservationId`.
+/// `UpdateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the requested operation on it, otherwise it will contain the new `reservationId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateReservationRecord {
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Reservation record if the operation failed. It will only contain the new `reservationId` if the operation is successful.
+    /// Reservation record if the operation failed. It will only contain the new `reservationId` if the operation is successful.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reservation: ::std::option::Option<Reservation>,
-    ///Warnings encountered, if any.
+    /// Warnings encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<WarningList>,
 }
-///Request schema for the `updateReservation` operation.
+/// Request schema for the `updateReservation` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpdateReservationRequest {
-    ///`Reservation` object to reduce the capacity of a resource.
+    /// `Reservation` object to reduce the capacity of a resource.
     pub reservation: Reservation,
-    ///Resource (store) identifier.
+    /// Resource (store) identifier.
     #[serde(rename = "resourceId")]
     pub resource_id: ::std::string::String,
 }
-///Response schema for the `updateReservation` operation.
+/// Response schema for the `updateReservation` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateReservationResponse {
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///`UpdateReservationRecord` contains only the new `reservationId` if the operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
+    /// `UpdateReservationRecord` contains only the new `reservationId` if the operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<UpdateReservationRecord>,
 }
-///`UpdateScheduleRecord` entity contains the `AvailabilityRecord` if there is an error/warning while performing the requested operation on it.
+/// `UpdateScheduleRecord` entity contains the `AvailabilityRecord` if there is an error/warning while performing the requested operation on it.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateScheduleRecord {
-    ///Availability record if the operation failed.
+    /// Availability record if the operation failed.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub availability: ::std::option::Option<AvailabilityRecord>,
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Warnings encountered, if any.
+    /// Warnings encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub warnings: ::std::option::Option<WarningList>,
 }
-///Request schema for the `updateSchedule` operation.
+/// Request schema for the `updateSchedule` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpdateScheduleRequest {
-    ///List of schedule objects to define the normal working hours of a resource.
+    /// List of schedule objects to define the normal working hours of a resource.
     pub schedules: AvailabilityRecords,
 }
-///Response schema for the `updateSchedule` operation.
+/// Response schema for the `updateSchedule` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateScheduleResponse {
-    ///Errors encountered, if any.
+    /// Errors encountered, if any.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Contains the `UpdateScheduleRecords` for which the error/warning has occurred.
+    /// Contains the `UpdateScheduleRecords` for which the error/warning has occurred.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<::std::vec::Vec<UpdateScheduleRecord>>,
 }
-///Warning returned when the request is successful, but there are important callouts based on which API clients should take defined actions.
+/// Warning returned when the request is successful, but there are important callouts based on which API clients should take defined actions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Warning {
-    ///An warning code that identifies the type of warning that occurred.
+    /// An warning code that identifies the type of warning that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or address the warning.
+    /// Additional details that can help the caller understand or address the warning.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the warning condition in a human-readable form.
+    /// A message that describes the warning condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of warnings returned in the sucessful execution response of an API request.
+/// A list of warnings returned in the sucessful execution response of an API request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct WarningList(pub ::std::vec::Vec<Warning>);

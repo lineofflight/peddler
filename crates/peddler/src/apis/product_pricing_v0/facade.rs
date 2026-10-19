@@ -4,23 +4,23 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_competitive_pricing`].
+/// The parameters of [`get_competitive_pricing`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCompetitivePricingParams {
-    ///A marketplace identifier. Specifies the marketplace for which prices are returned.
+    /// A marketplace identifier. Specifies the marketplace for which prices are returned.
     pub marketplace_id: String,
-    ///A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.
+    /// A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.
     pub asins: Option<Vec<String>>,
-    ///A list of up to twenty seller SKU values used to identify items in the given marketplace.
+    /// A list of up to twenty seller SKU values used to identify items in the given marketplace.
     pub skus: Option<Vec<String>>,
-    ///Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter. Possible values: Asin, Sku.
+    /// Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter. Possible values: Asin, Sku.
     pub item_type: String,
-    ///Indicates whether to request pricing information from the point of view of Consumer or Business buyers. Default is Consumer.
+    /// Indicates whether to request pricing information from the point of view of Consumer or Business buyers. Default is Consumer.
     pub customer_type: Option<String>,
 }
 impl GetCompetitivePricingParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, item_type: String) -> Self {
         Self {
             marketplace_id,
@@ -31,9 +31,9 @@ impl GetCompetitivePricingParams {
         }
     }
 }
-///Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+/// Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_competitive_pricing(
     client: &Client,
     params: GetCompetitivePricingParams,
@@ -60,21 +60,21 @@ pub async fn get_competitive_pricing(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_item_offers`].
+/// The parameters of [`get_item_offers`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemOffersParams {
-    ///A marketplace identifier. Specifies the marketplace for which prices are returned.
+    /// A marketplace identifier. Specifies the marketplace for which prices are returned.
     pub marketplace_id: String,
-    ///Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
+    /// Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
     pub item_condition: String,
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
-    ///Indicates whether to request Consumer or Business offers. Default is Consumer.
+    /// Indicates whether to request Consumer or Business offers. Default is Consumer.
     pub customer_type: Option<String>,
 }
 impl GetItemOffersParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, item_condition: String, asin: String) -> Self {
         Self {
             marketplace_id,
@@ -84,7 +84,7 @@ impl GetItemOffersParams {
         }
     }
 }
-///Returns the lowest priced offers for a single item based on ASIN.
+/// Returns the lowest priced offers for a single item based on ASIN.
 pub async fn get_item_offers(
     client: &Client,
     params: GetItemOffersParams,
@@ -112,20 +112,20 @@ pub async fn get_item_offers(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_item_offers_batch`].
+/// The parameters of [`get_item_offers_batch`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemOffersBatchParams<B = serde_json::Value> {
-    ///The request associated with the `getItemOffersBatch` API call.
+    /// The request associated with the `getItemOffersBatch` API call.
     pub body: B,
 }
 impl<B> GetItemOffersBatchParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Returns the lowest priced offers for a batch of items based on ASIN.
+/// Returns the lowest priced offers for a batch of items based on ASIN.
 pub async fn get_item_offers_batch<B: serde::Serialize>(
     client: &Client,
     params: GetItemOffersBatchParams<B>,
@@ -144,21 +144,21 @@ pub async fn get_item_offers_batch<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_listing_offers`].
+/// The parameters of [`get_listing_offers`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetListingOffersParams {
-    ///A marketplace identifier. Specifies the marketplace for which prices are returned.
+    /// A marketplace identifier. Specifies the marketplace for which prices are returned.
     pub marketplace_id: String,
-    ///Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
+    /// Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
     pub item_condition: String,
-    ///Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    /// Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     pub seller_sku: String,
-    ///Indicates whether to request Consumer or Business offers. Default is Consumer.
+    /// Indicates whether to request Consumer or Business offers. Default is Consumer.
     pub customer_type: Option<String>,
 }
 impl GetListingOffersParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         marketplace_id: String,
         item_condition: String,
@@ -172,9 +172,9 @@ impl GetListingOffersParams {
         }
     }
 }
-///Returns the lowest priced offers for a single SKU listing.
+/// Returns the lowest priced offers for a single SKU listing.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_listing_offers(
     client: &Client,
     params: GetListingOffersParams,
@@ -202,20 +202,20 @@ pub async fn get_listing_offers(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_listing_offers_batch`].
+/// The parameters of [`get_listing_offers_batch`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetListingOffersBatchParams<B = serde_json::Value> {
-    ///The request associated with the `getListingOffersBatch` API call.
+    /// The request associated with the `getListingOffersBatch` API call.
     pub body: B,
 }
 impl<B> GetListingOffersBatchParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Returns the lowest priced offers for a batch of listings by SKU.
+/// Returns the lowest priced offers for a batch of listings by SKU.
 pub async fn get_listing_offers_batch<B: serde::Serialize>(
     client: &Client,
     params: GetListingOffersBatchParams<B>,
@@ -234,25 +234,25 @@ pub async fn get_listing_offers_batch<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_pricing`].
+/// The parameters of [`get_pricing`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPricingParams {
-    ///A marketplace identifier. Specifies the marketplace for which prices are returned.
+    /// A marketplace identifier. Specifies the marketplace for which prices are returned.
     pub marketplace_id: String,
-    ///A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.
+    /// A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace.
     pub asins: Option<Vec<String>>,
-    ///A list of up to twenty seller SKU values used to identify items in the given marketplace.
+    /// A list of up to twenty seller SKU values used to identify items in the given marketplace.
     pub skus: Option<Vec<String>>,
-    ///Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter.
+    /// Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter.
     pub item_type: String,
-    ///Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
+    /// Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
     pub item_condition: Option<String>,
-    ///Indicates whether to request pricing information for the seller's B2C or B2B offers. Default is B2C.
+    /// Indicates whether to request pricing information for the seller's B2C or B2B offers. Default is B2C.
     pub offer_type: Option<String>,
 }
 impl GetPricingParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, item_type: String) -> Self {
         Self {
             marketplace_id,
@@ -264,9 +264,9 @@ impl GetPricingParams {
         }
     }
 }
-///Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+/// Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
 ///
-///**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_pricing(
     client: &Client,
     params: GetPricingParams,

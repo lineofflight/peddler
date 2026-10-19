@@ -2,16 +2,16 @@
 // Source: schemas/reports/sellingPartnerSearchQueryPerformanceReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Represents an amount of money in a specific currency.
+/// Represents an amount of money in a specific currency.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CurrencyAmount {
-    ///The monetary amount.
+    /// The monetary amount.
     pub amount: ::serde_json::Number,
-    ///The 3-letter currency code, in ISO 4217 format.
+    /// The 3-letter currency code, in ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: CurrencyAmountCurrencyCode,
 }
-///The 3-letter currency code, in ISO 4217 format.
+/// The 3-letter currency code, in ISO 4217 format.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CurrencyAmountCurrencyCode(::std::string::String);
@@ -67,7 +67,7 @@ impl<'de> ::serde::Deserialize<'de> for CurrencyAmountCurrencyCode {
             })
     }
 }
-///The Search Query Performance Report provides overall query performance, such as impressions, clicks, cart adds, and purchases for a list of Amazon Standard Identification Numbers (ASINs) and date range that you specify. Data is available at different reporting periods: WEEK, MONTH, and QUARTER. Requests cannot span multiple periods. For example, a request at the WEEK level cannot start on 2025-01-05 and end on 2025-01-18 as this request spans two weeks.
+/// The Search Query Performance Report provides overall query performance, such as impressions, clicks, cart adds, and purchases for a list of Amazon Standard Identification Numbers (ASINs) and date range that you specify. Data is available at different reporting periods: WEEK, MONTH, and QUARTER. Requests cannot span multiple periods. For example, a request at the WEEK level cannot start on 2025-01-05 and end on 2025-01-18 as this request spans two weeks.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "dataByAsin")]
@@ -75,116 +75,116 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The end date of the report (Amazon ignores the time component). For WEEK, MONTH, and QUARTER reportPeriods, this value must correspond to the last day in the reportPeriod that you specify or else a fatal error returns. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// The end date of the report (Amazon ignores the time component). For WEEK, MONTH, and QUARTER reportPeriods, this value must correspond to the last day in the reportPeriod that you specify or else a fatal error returns. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///The start date of the report (Amazon ignores the time component). For WEEK, MONTH, and QUARTER reportPeriods, this value must correspond to the first day in the reportPeriod that you specify or else a fatal error returns. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// The start date of the report (Amazon ignores the time component). For WEEK, MONTH, and QUARTER reportPeriods, this value must correspond to the first day in the reportPeriod that you specify or else a fatal error returns. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. If you specify multiple marketplaces, a fatal error returns and report generation fails.
+    /// This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. If you specify multiple marketplaces, a fatal error returns and report generation fails.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The type of the report.
+    /// The type of the report.
     ///
-    ///Known values: `GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///The report options that specify parameters, such as reportPeriod and asin.
+/// The report options that specify parameters, such as reportPeriod and asin.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///A space-separated list of ASINs for which you can request the report. There is a 200-character limit.
+    /// A space-separated list of ASINs for which you can request the report. There is a 200-character limit.
     pub asin: ::std::string::String,
-    ///The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
+    /// The granularity of the data in the report. Valid values are WEEK, MONTH, and QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }
-///The search query data.
+/// The search query data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryData {
-    ///A buying customer’s search query that is relevant to your branded catalog.
+    /// A buying customer’s search query that is relevant to your branded catalog.
     #[serde(rename = "searchQuery")]
     pub search_query: ::std::string::String,
-    ///The rank for a search query in comparison to other queries for the ASIN. The ranking mechanism measures overall performance (the highest rank is 1).
+    /// The rank for a search query in comparison to other queries for the ASIN. The ranking mechanism measures overall performance (the highest rank is 1).
     #[serde(rename = "searchQueryScore")]
     pub search_query_score: i64,
-    ///The number of times customers search for a query at a select time period.
+    /// The number of times customers search for a query at a select time period.
     #[serde(rename = "searchQueryVolume")]
     pub search_query_volume: i64,
 }
-///The search query performance cart add data.
+/// The search query performance cart add data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryPerformanceCartAddData {
-    ///For a search query, the number of cart-adds for the ASIN that originates from the search results page.
+    /// For a search query, the number of cart-adds for the ASIN that originates from the search results page.
     #[serde(rename = "asinCartAddCount")]
     pub asin_cart_add_count: i64,
-    ///The fraction of cart-adds for the ASIN in comparison to the total cart-add count for the query.
+    /// The fraction of cart-adds for the ASIN in comparison to the total cart-add count for the query.
     #[serde(rename = "asinCartAddShare")]
     pub asin_cart_add_share: ::serde_json::Number,
     #[serde(rename = "asinMedianCartAddPrice")]
     pub asin_median_cart_add_price: CurrencyAmount,
-    ///For a search query, the number of cart-adds that originate from the search result page across all ASINs.
+    /// For a search query, the number of cart-adds that originate from the search result page across all ASINs.
     #[serde(rename = "totalCartAddCount")]
     pub total_cart_add_count: i64,
-    ///For a search query, the number of cart-adds across all ASINs divided by the search query volume.
+    /// For a search query, the number of cart-adds across all ASINs divided by the search query volume.
     #[serde(rename = "totalCartAddRate")]
     pub total_cart_add_rate: ::serde_json::Number,
     #[serde(rename = "totalMedianCartAddPrice")]
     pub total_median_cart_add_price: CurrencyAmount,
-    ///The number of times customers add any ASIN with the one-day delivery message to a cart from the search results page for the specific query.
+    /// The number of times customers add any ASIN with the one-day delivery message to a cart from the search results page for the specific query.
     #[serde(rename = "totalOneDayShippingCartAddCount")]
     pub total_one_day_shipping_cart_add_count: i64,
-    ///The number of times customers add any ASIN with the same-day delivery message to a cart from the search results page for the specific query.
+    /// The number of times customers add any ASIN with the same-day delivery message to a cart from the search results page for the specific query.
     #[serde(rename = "totalSameDayShippingCartAddCount")]
     pub total_same_day_shipping_cart_add_count: i64,
-    ///The number of times customers add any ASIN with the two-day delivery message to a cart from the search results page for the specific query.
+    /// The number of times customers add any ASIN with the two-day delivery message to a cart from the search results page for the specific query.
     #[serde(rename = "totalTwoDayShippingCartAddCount")]
     pub total_two_day_shipping_cart_add_count: i64,
 }
-///The search query performance click data.
+/// The search query performance click data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryPerformanceClickData {
-    ///For a search query, the number of clicks for the current ASIN.
+    /// For a search query, the number of clicks for the current ASIN.
     #[serde(rename = "asinClickCount")]
     pub asin_click_count: i64,
-    ///The fraction of clicks for the current ASIN in comparison to the total click count for the query.
+    /// The fraction of clicks for the current ASIN in comparison to the total click count for the query.
     #[serde(rename = "asinClickShare")]
     pub asin_click_share: ::serde_json::Number,
     #[serde(rename = "asinMedianClickPrice")]
     pub asin_median_click_price: CurrencyAmount,
-    ///For a search query, the number of ASIN clicks that originate from the search results page for any ASIN.
+    /// For a search query, the number of ASIN clicks that originate from the search results page for any ASIN.
     #[serde(rename = "totalClickCount")]
     pub total_click_count: i64,
-    ///For a search query, the number of clicks divided by the search query volume.
+    /// For a search query, the number of clicks divided by the search query volume.
     #[serde(rename = "totalClickRate")]
     pub total_click_rate: ::serde_json::Number,
     #[serde(rename = "totalMedianClickPrice")]
     pub total_median_click_price: CurrencyAmount,
-    ///The number of times customers click on any ASIN with the one-day delivery message from the search results page for the specific query.
+    /// The number of times customers click on any ASIN with the one-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalOneDayShippingClickCount")]
     pub total_one_day_shipping_click_count: i64,
-    ///The number of times customers click on any ASIN with the same-day delivery message from the search results page for the specific query.
+    /// The number of times customers click on any ASIN with the same-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalSameDayShippingClickCount")]
     pub total_same_day_shipping_click_count: i64,
-    ///The number of times customers click on any ASIN with the two-day delivery message from the search results page for the specific query.
+    /// The number of times customers click on any ASIN with the two-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalTwoDayShippingClickCount")]
     pub total_two_day_shipping_click_count: i64,
 }
-///Contains search query performance data at the ASIN level.
+/// Contains search query performance data at the ASIN level.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryPerformanceData {
-    ///A space-separated list of ASINs for which you can request the report. There is a 200-character limit.
+    /// A space-separated list of ASINs for which you can request the report. There is a 200-character limit.
     pub asin: ::std::string::String,
     #[serde(rename = "cartAddData")]
     pub cart_add_data: SearchQueryPerformanceCartAddData,
     #[serde(rename = "clickData")]
     pub click_data: SearchQueryPerformanceClickData,
-    ///The end date of the data for the ASIN that you specify.
+    /// The end date of the data for the ASIN that you specify.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
     #[serde(rename = "impressionData")]
@@ -193,49 +193,49 @@ pub struct SearchQueryPerformanceData {
     pub purchase_data: SearchQueryPerformancePurchaseData,
     #[serde(rename = "searchQueryData")]
     pub search_query_data: SearchQueryData,
-    ///The start date of the data for the ASIN that you specify.
+    /// The start date of the data for the ASIN that you specify.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///The search query performance impression data.
+/// The search query performance impression data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryPerformanceImpressionData {
-    ///The total number of impressions that originate from the search results page for the current ASIN with the current query.
+    /// The total number of impressions that originate from the search results page for the current ASIN with the current query.
     #[serde(rename = "asinImpressionCount")]
     pub asin_impression_count: i64,
-    ///The fraction of impressions for the ASIN in comparison to the total impression count for the query.
+    /// The fraction of impressions for the ASIN in comparison to the total impression count for the query.
     #[serde(rename = "asinImpressionShare")]
     pub asin_impression_share: ::serde_json::Number,
-    ///The total number of impressions that originate from the search results page for all ASINs with the current query.
+    /// The total number of impressions that originate from the search results page for all ASINs with the current query.
     #[serde(rename = "totalQueryImpressionCount")]
     pub total_query_impression_count: i64,
 }
-///The search query performance purchase data.
+/// The search query performance purchase data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchQueryPerformancePurchaseData {
     #[serde(rename = "asinMedianPurchasePrice")]
     pub asin_median_purchase_price: CurrencyAmount,
-    ///For a search query, the number of purchases for the current ASIN.
+    /// For a search query, the number of purchases for the current ASIN.
     #[serde(rename = "asinPurchaseCount")]
     pub asin_purchase_count: i64,
-    ///The fraction of purchase actions for the ASIN in comparison to the total purchase count for the query.
+    /// The fraction of purchase actions for the ASIN in comparison to the total purchase count for the query.
     #[serde(rename = "asinPurchaseShare")]
     pub asin_purchase_share: ::serde_json::Number,
     #[serde(rename = "totalMedianPurchasePrice")]
     pub total_median_purchase_price: CurrencyAmount,
-    ///The number of times customers purchase any ASIN with a one-day delivery message from the search results page for the specific query.
+    /// The number of times customers purchase any ASIN with a one-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalOneDayShippingPurchaseCount")]
     pub total_one_day_shipping_purchase_count: i64,
-    ///For a search query, the number of purchases that originate from the search result for any ASIN.
+    /// For a search query, the number of purchases that originate from the search result for any ASIN.
     #[serde(rename = "totalPurchaseCount")]
     pub total_purchase_count: i64,
-    ///For a search query, the number of purchases divided by the search query volume.
+    /// For a search query, the number of purchases divided by the search query volume.
     #[serde(rename = "totalPurchaseRate")]
     pub total_purchase_rate: ::serde_json::Number,
-    ///The number of times customers purchase any ASIN with the same-day delivery message from the search results page for the specific query.
+    /// The number of times customers purchase any ASIN with the same-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalSameDayShippingPurchaseCount")]
     pub total_same_day_shipping_purchase_count: i64,
-    ///The number of times customers purchase any ASIN with a two-day delivery message from the search results page for the specific query.
+    /// The number of times customers purchase any ASIN with a two-day delivery message from the search results page for the specific query.
     #[serde(rename = "totalTwoDayShippingPurchaseCount")]
     pub total_two_day_shipping_purchase_count: i64,
 }

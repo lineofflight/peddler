@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_return`].
+/// The parameters of [`get_return`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReturnParams {
-    ///The ID of the return item you want.
+    /// The ID of the return item you want.
     pub return_id: String,
 }
 impl GetReturnParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(return_id: String) -> Self {
         Self { return_id }
     }
 }
-///Retrieve the return item with the specified ID.
+/// Retrieve the return item with the specified ID.
 pub async fn get_return(
     client: &Client,
     params: GetReturnParams,
@@ -40,43 +40,43 @@ pub async fn get_return(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`list_returns`] and [`list_returns_pages`].
+/// The parameters of [`list_returns`] and [`list_returns_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListReturnsParams {
-    ///The SmartConnect location ID of the location from which you want to retrieve return items.
+    /// The SmartConnect location ID of the location from which you want to retrieve return items.
     pub return_location_id: Option<String>,
-    ///The RMA ID of the return items you want to list.
+    /// The RMA ID of the return items you want to list.
     pub rma_id: Option<String>,
-    ///The status of return items you want to list. You can retrieve all new return items with the `CREATED` status.
+    /// The status of return items you want to list. You can retrieve all new return items with the `CREATED` status.
     ///
-    ///Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
+    /// Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`.
     pub status: Option<String>,
-    ///The reverse tracking ID of the return items you want to list.
+    /// The reverse tracking ID of the return items you want to list.
     pub reverse_tracking_id: Option<String>,
-    ///Return items created after the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Return items created after the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_since: Option<String>,
-    ///Return items created before the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Return items created before the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_until: Option<String>,
-    ///Return items updated after the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
+    /// Return items updated after the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
     pub last_updated_since: Option<String>,
-    ///Return items whose most recent update is before the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
+    /// Return items whose most recent update is before the specified date are included in the response. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If you supply this parameter, you must also supply `returnLocationId` and `status`.
     pub last_updated_until: Option<String>,
-    ///DEPRECATED. Use the `createdSince` parameter.
+    /// DEPRECATED. Use the `createdSince` parameter.
     pub last_updated_after: Option<String>,
-    ///DEPRECATED. Use the `createdUntil` parameter.
+    /// DEPRECATED. Use the `createdUntil` parameter.
     pub last_updated_before: Option<String>,
-    ///The number of return items you want to include in the response.
+    /// The number of return items you want to include in the response.
     ///
-    ///**Default:** 10
+    /// **Default:** 10
     ///
-    ///**Maximum:** 100
+    /// **Maximum:** 100
     pub max_results: Option<i64>,
-    ///A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListReturnsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             return_location_id: None,
@@ -99,9 +99,9 @@ impl Default for ListReturnsParams {
         Self::new()
     }
 }
-///Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
+/// Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
 ///
-///Its pages: [`list_returns_pages`].
+/// Its pages: [`list_returns_pages`].
 pub async fn list_returns(
     client: &Client,
     params: ListReturnsParams,
@@ -141,7 +141,7 @@ pub async fn list_returns(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_returns`].
+/// Each page of [`list_returns`].
 pub fn list_returns_pages<'a>(
     client: &'a Client,
     params: ListReturnsParams,

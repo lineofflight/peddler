@@ -2,7 +2,7 @@
 // Source: finances-api-model/financesInvoices_2026-06-25.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A signed decimal number.
+/// A signed decimal number.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BigDecimal(pub ::serde_json::Number);
@@ -45,80 +45,80 @@ impl ::std::convert::TryFrom<String> for BigDecimal {
         value.parse()
     }
 }
-///The billing period for an invoice.
+/// The billing period for an invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BillingPeriod {
-    ///The end of the billing period of an invoice. In ISO 8601 format.
+    /// The end of the billing period of an invoice. In ISO 8601 format.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The start of the billing period of an invoice. In ISO 8601 format.
+    /// The start of the billing period of an invoice. In ISO 8601 format.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Details about the movement of money. Breakdowns are further categorized into breakdown types, breakdown amounts, and sub-breakdowns.
+/// Details about the movement of money. Breakdowns are further categorized into breakdown types, breakdown amounts, and sub-breakdowns.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Breakdown {
-    ///The monetary amount of the charge.
+    /// The monetary amount of the charge.
     #[serde(rename = "breakdownAmount")]
     pub breakdown_amount: Currency,
-    ///The type of charge.
+    /// The type of charge.
     ///
-    ///**Possible values for `invoiceAmountBreakdowns`:**
+    /// **Possible values for `invoiceAmountBreakdowns`:**
     ///
-    ///* `Total`: Total invoice amount.
-    ///* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
-    ///* `TaxAmount`: Tax amount on the invoice.
-    ///* `MiscCharges`: Miscellaneous charges on the invoice.
-    ///* `Other`: Other breakdown type.
+    /// * `Total`: Total invoice amount.
+    /// * `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
+    /// * `TaxAmount`: Tax amount on the invoice.
+    /// * `MiscCharges`: Miscellaneous charges on the invoice.
+    /// * `Other`: Other breakdown type.
     ///
-    ///**Possible values for `invoiceSettlementBreakdowns`:**
+    /// **Possible values for `invoiceSettlementBreakdowns`:**
     ///
-    ///* `AmountPaid`: Amount that has been paid.
-    ///* `QueuedForPayment`: Amount queued for payment.
-    ///* `QuickPayDiscount`: Quick pay discount amount.
-    ///* `QuantityVarianceAmount`: Quantity variance amount.
-    ///* `PriceVariance`: Price variance amount.
-    ///* `Other`: Other settlement breakdown type.
+    /// * `AmountPaid`: Amount that has been paid.
+    /// * `QueuedForPayment`: Amount queued for payment.
+    /// * `QuickPayDiscount`: Quick pay discount amount.
+    /// * `QuantityVarianceAmount`: Quantity variance amount.
+    /// * `PriceVariance`: Price variance amount.
+    /// * `Other`: Other settlement breakdown type.
     ///
-    ///**Possible values for `totalAmountBreakdown` (line item level):**
+    /// **Possible values for `totalAmountBreakdown` (line item level):**
     ///
-    ///* `ItemCostWithoutTax`: Line item cost excluding tax.
-    ///* `ItemTaxAmount`: Tax amount on the line item.
-    ///* `Other`: Other line item breakdown type.
+    /// * `ItemCostWithoutTax`: Line item cost excluding tax.
+    /// * `ItemTaxAmount`: Tax amount on the line item.
+    /// * `Other`: Other line item breakdown type.
     #[serde(rename = "breakdownType")]
     pub breakdown_type: ::std::string::String,
-    ///A list of breakdowns that detail how the total amount is calculated.
+    /// A list of breakdowns that detail how the total amount is calculated.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
 }
-///A monetary amount with a currency code.
+/// A monetary amount with a currency code.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Currency {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(rename = "currencyAmount")]
     pub currency_amount: BigDecimal,
-    ///The three-digit currency code in ISO 4217 format.
+    /// The three-digit currency code in ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///Error response returned when the request is unsuccessful.
+    /// Error response returned when the request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The response to the `getInvoice` operation.
+/// The response to the `getInvoice` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoiceResponse {
     #[serde(
@@ -126,137 +126,137 @@ pub struct GetInvoiceResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_header: ::std::option::Option<InvoiceHeader>,
-    ///A list of invoice line items.
+    /// A list of invoice line items.
     #[serde(
         rename = "invoiceItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_items: ::std::option::Option<::std::vec::Vec<InvoiceItem>>,
-    ///A token you can use to retrieve the next page of line items.
+    /// A token you can use to retrieve the next page of line items.
     #[serde(
         rename = "nextTokenForLineItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token_for_line_items: ::std::option::Option<::std::string::String>,
 }
-///The response to the `getInvoiceHeaders` operation.
+/// The response to the `getInvoiceHeaders` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesResponse {
-    ///A list of invoices with header-level details.
+    /// A list of invoices with header-level details.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoices: ::std::option::Option<::std::vec::Vec<InvoiceHeader>>,
-    ///The response includes `nextToken` when the number of invoices exceeds the default page size value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is `null`. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of invoices exceeds the default page size value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is `null`. Note that this operation can return empty pages.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///The number of records returned.
+    /// The number of records returned.
     #[serde(
         rename = "numOfRecords",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub num_of_records: ::std::option::Option<i32>,
 }
-///Represents the header-level information for an invoice, including parties involved (payer/payee), financial amounts, status, dates, and related business identifiers.
+/// Represents the header-level information for an invoice, including parties involved (payer/payee), financial amounts, status, dates, and related business identifiers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceHeader {
-    ///The billing period for an invoice.
+    /// The billing period for an invoice.
     #[serde(
         rename = "billingPeriod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub billing_period: ::std::option::Option<BillingPeriod>,
-    ///When the invoice was created. In ISO 8601 format.
+    /// When the invoice was created. In ISO 8601 format.
     #[serde(rename = "creationDate")]
     pub creation_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The due date of the invoice. In ISO 8601 format.
+    /// The due date of the invoice. In ISO 8601 format.
     #[serde(rename = "dueDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub due_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The total monetary amount of the invoice.
+    /// The total monetary amount of the invoice.
     #[serde(rename = "invoiceAmount")]
     pub invoice_amount: Currency,
-    ///The breakdown of the invoice amount into sub-components.
+    /// The breakdown of the invoice amount into sub-components.
     ///
-    ///**Possible `breakdownType` values:**
+    /// **Possible `breakdownType` values:**
     ///
-    ///* `Total`: Total invoice amount.
-    ///* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
-    ///* `TaxAmount`: Tax amount on the invoice.
-    ///* `MiscCharges`: Miscellaneous charges on the invoice.
-    ///* `Other`: Other breakdown type.
+    /// * `Total`: Total invoice amount.
+    /// * `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
+    /// * `TaxAmount`: Tax amount on the invoice.
+    /// * `MiscCharges`: Miscellaneous charges on the invoice.
+    /// * `Other`: Other breakdown type.
     #[serde(
         rename = "invoiceAmountBreakdowns",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_amount_breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    ///The unique identifier for an invoice. For AP-Inventory invoices, this is formatted as `InvoiceNumber~PayeeCode`. This field can be used as an input to the `getInvoice` operation to fetch invoice details.
+    /// The unique identifier for an invoice. For AP-Inventory invoices, this is formatted as `InvoiceNumber~PayeeCode`. This field can be used as an input to the `getInvoice` operation to fetch invoice details.
     #[serde(rename = "invoiceIdentifier")]
     pub invoice_identifier: ::std::string::String,
-    ///The invoice number provided when the invoice was created.
+    /// The invoice number provided when the invoice was created.
     #[serde(rename = "invoiceNumber")]
     pub invoice_number: ::std::string::String,
-    ///The breakdown of the invoice settlement amount into sub-components.
+    /// The breakdown of the invoice settlement amount into sub-components.
     ///
-    ///**Possible `breakdownType` values:**
+    /// **Possible `breakdownType` values:**
     ///
-    ///* `AmountPaid`: Amount that has been paid.
-    ///* `QueuedForPayment`: Amount queued for payment.
-    ///* `QuickPayDiscount`: Quick pay discount amount.
-    ///* `QuantityVarianceAmount`: Quantity variance amount.
-    ///* `PriceVariance`: Price variance amount.
-    ///* `Other`: Other settlement breakdown type.
+    /// * `AmountPaid`: Amount that has been paid.
+    /// * `QueuedForPayment`: Amount queued for payment.
+    /// * `QuickPayDiscount`: Quick pay discount amount.
+    /// * `QuantityVarianceAmount`: Quantity variance amount.
+    /// * `PriceVariance`: Price variance amount.
+    /// * `Other`: Other settlement breakdown type.
     #[serde(
         rename = "invoiceSettlementBreakdowns",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_settlement_breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    ///The current state of the invoice.
+    /// The current state of the invoice.
     ///
-    ///Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`, `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`. Other values may be returned by Amazon.
+    /// Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`, `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceStatus")]
     pub invoice_status: ::std::string::String,
-    ///The type of invoice.
+    /// The type of invoice.
     ///
-    ///Known values: `AP_INVENTORY`, `OTHER`. Other values may be returned by Amazon.
+    /// Known values: `AP_INVENTORY`, `OTHER`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
-    ///When the invoice was issued. In ISO 8601 format.
+    /// When the invoice was issued. In ISO 8601 format.
     #[serde(rename = "issueDate")]
     pub issue_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///When the invoice was last updated. In ISO 8601 format.
+    /// When the invoice was last updated. In ISO 8601 format.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The payee-related information.
+    /// The payee-related information.
     pub payee: PartnerMetadata,
-    ///The payer-related information.
+    /// The payer-related information.
     pub payer: PartnerMetadata,
-    ///Payment terms associated with the invoice.
+    /// Payment terms associated with the invoice.
     #[serde(
         rename = "paymentTerms",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_terms: ::std::option::Option<::std::string::String>,
-    ///A list of related business identifiers associated with the invoice.
+    /// A list of related business identifiers associated with the invoice.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<::std::vec::Vec<RelatedIdentifier>>,
 }
-///A line item within an invoice, including unit costs, quantities, tax information, and contextual details about the goods or services being invoiced.
+/// A line item within an invoice, including unit costs, quantities, tax information, and contextual details about the goods or services being invoiced.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceItem {
-    ///Contextual information about the line item.
+    /// Contextual information about the line item.
     #[serde(rename = "lineItemContext")]
     pub line_item_context: LineItemContext,
-    ///The unique identifier for the line item.
+    /// The unique identifier for the line item.
     #[serde(rename = "lineItemId")]
     pub line_item_id: ::std::string::String,
-    ///The number of units for the line item.
+    /// The number of units for the line item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<i32>,
-    ///List of related item identifiers for the line item.
+    /// List of related item identifiers for the line item.
     #[serde(
         rename = "relatedItemIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -264,222 +264,222 @@ pub struct InvoiceItem {
     pub related_item_identifiers: ::std::option::Option<
         ::std::vec::Vec<RelatedIdentifier>,
     >,
-    ///A list of country code and tax rate combinations applied to the line item. Example: `DE 19`
+    /// A list of country code and tax rate combinations applied to the line item. Example: `DE 19`
     #[serde(
         rename = "taxRateCodes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_rate_codes: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The total monetary amount for the line item, including tax.
+    /// The total monetary amount for the line item, including tax.
     #[serde(rename = "totalAmount")]
     pub total_amount: Currency,
-    ///The breakdown of the total amount into sub-components.
+    /// The breakdown of the total amount into sub-components.
     ///
-    ///**Possible `breakdownType` values:**
+    /// **Possible `breakdownType` values:**
     ///
-    ///* `ItemCostWithoutTax`: Line item cost excluding tax.
-    ///* `ItemTaxAmount`: Tax amount on the line item.
-    ///* `Other`: Other line item breakdown type.
+    /// * `ItemCostWithoutTax`: Line item cost excluding tax.
+    /// * `ItemTaxAmount`: Tax amount on the line item.
+    /// * `Other`: Other line item breakdown type.
     #[serde(
         rename = "totalAmountBreakdown",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount_breakdown: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    ///The cost per unit of the line item.
+    /// The cost per unit of the line item.
     #[serde(rename = "unitCost", skip_serializing_if = "::std::option::Option::is_none")]
     pub unit_cost: ::std::option::Option<Currency>,
 }
-///Identifier for an item in the invoice line item.
+/// Identifier for an item in the invoice line item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemIdentifier {
-    ///The type of item identifier.
+    /// The type of item identifier.
     ///
-    ///Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`. Other values may be returned by Amazon.
+    /// Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`. Other values may be returned by Amazon.
     #[serde(rename = "itemIdentifierName")]
     pub item_identifier_name: ::std::string::String,
-    ///The value of the item identifier.
+    /// The value of the item identifier.
     #[serde(rename = "itemIdentifierValue")]
     pub item_identifier_value: ::std::string::String,
 }
-///Contextual information about an invoice line item.
+/// Contextual information about an invoice line item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LineItemContext {
-    ///A description of the item.
+    /// A description of the item.
     #[serde(
         rename = "itemDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_description: ::std::option::Option<::std::string::String>,
-    ///A list of identifiers for the item.
+    /// A list of identifiers for the item.
     #[serde(
         rename = "itemIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_identifiers: ::std::option::Option<::std::vec::Vec<ItemIdentifier>>,
-    ///The type of line item.
+    /// The type of line item.
     ///
-    ///Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Amazon.
+    /// Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Amazon.
     #[serde(rename = "lineItemType")]
     pub line_item_type: ::std::string::String,
-    ///Information related to matching of invoiced quantity with Amazon systems.
+    /// Information related to matching of invoiced quantity with Amazon systems.
     #[serde(
         rename = "matchingContext",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub matching_context: ::std::option::Option<MatchingContext>,
-    ///The service charge period.
+    /// The service charge period.
     #[serde(
         rename = "serviceChargePeriod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_charge_period: ::std::option::Option<ServiceChargePeriod>,
-    ///The type of service charge.
+    /// The type of service charge.
     ///
-    ///Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`, `OTHER`. Other values may be returned by Amazon.
+    /// Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`, `OTHER`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceChargeType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_charge_type: ::std::option::Option<::std::string::String>,
 }
-///How an invoice line item's quantity and price were matched against expected values, including any variances and their underlying reasons.
+/// How an invoice line item's quantity and price were matched against expected values, including any variances and their underlying reasons.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MatchingContext {
-    ///The monetary amount that was matched.
+    /// The monetary amount that was matched.
     #[serde(rename = "matchedAmount")]
     pub matched_amount: Currency,
-    ///The quantity that was matched.
+    /// The quantity that was matched.
     #[serde(rename = "matchedQuantity")]
     pub matched_quantity: i32,
-    ///The monetary amount that has been paid.
+    /// The monetary amount that has been paid.
     #[serde(
         rename = "paidAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub paid_amount: ::std::option::Option<Currency>,
-    ///The quantity that has been paid for.
+    /// The quantity that has been paid for.
     #[serde(
         rename = "paidQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub paid_quantity: ::std::option::Option<i32>,
-    ///The difference between expected and actual price.
+    /// The difference between expected and actual price.
     #[serde(
         rename = "priceVariance",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub price_variance: ::std::option::Option<Currency>,
-    ///The difference between expected and actual quantity.
+    /// The difference between expected and actual quantity.
     #[serde(
         rename = "quantityVariance",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_variance: ::std::option::Option<i32>,
-    ///Reasons for the variance.
+    /// Reasons for the variance.
     #[serde(
         rename = "varianceReasons",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub variance_reasons: ::std::option::Option<::std::vec::Vec<VarianceReason>>,
 }
-///Metadata about a partner (payer or payee) associated with the invoice.
+/// Metadata about a partner (payer or payee) associated with the invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartnerMetadata {
-    ///The address of the partner.
+    /// The address of the partner.
     #[serde(
         rename = "partnerAddress",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_address: ::std::option::Option<::std::string::String>,
-    ///The list of entities associated with a partner.
+    /// The list of entities associated with a partner.
     #[serde(
         rename = "partnerEntities",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_entities: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The unique identifier for the partner. If the partner is a vendor, then this value is the `vendorGroupID`.
+    /// The unique identifier for the partner. If the partner is a vendor, then this value is the `vendorGroupID`.
     #[serde(rename = "partnerId")]
     pub partner_id: ::std::string::String,
-    ///The name of the partner.
+    /// The name of the partner.
     #[serde(
         rename = "partnerName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_name: ::std::option::Option<::std::string::String>,
-    ///The type of partner.
+    /// The type of partner.
     ///
-    ///Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amazon.
+    /// Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amazon.
     #[serde(rename = "partnerType")]
     pub partner_type: ::std::string::String,
-    ///The tax registration number of the partner.
+    /// The tax registration number of the partner.
     #[serde(
         rename = "taxRegistrationNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_registration_number: ::std::option::Option<::std::string::String>,
 }
-///Related business identifier of the transaction.
+/// Related business identifier of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedIdentifier {
-    ///The name of the related identifier.
+    /// The name of the related identifier.
     ///
-    ///Known values: `PAYEE_CODE`, `PURCHASE_ORDER_IDS`, `SHORTAGE_INVOICE_IDS`, `ASN_IDS`, `RETURN_IDS`, `AGREEMENT_IDS`, `PRODUCT_LINE`, `VENDOR_CODE`, `UNIQUE_PAYMENT_IDS`, `WAREHOUSE_ID`. Other values may be returned by Amazon.
+    /// Known values: `PAYEE_CODE`, `PURCHASE_ORDER_IDS`, `SHORTAGE_INVOICE_IDS`, `ASN_IDS`, `RETURN_IDS`, `AGREEMENT_IDS`, `PRODUCT_LINE`, `VENDOR_CODE`, `UNIQUE_PAYMENT_IDS`, `WAREHOUSE_ID`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
-    ///The corresponding related identifier values.
+    /// The corresponding related identifier values.
     #[serde(rename = "relatedIdentifierValue")]
     pub related_identifier_value: ::std::vec::Vec<::std::string::String>,
 }
-///The time period for a service charge.
+/// The time period for a service charge.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ServiceChargePeriod {
-    ///When the service charge period ends. In ISO 8601 format.
+    /// When the service charge period ends. In ISO 8601 format.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///When the service charge period starts. In ISO 8601 format.
+    /// When the service charge period starts. In ISO 8601 format.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///The type and underlying defect classifications explaining discrepancies between expected and actual invoice values.
+/// The type and underlying defect classifications explaining discrepancies between expected and actual invoice values.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VarianceReason {
-    ///List of defect types associated with the variance. These represent root cause classifications for the variance.
+    /// List of defect types associated with the variance. These represent root cause classifications for the variance.
     ///
-    ///**Possible values for PPV (Purchase Price Variance):**
+    /// **Possible values for PPV (Purchase Price Variance):**
     ///
-    ///* `DEALBUY`: Amazon raised discounted POs at vendor-accepted discount costs, but the vendor invoiced at regular costs.
-    ///* `PRODUCT_COST_NOT_ACTIVE`: Vendor is using a cost that is not currently active; it may be pending approval or is a historical cost.
-    ///* `PRODUCT_COST_NOT_REGISTERED`: Vendor is using a cost that is not registered in Amazon's system, often due to offline negotiations not yet updated.
-    ///* `VENDOR_LOWERING_COST_AT_PO_CONFIRMATION`: Vendor confirmed the PO at a lower cost but invoiced at a different (higher) amount.
-    ///* `CCOGS_PRICE_PROTECTION_AGREEMENT_PPA`: A Price Protection clause in the vendor's Terms and Conditions agreement applies to this ASIN.
-    ///* `FALSE_CCOGS_PPA`: Invoiced cost exceeded the confirmed PO cost due to a cost price adjustment by Amazon, likely from a previous cost decrease within the same period.
-    ///* `AMAZON_POC_LOWERING_COST_ON_PO`: Amazon's systems reduced the cost price for this ASIN post PO confirmation, most likely due to a previous cost price decrease or on request.
-    ///* `REJECTED_PRICE_INCREASE_ON_PO`: Vendor submitted a cost price increase that was denied, but still invoiced at the increased cost.
-    ///* `LIST_PRICE_DISCOUNT_ISSUES`: The List Price on the PO and invoice do not match, or the Discount code on the PO does not match the invoice.
-    ///* `ROUNDING_ISSUES`: Price variance caused by foreign exchange currency conversion or decimal place rounding differences.
-    ///* `OTHER`: Defect type not belonging to a predefined category.
+    /// * `DEALBUY`: Amazon raised discounted POs at vendor-accepted discount costs, but the vendor invoiced at regular costs.
+    /// * `PRODUCT_COST_NOT_ACTIVE`: Vendor is using a cost that is not currently active; it may be pending approval or is a historical cost.
+    /// * `PRODUCT_COST_NOT_REGISTERED`: Vendor is using a cost that is not registered in Amazon's system, often due to offline negotiations not yet updated.
+    /// * `VENDOR_LOWERING_COST_AT_PO_CONFIRMATION`: Vendor confirmed the PO at a lower cost but invoiced at a different (higher) amount.
+    /// * `CCOGS_PRICE_PROTECTION_AGREEMENT_PPA`: A Price Protection clause in the vendor's Terms and Conditions agreement applies to this ASIN.
+    /// * `FALSE_CCOGS_PPA`: Invoiced cost exceeded the confirmed PO cost due to a cost price adjustment by Amazon, likely from a previous cost decrease within the same period.
+    /// * `AMAZON_POC_LOWERING_COST_ON_PO`: Amazon's systems reduced the cost price for this ASIN post PO confirmation, most likely due to a previous cost price decrease or on request.
+    /// * `REJECTED_PRICE_INCREASE_ON_PO`: Vendor submitted a cost price increase that was denied, but still invoiced at the increased cost.
+    /// * `LIST_PRICE_DISCOUNT_ISSUES`: The List Price on the PO and invoice do not match, or the Discount code on the PO does not match the invoice.
+    /// * `ROUNDING_ISSUES`: Price variance caused by foreign exchange currency conversion or decimal place rounding differences.
+    /// * `OTHER`: Defect type not belonging to a predefined category.
     ///
-    ///**Possible values for PQV (Purchase Quantity Variance):**
+    /// **Possible values for PQV (Purchase Quantity Variance):**
     ///
-    ///* `UNRECOGNISED_ASIN`: The ASIN on the invoice is not recognized or does not match Amazon's records.
-    ///* `OVERBILLING`: The invoiced quantity exceeds the quantity received or expected by Amazon.
-    ///* `DUPLICATE_INVOICE_DEFECT`: The invoice is a duplicate of a previously submitted invoice.
-    ///* `DELETED_APPOINTMENT`: The delivery appointment associated with this shipment was deleted.
-    ///* `NO_APPOINTMENT`: No delivery appointment was found for this shipment.
-    ///* `SHORTAGES_IN_TRANSIT`: Quantity shortages detected during transit — fewer units arrived than were shipped.
-    ///* `ASIN_MISMATCH`: Amazon's systems received an ASIN with a different cost than the one ordered on the PO, possibly due to incorrect smart-matching or cross-matching.
-    ///* `FEED_DEFECTS`: Vendor's price feed contains defects such as unrecognized UPC/EAN codes or incorrect supplier IDs for multi-supplier updates.
-    ///* `REJECTED_LINE_ITEM_ON_PO`: Vendor confirmed this PO line item as Rejected or On-hold but still shipped the products.
-    ///* `FAILED_PO_CONFIRMATION`: Vendor's latest PO confirmation message for this line item failed processing and was not translated correctly.
-    ///* `OTHER`: Defect type not belonging to a predefined category.
+    /// * `UNRECOGNISED_ASIN`: The ASIN on the invoice is not recognized or does not match Amazon's records.
+    /// * `OVERBILLING`: The invoiced quantity exceeds the quantity received or expected by Amazon.
+    /// * `DUPLICATE_INVOICE_DEFECT`: The invoice is a duplicate of a previously submitted invoice.
+    /// * `DELETED_APPOINTMENT`: The delivery appointment associated with this shipment was deleted.
+    /// * `NO_APPOINTMENT`: No delivery appointment was found for this shipment.
+    /// * `SHORTAGES_IN_TRANSIT`: Quantity shortages detected during transit — fewer units arrived than were shipped.
+    /// * `ASIN_MISMATCH`: Amazon's systems received an ASIN with a different cost than the one ordered on the PO, possibly due to incorrect smart-matching or cross-matching.
+    /// * `FEED_DEFECTS`: Vendor's price feed contains defects such as unrecognized UPC/EAN codes or incorrect supplier IDs for multi-supplier updates.
+    /// * `REJECTED_LINE_ITEM_ON_PO`: Vendor confirmed this PO line item as Rejected or On-hold but still shipped the products.
+    /// * `FAILED_PO_CONFIRMATION`: Vendor's latest PO confirmation message for this line item failed processing and was not translated correctly.
+    /// * `OTHER`: Defect type not belonging to a predefined category.
     #[serde(
         rename = "defectTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub defect_types: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The type of variance.
+    /// The type of variance.
     ///
-    ///Known values: `PQV`, `PPV`, `OTHER`. Other values may be returned by Amazon.
+    /// Known values: `PQV`, `PPV`, `OTHER`. Other values may be returned by Amazon.
     #[serde(rename = "varianceType")]
     pub variance_type: ::std::string::String,
 }

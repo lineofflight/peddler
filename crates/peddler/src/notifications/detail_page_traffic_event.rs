@@ -2,28 +2,28 @@
 // Source: schemas/notifications/DetailPageTrafficEventNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`DetailPageTrafficEvent`
+/// `DetailPageTrafficEvent`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailPageTrafficEvent {
-    ///The merchant customer ID or vendor group ID of the partner account this notification is sent to.
+    /// The merchant customer ID or vendor group ID of the partner account this notification is sent to.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The Amazon Standard Identification Number of the product.
+    /// The Amazon Standard Identification Number of the product.
     pub asin: ::std::string::String,
-    ///The end of the date-time range of the traffic data in ISO 8601 format in UTC time.
+    /// The end of the date-time range of the traffic data in ISO 8601 format in UTC time.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The number of customer views of the product detail page for this ASIN.
+    /// The number of customer views of the product detail page for this ASIN.
     #[serde(rename = "glanceViews")]
     pub glance_views: u64,
-    ///The marketplace identifier of the traffic data.
+    /// The marketplace identifier of the traffic data.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The start of the date-time range of the traffic data in ISO 8601 format in UTC time.
+    /// The start of the date-time range of the traffic data in ISO 8601 format in UTC time.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///`DetailPageTrafficEvents`
+/// `DetailPageTrafficEvents`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DetailPageTrafficEvents(pub ::std::vec::Vec<DetailPageTrafficEvent>);
@@ -45,7 +45,7 @@ for DetailPageTrafficEvents {
         Self(value)
     }
 }
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
     #[serde(rename = "eventTime")]
@@ -60,7 +60,7 @@ pub struct Notification {
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
     #[serde(rename = "applicationId")]
@@ -72,7 +72,7 @@ pub struct NotificationMetadata {
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
     #[serde(rename = "detailPageTrafficEvents")]

@@ -2,558 +2,558 @@
 // Source: customer-feedback-api-model/customerFeedback_2024-06-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The browse node review occurrence metrics.
+/// The browse node review occurrence metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeAllOccurrence {
-    ///The percentage of reviews of products in the browse node that mention the topic.
+    /// The percentage of reviews of products in the browse node that mention the topic.
     #[serde(rename = "allProducts")]
     pub all_products: ::serde_json::Number,
-    ///The percentage of reviews of the top 25 percent of products in the browse node that mention the topic.
+    /// The percentage of reviews of the top 25 percent of products in the browse node that mention the topic.
     #[serde(rename = "topTwentyFivePercentProducts")]
     pub top_twenty_five_percent_products: ::serde_json::Number,
 }
-///The effects of a topic on the star ratings in a browse node.
+/// The effects of a topic on the star ratings in a browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeAllStarRatingImpact {
-    ///The effect of the topic on the star rating of all products in the browse node. This value can be positive or negative.
+    /// The effect of the topic on the star rating of all products in the browse node. This value can be positive or negative.
     #[serde(rename = "allProducts")]
     pub all_products: ::serde_json::Number,
-    ///The effect of the topic on the star rating of the top 25 percent of products in the browse node. This value can be positive or negative.
+    /// The effect of the topic on the star rating of the top 25 percent of products in the browse node. This value can be positive or negative.
     #[serde(rename = "topTwentyFivePercentProducts")]
     pub top_twenty_five_percent_products: ::serde_json::Number,
 }
-///The browse node review trend occurrence metrics.
+/// The browse node review trend occurrence metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeOccurrence {
-    ///The percentage of reviews of products in the browse node that mention a topic.
+    /// The percentage of reviews of products in the browse node that mention a topic.
     #[serde(rename = "allProducts")]
     pub all_products: ::serde_json::Number,
 }
-///The response for the `getItemBrowseNode` operation.
+/// The response for the `getItemBrowseNode` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeResponse {
-    ///A browse node id is the unique identifier of a given browse node. A browse node is a location in a browse tree that is used for navigation, product classification, and website content.
+    /// A browse node id is the unique identifier of a given browse node. A browse node is a location in a browse tree that is used for navigation, product classification, and website content.
     #[serde(rename = "browseNodeId")]
     pub browse_node_id: ::std::string::String,
-    ///The display name of the browse node as visible on the Amazon retail website.
+    /// The display name of the browse node as visible on the Amazon retail website.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
 }
-///Topics from returns for all items in a browse node.
+/// Topics from returns for all items in a browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReturnTopics {
-    ///The browse node return topic metrics.
+    /// The browse node return topic metrics.
     #[serde(rename = "browseNodeMetrics")]
     pub browse_node_metrics: BrowseNodeTrendMetrics,
-    ///The name of the return feedback topic .
+    /// The name of the return feedback topic .
     pub topic: ::std::string::String,
 }
-///The response for the `getBrowseNodeReturnTopics` operation.
+/// The response for the `getBrowseNodeReturnTopics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReturnTopicsResponse {
-    ///The requested browse node id. A browse node id is the unique identifier of a given browse node.
+    /// The requested browse node id. A browse node id is the unique identifier of a given browse node.
     #[serde(rename = "browseNodeId")]
     pub browse_node_id: ::std::string::String,
-    ///The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The range of dates during which the returns were made.
+    /// The range of dates during which the returns were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The display name of the browse node, as visible on the Amazon retail website.
+    /// The display name of the browse node, as visible on the Amazon retail website.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The list of browse node return topics.
+    /// The list of browse node return topics.
     pub topics: ::std::vec::Vec<BrowseNodeReturnTopics>,
 }
-///The trend of return topic metrics for all items in the requested browse node.
+/// The trend of return topic metrics for all items in the requested browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReturnTrend {
-    ///The name of the topic.
+    /// The name of the topic.
     pub topic: ::std::string::String,
-    ///The browse node return trend metrics.
+    /// The browse node return trend metrics.
     #[serde(rename = "trendMetrics")]
     pub trend_metrics: ::std::vec::Vec<BrowseNodeReturnTrendPoint>,
 }
-///The return metrics for a certain month.
+/// The return metrics for a certain month.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReturnTrendPoint {
-    ///The browse node return metrics.
+    /// The browse node return metrics.
     #[serde(rename = "browseNodeMetrics")]
     pub browse_node_metrics: BrowseNodeTrendMetrics,
-    ///The range of dates during which the returns were made.
+    /// The range of dates during which the returns were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
 }
-///The response for the `getBrowseNodeReturnTrends` operation.
+/// The response for the `getBrowseNodeReturnTrends` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReturnTrendsResponse {
-    ///The requested browse node id. A browse node id is the unique identifier of a given browse node.
+    /// The requested browse node id. A browse node id is the unique identifier of a given browse node.
     #[serde(rename = "browseNodeId")]
     pub browse_node_id: ::std::string::String,
-    ///The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The range of dates during which the returns were made.
+    /// The range of dates during which the returns were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The display name of the browse node, as visible on the Amazon retail website.
+    /// The display name of the browse node, as visible on the Amazon retail website.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The browse node return trends.
+    /// The browse node return trends.
     #[serde(rename = "returnTrends")]
     pub return_trends: ::std::vec::Vec<BrowseNodeReturnTrend>,
 }
-///The browse node review subtopic metrics.
+/// The browse node review subtopic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewSubtopicMetrics {
-    ///The percentage of reviews that mention the subtopic.
+    /// The percentage of reviews that mention the subtopic.
     #[serde(rename = "occurrencePercentage")]
     pub occurrence_percentage: ::serde_json::Number,
 }
-///The browse node review topic.
+/// The browse node review topic.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTopic {
-    ///The percentage of browse node reviews that mention the topic, and the effect the topic has on the star rating.
+    /// The percentage of browse node reviews that mention the topic, and the effect the topic has on the star rating.
     #[serde(rename = "browseNodeMetrics")]
     pub browse_node_metrics: BrowseNodeReviewTopicMetrics,
-    ///A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the topic.
+    /// A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the topic.
     #[serde(
         rename = "reviewSnippets",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub review_snippets: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///A list of the five subtopics that occur most frequently. This value is `null` if there are no subtopics.
+    /// A list of the five subtopics that occur most frequently. This value is `null` if there are no subtopics.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subtopics: ::std::option::Option<::std::vec::Vec<BrowseNodeSubtopic>>,
-    ///The name browse node review topic.
+    /// The name browse node review topic.
     pub topic: ::std::string::String,
 }
-///The browse node review topic metrics.
+/// The browse node review topic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BrowseNodeReviewTopicMetrics {
-    ///The percentage of reviews that mention a topic. This value is `null` if the topic isn't mentioned enough in the reviews.
+    /// The percentage of reviews that mention a topic. This value is `null` if the topic isn't mentioned enough in the reviews.
     #[serde(
         rename = "occurrencePercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub occurrence_percentage: ::std::option::Option<BrowseNodeAllOccurrence>,
-    ///The effect a topic has on the browse node's star rating. This value is `null` if the topic doesn't affect the star rating of the browse node.
+    /// The effect a topic has on the browse node's star rating. This value is `null` if the topic doesn't affect the star rating of the browse node.
     #[serde(
         rename = "starRatingImpact",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub star_rating_impact: ::std::option::Option<BrowseNodeAllStarRatingImpact>,
 }
-///The 10 most positive and most negative review topics for all items in a browse node.
+/// The 10 most positive and most negative review topics for all items in a browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BrowseNodeReviewTopics {
-    ///A list of the most negative review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews of items within the requested browse node that mention the topic determine the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of items within the requested browse node determine placement in the list. This value is `null` if there are not enough negative reviews for the requested browse node.
+    /// A list of the most negative review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews of items within the requested browse node that mention the topic determine the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of items within the requested browse node determine placement in the list. This value is `null` if there are not enough negative reviews for the requested browse node.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "negativeTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_topics: ::std::option::Option<::std::vec::Vec<BrowseNodeReviewTopic>>,
-    ///A list of the most positive review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews of items within the requested browse node that mention the topic determine the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of items within the requested browse node determine placement in the list. This value is `null` if there are not enough positive reviews for the requested browse node.
+    /// A list of the most positive review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews of items within the requested browse node that mention the topic determine the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of items within the requested browse node determine placement in the list. This value is `null` if there are not enough positive reviews for the requested browse node.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "positiveTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub positive_topics: ::std::option::Option<::std::vec::Vec<BrowseNodeReviewTopic>>,
 }
-///The response for the `getBrowseNodeReviewTopics` operation.
+/// The response for the `getBrowseNodeReviewTopics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTopicsResponse {
-    ///The requested browse node id. A browse node id is the unique identifier of a given browse node.
+    /// The requested browse node id. A browse node id is the unique identifier of a given browse node.
     #[serde(rename = "browseNodeId")]
     pub browse_node_id: ::std::string::String,
-    ///The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The range of dates in which the reviews were made.
+    /// The range of dates in which the reviews were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The display name of the requested browse node id. The display name of the browse node as visible on the Amazon retail website.
+    /// The display name of the requested browse node id. The display name of the browse node as visible on the Amazon retail website.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The most positive and most negative topics for all items in the browse node.
+    /// The most positive and most negative topics for all items in the browse node.
     pub topics: BrowseNodeReviewTopics,
 }
-///The trend of review topic metrics for all items in the requested browse node.
+/// The trend of review topic metrics for all items in the requested browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTrend {
-    ///The name of the topic.
+    /// The name of the topic.
     pub topic: ::std::string::String,
-    ///The browse node's review trend metrics for the past six months.
+    /// The browse node's review trend metrics for the past six months.
     #[serde(rename = "trendMetrics")]
     pub trend_metrics: ::std::vec::Vec<BrowseNodeReviewTrendPoint>,
 }
-///The browse node review topic metrics.
+/// The browse node review topic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTrendMetrics {
-    ///The percent of reviews that mention the topic.
+    /// The percent of reviews that mention the topic.
     #[serde(rename = "occurrencePercentage")]
     pub occurrence_percentage: BrowseNodeAllOccurrence,
 }
-///The browse node's review metrics for a certain month.
+/// The browse node's review metrics for a certain month.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTrendPoint {
-    ///The browse node review trend metrics.
+    /// The browse node review trend metrics.
     #[serde(rename = "browseNodeMetrics")]
     pub browse_node_metrics: BrowseNodeReviewTrendMetrics,
-    ///The date range of the browse node review trend metric.
+    /// The date range of the browse node review trend metric.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
 }
-///The 10 most positive and most negative review topics for all items in a browse node.
+/// The 10 most positive and most negative review topics for all items in a browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BrowseNodeReviewTrends {
-    ///The trends of the most negative review topics. The percentage of reviews that contain the topic across all products in the requested browse node determine the topic's placement in the list. This value is `null` if there aren't enough positive reviews for the requested browse node.
+    /// The trends of the most negative review topics. The percentage of reviews that contain the topic across all products in the requested browse node determine the topic's placement in the list. This value is `null` if there aren't enough positive reviews for the requested browse node.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "negativeTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_topics: ::std::option::Option<::std::vec::Vec<BrowseNodeReviewTrend>>,
-    ///The trends of the most positive review topics. The percentage of reviews that contain the topic across all products in the requested browse node determine the topic's placement in the list. This value is `null` if there aren't enough positive reviews for the requested browse node.
+    /// The trends of the most positive review topics. The percentage of reviews that contain the topic across all products in the requested browse node determine the topic's placement in the list. This value is `null` if there aren't enough positive reviews for the requested browse node.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "positiveTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub positive_topics: ::std::option::Option<::std::vec::Vec<BrowseNodeReviewTrend>>,
 }
-///The response for the `getBrowseNodeReviewTrends` operation.
+/// The response for the `getBrowseNodeReviewTrends` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeReviewTrendsResponse {
-    ///The requested browse node id. A browse node id is the unique identifier of a given browse node.
+    /// The requested browse node id. A browse node id is the unique identifier of a given browse node.
     #[serde(rename = "browseNodeId")]
     pub browse_node_id: ::std::string::String,
-    ///The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The range of dates during which the reviews were made.
+    /// The range of dates during which the reviews were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The display name of the requested browse node id. The display name of the browse node as visible on the Amazon retail website.
+    /// The display name of the requested browse node id. The display name of the browse node as visible on the Amazon retail website.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Browse Node review trends.
+    /// Browse Node review trends.
     #[serde(rename = "reviewTrends")]
     pub review_trends: BrowseNodeReviewTrends,
 }
-///The effects of a topic on a browse node's star rating.
+/// The effects of a topic on a browse node's star rating.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeStarRatingImpact {
-    ///The effect of the topic on the star rating for all products in this browse node. This value can be positive or negative.
+    /// The effect of the topic on the star rating for all products in this browse node. This value can be positive or negative.
     #[serde(rename = "allProducts")]
     pub all_products: ::serde_json::Number,
 }
-///The browse node review subtopic.
+/// The browse node review subtopic.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeSubtopic {
-    ///The browse node review subtopic metrics.
+    /// The browse node review subtopic metrics.
     pub metrics: BrowseNodeReviewSubtopicMetrics,
-    ///A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the subtopic.
+    /// A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the subtopic.
     #[serde(
         rename = "reviewSnippets",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub review_snippets: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The name of the browse node review subtopic.
+    /// The name of the browse node review subtopic.
     pub subtopic: ::std::string::String,
 }
-///A single browse node review or return trend metric.
+/// A single browse node review or return trend metric.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrowseNodeTrendMetrics {
-    ///The percentage of feedback that mentions the topic.
+    /// The percentage of feedback that mentions the topic.
     #[serde(rename = "occurrencePercentage")]
     pub occurrence_percentage: BrowseNodeOccurrence,
 }
-///The child ASIN review topic mention metrics.
+/// The child ASIN review topic mention metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ChildAsinMentionMetrics {
-    ///The child ASIN of the requested item.
+    /// The child ASIN of the requested item.
     pub asin: ::std::string::String,
-    ///The number of times reviews of the child ASIN mention the topic.
+    /// The number of times reviews of the child ASIN mention the topic.
     #[serde(rename = "numberOfMentions")]
     pub number_of_mentions: i64,
 }
-///The review topic metrics for other child ASINs that have the same parent ASIN. This value is `null` if there isn't any child ASIN metric data.
+/// The review topic metrics for other child ASINs that have the same parent ASIN. This value is `null` if there isn't any child ASIN metric data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChildAsinMetrics {
-    ///The child ASIN for which reviews mention the topic the least number of times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN metrics.
+    /// The child ASIN for which reviews mention the topic the least number of times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN metrics.
     #[serde(
         rename = "leastMentions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub least_mentions: ::std::option::Option<ChildAsinMentionMetrics>,
-    ///The child ASIN for which reviews mention the topic the greatest number of times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN metrics.
+    /// The child ASIN for which reviews mention the topic the greatest number of times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN metrics.
     #[serde(
         rename = "mostMentions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub most_mentions: ::std::option::Option<ChildAsinMentionMetrics>,
 }
-///A date range.
+/// A date range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DateRange {
-    ///The end date of the date range in ISO-8601 date/time format.
+    /// The end date of the date range in ISO-8601 date/time format.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The start date of the date range in ISO-8601 date/time format.
+    /// The start date of the date range in ISO-8601 date/time format.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///List of errors.
+    /// List of errors.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The browse node review topic metrics.
+/// The browse node review topic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemReviewBrowseNodeMetrics {
-    ///The percentage of reviews that mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
+    /// The percentage of reviews that mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
     #[serde(
         rename = "occurrencePercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub occurrence_percentage: ::std::option::Option<BrowseNodeOccurrence>,
-    ///The effect of the topic on the star rating of items in the browse node. This value is `null` if the topic does not affect the star rating of the browse node.
+    /// The effect of the topic on the star rating of items in the browse node. This value is `null` if the topic does not affect the star rating of the browse node.
     #[serde(
         rename = "starRatingImpact",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub star_rating_impact: ::std::option::Option<BrowseNodeStarRatingImpact>,
 }
-///Details of the subtopic for an item review topic.
+/// Details of the subtopic for an item review topic.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewSubtopic {
-    ///The subtopic metrics.
+    /// The subtopic metrics.
     pub metrics: ItemReviewSubtopicMetrics,
-    ///A list of up to three snippets from reviews that contain the subtopic. This value is `null` if there aren't enough review snippets for the subtopic.
+    /// A list of up to three snippets from reviews that contain the subtopic. This value is `null` if there aren't enough review snippets for the subtopic.
     #[serde(
         rename = "reviewSnippets",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub review_snippets: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The name of the subtopic.
+    /// The name of the subtopic.
     pub subtopic: ::std::string::String,
 }
-///The item review subtopic metrics.
+/// The item review subtopic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewSubtopicMetrics {
-    ///The number of times that reviews mention the subtopic.
+    /// The number of times that reviews mention the subtopic.
     #[serde(rename = "numberOfMentions")]
     pub number_of_mentions: i64,
-    ///The percentage of reviews that mention the subtopic.
+    /// The percentage of reviews that mention the subtopic.
     #[serde(rename = "occurrencePercentage")]
     pub occurrence_percentage: ::serde_json::Number,
 }
-///Details of item review topic.
+/// Details of item review topic.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewTopic {
-    ///The ASIN's review topic metrics.
+    /// The ASIN's review topic metrics.
     #[serde(rename = "asinMetrics")]
     pub asin_metrics: ItemReviewTopicMetrics,
-    ///The browse node's review topic metrics. This value is `null` if there isn't enough topic data for the browse node.
+    /// The browse node's review topic metrics. This value is `null` if there isn't enough topic data for the browse node.
     #[serde(
         rename = "browseNodeMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browse_node_metrics: ::std::option::Option<ItemReviewBrowseNodeMetrics>,
-    ///The review topic metrics for other child ASINs that have the same parent ASIN. This value is `null` if there isn't any child ASIN metric data.
+    /// The review topic metrics for other child ASINs that have the same parent ASIN. This value is `null` if there isn't any child ASIN metric data.
     #[serde(
         rename = "childAsinMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub child_asin_metrics: ::std::option::Option<ChildAsinMetrics>,
-    ///The parent ASIN's review topic metrics. This value is `null` if there isn't enough topic data for the parent ASIN.
+    /// The parent ASIN's review topic metrics. This value is `null` if there isn't enough topic data for the parent ASIN.
     #[serde(
         rename = "parentAsinMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_asin_metrics: ::std::option::Option<ItemReviewTopicMetrics>,
-    ///A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the topic.
+    /// A list of up to three snippets from reviews that contain the topic. This value is `null` if there aren't enough review snippets for the topic.
     #[serde(
         rename = "reviewSnippets",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub review_snippets: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///A list of up to five top subtopics for the topic. The percentage of customer reviews that mention the subtopic determine the topic's placement in the list. This value is `null` if there are no subtopics.
+    /// A list of up to five top subtopics for the topic. The percentage of customer reviews that mention the subtopic determine the topic's placement in the list. This value is `null` if there are no subtopics.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subtopics: ::std::option::Option<::std::vec::Vec<ItemReviewSubtopic>>,
-    ///The name of the item review topic.
+    /// The name of the item review topic.
     pub topic: ::std::string::String,
 }
-///The item review topic metrics.
+/// The item review topic metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemReviewTopicMetrics {
-    ///The number of times that reviews mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
+    /// The number of times that reviews mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
     #[serde(
         rename = "numberOfMentions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_mentions: ::std::option::Option<i64>,
-    ///The percentage of customer reviews that mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
+    /// The percentage of customer reviews that mention the topic. This value is `null` if reviews do not mention the topic frequently enough.
     #[serde(
         rename = "occurrencePercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub occurrence_percentage: ::std::option::Option<::serde_json::Number>,
-    ///The effect of the topic on the star rating of the ASIN. This value can be positive or negative. This value is `null` if the topic does't affect the star rating of the ASIN.
+    /// The effect of the topic on the star rating of the ASIN. This value can be positive or negative. This value is `null` if the topic does't affect the star rating of the ASIN.
     #[serde(
         rename = "starRatingImpact",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub star_rating_impact: ::std::option::Option<::serde_json::Number>,
 }
-///The top 10 positive and negative item review topics.
+/// The top 10 positive and negative item review topics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemReviewTopics {
-    ///A list of the most negative review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews that mention the topic determines the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of the item determines placement in the list. This value is `null` if there are not enough negative reviews for the specified ASIN.
+    /// A list of the most negative review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews that mention the topic determines the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of the item determines placement in the list. This value is `null` if there are not enough negative reviews for the specified ASIN.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "negativeTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_topics: ::std::option::Option<::std::vec::Vec<ItemReviewTopic>>,
-    ///A list of the most positive review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews that mention the topic determines the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of the item determines placement in the list. This value is `null` if there are not enough positive reviews for the specified ASIN.
+    /// A list of the most positive review topics. When the `sortBy` query parameter is set to `MENTIONS`, the number of reviews that mention the topic determines the topic's placement in the list. When `sortBy` is set to `STAR_RATING_IMPACT`, the effect that the topic has on the star rating of the item determines placement in the list. This value is `null` if there are not enough positive reviews for the specified ASIN.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "positiveTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub positive_topics: ::std::option::Option<::std::vec::Vec<ItemReviewTopic>>,
 }
-///The response for the `getItemReviewTopics` operation.
+/// The response for the `getItemReviewTopics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewTopicsResponse {
-    ///The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
+    /// The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
     pub asin: ::std::string::String,
-    ///The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The date range of the item review topics.
+    /// The date range of the item review topics.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The product title of the requested ASIN.
+    /// The product title of the requested ASIN.
     #[serde(rename = "itemName")]
     pub item_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The item review topics for the requested ASIN.
+    /// The item review topics for the requested ASIN.
     pub topics: ItemReviewTopics,
 }
-///The trend of review topic metrics for the requested item.
+/// The trend of review topic metrics for the requested item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewTrend {
-    ///The name of the item review topic.
+    /// The name of the item review topic.
     pub topic: ::std::string::String,
-    ///The item's review trend metrics for the past six months.
+    /// The item's review trend metrics for the past six months.
     #[serde(rename = "trendMetrics")]
     pub trend_metrics: ::std::vec::Vec<ItemReviewTrendPoint>,
 }
-///The review metrics for a certain month.
+/// The review metrics for a certain month.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewTrendPoint {
-    ///The ASIN's review trend metrics.
+    /// The ASIN's review trend metrics.
     #[serde(rename = "asinMetrics")]
     pub asin_metrics: ReviewTrendMetrics,
-    ///The browse node's review trend metrics. This value is `null` if there isn't enough topic data for the browse node.
+    /// The browse node's review trend metrics. This value is `null` if there isn't enough topic data for the browse node.
     #[serde(
         rename = "browseNodeMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browse_node_metrics: ::std::option::Option<BrowseNodeTrendMetrics>,
-    ///The date range of the item review trend metric.
+    /// The date range of the item review trend metric.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The parent ASIN's review trend metrics. This value is `null` if there isn't enough topic data for the parent ASIN.
+    /// The parent ASIN's review trend metrics. This value is `null` if there isn't enough topic data for the parent ASIN.
     #[serde(
         rename = "parentAsinMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_asin_metrics: ::std::option::Option<ReviewTrendMetrics>,
 }
-///The 10 most positive and most negative review topics for all items in a browse node.
+/// The 10 most positive and most negative review topics for all items in a browse node.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemReviewTrends {
-    ///A list of the most negative review topics. The percentage of reviews that contain the topic determines the topic's placement in the list. This value is `null` if there are not enough negative reviews for the specified ASIN.
+    /// A list of the most negative review topics. The percentage of reviews that contain the topic determines the topic's placement in the list. This value is `null` if there are not enough negative reviews for the specified ASIN.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "negativeTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_topics: ::std::option::Option<::std::vec::Vec<ItemReviewTrend>>,
-    ///A list of the most positive review topics. The percentage of reviews that contain the topic determines the topic's placement in the list. This value is `null` if there are not enough positive reviews for the specified ASIN.
+    /// A list of the most positive review topics. The percentage of reviews that contain the topic determines the topic's placement in the list. This value is `null` if there are not enough positive reviews for the specified ASIN.
     ///
-    ///**Max length:** 10
+    /// **Max length:** 10
     #[serde(
         rename = "positiveTopics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub positive_topics: ::std::option::Option<::std::vec::Vec<ItemReviewTrend>>,
 }
-///The response for the `getItemReviewTrends` operation.
+/// The response for the `getItemReviewTrends` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemReviewTrendsResponse {
-    ///The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
+    /// The requested ASIN. The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
     pub asin: ::std::string::String,
-    ///The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.
+    /// The two digit country code of the requested marketplace id, in ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The range of dates in which the reviews were made.
+    /// The range of dates in which the reviews were made.
     #[serde(rename = "dateRange")]
     pub date_range: DateRange,
-    ///The product title of the requested ASIN.
+    /// The product title of the requested ASIN.
     #[serde(rename = "itemName")]
     pub item_name: ::std::string::String,
-    ///The requested marketplace id.
+    /// The requested marketplace id.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The item review trends.
+    /// The item review trends.
     #[serde(rename = "reviewTrends")]
     pub review_trends: ItemReviewTrends,
 }
-///The item review trend metrics.
+/// The item review trend metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReviewTrendMetrics {
-    ///The percentage of reviews that mention the topic.
+    /// The percentage of reviews that mention the topic.
     #[serde(rename = "occurrencePercentage")]
     pub occurrence_percentage: ::serde_json::Number,
 }

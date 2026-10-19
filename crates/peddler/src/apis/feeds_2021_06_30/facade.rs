@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`cancel_feed`].
+/// The parameters of [`cancel_feed`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelFeedParams {
-    ///The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed. This identifier is unique only in combination with a seller ID.
     pub feed_id: String,
 }
 impl CancelFeedParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(feed_id: String) -> Self {
         Self { feed_id }
     }
 }
-///Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed) and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
+/// Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed) and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
 pub async fn cancel_feed(
     client: &Client,
     params: CancelFeedParams,
@@ -40,20 +40,20 @@ pub async fn cancel_feed(
         .await?;
     Ok(raw)
 }
-///The parameters of [`create_feed`].
+/// The parameters of [`create_feed`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateFeedParams<B = serde_json::Value> {
-    ///Information required to create the feed.
+    /// Information required to create the feed.
     pub body: B,
 }
 impl<B> CreateFeedParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a feed. Upload the contents of the feed document before calling this operation.
+/// Creates a feed. Upload the contents of the feed document before calling this operation.
 pub async fn create_feed<B: serde::Serialize>(
     client: &Client,
     params: CreateFeedParams<B>,
@@ -72,20 +72,20 @@ pub async fn create_feed<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_feed_document`].
+/// The parameters of [`create_feed_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateFeedDocumentParams<B = serde_json::Value> {
-    ///Specifies the content type for the createFeedDocument operation.
+    /// Specifies the content type for the createFeedDocument operation.
     pub body: B,
 }
 impl<B> CreateFeedDocumentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
+/// Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
 pub async fn create_feed_document<B: serde::Serialize>(
     client: &Client,
     params: CreateFeedDocumentParams<B>,
@@ -104,20 +104,20 @@ pub async fn create_feed_document<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_feed`].
+/// The parameters of [`get_feed`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeedParams {
-    ///The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed. This identifier is unique only in combination with a seller ID.
     pub feed_id: String,
 }
 impl GetFeedParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(feed_id: String) -> Self {
         Self { feed_id }
     }
 }
-///Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
+/// Returns feed details (including the `feedDocumentId`, if available) for the feed that you specify.
 pub async fn get_feed(
     client: &Client,
     params: GetFeedParams,
@@ -140,17 +140,17 @@ pub async fn get_feed(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_feed_document`].
+/// The parameters of [`get_feed_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeedDocumentParams {
-    ///The identifier of the feed document.
+    /// The identifier of the feed document.
     pub feed_document_id: String,
-    ///When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients.
+    /// When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients.
     pub enable_content_encoding_url_header: Option<bool>,
 }
 impl GetFeedDocumentParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(feed_document_id: String) -> Self {
         Self {
             feed_document_id,
@@ -158,7 +158,7 @@ impl GetFeedDocumentParams {
         }
     }
 }
-///Returns the information required for retrieving a feed document's contents.
+/// Returns the information required for retrieving a feed document's contents.
 pub async fn get_feed_document(
     client: &Client,
     params: GetFeedDocumentParams,
@@ -190,30 +190,30 @@ pub async fn get_feed_document(
 fn get_feeds_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`get_feeds`] and [`get_feeds_pages`].
+/// The parameters of [`get_feeds`] and [`get_feeds_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeedsParams {
-    ///A list of feed types used to filter feeds. When feedTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either feedTypes or nextToken is required.
+    /// A list of feed types used to filter feeds. When feedTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either feedTypes or nextToken is required.
     pub feed_types: Option<Vec<String>>,
-    ///A list of marketplace identifiers used to filter feeds. The feeds returned will match at least one of the marketplaces that you specify.
+    /// A list of marketplace identifiers used to filter feeds. The feeds returned will match at least one of the marketplaces that you specify.
     pub marketplace_ids: Option<Vec<String>>,
-    ///The maximum number of feeds to return in a single call.
+    /// The maximum number of feeds to return in a single call.
     #[serde(default = "get_feeds_page_size_default")]
     pub page_size: Option<i64>,
-    ///A list of processing statuses used to filter feeds.
+    /// A list of processing statuses used to filter feeds.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
     pub processing_statuses: Option<Vec<String>>,
-    ///The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
+    /// The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
     pub created_since: Option<String>,
-    ///The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
+    /// The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
     pub created_until: Option<String>,
-    ///A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
+    /// A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
     pub next_token: Option<String>,
 }
 impl GetFeedsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             feed_types: None,
@@ -231,9 +231,9 @@ impl Default for GetFeedsParams {
         Self::new()
     }
 }
-///Returns feed details for the feeds that match the filters that you specify.
+/// Returns feed details for the feeds that match the filters that you specify.
 ///
-///Its pages: [`get_feeds_pages`].
+/// Its pages: [`get_feeds_pages`].
 pub async fn get_feeds(
     client: &Client,
     params: GetFeedsParams,
@@ -271,7 +271,7 @@ pub async fn get_feeds(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_feeds`].
+/// Each page of [`get_feeds`].
 pub fn get_feeds_pages<'a>(
     client: &'a Client,
     params: GetFeedsParams,

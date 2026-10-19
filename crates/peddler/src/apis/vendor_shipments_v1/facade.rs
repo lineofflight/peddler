@@ -4,63 +4,63 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_shipment_details`] and [`get_shipment_details_pages`].
+/// The parameters of [`get_shipment_details`] and [`get_shipment_details_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentDetailsParams {
-    ///The limit to the number of records returned. Default value is 50 records.
+    /// The limit to the number of records returned. Default value is 50 records.
     pub limit: Option<i64>,
-    ///Sort in ascending or descending order by purchase order creation date.
+    /// Sort in ascending or descending order by purchase order creation date.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
-    ///Used for pagination when there are more shipments than the specified result size limit.
+    /// Used for pagination when there are more shipments than the specified result size limit.
     pub next_token: Option<String>,
-    ///Get Shipment Details that became available after this timestamp will be included in the result. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details that became available after this timestamp will be included in the result. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub created_after: Option<String>,
-    ///Get Shipment Details that became available before this timestamp will be included in the result. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details that became available before this timestamp will be included in the result. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub created_before: Option<String>,
-    ///Get Shipment Details by passing Shipment confirmed create Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipment confirmed create Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipment_confirmed_before: Option<String>,
-    ///Get Shipment Details by passing Shipment confirmed create Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipment confirmed create Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipment_confirmed_after: Option<String>,
-    ///Get Shipment Details by passing Package label create Date by buyer. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Package label create Date by buyer. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub package_label_created_before: Option<String>,
-    ///Get Shipment Details by passing Package label create Date After by buyer. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Package label create Date After by buyer. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub package_label_created_after: Option<String>,
-    ///Get Shipment Details by passing Shipped Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipped Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipped_before: Option<String>,
-    ///Get Shipment Details by passing Shipped Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipped Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipped_after: Option<String>,
-    ///Get Shipment Details by passing Estimated Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Estimated Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub estimated_delivery_before: Option<String>,
-    ///Get Shipment Details by passing Estimated Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Estimated Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub estimated_delivery_after: Option<String>,
-    ///Get Shipment Details by passing Shipment Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipment Delivery Date Before. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipment_delivery_before: Option<String>,
-    ///Get Shipment Details by passing Shipment Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Shipment Delivery Date After. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub shipment_delivery_after: Option<String>,
-    ///Get Shipment Details by passing Before Requested pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Before Requested pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub requested_pick_up_before: Option<String>,
-    ///Get Shipment Details by passing After Requested pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing After Requested pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub requested_pick_up_after: Option<String>,
-    ///Get Shipment Details by passing Before scheduled pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing Before scheduled pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub scheduled_pick_up_before: Option<String>,
-    ///Get Shipment Details by passing After Scheduled pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+    /// Get Shipment Details by passing After Scheduled pickup date. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub scheduled_pick_up_after: Option<String>,
-    ///Get Shipment Details by passing Current shipment status.
+    /// Get Shipment Details by passing Current shipment status.
     pub current_shipment_status: Option<String>,
-    ///Get Shipment Details by passing Vendor Shipment ID
+    /// Get Shipment Details by passing Vendor Shipment ID
     pub vendor_shipment_identifier: Option<String>,
-    ///Get Shipment Details by passing buyer Reference ID
+    /// Get Shipment Details by passing buyer Reference ID
     pub buyer_reference_number: Option<String>,
-    ///Get Shipping Details based on buyer warehouse code. This value should be same as 'shipToParty.partyId' in the Shipment.
+    /// Get Shipping Details based on buyer warehouse code. This value should be same as 'shipToParty.partyId' in the Shipment.
     pub buyer_warehouse_code: Option<String>,
-    ///Get Shipping Details based on vendor warehouse code. This value should be same as 'sellingParty.partyId' in the Shipment.
+    /// Get Shipping Details based on vendor warehouse code. This value should be same as 'sellingParty.partyId' in the Shipment.
     pub seller_warehouse_code: Option<String>,
 }
 impl GetShipmentDetailsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             limit: None,
@@ -95,9 +95,9 @@ impl Default for GetShipmentDetailsParams {
         Self::new()
     }
 }
-///Returns the Details about Shipment, Carrier Details,  status of the shipment, container details and other details related to shipment based on the filter parameters value that you specify.
+/// Returns the Details about Shipment, Carrier Details,  status of the shipment, container details and other details related to shipment based on the filter parameters value that you specify.
 ///
-///Its pages: [`get_shipment_details_pages`].
+/// Its pages: [`get_shipment_details_pages`].
 pub async fn get_shipment_details(
     client: &Client,
     params: GetShipmentDetailsParams,
@@ -209,7 +209,7 @@ pub async fn get_shipment_details(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_shipment_details`].
+/// Each page of [`get_shipment_details`].
 pub fn get_shipment_details_pages<'a>(
     client: &'a Client,
     params: GetShipmentDetailsParams,
@@ -230,31 +230,31 @@ pub fn get_shipment_details_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_shipment_labels`] and [`get_shipment_labels_pages`].
+/// The parameters of [`get_shipment_labels`] and [`get_shipment_labels_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentLabelsParams {
-    ///The limit to the number of records returned. Default value is 50 records.
+    /// The limit to the number of records returned. Default value is 50 records.
     pub limit: Option<i64>,
-    ///Sort the list by shipment label creation date in ascending or descending order.
+    /// Sort the list by shipment label creation date in ascending or descending order.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
-    ///A token that you use to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// A token that you use to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
-    ///Shipment labels created after this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+    /// Shipment labels created after this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
     pub label_created_after: Option<String>,
-    ///Shipment labels created before this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+    /// Shipment labels created before this time will be included in the result. This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
     pub label_created_before: Option<String>,
-    ///Get Shipment labels by passing buyer reference number.
+    /// Get Shipment labels by passing buyer reference number.
     pub buyer_reference_number: Option<String>,
-    ///Get Shipment labels by passing vendor shipment identifier.
+    /// Get Shipment labels by passing vendor shipment identifier.
     pub vendor_shipment_identifier: Option<String>,
-    ///Get Shipping labels based on vendor warehouse code. This value must be same as the `sellingParty.partyId` in the shipment.
+    /// Get Shipping labels based on vendor warehouse code. This value must be same as the `sellingParty.partyId` in the shipment.
     pub seller_warehouse_code: Option<String>,
 }
 impl GetShipmentLabelsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             limit: None,
@@ -273,9 +273,9 @@ impl Default for GetShipmentLabelsParams {
         Self::new()
     }
 }
-///Returns small parcel shipment labels based on the filters that you specify.
+/// Returns small parcel shipment labels based on the filters that you specify.
 ///
-///Its pages: [`get_shipment_labels_pages`].
+/// Its pages: [`get_shipment_labels_pages`].
 pub async fn get_shipment_labels(
     client: &Client,
     params: GetShipmentLabelsParams,
@@ -323,7 +323,7 @@ pub async fn get_shipment_labels(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_shipment_labels`].
+/// Each page of [`get_shipment_labels`].
 pub fn get_shipment_labels_pages<'a>(
     client: &'a Client,
     params: GetShipmentLabelsParams,
@@ -344,20 +344,20 @@ pub fn get_shipment_labels_pages<'a>(
         &params,
     )
 }
-///The parameters of [`submit_shipment_confirmations`].
+/// The parameters of [`submit_shipment_confirmations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitShipmentConfirmationsParams<B = serde_json::Value> {
-    ///A request to submit shipment confirmation.
+    /// A request to submit shipment confirmation.
     pub body: B,
 }
 impl<B> SubmitShipmentConfirmationsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Submits one or more shipment confirmations for vendor orders.
+/// Submits one or more shipment confirmations for vendor orders.
 pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentConfirmationsParams<B>,
@@ -376,20 +376,20 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`submit_shipments`].
+/// The parameters of [`submit_shipments`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitShipmentsParams<B = serde_json::Value> {
-    ///A request to submit shipment request.
+    /// A request to submit shipment request.
     pub body: B,
 }
 impl<B> SubmitShipmentsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Submits one or more shipment request for vendor Orders.
+/// Submits one or more shipment request for vendor Orders.
 pub async fn submit_shipments<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentsParams<B>,

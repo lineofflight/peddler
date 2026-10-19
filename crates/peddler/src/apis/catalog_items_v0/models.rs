@@ -2,37 +2,37 @@
 // Source: catalog-items-api-model/catalogItemsV0.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Categories`
+/// `Categories`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Categories {
-    ///The parent product category.
+    /// The parent product category.
     #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
     pub parent: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-    ///The identifier for the product category (or browse node).
+    /// The identifier for the product category (or browse node).
     #[serde(
         rename = "ProductCategoryId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_category_id: ::std::option::Option<::std::string::String>,
-    ///The name of the product category (or browse node).
+    /// The name of the product category (or browse node).
     #[serde(
         rename = "ProductCategoryName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_category_name: ::std::option::Option<::std::string::String>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional information that can help the caller understand or fix the issue.
+    /// Additional information that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -52,17 +52,17 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///`ListCatalogCategoriesResponse`
+/// `ListCatalogCategoriesResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListCatalogCategoriesResponse {
-    ///One or more unexpected errors occurred during the listCatalogCategories operation.
+    /// One or more unexpected errors occurred during the listCatalogCategories operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the listCatalogCategories operation.
+    /// The payload for the listCatalogCategories operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ListOfCategories>,
 }
-///`ListOfCategories`
+/// `ListOfCategories`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ListOfCategories(pub ::std::vec::Vec<Categories>);

@@ -2,28 +2,28 @@
 // Source: schemas/notifications/ItemInventoryEventChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`ItemInventoryEventChange`
+/// `ItemInventoryEventChange`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemInventoryEventChange {
-    ///The merchant customer ID or vendor group ID of the partner account this notification is sent to.
+    /// The merchant customer ID or vendor group ID of the partner account this notification is sent to.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The Amazon Standard Identification Number of the product.
+    /// The Amazon Standard Identification Number of the product.
     pub asin: ::std::string::String,
-    ///The end of the date-time range of the inventory data in ISO 8601 format in UTC time.
+    /// The end of the date-time range of the inventory data in ISO 8601 format in UTC time.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The number of units available to be sold on the website, based on units in Amazon fulfillment centers that are in sellable condition, minus units in customer shopping carts or otherwise bound for other orders (for example, subscribe-and-save orders).
+    /// The number of units available to be sold on the website, based on units in Amazon fulfillment centers that are in sellable condition, minus units in customer shopping carts or otherwise bound for other orders (for example, subscribe-and-save orders).
     #[serde(rename = "highlyAvailableInventory")]
     pub highly_available_inventory: u64,
-    ///The marketplace identifier of the inventory data.
+    /// The marketplace identifier of the inventory data.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The start of the date-time range of the inventory data in ISO 8601 format in UTC time.
+    /// The start of the date-time range of the inventory data in ISO 8601 format in UTC time.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///`ItemInventoryEventChanges`
+/// `ItemInventoryEventChanges`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemInventoryEventChanges(pub ::std::vec::Vec<ItemInventoryEventChange>);
@@ -45,7 +45,7 @@ for ItemInventoryEventChanges {
         Self(value)
     }
 }
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
     #[serde(rename = "eventTime")]
@@ -60,7 +60,7 @@ pub struct Notification {
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
     #[serde(rename = "applicationId")]
@@ -72,7 +72,7 @@ pub struct NotificationMetadata {
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
     #[serde(rename = "itemInventoryEventChanges")]

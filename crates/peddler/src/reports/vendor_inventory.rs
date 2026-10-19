@@ -2,49 +2,49 @@
 // Source: schemas/reports/vendorInventoryReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Amount`
+/// `Amount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Amount {
-    ///The amount.
+    /// The amount.
     pub amount: ::serde_json::Number,
-    ///Currency code of the amount. In ISO 4217 format.
+    /// Currency code of the amount. In ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///Describes the aggregated inventory metrics for all ASINs in the vendor's account.
+/// Describes the aggregated inventory metrics for all ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryAggregate {
-    ///The cost of the inventory in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative cost, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
+    /// The cost of the inventory in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative cost, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
     #[serde(
         rename = "aged90PlusDaysSellableInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aged90_plus_days_sellable_inventory_cost: ::std::option::Option<Amount>,
-    ///The number of units in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
+    /// The number of units in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
     #[serde(
         rename = "aged90PlusDaysSellableInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aged90_plus_days_sellable_inventory_units: ::std::option::Option<i64>,
-    ///Average number of days between the submission of each purchase order unit and the time of receipt in Amazon's fulfillment centers.
+    /// Average number of days between the submission of each purchase order unit and the time of receipt in Amazon's fulfillment centers.
     #[serde(
         rename = "averageVendorLeadTimeDays",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_vendor_lead_time_days: ::std::option::Option<::serde_json::Number>,
-    ///The end date of the aggregated data.
+    /// The end date of the aggregated data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///Cost of the inventory that Amazon received from the vendor, minus the cost of the inventory that was returned to the vendor. The cost returned to the vendor takes into account any products that were returned due to damaged merchandise. This number can be negative if more cost was returned than received.
+    /// Cost of the inventory that Amazon received from the vendor, minus the cost of the inventory that was returned to the vendor. The cost returned to the vendor takes into account any products that were returned due to damaged merchandise. This number can be negative if more cost was returned than received.
     #[serde(rename = "netReceivedInventoryCost")]
     pub net_received_inventory_cost: Amount,
-    ///Units received from the vendor minus any units that were returned to the vendor. This number can be negative if more units were returned than received.
+    /// Units received from the vendor minus any units that were returned to the vendor. This number can be negative if more units were returned than received.
     #[serde(rename = "netReceivedInventoryUnits")]
     pub net_received_inventory_units: i64,
-    ///Number of units contained in Amazon’s confirmed purchase orders that are not yet received by Amazon. This number can be negative if the vendor has shipped more units than Amazon has requested.
+    /// Number of units contained in Amazon’s confirmed purchase orders that are not yet received by Amazon. This number can be negative if the vendor has shipped more units than Amazon has requested.
     #[serde(rename = "openPurchaseOrderUnits")]
     pub open_purchase_order_units: i64,
-    ///The out of stock rate on all products that are procurable. This is calculated by out of stock glance views on a procurable ASIN divided by the total glance views.
+    /// The out of stock rate on all products that are procurable. This is calculated by out of stock glance views on a procurable ASIN divided by the total glance views.
     #[serde(
         rename = "procurableProductOutOfStockRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -52,164 +52,164 @@ pub struct InventoryAggregate {
     pub procurable_product_out_of_stock_rate: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The purchase order units received by Amazon in comparison to the purchase order units confirmed by the vendor. This is calculated as the received quantity divided by the confirmed quantity.
+    /// The purchase order units received by Amazon in comparison to the purchase order units confirmed by the vendor. This is calculated as the received quantity divided by the confirmed quantity.
     #[serde(
         rename = "receiveFillRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub receive_fill_rate: ::std::option::Option<::serde_json::Number>,
-    ///The number of units shipped (less customer returns), divided by the sum of the number of units held by Amazon at the beginning of this time window and the number of units received during this time window. This number could be negative if more units were returned than were shipped. This number can be greater than 1 if some inventory was sold while in transit between fulfillment centers.
+    /// The number of units shipped (less customer returns), divided by the sum of the number of units held by Amazon at the beginning of this time window and the number of units received during this time window. This number could be negative if more units were returned than were shipped. This number can be greater than 1 if some inventory was sold while in transit between fulfillment centers.
     #[serde(
         rename = "sellThroughRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sell_through_rate: ::std::option::Option<::serde_json::Number>,
-    ///The cost of the inventory in Amazon fulfillment centers that is in a sellable condition on the last day of the selected time window. Backorders count as a negative cost, and can cause this value to be negative overall.
+    /// The cost of the inventory in Amazon fulfillment centers that is in a sellable condition on the last day of the selected time window. Backorders count as a negative cost, and can cause this value to be negative overall.
     #[serde(rename = "sellableOnHandInventoryCost")]
     pub sellable_on_hand_inventory_cost: Amount,
-    ///The number of units in Amazon fulfillment centers that is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall.
+    /// The number of units in Amazon fulfillment centers that is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall.
     #[serde(rename = "sellableOnHandInventoryUnits")]
     pub sellable_on_hand_inventory_units: i64,
-    ///The start date of the aggregated data.
+    /// The start date of the aggregated data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
-    ///The percentage of time an ASIN is available to be shipped to the customer from a fulfillment center, versus the selection Amazon intended to carry.
+    /// The percentage of time an ASIN is available to be shipped to the customer from a fulfillment center, versus the selection Amazon intended to carry.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub uft: ::std::option::Option<::serde_json::Number>,
-    ///The number of units that have been ordered (or pre-ordered) but have not yet shipped.
+    /// The number of units that have been ordered (or pre-ordered) but have not yet shipped.
     #[serde(
         rename = "unfilledCustomerOrderedUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unfilled_customer_ordered_units: ::std::option::Option<u64>,
-    ///The cost of the excess inventory on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
+    /// The cost of the excess inventory on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
     #[serde(
         rename = "unhealthyInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unhealthy_inventory_cost: ::std::option::Option<PositiveAmount>,
-    ///The number of excess inventory units on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
+    /// The number of excess inventory units on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
     #[serde(
         rename = "unhealthyInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unhealthy_inventory_units: ::std::option::Option<u64>,
-    ///The cost of the inventory in Amazon fulfillment centers that is in unsellable condition on the last day of the selected time window.
+    /// The cost of the inventory in Amazon fulfillment centers that is in unsellable condition on the last day of the selected time window.
     #[serde(
         rename = "unsellableOnHandInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unsellable_on_hand_inventory_cost: ::std::option::Option<PositiveAmount>,
-    ///The number of units in Amazon fulfillment centers that are in unsellable condition on the last day of the selected time window.
+    /// The number of units in Amazon fulfillment centers that are in unsellable condition on the last day of the selected time window.
     #[serde(
         rename = "unsellableOnHandInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unsellable_on_hand_inventory_units: ::std::option::Option<u64>,
-    ///The number of units that were confirmed by the vendor, divided by the number of units Amazon asked for. This rate will be 1 if all units that were requested during this time window were confirmed. This rate can be larger than 1 if the vendor has confirmed a greater quantity of units than Amazon requested.
+    /// The number of units that were confirmed by the vendor, divided by the number of units Amazon asked for. This rate will be 1 if all units that were requested during this time window were confirmed. This rate can be larger than 1 if the vendor has confirmed a greater quantity of units than Amazon requested.
     #[serde(
         rename = "vendorConfirmationRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_confirmation_rate: ::std::option::Option<::serde_json::Number>,
 }
-///Describes ASIN-aggregated inventory metrics for the vendor's account.
+/// Describes ASIN-aggregated inventory metrics for the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryByAsin {
-    ///The cost of the inventory in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as a negative cost, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
+    /// The cost of the inventory in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as a negative cost, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
     #[serde(
         rename = "aged90PlusDaysSellableInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aged90_plus_days_sellable_inventory_cost: ::std::option::Option<Amount>,
-    ///The number of units in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
+    /// The number of units in Amazon fulfillment centers that is at least 90 days old, and is in a sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall. Inventory age is computed based on when the inventory was received by Amazon.
     #[serde(
         rename = "aged90PlusDaysSellableInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aged90_plus_days_sellable_inventory_units: ::std::option::Option<i64>,
-    ///The Amazon Standard Identification Number.
+    /// The Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///Average number of days between the submission of each purchase order unit and the time of receipt in Amazon's fulfillment centers.
+    /// Average number of days between the submission of each purchase order unit and the time of receipt in Amazon's fulfillment centers.
     #[serde(
         rename = "averageVendorLeadTimeDays",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_vendor_lead_time_days: ::std::option::Option<::serde_json::Number>,
-    ///The end date of the aggregated data.
+    /// The end date of the aggregated data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///Cost of the inventory that Amazon received from the vendor, minus the cost of the inventory that was returned to the vendor. The cost returned to the vendor takes into account any products that were returned due to damaged merchandise. This number can be negative if more cost was returned than received.
+    /// Cost of the inventory that Amazon received from the vendor, minus the cost of the inventory that was returned to the vendor. The cost returned to the vendor takes into account any products that were returned due to damaged merchandise. This number can be negative if more cost was returned than received.
     #[serde(rename = "netReceivedInventoryCost")]
     pub net_received_inventory_cost: Amount,
-    ///Units received from the vendor minus any units that were returned to the vendor. This number can be negative if more units were returned than received.
+    /// Units received from the vendor minus any units that were returned to the vendor. This number can be negative if more units were returned than received.
     #[serde(rename = "netReceivedInventoryUnits")]
     pub net_received_inventory_units: i64,
-    ///Number of units contained in Amazon’s confirmed purchase orders that are not yet received by Amazon. This number can be negative if the vendor has shipped more units than Amazon has requested.
+    /// Number of units contained in Amazon’s confirmed purchase orders that are not yet received by Amazon. This number can be negative if the vendor has shipped more units than Amazon has requested.
     #[serde(rename = "openPurchaseOrderUnits")]
     pub open_purchase_order_units: i64,
-    ///The number of units shipped (less customer returns), divided by the sum of the number of units held by Amazon at the beginning of this time window and the number of units received during this time window. This number could be negative if more units were returned than were shipped. This number can be greater than 1 if some inventory was sold while in transit between fulfillment centers.
+    /// The number of units shipped (less customer returns), divided by the sum of the number of units held by Amazon at the beginning of this time window and the number of units received during this time window. This number could be negative if more units were returned than were shipped. This number can be greater than 1 if some inventory was sold while in transit between fulfillment centers.
     #[serde(
         rename = "sellThroughRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sell_through_rate: ::std::option::Option<::serde_json::Number>,
-    ///The cost of the inventory in Amazon fulfillment centers that is in sellable condition on the last day of the selected time window. Backorders count as negative cost, and can cause this value to be negative overall.
+    /// The cost of the inventory in Amazon fulfillment centers that is in sellable condition on the last day of the selected time window. Backorders count as negative cost, and can cause this value to be negative overall.
     #[serde(rename = "sellableOnHandInventoryCost")]
     pub sellable_on_hand_inventory_cost: Amount,
-    ///The number of units in Amazon fulfillment centers that is in sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall.
+    /// The number of units in Amazon fulfillment centers that is in sellable condition on the last day of the selected time window. Backorders count as negative units, and can cause this value to be negative overall.
     #[serde(rename = "sellableOnHandInventoryUnits")]
     pub sellable_on_hand_inventory_units: i64,
-    ///The start date of the aggregated data.
+    /// The start date of the aggregated data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
-    ///Number of units that have been ordered (or pre-ordered) but have not yet shipped.
+    /// Number of units that have been ordered (or pre-ordered) but have not yet shipped.
     #[serde(
         rename = "unfilledCustomerOrderedUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unfilled_customer_ordered_units: ::std::option::Option<u64>,
-    ///The cost of the excess inventory on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
+    /// The cost of the excess inventory on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
     #[serde(
         rename = "unhealthyInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unhealthy_inventory_cost: ::std::option::Option<PositiveAmount>,
-    ///The number of excess inventory units on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
+    /// The number of excess inventory units on the last day of the selected time window based on forecasted demand. Note that the forecasted demand may have already included some amount of excess inventory that makes economic sense to hold. This is the amount of inventory beyond the forecasted demand.
     #[serde(
         rename = "unhealthyInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unhealthy_inventory_units: ::std::option::Option<u64>,
-    ///The cost of the inventory in Amazon fulfillment centers that is in unsellable condition on the last day of the selected time window.
+    /// The cost of the inventory in Amazon fulfillment centers that is in unsellable condition on the last day of the selected time window.
     #[serde(
         rename = "unsellableOnHandInventoryCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unsellable_on_hand_inventory_cost: ::std::option::Option<PositiveAmount>,
-    ///The number of units in Amazon fulfillment centers that are in unsellable condition on the last day of the selected time window.
+    /// The number of units in Amazon fulfillment centers that are in unsellable condition on the last day of the selected time window.
     #[serde(
         rename = "unsellableOnHandInventoryUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unsellable_on_hand_inventory_units: ::std::option::Option<u64>,
-    ///The number of units that were confirmed by the vendor, divided by the number of units Amazon asked for. This rate will be 1 if all units that were requested during this time window were confirmed. This rate can be larger than 1 if the vendor has confirmed a greater quantity of units than Amazon requested.
+    /// The number of units that were confirmed by the vendor, divided by the number of units Amazon asked for. This rate will be 1 if all units that were requested during this time window were confirmed. This rate can be larger than 1 if the vendor has confirmed a greater quantity of units than Amazon requested.
     #[serde(
         rename = "vendorConfirmationRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_confirmation_rate: ::std::option::Option<::serde_json::Number>,
 }
-///`PositiveAmount`
+/// `PositiveAmount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PositiveAmount {
-    ///The amount.
+    /// The amount.
     pub amount: ::serde_json::Number,
-    ///Currency code of the amount. In ISO 4217 format.
+    /// Currency code of the amount. In ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///This report shares inventory data of a vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods. For example, if the customer specified reportPeriod=WEEK and a dataStartTime and dataEndTime that are 3 weeks apart, the report would contain data for each of those 3 contiguous weeks.
+/// This report shares inventory data of a vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods. For example, if the customer specified reportPeriod=WEEK and a dataStartTime and dataEndTime that are 3 weeks apart, the report would contain data for each of those 3 contiguous weeks.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "inventoryAggregate")]
@@ -219,43 +219,43 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///The report summary including a reporting date range, distributor view, selling program, and last updated date in the input.
+/// The report summary including a reporting date range, distributor view, selling program, and last updated date in the input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
+    /// The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account (each selling partner account belongs to only one marketplaceId).
+    /// This parameter must match the marketplaceId of the selling partner account (each selling partner account belongs to only one marketplaceId).
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The type of report.
+    /// The type of report.
     ///
-    ///Known values: `GET_VENDOR_INVENTORY_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_INVENTORY_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
+/// Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The distributor view.
+    /// The distributor view.
     ///
-    ///Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.
+    /// Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.
     #[serde(rename = "distributorView")]
     pub distributor_view: ::std::string::String,
-    ///Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
+    /// Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
-    ///The selling program.
+    /// The selling program.
     ///
-    ///Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
+    /// Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
     #[serde(rename = "sellingProgram")]
     pub selling_program: ::std::string::String,
 }

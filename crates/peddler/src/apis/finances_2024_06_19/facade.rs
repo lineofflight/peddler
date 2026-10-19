@@ -4,25 +4,25 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`list_balances`] and [`list_balances_pages`].
+/// The parameters of [`list_balances`] and [`list_balances_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListBalancesParams {
-    ///The marketplaces from which to retrieve balances. If omitted, balances from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The marketplaces from which to retrieve balances. If omitted, balances from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Option<Vec<String>>,
-    ///The type of balance to include in the response. If omitted, all balance types may be included in the response.
+    /// The type of balance to include in the response. If omitted, all balance types may be included in the response.
     ///
-    ///**Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`, `ACCOUNT_LEVEL_RESERVE`
+    /// **Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`, `ACCOUNT_LEVEL_RESERVE`
     pub balance_type: Option<String>,
-    ///The type of account to include in the response.
+    /// The type of account to include in the response.
     pub account_type: Option<String>,
-    ///The date from which you want to retrieve balances. If provided, the response includes historical balances at the specified date. The value must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format. If omitted, the point in time balance is provided.
+    /// The date from which you want to retrieve balances. If provided, the response includes historical balances at the specified date. The value must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format. If omitted, the point in time balance is provided.
     pub as_of_date: Option<String>,
-    ///A token that you use to retrieve subsequent pages of results. When there are more than 500 results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
+    /// A token that you use to retrieve subsequent pages of results. When there are more than 500 results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
     pub next_token: Option<String>,
 }
 impl ListBalancesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             marketplace_ids: None,
@@ -38,9 +38,9 @@ impl Default for ListBalancesParams {
         Self::new()
     }
 }
-///Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances are listed by account type and marketplace.
+/// Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances are listed by account type and marketplace.
 ///
-///Its pages: [`list_balances_pages`].
+/// Its pages: [`list_balances_pages`].
 pub async fn list_balances(
     client: &Client,
     params: ListBalancesParams,
@@ -66,7 +66,7 @@ pub async fn list_balances(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_balances`].
+/// Each page of [`list_balances`].
 pub fn list_balances_pages<'a>(
     client: &'a Client,
     params: ListBalancesParams,
@@ -87,27 +87,27 @@ pub fn list_balances_pages<'a>(
         &params,
     )
 }
-///The parameters of [`list_summary`] and [`list_summary_pages`].
+/// The parameters of [`list_summary`] and [`list_summary_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListSummaryParams {
-    ///The marketplaces from which to retrieve summaries. If omitted, summaries from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The marketplaces from which to retrieve summaries. If omitted, summaries from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Option<Vec<String>>,
-    ///The type of account to include in the response.
+    /// The type of account to include in the response.
     pub account_type: Option<String>,
-    ///The name of the `relatedIdentifier`. The only possible value is `SETTLEMENT_ID`, the settlement ID associated with the summary.
+    /// The name of the `relatedIdentifier`. The only possible value is `SETTLEMENT_ID`, the settlement ID associated with the summary.
     pub related_identifier_name: Option<String>,
-    ///The value of the `relatedIdentifier`.
+    /// The value of the `relatedIdentifier`.
     pub related_identifier_value: Option<String>,
-    ///The start of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or after the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+    /// The start of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or after the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
     pub period_start: Option<String>,
-    ///The end of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or before the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+    /// The end of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or before the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
     pub period_end: Option<String>,
-    ///A token that you use to retrieve subsequent pages of results. When there are more results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
+    /// A token that you use to retrieve subsequent pages of results. When there are more results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
     pub next_token: Option<String>,
 }
 impl ListSummaryParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             marketplace_ids: None,
@@ -125,9 +125,9 @@ impl Default for ListSummaryParams {
         Self::new()
     }
 }
-///Retrieve the financial summary for the specified time period or settlement period.
+/// Retrieve the financial summary for the specified time period or settlement period.
 ///
-///Its pages: [`list_summary_pages`].
+/// Its pages: [`list_summary_pages`].
 pub async fn list_summary(
     client: &Client,
     params: ListSummaryParams,
@@ -163,7 +163,7 @@ pub async fn list_summary(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_summary`].
+/// Each page of [`list_summary`].
 pub fn list_summary_pages<'a>(
     client: &'a Client,
     params: ListSummaryParams,
@@ -184,49 +184,49 @@ pub fn list_summary_pages<'a>(
         &params,
     )
 }
-///The parameters of [`list_transactions`] and [`list_transactions_pages`].
+/// The parameters of [`list_transactions`] and [`list_transactions_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListTransactionsParams {
-    ///The response includes financial events posted on or after this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+    /// The response includes financial events posted on or after this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
     ///
-    ///This field is required if you do not specify a related identifier.
+    /// This field is required if you do not specify a related identifier.
     pub posted_after: Option<String>,
-    ///The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     ///
-    ///The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty.
+    /// The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty.
     ///
-    ///**Default:** Two minutes before the time of the request.
+    /// **Default:** Two minutes before the time of the request.
     pub posted_before: Option<String>,
-    ///The identifier of the marketplace from which you want to retrieve transactions. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the marketplace from which you want to retrieve transactions. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: Option<String>,
-    ///The status of the transaction.
+    /// The status of the transaction.
     ///
-    ///**Possible values:**
+    /// **Possible values:**
     ///
-    ///* `DEFERRED`: the transaction is currently deferred.
-    ///* `RELEASED`: the transaction is currently released.
-    ///* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
+    /// * `DEFERRED`: the transaction is currently deferred.
+    /// * `RELEASED`: the transaction is currently released.
+    /// * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
     pub transaction_status: Option<String>,
-    ///The name of the `relatedIdentifier`.
+    /// The name of the `relatedIdentifier`.
     ///
-    ///**Possible values:**
+    /// **Possible values:**
     ///
-    ///* `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction.
+    /// * `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction.
     ///
-    ///* `ORDER_ID`: the order ID associated with the transaction.
+    /// * `ORDER_ID`: the order ID associated with the transaction.
     ///
-    ///**Note:**
+    /// **Note:**
     ///
-    ///`FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
+    /// `FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
     pub related_identifier_name: Option<String>,
-    ///The value of the `relatedIdentifier`.
+    /// The value of the `relatedIdentifier`.
     pub related_identifier_value: Option<String>,
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListTransactionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             posted_after: None,
@@ -244,11 +244,11 @@ impl Default for ListTransactionsParams {
         Self::new()
     }
 }
-///Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
+/// Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
 ///
-///**Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
+/// **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
 ///
-///Its pages: [`list_transactions_pages`].
+/// Its pages: [`list_transactions_pages`].
 pub async fn list_transactions(
     client: &Client,
     params: ListTransactionsParams,
@@ -283,7 +283,7 @@ pub async fn list_transactions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_transactions`].
+/// Each page of [`list_transactions`].
 pub fn list_transactions_pages<'a>(
     client: &'a Client,
     params: ListTransactionsParams,

@@ -2,55 +2,55 @@
 // Source: schemas/notifications/TransactionUpdateNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The notification response schema that comprises the entire JSON document for the notification.
+/// The notification response schema that comprises the entire JSON document for the notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The time when this notification was published, presented in ISO-8601 date/time format.
+    /// The time when this notification was published, presented in ISO-8601 date/time format.
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: TheNotificationMetadataSchema,
-    ///The type of this notification, used to differentiate different notifications. Combined with payload version controls the structure of payload object.
+    /// The type of this notification, used to differentiate different notifications. Combined with payload version controls the structure of payload object.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version.
+    /// The notification version.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: ThePayloadSchema,
-    ///The payload version of the notification.
+    /// The payload version of the notification.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The notification metadata.
+/// The notification metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheNotificationMetadataSchema {
-    ///The identifier for the application that uses the notifications.
+    /// The identifier for the application that uses the notifications.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///A unique identifier for this notification instance.
+    /// A unique identifier for this notification instance.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///The date and time (in UTC) that the notification was sent, presented in ISO-8601 date/time format.
+    /// The date and time (in UTC) that the notification was sent, presented in ISO-8601 date/time format.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///A unique identifier for the subscription which resulted in this notification.
+    /// A unique identifier for the subscription which resulted in this notification.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///The payload for this TRANSACTION_UPDATE notification. It's unique for different event type and will provide more in-depth information about this notification.
+/// The payload for this TRANSACTION_UPDATE notification. It's unique for different event type and will provide more in-depth information about this notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePayloadSchema {
     #[serde(rename = "TransactionUpdateNotification")]
     pub transaction_update_notification: TheTransactionUpdateNotificationSchema,
 }
-///An explanation about the TRANSACTION_UPDATE notification.
+/// An explanation about the TRANSACTION_UPDATE notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheTransactionUpdateNotificationSchema {
-    ///The date and time when the transaction was posted.
+    /// The date and time when the transaction was posted.
     #[serde(rename = "PostedDate")]
     pub posted_date: ::std::string::String,
-    ///Related business identifiers of the transaction.
+    /// Related business identifiers of the transaction.
     #[serde(
         rename = "RelatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -62,40 +62,40 @@ pub struct TheTransactionUpdateNotificationSchema {
     pub selling_partner_metadata: TheTransactionUpdateNotificationSchemaSellingPartnerMetadata,
     #[serde(rename = "TotalAmount")]
     pub total_amount: TheTransactionUpdateNotificationSchemaTotalAmount,
-    ///Type of transaction.
+    /// Type of transaction.
     #[serde(rename = "TransactionType")]
     pub transaction_type: ::std::string::String,
 }
-///Related business identifier of the transaction.
+/// Related business identifier of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheTransactionUpdateNotificationSchemaRelatedIdentifiersItem {
-    ///Enumerated set of related business identifier names.
+    /// Enumerated set of related business identifier names.
     #[serde(rename = "RelatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
-    ///Corresponding value of RelatedIdentifierName
+    /// Corresponding value of RelatedIdentifierName
     #[serde(rename = "RelatedIdentifierValue")]
     pub related_identifier_value: ::std::string::String,
 }
-///Metadata describing the seller.
+/// Metadata describing the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheTransactionUpdateNotificationSchemaSellingPartnerMetadata {
-    ///Account type of transaction.
+    /// Account type of transaction.
     #[serde(rename = "AccountType")]
     pub account_type: ::std::string::String,
-    ///Marketplace identifier of transaction.
+    /// Marketplace identifier of transaction.
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Unique seller identifier.
+    /// Unique seller identifier.
     #[serde(rename = "SellingPartnerId")]
     pub selling_partner_id: ::std::string::String,
 }
-///Total amount of transaction.
+/// Total amount of transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheTransactionUpdateNotificationSchemaTotalAmount {
-    ///Amount value of transaction.
+    /// Amount value of transaction.
     #[serde(rename = "CurrencyAmount")]
     pub currency_amount: ::serde_json::Number,
-    ///Currency code of transaction.
+    /// Currency code of transaction.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
 }

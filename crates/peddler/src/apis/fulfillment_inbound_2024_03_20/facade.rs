@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`cancel_inbound_plan`].
+/// The parameters of [`cancel_inbound_plan`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelInboundPlanParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
 }
 impl CancelInboundPlanParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String) -> Self {
         Self { inbound_plan_id }
     }
 }
-///Cancels an Inbound Plan. Charges may apply if the cancellation is performed outside of a void window. The window for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload (LTL) carrier shipments.
+/// Cancels an Inbound Plan. Charges may apply if the cancellation is performed outside of a void window. The window for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload (LTL) carrier shipments.
 pub async fn cancel_inbound_plan(
     client: &Client,
     params: CancelInboundPlanParams,
@@ -41,19 +41,19 @@ pub async fn cancel_inbound_plan(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`cancel_self_ship_appointment`].
+/// The parameters of [`cancel_self_ship_appointment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelSelfShipAppointmentParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `cancelSelfShipAppointment`.
+    /// The body of the request to `cancelSelfShipAppointment`.
     pub body: B,
 }
 impl<B> CancelSelfShipAppointmentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -62,7 +62,7 @@ impl<B> CancelSelfShipAppointmentParams<B> {
         }
     }
 }
-///Cancels a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+/// Cancels a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
 pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
     client: &Client,
     params: CancelSelfShipAppointmentParams<B>,
@@ -88,19 +88,19 @@ pub async fn cancel_self_ship_appointment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`confirm_delivery_window_options`].
+/// The parameters of [`confirm_delivery_window_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmDeliveryWindowOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The shipment to confirm the delivery window option for.
+    /// The shipment to confirm the delivery window option for.
     pub shipment_id: String,
-    ///The id of the delivery window option to be confirmed.
+    /// The id of the delivery window option to be confirmed.
     pub delivery_window_option_id: String,
 }
 impl ConfirmDeliveryWindowOptionsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(
         inbound_plan_id: String,
         shipment_id: String,
@@ -113,7 +113,7 @@ impl ConfirmDeliveryWindowOptionsParams {
         }
     }
 }
-///Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new delivery window options cannot be generated, but the chosen delivery window option can be updated before shipment closure. The window is used to provide the expected time when a shipment will arrive at the warehouse. All transportation options which have the program `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed prior to transportation option confirmation.
+/// Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new delivery window options cannot be generated, but the chosen delivery window option can be updated before shipment closure. The window is used to provide the expected time when a shipment will arrive at the warehouse. All transportation options which have the program `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed prior to transportation option confirmation.
 pub async fn confirm_delivery_window_options(
     client: &Client,
     params: ConfirmDeliveryWindowOptionsParams,
@@ -141,17 +141,17 @@ pub async fn confirm_delivery_window_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`confirm_packing_option`].
+/// The parameters of [`confirm_packing_option`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmPackingOptionParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a packing option.
+    /// Identifier of a packing option.
     pub packing_option_id: String,
 }
 impl ConfirmPackingOptionParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, packing_option_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -159,7 +159,7 @@ impl ConfirmPackingOptionParams {
         }
     }
 }
-///Confirms the packing option for an inbound plan.
+/// Confirms the packing option for an inbound plan.
 pub async fn confirm_packing_option(
     client: &Client,
     params: ConfirmPackingOptionParams,
@@ -185,17 +185,17 @@ pub async fn confirm_packing_option(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`confirm_placement_option`].
+/// The parameters of [`confirm_placement_option`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmPlacementOptionParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The identifier of a placement option. A placement option represents the shipment splits and destinations of SKUs.
+    /// The identifier of a placement option. A placement option represents the shipment splits and destinations of SKUs.
     pub placement_option_id: String,
 }
 impl ConfirmPlacementOptionParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, placement_option_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -203,7 +203,7 @@ impl ConfirmPlacementOptionParams {
         }
     }
 }
-///Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
+/// Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
 pub async fn confirm_placement_option(
     client: &Client,
     params: ConfirmPlacementOptionParams,
@@ -229,19 +229,19 @@ pub async fn confirm_placement_option(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`confirm_shipment_content_update_preview`].
+/// The parameters of [`confirm_shipment_content_update_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmShipmentContentUpdatePreviewParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///Identifier of a content update preview.
+    /// Identifier of a content update preview.
     pub content_update_preview_id: String,
 }
 impl ConfirmShipmentContentUpdatePreviewParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(
         inbound_plan_id: String,
         shipment_id: String,
@@ -254,7 +254,7 @@ impl ConfirmShipmentContentUpdatePreviewParams {
         }
     }
 }
-///Confirm a shipment content update preview and accept the changes in transportation cost.
+/// Confirm a shipment content update preview and accept the changes in transportation cost.
 pub async fn confirm_shipment_content_update_preview(
     client: &Client,
     params: ConfirmShipmentContentUpdatePreviewParams,
@@ -285,22 +285,22 @@ pub async fn confirm_shipment_content_update_preview(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`confirm_transportation_options`].
+/// The parameters of [`confirm_transportation_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmTransportationOptionsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The body of the request to `confirmTransportationOptions`.
+    /// The body of the request to `confirmTransportationOptions`.
     pub body: B,
 }
 impl<B> ConfirmTransportationOptionsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, body: B) -> Self {
         Self { inbound_plan_id, body }
     }
 }
-///Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.
+/// Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.
 pub async fn confirm_transportation_options<B: serde::Serialize>(
     client: &Client,
     params: ConfirmTransportationOptionsParams<B>,
@@ -324,20 +324,20 @@ pub async fn confirm_transportation_options<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_inbound_plan`].
+/// The parameters of [`create_inbound_plan`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateInboundPlanParams<B = serde_json::Value> {
-    ///The body of the request to `createInboundPlan`.
+    /// The body of the request to `createInboundPlan`.
     pub body: B,
 }
 impl<B> CreateInboundPlanParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's fufillment network.
+/// Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's fufillment network.
 pub async fn create_inbound_plan<B: serde::Serialize>(
     client: &Client,
     params: CreateInboundPlanParams<B>,
@@ -356,20 +356,20 @@ pub async fn create_inbound_plan<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_marketplace_item_labels`].
+/// The parameters of [`create_marketplace_item_labels`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateMarketplaceItemLabelsParams<B = serde_json::Value> {
-    ///The body of the request to `createMarketplaceItemLabels`.
+    /// The body of the request to `createMarketplaceItemLabels`.
     pub body: B,
 }
 impl<B> CreateMarketplaceItemLabelsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///For a given marketplace - creates labels for a list of MSKUs.
+/// For a given marketplace - creates labels for a list of MSKUs.
 pub async fn create_marketplace_item_labels<B: serde::Serialize>(
     client: &Client,
     params: CreateMarketplaceItemLabelsParams<B>,
@@ -388,17 +388,17 @@ pub async fn create_marketplace_item_labels<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_delivery_window_options`].
+/// The parameters of [`generate_delivery_window_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateDeliveryWindowOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The shipment to generate delivery window options for.
+    /// The shipment to generate delivery window options for.
     pub shipment_id: String,
 }
 impl GenerateDeliveryWindowOptionsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -406,7 +406,7 @@ impl GenerateDeliveryWindowOptionsParams {
         }
     }
 }
-///Generates available delivery window options for a given shipment.
+/// Generates available delivery window options for a given shipment.
 pub async fn generate_delivery_window_options(
     client: &Client,
     params: GenerateDeliveryWindowOptionsParams,
@@ -432,20 +432,20 @@ pub async fn generate_delivery_window_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_packing_options`].
+/// The parameters of [`generate_packing_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GeneratePackingOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
 }
 impl GeneratePackingOptionsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String) -> Self {
         Self { inbound_plan_id }
     }
 }
-///Generates available packing options for the inbound plan.
+/// Generates available packing options for the inbound plan.
 pub async fn generate_packing_options(
     client: &Client,
     params: GeneratePackingOptionsParams,
@@ -469,22 +469,22 @@ pub async fn generate_packing_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_placement_options`].
+/// The parameters of [`generate_placement_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GeneratePlacementOptionsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The body of the request to `generatePlacementOptions`.
+    /// The body of the request to `generatePlacementOptions`.
     pub body: B,
 }
 impl<B> GeneratePlacementOptionsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, body: B) -> Self {
         Self { inbound_plan_id, body }
     }
 }
-///Generates placement options for the inbound plan.
+/// Generates placement options for the inbound plan.
 pub async fn generate_placement_options<B: serde::Serialize>(
     client: &Client,
     params: GeneratePlacementOptionsParams<B>,
@@ -508,19 +508,19 @@ pub async fn generate_placement_options<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_self_ship_appointment_slots`].
+/// The parameters of [`generate_self_ship_appointment_slots`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateSelfShipAppointmentSlotsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `generateSelfShipAppointmentSlots`.
+    /// The body of the request to `generateSelfShipAppointmentSlots`.
     pub body: B,
 }
 impl<B> GenerateSelfShipAppointmentSlotsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -529,7 +529,7 @@ impl<B> GenerateSelfShipAppointmentSlotsParams<B> {
         }
     }
 }
-///Initiates the process of generating the appointment slots list. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+/// Initiates the process of generating the appointment slots list. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
 pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
     client: &Client,
     params: GenerateSelfShipAppointmentSlotsParams<B>,
@@ -558,19 +558,19 @@ pub async fn generate_self_ship_appointment_slots<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_shipment_content_update_previews`].
+/// The parameters of [`generate_shipment_content_update_previews`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateShipmentContentUpdatePreviewsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `generateShipmentContentUpdatePreviews`.
+    /// The body of the request to `generateShipmentContentUpdatePreviews`.
     pub body: B,
 }
 impl<B> GenerateShipmentContentUpdatePreviewsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -579,7 +579,7 @@ impl<B> GenerateShipmentContentUpdatePreviewsParams<B> {
         }
     }
 }
-///Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents prior to confirmation.
+/// Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents prior to confirmation.
 pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
     client: &Client,
     params: GenerateShipmentContentUpdatePreviewsParams<B>,
@@ -608,22 +608,22 @@ pub async fn generate_shipment_content_update_previews<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`generate_transportation_options`].
+/// The parameters of [`generate_transportation_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateTransportationOptionsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The body of the request to `generateTransportationOptions`.
+    /// The body of the request to `generateTransportationOptions`.
     pub body: B,
 }
 impl<B> GenerateTransportationOptionsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, body: B) -> Self {
         Self { inbound_plan_id, body }
     }
 }
-///Generates available transportation options for a given placement option.
+/// Generates available transportation options for a given placement option.
 pub async fn generate_transportation_options<B: serde::Serialize>(
     client: &Client,
     params: GenerateTransportationOptionsParams<B>,
@@ -647,17 +647,17 @@ pub async fn generate_transportation_options<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_delivery_challan_document`].
+/// The parameters of [`get_delivery_challan_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetDeliveryChallanDocumentParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
 }
 impl GetDeliveryChallanDocumentParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -665,7 +665,7 @@ impl GetDeliveryChallanDocumentParams {
         }
     }
 }
-///Provide delivery challan document for PCP transportation in IN marketplace.
+/// Provide delivery challan document for PCP transportation in IN marketplace.
 pub async fn get_delivery_challan_document(
     client: &Client,
     params: GetDeliveryChallanDocumentParams,
@@ -691,20 +691,20 @@ pub async fn get_delivery_challan_document(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_inbound_operation_status`].
+/// The parameters of [`get_inbound_operation_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInboundOperationStatusParams {
-    ///Identifier of an asynchronous operation.
+    /// Identifier of an asynchronous operation.
     pub operation_id: String,
 }
 impl GetInboundOperationStatusParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(operation_id: String) -> Self {
         Self { operation_id }
     }
 }
-///Gets the status of the processing of an asynchronous API call.
+/// Gets the status of the processing of an asynchronous API call.
 pub async fn get_inbound_operation_status(
     client: &Client,
     params: GetInboundOperationStatusParams,
@@ -727,20 +727,20 @@ pub async fn get_inbound_operation_status(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_inbound_plan`].
+/// The parameters of [`get_inbound_plan`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInboundPlanParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
 }
 impl GetInboundPlanParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String) -> Self {
         Self { inbound_plan_id }
     }
 }
-///Fetches the top level information about an inbound plan.
+/// Fetches the top level information about an inbound plan.
 pub async fn get_inbound_plan(
     client: &Client,
     params: GetInboundPlanParams,
@@ -766,22 +766,22 @@ pub async fn get_inbound_plan(
 fn get_self_ship_appointment_slots_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`get_self_ship_appointment_slots`] and [`get_self_ship_appointment_slots_pages`].
+/// The parameters of [`get_self_ship_appointment_slots`] and [`get_self_ship_appointment_slots_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSelfShipAppointmentSlotsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The number of self ship appointment slots to return in the response matching the given query.
+    /// The number of self ship appointment slots to return in the response matching the given query.
     #[serde(default = "get_self_ship_appointment_slots_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl GetSelfShipAppointmentSlotsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -791,9 +791,9 @@ impl GetSelfShipAppointmentSlotsParams {
         }
     }
 }
-///Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+/// Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
 ///
-///Its pages: [`get_self_ship_appointment_slots_pages`].
+/// Its pages: [`get_self_ship_appointment_slots_pages`].
 pub async fn get_self_ship_appointment_slots(
     client: &Client,
     params: GetSelfShipAppointmentSlotsParams,
@@ -822,7 +822,7 @@ pub async fn get_self_ship_appointment_slots(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_self_ship_appointment_slots`].
+/// Each page of [`get_self_ship_appointment_slots`].
 pub fn get_self_ship_appointment_slots_pages<'a>(
     client: &'a Client,
     params: GetSelfShipAppointmentSlotsParams,
@@ -844,17 +844,17 @@ pub fn get_self_ship_appointment_slots_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_shipment`].
+/// The parameters of [`get_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
 }
 impl GetShipmentParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -862,7 +862,7 @@ impl GetShipmentParams {
         }
     }
 }
-///Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.
+/// Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.
 pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
@@ -887,19 +887,19 @@ pub async fn get_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_shipment_content_update_preview`].
+/// The parameters of [`get_shipment_content_update_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentContentUpdatePreviewParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///Identifier of a content update preview.
+    /// Identifier of a content update preview.
     pub content_update_preview_id: String,
 }
 impl GetShipmentContentUpdatePreviewParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(
         inbound_plan_id: String,
         shipment_id: String,
@@ -912,7 +912,7 @@ impl GetShipmentContentUpdatePreviewParams {
         }
     }
 }
-///Retrieve a shipment content update preview which provides a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.
+/// Retrieve a shipment content update preview which provides a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.
 pub async fn get_shipment_content_update_preview(
     client: &Client,
     params: GetShipmentContentUpdatePreviewParams,
@@ -942,22 +942,22 @@ pub async fn get_shipment_content_update_preview(
 fn list_delivery_window_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_delivery_window_options`] and [`list_delivery_window_options_pages`].
+/// The parameters of [`list_delivery_window_options`] and [`list_delivery_window_options_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListDeliveryWindowOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The shipment to get delivery window options for.
+    /// The shipment to get delivery window options for.
     pub shipment_id: String,
-    ///The number of delivery window options to return in the response matching the given query.
+    /// The number of delivery window options to return in the response matching the given query.
     #[serde(default = "list_delivery_window_options_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListDeliveryWindowOptionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -967,9 +967,9 @@ impl ListDeliveryWindowOptionsParams {
         }
     }
 }
-///Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the `generateDeliveryWindowOptions` operation before becoming available.
+/// Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the `generateDeliveryWindowOptions` operation before becoming available.
 ///
-///Its pages: [`list_delivery_window_options_pages`].
+/// Its pages: [`list_delivery_window_options_pages`].
 pub async fn list_delivery_window_options(
     client: &Client,
     params: ListDeliveryWindowOptionsParams,
@@ -998,7 +998,7 @@ pub async fn list_delivery_window_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_delivery_window_options`].
+/// Each page of [`list_delivery_window_options`].
 pub fn list_delivery_window_options_pages<'a>(
     client: &'a Client,
     params: ListDeliveryWindowOptionsParams,
@@ -1023,20 +1023,20 @@ pub fn list_delivery_window_options_pages<'a>(
 fn list_inbound_plan_boxes_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_inbound_plan_boxes`] and [`list_inbound_plan_boxes_pages`].
+/// The parameters of [`list_inbound_plan_boxes`] and [`list_inbound_plan_boxes_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundPlanBoxesParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of boxes to return in the response matching the given query.
+    /// The number of boxes to return in the response matching the given query.
     #[serde(default = "list_inbound_plan_boxes_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListInboundPlanBoxesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1045,9 +1045,9 @@ impl ListInboundPlanBoxesParams {
         }
     }
 }
-///Provides a paginated list of box packages in an inbound plan.
+/// Provides a paginated list of box packages in an inbound plan.
 ///
-///Its pages: [`list_inbound_plan_boxes_pages`].
+/// Its pages: [`list_inbound_plan_boxes_pages`].
 pub async fn list_inbound_plan_boxes(
     client: &Client,
     params: ListInboundPlanBoxesParams,
@@ -1074,7 +1074,7 @@ pub async fn list_inbound_plan_boxes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_inbound_plan_boxes`].
+/// Each page of [`list_inbound_plan_boxes`].
 pub fn list_inbound_plan_boxes_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanBoxesParams,
@@ -1099,20 +1099,20 @@ pub fn list_inbound_plan_boxes_pages<'a>(
 fn list_inbound_plan_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_inbound_plan_items`] and [`list_inbound_plan_items_pages`].
+/// The parameters of [`list_inbound_plan_items`] and [`list_inbound_plan_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundPlanItemsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of items to return in the response matching the given query.
+    /// The number of items to return in the response matching the given query.
     #[serde(default = "list_inbound_plan_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListInboundPlanItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1121,9 +1121,9 @@ impl ListInboundPlanItemsParams {
         }
     }
 }
-///Provides a paginated list of item packages in an inbound plan.
+/// Provides a paginated list of item packages in an inbound plan.
 ///
-///Its pages: [`list_inbound_plan_items_pages`].
+/// Its pages: [`list_inbound_plan_items_pages`].
 pub async fn list_inbound_plan_items(
     client: &Client,
     params: ListInboundPlanItemsParams,
@@ -1150,7 +1150,7 @@ pub async fn list_inbound_plan_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_inbound_plan_items`].
+/// Each page of [`list_inbound_plan_items`].
 pub fn list_inbound_plan_items_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanItemsParams,
@@ -1175,20 +1175,20 @@ pub fn list_inbound_plan_items_pages<'a>(
 fn list_inbound_plan_pallets_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_inbound_plan_pallets`] and [`list_inbound_plan_pallets_pages`].
+/// The parameters of [`list_inbound_plan_pallets`] and [`list_inbound_plan_pallets_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundPlanPalletsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of pallets to return in the response matching the given query.
+    /// The number of pallets to return in the response matching the given query.
     #[serde(default = "list_inbound_plan_pallets_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListInboundPlanPalletsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1197,9 +1197,9 @@ impl ListInboundPlanPalletsParams {
         }
     }
 }
-///Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
+/// Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
 ///
-///Its pages: [`list_inbound_plan_pallets_pages`].
+/// Its pages: [`list_inbound_plan_pallets_pages`].
 pub async fn list_inbound_plan_pallets(
     client: &Client,
     params: ListInboundPlanPalletsParams,
@@ -1226,7 +1226,7 @@ pub async fn list_inbound_plan_pallets(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_inbound_plan_pallets`].
+/// Each page of [`list_inbound_plan_pallets`].
 pub fn list_inbound_plan_pallets_pages<'a>(
     client: &'a Client,
     params: ListInboundPlanPalletsParams,
@@ -1251,30 +1251,30 @@ pub fn list_inbound_plan_pallets_pages<'a>(
 fn list_inbound_plans_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_inbound_plans`] and [`list_inbound_plans_pages`].
+/// The parameters of [`list_inbound_plans`] and [`list_inbound_plans_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundPlansParams {
-    ///The number of inbound plans to return in the response matching the given query.
+    /// The number of inbound plans to return in the response matching the given query.
     #[serde(default = "list_inbound_plans_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
-    ///The status of an inbound plan.
+    /// The status of an inbound plan.
     ///
-    ///Known values: `ACTIVE`, `VOIDED`, `SHIPPED`.
+    /// Known values: `ACTIVE`, `VOIDED`, `SHIPPED`.
     pub status: Option<String>,
-    ///Sort by field.
+    /// Sort by field.
     ///
-    ///Known values: `LAST_UPDATED_TIME`, `CREATION_TIME`.
+    /// Known values: `LAST_UPDATED_TIME`, `CREATION_TIME`.
     pub sort_by: Option<String>,
-    ///The sort order.
+    /// The sort order.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     pub sort_order: Option<String>,
 }
 impl ListInboundPlansParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             page_size: list_inbound_plans_page_size_default(),
@@ -1290,9 +1290,9 @@ impl Default for ListInboundPlansParams {
         Self::new()
     }
 }
-///Provides a list of inbound plans with minimal information.
+/// Provides a list of inbound plans with minimal information.
 ///
-///Its pages: [`list_inbound_plans_pages`].
+/// Its pages: [`list_inbound_plans_pages`].
 pub async fn list_inbound_plans(
     client: &Client,
     params: ListInboundPlansParams,
@@ -1317,7 +1317,7 @@ pub async fn list_inbound_plans(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_inbound_plans`].
+/// Each page of [`list_inbound_plans`].
 pub fn list_inbound_plans_pages<'a>(
     client: &'a Client,
     params: ListInboundPlansParams,
@@ -1338,32 +1338,32 @@ pub fn list_inbound_plans_pages<'a>(
         &params,
     )
 }
-///The parameters of [`list_item_compliance_details`].
+/// The parameters of [`list_item_compliance_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListItemComplianceDetailsParams {
-    ///A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+    /// A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
     pub mskus: Vec<String>,
-    ///The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl ListItemComplianceDetailsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(mskus: Vec<String>, marketplace_id: String) -> Self {
         Self { mskus, marketplace_id }
     }
 }
-///List the inbound compliance details for MSKUs in a given marketplace.
+/// List the inbound compliance details for MSKUs in a given marketplace.
 ///
-///**Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 ///
-///The following characters must be double percent encoded:
+/// The following characters must be double percent encoded:
 ///
-///- `%`
-///- `+`
-///- `,`
+/// - `%`
+/// - `+`
+/// - `,`
 ///
-///**Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.
+/// **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.
 pub async fn list_item_compliance_details(
     client: &Client,
     params: ListItemComplianceDetailsParams,
@@ -1389,22 +1389,22 @@ pub async fn list_item_compliance_details(
 fn list_packing_group_boxes_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_packing_group_boxes`] and [`list_packing_group_boxes_pages`].
+/// The parameters of [`list_packing_group_boxes`] and [`list_packing_group_boxes_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPackingGroupBoxesParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a packing group.
+    /// Identifier of a packing group.
     pub packing_group_id: String,
-    ///The number of packing group boxes to return in the response matching the given query.
+    /// The number of packing group boxes to return in the response matching the given query.
     #[serde(default = "list_packing_group_boxes_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListPackingGroupBoxesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, packing_group_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1414,9 +1414,9 @@ impl ListPackingGroupBoxesParams {
         }
     }
 }
-///Retrieves a page of boxes from a given packing group. These boxes were previously provided through the `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon determines shipment splits.
+/// Retrieves a page of boxes from a given packing group. These boxes were previously provided through the `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon determines shipment splits.
 ///
-///Its pages: [`list_packing_group_boxes_pages`].
+/// Its pages: [`list_packing_group_boxes_pages`].
 pub async fn list_packing_group_boxes(
     client: &Client,
     params: ListPackingGroupBoxesParams,
@@ -1445,7 +1445,7 @@ pub async fn list_packing_group_boxes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_packing_group_boxes`].
+/// Each page of [`list_packing_group_boxes`].
 pub fn list_packing_group_boxes_pages<'a>(
     client: &'a Client,
     params: ListPackingGroupBoxesParams,
@@ -1470,22 +1470,22 @@ pub fn list_packing_group_boxes_pages<'a>(
 fn list_packing_group_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_packing_group_items`] and [`list_packing_group_items_pages`].
+/// The parameters of [`list_packing_group_items`] and [`list_packing_group_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPackingGroupItemsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a packing group.
+    /// Identifier of a packing group.
     pub packing_group_id: String,
-    ///The number of packing group items to return in the response matching the given query.
+    /// The number of packing group items to return in the response matching the given query.
     #[serde(default = "list_packing_group_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListPackingGroupItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, packing_group_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1495,9 +1495,9 @@ impl ListPackingGroupItemsParams {
         }
     }
 }
-///Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding operation before packing group items can be listed.
+/// Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding operation before packing group items can be listed.
 ///
-///Its pages: [`list_packing_group_items_pages`].
+/// Its pages: [`list_packing_group_items_pages`].
 pub async fn list_packing_group_items(
     client: &Client,
     params: ListPackingGroupItemsParams,
@@ -1526,7 +1526,7 @@ pub async fn list_packing_group_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_packing_group_items`].
+/// Each page of [`list_packing_group_items`].
 pub fn list_packing_group_items_pages<'a>(
     client: &'a Client,
     params: ListPackingGroupItemsParams,
@@ -1551,20 +1551,20 @@ pub fn list_packing_group_items_pages<'a>(
 fn list_packing_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_packing_options`] and [`list_packing_options_pages`].
+/// The parameters of [`list_packing_options`] and [`list_packing_options_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPackingOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of packing options to return in the response matching the given query.
+    /// The number of packing options to return in the response matching the given query.
     #[serde(default = "list_packing_options_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListPackingOptionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1573,9 +1573,9 @@ impl ListPackingOptionsParams {
         }
     }
 }
-///Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the corresponding operation before becoming available.
+/// Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the corresponding operation before becoming available.
 ///
-///Its pages: [`list_packing_options_pages`].
+/// Its pages: [`list_packing_options_pages`].
 pub async fn list_packing_options(
     client: &Client,
     params: ListPackingOptionsParams,
@@ -1602,7 +1602,7 @@ pub async fn list_packing_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_packing_options`].
+/// Each page of [`list_packing_options`].
 pub fn list_packing_options_pages<'a>(
     client: &'a Client,
     params: ListPackingOptionsParams,
@@ -1626,20 +1626,20 @@ pub fn list_packing_options_pages<'a>(
 fn list_placement_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_placement_options`] and [`list_placement_options_pages`].
+/// The parameters of [`list_placement_options`] and [`list_placement_options_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPlacementOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of placement options to return in the response matching the given query.
+    /// The number of placement options to return in the response matching the given query.
     #[serde(default = "list_placement_options_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListPlacementOptionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1648,9 +1648,9 @@ impl ListPlacementOptionsParams {
         }
     }
 }
-///Provides a list of all placement options for an inbound plan. Placement options must first be generated by the corresponding operation before becoming available.
+/// Provides a list of all placement options for an inbound plan. Placement options must first be generated by the corresponding operation before becoming available.
 ///
-///Its pages: [`list_placement_options_pages`].
+/// Its pages: [`list_placement_options_pages`].
 pub async fn list_placement_options(
     client: &Client,
     params: ListPlacementOptionsParams,
@@ -1677,7 +1677,7 @@ pub async fn list_placement_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_placement_options`].
+/// Each page of [`list_placement_options`].
 pub fn list_placement_options_pages<'a>(
     client: &'a Client,
     params: ListPlacementOptionsParams,
@@ -1699,32 +1699,32 @@ pub fn list_placement_options_pages<'a>(
         &params,
     )
 }
-///The parameters of [`list_prep_details`].
+/// The parameters of [`list_prep_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPrepDetailsParams {
-    ///The marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
-    ///A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+    /// A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
     pub mskus: Vec<String>,
 }
 impl ListPrepDetailsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(marketplace_id: String, mskus: Vec<String>) -> Self {
         Self { marketplace_id, mskus }
     }
 }
-///Get preparation details for a list of MSKUs in a specified marketplace.
+/// Get preparation details for a list of MSKUs in a specified marketplace.
 ///
-///**Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+/// **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 ///
-///The following characters must be double percent encoded:
+/// The following characters must be double percent encoded:
 ///
-///- `%`
-///- `+`
-///- `,`
+/// - `%`
+/// - `+`
+/// - `,`
 ///
-///**Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.
+/// **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.
 pub async fn list_prep_details(
     client: &Client,
     params: ListPrepDetailsParams,
@@ -1750,22 +1750,22 @@ pub async fn list_prep_details(
 fn list_shipment_boxes_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_shipment_boxes`] and [`list_shipment_boxes_pages`].
+/// The parameters of [`list_shipment_boxes`] and [`list_shipment_boxes_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListShipmentBoxesParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The number of boxes to return in the response matching the given query.
+    /// The number of boxes to return in the response matching the given query.
     #[serde(default = "list_shipment_boxes_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListShipmentBoxesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1775,9 +1775,9 @@ impl ListShipmentBoxesParams {
         }
     }
 }
-///Provides a paginated list of box packages in a shipment.
+/// Provides a paginated list of box packages in a shipment.
 ///
-///Its pages: [`list_shipment_boxes_pages`].
+/// Its pages: [`list_shipment_boxes_pages`].
 pub async fn list_shipment_boxes(
     client: &Client,
     params: ListShipmentBoxesParams,
@@ -1806,7 +1806,7 @@ pub async fn list_shipment_boxes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_shipment_boxes`].
+/// Each page of [`list_shipment_boxes`].
 pub fn list_shipment_boxes_pages<'a>(
     client: &'a Client,
     params: ListShipmentBoxesParams,
@@ -1830,22 +1830,22 @@ pub fn list_shipment_boxes_pages<'a>(
 fn list_shipment_content_update_previews_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_shipment_content_update_previews`] and [`list_shipment_content_update_previews_pages`].
+/// The parameters of [`list_shipment_content_update_previews`] and [`list_shipment_content_update_previews_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListShipmentContentUpdatePreviewsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The number of content update previews to return.
+    /// The number of content update previews to return.
     #[serde(default = "list_shipment_content_update_previews_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListShipmentContentUpdatePreviewsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1855,9 +1855,9 @@ impl ListShipmentContentUpdatePreviewsParams {
         }
     }
 }
-///Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update preview is a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.
+/// Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update preview is a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.
 ///
-///Its pages: [`list_shipment_content_update_previews_pages`].
+/// Its pages: [`list_shipment_content_update_previews_pages`].
 pub async fn list_shipment_content_update_previews(
     client: &Client,
     params: ListShipmentContentUpdatePreviewsParams,
@@ -1889,7 +1889,7 @@ pub async fn list_shipment_content_update_previews(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_shipment_content_update_previews`].
+/// Each page of [`list_shipment_content_update_previews`].
 pub fn list_shipment_content_update_previews_pages<'a>(
     client: &'a Client,
     params: ListShipmentContentUpdatePreviewsParams,
@@ -1914,22 +1914,22 @@ pub fn list_shipment_content_update_previews_pages<'a>(
 fn list_shipment_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_shipment_items`] and [`list_shipment_items_pages`].
+/// The parameters of [`list_shipment_items`] and [`list_shipment_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListShipmentItemsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The number of items to return in the response matching the given query.
+    /// The number of items to return in the response matching the given query.
     #[serde(default = "list_shipment_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListShipmentItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -1939,9 +1939,9 @@ impl ListShipmentItemsParams {
         }
     }
 }
-///Provides a paginated list of item packages in a shipment.
+/// Provides a paginated list of item packages in a shipment.
 ///
-///Its pages: [`list_shipment_items_pages`].
+/// Its pages: [`list_shipment_items_pages`].
 pub async fn list_shipment_items(
     client: &Client,
     params: ListShipmentItemsParams,
@@ -1970,7 +1970,7 @@ pub async fn list_shipment_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_shipment_items`].
+/// Each page of [`list_shipment_items`].
 pub fn list_shipment_items_pages<'a>(
     client: &'a Client,
     params: ListShipmentItemsParams,
@@ -1994,22 +1994,22 @@ pub fn list_shipment_items_pages<'a>(
 fn list_shipment_pallets_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_shipment_pallets`] and [`list_shipment_pallets_pages`].
+/// The parameters of [`list_shipment_pallets`] and [`list_shipment_pallets_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListShipmentPalletsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The number of pallets to return in the response matching the given query.
+    /// The number of pallets to return in the response matching the given query.
     #[serde(default = "list_shipment_pallets_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
 }
 impl ListShipmentPalletsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String, shipment_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -2019,9 +2019,9 @@ impl ListShipmentPalletsParams {
         }
     }
 }
-///Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
+/// Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
 ///
-///Its pages: [`list_shipment_pallets_pages`].
+/// Its pages: [`list_shipment_pallets_pages`].
 pub async fn list_shipment_pallets(
     client: &Client,
     params: ListShipmentPalletsParams,
@@ -2050,7 +2050,7 @@ pub async fn list_shipment_pallets(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_shipment_pallets`].
+/// Each page of [`list_shipment_pallets`].
 pub fn list_shipment_pallets_pages<'a>(
     client: &'a Client,
     params: ListShipmentPalletsParams,
@@ -2074,24 +2074,24 @@ pub fn list_shipment_pallets_pages<'a>(
 fn list_transportation_options_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_transportation_options`] and [`list_transportation_options_pages`].
+/// The parameters of [`list_transportation_options`] and [`list_transportation_options_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListTransportationOptionsParams {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The number of transportation options to return in the response matching the given query.
+    /// The number of transportation options to return in the response matching the given query.
     #[serde(default = "list_transportation_options_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
+    /// A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result.
     pub pagination_token: Option<String>,
-    ///The placement option to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified.
+    /// The placement option to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified.
     pub placement_option_id: Option<String>,
-    ///The shipment to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified.
+    /// The shipment to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified.
     pub shipment_id: Option<String>,
 }
 impl ListTransportationOptionsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(inbound_plan_id: String) -> Self {
         Self {
             inbound_plan_id,
@@ -2102,9 +2102,9 @@ impl ListTransportationOptionsParams {
         }
     }
 }
-///Retrieves all transportation options for a shipment. Transportation options must first be generated by the `generateTransportationOptions` operation before becoming available.
+/// Retrieves all transportation options for a shipment. Transportation options must first be generated by the `generateTransportationOptions` operation before becoming available.
 ///
-///Its pages: [`list_transportation_options_pages`].
+/// Its pages: [`list_transportation_options_pages`].
 pub async fn list_transportation_options(
     client: &Client,
     params: ListTransportationOptionsParams,
@@ -2137,7 +2137,7 @@ pub async fn list_transportation_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_transportation_options`].
+/// Each page of [`list_transportation_options`].
 pub fn list_transportation_options_pages<'a>(
     client: &'a Client,
     params: ListTransportationOptionsParams,
@@ -2159,21 +2159,21 @@ pub fn list_transportation_options_pages<'a>(
         &params,
     )
 }
-///The parameters of [`schedule_self_ship_appointment`].
+/// The parameters of [`schedule_self_ship_appointment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ScheduleSelfShipAppointmentParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///An identifier to a self-ship appointment slot.
+    /// An identifier to a self-ship appointment slot.
     pub slot_id: String,
-    ///The body of the request to `scheduleSelfShipAppointment`.
+    /// The body of the request to `scheduleSelfShipAppointment`.
     pub body: B,
 }
 impl<B> ScheduleSelfShipAppointmentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(
         inbound_plan_id: String,
         shipment_id: String,
@@ -2188,7 +2188,7 @@ impl<B> ScheduleSelfShipAppointmentParams<B> {
         }
     }
 }
-///Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
+/// Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
 pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
     client: &Client,
     params: ScheduleSelfShipAppointmentParams<B>,
@@ -2216,22 +2216,22 @@ pub async fn schedule_self_ship_appointment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`set_packing_information`].
+/// The parameters of [`set_packing_information`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SetPackingInformationParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The body of the request to `setPackingInformation`.
+    /// The body of the request to `setPackingInformation`.
     pub body: B,
 }
 impl<B> SetPackingInformationParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, body: B) -> Self {
         Self { inbound_plan_id, body }
     }
 }
-///Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate the box level information required for planning and transportation estimates.
+/// Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate the box level information required for planning and transportation estimates.
 pub async fn set_packing_information<B: serde::Serialize>(
     client: &Client,
     params: SetPackingInformationParams<B>,
@@ -2255,20 +2255,20 @@ pub async fn set_packing_information<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`set_prep_details`].
+/// The parameters of [`set_prep_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SetPrepDetailsParams<B = serde_json::Value> {
-    ///The body of the request to `setPrepDetails`.
+    /// The body of the request to `setPrepDetails`.
     pub body: B,
 }
 impl<B> SetPrepDetailsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Set the preparation details for a list of MSKUs in a specified marketplace.
+/// Set the preparation details for a list of MSKUs in a specified marketplace.
 pub async fn set_prep_details<B: serde::Serialize>(
     client: &Client,
     params: SetPrepDetailsParams<B>,
@@ -2287,22 +2287,22 @@ pub async fn set_prep_details<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`update_inbound_plan_name`].
+/// The parameters of [`update_inbound_plan_name`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateInboundPlanNameParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///The body of the request to `updateInboundPlanName`.
+    /// The body of the request to `updateInboundPlanName`.
     pub body: B,
 }
 impl<B> UpdateInboundPlanNameParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, body: B) -> Self {
         Self { inbound_plan_id, body }
     }
 }
-///Updates the name of an existing inbound plan.
+/// Updates the name of an existing inbound plan.
 pub async fn update_inbound_plan_name<B: serde::Serialize>(
     client: &Client,
     params: UpdateInboundPlanNameParams<B>,
@@ -2326,22 +2326,22 @@ pub async fn update_inbound_plan_name<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`update_item_compliance_details`].
+/// The parameters of [`update_item_compliance_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateItemComplianceDetailsParams<B = serde_json::Value> {
-    ///The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
-    ///The body of the request to `updateItemComplianceDetails`.
+    /// The body of the request to `updateItemComplianceDetails`.
     pub body: B,
 }
 impl<B> UpdateItemComplianceDetailsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(marketplace_id: String, body: B) -> Self {
         Self { marketplace_id, body }
     }
 }
-///Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN - A21TJRUUN4KGV) marketplace compliance validation.
+/// Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN - A21TJRUUN4KGV) marketplace compliance validation.
 pub async fn update_item_compliance_details<B: serde::Serialize>(
     client: &Client,
     params: UpdateItemComplianceDetailsParams<B>,
@@ -2362,19 +2362,19 @@ pub async fn update_item_compliance_details<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`update_shipment_name`].
+/// The parameters of [`update_shipment_name`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateShipmentNameParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `updateShipmentName`.
+    /// The body of the request to `updateShipmentName`.
     pub body: B,
 }
 impl<B> UpdateShipmentNameParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -2383,7 +2383,7 @@ impl<B> UpdateShipmentNameParams<B> {
         }
     }
 }
-///Updates the name of an existing shipment.
+/// Updates the name of an existing shipment.
 pub async fn update_shipment_name<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentNameParams<B>,
@@ -2409,19 +2409,19 @@ pub async fn update_shipment_name<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`update_shipment_source_address`].
+/// The parameters of [`update_shipment_source_address`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateShipmentSourceAddressParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `updateShipmentSourceAddress`.
+    /// The body of the request to `updateShipmentSourceAddress`.
     pub body: B,
 }
 impl<B> UpdateShipmentSourceAddressParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -2430,7 +2430,7 @@ impl<B> UpdateShipmentSourceAddressParams<B> {
         }
     }
 }
-///Updates the source address of an existing shipment. The shipment source address can only be updated prior to the confirmation of the shipment carriers. As a result of the updated source address, existing transportation options will be invalidated and will need to be regenerated to capture the potential difference in transportation options and quotes due to the new source address.
+/// Updates the source address of an existing shipment. The shipment source address can only be updated prior to the confirmation of the shipment carriers. As a result of the updated source address, existing transportation options will be invalidated and will need to be regenerated to capture the potential difference in transportation options and quotes due to the new source address.
 pub async fn update_shipment_source_address<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentSourceAddressParams<B>,
@@ -2456,19 +2456,19 @@ pub async fn update_shipment_source_address<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`update_shipment_tracking_details`].
+/// The parameters of [`update_shipment_tracking_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateShipmentTrackingDetailsParams<B = serde_json::Value> {
-    ///Identifier of an inbound plan.
+    /// Identifier of an inbound plan.
     pub inbound_plan_id: String,
-    ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
+    /// Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     pub shipment_id: String,
-    ///The body of the request to `updateShipmentTrackingDetails`.
+    /// The body of the request to `updateShipmentTrackingDetails`.
     pub body: B,
 }
 impl<B> UpdateShipmentTrackingDetailsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(inbound_plan_id: String, shipment_id: String, body: B) -> Self {
         Self {
             inbound_plan_id,
@@ -2477,7 +2477,7 @@ impl<B> UpdateShipmentTrackingDetailsParams<B> {
         }
     }
 }
-///Updates a shipment's tracking details.
+/// Updates a shipment's tracking details.
 pub async fn update_shipment_tracking_details<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentTrackingDetailsParams<B>,

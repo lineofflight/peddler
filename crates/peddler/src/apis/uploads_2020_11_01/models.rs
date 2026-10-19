@@ -2,7 +2,7 @@
 // Source: uploads-api-model/uploads_2020-11-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The response schema for the createUploadDestination operation.
+/// The response schema for the createUploadDestination operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateUploadDestinationResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -10,18 +10,18 @@ pub struct CreateUploadDestinationResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<UploadDestination>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -41,19 +41,19 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///Information about an upload destination.
+/// Information about an upload destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UploadDestination {
-    ///The headers to include in the upload request.
+    /// The headers to include in the upload request.
     #[serde(default, skip_serializing_if = "::serde_json::Map::is_empty")]
     pub headers: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-    ///The unique identifier for the upload destination.
+    /// The unique identifier for the upload destination.
     #[serde(
         rename = "uploadDestinationId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub upload_destination_id: ::std::option::Option<::std::string::String>,
-    ///The URL for the upload destination.
+    /// The URL for the upload destination.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub url: ::std::option::Option<::std::string::String>,
 }

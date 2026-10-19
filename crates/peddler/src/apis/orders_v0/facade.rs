@@ -4,22 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`confirm_shipment`].
+/// The parameters of [`confirm_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmShipmentParams<B = serde_json::Value> {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
-    ///Request body of `confirmShipment`.
+    /// Request body of `confirmShipment`.
     pub body: B,
 }
 impl<B> ConfirmShipmentParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String, body: B) -> Self {
         Self { order_id, body }
     }
 }
-///Updates the shipment confirmation status for a specified order.
+/// Updates the shipment confirmation status for a specified order.
 pub async fn confirm_shipment<B: serde::Serialize>(
     client: &Client,
     params: ConfirmShipmentParams<B>,
@@ -43,20 +43,20 @@ pub async fn confirm_shipment<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`get_order`].
+/// The parameters of [`get_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
 }
 impl GetOrderParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
-///Returns the order that you specify.
+/// Returns the order that you specify.
 pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
@@ -76,20 +76,20 @@ pub async fn get_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order_address`].
+/// The parameters of [`get_order_address`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderAddressParams {
-    ///The Amazon order identifier in 3-7-7 format.
+    /// The Amazon order identifier in 3-7-7 format.
     pub order_id: String,
 }
 impl GetOrderAddressParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
-///Returns the shipping address for the order that you specify.
+/// Returns the shipping address for the order that you specify.
 pub async fn get_order_address(
     client: &Client,
     params: GetOrderAddressParams,
@@ -113,20 +113,20 @@ pub async fn get_order_address(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order_buyer_info`].
+/// The parameters of [`get_order_buyer_info`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderBuyerInfoParams {
-    ///The Amazon order identifier in 3-7-7 format.
+    /// The Amazon order identifier in 3-7-7 format.
     pub order_id: String,
 }
 impl GetOrderBuyerInfoParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
-///Returns buyer information for the order that you specify.
+/// Returns buyer information for the order that you specify.
 pub async fn get_order_buyer_info(
     client: &Client,
     params: GetOrderBuyerInfoParams,
@@ -150,26 +150,26 @@ pub async fn get_order_buyer_info(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order_items`] and [`get_order_items_pages`].
+/// The parameters of [`get_order_items`] and [`get_order_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderItemsParams {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
-    ///A string token returned in the response of your previous request.
+    /// A string token returned in the response of your previous request.
     pub next_token: Option<String>,
 }
 impl GetOrderItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self { order_id, next_token: None }
     }
 }
-///Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.
+/// Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to retrieve the next page of order items.
 ///
-///**Note**: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
+/// **Note**: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
 ///
-///Its pages: [`get_order_items_pages`].
+/// Its pages: [`get_order_items_pages`].
 pub async fn get_order_items(
     client: &Client,
     params: GetOrderItemsParams,
@@ -195,7 +195,7 @@ pub async fn get_order_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_order_items`].
+/// Each page of [`get_order_items`].
 pub fn get_order_items_pages<'a>(
     client: &'a Client,
     params: GetOrderItemsParams,
@@ -216,24 +216,24 @@ pub fn get_order_items_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_order_items_buyer_info`] and [`get_order_items_buyer_info_pages`].
+/// The parameters of [`get_order_items_buyer_info`] and [`get_order_items_buyer_info_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderItemsBuyerInfoParams {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
-    ///A string token returned in the response of your previous request.
+    /// A string token returned in the response of your previous request.
     pub next_token: Option<String>,
 }
 impl GetOrderItemsBuyerInfoParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self { order_id, next_token: None }
     }
 }
-///Returns buyer information for the order items in the order that you specify.
+/// Returns buyer information for the order items in the order that you specify.
 ///
-///Its pages: [`get_order_items_buyer_info_pages`].
+/// Its pages: [`get_order_items_buyer_info_pages`].
 pub async fn get_order_items_buyer_info(
     client: &Client,
     params: GetOrderItemsBuyerInfoParams,
@@ -259,7 +259,7 @@ pub async fn get_order_items_buyer_info(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_order_items_buyer_info`].
+/// Each page of [`get_order_items_buyer_info`].
 pub fn get_order_items_buyer_info_pages<'a>(
     client: &'a Client,
     params: GetOrderItemsBuyerInfoParams,
@@ -280,20 +280,20 @@ pub fn get_order_items_buyer_info_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_order_regulated_info`].
+/// The parameters of [`get_order_regulated_info`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderRegulatedInfoParams {
-    ///The Amazon order identifier in 3-7-7 format.
+    /// The Amazon order identifier in 3-7-7 format.
     pub order_id: String,
 }
 impl GetOrderRegulatedInfoParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
-///Returns regulated information for the order that you specify.
+/// Returns regulated information for the order that you specify.
 pub async fn get_order_regulated_info(
     client: &Client,
     params: GetOrderRegulatedInfoParams,
@@ -317,106 +317,106 @@ pub async fn get_order_regulated_info(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_orders`] and [`get_orders_pages`].
+/// The parameters of [`get_orders`] and [`get_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrdersParams {
-    ///Use this date to select orders created after (or at) a specified time. Only orders placed after the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders created after (or at) a specified time. Only orders placed after the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     ///
-    ///**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `LastUpdatedAfter` and `LastUpdatedBefore` cannot be set when `CreatedAfter` is set.
+    /// **Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `LastUpdatedAfter` and `LastUpdatedBefore` cannot be set when `CreatedAfter` is set.
     pub created_after: Option<String>,
-    ///Use this date to select orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     ///
-    ///**Note**: `CreatedBefore` is optional when `CreatedAfter` is set. If specified, `CreatedBefore` must be equal to or after the `CreatedAfter` date and at least two minutes before current time.
+    /// **Note**: `CreatedBefore` is optional when `CreatedAfter` is set. If specified, `CreatedBefore` must be equal to or after the `CreatedAfter` date and at least two minutes before current time.
     pub created_before: Option<String>,
-    ///Use this date to select orders that were last updated after (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders that were last updated after (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     ///
-    ///**Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `CreatedAfter` or `CreatedBefore` cannot be set when `LastUpdatedAfter` is set.
+    /// **Note**: Either the `CreatedAfter` parameter or the `LastUpdatedAfter` parameter is required. Both cannot be empty. `CreatedAfter` or `CreatedBefore` cannot be set when `LastUpdatedAfter` is set.
     pub last_updated_after: Option<String>,
-    ///Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders that were last updated before (or at) a specified time. An update is defined as any change in order status, including the creation of a new order. Includes updates made by Amazon and by the seller. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     ///
-    ///**Note**: `LastUpdatedBefore` is optional when `LastUpdatedAfter` is set. But if specified, `LastUpdatedBefore` must be equal to or after the `LastUpdatedAfter` date and at least two minutes before current time.
+    /// **Note**: `LastUpdatedBefore` is optional when `LastUpdatedAfter` is set. But if specified, `LastUpdatedBefore` must be equal to or after the `LastUpdatedAfter` date and at least two minutes before current time.
     pub last_updated_before: Option<String>,
-    ///A list of `OrderStatus` values used to filter the results.
+    /// A list of `OrderStatus` values used to filter the results.
     ///
-    ///**Possible values:**
-    ///- `PendingAvailability` (This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future.)
-    ///- `Pending` (The order has been placed but payment has not been authorized.)
-    ///- `Unshipped` (Payment has been authorized and the order is ready for shipment, but no items in the order have been shipped.)
-    ///- `PartiallyShipped` (One or more, but not all, items in the order have been shipped.)
-    ///- `Shipped` (All items in the order have been shipped.)
-    ///- `InvoiceUnconfirmed` (All items in the order have been shipped. The seller has not yet given confirmation to Amazon that the invoice has been shipped to the buyer.)
-    ///- `Canceled` (The order has been canceled.)
-    ///- `Unfulfillable` (The order cannot be fulfilled. This state applies only to Multi-Channel Fulfillment orders.)
+    /// **Possible values:**
+    /// - `PendingAvailability` (This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future.)
+    /// - `Pending` (The order has been placed but payment has not been authorized.)
+    /// - `Unshipped` (Payment has been authorized and the order is ready for shipment, but no items in the order have been shipped.)
+    /// - `PartiallyShipped` (One or more, but not all, items in the order have been shipped.)
+    /// - `Shipped` (All items in the order have been shipped.)
+    /// - `InvoiceUnconfirmed` (All items in the order have been shipped. The seller has not yet given confirmation to Amazon that the invoice has been shipped to the buyer.)
+    /// - `Canceled` (The order has been canceled.)
+    /// - `Unfulfillable` (The order cannot be fulfilled. This state applies only to Multi-Channel Fulfillment orders.)
     pub order_statuses: Option<Vec<String>>,
-    ///A list of `MarketplaceId` values. Used to select orders that were placed in the specified marketplaces.
+    /// A list of `MarketplaceId` values. Used to select orders that were placed in the specified marketplaces.
     ///
-    ///Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.
+    /// Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.
     pub marketplace_ids: Vec<String>,
-    ///A list that indicates how an order was fulfilled. Filters the results by fulfillment channel.
+    /// A list that indicates how an order was fulfilled. Filters the results by fulfillment channel.
     ///
-    ///**Possible values**: `AFN` (fulfilled by Amazon), `MFN` (fulfilled by seller).
+    /// **Possible values**: `AFN` (fulfilled by Amazon), `MFN` (fulfilled by seller).
     pub fulfillment_channels: Option<Vec<String>>,
-    ///A list of payment method values. Use this field to select orders that were paid with the specified payment methods.
+    /// A list of payment method values. Use this field to select orders that were paid with the specified payment methods.
     ///
-    ///**Possible values**: `COD` (cash on delivery), `CVS` (convenience store), `Other` (Any payment method other than COD or CVS).
+    /// **Possible values**: `COD` (cash on delivery), `CVS` (convenience store), `Other` (Any payment method other than COD or CVS).
     pub payment_methods: Option<Vec<String>>,
-    ///The email address of a buyer. Used to select orders that contain the specified email address.
+    /// The email address of a buyer. Used to select orders that contain the specified email address.
     pub buyer_email: Option<String>,
-    ///An order identifier that is specified by the seller. Used to select only the orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`, `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, `LastUpdatedBefore`, and `BuyerEmail` cannot be specified.
+    /// An order identifier that is specified by the seller. Used to select only the orders that match the order identifier. If `SellerOrderId` is specified, then `FulfillmentChannels`, `OrderStatuses`, `PaymentMethod`, `LastUpdatedAfter`, `LastUpdatedBefore`, and `BuyerEmail` cannot be specified.
     pub seller_order_id: Option<String>,
-    ///A number that indicates the maximum number of orders that can be returned per page. Value must be 1 - 100. Default 100.
+    /// A number that indicates the maximum number of orders that can be returned per page. Value must be 1 - 100. Default 100.
     pub max_results_per_page: Option<i64>,
-    ///A list of `EasyShipShipmentStatus` values. Used to select Easy Ship orders with statuses that match the specified values. If `EasyShipShipmentStatus` is specified, only Amazon Easy Ship orders are returned.
+    /// A list of `EasyShipShipmentStatus` values. Used to select Easy Ship orders with statuses that match the specified values. If `EasyShipShipmentStatus` is specified, only Amazon Easy Ship orders are returned.
     ///
-    ///**Possible values:**
-    ///- `PendingSchedule` (The package is awaiting the schedule for pick-up.)
-    ///- `PendingPickUp` (Amazon has not yet picked up the package from the seller.)
-    ///- `PendingDropOff` (The seller will deliver the package to the carrier.)
-    ///- `LabelCanceled` (The seller canceled the pickup.)
-    ///- `PickedUp` (Amazon has picked up the package from the seller.)
-    ///- `DroppedOff` (The package is delivered to the carrier by the seller.)
-    ///- `AtOriginFC` (The packaged is at the origin fulfillment center.)
-    ///- `AtDestinationFC` (The package is at the destination fulfillment center.)
-    ///- `Delivered` (The package has been delivered.)
-    ///- `RejectedByBuyer` (The package has been rejected by the buyer.)
-    ///- `Undeliverable` (The package cannot be delivered.)
-    ///- `ReturningToSeller` (The package was not delivered and is being returned to the seller.)
-    ///- `ReturnedToSeller` (The package was not delivered and was returned to the seller.)
-    ///- `Lost` (The package is lost.)
-    ///- `OutForDelivery` (The package is out for delivery.)
-    ///- `Damaged` (The package was damaged by the carrier.)
+    /// **Possible values:**
+    /// - `PendingSchedule` (The package is awaiting the schedule for pick-up.)
+    /// - `PendingPickUp` (Amazon has not yet picked up the package from the seller.)
+    /// - `PendingDropOff` (The seller will deliver the package to the carrier.)
+    /// - `LabelCanceled` (The seller canceled the pickup.)
+    /// - `PickedUp` (Amazon has picked up the package from the seller.)
+    /// - `DroppedOff` (The package is delivered to the carrier by the seller.)
+    /// - `AtOriginFC` (The packaged is at the origin fulfillment center.)
+    /// - `AtDestinationFC` (The package is at the destination fulfillment center.)
+    /// - `Delivered` (The package has been delivered.)
+    /// - `RejectedByBuyer` (The package has been rejected by the buyer.)
+    /// - `Undeliverable` (The package cannot be delivered.)
+    /// - `ReturningToSeller` (The package was not delivered and is being returned to the seller.)
+    /// - `ReturnedToSeller` (The package was not delivered and was returned to the seller.)
+    /// - `Lost` (The package is lost.)
+    /// - `OutForDelivery` (The package is out for delivery.)
+    /// - `Damaged` (The package was damaged by the carrier.)
     pub easy_ship_shipment_statuses: Option<Vec<String>>,
-    ///A list of `ElectronicInvoiceStatus` values. Used to select orders with electronic invoice statuses that match the specified values.
+    /// A list of `ElectronicInvoiceStatus` values. Used to select orders with electronic invoice statuses that match the specified values.
     ///
-    ///**Possible values:**
-    ///- `NotRequired` (Electronic invoice submission is not required for this order.)
-    ///- `NotFound` (The electronic invoice was not submitted for this order.)
-    ///- `Processing` (The electronic invoice is being processed for this order.)
-    ///- `Errored` (The last submitted electronic invoice was rejected for this order.)
-    ///- `Accepted` (The last submitted electronic invoice was submitted and accepted.)
+    /// **Possible values:**
+    /// - `NotRequired` (Electronic invoice submission is not required for this order.)
+    /// - `NotFound` (The electronic invoice was not submitted for this order.)
+    /// - `Processing` (The electronic invoice is being processed for this order.)
+    /// - `Errored` (The last submitted electronic invoice was rejected for this order.)
+    /// - `Accepted` (The last submitted electronic invoice was submitted and accepted.)
     pub electronic_invoice_statuses: Option<Vec<String>>,
-    ///A string token returned in the response of your previous request.
+    /// A string token returned in the response of your previous request.
     pub next_token: Option<String>,
-    ///A list of `AmazonOrderId` values. An `AmazonOrderId` is an Amazon-defined order identifier, in 3-7-7 format.
+    /// A list of `AmazonOrderId` values. An `AmazonOrderId` is an Amazon-defined order identifier, in 3-7-7 format.
     pub amazon_order_ids: Option<Vec<String>>,
-    ///The `sourceId` of the location from where you want the order fulfilled.
+    /// The `sourceId` of the location from where you want the order fulfilled.
     pub actual_fulfillment_supply_source_id: Option<String>,
-    ///When true, this order is marked to be picked up from a store rather than delivered.
+    /// When true, this order is marked to be picked up from a store rather than delivered.
     pub is_ispu: Option<bool>,
-    ///The store chain store identifier. Linked to a specific store in a store chain.
+    /// The store chain store identifier. Linked to a specific store in a store chain.
     pub store_chain_store_id: Option<String>,
-    ///Use this date to select orders with an earliest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders with an earliest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     pub earliest_delivery_date_before: Option<String>,
-    ///Use this date to select orders with an earliest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders with an earliest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     pub earliest_delivery_date_after: Option<String>,
-    ///Use this date to select orders with a latest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders with a latest delivery date before (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     pub latest_delivery_date_before: Option<String>,
-    ///Use this date to select orders with a latest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+    /// Use this date to select orders with a latest delivery date after (or at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
     pub latest_delivery_date_after: Option<String>,
 }
 impl GetOrdersParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_ids: Vec<String>) -> Self {
         Self {
             created_after: None,
@@ -444,9 +444,9 @@ impl GetOrdersParams {
         }
     }
 }
-///Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response.
+/// Returns orders that are created or updated during the specified time period. If you want to return specific types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include in your request; it only impacts the pagination for the filtered orders response.
 ///
-///Its pages: [`get_orders_pages`].
+/// Its pages: [`get_orders_pages`].
 pub async fn get_orders(
     client: &Client,
     params: GetOrdersParams,
@@ -551,7 +551,7 @@ pub async fn get_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_orders`].
+/// Each page of [`get_orders`].
 pub fn get_orders_pages<'a>(
     client: &'a Client,
     params: GetOrdersParams,
@@ -572,22 +572,22 @@ pub fn get_orders_pages<'a>(
         &params,
     )
 }
-///The parameters of [`update_shipment_status`].
+/// The parameters of [`update_shipment_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateShipmentStatusParams<B = serde_json::Value> {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
-    ///The request body for the `updateShipmentStatus` operation.
+    /// The request body for the `updateShipmentStatus` operation.
     pub body: B,
 }
 impl<B> UpdateShipmentStatusParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String, body: B) -> Self {
         Self { order_id, body }
     }
 }
-///Update the shipment status for an order that you specify.
+/// Update the shipment status for an order that you specify.
 pub async fn update_shipment_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateShipmentStatusParams<B>,
@@ -611,22 +611,22 @@ pub async fn update_shipment_status<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
-///The parameters of [`update_verification_status`].
+/// The parameters of [`update_verification_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateVerificationStatusParams<B = serde_json::Value> {
-    ///The Amazon order identifier in 3-7-7 format.
+    /// The Amazon order identifier in 3-7-7 format.
     pub order_id: String,
-    ///The request body for the `updateVerificationStatus` operation.
+    /// The request body for the `updateVerificationStatus` operation.
     pub body: B,
 }
 impl<B> UpdateVerificationStatusParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(order_id: String, body: B) -> Self {
         Self { order_id, body }
     }
 }
-///Updates (approves or rejects) the verification status of an order containing regulated products.
+/// Updates (approves or rejects) the verification status of an order containing regulated products.
 pub async fn update_verification_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateVerificationStatusParams<B>,

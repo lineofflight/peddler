@@ -2,18 +2,18 @@
 // Source: vendor-transaction-status-api-model/vendorTransactionStatus.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -33,29 +33,29 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the getTransaction operation.
+/// The response schema for the getTransaction operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetTransactionResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The response payload for the getTransaction operation.
+    /// The response payload for the getTransaction operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionStatus>,
 }
-///The transaction status.
+/// The transaction status.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Transaction {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Current processing status of the transaction.
+    /// Current processing status of the transaction.
     ///
-    ///Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.
+    /// Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The unique identifier returned in the 'transactionId' field in response to the post request of a specific transaction.
+    /// The unique identifier returned in the 'transactionId' field in response to the post request of a specific transaction.
     #[serde(rename = "transactionId")]
     pub transaction_id: ::std::string::String,
 }
-///Represents the status of a transaction.
+/// Represents the status of a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionStatus {
     #[serde(

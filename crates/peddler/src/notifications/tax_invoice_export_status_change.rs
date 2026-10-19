@@ -2,55 +2,55 @@
 // Source: schemas/notifications/TaxInvoiceExportStatusChange.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Notification`
+/// `Notification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The date and time when the notification event occurred, in ISO 8601 format.
+    /// The date and time when the notification event occurred, in ISO 8601 format.
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
-    ///The notification's metadata, including the publish time and the application, subscription, and notification event identifiers.
+    /// The notification's metadata, including the publish time and the application, subscription, and notification event identifiers.
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type.
+    /// The notification type.
     ///
-    ///Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`. Other values may be returned by Amazon.
+    /// Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The version for this notification type.
+    /// The version for this notification type.
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
-    ///Event details about the change to the tax invoice export status.
+    /// Event details about the change to the tax invoice export status.
     pub payload: Payload,
-    ///The version for this payload.
+    /// The version for this payload.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///The application identifier.
+    /// The application identifier.
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///The notification identifier.
+    /// The notification identifier.
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The date and time when the notification was published, in ISO 8601 format.
+    /// The date and time when the notification was published, in ISO 8601 format.
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription identifier.
+    /// The subscription identifier.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The identifier for the export request. This value is returned by the `createInvoicesExport` operation.
+    /// The identifier for the export request. This value is returned by the `createInvoicesExport` operation.
     #[serde(rename = "exportId")]
     pub export_id: ::std::string::String,
-    ///The identifier for the store where the invoice applies.
+    /// The identifier for the store where the invoice applies.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The status of the export request. Possible values: REQUESTED - The export has been received. PROCESSING - The export is being generated. DONE - The export is complete and available for download. ERROR - The export failed.
+    /// The status of the export request. Possible values: REQUESTED - The export has been received. PROCESSING - The export is being generated. DONE - The export is complete and available for download. ERROR - The export failed.
     pub status: ::std::string::String,
 }
 /// Error types.

@@ -2,73 +2,73 @@
 // Source: schemas/notifications/TaxInvoiceIssuanceStatusNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Notification`
+/// `Notification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The time the notification was sent.
+    /// The time the notification was sent.
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
-    ///The notification's metadata.
+    /// The notification's metadata.
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type.
+    /// The notification type.
     ///
-    ///Known values: `TAX_INVOICE_ISSUANCE_STATUS`. Other values may be returned by Amazon.
+    /// Known values: `TAX_INVOICE_ISSUANCE_STATUS`. Other values may be returned by Amazon.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version.
+    /// The notification version.
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
-    ///The payload containing invoice issuance status details.
+    /// The payload containing invoice issuance status details.
     pub payload: Payload,
-    ///The payload version of the notification.
+    /// The payload version of the notification.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///The application identifier.
+    /// The application identifier.
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///The notification identifier.
+    /// The notification identifier.
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The time the notification was published.
+    /// The time the notification was published.
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription identifier.
+    /// The subscription identifier.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The date and time the invoice was issued. Values are in ISO 8601 date-time format.
+    /// The date and time the invoice was issued. Values are in ISO 8601 date-time format.
     pub date: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub error: ::std::option::Option<PayloadError>,
-    ///The invoice identifier used by an external party, typically the government agency that authorized the invoice.
+    /// The invoice identifier used by an external party, typically the government agency that authorized the invoice.
     #[serde(rename = "invoiceId")]
     pub invoice_id: ::std::string::String,
-    ///The identifier for the Amazon store where the invoice was issued.
+    /// The identifier for the Amazon store where the invoice was issued.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The order identifier associated with the invoice.
+    /// The order identifier associated with the invoice.
     #[serde(rename = "orderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<::std::string::String>,
-    ///The status of the tax invoice issuance.
+    /// The status of the tax invoice issuance.
     ///
-    ///Known values: `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
+    /// Known values: `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
-///Error details when the invoice issuance fails. Only present for error statuses.
+/// Error details when the invoice issuance fails. Only present for error statuses.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PayloadError {
-    ///The error code indicating the type of failure.
+    /// The error code indicating the type of failure.
     #[serde(rename = "errorCode")]
     pub error_code: ::std::string::String,
-    ///The response message from the government agency.
+    /// The response message from the government agency.
     #[serde(rename = "govResponse")]
     pub gov_response: ::std::string::String,
 }

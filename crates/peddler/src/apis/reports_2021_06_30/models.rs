@@ -2,27 +2,27 @@
 // Source: reports-api-model/reports_2021-06-30.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The response schema.
+/// The response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateReportResponse {
-    ///The identifier for the report. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "reportId")]
     pub report_id: ::std::string::String,
 }
-///Response schema.
+/// Response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateReportScheduleResponse {
-    ///The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "reportScheduleId")]
     pub report_schedule_id: ::std::string::String,
 }
-///Information required to create the report schedule.
+/// Information required to create the report schedule.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateReportScheduleSpecification {
-    ///A list of marketplace identifiers for the report schedule.
+    /// A list of marketplace identifiers for the report schedule.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    ///The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+    /// The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
     #[serde(
         rename = "nextReportCreationTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -30,29 +30,29 @@ pub struct CreateReportScheduleSpecification {
     pub next_report_creation_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///One of a set of predefined <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> periods that specifies how often a report should be created.
+    /// One of a set of predefined <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> periods that specifies how often a report should be created.
     ///
-    ///Known values: `PT5M`, `PT15M`, `PT30M`, `PT1H`, `PT2H`, `PT4H`, `PT8H`, `PT12H`, `P1D`, `P2D`, `P3D`, `PT84H`, `P7D`, `P14D`, `P15D`, `P18D`, `P30D`, `P1M`. Other values may be returned by Amazon.
+    /// Known values: `PT5M`, `PT15M`, `PT30M`, `PT1H`, `PT2H`, `PT4H`, `PT8H`, `PT12H`, `P1D`, `P2D`, `P3D`, `PT84H`, `P7D`, `P14D`, `P15D`, `P18D`, `P30D`, `P1M`. Other values may be returned by Amazon.
     pub period: ::std::string::String,
     #[serde(
         rename = "reportOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub report_options: ::std::option::Option<ReportOptions>,
-    ///The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+    /// The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Information required to create the report.
+/// Information required to create the report.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateReportSpecification {
-    ///The end of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+    /// The end of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
     #[serde(
         rename = "dataEndTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub data_end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The start of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+    /// The start of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
     #[serde(
         rename = "dataStartTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -60,7 +60,7 @@ pub struct CreateReportSpecification {
     pub data_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
+    /// A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(
@@ -68,52 +68,52 @@ pub struct CreateReportSpecification {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub report_options: ::std::option::Option<ReportOptions>,
-    ///The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+    /// The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///Error response returned when the request is unsuccessful.
+    /// Error response returned when the request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The response for the `getReports` operation.
+/// The response for the `getReports` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetReportsResponse {
-    ///Returned when the number of results exceeds `pageSize`. To get the next page of results, call `getReports` with this token as the only parameter.
+    /// Returned when the number of results exceeds `pageSize`. To get the next page of results, call `getReports` with this token as the only parameter.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///The reports.
+    /// The reports.
     pub reports: ReportList,
 }
-///Detailed information about the report.
+/// Detailed information about the report.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///The date and time when the report was created.
+    /// The date and time when the report was created.
     #[serde(rename = "createdTime")]
     pub created_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The end of a date and time range used for selecting the data to report.
+    /// The end of a date and time range used for selecting the data to report.
     #[serde(
         rename = "dataEndTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub data_end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The start of a date and time range used for selecting the data to report.
+    /// The start of a date and time range used for selecting the data to report.
     #[serde(
         rename = "dataStartTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -121,13 +121,13 @@ pub struct Report {
     pub data_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///A list of marketplace identifiers for the report.
+    /// A list of marketplace identifiers for the report.
     #[serde(
         rename = "marketplaceIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The date and time when the report processing completed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+    /// The date and time when the report processing completed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
     #[serde(
         rename = "processingEndTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -135,7 +135,7 @@ pub struct Report {
     pub processing_end_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The date and time when the report processing started, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+    /// The date and time when the report processing started, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
     #[serde(
         rename = "processingStartTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -143,48 +143,48 @@ pub struct Report {
     pub processing_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The processing status of the report.
+    /// The processing status of the report.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
-    ///The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
+    /// The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
     #[serde(
         rename = "reportDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub report_document_id: ::std::option::Option<::std::string::String>,
-    ///The identifier for the report. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "reportId")]
     pub report_id: ::std::string::String,
-    ///The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
+    /// The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
     #[serde(
         rename = "reportScheduleId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub report_schedule_id: ::std::option::Option<::std::string::String>,
-    ///The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+    /// The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Information required for the report document.
+/// Information required for the report document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportDocument {
-    ///If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
+    /// If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
     ///
-    ///Known values: `GZIP`. Other values may be returned by Amazon.
+    /// Known values: `GZIP`. Other values may be returned by Amazon.
     #[serde(
         rename = "compressionAlgorithm",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub compression_algorithm: ::std::option::Option<::std::string::String>,
-    ///The identifier for the report document. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report document. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "reportDocumentId")]
     pub report_document_id: ::std::string::String,
-    ///A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can download the report directly from this URL. This URL expires after 5 minutes.
+    /// A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can download the report directly from this URL. This URL expires after 5 minutes.
     pub url: ::std::string::String,
 }
-///A list of reports.
+/// A list of reports.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ReportList(pub ::std::vec::Vec<Report>);
@@ -204,7 +204,7 @@ impl ::std::convert::From<::std::vec::Vec<Report>> for ReportList {
         Self(value)
     }
 }
-///Additional information passed to reports. This varies by report type.
+/// Additional information passed to reports. This varies by report type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ReportOptions(
@@ -236,16 +236,16 @@ impl ::std::convert::From<
         Self(value)
     }
 }
-///Detailed information about a report schedule.
+/// Detailed information about a report schedule.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportSchedule {
-    ///A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
+    /// A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
     #[serde(
         rename = "marketplaceIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+    /// The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
     #[serde(
         rename = "nextReportCreationTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -253,24 +253,24 @@ pub struct ReportSchedule {
     pub next_report_creation_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///An <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> period value that indicates how often a report should be created.
+    /// An <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> period value that indicates how often a report should be created.
     pub period: ::std::string::String,
     #[serde(
         rename = "reportOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub report_options: ::std::option::Option<ReportOptions>,
-    ///The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "reportScheduleId")]
     pub report_schedule_id: ::std::string::String,
-    ///The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+    /// The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///A list of report schedules.
+/// A list of report schedules.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportScheduleList {
-    ///Detailed information about a report schedule.
+    /// Detailed information about a report schedule.
     #[serde(rename = "reportSchedules")]
     pub report_schedules: ::std::vec::Vec<ReportSchedule>,
 }

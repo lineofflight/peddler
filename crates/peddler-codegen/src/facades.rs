@@ -867,7 +867,18 @@ mod tests {
                 _ => None,
             })
             .collect();
-        (!lines.is_empty()).then(|| lines.join("\n"))
+        if lines.is_empty() {
+            return None;
+        }
+        // rustdoc takes away the whitespace every line starts with.
+        let text = lines.join("\n");
+        let indent = |line: &str| line.len() - line.trim_start_matches([' ', '\t']).len();
+        let lines_with_text = text.lines().filter(|line| !line.trim().is_empty());
+        let common = lines_with_text.map(indent).min().unwrap_or(0);
+        let lines = text
+            .split('\n')
+            .map(|line| line.get(common..).unwrap_or_default());
+        Some(lines.collect::<Vec<_>>().join("\n"))
     }
 
     /// The doc of each item of a source, by its name: `Type.field`, `Type::method`, or
@@ -990,7 +1001,7 @@ mod tests {
             "responses":{"200":{"description":"ok"}}});
         let source = rust_of(operation, false);
         assert_eq!(
-            source.matches("///**Note**: slowly.\n").count(),
+            source.matches("/// **Note**: slowly.\n").count(),
             2,
             "{source}"
         );

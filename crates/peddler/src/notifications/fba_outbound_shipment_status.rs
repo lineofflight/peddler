@@ -2,7 +2,7 @@
 // Source: schemas/notifications/FBAOutboundShipmentStatusNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
     #[serde(rename = "EventTime")]
@@ -20,7 +20,7 @@ pub struct Notification {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`NotificationNotificationMetadata`
+/// `NotificationNotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationNotificationMetadata {
     #[serde(rename = "ApplicationId")]
@@ -32,13 +32,13 @@ pub struct NotificationNotificationMetadata {
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`NotificationPayload`
+/// `NotificationPayload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationPayload {
     #[serde(rename = "FBAOutboundShipmentStatusNotification")]
     pub fba_outbound_shipment_status_notification: NotificationPayloadFbaOutboundShipmentStatusNotification,
 }
-///`NotificationPayloadFbaOutboundShipmentStatusNotification`
+/// `NotificationPayloadFbaOutboundShipmentStatusNotification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationPayloadFbaOutboundShipmentStatusNotification {
     #[serde(rename = "AmazonOrderId")]

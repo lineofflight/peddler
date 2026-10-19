@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`cancel_report`].
+/// The parameters of [`cancel_report`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelReportParams {
-    ///The identifier for the report. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report. This identifier is unique only in combination with a seller ID.
     pub report_id: String,
 }
 impl CancelReportParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(report_id: String) -> Self {
         Self { report_id }
     }
 }
-///Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled reports are returned in subsequent calls to the `getReport` and `getReports` operations.
+/// Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled reports are returned in subsequent calls to the `getReport` and `getReports` operations.
 pub async fn cancel_report(
     client: &Client,
     params: CancelReportParams,
@@ -40,20 +40,20 @@ pub async fn cancel_report(
         .await?;
     Ok(raw)
 }
-///The parameters of [`cancel_report_schedule`].
+/// The parameters of [`cancel_report_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelReportScheduleParams {
-    ///The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     pub report_schedule_id: String,
 }
 impl CancelReportScheduleParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(report_schedule_id: String) -> Self {
         Self { report_schedule_id }
     }
 }
-///Cancels the report schedule that you specify.
+/// Cancels the report schedule that you specify.
 pub async fn cancel_report_schedule(
     client: &Client,
     params: CancelReportScheduleParams,
@@ -76,20 +76,20 @@ pub async fn cancel_report_schedule(
         .await?;
     Ok(raw)
 }
-///The parameters of [`create_report`].
+/// The parameters of [`create_report`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateReportParams<B = serde_json::Value> {
-    ///Information required to create the report.
+    /// Information required to create the report.
     pub body: B,
 }
 impl<B> CreateReportParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a report.
+/// Creates a report.
 pub async fn create_report<B: serde::Serialize>(
     client: &Client,
     params: CreateReportParams<B>,
@@ -108,20 +108,20 @@ pub async fn create_report<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_report_schedule`].
+/// The parameters of [`create_report_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateReportScheduleParams<B = serde_json::Value> {
-    ///Information required to create the report schedule.
+    /// Information required to create the report schedule.
     pub body: B,
 }
 impl<B> CreateReportScheduleParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
+/// Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
 pub async fn create_report_schedule<B: serde::Serialize>(
     client: &Client,
     params: CreateReportScheduleParams<B>,
@@ -140,20 +140,20 @@ pub async fn create_report_schedule<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_report`].
+/// The parameters of [`get_report`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReportParams {
-    ///The identifier for the report. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report. This identifier is unique only in combination with a seller ID.
     pub report_id: String,
 }
 impl GetReportParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(report_id: String) -> Self {
         Self { report_id }
     }
 }
-///Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
+/// Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
 pub async fn get_report(
     client: &Client,
     params: GetReportParams,
@@ -176,17 +176,17 @@ pub async fn get_report(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_report_document`].
+/// The parameters of [`get_report_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReportDocumentParams {
-    ///The identifier for the report document.
+    /// The identifier for the report document.
     pub report_document_id: String,
-    ///When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients.
+    /// When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients.
     pub enable_content_encoding_url_header: Option<bool>,
 }
 impl GetReportDocumentParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(report_document_id: String) -> Self {
         Self {
             report_document_id,
@@ -194,7 +194,7 @@ impl GetReportDocumentParams {
         }
     }
 }
-///Returns the information required for retrieving a report document's contents.
+/// Returns the information required for retrieving a report document's contents.
 pub async fn get_report_document(
     client: &Client,
     params: GetReportDocumentParams,
@@ -223,20 +223,20 @@ pub async fn get_report_document(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_report_schedule`].
+/// The parameters of [`get_report_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReportScheduleParams {
-    ///The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
     pub report_schedule_id: String,
 }
 impl GetReportScheduleParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(report_schedule_id: String) -> Self {
         Self { report_schedule_id }
     }
 }
-///Returns report schedule details for the report schedule that you specify.
+/// Returns report schedule details for the report schedule that you specify.
 pub async fn get_report_schedule(
     client: &Client,
     params: GetReportScheduleParams,
@@ -259,20 +259,20 @@ pub async fn get_report_schedule(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_report_schedules`].
+/// The parameters of [`get_report_schedules`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReportSchedulesParams {
-    ///A list of report types used to filter report schedules. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+    /// A list of report types used to filter report schedules. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
     pub report_types: Vec<String>,
 }
 impl GetReportSchedulesParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(report_types: Vec<String>) -> Self {
         Self { report_types }
     }
 }
-///Returns report schedule details that match the filters that you specify.
+/// Returns report schedule details that match the filters that you specify.
 pub async fn get_report_schedules(
     client: &Client,
     params: GetReportSchedulesParams,
@@ -297,30 +297,30 @@ pub async fn get_report_schedules(
 fn get_reports_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`get_reports`] and [`get_reports_pages`].
+/// The parameters of [`get_reports`] and [`get_reports_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReportsParams {
-    ///A list of report types used to filter reports. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
+    /// A list of report types used to filter reports. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
     pub report_types: Option<Vec<String>>,
-    ///A list of processing statuses used to filter reports.
+    /// A list of processing statuses used to filter reports.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.
     pub processing_statuses: Option<Vec<String>>,
-    ///A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify.
+    /// A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify.
     pub marketplace_ids: Option<Vec<String>>,
-    ///The maximum number of reports to return in a single call.
+    /// The maximum number of reports to return in a single call.
     #[serde(default = "get_reports_page_size_default")]
     pub page_size: Option<i64>,
-    ///The earliest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is 90 days ago. Reports are retained for a maximum of 90 days.
+    /// The earliest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is 90 days ago. Reports are retained for a maximum of 90 days.
     pub created_since: Option<String>,
-    ///The latest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is now.
+    /// The latest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is now.
     pub created_until: Option<String>,
-    ///A string token returned in the response to your previous request. `nextToken` is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any other parameters will cause the request to fail.
+    /// A string token returned in the response to your previous request. `nextToken` is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any other parameters will cause the request to fail.
     pub next_token: Option<String>,
 }
 impl GetReportsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             report_types: None,
@@ -338,9 +338,9 @@ impl Default for GetReportsParams {
         Self::new()
     }
 }
-///Returns report details for the reports that match the filters that you specify.
+/// Returns report details for the reports that match the filters that you specify.
 ///
-///Its pages: [`get_reports_pages`].
+/// Its pages: [`get_reports_pages`].
 pub async fn get_reports(
     client: &Client,
     params: GetReportsParams,
@@ -378,7 +378,7 @@ pub async fn get_reports(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_reports`].
+/// Each page of [`get_reports`].
 pub fn get_reports_pages<'a>(
     client: &'a Client,
     params: GetReportsParams,

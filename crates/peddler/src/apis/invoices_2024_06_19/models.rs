@@ -2,92 +2,92 @@
 // Source: invoices-api-model/InvoicesApiModel_2024-06-19.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The definition of the attribute option.
+/// The definition of the attribute option.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AttributeOption {
-    ///The description of the attribute value.
+    /// The description of the attribute value.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The possible values for the attribute option.
+    /// The possible values for the attribute option.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::std::string::String>,
 }
-///Additional information about a carrier.
+/// Additional information about a carrier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CarrierDetailsContext {
-    ///The address of the carrier, as registered with state and federal tax authorities.
+    /// The address of the carrier, as registered with state and federal tax authorities.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<::std::string::String>,
-    ///The type of additional information.
+    /// The type of additional information.
     #[serde(
         rename = "contextType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub context_type: ::std::option::Option<::std::string::String>,
-    ///The tax identification number of the carrier.
+    /// The tax identification number of the carrier.
     #[serde(
         rename = "federalTaxId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub federal_tax_id: ::std::option::Option<::std::string::String>,
-    ///The name of the carrier, as registered with state and federal tax authorities.
+    /// The name of the carrier, as registered with state and federal tax authorities.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///The code of the federal subdivision in which the carrier is registered.
+    /// The code of the federal subdivision in which the carrier is registered.
     #[serde(
         rename = "regionCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub region_code: ::std::option::Option<::std::string::String>,
-    ///The regional tax registration number of the carrier.
+    /// The regional tax registration number of the carrier.
     #[serde(
         rename = "regionTaxId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub region_tax_id: ::std::option::Option<::std::string::String>,
-    ///The identifier for the carrier vehicle, as printed on its registration plate.
+    /// The identifier for the carrier vehicle, as printed on its registration plate.
     #[serde(
         rename = "vehicleLicensePlate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vehicle_license_plate: ::std::option::Option<::std::string::String>,
-    ///The code of the federal subdivision in which the carrier vehicle is registered.
+    /// The code of the federal subdivision in which the carrier vehicle is registered.
     #[serde(
         rename = "vehicleRegistrationRegionCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vehicle_registration_region_code: ::std::option::Option<::std::string::String>,
 }
-///The error response that is returned when the request is unsuccessful.
+/// The error response that is returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses that are returned when a request is unsuccessful.
+/// A list of error responses that are returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///List of errors.
+    /// List of errors.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Detailed information about the export.
+/// Detailed information about the export.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Export {
-    ///When the export generation fails, this attribute contains a description of the error.
+    /// When the export generation fails, this attribute contains a description of the error.
     #[serde(
         rename = "errorMessage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_message: ::std::option::Option<::std::string::String>,
-    ///The export identifier.
+    /// The export identifier.
     #[serde(rename = "exportId", skip_serializing_if = "::std::option::Option::is_none")]
     pub export_id: ::std::option::Option<::std::string::String>,
-    ///The date and time when the export generation finished. Vales are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time when the export generation finished. Vales are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "generateExportFinishedAt",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -95,7 +95,7 @@ pub struct Export {
     pub generate_export_finished_at: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The date and time when the export generation started. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time when the export generation started. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(
         rename = "generateExportStartedAt",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -103,9 +103,9 @@ pub struct Export {
     pub generate_export_started_at: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The identifier for the export documents. To get the information required to retrieve the export document's contents, pass each ID in the `getInvoicesDocument` operation.
+    /// The identifier for the export documents. To get the information required to retrieve the export document's contents, pass each ID in the `getInvoicesDocument` operation.
     ///
-    ///This list is empty until the status is `DONE`.
+    /// This list is empty until the status is `DONE`.
     #[serde(
         rename = "invoicesDocumentIds",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -113,49 +113,49 @@ pub struct Export {
     pub invoices_document_ids: ::std::option::Option<
         ::std::vec::Vec<::std::string::String>,
     >,
-    ///Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
+    /// Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<ExportStatus>,
 }
-///The information required to create the export request.
+/// The information required to create the export request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ExportInvoicesRequest {
-    ///The latest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the time of the request.
+    /// The latest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the time of the request.
     #[serde(rename = "dateEnd", skip_serializing_if = "::std::option::Option::is_none")]
     pub date_end: ::std::option::Option<::chrono::naive::NaiveDate>,
-    ///The earliest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24 hours prior to the time of the request.
+    /// The earliest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24 hours prior to the time of the request.
     #[serde(
         rename = "dateStart",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub date_start: ::std::option::Option<::chrono::naive::NaiveDate>,
-    ///The external ID of the invoices you want included in the response.
+    /// The external ID of the invoices you want included in the response.
     #[serde(
         rename = "externalInvoiceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub external_invoice_id: ::std::option::Option<::std::string::String>,
-    ///Known values: `XML`. Other values may be returned by Amazon.
+    /// Known values: `XML`. Other values may be returned by Amazon.
     #[serde(
         rename = "fileFormat",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub file_format: ::std::option::Option<FileFormat>,
-    ///The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
+    /// The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
     #[serde(
         rename = "invoiceType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_type: ::std::option::Option<::std::string::String>,
-    ///The ID of the marketplace from which you want the invoices.
+    /// The ID of the marketplace from which you want the invoices.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The series number of the invoices you want included in the response.
+    /// The series number of the invoices you want included in the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub series: ::std::option::Option<::std::string::String>,
-    ///A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
+    /// A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
     ///
-    ///Min count: 1
+    /// Min count: 1
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub statuses: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     #[serde(
@@ -163,29 +163,29 @@ pub struct ExportInvoicesRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_identifier: ::std::option::Option<TransactionIdentifier>,
-    ///The marketplace-specific classification of the transaction type for which the invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options
+    /// The marketplace-specific classification of the transaction type for which the invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
-    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
+    /// The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     #[serde(
         rename = "warehouseCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub warehouse_code: ::std::option::Option<::std::string::String>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ExportInvoicesResponse {
-    ///The export identifier.
+    /// The export identifier.
     #[serde(rename = "exportId", skip_serializing_if = "::std::option::Option::is_none")]
     pub export_id: ::std::option::Option<::std::string::String>,
 }
-///The current status of the request.
+/// The current status of the request.
 ///
-///Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
+/// Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -226,9 +226,9 @@ impl ::std::str::FromStr for ExportStatus {
         Ok(Self(value.to_string()))
     }
 }
-///Supported invoice file extensions.
+/// Supported invoice file extensions.
 ///
-///Known values: `XML`. Other values may be returned by Amazon.
+/// Known values: `XML`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -269,13 +269,13 @@ impl ::std::str::FromStr for FileFormat {
         Ok(Self(value.to_string()))
     }
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoiceResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoice: ::std::option::Option<Invoice>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesAttributesResponse {
     #[serde(
@@ -284,7 +284,7 @@ pub struct GetInvoicesAttributesResponse {
     )]
     pub invoices_attributes: ::std::option::Option<InvoicesAttributes>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesDocumentResponse {
     #[serde(
@@ -293,41 +293,41 @@ pub struct GetInvoicesDocumentResponse {
     )]
     pub invoices_document: ::std::option::Option<InvoicesDocument>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesExportResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub export: ::std::option::Option<Export>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesExportsResponse {
-    ///A list of exports.
+    /// A list of exports.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub exports: ::std::option::Option<::std::vec::Vec<Export>>,
-    ///This token is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getInvoices` operation and include this token with the previous call parameters.
+    /// This token is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getInvoices` operation and include this token with the previous call parameters.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoicesResponse {
-    ///A list of invoices.
+    /// A list of invoices.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoices: ::std::option::Option<::std::vec::Vec<Invoice>>,
-    ///This token is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getInvoices` operation and include this token with the previous call parameters.
+    /// This token is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getInvoices` operation and include this token with the previous call parameters.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The current status of a government invoice creation request.
+/// The current status of a government invoice creation request.
 ///
-///Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
+/// Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -368,51 +368,51 @@ impl ::std::str::FromStr for GovernmentInvoiceCreationStatus {
         Ok(Self(value.to_string()))
     }
 }
-///Information required to create the government invoice.
+/// Information required to create the government invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GovernmentInvoiceRequest {
-    ///Additional information for invoice creation.
+    /// Additional information for invoice creation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub contexts: ::std::option::Option<::std::vec::Vec<CarrierDetailsContext>>,
-    ///The unique inbound plan identifier in which the shipment is contained and for which the invoice will be created.
+    /// The unique inbound plan identifier in which the shipment is contained and for which the invoice will be created.
     #[serde(
         rename = "inboundPlanId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub inbound_plan_id: ::std::option::Option<::std::string::String>,
-    ///The marketplace-specific classification of the invoice type. Check `invoiceType` options using the `getInvoicesAttributes` operation.
+    /// The marketplace-specific classification of the invoice type. Check `invoiceType` options using the `getInvoicesAttributes` operation.
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
-    ///The marketplace of the national authoritative source that will be on the government invoice creation request.
+    /// The marketplace of the national authoritative source that will be on the government invoice creation request.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The unique shipment identifier for which to get an invoice.
+    /// The unique shipment identifier for which to get an invoice.
     #[serde(rename = "shipmentId")]
     pub shipment_id: ::std::string::String,
-    ///The marketplace-specific classification of the transaction type that originated the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
+    /// The marketplace-specific classification of the transaction type that originated the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
     #[serde(rename = "transactionType")]
     pub transaction_type: ::std::string::String,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GovernmentInvoiceStatusResponse {
-    ///The errors that occurred during invoice creation.
+    /// The errors that occurred during invoice creation.
     #[serde(
         rename = "invoiceErrors",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_errors: ::std::option::Option<::std::vec::Vec<InvoiceError>>,
-    ///The Government Invoice ID of a successfully authorized invoice.
+    /// The Government Invoice ID of a successfully authorized invoice.
     #[serde(
         rename = "invoiceExternalDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_external_document_id: ::std::option::Option<::std::string::String>,
-    ///Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
+    /// Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<GovernmentInvoiceCreationStatus>,
 }
-///Success.
+/// Success.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GovtInvoiceDocumentResponse {
     #[serde(
@@ -421,97 +421,97 @@ pub struct GovtInvoiceDocumentResponse {
     )]
     pub invoice_document: ::std::option::Option<InvoiceDocument>,
 }
-///Provides detailed information about an invoice.
+/// Provides detailed information about an invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Invoice {
-    ///The date and time the invoice is issued. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The date and time the invoice is issued. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///If the invoice is in an error state, this attribute displays the error code.
+    /// If the invoice is in an error state, this attribute displays the error code.
     #[serde(
         rename = "errorCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_code: ::std::option::Option<::std::string::String>,
-    ///The invoice identifier that is used by an external party. This is typically the government agency that authorized the invoice.
+    /// The invoice identifier that is used by an external party. This is typically the government agency that authorized the invoice.
     #[serde(
         rename = "externalInvoiceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub external_invoice_id: ::std::option::Option<::std::string::String>,
-    ///The response message from the government authority when there is an error during invoice issuance.
+    /// The response message from the government authority when there is an error during invoice issuance.
     #[serde(
         rename = "govResponse",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub gov_response: ::std::option::Option<::std::string::String>,
-    ///The invoice identifier.
+    /// The invoice identifier.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub id: ::std::option::Option<::std::string::String>,
-    ///The classification of the invoice type. This varies across marketplaces. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
+    /// The classification of the invoice type. This varies across marketplaces. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
     #[serde(
         rename = "invoiceType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_type: ::std::option::Option<::std::string::String>,
-    ///Use this identifier in conjunction with `externalInvoiceId` to identify invoices from the same seller.
+    /// Use this identifier in conjunction with `externalInvoiceId` to identify invoices from the same seller.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub series: ::std::option::Option<::std::string::String>,
-    ///The invoice status classification. Use the `getInvoicesAttributes` operation to check invoice status options.
+    /// The invoice status classification. Use the `getInvoicesAttributes` operation to check invoice status options.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<::std::string::String>,
-    ///List with identifiers for the transactions associated to the invoice.
+    /// List with identifiers for the transactions associated to the invoice.
     #[serde(
         rename = "transactionIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_ids: ::std::option::Option<::std::vec::Vec<TransactionIdentifier>>,
-    ///Classification of the transaction that originated this invoice. Use the `getInvoicesAttributes` operation to check `transactionType` options.
+    /// Classification of the transaction that originated this invoice. Use the `getInvoicesAttributes` operation to check `transactionType` options.
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///The `documentId` and an S3 pre-signed URL that you can use to download the specified document file.
+/// The `documentId` and an S3 pre-signed URL that you can use to download the specified document file.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceDocument {
-    ///A pre-signed URL that you can use to download the invoice document in its original format. This URL expires after 30 seconds.
+    /// A pre-signed URL that you can use to download the invoice document in its original format. This URL expires after 30 seconds.
     #[serde(
         rename = "invoiceDocumentUrl",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_document_url: ::std::option::Option<::std::string::String>,
 }
-///An invoice creation error occurred.
+/// An invoice creation error occurred.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceError {
-    ///A description of the error.
+    /// A description of the error.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The code of the error.
+    /// The code of the error.
     #[serde(
         rename = "errorCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_code: ::std::option::Option<::std::string::String>,
 }
-///An object that contains the invoice attributes definition.
+/// An object that contains the invoice attributes definition.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoicesAttributes {
-    ///A list of all the options that are available for the invoice status attribute.
+    /// A list of all the options that are available for the invoice status attribute.
     #[serde(
         rename = "invoiceStatusOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_status_options: ::std::option::Option<::std::vec::Vec<AttributeOption>>,
-    ///A list of all the options that are available for the invoice type attribute.
+    /// A list of all the options that are available for the invoice type attribute.
     #[serde(
         rename = "invoiceTypeOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_type_options: ::std::option::Option<::std::vec::Vec<AttributeOption>>,
-    ///A list of all the options that are available for the transaction identifier name attribute.
+    /// A list of all the options that are available for the transaction identifier name attribute.
     #[serde(
         rename = "transactionIdentifierNameOptions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -519,7 +519,7 @@ pub struct InvoicesAttributes {
     pub transaction_identifier_name_options: ::std::option::Option<
         ::std::vec::Vec<AttributeOption>,
     >,
-    ///A list of all the options that are available for the transaction type attribute.
+    /// A list of all the options that are available for the transaction type attribute.
     #[serde(
         rename = "transactionTypeOptions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -528,29 +528,29 @@ pub struct InvoicesAttributes {
         ::std::vec::Vec<AttributeOption>,
     >,
 }
-///An object that contains the `documentId` and an S3 pre-signed URL that you can use to download the specified file.
+/// An object that contains the `documentId` and an S3 pre-signed URL that you can use to download the specified file.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoicesDocument {
-    ///The identifier of the export document.
+    /// The identifier of the export document.
     #[serde(
         rename = "invoicesDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoices_document_id: ::std::option::Option<::std::string::String>,
-    ///A pre-signed URL that you can use to download the invoices document in zip format. This URL expires after 30 seconds.
+    /// A pre-signed URL that you can use to download the invoices document in zip format. This URL expires after 30 seconds.
     #[serde(
         rename = "invoicesDocumentUrl",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoices_document_url: ::std::option::Option<::std::string::String>,
 }
-///The identifier for a transaction.
+/// The identifier for a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionIdentifier {
-    ///The transaction identifier.
+    /// The transaction identifier.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub id: ::std::option::Option<::std::string::String>,
-    ///The transaction identifier name. Use the `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
+    /// The transaction identifier name. Use the `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
 }

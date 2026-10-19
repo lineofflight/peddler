@@ -2,28 +2,28 @@
 // Source: schemas/reports/marketplaceAsinPageViewMetrics.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Contains aggregate ASIN page view metrics.
+/// Contains aggregate ASIN page view metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MarketplaceAsinPageViewMetrics {
-    ///ASIN for which the page view metrics are provided.
+    /// ASIN for which the page view metrics are provided.
     pub asin: ::std::string::String,
-    ///End time of the aggregation window in UTC.
+    /// End time of the aggregation window in UTC.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Marketplace for which the page view metrics are provided.
+    /// Marketplace for which the page view metrics are provided.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Total page views (count).
+    /// Total page views (count).
     #[serde(rename = "pageViews")]
     pub page_views: u64,
-    ///Start time of the aggregation window in UTC.
+    /// Start time of the aggregation window in UTC.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Provides information on the ASIN page view (glance view) metrics for the DE, FR, IT, ES, NL, PL, SE, BE (EU-8) and UK marketplaces, with data available up to the last seven days. A page view is a customer view of the product's detail page for a given ASIN. Developers have the option to specify a start and end date to retrieve data within that range. If no dates are specified, the report will provide the data for the latest available day. For marketplaces and product categories where the seller does not have a meaningful presence (40 units sold), the report will not return any data.
+/// Provides information on the ASIN page view (glance view) metrics for the DE, FR, IT, ES, NL, PL, SE, BE (EU-8) and UK marketplaces, with data available up to the last seven days. A page view is a customer view of the product's detail page for a given ASIN. Developers have the option to specify a start and end date to retrieve data within that range. If no dates are specified, the report will provide the data for the latest available day. For marketplaces and product categories where the seller does not have a meaningful presence (40 units sold), the report will not return any data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///A list of ASIN page view metrics.
+    /// A list of ASIN page view metrics.
     #[serde(rename = "marketplaceAsinPageViewMetrics")]
     pub marketplace_asin_page_view_metrics: ::std::vec::Vec<
         MarketplaceAsinPageViewMetrics,
@@ -31,34 +31,34 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the report request.
+/// Summarizes the report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. If the end date of the report is not within the seven days from start date, the report will be cancelled. If the end date of the report is not provided, it will default to the end date of the most recently available daily date.
+    /// Determines the end date of the report - the time component is ignored. If the end date of the report is not within the seven days from start date, the report will be cancelled. If the end date of the report is not provided, it will default to the end date of the most recently available daily date.
     #[serde(
         rename = "dataEndTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub data_end_time: ::std::option::Option<::chrono::naive::NaiveDate>,
-    ///Determines the start date of the report - the time component is ignored. If the start date of the report is more than seven days ago, the report will be cancelled. If the start date of the report is not provided, it will default to the start date of the most recently available daily data.
+    /// Determines the start date of the report - the time component is ignored. If the start date of the report is more than seven days ago, the report will be cancelled. If the start date of the report is not provided, it will default to the start date of the most recently available daily data.
     #[serde(
         rename = "dataStartTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub data_start_time: ::std::option::Option<::chrono::naive::NaiveDate>,
-    ///Any of the EU(8) or UK marketplaces. DE, FR, IT, ES, NL, PL, SE, BE and UK
+    /// Any of the EU(8) or UK marketplaces. DE, FR, IT, ES, NL, PL, SE, BE and UK
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Specifies the product type.
+/// Specifies the product type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The Amazon product type of the ASINs for which the report is being requested. All ASINs with the productType will be included. The value for the product type can be found by following instructions on Seller Central's Help page. - https://developer-docs.amazon.com/sp-api/docs/seller-central-urls
+    /// The Amazon product type of the ASINs for which the report is being requested. All ASINs with the productType will be included. The value for the product type can be found by following instructions on Seller Central's Help page. - https://developer-docs.amazon.com/sp-api/docs/seller-central-urls
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
 }

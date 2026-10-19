@@ -2,10 +2,10 @@
 // Source: schemas/data-kiosk/analytics_sellerAnalytics_2025_03_31.graphql
 
 #![allow(clippy::doc_lazy_continuation)]
-///Account Health metric group. A null value for a given metric means that this metric is not yet available.
+/// Account Health metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AccountHealth {
-    ///Total number of orders with an A-to-z Guarantee claim that was not denied, applies to seller-fulfilled orders only.
+    /// Total number of orders with an A-to-z Guarantee claim that was not denied, applies to seller-fulfilled orders only.
     #[serde(
         rename = "accountHealthAtozClaimOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -13,7 +13,7 @@ pub struct AccountHealth {
     pub account_health_atoz_claim_order_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Ratio of orders with A-to-z Guarantee claims to total orders.
+    /// Ratio of orders with A-to-z Guarantee claims to total orders.
     #[serde(
         rename = "accountHealthAtozGuaranteeClaimRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -21,8 +21,8 @@ pub struct AccountHealth {
     pub account_health_atoz_guarantee_claim_rate: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Total number of orders that resulted in a credit card chargeback, applies to
-    ///both seller-fulfilled and amazon-fulfilled orders.
+    /// Total number of orders that resulted in a credit card chargeback, applies to
+    /// both seller-fulfilled and amazon-fulfilled orders.
     #[serde(
         rename = "accountHealthChargebackClaimOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -30,7 +30,7 @@ pub struct AccountHealth {
     pub account_health_chargeback_claim_order_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Ratio of orders with chargeback claims to total orders.
+    /// Ratio of orders with chargeback claims to total orders.
     #[serde(
         rename = "accountHealthChargebackClaimRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -38,7 +38,7 @@ pub struct AccountHealth {
     pub account_health_chargeback_claim_rate: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Number of seller-fulfilled orders where shipping confirmation was completed after the expected ship date.
+    /// Number of seller-fulfilled orders where shipping confirmation was completed after the expected ship date.
     #[serde(
         rename = "accountHealthLateShipmentOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -46,14 +46,14 @@ pub struct AccountHealth {
     pub account_health_late_shipment_order_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Percentage of total orders with late ship confirmation.
+    /// Percentage of total orders with late ship confirmation.
     #[serde(
         rename = "accountHealthLateShipmentRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_late_shipment_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Total number of orders that received negative feedback within a specific time
-    ///period, applies to both seller-fulfilled and amazon-fulfilled orders.
+    /// Total number of orders that received negative feedback within a specific time
+    /// period, applies to both seller-fulfilled and amazon-fulfilled orders.
     #[serde(
         rename = "accountHealthNegativeFeedbackOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -61,7 +61,7 @@ pub struct AccountHealth {
     pub account_health_negative_feedback_order_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Ratio of orders receiving negative feedback to total orders.
+    /// Ratio of orders receiving negative feedback to total orders.
     #[serde(
         rename = "accountHealthNegativeFeedbackRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -69,7 +69,7 @@ pub struct AccountHealth {
     pub account_health_negative_feedback_rate: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Number of seller-fulfilled packages that were not delivered on time.
+    /// Number of seller-fulfilled packages that were not delivered on time.
     #[serde(
         rename = "accountHealthOnTimeDeliveryDefectPackageCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -77,7 +77,7 @@ pub struct AccountHealth {
     pub account_health_on_time_delivery_defect_package_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Number of units in seller-fulfilled packages that were not delivered on time.
+    /// Number of units in seller-fulfilled packages that were not delivered on time.
     #[serde(
         rename = "accountHealthOnTimeDeliveryDefectPackageUnits",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -85,7 +85,7 @@ pub struct AccountHealth {
     pub account_health_on_time_delivery_defect_package_units: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Percentage of seller-fulfilled items delivered by the 'Deliver by' date.
+    /// Percentage of seller-fulfilled items delivered by the 'Deliver by' date.
     #[serde(
         rename = "accountHealthOnTimeDeliveryRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -93,32 +93,32 @@ pub struct AccountHealth {
     pub account_health_on_time_delivery_rate: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Total number of orders placed by customers within a specified time frame,
-    ///applies to both seller-fulfilled and amazon-fulfilled orders.
+    /// Total number of orders placed by customers within a specified time frame,
+    /// applies to both seller-fulfilled and amazon-fulfilled orders.
     #[serde(
         rename = "accountHealthOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_order_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Percentage of orders with defects (negative feedback, A-to-z claims not denied, or chargebacks).
+    /// Percentage of orders with defects (negative feedback, A-to-z claims not denied, or chargebacks).
     #[serde(
         rename = "accountHealthOrderDefectRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_order_defect_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Number of seller-fulfilled shipments within a specific time period.
+    /// Number of seller-fulfilled shipments within a specific time period.
     #[serde(
         rename = "accountHealthPackageCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_package_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of units in seller-fulfilled shipments within a specific time period.
+    /// Number of units in seller-fulfilled shipments within a specific time period.
     #[serde(
         rename = "accountHealthPackageUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_package_units: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of seller-fulfilled orders cancelled by sellers.
+    /// Number of seller-fulfilled orders cancelled by sellers.
     #[serde(
         rename = "accountHealthPreFulfillmentCancelOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -126,7 +126,7 @@ pub struct AccountHealth {
     pub account_health_pre_fulfillment_cancel_order_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Percentage of seller-cancelled orders during a given period.
+    /// Percentage of seller-cancelled orders during a given period.
     #[serde(
         rename = "accountHealthPreFulfillmentCancelRate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -134,20 +134,20 @@ pub struct AccountHealth {
     pub account_health_pre_fulfillment_cancel_rate: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///0-1,000 point scale indicating account suspension risk based on compliance with Amazon's selling policies.
+    /// 0-1,000 point scale indicating account suspension risk based on compliance with Amazon's selling policies.
     #[serde(
         rename = "accountHealthRatingScore",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_rating_score: ::std::option::Option<IntWithBenchmarking>,
-    ///Total number of order defects identified by Account Health Dashboard (a tool in Seller Central
-    ///that tracks a seller's compliance with Amazon's selling policies and performance metrics) within a specified time period.
+    /// Total number of order defects identified by Account Health Dashboard (a tool in Seller Central
+    /// that tracks a seller's compliance with Amazon's selling policies and performance metrics) within a specified time period.
     #[serde(
         rename = "accountHealthTotalOrderDefects",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_total_order_defects: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of defective shipments due to missing valid tracking information, applies to seller-fulfilled orders only.
+    /// Number of defective shipments due to missing valid tracking information, applies to seller-fulfilled orders only.
     #[serde(
         rename = "accountHealthValidTrackingDefectPackageCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -155,14 +155,14 @@ pub struct AccountHealth {
     pub account_health_valid_tracking_defect_package_count: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Percentage of packages with valid tracking over total packages shipped.
+    /// Percentage of packages with valid tracking over total packages shipped.
     #[serde(
         rename = "accountHealthValidTrackingRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health_valid_tracking_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Count of distinct defect types identified in the region over the past 120 days
-    ///(snapshot data, always returns latest value).
+    /// Count of distinct defect types identified in the region over the past 120 days
+    /// (snapshot data, always returns latest value).
     #[serde(
         rename = "regionDistinctCountDefectTypeT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -170,8 +170,8 @@ pub struct AccountHealth {
     pub region_distinct_count_defect_type_t120_days: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Regional defect rate for products with inaccurate product information over the
-    ///past 120 days (snapshot data, always returns latest value).
+    /// Regional defect rate for products with inaccurate product information over the
+    /// past 120 days (snapshot data, always returns latest value).
     #[serde(
         rename = "regionInaccurateProductDefectRateT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -179,8 +179,8 @@ pub struct AccountHealth {
     pub region_inaccurate_product_defect_rate_t120_days: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Regional defect rate for products with incorrect labeling over the past 120
-    ///days (snapshot data, always returns latest value).
+    /// Regional defect rate for products with incorrect labeling over the past 120
+    /// days (snapshot data, always returns latest value).
     #[serde(
         rename = "regionIncorrectLabelDefectRateT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -188,7 +188,7 @@ pub struct AccountHealth {
     pub region_incorrect_label_defect_rate_t120_days: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Regional defect rate for products with missing labels over the past 120 days (snapshot data, always returns latest value).
+    /// Regional defect rate for products with missing labels over the past 120 days (snapshot data, always returns latest value).
     #[serde(
         rename = "regionLabelMissingDefectRateT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -196,8 +196,8 @@ pub struct AccountHealth {
     pub region_label_missing_defect_rate_t120_days: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Regional defect rate for other product-related defects not covered by specific
-    ///categories over the past 120 days (snapshot data, always returns latest value).
+    /// Regional defect rate for other product-related defects not covered by specific
+    /// categories over the past 120 days (snapshot data, always returns latest value).
     #[serde(
         rename = "regionOtherDefectsProductRelatedDefectRateT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -205,9 +205,9 @@ pub struct AccountHealth {
     pub region_other_defects_product_related_defect_rate_t120_days: ::std::option::Option<
         FloatWithBenchmarking,
     >,
-    ///Number of regional product defect units that were resolved over the past 120 days.
-    ///This is snapshot data that reflects the current state at query time.
-    ///When querying with daily or weekly granularity, the same latest value is returned for each time period.
+    /// Number of regional product defect units that were resolved over the past 120 days.
+    /// This is snapshot data that reflects the current state at query time.
+    /// When querying with daily or weekly granularity, the same latest value is returned for each time period.
     #[serde(
         rename = "regionResolvedDefectsUnitT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -215,7 +215,7 @@ pub struct AccountHealth {
     pub region_resolved_defects_unit_t120_days: ::std::option::Option<
         IntWithBenchmarking,
     >,
-    ///Regional defect rate for unexpected product issues over the past 120 days (snapshot data, always returns latest value).
+    /// Regional defect rate for unexpected product issues over the past 120 days (snapshot data, always returns latest value).
     #[serde(
         rename = "regionUnexpectedProductDefectRateT120Days",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -224,7 +224,7 @@ pub struct AccountHealth {
         FloatWithBenchmarking,
     >,
 }
-///Known values: `MERCHANT`, `PARTNER_ACCOUNT`, `VENDOR_GROUP`. Other values may be returned by Amazon.
+/// Known values: `MERCHANT`, `PARTNER_ACCOUNT`, `VENDOR_GROUP`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -265,37 +265,37 @@ impl ::std::str::FromStr for AmazonAccountTypes {
         Ok(Self(value.to_string()))
     }
 }
-///Monetary amount with the corresponding currency code.
+/// Monetary amount with the corresponding currency code.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Amount {
-    ///The amount.
+    /// The amount.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<::serde_json::Number>,
-    ///Currency code of the amount in ISO 4217 format.
+    /// Currency code of the amount in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///Monetary amount with the corresponding currency code and time range benchmarking.
+/// Monetary amount with the corresponding currency code and time range benchmarking.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AmountWithBenchmarking {
-    ///The monetary amount and its currency code, in ISO 4217 format.
+    /// The monetary amount and its currency code, in ISO 4217 format.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Amount>,
-    ///Relevant benchmarking comparison.
+    /// Relevant benchmarking comparison.
     #[serde(
         rename = "timeRangeBenchmarking",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub time_range_benchmarking: ::std::option::Option<TimeRangeBenchmarking>,
 }
-///Root type for Seller Analytics queries version 2025_03_31.
+/// Root type for Seller Analytics queries version 2025_03_31.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AnalyticsSellerAnalytics20250331 {
-    ///A query to retrieve cross-domain seller analytics data for the seller's account,
-    ///aggregated by provided GroupByAttributes.
+    /// A query to retrieve cross-domain seller analytics data for the seller's account,
+    /// aggregated by provided GroupByAttributes.
     #[serde(
         rename = "sellerAnalyticsView",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -304,36 +304,36 @@ pub struct AnalyticsSellerAnalytics20250331 {
         ::std::vec::Vec<::std::option::Option<SellerAnalyticsView>>,
     >,
 }
-///Delivery speed-related count metrics for search performance.
-///Captures customer interactions (impressions, clicks, cart adds, purchases) filtered by shipping speed availability.
+/// Delivery speed-related count metrics for search performance.
+/// Captures customer interactions (impressions, clicks, cart adds, purchases) filtered by shipping speed availability.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CountMetrics {
-    ///Number of cart additions where the specified delivery speed option was available.
+    /// Number of cart additions where the specified delivery speed option was available.
     #[serde(
         rename = "shippingCartAdd",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_cart_add: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of clicks where the specified delivery speed option was available.
+    /// Number of clicks where the specified delivery speed option was available.
     #[serde(
         rename = "shippingClick",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_click: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of impressions where the specified delivery speed option was available.
+    /// Number of impressions where the specified delivery speed option was available.
     #[serde(
         rename = "shippingImpression",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_impression: ::std::option::Option<IntWithBenchmarking>,
-    ///Number of purchases where the specified delivery speed option was available.
+    /// Number of purchases where the specified delivery speed option was available.
     #[serde(
         rename = "shippingPurchase",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_purchase: ::std::option::Option<IntWithBenchmarking>,
 }
-///Known values: `DAY`, `WEEK`, `MONTH`. Other values may be returned by Amazon.
+/// Known values: `DAY`, `WEEK`, `MONTH`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -374,24 +374,24 @@ impl ::std::str::FromStr for DateGranularity {
         Ok(Self(value.to_string()))
     }
 }
-///Defects metric group for return-defect analytics. A null value for a given
-///metric means that this metric is not yet available.
+/// Defects metric group for return-defect analytics. A null value for a given
+/// metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Defects {
-    ///Return-defect metrics grouped by defect topic.
-    ///Returns an array of metrics per unique return-defect topic within the current grouping context.
+    /// Return-defect metrics grouped by defect topic.
+    /// Returns an array of metrics per unique return-defect topic within the current grouping context.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub topics: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<ReturnDefectTopicMetrics>>,
     >,
-    ///Total frequency of return defects across all topics for the product (trailing six months). Not supported under totals.
+    /// Total frequency of return defects across all topics for the product (trailing six months). Not supported under totals.
     #[serde(
         rename = "totalDefectFrequency",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_defect_frequency: ::std::option::Option<IntWithBenchmarking>,
 }
-///A custom type which supports time range benchmarking for native Float types.
+/// A custom type which supports time range benchmarking for native Float types.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FloatWithBenchmarking {
     #[serde(
@@ -402,65 +402,65 @@ pub struct FloatWithBenchmarking {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::serde_json::Number>,
 }
-///Group by attributes, essentially catalog attributes, some of which can be null, for example, group by brand.
+/// Group by attributes, essentially catalog attributes, some of which can be null, for example, group by brand.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GroupByAttributes {
-    ///Amazon Standard Identification Number, used to uniquely identify products in Amazon's catalog.
+    /// Amazon Standard Identification Number, used to uniquely identify products in Amazon's catalog.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Brand name.
+    /// Brand name.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub brand: ::std::option::Option<::std::string::String>,
-    ///Amazon brand code for the owning brand.
+    /// Amazon brand code for the owning brand.
     #[serde(
         rename = "brandCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_code: ::std::option::Option<::std::string::String>,
-    ///Masked version of internal merchant identifier using encryption algorithm.
+    /// Masked version of internal merchant identifier using encryption algorithm.
     #[serde(
         rename = "encryptedMerchantCustomerId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub encrypted_merchant_customer_id: ::std::option::Option<::std::string::String>,
-    ///The fulfillment channel for the product, indicating whether it is fulfilled by Amazon (FBA) or by the seller (FBM).
+    /// The fulfillment channel for the product, indicating whether it is fulfilled by Amazon (FBA) or by the seller (FBM).
     #[serde(
         rename = "fulfilmentChannel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfilment_channel: ::std::option::Option<::std::string::String>,
-    ///The marketplace identifier for the associated metrics.
+    /// The marketplace identifier for the associated metrics.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///Merchant Level Stock Keeping Unit.
+    /// Merchant Level Stock Keeping Unit.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub msku: ::std::option::Option<::std::string::String>,
-    ///Products with variations (size, color, etc.) have a Parent ASIN and Child
-    ///ASINs. The Parent ASIN represents the generic overall product
-    ///(non-purchasable).
+    /// Products with variations (size, color, etc.) have a Parent ASIN and Child
+    /// ASINs. The Parent ASIN represents the generic overall product
+    /// (non-purchasable).
     #[serde(
         rename = "parentAsin",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_asin: ::std::option::Option<::std::string::String>,
-    ///The product group which describes the business group, as defined by the Amazon
-    ///catalog, for example, PC, Wireless, Major Appliances.
+    /// The product group which describes the business group, as defined by the Amazon
+    /// catalog, for example, PC, Wireless, Major Appliances.
     #[serde(
         rename = "productGroup",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_group: ::std::option::Option<::std::string::String>,
-    ///Product name.
+    /// Product name.
     #[serde(
         rename = "productTitle",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_title: ::std::option::Option<::std::string::String>,
 }
-///A custom type which supports time range benchmarking for native Int types.
+/// A custom type which supports time range benchmarking for native Int types.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct IntWithBenchmarking {
     #[serde(
@@ -471,169 +471,169 @@ pub struct IntWithBenchmarking {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<i32>,
 }
-///Lending metric group. A null value for a given metric means that this metric is not yet available.
+/// Lending metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Lending {
-    ///Total monetary amount disbursed to the seller from Amazon for sales and other transactions.
+    /// Total monetary amount disbursed to the seller from Amazon for sales and other transactions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub disbursements: ::std::option::Option<AmountWithBenchmarking>,
-    ///Total number of orders that received customer feedback within a specified time period.
+    /// Total number of orders that received customer feedback within a specified time period.
     #[serde(
         rename = "feedbackOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feedback_order_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Product category where seller achieved highest percentage of sales over past 12 months.
+    /// Product category where seller achieved highest percentage of sales over past 12 months.
     #[serde(
         rename = "primaryProductCategory",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub primary_product_category: ::std::option::Option<::std::string::String>,
-    ///Total Gross Merchandise Sales generated in seller's main product category as of current day.
+    /// Total Gross Merchandise Sales generated in seller's main product category as of current day.
     #[serde(
         rename = "primaryProductCategoryNetGMS",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub primary_product_category_net_gms: ::std::option::Option<AmountWithBenchmarking>,
-    ///Total number of orders that resulted in refunds within a specified time period.
+    /// Total number of orders that resulted in refunds within a specified time period.
     #[serde(
         rename = "refundsOrderCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub refunds_order_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Total balance amount generated from standard order transactions.
+    /// Total balance amount generated from standard order transactions.
     #[serde(
         rename = "totalBalanceByStandardOrders",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_balance_by_standard_orders: ::std::option::Option<AmountWithBenchmarking>,
-    ///Total worth of seller's inventory stored in FBA warehouses based on 15-day average selling price.
+    /// Total worth of seller's inventory stored in FBA warehouses based on 15-day average selling price.
     #[serde(
         rename = "totalFbaInventoryValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_fba_inventory_value: ::std::option::Option<AmountWithBenchmarking>,
 }
-///Common price and count metrics shared by query and catalog search metrics.
-///Groups impressions, clicks, cart adds, and purchases with their associated prices.
+/// Common price and count metrics shared by query and catalog search metrics.
+/// Groups impressions, clicks, cart adds, and purchases with their associated prices.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PriceAndCountMetrics {
-    ///Number of times added to cart from search results, with price at time of add.
+    /// Number of times added to cart from search results, with price at time of add.
     #[serde(
         rename = "cartAddsWithPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cart_adds_with_price: ::std::option::Option<UnitsWithValueAndBenchmarking>,
-    ///Number of clicks from search results, with price at time of click.
+    /// Number of clicks from search results, with price at time of click.
     #[serde(
         rename = "clicksWithPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub clicks_with_price: ::std::option::Option<UnitsWithValueAndBenchmarking>,
-    ///Number of times the product appeared in search results, with price at time of impression.
+    /// Number of times the product appeared in search results, with price at time of impression.
     #[serde(
         rename = "impressionsWithPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub impressions_with_price: ::std::option::Option<UnitsWithValueAndBenchmarking>,
-    ///Search performance metrics for products with one-day delivery option available.
+    /// Search performance metrics for products with one-day delivery option available.
     #[serde(
         rename = "oneDayMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub one_day_metrics: ::std::option::Option<CountMetrics>,
-    ///Number of purchases from search results, with price at time of purchase.
+    /// Number of purchases from search results, with price at time of purchase.
     #[serde(
         rename = "purchasesWithPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchases_with_price: ::std::option::Option<UnitsWithValueAndBenchmarking>,
-    ///Search performance metrics for products with same-day delivery option available.
+    /// Search performance metrics for products with same-day delivery option available.
     #[serde(
         rename = "sameDayMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub same_day_metrics: ::std::option::Option<CountMetrics>,
-    ///Search performance metrics for products with two-day delivery option available.
+    /// Search performance metrics for products with two-day delivery option available.
     #[serde(
         rename = "twoDayMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub two_day_metrics: ::std::option::Option<CountMetrics>,
 }
-///`Promotion`
+/// `Promotion`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Promotion {
-    ///Deal identifier.
+    /// Deal identifier.
     #[serde(rename = "dealId", skip_serializing_if = "::std::option::Option::is_none")]
     pub deal_id: ::std::option::Option<::std::string::String>,
-    ///Price before cart based promotions such as Lightning Deals, POS promotions and Coupons.
+    /// Price before cart based promotions such as Lightning Deals, POS promotions and Coupons.
     #[serde(
         rename = "dealOurPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub deal_our_price: ::std::option::Option<AmountWithBenchmarking>,
-    ///The title of the promotion.
+    /// The title of the promotion.
     #[serde(
         rename = "dealTitle",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub deal_title: ::std::option::Option<::std::string::String>,
-    ///Promotion ASIN state type refers to the current status or availability of a promoted product on Amazon.
+    /// Promotion ASIN state type refers to the current status or availability of a promoted product on Amazon.
     #[serde(
         rename = "promotionAsinStateType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_asin_state_type: ::std::option::Option<::std::string::String>,
-    ///Promotion conversion rate refers to the percentage of units purchased (net of
-    ///cancellations) for a product with an active promotion.
-    ///It's calculated as the number of units sold, minus any cancelled orders,
-    ///divided by the number of details page views for that promotion.
+    /// Promotion conversion rate refers to the percentage of units purchased (net of
+    /// cancellations) for a product with an active promotion.
+    /// It's calculated as the number of units sold, minus any cancelled orders,
+    /// divided by the number of details page views for that promotion.
     #[serde(
         rename = "promotionConversionRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_conversion_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///The difference between the price without the promotion (the Amazon landed
-    ///price) and the price after the promotion is applied to an item.
+    /// The difference between the price without the promotion (the Amazon landed
+    /// price) and the price after the promotion is applied to an item.
     #[serde(
         rename = "promotionDiscountAmt",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_discount_amt: ::std::option::Option<AmountWithBenchmarking>,
-    ///Promotion discount % refers to the percentage discount that's applied to a product's price as part of a promotional offer.
-    ///It's calculated as the promotion's discount amount divided by the current price.
+    /// Promotion discount % refers to the percentage discount that's applied to a product's price as part of a promotional offer.
+    /// It's calculated as the promotion's discount amount divided by the current price.
     #[serde(
         rename = "promotionDiscountPct",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_discount_pct: ::std::option::Option<FloatWithBenchmarking>,
-    ///Promotion end date refers to the date and time, in the local time zone for a
-    ///store, when a promotion becomes inactive in that store.
+    /// Promotion end date refers to the date and time, in the local time zone for a
+    /// store, when a promotion becomes inactive in that store.
     #[serde(
         rename = "promotionEndDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_end_date: ::std::option::Option<::std::string::String>,
-    ///This attribute gives the total count of glance views of the Promotion applicable ASINS for that reporting period.
+    /// This attribute gives the total count of glance views of the Promotion applicable ASINS for that reporting period.
     #[serde(
         rename = "promotionGlanceViewCnt",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_glance_view_cnt: ::std::option::Option<IntWithBenchmarking>,
-    ///Promotion price is the final selling price of an item after any promotions have been applied.
+    /// Promotion price is the final selling price of an item after any promotions have been applied.
     #[serde(
         rename = "promotionOrderedPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_ordered_price: ::std::option::Option<AmountWithBenchmarking>,
-    ///Promotion Ordered Units refers to the total number of units ordered for products that have an active promotion,
-    ///with adjustments made for order cancellations and coupon orders. It is calculated as the count of net ordered units
-    ///where promotion is active (number of units are set to zero if the order is canceled and to one for coupon orders).
+    /// Promotion Ordered Units refers to the total number of units ordered for products that have an active promotion,
+    /// with adjustments made for order cancellations and coupon orders. It is calculated as the count of net ordered units
+    /// where promotion is active (number of units are set to zero if the order is canceled and to one for coupon orders).
     ///
-    ///Promotion ordered revenue is the total money earned from selling products that were part of a promotional offer.
-    ///It includes the selling prices, shipping fees, taxes, and gift wrap charges,
-    ///and subtracts the cost of any returned or refunded items.
+    /// Promotion ordered revenue is the total money earned from selling products that were part of a promotional offer.
+    /// It includes the selling prices, shipping fees, taxes, and gift wrap charges,
+    /// and subtracts the cost of any returned or refunded items.
     #[serde(
         rename = "promotionOrderedUnitsWithRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -641,30 +641,30 @@ pub struct Promotion {
     pub promotion_ordered_units_with_revenue: ::std::option::Option<
         UnitsWithValueAndBenchmarking,
     >,
-    ///Promotion start date refers to the date and time, in the local time zone for a store, when a promotion becomes active.
+    /// Promotion start date refers to the date and time, in the local time zone for a store, when a promotion becomes active.
     #[serde(
         rename = "promotionStartDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_start_date: ::std::option::Option<::std::string::String>,
-    ///Promotion status indicates if a promotion is approved, pending or rejected.
+    /// Promotion status indicates if a promotion is approved, pending or rejected.
     #[serde(
         rename = "promotionStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_status: ::std::option::Option<::std::string::String>,
-    ///Identifies the type of the promotion for ASIN level data. Example values are
-    ///Best Deal, Deal of the Day, Lightning Deal, Sales Discount.
+    /// Identifies the type of the promotion for ASIN level data. Example values are
+    /// Best Deal, Deal of the Day, Lightning Deal, Sales Discount.
     #[serde(
         rename = "promotionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_type: ::std::option::Option<::std::string::String>,
 }
-///A root type for queries
+/// A root type for queries
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Response {
-    ///API is versioned.
+    /// API is versioned.
     #[serde(
         rename = "analytics_sellerAnalytics_2025_03_31",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -673,151 +673,151 @@ pub struct Response {
         AnalyticsSellerAnalytics20250331,
     >,
 }
-///Return-defect metrics at the individual defect-topic level.
+/// Return-defect metrics at the individual defect-topic level.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReturnDefectTopicMetrics {
-    ///Fraction (between 0 and 1) of the product's total return defects attributed to
-    ///this defect topic. Not supported under totals.
+    /// Fraction (between 0 and 1) of the product's total return defects attributed to
+    /// this defect topic. Not supported under totals.
     #[serde(
         rename = "returnDefectContribution",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_defect_contribution: ::std::option::Option<FloatWithBenchmarking>,
-    ///Number of return defects reported for this defect topic (trailing six months). Not supported under totals.
+    /// Number of return defects reported for this defect topic (trailing six months). Not supported under totals.
     #[serde(
         rename = "returnDefectFrequency",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_defect_frequency: ::std::option::Option<IntWithBenchmarking>,
-    ///Recommended actions to address the return defects associated with this topic. Not supported under totals.
+    /// Recommended actions to address the return defects associated with this topic. Not supported under totals.
     #[serde(
         rename = "returnDefectRecommendations",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_defect_recommendations: ::std::option::Option<::std::string::String>,
-    ///Return-defect topic categorizing customer-reported product defects.
-    ///This field automatically groups results when selected, showing metrics per
-    ///unique defect topic. Not supported under totals.
+    /// Return-defect topic categorizing customer-reported product defects.
+    /// This field automatically groups results when selected, showing metrics per
+    /// unique defect topic. Not supported under totals.
     #[serde(
         rename = "returnDefectTopic",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_defect_topic: ::std::option::Option<::std::string::String>,
 }
-///Returns metric group. A null value for a given metric means that this metric is not yet available.
+/// Returns metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Returns {
-    ///Rate of returned units relative to shipped units for the selected time period,
-    ///as a fraction between 0 and 1 (returned units / shipped units). Return data is
-    ///computed with a delay of about 45 days, so the rate may appear low for recent
-    ///dates. Not supported under totals.
+    /// Rate of returned units relative to shipped units for the selected time period,
+    /// as a fraction between 0 and 1 (returned units / shipped units). Return data is
+    /// computed with a delay of about 45 days, so the rate may appear low for recent
+    /// dates. Not supported under totals.
     #[serde(
         rename = "returnedRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub returned_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Number of units returned by customers with a resolution (refund or
-    ///replacement), including returnless refunds, mapped to the day each unit was shipped.
-    ///Return data is computed with a delay of about 45 days, so the most recent ~45 days may be empty or incomplete.
+    /// Number of units returned by customers with a resolution (refund or
+    /// replacement), including returnless refunds, mapped to the day each unit was shipped.
+    /// Return data is computed with a delay of about 45 days, so the most recent ~45 days may be empty or incomplete.
     #[serde(
         rename = "returnedUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub returned_units: ::std::option::Option<IntWithBenchmarking>,
-    ///Total amount refunded to customers in the selected time period, including all
-    ///refunds, in the currency specified by the currencyCode argument (USD if not
-    ///provided). Refund data is computed with a delay of about 45 days, so the most
-    ///recent ~45 days may be empty or incomplete.
+    /// Total amount refunded to customers in the selected time period, including all
+    /// refunds, in the currency specified by the currencyCode argument (USD if not
+    /// provided). Refund data is computed with a delay of about 45 days, so the most
+    /// recent ~45 days may be empty or incomplete.
     #[serde(
         rename = "totalRefundAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_refund_amount: ::std::option::Option<AmountWithBenchmarking>,
 }
-///Reviews metric group. A null value for a given metric means that this metric is not yet available.
+/// Reviews metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Reviews {
-    ///Fraction (between 0 and 1) of customer reviews that are low-rating (critical),
-    ///calculated as lowRatingReviewCount divided by totalReviewCount. Not supported under totals.
+    /// Fraction (between 0 and 1) of customer reviews that are low-rating (critical),
+    /// calculated as lowRatingReviewCount divided by totalReviewCount. Not supported under totals.
     #[serde(
         rename = "criticalReviewRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub critical_review_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Rounded star rating shown on the product detail page (1-5).
-    ///Reflects the overall rating state as of the requested date, not activity within the period.
-    ///Null when the product has no ratings yet. Not supported under totals.
+    /// Rounded star rating shown on the product detail page (1-5).
+    /// Reflects the overall rating state as of the requested date, not activity within the period.
+    /// Null when the product has no ratings yet. Not supported under totals.
     #[serde(
         rename = "displayRating",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub display_rating: ::std::option::Option<FloatWithBenchmarking>,
-    ///Number of low-rating customer reviews (critical reviews) received for the product in the selected time period.
+    /// Number of low-rating customer reviews (critical reviews) received for the product in the selected time period.
     #[serde(
         rename = "lowRatingReviewCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub low_rating_review_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Unrounded average star rating for the product (1-5).
-    ///Reflects the overall rating state as of the requested date, not activity within the period.
-    ///Null when the product has no ratings yet. Not supported under totals.
+    /// Unrounded average star rating for the product (1-5).
+    /// Reflects the overall rating state as of the requested date, not activity within the period.
+    /// Null when the product has no ratings yet. Not supported under totals.
     #[serde(
         rename = "rawRating",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub raw_rating: ::std::option::Option<FloatWithBenchmarking>,
-    ///Total number of verified buyer reviews contributing to the product's star rating, as of
-    ///the requested date. Differs from totalReviewCount, which counts reviews received in the
-    ///selected time period. Not supported under totals.
+    /// Total number of verified buyer reviews contributing to the product's star rating, as of
+    /// the requested date. Differs from totalReviewCount, which counts reviews received in the
+    /// selected time period. Not supported under totals.
     #[serde(
         rename = "totalRatingCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_rating_count: ::std::option::Option<IntWithBenchmarking>,
-    ///Total number of customer reviews received for the product in the selected time period.
+    /// Total number of customer reviews received for the product in the selected time period.
     #[serde(
         rename = "totalReviewCount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_review_count: ::std::option::Option<IntWithBenchmarking>,
 }
-///Sales metric group. A null value for a given metric means that this metric is not yet available.
+/// Sales metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Sales {
-    ///The average price per unit in the selected time period, calculated by dividing
-    ///net orderedProductSales by net unitsOrdered (both adjusted for cancellations).
+    /// The average price per unit in the selected time period, calculated by dividing
+    /// net orderedProductSales by net unitsOrdered (both adjusted for cancellations).
     #[serde(
         rename = "averageSellingPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_selling_price: ::std::option::Option<AmountWithBenchmarking>,
-    ///The average price of the units sold to Amazon Business customers, calculated
-    ///by dividing the orderedProductSalesB2B by unitsOrderedB2B for the selected
-    ///time period. Note: This field is only populated if you are a B2B seller on Amazon.
+    /// The average price of the units sold to Amazon Business customers, calculated
+    /// by dividing the orderedProductSalesB2B by unitsOrderedB2B for the selected
+    /// time period. Note: This field is only populated if you are a B2B seller on Amazon.
     #[serde(
         rename = "averageSellingPriceB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_selling_price_b2b: ::std::option::Option<AmountWithBenchmarking>,
-    ///Total monetary value of all orders after promotions and discounts, excluding canceled orders.
+    /// Total monetary value of all orders after promotions and discounts, excluding canceled orders.
     #[serde(rename = "orderGMS", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_gms: ::std::option::Option<AmountWithBenchmarking>,
-    ///The amount of ordered product sales, calculated by multiplying the price of
-    ///products and the number of units sold for the selected time period.
+    /// The amount of ordered product sales, calculated by multiplying the price of
+    /// products and the number of units sold for the selected time period.
     #[serde(
         rename = "orderedProductSales",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_product_sales: ::std::option::Option<AmountWithBenchmarking>,
-    ///The amount of ordered product sales to Amazon Business customers, calculated
-    ///by multiplying the price of products and the number of units sold for the
-    ///selected time period. Note: This field is only populated if you are a B2B seller on Amazon.
+    /// The amount of ordered product sales to Amazon Business customers, calculated
+    /// by multiplying the price of products and the number of units sold for the
+    /// selected time period. Note: This field is only populated if you are a B2B seller on Amazon.
     #[serde(
         rename = "orderedProductSalesB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_product_sales_b2b: ::std::option::Option<AmountWithBenchmarking>,
-    ///The number of orders shipped in the selected time period as well as revenue generated.
+    /// The number of orders shipped in the selected time period as well as revenue generated.
     #[serde(
         rename = "ordersShippedWithRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -825,334 +825,334 @@ pub struct Sales {
     pub orders_shipped_with_revenue: ::std::option::Option<
         UnitsWithValueAndBenchmarking,
     >,
-    ///The number of units ordered.
+    /// The number of units ordered.
     #[serde(
         rename = "unitsOrdered",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_ordered: ::std::option::Option<IntWithBenchmarking>,
-    ///The number of units shipped in the selected time period.
+    /// The number of units shipped in the selected time period.
     #[serde(
         rename = "unitsShipped",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_shipped: ::std::option::Option<IntWithBenchmarking>,
-    ///The number of units ordered by Amazon Business customers.
-    ///Note: This field is only populated if you are a B2B seller on Amazon.
+    /// The number of units ordered by Amazon Business customers.
+    /// Note: This field is only populated if you are a B2B seller on Amazon.
     #[serde(
         rename = "unitsShippedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_shipped_b2b: ::std::option::Option<IntWithBenchmarking>,
 }
-///Search metric group for search-related analytics.
+/// Search metric group for search-related analytics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Search {
-    ///Catalog-level search metrics aggregated across all keywords.
+    /// Catalog-level search metrics aggregated across all keywords.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub catalog: ::std::option::Option<SearchCatalogMetrics>,
-    ///Query-level search metrics grouped by search keywords.
-    ///Returns an array of metrics per unique keyword within the current grouping context.
+    /// Query-level search metrics grouped by search keywords.
+    /// Returns an array of metrics per unique keyword within the current grouping context.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub query: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<SearchQueryMetrics>>,
     >,
 }
-///Search metrics at the catalog/ASIN level, aggregated across all keywords.
+/// Search metrics at the catalog/ASIN level, aggregated across all keywords.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SearchCatalogMetrics {
-    ///Percentage of impressions that resulted in a click.
+    /// Percentage of impressions that resulted in a click.
     #[serde(
         rename = "clickRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub click_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Percentage of impressions that resulted in a purchase.
+    /// Percentage of impressions that resulted in a purchase.
     #[serde(
         rename = "conversionRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub conversion_rate: ::std::option::Option<FloatWithBenchmarking>,
-    ///Core search metrics including impressions, clicks, cart adds, and purchases with price data.
+    /// Core search metrics including impressions, clicks, cart adds, and purchases with price data.
     #[serde(
         rename = "priceAndCountMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub price_and_count_metrics: ::std::option::Option<PriceAndCountMetrics>,
-    ///Total revenue generated from purchases attributed to search traffic.
+    /// Total revenue generated from purchases attributed to search traffic.
     #[serde(
         rename = "trafficSales",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub traffic_sales: ::std::option::Option<AmountWithBenchmarking>,
 }
-///Search metrics at the query/keyword level.
+/// Search metrics at the query/keyword level.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SearchQueryMetrics {
-    ///Core search metrics including impressions, clicks, cart adds, and purchases with price data.
+    /// Core search metrics including impressions, clicks, cart adds, and purchases with price data.
     #[serde(
         rename = "priceAndCountMetrics",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub price_and_count_metrics: ::std::option::Option<PriceAndCountMetrics>,
-    ///Search query keyword entered by customers.
-    ///This field automatically groups results when selected, showing metrics per unique keyword.
+    /// Search query keyword entered by customers.
+    /// This field automatically groups results when selected, showing metrics per unique keyword.
     #[serde(
         rename = "queryKeyword",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub query_keyword: ::std::option::Option<::std::string::String>,
 }
-///The SellerAnalyticsView retrieves aggregated cross-domain seller analytics data based
-///on specified GroupByAttributes for the seller's account.
+/// The SellerAnalyticsView retrieves aggregated cross-domain seller analytics data based
+/// on specified GroupByAttributes for the seller's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerAnalyticsView {
-    ///End date of the time period.
+    /// End date of the time period.
     #[serde(rename = "endDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_date: ::std::option::Option<::std::string::String>,
-    ///Metrics for the given time period, grouped by, for example, ASIN/SKU.
+    /// Metrics for the given time period, grouped by, for example, ASIN/SKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub metrics: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<SellerAnalyticsViewGroupedBy>>,
     >,
-    ///Seller Attributes for the account. These are static attributes that don't change per metric or groupBy.
+    /// Seller Attributes for the account. These are static attributes that don't change per metric or groupBy.
     #[serde(
         rename = "sellerAttributes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_attributes: ::std::option::Option<SellerAttributes>,
-    ///Start date of the time period.
+    /// Start date of the time period.
     #[serde(
         rename = "startDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_date: ::std::option::Option<::std::string::String>,
-    ///Totals (aggregate across all of the seller catalog) for the given time period.
+    /// Totals (aggregate across all of the seller catalog) for the given time period.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub totals: ::std::option::Option<SellerAnalyticsViewMetrics>,
 }
-///SellerAnalytics view metrics grouped by the selected "group by" attributes, for example, brand, ASIN.
+/// SellerAnalytics view metrics grouped by the selected "group by" attributes, for example, brand, ASIN.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerAnalyticsViewGroupedBy {
-    ///Group by attributes, for example, brand, ASIN.
+    /// Group by attributes, for example, brand, ASIN.
     #[serde(
         rename = "groupByKey",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub group_by_key: ::std::option::Option<GroupByAttributes>,
-    ///Metrics for the given time period, grouped by the attributes selected in the groupByKey.
+    /// Metrics for the given time period, grouped by the attributes selected in the groupByKey.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub metrics: ::std::option::Option<SellerAnalyticsViewMetrics>,
 }
-///Metrics broken down by metric groups, for example, Sales, Traffic, Promotion, AccountHealth, Lending, Search.
+/// Metrics broken down by metric groups, for example, Sales, Traffic, Promotion, AccountHealth, Lending, Search.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerAnalyticsViewMetrics {
-    ///Account Health metric group.
+    /// Account Health metric group.
     #[serde(
         rename = "accountHealth",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_health: ::std::option::Option<AccountHealth>,
-    ///Defects metric group.
+    /// Defects metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub defects: ::std::option::Option<Defects>,
-    ///Lending metric group.
+    /// Lending metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub lending: ::std::option::Option<Lending>,
-    ///Promotion metric group.
+    /// Promotion metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promotion: ::std::option::Option<Promotion>,
-    ///Returns metric group.
+    /// Returns metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub returns: ::std::option::Option<Returns>,
-    ///Reviews metric group.
+    /// Reviews metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reviews: ::std::option::Option<Reviews>,
-    ///Sales metric group.
+    /// Sales metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sales: ::std::option::Option<Sales>,
-    ///Search metric group.
+    /// Search metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub search: ::std::option::Option<Search>,
-    ///Traffic metric group.
+    /// Traffic metric group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub traffic: ::std::option::Option<Traffic>,
 }
-///Seller-level attributes for the account. These are static and do not vary by
-///metric or groupBy. A null value means the attribute is not yet available.
+/// Seller-level attributes for the account. These are static and do not vary by
+/// metric or groupBy. A null value means the attribute is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellerAttributes {
-    ///Binary flag indicating whether the seller is registered as a brand owner in Amazon's Brand Registry.
+    /// Binary flag indicating whether the seller is registered as a brand owner in Amazon's Brand Registry.
     #[serde(
         rename = "isBrandOwner",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_brand_owner: ::std::option::Option<::std::string::String>,
-    ///Binary flag indicating whether seller is registered for Amazon's FBA program.
+    /// Binary flag indicating whether seller is registered for Amazon's FBA program.
     #[serde(
         rename = "isFBARegistered",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_fba_registered: ::std::option::Option<::std::string::String>,
-    ///Fraud status of a merchant with default value of NormalStatus.
+    /// Fraud status of a merchant with default value of NormalStatus.
     #[serde(
         rename = "sellerFraudStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_fraud_status: ::std::option::Option<::std::string::String>,
-    ///Web address of a merchant's online storefront on Amazon displaying all their listed ASINs.
+    /// Web address of a merchant's online storefront on Amazon displaying all their listed ASINs.
     #[serde(
         rename = "sellerStoreURL",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_store_url: ::std::option::Option<::std::string::String>,
-    ///Length of time a seller has been active on the Amazon marketplace, typically measured in days or months.
+    /// Length of time a seller has been active on the Amazon marketplace, typically measured in days or months.
     #[serde(
         rename = "sellerTenure",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_tenure: ::std::option::Option<IntWithBenchmarking>,
 }
-///Benchmarking values applicable to WEEKLY and MONTHLY dateGranularity selections.
-///For example: WEEKLY supports two benchmarks (weekOverWeek and yearOverYear);
-///MONTHLY supports two benchmarks (monthOverMonth and yearOverYear).
+/// Benchmarking values applicable to WEEKLY and MONTHLY dateGranularity selections.
+/// For example: WEEKLY supports two benchmarks (weekOverWeek and yearOverYear);
+/// MONTHLY supports two benchmarks (monthOverMonth and yearOverYear).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TimeRangeBenchmarking {
-    ///A metric that compares data from the current month to the previous month to measure performance changes.
+    /// A metric that compares data from the current month to the previous month to measure performance changes.
     #[serde(
         rename = "monthOverMonth",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub month_over_month: ::std::option::Option<::serde_json::Number>,
-    ///A metric that compares data from the current week to the previous week to measure performance changes.
+    /// A metric that compares data from the current week to the previous week to measure performance changes.
     #[serde(
         rename = "weekOverWeek",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub week_over_week: ::std::option::Option<::serde_json::Number>,
-    ///A metric that compares data from the current period to the same period last year to measure performance changes.
+    /// A metric that compares data from the current period to the same period last year to measure performance changes.
     #[serde(
         rename = "yearOverYear",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub year_over_year: ::std::option::Option<::serde_json::Number>,
 }
-///Traffic metric group. A null value for a given metric means that this metric is not yet available.
+/// Traffic metric group. A null value for a given metric means that this metric is not yet available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Traffic {
-    ///Browser page views are the number of times a user visited your Amazon.com browser pages for the selected time period.
+    /// Browser page views are the number of times a user visited your Amazon.com browser pages for the selected time period.
     #[serde(
         rename = "browserPageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views: ::std::option::Option<IntWithBenchmarking>,
-    ///Browser sessions are visits to your Amazon.com browser pages by a user. All
-    ///browser activity within a 24-hour period is considered a browser session. For
-    ///example, if a user visits your pages using a browser multiple times within a
-    ///24 hour period it is counted as a single browser session.
+    /// Browser sessions are visits to your Amazon.com browser pages by a user. All
+    /// browser activity within a 24-hour period is considered a browser session. For
+    /// example, if a user visits your pages using a browser multiple times within a
+    /// 24 hour period it is counted as a single browser session.
     #[serde(
         rename = "browserSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_sessions: ::std::option::Option<IntWithBenchmarking>,
-    ///The conversion rate describes the successful transition of a customer from clicks to purchase.
-    ///This metric includes the percentage of purchases to clicks for ASINs originated from the search results page.
+    /// The conversion rate describes the successful transition of a customer from clicks to purchase.
+    /// This metric includes the percentage of purchases to clicks for ASINs originated from the search results page.
     #[serde(
         rename = "conversationRatePct",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub conversation_rate_pct: ::std::option::Option<FloatWithBenchmarking>,
-    ///The conversion rate describes the successful transition of a customer from clicks to purchase.
-    ///This metric includes the percentage of purchases to clicks for ASINs originated from the search results page.
+    /// The conversion rate describes the successful transition of a customer from clicks to purchase.
+    /// This metric includes the percentage of purchases to clicks for ASINs originated from the search results page.
     #[serde(
         rename = "conversionRatePct",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub conversion_rate_pct: ::std::option::Option<FloatWithBenchmarking>,
-    ///Featured Offer glance views is the count of glance views where your product
-    ///appeared as the Featured Offer on the search results page.
+    /// Featured Offer glance views is the count of glance views where your product
+    /// appeared as the Featured Offer on the search results page.
     #[serde(
         rename = "featureOfferGlanceViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feature_offer_glance_views: ::std::option::Option<IntWithBenchmarking>,
-    ///Featured Offer percentage shows how often your offer is the Featured Offer when customers can add to their cart.
-    ///It's calculated by dividing the number of times your offer is the Featured Offer
-    ///by the number of times customers viewed it (that is, Glance Views).
+    /// Featured Offer percentage shows how often your offer is the Featured Offer when customers can add to their cart.
+    /// It's calculated by dividing the number of times your offer is the Featured Offer
+    /// by the number of times customers viewed it (that is, Glance Views).
     #[serde(
         rename = "featureOfferPct",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feature_offer_pct: ::std::option::Option<FloatWithBenchmarking>,
-    ///Glance views is the number of times customers actively engage with your product detail page.
+    /// Glance views is the number of times customers actively engage with your product detail page.
     #[serde(
         rename = "glanceViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub glance_views: ::std::option::Option<IntWithBenchmarking>,
-    ///Glance views B2B is the number of times customers actively engage with your product detail page.
-    ///Note: This field is only populated if you are a B2B seller on Amazon.
+    /// Glance views B2B is the number of times customers actively engage with your product detail page.
+    /// Note: This field is only populated if you are a B2B seller on Amazon.
     #[serde(
         rename = "glanceViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub glance_views_b2b: ::std::option::Option<IntWithBenchmarking>,
-    ///Mobile app page views are the number of times a user visited your Amazon.com
-    ///mobile app pages for the selected time period.
+    /// Mobile app page views are the number of times a user visited your Amazon.com
+    /// mobile app pages for the selected time period.
     #[serde(
         rename = "mobileAppPageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views: ::std::option::Option<IntWithBenchmarking>,
-    ///Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
-    ///All mobile app activity within a 24-hour period is considered a mobile app
-    ///session. For example, if a user visits your pages using a mobile app multiple
-    ///times within a 24 hour period it is counted as a single mobile app session.
+    /// Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
+    /// All mobile app activity within a 24-hour period is considered a mobile app
+    /// session. For example, if a user visits your pages using a mobile app multiple
+    /// times within a 24 hour period it is counted as a single mobile app session.
     #[serde(
         rename = "mobileAppSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_sessions: ::std::option::Option<IntWithBenchmarking>,
-    ///Page views are the number of times a user visited your Amazon.com browser or
-    ///mobile app pages for the selected time period. It is calculated as the sum of
-    ///browserPageViews and mobileAppPageViews.
+    /// Page views are the number of times a user visited your Amazon.com browser or
+    /// mobile app pages for the selected time period. It is calculated as the sum of
+    /// browserPageViews and mobileAppPageViews.
     #[serde(
         rename = "pageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views: ::std::option::Option<IntWithBenchmarking>,
-    ///Sessions are visits to your Amazon.com browser or mobile app pages by a user.
-    ///All browser and mobile app activity within a 24-hour period is considered a
-    ///session. It is calculated as the sum of browserSessions and mobileAppSessions.
+    /// Sessions are visits to your Amazon.com browser or mobile app pages by a user.
+    /// All browser and mobile app activity within a 24-hour period is considered a
+    /// session. It is calculated as the sum of browserSessions and mobileAppSessions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sessions: ::std::option::Option<IntWithBenchmarking>,
 }
-///Number of units with their corresponding monetary value.
+/// Number of units with their corresponding monetary value.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UnitsWithValue {
-    ///Number of units.
+    /// Number of units.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub units: ::std::option::Option<i64>,
-    ///Monetary value of the units.
+    /// Monetary value of the units.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<Amount>,
 }
-///Number of units with their corresponding monetary value and time range benchmarking.
+/// Number of units with their corresponding monetary value and time range benchmarking.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UnitsWithValueAndBenchmarking {
-    ///Relevant time range benchmarking comparison for units.
+    /// Relevant time range benchmarking comparison for units.
     #[serde(
         rename = "unitsTimeRangeBenchmarking",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_time_range_benchmarking: ::std::option::Option<TimeRangeBenchmarking>,
-    ///Number of units and monetary value of the units.
+    /// Number of units and monetary value of the units.
     #[serde(
         rename = "unitsWithValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_with_value: ::std::option::Option<UnitsWithValue>,
-    ///Relevant time range benchmarking of the monetary value of units.
+    /// Relevant time range benchmarking of the monetary value of units.
     #[serde(
         rename = "valueTimeRangeBenchmarking",
         skip_serializing_if = "::std::option::Option::is_none"

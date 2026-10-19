@@ -2,38 +2,38 @@
 // Source: vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///An array of individual error objects containing error details.
+    /// An array of individual error objects containing error details.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The transaction status details.
+/// The transaction status details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Transaction {
-    ///Error code and message for the failed transaction. Only available when transaction status is 'Failure'.
+    /// Error code and message for the failed transaction. Only available when transaction status is 'Failure'.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///Current processing status of the transaction.
+    /// Current processing status of the transaction.
     ///
-    ///Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.
+    /// Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
+    /// The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
     #[serde(rename = "transactionId")]
     pub transaction_id: ::std::string::String,
 }
-///The payload for the getTransactionStatus operation.
+/// The payload for the getTransactionStatus operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionStatus {
     #[serde(

@@ -4,22 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`submit_inventory_update`].
+/// The parameters of [`submit_inventory_update`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitInventoryUpdateParams<B = serde_json::Value> {
-    ///Identifier for the warehouse for which to update inventory.
+    /// Identifier for the warehouse for which to update inventory.
     pub warehouse_id: String,
-    ///The request body containing the inventory update data to submit.
+    /// The request body containing the inventory update data to submit.
     pub body: B,
 }
 impl<B> SubmitInventoryUpdateParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(warehouse_id: String, body: B) -> Self {
         Self { warehouse_id, body }
     }
 }
-///Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
+/// Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
 pub async fn submit_inventory_update<B: serde::Serialize>(
     client: &Client,
     params: SubmitInventoryUpdateParams<B>,

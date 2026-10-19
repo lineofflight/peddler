@@ -2,131 +2,131 @@
 // Source: product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses.
+    /// A list of error responses.
     pub errors: ::std::vec::Vec<Error>,
 }
-///An Amazon product type with a definition available.
+/// An Amazon product type with a definition available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProductType {
-    ///Human-readable and localized description of the Amazon product type.
+    /// Human-readable and localized description of the Amazon product type.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///The Amazon marketplace identifiers for which the product type definition is available.
+    /// The Amazon marketplace identifiers for which the product type definition is available.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    ///The name of the Amazon product type.
+    /// The name of the Amazon product type.
     pub name: ::std::string::String,
 }
-///A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
+/// A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProductTypeDefinition {
-    ///Human-readable and localized description of the Amazon product type.
+    /// Human-readable and localized description of the Amazon product type.
     #[serde(rename = "displayName")]
     pub display_name: ::std::string::String,
-    ///Locale of the display elements contained in the product type definition.
+    /// Locale of the display elements contained in the product type definition.
     pub locale: ::std::string::String,
-    ///Amazon marketplace identifiers for which the product type definition is applicable.
+    /// Amazon marketplace identifiers for which the product type definition is applicable.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    ///Link to meta-schema describing the vocabulary used by the product type schema.
+    /// Link to meta-schema describing the vocabulary used by the product type schema.
     #[serde(
         rename = "metaSchema",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub meta_schema: ::std::option::Option<SchemaLink>,
-    ///The name of the Amazon product type that this product type definition applies to.
+    /// The name of the Amazon product type that this product type definition applies to.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    ///The version details for the Amazon product type.
+    /// The version details for the Amazon product type.
     #[serde(rename = "productTypeVersion")]
     pub product_type_version: ProductTypeVersion,
-    ///Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
+    /// Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.
     #[serde(rename = "propertyGroups")]
     pub property_groups: ::std::collections::HashMap<
         ::std::string::String,
         PropertyGroup,
     >,
-    ///Name of the requirements set represented in this product type definition.
+    /// Name of the requirements set represented in this product type definition.
     ///
-    ///Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
+    /// Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
     pub requirements: ::std::string::String,
-    ///Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
+    /// Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).
     ///
-    ///Known values: `ENFORCED`, `NOT_ENFORCED`. Other values may be returned by Amazon.
+    /// Known values: `ENFORCED`, `NOT_ENFORCED`. Other values may be returned by Amazon.
     #[serde(rename = "requirementsEnforced")]
     pub requirements_enforced: ::std::string::String,
-    ///Link to schema describing the attributes and requirements for the product type.
+    /// Link to schema describing the attributes and requirements for the product type.
     pub schema: SchemaLink,
 }
-///A list of Amazon product types with definitions available.
+/// A list of Amazon product types with definitions available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProductTypeList {
-    ///Amazon product type version identifier.
+    /// Amazon product type version identifier.
     #[serde(rename = "productTypeVersion")]
     pub product_type_version: ::std::string::String,
-    ///A list of product types.
+    /// A list of product types.
     #[serde(rename = "productTypes")]
     pub product_types: ::std::vec::Vec<ProductType>,
 }
-///The version details for an Amazon product type.
+/// The version details for an Amazon product type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProductTypeVersion {
-    ///When true, the version indicated by the version identifier is the latest available for the Amazon product type.
+    /// When true, the version indicated by the version identifier is the latest available for the Amazon product type.
     pub latest: bool,
-    ///When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
+    /// When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
     #[serde(
         rename = "releaseCandidate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub release_candidate: ::std::option::Option<bool>,
-    ///Version identifier.
+    /// Version identifier.
     pub version: ::std::string::String,
 }
-///A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+/// A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PropertyGroup {
-    ///The description of the property group.
+    /// The description of the property group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///The names of the schema properties for the property group.
+    /// The names of the schema properties for the property group.
     #[serde(
         rename = "propertyNames",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub property_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The display label of the property group.
+    /// The display label of the property group.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
 }
-///A link to metadata schema.
+/// A link to metadata schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SchemaLink {
-    ///Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching.
+    /// Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching.
     pub checksum: ::std::string::String,
     pub link: SchemaLinkLink,
 }
-///Link to retrieve the schema.
+/// Link to retrieve the schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SchemaLinkLink {
-    ///URI resource for the link.
+    /// URI resource for the link.
     pub resource: ::std::string::String,
-    ///HTTP method for the link operation.
+    /// HTTP method for the link operation.
     ///
-    ///Known values: `GET`. Other values may be returned by Amazon.
+    /// Known values: `GET`. Other values may be returned by Amazon.
     pub verb: ::std::string::String,
 }
 /// Error types.

@@ -2,9 +2,9 @@
 // Source: replenishment-api-model/replenishment-2022-11-07.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The time period used to group data in the response. Note that this is only valid for the `PERFORMANCE` time period type.
+/// The time period used to group data in the response. Note that this is only valid for the `PERFORMANCE` time period type.
 ///
-///Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
+/// Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -45,9 +45,9 @@ impl ::std::str::FromStr for AggregationFrequency {
         Ok(Self(value.to_string()))
     }
 }
-///The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's auto-enrollment feature.
+/// The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's auto-enrollment feature.
 ///
-///Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
+/// Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -88,31 +88,31 @@ impl ::std::str::FromStr for AutoEnrollmentPreference {
         Ok(Self(value.to_string()))
     }
 }
-///An object which contains the delivery condition and the quantity of upcoming deliveries associated with that condition for an offer.
+/// An object which contains the delivery condition and the quantity of upcoming deliveries associated with that condition for an offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeliveriesCondition {
-    ///The condition type of upcoming deliveries for the offer.
+    /// The condition type of upcoming deliveries for the offer.
     ///
-    ///Known values: `NEXT_30_DAYS_DELIVERIES_PAUSED_PRICING`, `NEXT_30_DAYS_DELIVERIES_PAUSED_NON_BUYABLE`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK_ONLY`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK`, `NO_ISSUES_FOR_NEXT_30_DAYS_DELIVERIES`. Other values may be returned by Amazon.
+    /// Known values: `NEXT_30_DAYS_DELIVERIES_PAUSED_PRICING`, `NEXT_30_DAYS_DELIVERIES_PAUSED_NON_BUYABLE`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK_ONLY`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK`, `NO_ISSUES_FOR_NEXT_30_DAYS_DELIVERIES`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<::std::string::String>,
-    ///The number of upcoming deliveries in the next 30 days associated with this delivery condition.
+    /// The number of upcoming deliveries in the next 30 days associated with this delivery condition.
     #[serde(
         rename = "next30DaysDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next30_days_deliveries: ::std::option::Option<i64>,
 }
-///The discount funding on the offer.
+/// The discount funding on the offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DiscountFunding {
-    ///Filters the results to only include offers with the percentage specified.
+    /// Filters the results to only include offers with the percentage specified.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub percentage: ::std::option::Option<::std::vec::Vec<::serde_json::Number>>,
 }
-///The current eligibility status of an offer.
+/// The current eligibility status of an offer.
 ///
-///Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
+/// Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -153,9 +153,9 @@ impl ::std::str::FromStr for EligibilityStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The enrollment method used to enroll the offer into the program.
+/// The enrollment method used to enroll the offer into the program.
 ///
-///Known values: `MANUAL`, `AUTOMATIC`. Other values may be returned by Amazon.
+/// Known values: `MANUAL`, `AUTOMATIC`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -196,54 +196,54 @@ impl ::std::str::FromStr for EnrollmentMethod {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///An object which contains the projected subscriber demand for the offer over different time horizons.
+/// An object which contains the projected subscriber demand for the offer over different time horizons.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ForecastDeliveries {
-    ///The projected number of subscriber deliveries in the next 15 days.
+    /// The projected number of subscriber deliveries in the next 15 days.
     #[serde(
         rename = "next15DaysDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next15_days_deliveries: ::std::option::Option<i64>,
-    ///The projected number of subscriber deliveries in the next 30 days.
+    /// The projected number of subscriber deliveries in the next 30 days.
     #[serde(
         rename = "next30DaysDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next30_days_deliveries: ::std::option::Option<i64>,
-    ///The projected number of subscriber deliveries in the next 60 days.
+    /// The projected number of subscriber deliveries in the next 60 days.
     #[serde(
         rename = "next60DaysDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next60_days_deliveries: ::std::option::Option<i64>,
-    ///The projected number of subscriber deliveries in the next 90 days.
+    /// The projected number of subscriber deliveries in the next 90 days.
     #[serde(
         rename = "next90DaysDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next90_days_deliveries: ::std::option::Option<i64>,
 }
-///The fulfillment channel type of an offer. Note that this is only valid for sellers and not for vendors.
+/// The fulfillment channel type of an offer. Note that this is only valid for sellers and not for vendors.
 ///
-///Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
+/// Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -284,53 +284,53 @@ impl ::std::str::FromStr for FulfillmentChannelType {
         Ok(Self(value.to_string()))
     }
 }
-///The request body for the `getSellingPartnerMetrics` operation.
+/// The request body for the `getSellingPartnerMetrics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSellingPartnerMetricsRequest {
-    ///Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
+    /// Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
     #[serde(
         rename = "aggregationFrequency",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aggregation_frequency: ::std::option::Option<AggregationFrequency>,
-    ///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+    /// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub filters: ::std::option::Option<GetSellingPartnerMetricsRequestFilters>,
-    ///The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
+    /// The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///The list of metrics requested. If no metric value is provided, data for all metrics will be returned.
+    /// The list of metrics requested. If no metric value is provided, data for all metrics will be returned.
     ///
-    ///Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NOT_DELIVERED_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE`, `LOST_REVENUE_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS`, `COUPONS_REVENUE_PENETRATION`, `REVENUE_BY_DELIVERIES`, `SUBSCRIBER_RETENTION`, `REVENUE_PENETRATION_BY_SELLER_FUNDING`, `SHARE_OF_COUPON_SUBSCRIPTIONS`, `SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT`, `SIGNUP_CONVERSION_BY_SELLER_FUNDING`, `REVENUE_PENETRATION`. Other values may be returned by Amazon.
+    /// Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NOT_DELIVERED_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE`, `LOST_REVENUE_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS`, `COUPONS_REVENUE_PENETRATION`, `REVENUE_BY_DELIVERIES`, `SUBSCRIBER_RETENTION`, `REVENUE_PENETRATION_BY_SELLER_FUNDING`, `SHARE_OF_COUPON_SUBSCRIPTIONS`, `SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT`, `SIGNUP_CONVERSION_BY_SELLER_FUNDING`, `REVENUE_PENETRATION`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub metrics: ::std::option::Option<::std::vec::Vec<Metric>>,
-    ///The list of replenishment program types for which to return metrics.
+    /// The list of replenishment program types for which to return metrics.
     ///
-    ///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+    /// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
     #[serde(rename = "programTypes")]
     pub program_types: ProgramTypes,
-    ///A time interval used to compute metrics.
+    /// A time interval used to compute metrics.
     #[serde(rename = "timeInterval")]
     pub time_interval: TimeInterval,
-    ///Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
+    /// Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
     #[serde(rename = "timePeriodType")]
     pub time_period_type: TimePeriodType,
 }
-///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+/// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSellingPartnerMetricsRequestFilters {
-    ///A list of Amazon Standard Identification Numbers (ASINs) to filter by. ASIN filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
+    /// A list of Amazon Standard Identification Numbers (ASINs) to filter by. ASIN filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asins: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///[Applicable only for US marketplace] A list of brand names to filter by. Brand name filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS, REVENUE_PENETRATION, SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE, SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS, REVENUE_BY_DELIVERIES, SUBSCRIBER_RETENTION, REVENUE_PENETRATION_BY_SELLER_FUNDING, SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT and SIGNUP_CONVERSION_BY_SELLER_FUNDING.
+    /// [Applicable only for US marketplace] A list of brand names to filter by. Brand name filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS, REVENUE_PENETRATION, SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE, SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS, REVENUE_BY_DELIVERIES, SUBSCRIBER_RETENTION, REVENUE_PENETRATION_BY_SELLER_FUNDING, SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT and SIGNUP_CONVERSION_BY_SELLER_FUNDING.
     #[serde(
         rename = "brandNames",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///[Applicable only for Sellers] The fulfillment channel types to filter by. Fulfillment channel type filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
+    /// [Applicable only for Sellers] The fulfillment channel types to filter by. Fulfillment channel type filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
     ///
-    ///Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
+    /// Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentChannelTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -338,47 +338,47 @@ pub struct GetSellingPartnerMetricsRequestFilters {
     pub fulfillment_channel_types: ::std::option::Option<
         ::std::vec::Vec<FulfillmentChannelType>,
     >,
-    ///[Applicable only for Vendors] A list of product group names to filter by. Product group filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
+    /// [Applicable only for Vendors] A list of product group names to filter by. Product group filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
     #[serde(
         rename = "productGroups",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_groups: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///[Applicable only for Sellers] A list of SKUs to filter by. SKU filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
+    /// [Applicable only for Sellers] A list of SKUs to filter by. SKU filter is supported for these metrics: SHIPPED_SUBSCRIPTION_UNITS, TOTAL_SUBSCRIPTIONS_REVENUE, ACTIVE_SUBSCRIPTIONS, NOT_DELIVERED_DUE_TO_OOS, LOST_REVENUE_DUE_TO_OOS, COUPONS_REVENUE_PENETRATION, SHARE_OF_COUPON_SUBSCRIPTIONS and REVENUE_PENETRATION.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
 }
-///The response schema for the `getSellingPartnerMetrics` operation.
+/// The response schema for the `getSellingPartnerMetrics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSellingPartnerMetricsResponse {
-    ///A list of metrics data for the selling partner.
+    /// A list of metrics data for the selling partner.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub metrics: ::std::option::Option<
         ::std::vec::Vec<GetSellingPartnerMetricsResponseMetric>,
     >,
 }
-///An object which contains metric data for a selling partner.
+/// An object which contains metric data for a selling partner.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSellingPartnerMetricsResponseMetric {
-    ///The number of active subscriptions present at the end of the period. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The number of active subscriptions present at the end of the period. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "activeSubscriptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub active_subscriptions: ::std::option::Option<::serde_json::Number>,
-    ///The percentage of revenue from ASINs with coupons out of total revenue from all ASINs. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of revenue from ASINs with coupons out of total revenue from all ASINs. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "couponsRevenuePenetration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupons_revenue_penetration: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
-    ///Revenue from one-time purchase orders placed by customers who have maintained an active subscription with your catalog for more than 12 months.
+    /// Revenue from one-time purchase orders placed by customers who have maintained an active subscription with your catalog for more than 12 months.
     #[serde(
         rename = "establishedSubscriberLifeTimeValueFromOTP",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -386,7 +386,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub established_subscriber_life_time_value_from_otp: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///Revenue from Subscribe & Save orders placed by customers who have maintained an active subscription with your catalog for more than 12 months.
+    /// Revenue from Subscribe & Save orders placed by customers who have maintained an active subscription with your catalog for more than 12 months.
     #[serde(
         rename = "establishedSubscriberLifeTimeValueFromSNS",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -394,7 +394,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub established_subscriber_life_time_value_from_sns: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///Revenue from one-time purchase orders placed by customers who started their first subscription with your catalog within the past 12 months.
+    /// Revenue from one-time purchase orders placed by customers who started their first subscription with your catalog within the past 12 months.
     #[serde(
         rename = "growingSubscriberLifeTimeValueFromOTP",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -402,7 +402,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub growing_subscriber_life_time_value_from_otp: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///Revenue from Subscribe & Save orders placed by customers who started their first subscription with your catalog within the past 12 months.
+    /// Revenue from Subscribe & Save orders placed by customers who started their first subscription with your catalog within the past 12 months.
     #[serde(
         rename = "growingSubscriberLifeTimeValueFromSNS",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -410,13 +410,13 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub growing_subscriber_life_time_value_from_sns: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The revenue that would have been generated had there not been out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The revenue that would have been generated had there not been out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "lostRevenueDueToOOS",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub lost_revenue_due_to_oos: ::std::option::Option<::serde_json::Number>,
-    ///Revenue from one-time purchase orders placed by customers who previously had subscriptions but currently have none active in your catalog.
+    /// Revenue from one-time purchase orders placed by customers who previously had subscriptions but currently have none active in your catalog.
     #[serde(
         rename = "lostSubscriberLifeTimeValueFromOTP",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -424,7 +424,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub lost_subscriber_life_time_value_from_otp: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///Revenue from Subscribe & Save orders placed by customers who previously had subscriptions but currently have none active in your catalog.
+    /// Revenue from Subscribe & Save orders placed by customers who previously had subscriptions but currently have none active in your catalog.
     #[serde(
         rename = "lostSubscriberLifeTimeValueFromSNS",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -432,19 +432,19 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub lost_subscriber_life_time_value_from_sns: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The average reorders per non-subscriber of the program over a period of past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The average reorders per non-subscriber of the program over a period of past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "nonSubscriberAverageReorders",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub non_subscriber_average_reorders: ::std::option::Option<::serde_json::Number>,
-    ///The average revenue per non-subscriber of the program over a period of past 12 months for sellers and 6 months for vendors. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The average revenue per non-subscriber of the program over a period of past 12 months for sellers and 6 months for vendors. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "nonSubscriberAverageRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub non_subscriber_average_revenue: ::std::option::Option<::serde_json::Number>,
-    ///Total revenue from customers who have made purchases from your catalog but have never subscribed to any products.
+    /// Total revenue from customers who have made purchases from your catalog but have never subscribed to any products.
     #[serde(
         rename = "nonSubscriberLifeTimeValueFromOTP",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -452,13 +452,13 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub non_subscriber_life_time_value_from_otp: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The percentage of items that were not shipped out of the total shipped units over a period of time due to being out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of items that were not shipped out of the total shipped units over a period of time due to being out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "notDeliveredDueToOOS",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub not_delivered_due_to_oos: ::std::option::Option<::serde_json::Number>,
-    ///The subscription revenue generated from active subscriptions with one delivery over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The subscription revenue generated from active subscriptions with one delivery over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenueFromActiveSubscriptionsWithSingleDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -466,7 +466,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_from_active_subscriptions_with_single_delivery: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The subscription revenue generated from subscriptions which are cancelled after one delivery over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The subscription revenue generated from subscriptions which are cancelled after one delivery over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenueFromCancelledSubscriptionsAfterSingleDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -474,7 +474,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_from_cancelled_subscriptions_after_single_delivery: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The subscription revenue generated from subscriptions with over two deliveries over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The subscription revenue generated from subscriptions with over two deliveries over the past 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenueFromSubscriptionsWithMultipleDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -482,13 +482,13 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_from_subscriptions_with_multiple_deliveries: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The percentage of total program revenue out of total product revenue over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of total program revenue out of total product revenue over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub revenue_penetration: ::std::option::Option<::serde_json::Number>,
-    ///The percentage of subscription revenue generated by offers with 0% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of subscription revenue generated by offers with 0% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetrationFor0PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -496,7 +496,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_penetration_for0_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for Sellers] The percentage of subscription revenue generated by offers with 10% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// [Applicable only for Sellers] The percentage of subscription revenue generated by offers with 10% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetrationFor10PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -504,7 +504,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_penetration_for10_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for Sellers] The percentage of subscription revenue generated by offers with 5% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// [Applicable only for Sellers] The percentage of subscription revenue generated by offers with 5% seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetrationFor5PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -512,7 +512,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_penetration_for5_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for vendors] The percentage of subscription revenue generated by offers with 5% or above seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// [Applicable only for vendors] The percentage of subscription revenue generated by offers with 5% or above seller-funded discount over the last 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetrationFor5PlusPercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -520,19 +520,19 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub revenue_penetration_for5_plus_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "shareOfCouponSubscriptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub share_of_coupon_subscriptions: ::std::option::Option<::serde_json::Number>,
-    ///The number of units shipped to the subscribers over a period of time. Applicable for both the `PERFORMANCE` and `FORECAST` `timePeriodType`.
+    /// The number of units shipped to the subscribers over a period of time. Applicable for both the `PERFORMANCE` and `FORECAST` `timePeriodType`.
     #[serde(
         rename = "shippedSubscriptionUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_subscription_units: ::std::option::Option<::serde_json::Number>,
-    ///Percentage of subscriptions from offers with 0% seller-funded discount out of the total number of new orders placed over the past 12 months.
+    /// Percentage of subscriptions from offers with 0% seller-funded discount out of the total number of new orders placed over the past 12 months.
     #[serde(
         rename = "signupConversionFor0PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -540,7 +540,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub signup_conversion_for0_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for Sellers] Percentage of subscriptions from offers with 10% seller-funded discount out of the total number of new orders placed over the past 12 months.
+    /// [Applicable only for Sellers] Percentage of subscriptions from offers with 10% seller-funded discount out of the total number of new orders placed over the past 12 months.
     #[serde(
         rename = "signupConversionFor10PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -548,7 +548,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub signup_conversion_for10_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for Sellers] Percentage of subscriptions from offers with 5% seller-funded discount out of the total number of new orders placed over the past 12 months.
+    /// [Applicable only for Sellers] Percentage of subscriptions from offers with 5% seller-funded discount out of the total number of new orders placed over the past 12 months.
     #[serde(
         rename = "signupConversionFor5PercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -556,7 +556,7 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub signup_conversion_for5_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///[Applicable only for Vendors] Percentage of subscriptions from offers with 5% or above seller-funded discount out of the total number of new orders placed over the past 12 months.
+    /// [Applicable only for Vendors] Percentage of subscriptions from offers with 5% or above seller-funded discount out of the total number of new orders placed over the past 12 months.
     #[serde(
         rename = "signupConversionFor5PlusPercentSellerFunding",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -564,75 +564,75 @@ pub struct GetSellingPartnerMetricsResponseMetric {
     pub signup_conversion_for5_plus_percent_seller_funding: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The average reorders per subscriber of the program over a period of 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The average reorders per subscriber of the program over a period of 12 months. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "subscriberAverageReorders",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub subscriber_average_reorders: ::std::option::Option<::serde_json::Number>,
-    ///The average revenue per subscriber of the program over a period of past 12 months for sellers and 6 months for vendors. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The average revenue per subscriber of the program over a period of past 12 months for sellers and 6 months for vendors. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "subscriberAverageRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub subscriber_average_revenue: ::std::option::Option<::serde_json::Number>,
-    ///The percentage of subscriptions retained after 30 days of subscription creation. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of subscriptions retained after 30 days of subscription creation. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "subscriberRetentionFor30Days",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub subscriber_retention_for30_days: ::std::option::Option<::serde_json::Number>,
-    ///The percentage of subscriptions retained after 90 days of subscription creation. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of subscriptions retained after 90 days of subscription creation. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "subscriberRetentionFor90Days",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub subscriber_retention_for90_days: ::std::option::Option<::serde_json::Number>,
-    ///A time interval used to compute metrics.
+    /// A time interval used to compute metrics.
     #[serde(
         rename = "timeInterval",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub time_interval: ::std::option::Option<TimeInterval>,
-    ///The revenue generated from subscriptions over a period of time. Applicable for both the `PERFORMANCE` and `FORECAST` `timePeriodType`.
+    /// The revenue generated from subscriptions over a period of time. Applicable for both the `PERFORMANCE` and `FORECAST` `timePeriodType`.
     #[serde(
         rename = "totalSubscriptionsRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_subscriptions_revenue: ::std::option::Option<::serde_json::Number>,
 }
-///The request body for the `listOfferMetrics` operation.
+/// The request body for the `listOfferMetrics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOfferMetricsRequest {
-    ///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+    /// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
     pub filters: ListOfferMetricsRequestFilters,
-    ///Use these parameters to paginate through the response.
+    /// Use these parameters to paginate through the response.
     pub pagination: ListOfferMetricsRequestPagination,
-    ///Use these parameters to sort the response.
+    /// Use these parameters to sort the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sort: ::std::option::Option<ListOfferMetricsRequestSort>,
 }
-///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+/// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOfferMetricsRequestFilters {
-    ///Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
+    /// Known values: `DAY`, `WEEK`, `MONTH`, `QUARTER`, `YEAR`. Other values may be returned by Amazon.
     #[serde(
         rename = "aggregationFrequency",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aggregation_frequency: ::std::option::Option<AggregationFrequency>,
-    ///A list of Amazon Standard Identification Numbers (ASINs) to filter by.
+    /// A list of Amazon Standard Identification Numbers (ASINs) to filter by.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asins: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///[Applicable only for US marketplace] A list of brand names to filter by.
+    /// [Applicable only for US marketplace] A list of brand names to filter by.
     #[serde(
         rename = "brandNames",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///[Applicable only for Sellers] The fulfillment channel types to filter by.
+    /// [Applicable only for Sellers] The fulfillment channel types to filter by.
     ///
-    ///Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
+    /// Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentChannelTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -640,101 +640,101 @@ pub struct ListOfferMetricsRequestFilters {
     pub fulfillment_channel_types: ::std::option::Option<
         ::std::vec::Vec<FulfillmentChannelType>,
     >,
-    ///The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
+    /// The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///[Applicable only for Vendors] A list of product group names to filter by.
+    /// [Applicable only for Vendors] A list of product group names to filter by.
     #[serde(
         rename = "productGroups",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_groups: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+    /// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
     #[serde(rename = "programTypes")]
     pub program_types: ProgramTypes,
-    ///[Applicable only for Sellers] A list of SKUs to filter by.
+    /// [Applicable only for Sellers] A list of SKUs to filter by.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///A time interval used to compute metrics.
+    /// A time interval used to compute metrics.
     #[serde(rename = "timeInterval")]
     pub time_interval: TimeInterval,
-    ///Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
+    /// Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
     #[serde(rename = "timePeriodType")]
     pub time_period_type: TimePeriodType,
 }
-///Use these parameters to paginate through the response.
+/// Use these parameters to paginate through the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOfferMetricsRequestPagination {
-    ///The maximum number of results to return in the response.
+    /// The maximum number of results to return in the response.
     pub limit: ::std::num::NonZeroU64,
-    ///The offset from which to retrieve the number of results specified by the `limit` value. The first result is at offset 0.
+    /// The offset from which to retrieve the number of results specified by the `limit` value. The first result is at offset 0.
     pub offset: i64,
 }
-///Use these parameters to sort the response.
+/// Use these parameters to sort the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOfferMetricsRequestSort {
-    ///Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NEXT_90DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_60DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_30DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_90DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_60DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_30DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`. Other values may be returned by Amazon.
+    /// Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NEXT_90DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_60DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_30DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_90DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_60DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_30DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`. Other values may be returned by Amazon.
     pub key: ListOfferMetricsSortKey,
-    ///The sort order.
+    /// The sort order.
     ///
-    ///Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
+    /// Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
     pub order: SortOrder,
 }
-///The response schema for the `listOfferMetrics` operation.
+/// The response schema for the `listOfferMetrics` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListOfferMetricsResponse {
-    ///A list of offers and associated metrics.
+    /// A list of offers and associated metrics.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offers: ::std::option::Option<::std::vec::Vec<ListOfferMetricsResponseOffer>>,
-    ///Use these parameters to paginate through the response.
+    /// Use these parameters to paginate through the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<PaginationResponse>,
 }
-///An object which contains offer metrics.
+/// An object which contains offer metrics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListOfferMetricsResponseOffer {
-    ///The number of active subscriptions present at the end of the period. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The number of active subscriptions present at the end of the period. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "activeSubscriptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub active_subscriptions: ::std::option::Option<::serde_json::Number>,
-    ///The Amazon Standard Identification Number (ASIN).
+    /// The Amazon Standard Identification Number (ASIN).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The brand name associated with the offer.
+    /// The brand name associated with the offer.
     #[serde(
         rename = "brandName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_name: ::std::option::Option<::std::string::String>,
-    ///The percentage of revenue from ASINs with coupons out of total revenue from all ASINs. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of revenue from ASINs with coupons out of total revenue from all ASINs. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "couponsRevenuePenetration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupons_revenue_penetration: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
-    ///The fulfillment channel type of an offer. This property is only supported for sellers and not for vendors.
+    /// The fulfillment channel type of an offer. This property is only supported for sellers and not for vendors.
     ///
-    ///Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
+    /// Known values: `AMAZON`, `MERCHANT`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentChannelType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_channel_type: ::std::option::Option<FulfillmentChannelType>,
-    ///The revenue that would have been generated had there not been out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The revenue that would have been generated had there not been out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "lostRevenueDueToOOS",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub lost_revenue_due_to_oos: ::std::option::Option<::serde_json::Number>,
-    ///The forecasted shipped subscription units for the next 30 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted shipped subscription units for the next 30 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next30DayShippedSubscriptionUnits",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -742,7 +742,7 @@ pub struct ListOfferMetricsResponseOffer {
     pub next30_day_shipped_subscription_units: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The forecasted total subscription revenue for the next 30 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted total subscription revenue for the next 30 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next30DayTotalSubscriptionsRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -750,7 +750,7 @@ pub struct ListOfferMetricsResponseOffer {
     pub next30_day_total_subscriptions_revenue: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The forecasted shipped subscription units for the next 60 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted shipped subscription units for the next 60 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next60DayShippedSubscriptionUnits",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -758,7 +758,7 @@ pub struct ListOfferMetricsResponseOffer {
     pub next60_day_shipped_subscription_units: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The forecasted total subscription revenue for the next 60 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted total subscription revenue for the next 60 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next60DayTotalSubscriptionsRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -766,7 +766,7 @@ pub struct ListOfferMetricsResponseOffer {
     pub next60_day_total_subscriptions_revenue: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The forecasted shipped subscription units for the next 90 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted shipped subscription units for the next 90 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next90DayShippedSubscriptionUnits",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -774,7 +774,7 @@ pub struct ListOfferMetricsResponseOffer {
     pub next90_day_shipped_subscription_units: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The forecasted total subscription revenue for the next 90 days. Applicable to `FORECAST` `timePeriodType`.
+    /// The forecasted total subscription revenue for the next 90 days. Applicable to `FORECAST` `timePeriodType`.
     #[serde(
         rename = "next90DayTotalSubscriptionsRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -782,55 +782,55 @@ pub struct ListOfferMetricsResponseOffer {
     pub next90_day_total_subscriptions_revenue: ::std::option::Option<
         ::serde_json::Number,
     >,
-    ///The percentage of items that were not shipped out of the total shipped units over a period of time due to being out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of items that were not shipped out of the total shipped units over a period of time due to being out of stock. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "notDeliveredDueToOOS",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub not_delivered_due_to_oos: ::std::option::Option<::serde_json::Number>,
-    ///The product group associated with the offer. This property is only supported for vendors and not for sellers.
+    /// The product group associated with the offer. This property is only supported for vendors and not for sellers.
     #[serde(
         rename = "productGroup",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_group: ::std::option::Option<::std::string::String>,
-    ///The percentage of total program revenue out of total product revenue. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of total program revenue out of total product revenue. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "revenuePenetration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub revenue_penetration: ::std::option::Option<::serde_json::Number>,
-    ///The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The percentage of new subscriptions from coupons. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "shareOfCouponSubscriptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub share_of_coupon_subscriptions: ::std::option::Option<::serde_json::Number>,
-    ///The number of units shipped to the subscribers over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The number of units shipped to the subscribers over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "shippedSubscriptionUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_subscription_units: ::std::option::Option<::serde_json::Number>,
-    ///The SKU. This property is only supported for sellers and not for vendors.
+    /// The SKU. This property is only supported for sellers and not for vendors.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
-    ///A time interval used to compute metrics.
+    /// A time interval used to compute metrics.
     #[serde(
         rename = "timeInterval",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub time_interval: ::std::option::Option<TimeInterval>,
-    ///The revenue generated from subscriptions over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
+    /// The revenue generated from subscriptions over a period of time. Applicable to `PERFORMANCE` `timePeriodType`.
     #[serde(
         rename = "totalSubscriptionsRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_subscriptions_revenue: ::std::option::Option<::serde_json::Number>,
 }
-///The attribute to use to sort the results.
+/// The attribute to use to sort the results.
 ///
-///Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NEXT_90DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_60DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_30DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_90DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_60DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_30DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`. Other values may be returned by Amazon.
+/// Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NEXT_90DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_60DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_30DAYS_SHIPPED_SUBSCRIPTION_UNITS`, `NEXT_90DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_60DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`, `NEXT_30DAYS_TOTAL_SUBSCRIPTIONS_REVENUE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -871,26 +871,26 @@ impl ::std::str::FromStr for ListOfferMetricsSortKey {
         Ok(Self(value.to_string()))
     }
 }
-///The request body for the `listOffers` operation.
+/// The request body for the `listOffers` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOffersRequest {
-    ///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+    /// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
     pub filters: ListOffersRequestFilters,
-    ///Use these parameters to paginate through the response.
+    /// Use these parameters to paginate through the response.
     pub pagination: ListOffersRequestPagination,
-    ///Use these parameters to sort the response.
+    /// Use these parameters to sort the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sort: ::std::option::Option<ListOffersRequestSort>,
 }
-///Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
+/// Use these parameters to filter results. Any result must match all provided parameters. For parameters that accept multiple values (arrays), the API returns results that match at least one value in the array.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOffersRequestFilters {
-    ///A list of Amazon Standard Identification Numbers (ASINs).
+    /// A list of Amazon Standard Identification Numbers (ASINs).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asins: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///A list of delivery condition types to filter the results by. Results are filtered to only include offers with the specified delivery conditions.
+    /// A list of delivery condition types to filter the results by. Results are filtered to only include offers with the specified delivery conditions.
     ///
-    ///Known values: `NEXT_30_DAYS_DELIVERIES_PAUSED_PRICING`, `NEXT_30_DAYS_DELIVERIES_PAUSED_NON_BUYABLE`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK_ONLY`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK`, `NO_ISSUES_FOR_NEXT_30_DAYS_DELIVERIES`. Other values may be returned by Amazon.
+    /// Known values: `NEXT_30_DAYS_DELIVERIES_PAUSED_PRICING`, `NEXT_30_DAYS_DELIVERIES_PAUSED_NON_BUYABLE`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK_ONLY`, `NEXT_30_DAYS_DELIVERIES_AT_LOW_INVENTORY_RISK`, `NO_ISSUES_FOR_NEXT_30_DAYS_DELIVERIES`. Other values may be returned by Amazon.
     #[serde(
         rename = "deliveriesConditions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -898,64 +898,64 @@ pub struct ListOffersRequestFilters {
     pub deliveries_conditions: ::std::option::Option<
         ::std::vec::Vec<::std::string::String>,
     >,
-    ///A list of eligibilities associated with an offer.
+    /// A list of eligibilities associated with an offer.
     ///
-    ///Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
+    /// Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub eligibilities: ::std::option::Option<::std::vec::Vec<EligibilityStatus>>,
-    ///The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
+    /// The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///Offer preferences to include in the result filter criteria.
+    /// Offer preferences to include in the result filter criteria.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub preferences: ::std::option::Option<Preference>,
-    ///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+    /// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
     #[serde(rename = "programTypes")]
     pub program_types: ProgramTypes,
-    ///Offer promotions to include in the result filter criteria.
+    /// Offer promotions to include in the result filter criteria.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promotions: ::std::option::Option<Promotion>,
-    ///A list of SKUs to filter. This filter is only supported for sellers and not for vendors.
+    /// A list of SKUs to filter. This filter is only supported for sellers and not for vendors.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
 }
-///Use these parameters to paginate through the response.
+/// Use these parameters to paginate through the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOffersRequestPagination {
-    ///The maximum number of results to return in the response.
+    /// The maximum number of results to return in the response.
     pub limit: ::std::num::NonZeroU64,
-    ///The offset from which to retrieve the number of results specified by the `limit` value. The first result is at offset 0.
+    /// The offset from which to retrieve the number of results specified by the `limit` value. The first result is at offset 0.
     pub offset: i64,
 }
-///Use these parameters to sort the response.
+/// Use these parameters to sort the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListOffersRequestSort {
-    ///The attribute to use to sort the results.
+    /// The attribute to use to sort the results.
     ///
-    ///Known values: `ASIN`, `SELLING_PARTNER_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `SELLING_PARTNER_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `INVENTORY`, `PRICE`, `SUBSCRIPTION_COUNT`, `FULFILLMENT_NETWORK_ID_TYPE`. Other values may be returned by Amazon.
+    /// Known values: `ASIN`, `SELLING_PARTNER_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `SELLING_PARTNER_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `INVENTORY`, `PRICE`, `SUBSCRIPTION_COUNT`, `FULFILLMENT_NETWORK_ID_TYPE`. Other values may be returned by Amazon.
     pub key: ListOffersSortKey,
-    ///The sort order.
+    /// The sort order.
     ///
-    ///Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
+    /// Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
     pub order: SortOrder,
 }
-///The response schema for the `listOffers` operation.
+/// The response schema for the `listOffers` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListOffersResponse {
-    ///A list of offers.
+    /// A list of offers.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offers: ::std::option::Option<::std::vec::Vec<ListOffersResponseOffer>>,
-    ///Use these parameters to paginate through the response.
+    /// Use these parameters to paginate through the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<PaginationResponse>,
 }
-///An object which contains details about an offer.
+/// An object which contains details about an offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListOffersResponseOffer {
-    ///The Amazon Standard Identification Number (ASIN).
+    /// The Amazon Standard Identification Number (ASIN).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///A list of delivery conditions for the offer, indicating the health of upcoming deliveries. Each condition describes the quantity of upcoming deliveries associated with a particular delivery condition type.
+    /// A list of delivery conditions for the offer, indicating the health of upcoming deliveries. Each condition describes the quantity of upcoming deliveries associated with a particular delivery condition type.
     #[serde(
         rename = "deliveriesConditions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -963,27 +963,27 @@ pub struct ListOffersResponseOffer {
     pub deliveries_conditions: ::std::option::Option<
         ::std::vec::Vec<DeliveriesCondition>,
     >,
-    ///The offer eligibility status.
+    /// The offer eligibility status.
     ///
-    ///Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
+    /// Known values: `ELIGIBLE`, `INELIGIBLE`, `SUSPENDED`, `REPLENISHMENT_ONLY_ORDERING`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub eligibility: ::std::option::Option<EligibilityStatus>,
-    ///The projected subscriber demand for the offer over different time horizons.
+    /// The projected subscriber demand for the offer over different time horizons.
     #[serde(
         rename = "forecastDeliveries",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub forecast_deliveries: ::std::option::Option<ForecastDeliveries>,
-    ///The fulfillment network identifier type for the offer, indicating how the offer is fulfilled.
+    /// The fulfillment network identifier type for the offer, indicating how the offer is fulfilled.
     #[serde(
         rename = "fulfillmentNetworkIDType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_network_id_type: ::std::option::Option<::std::string::String>,
-    ///The available inventory count for the offer.
+    /// The available inventory count for the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub inventory: ::std::option::Option<i64>,
-    ///The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
+    /// The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -994,45 +994,45 @@ pub struct ListOffersResponseOffer {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub offer_program_configuration: ::std::option::Option<OfferProgramConfiguration>,
-    ///The current price of the offer. This is the listed price amount for the item.
+    /// The current price of the offer. This is the listed price amount for the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub price: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format for the price. For example, `USD` for US dollars.
+    /// The currency code in ISO 4217 format for the price. For example, `USD` for US dollars.
     #[serde(
         rename = "priceCurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub price_currency_code: ::std::option::Option<::std::string::String>,
-    ///The replenishment program for the offer.
+    /// The replenishment program for the offer.
     ///
-    ///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+    /// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
     #[serde(
         rename = "programType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub program_type: ::std::option::Option<ProgramType>,
-    ///The SKU. This property is only supported for sellers and not for vendors.
+    /// The SKU. This property is only supported for sellers and not for vendors.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
-    ///The stock risk level of the offer, indicating the risk of the offer going out of stock.
+    /// The stock risk level of the offer, indicating the risk of the offer going out of stock.
     #[serde(
         rename = "stockRisk",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub stock_risk: ::std::option::Option<::std::string::String>,
-    ///The number of active subscriptions for the offer.
+    /// The number of active subscriptions for the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subscriptions: ::std::option::Option<i64>,
-    ///A list of vendor codes associated with the offer.
+    /// A list of vendor codes associated with the offer.
     #[serde(
         rename = "vendorCodes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_codes: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
 }
-///The attribute to use to sort the results.
+/// The attribute to use to sort the results.
 ///
-///Known values: `ASIN`, `SELLING_PARTNER_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `SELLING_PARTNER_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `INVENTORY`, `PRICE`, `SUBSCRIPTION_COUNT`, `FULFILLMENT_NETWORK_ID_TYPE`. Other values may be returned by Amazon.
+/// Known values: `ASIN`, `SELLING_PARTNER_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `SELLING_PARTNER_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_BASE_DISCOUNT_PERCENTAGE`, `AMAZON_FUNDED_TIERED_DISCOUNT_PERCENTAGE`, `INVENTORY`, `PRICE`, `SUBSCRIPTION_COUNT`, `FULFILLMENT_NETWORK_ID_TYPE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1073,7 +1073,7 @@ impl ::std::str::FromStr for ListOffersSortKey {
         Ok(Self(value.to_string()))
     }
 }
-///The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
+/// The marketplace identifier. The supported marketplaces for both sellers and vendors are US, CA, ES, UK, FR, IT, IN, DE, and JP. The supported marketplaces for vendors only are BR, AU, MX, AE, and NL. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the identifier for the marketplace.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1114,9 +1114,9 @@ impl ::std::str::FromStr for MarketplaceId {
         Ok(Self(value.to_string()))
     }
 }
-///The metric name and description.
+/// The metric name and description.
 ///
-///Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NOT_DELIVERED_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE`, `LOST_REVENUE_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS`, `COUPONS_REVENUE_PENETRATION`, `REVENUE_BY_DELIVERIES`, `SUBSCRIBER_RETENTION`, `REVENUE_PENETRATION_BY_SELLER_FUNDING`, `SHARE_OF_COUPON_SUBSCRIPTIONS`, `SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT`, `SIGNUP_CONVERSION_BY_SELLER_FUNDING`, `REVENUE_PENETRATION`. Other values may be returned by Amazon.
+/// Known values: `SHIPPED_SUBSCRIPTION_UNITS`, `TOTAL_SUBSCRIPTIONS_REVENUE`, `ACTIVE_SUBSCRIPTIONS`, `NOT_DELIVERED_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REVENUE`, `LOST_REVENUE_DUE_TO_OOS`, `SUBSCRIBER_NON_SUBSCRIBER_AVERAGE_REORDERS`, `COUPONS_REVENUE_PENETRATION`, `REVENUE_BY_DELIVERIES`, `SUBSCRIBER_RETENTION`, `REVENUE_PENETRATION_BY_SELLER_FUNDING`, `SHARE_OF_COUPON_SUBSCRIPTIONS`, `SUBSCRIBER_LIFETIME_VALUE_BY_CUSTOMER_SEGMENT`, `SIGNUP_CONVERSION_BY_SELLER_FUNDING`, `REVENUE_PENETRATION`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1157,40 +1157,40 @@ impl ::std::str::FromStr for Metric {
         Ok(Self(value.to_string()))
     }
 }
-///The offer program configuration contains a set of program properties for an offer.
+/// The offer program configuration contains a set of program properties for an offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OfferProgramConfiguration {
-    ///Determines whether the offer was automatically or manually enrolled in the program. This property is only supported for sellers, not for vendors.
+    /// Determines whether the offer was automatically or manually enrolled in the program. This property is only supported for sellers, not for vendors.
     ///
-    ///Known values: `MANUAL`, `AUTOMATIC`. Other values may be returned by Amazon.
+    /// Known values: `MANUAL`, `AUTOMATIC`. Other values may be returned by Amazon.
     #[serde(
         rename = "enrollmentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub enrollment_method: ::std::option::Option<EnrollmentMethod>,
-    ///An object which contains the preferences applied to the offer.
+    /// An object which contains the preferences applied to the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub preferences: ::std::option::Option<OfferProgramConfigurationPreferences>,
-    ///An object which contains the promotions applied to the offer.
+    /// An object which contains the promotions applied to the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promotions: ::std::option::Option<OfferProgramConfigurationPromotions>,
 }
-///An object which contains the preferences applied to the offer.
+/// An object which contains the preferences applied to the offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OfferProgramConfigurationPreferences {
-    ///The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's auto-enrollment feature.
+    /// The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's auto-enrollment feature.
     ///
-    ///Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
+    /// Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
     #[serde(
         rename = "autoEnrollment",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub auto_enrollment: ::std::option::Option<AutoEnrollmentPreference>,
 }
-///An object which represents all promotions applied to an offer.
+/// An object which represents all promotions applied to an offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OfferProgramConfigurationPromotions {
-    ///A base discount set by Amazon on the offer.
+    /// A base discount set by Amazon on the offer.
     #[serde(
         rename = "amazonFundedBaseDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1198,7 +1198,7 @@ pub struct OfferProgramConfigurationPromotions {
     pub amazon_funded_base_discount: ::std::option::Option<
         OfferProgramConfigurationPromotionsDiscountFunding,
     >,
-    ///A tiered discount set by Amazon on the offer.
+    /// A tiered discount set by Amazon on the offer.
     #[serde(
         rename = "amazonFundedTieredDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1206,7 +1206,7 @@ pub struct OfferProgramConfigurationPromotions {
     pub amazon_funded_tiered_discount: ::std::option::Option<
         OfferProgramConfigurationPromotionsDiscountFunding,
     >,
-    ///A base discount set by the selling partner on the offer.
+    /// A base discount set by the selling partner on the offer.
     #[serde(
         rename = "sellingPartnerFundedBaseDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1214,7 +1214,7 @@ pub struct OfferProgramConfigurationPromotions {
     pub selling_partner_funded_base_discount: ::std::option::Option<
         OfferProgramConfigurationPromotionsDiscountFunding,
     >,
-    ///A tiered discount set by the selling partner on the offer.
+    /// A tiered discount set by the selling partner on the offer.
     #[serde(
         rename = "sellingPartnerFundedTieredDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1223,29 +1223,29 @@ pub struct OfferProgramConfigurationPromotions {
         OfferProgramConfigurationPromotionsDiscountFunding,
     >,
 }
-///A promotional percentage discount applied to the offer.
+/// A promotional percentage discount applied to the offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OfferProgramConfigurationPromotionsDiscountFunding {
-    ///The percentage discount on the offer.
+    /// The percentage discount on the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub percentage: ::std::option::Option<::serde_json::Number>,
 }
-///Use these parameters to paginate through the response.
+/// Use these parameters to paginate through the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PaginationResponse {
-    ///Total number of results matching the given filter criteria.
+    /// Total number of results matching the given filter criteria.
     #[serde(
         rename = "totalResults",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_results: ::std::option::Option<i64>,
 }
-///Offer preferences that you can include in the result filter criteria.
+/// Offer preferences that you can include in the result filter criteria.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Preference {
-    ///Filters the results to only include offers with the auto-enrollment preference specified.
+    /// Filters the results to only include offers with the auto-enrollment preference specified.
     ///
-    ///Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
+    /// Known values: `OPTED_IN`, `OPTED_OUT`. Other values may be returned by Amazon.
     #[serde(
         rename = "autoEnrollment",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1254,9 +1254,9 @@ pub struct Preference {
         ::std::vec::Vec<AutoEnrollmentPreference>,
     >,
 }
-///The replenishment program type.
+/// The replenishment program type.
 ///
-///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+/// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1297,9 +1297,9 @@ impl ::std::str::FromStr for ProgramType {
         Ok(Self(value.to_string()))
     }
 }
-///A list of replenishment program types.
+/// A list of replenishment program types.
 ///
-///Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
+/// Known values: `SUBSCRIBE_AND_SAVE`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ProgramTypes(pub ::std::vec::Vec<ProgramType>);
@@ -1319,37 +1319,37 @@ impl ::std::convert::From<::std::vec::Vec<ProgramType>> for ProgramTypes {
         Self(value)
     }
 }
-///Offer promotions to include in the result filter criteria.
+/// Offer promotions to include in the result filter criteria.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Promotion {
-    ///A base discount set by Amazon on the offer.
+    /// A base discount set by Amazon on the offer.
     #[serde(
         rename = "amazonFundedBaseDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_funded_base_discount: ::std::option::Option<DiscountFunding>,
-    ///A tiered discount set by Amazon on the offer.
+    /// A tiered discount set by Amazon on the offer.
     #[serde(
         rename = "amazonFundedTieredDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_funded_tiered_discount: ::std::option::Option<DiscountFunding>,
-    ///A base discount set by the selling partner on the offer.
+    /// A base discount set by the selling partner on the offer.
     #[serde(
         rename = "sellingPartnerFundedBaseDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selling_partner_funded_base_discount: ::std::option::Option<DiscountFunding>,
-    ///A tiered discount set by the selling partner on the offer.
+    /// A tiered discount set by the selling partner on the offer.
     #[serde(
         rename = "sellingPartnerFundedTieredDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selling_partner_funded_tiered_discount: ::std::option::Option<DiscountFunding>,
 }
-///The sort order.
+/// The sort order.
 ///
-///Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
+/// Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1390,36 +1390,36 @@ impl ::std::str::FromStr for SortOrder {
         Ok(Self(value.to_string()))
     }
 }
-///A date-time interval in ISO 8601 format used to compute metrics. Only the date is required, but you must pass the complete date and time value. For example, November 11, 2022 should be passed as "2022-11-11T00:00:00Z". Note that only data for the trailing 2 years is supported.
+/// A date-time interval in ISO 8601 format used to compute metrics. Only the date is required, but you must pass the complete date and time value. For example, November 11, 2022 should be passed as "2022-11-11T00:00:00Z". Note that only data for the trailing 2 years is supported.
 ///
-///**Note**:
-///* The `listOfferMetrics` operation only supports a time interval which covers a single unit of the aggregation frequency. For example, for a MONTH aggregation frequency, the duration of the interval between the startDate and endDate can not be more than 1 month.
-///* For the `getSellingPartnerMetrics` operation with DAY aggregation frequency, the time interval cannot exceed 31 days.
+/// **Note**:
+/// * The `listOfferMetrics` operation only supports a time interval which covers a single unit of the aggregation frequency. For example, for a MONTH aggregation frequency, the duration of the interval between the startDate and endDate can not be more than 1 month.
+/// * For the `getSellingPartnerMetrics` operation with DAY aggregation frequency, the time interval cannot exceed 31 days.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TimeInterval {
-    ///When this object is used as a request parameter, the specified `endDate` is adjusted based on the aggregation frequency.
+    /// When this object is used as a request parameter, the specified `endDate` is adjusted based on the aggregation frequency.
     ///
-    ///* For `DAY` the metric is computed up to the specific day indicated by the `endDate`.
-    ///* For `WEEK` the metric is computed up to the last day of the week (Sunday, based on ISO 8601) that contains the `endDate`.
-    ///* For `MONTH`, the metric is computed up to the last day of the month that contains the `endDate`.
-    ///* For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
-    ///* For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
-    /// Note: The end date may be adjusted to a lower value based on the data available in our system.
+    /// * For `DAY` the metric is computed up to the specific day indicated by the `endDate`.
+    /// * For `WEEK` the metric is computed up to the last day of the week (Sunday, based on ISO 8601) that contains the `endDate`.
+    /// * For `MONTH`, the metric is computed up to the last day of the month that contains the `endDate`.
+    /// * For `QUARTER` the metric is computed up to the last day of the quarter that contains the `endDate`.
+    /// * For `YEAR` the metric is computed up to the last day of the year that contains the `endDate`.
+    ///  Note: The end date may be adjusted to a lower value based on the data available in our system.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///When this object is used as a request parameter, the specified `startDate` is adjusted based on the aggregation frequency.
+    /// When this object is used as a request parameter, the specified `startDate` is adjusted based on the aggregation frequency.
     ///
-    ///* For `DAY` the metric is computed from the specific day indicated by the `startDate`.
-    ///* For `WEEK` the metric is computed from the first day of the week (Monday, based on ISO 8601) that contains the `startDate`.
-    ///* For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
-    ///* For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.
-    ///* For `YEAR` the metric is computed from the first day of the year that contains the `startDate`.
+    /// * For `DAY` the metric is computed from the specific day indicated by the `startDate`.
+    /// * For `WEEK` the metric is computed from the first day of the week (Monday, based on ISO 8601) that contains the `startDate`.
+    /// * For `MONTH` the metric is computed from the first day of the month that contains the `startDate`.
+    /// * For `QUARTER` the metric is computed from the first day of the quarter that contains the `startDate`.
+    /// * For `YEAR` the metric is computed from the first day of the year that contains the `startDate`.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///The time period type that determines whether the metrics requested are backward-looking (performance) or forward-looking (forecast).
+/// The time period type that determines whether the metrics requested are backward-looking (performance) or forward-looking (forecast).
 ///
-///Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
+/// Known values: `PERFORMANCE`, `FORECAST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

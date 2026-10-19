@@ -4,12 +4,12 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_account`].
+/// The parameters of [`get_account`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAccountParams {}
 impl GetAccountParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new() -> Self {
         Self {}
     }
@@ -19,7 +19,7 @@ impl Default for GetAccountParams {
         Self::new()
     }
 }
-///Returns information about a seller account and its marketplaces.
+/// Returns information about a seller account and its marketplaces.
 pub async fn get_account(
     client: &Client,
     params: GetAccountParams,
@@ -38,12 +38,12 @@ pub async fn get_account(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_marketplace_participations`].
+/// The parameters of [`get_marketplace_participations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMarketplaceParticipationsParams {}
 impl GetMarketplaceParticipationsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new() -> Self {
         Self {}
     }
@@ -53,7 +53,7 @@ impl Default for GetMarketplaceParticipationsParams {
         Self::new()
     }
 }
-///Returns a list of marketplaces where the seller can list items and information about the seller's participation in those marketplaces.
+/// Returns a list of marketplaces where the seller can list items and information about the seller's participation in those marketplaces.
 pub async fn get_marketplace_participations(
     client: &Client,
     params: GetMarketplaceParticipationsParams,

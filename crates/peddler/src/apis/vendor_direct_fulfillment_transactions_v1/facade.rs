@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_transaction_status`].
+/// The parameters of [`get_transaction_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTransactionStatusParams {
-    ///Previously returned in the response to the POST request of a specific transaction.
+    /// Previously returned in the response to the POST request of a specific transaction.
     pub transaction_id: String,
 }
 impl GetTransactionStatusParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(transaction_id: String) -> Self {
         Self { transaction_id }
     }
 }
-///Returns the status of the transaction indicated by the specified transactionId.
+/// Returns the status of the transaction indicated by the specified transactionId.
 pub async fn get_transaction_status(
     client: &Client,
     params: GetTransactionStatusParams,

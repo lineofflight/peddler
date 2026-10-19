@@ -2,49 +2,49 @@
 // Source: promotions-api-model/promotions_2025-12-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
+/// Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AmountThreshold {
-    ///The minimum spend amount customers must meet.
+    /// The minimum spend amount customers must meet.
     pub currency: Currency,
-    ///The type of amount requirement. Only `AT_LEAST` is supported for spend-based conditions.
+    /// The type of amount requirement. Only `AT_LEAST` is supported for spend-based conditions.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///Defines a progressive (multi-tier) benefit tier that applies when customers exceed a higher purchase quantity for basket building promotions. Each tier specifies a purchase condition and corresponding enhanced discount.
+/// Defines a progressive (multi-tier) benefit tier that applies when customers exceed a higher purchase quantity for basket building promotions. Each tier specifies a purchase condition and corresponding enhanced discount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BenefitTier {
-    ///The discount configuration for this tier.
+    /// The discount configuration for this tier.
     pub discount: Discount,
-    ///The purchase condition that must be met to receive this tier's enhanced discount.
+    /// The purchase condition that must be met to receive this tier's enhanced discount.
     #[serde(rename = "purchaseCondition")]
     pub purchase_condition: PurchaseCondition,
 }
-///Additional details specific to the `BRAND` segments type.
+/// Additional details specific to the `BRAND` segments type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BrandSegmentDetails {
-    ///Brand identifier.
+    /// Brand identifier.
     #[serde(rename = "brandId")]
     pub brand_id: ::std::string::String,
 }
-///Budget configuration for spending limits. For `COUPON` and `BASKET_BUILDING` promotion types, the budget is set at the promotion level and applies to the entire promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is set at the item level within each item in the selection.
+/// Budget configuration for spending limits. For `COUPON` and `BASKET_BUILDING` promotion types, the budget is set at the promotion level and applies to the entire promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is set at the item level within each item in the selection.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Budget {
-    ///The currency code in ISO 4217 format. Required when `type` is `AMOUNT`.
+    /// The currency code in ISO 4217 format. Required when `type` is `AMOUNT`.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<BudgetCurrencyCode>,
-    ///The budget type, either monetary or unit-based.
+    /// The budget type, either monetary or unit-based.
     ///
-    ///Known values: `AMOUNT`, `UNITS`. Other values may be returned by Amazon.
+    /// Known values: `AMOUNT`, `UNITS`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
-    ///Budget value (amount or unit count).
+    /// Budget value (amount or unit count).
     pub value: ::serde_json::Number,
 }
-///The currency code in ISO 4217 format. Required when `type` is `AMOUNT`.
+/// The currency code in ISO 4217 format. Required when `type` is `AMOUNT`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct BudgetCurrencyCode(::std::string::String);
@@ -101,19 +101,19 @@ impl<'de> ::serde::Deserialize<'de> for BudgetCurrencyCode {
             })
     }
 }
-///Claim code configuration for accessing the promotion.
+/// Claim code configuration for accessing the promotion.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ClaimCode {
-    ///The type of claim code.
+    /// The type of claim code.
     ///
-    ///Known values: `GROUP`, `INDIVIDUAL`. Other values may be returned by Amazon.
+    /// Known values: `GROUP`, `INDIVIDUAL`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
-    ///The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
+    /// The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<ClaimCodeValue>,
 }
-///The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
+/// The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ClaimCodeValue(::std::string::String);
@@ -175,9 +175,9 @@ impl<'de> ::serde::Deserialize<'de> for ClaimCodeValue {
             })
     }
 }
-///The subtype of a `COUPON` promotion. Only applicable when `promotionType` is `COUPON`; not set for other promotion types. When omitted, the coupon is treated as `STANDARD`.
+/// The subtype of a `COUPON` promotion. Only applicable when `promotionType` is `COUPON`; not set for other promotion types. When omitted, the coupon is treated as `STANDARD`.
 ///
-///Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
+/// Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -218,16 +218,16 @@ impl ::std::str::FromStr for CouponType {
         Ok(Self(value.to_string()))
     }
 }
-///Currency amount with ISO 4217 currency code.
+/// Currency amount with ISO 4217 currency code.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Currency {
-    ///Amount value.
+    /// Amount value.
     pub amount: ::serde_json::Number,
-    ///ISO 4217 currency code.
+    /// ISO 4217 currency code.
     #[serde(rename = "currencyCode")]
     pub currency_code: CurrencyCurrencyCode,
 }
-///ISO 4217 currency code.
+/// ISO 4217 currency code.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct CurrencyCurrencyCode(::std::string::String);
@@ -284,37 +284,37 @@ impl<'de> ::serde::Deserialize<'de> for CurrencyCurrencyCode {
             })
     }
 }
-///The customer segment. When `segmentType` is `BRAND`, `segmentId` contains the segment / audience ID and `segmentDetails.brandSegmentDetails` must be provided. When `segmentType` is `PROGRAM`, `segmentId` contains the program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT`).
+/// The customer segment. When `segmentType` is `BRAND`, `segmentId` contains the segment / audience ID and `segmentDetails.brandSegmentDetails` must be provided. When `segmentType` is `PROGRAM`, `segmentId` contains the program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT`).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CustomerSegment {
-    ///Additional segment-specific details. Required for `BRAND` segments type.
+    /// Additional segment-specific details. Required for `BRAND` segments type.
     #[serde(
         rename = "segmentDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub segment_details: ::std::option::Option<CustomerSegmentDetails>,
-    ///The segment identifier. For `BRAND`: the segment / audience ID. For `PROGRAM`: the program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT` etc).
+    /// The segment identifier. For `BRAND`: the segment / audience ID. For `PROGRAM`: the program name (for example, `PRIME_EXCLUSIVE`, `MOM`, `STUDENT` etc).
     #[serde(rename = "segmentId")]
     pub segment_id: ::std::string::String,
-    ///Top-level segment type.
+    /// Top-level segment type.
     ///
-    ///Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.
+    /// Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.
     #[serde(rename = "segmentType")]
     pub segment_type: CustomerSegmentType,
 }
-///Additional segment type-specific details. Use the appropriate property based on `segmentType`.
+/// Additional segment type-specific details. Use the appropriate property based on `segmentType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CustomerSegmentDetails {
-    ///Brand segment details. This field is required when `segmentType` is `BRAND`.
+    /// Brand segment details. This field is required when `segmentType` is `BRAND`.
     #[serde(
         rename = "brandSegmentDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub brand_segment_details: ::std::option::Option<BrandSegmentDetails>,
 }
-///The segment type for targeting specific customer cohorts.
+/// The segment type for targeting specific customer cohorts.
 ///
-///Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.
+/// Known values: `BRAND`, `PROGRAM`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -355,34 +355,34 @@ impl ::std::str::FromStr for CustomerSegmentType {
         Ok(Self(value.to_string()))
     }
 }
-///The discount configuration shared across benefit types.
+/// The discount configuration shared across benefit types.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Discount {
-    ///The amount off value. Only valid when `type` is `AMOUNT_OFF`.
+    /// The amount off value. Only valid when `type` is `AMOUNT_OFF`.
     #[serde(
         rename = "amountOff",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_off: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format. Required when `type` is `AMOUNT_OFF`.
+    /// The currency code in ISO 4217 format. Required when `type` is `AMOUNT_OFF`.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<DiscountCurrencyCode>,
-    ///The percentage discount value (1-100). Only valid when `type` is `PERCENTAGE_OFF`.
+    /// The percentage discount value (1-100). Only valid when `type` is `PERCENTAGE_OFF`.
     #[serde(
         rename = "percentOff",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub percent_off: ::std::option::Option<::serde_json::Number>,
-    ///The method used to calculate the discount amount.
+    /// The method used to calculate the discount amount.
     ///
-    ///Known values: `PERCENTAGE_OFF`, `AMOUNT_OFF`, `FREE_ITEM`. Other values may be returned by Amazon.
+    /// Known values: `PERCENTAGE_OFF`, `AMOUNT_OFF`, `FREE_ITEM`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///The currency code in ISO 4217 format. Required when `type` is `AMOUNT_OFF`.
+/// The currency code in ISO 4217 format. Required when `type` is `AMOUNT_OFF`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct DiscountCurrencyCode(::std::string::String);
@@ -439,30 +439,30 @@ impl<'de> ::serde::Deserialize<'de> for DiscountCurrencyCode {
             })
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///Identifier of the item that this error is associated with. Present only if the error is an item-level error.
+    /// Identifier of the item that this error is associated with. Present only if the error is an item-level error.
     #[serde(
         rename = "itemIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_identifier: ::std::option::Option<ItemIdentifier>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ErrorMessage,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///List of errors.
+    /// List of errors.
     pub errors: ::std::vec::Vec<Error>,
 }
-///A message that describes the error condition.
+/// A message that describes the error condition.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ErrorMessage(::std::string::String);
@@ -516,9 +516,9 @@ impl<'de> ::serde::Deserialize<'de> for ErrorMessage {
             })
     }
 }
-///For participation fees, the frequency at which fees are charged.
+/// For participation fees, the frequency at which fees are charged.
 ///
-///Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.
+/// Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -559,27 +559,27 @@ impl ::std::str::FromStr for FeeFrequency {
         Ok(Self(value.to_string()))
     }
 }
-///The response schema for `getPromotion`. **Note:** `selectionDetails` are included when `SELECTION` is in the `includedData` request parameter.
+/// The response schema for `getPromotion`. **Note:** `selectionDetails` are included when `SELECTION` is in the `includedData` request parameter.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetPromotionResponse {
-    ///Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
+    /// Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<PromotionBenefit>,
-    ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
+    /// Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /// The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
     ///
-    ///Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
+    /// Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupon_type: ::std::option::Option<CouponType>,
-    ///When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The target customer segments for the promotion.
+    /// The target customer segments for the promotion.
     #[serde(
         rename = "customerSegments",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -590,71 +590,71 @@ pub struct GetPromotionResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_snapshot: ::std::option::Option<PromotionFeeSnapshot>,
-    ///Promotion-level validation issues found during processing.
+    /// Promotion-level validation issues found during processing.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<PromotionIssue>>,
-    ///When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Contains the latest revision data when it diverges from the published revision. Present only when an edit is still processing (`revisionStatus: PROCESSING`) or was rejected (`revisionStatus: FAILED`). Absent when the latest revision matches the published revision (stable state).
+    /// Contains the latest revision data when it diverges from the published revision. Present only when an edit is still processing (`revisionStatus: PROCESSING`) or was rejected (`revisionStatus: FAILED`). Absent when the latest revision matches the published revision (stable state).
     #[serde(
         rename = "latestRevision",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub latest_revision: ::std::option::Option<LatestRevision>,
-    ///The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The merchandising configuration that determines promotion display on the retail website.
+    /// The merchandising configuration that determines promotion display on the retail website.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub merchandising: ::std::option::Option<Merchandising>,
-    ///The unique promotion identifier.
+    /// The unique promotion identifier.
     #[serde(rename = "promotionId")]
     pub promotion_id: ::std::string::String,
-    ///The name of the promotion for the selling partner. This value is not displayed to buyers.
+    /// The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /// The promotion type.
     ///
-    ///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
+    /// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
-    ///Purchase requirements for `BASKET_BUILDING` promotions.
+    /// Purchase requirements for `BASKET_BUILDING` promotions.
     #[serde(
         rename = "purchaseRequirements",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
-    ///The promotion schedule configuration.
+    /// The promotion schedule configuration.
     pub schedule: Schedule,
-    ///A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
+    /// A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
     pub selection: Selection,
-    ///Current promotion status indicating the lifecycle state of the promotion.
+    /// Current promotion status indicating the lifecycle state of the promotion.
     ///
-    ///Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.
+    /// Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The tracking ID you can use to uniquely identify a promotion and track its performance.
+    /// The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
     pub tracking_id: ::std::string::String,
 }
-///The response schema for `getSelection`. The `selectionDetails` field is always present when `type` is `ITEMS`.
+/// The response schema for `getSelection`. The `selectionDetails` field is always present when `type` is `ITEMS`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSelectionResponse {
     pub selection: Selection,
 }
-///Issue information with code, message, and severity.
+/// Issue information with code, message, and severity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Issue {
-    ///Issue code identifier.
+    /// Issue code identifier.
     pub code: ::std::string::String,
-    ///Issue description.
+    /// Issue description.
     pub message: IssueMessage,
-    ///Issue severity level.
+    /// Issue severity level.
     ///
-    ///Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
-///Issue description.
+/// Issue description.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct IssueMessage(::std::string::String);
@@ -708,68 +708,68 @@ impl<'de> ::serde::Deserialize<'de> for IssueMessage {
             })
     }
 }
-///An item in the Amazon catalog for promotion selection.
+/// An item in the Amazon catalog for promotion selection.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Item {
-    ///The Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
+    /// The Amazon Standard Identification Number (ASIN) is the unique identifier for an item in the Amazon catalog.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Item-level benefit configuration. This only applies to `DEAL` and `PRICE_DISCOUNT` promotion types.
+    /// Item-level benefit configuration. This only applies to `DEAL` and `PRICE_DISCOUNT` promotion types.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<ItemBenefit>,
-    ///Item-level budget configuration. This only applies to `DEAL` and `PRICE_DISCOUNT` promotion types.
+    /// Item-level budget configuration. This only applies to `DEAL` and `PRICE_DISCOUNT` promotion types.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The Stock Keeping Unit (SKU).
+    /// The Stock Keeping Unit (SKU).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
 }
-///Item-level benefit configuration with pricing options. Applicable to `DEAL` and `PRICE_DISCOUNT` promotion types, where each item can have its own distinct benefit. For `COUPON` and `BASKET_BUILDING` promotion types, benefits are configured at the promotion level.
+/// Item-level benefit configuration with pricing options. Applicable to `DEAL` and `PRICE_DISCOUNT` promotion types, where each item can have its own distinct benefit. For `COUPON` and `BASKET_BUILDING` promotion types, benefits are configured at the promotion level.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemBenefit {
-    ///The discount configuration when using `DISCOUNTED_PRICE` type.
+    /// The discount configuration when using `DISCOUNTED_PRICE` type.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub discount: ::std::option::Option<Discount>,
-    ///The maximum number of uses per customer for this item benefit.
+    /// The maximum number of uses per customer for this item benefit.
     #[serde(
         rename = "perCustomerUses",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub per_customer_uses: ::std::option::Option<::std::num::NonZeroU64>,
-    ///Fixed price.
+    /// Fixed price.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub price: ::std::option::Option<Currency>,
-    ///The benefit type for item-level pricing.
+    /// The benefit type for item-level pricing.
     ///
-    ///Known values: `FIXED_PRICE`, `DISCOUNTED_PRICE`. Other values may be returned by Amazon.
+    /// Known values: `FIXED_PRICE`, `DISCOUNTED_PRICE`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///The key identifiers of an item.
+/// The key identifiers of an item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemIdentifier {
-    ///Amazon Standard Identification Number (ASIN).
+    /// Amazon Standard Identification Number (ASIN).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Stock Keeping Unit (SKU).
+    /// Stock Keeping Unit (SKU).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
 }
-///An item-level validation issue.
+/// An item-level validation issue.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemIssue {
-    ///Issue code identifier.
+    /// Issue code identifier.
     pub code: ::std::string::String,
-    ///Identifier of the item associated with this issue.
+    /// Identifier of the item associated with this issue.
     pub identifier: ItemIdentifier,
-    ///Issue description.
+    /// Issue description.
     pub message: ItemIssueMessage,
-    ///Issue severity level.
+    /// Issue severity level.
     ///
-    ///Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
-///Issue description.
+/// Issue description.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ItemIssueMessage(::std::string::String);
@@ -823,27 +823,27 @@ impl<'de> ::serde::Deserialize<'de> for ItemIssueMessage {
             })
     }
 }
-///The latest revision data, when it diverges from the published revision. Present only when an edit is still processing or was rejected. Mirrors the top-level promotion object structure.
+/// The latest revision data, when it diverges from the published revision. Present only when an edit is still processing or was rejected. Mirrors the top-level promotion object structure.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LatestRevision {
-    ///Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
+    /// Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<PromotionBenefit>,
-    ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
+    /// Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /// The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
     ///
-    ///Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
+    /// Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupon_type: ::std::option::Option<CouponType>,
-    ///When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The target customer segments for the promotion.
+    /// The target customer segments for the promotion.
     #[serde(
         rename = "customerSegments",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -854,71 +854,71 @@ pub struct LatestRevision {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_snapshot: ::std::option::Option<PromotionFeeSnapshot>,
-    ///Promotion-level validation issues found during processing.
+    /// Promotion-level validation issues found during processing.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<PromotionIssue>>,
-    ///When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The merchandising configuration that determines promotion display on the retail website.
+    /// The merchandising configuration that determines promotion display on the retail website.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub merchandising: ::std::option::Option<Merchandising>,
-    ///The unique promotion identifier.
+    /// The unique promotion identifier.
     #[serde(rename = "promotionId")]
     pub promotion_id: ::std::string::String,
-    ///The name of the promotion for the selling partner. This value is not displayed to buyers.
+    /// The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /// The promotion type.
     ///
-    ///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
+    /// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
-    ///Purchase requirements for `BASKET_BUILDING` promotions.
+    /// Purchase requirements for `BASKET_BUILDING` promotions.
     #[serde(
         rename = "purchaseRequirements",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
-    ///The processing status of the latest revision.
+    /// The processing status of the latest revision.
     ///
-    ///Known values: `PROCESSING`, `FAILED`. Other values may be returned by Amazon.
+    /// Known values: `PROCESSING`, `FAILED`. Other values may be returned by Amazon.
     #[serde(rename = "revisionStatus")]
     pub revision_status: ::std::string::String,
-    ///The promotion schedule configuration.
+    /// The promotion schedule configuration.
     pub schedule: Schedule,
-    ///A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
+    /// A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
     pub selection: Selection,
-    ///The tracking ID you can use to uniquely identify a promotion and track its performance.
+    /// The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
     pub tracking_id: ::std::string::String,
 }
-///The merchandising configuration for displaying promotions on the retail website.
+/// The merchandising configuration for displaying promotions on the retail website.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Merchandising {
-    ///Whether the promotion badge and details are displayed on the product detail pages and search results on the retail website.
+    /// Whether the promotion badge and details are displayed on the product detail pages and search results on the retail website.
     ///
-    ///Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.
+    /// Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.
     #[serde(
         rename = "displayOnWebsite",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub display_on_website: ::std::option::Option<::std::string::String>,
 }
-///When a request produces a list that is larger than the page size, pagination occurs. This divides the response into individual pages. To retrieve the next page, pass the `nextToken` as the `paginationToken` query parameter in the subsequent request. When there are no more pages to retrieve, the `Pagination` key will be absent from the response. When a `Pagination` object is present, it contains `nextToken` as non-null value
+/// When a request produces a list that is larger than the page size, pagination occurs. This divides the response into individual pages. To retrieve the next page, pass the `nextToken` as the `paginationToken` query parameter in the subsequent request. When there are no more pages to retrieve, the `Pagination` key will be absent from the response. When a `Pagination` object is present, it contains `nextToken` as non-null value
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
-    ///A token that can be used to retrieve the next page from the current page of results.
+    /// A token that can be used to retrieve the next page from the current page of results.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///Fee rates that were previewed to the selling partner. Example fee rates are `$100` or `5% of sales`.
+/// Fee rates that were previewed to the selling partner. Example fee rates are `$100` or `5% of sales`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PreviewedFeeRates {
     #[serde(
@@ -932,37 +932,37 @@ pub struct PreviewedFeeRates {
     )]
     pub variable_fee: ::std::option::Option<VariableFee>,
 }
-///Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types, where the benefit applies uniformly across all items in the promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types, benefits are configured at the item level within each item in the selection.
+/// Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types, where the benefit applies uniformly across all items in the promotion. For `DEAL` and `PRICE_DISCOUNT` promotion types, benefits are configured at the item level within each item in the selection.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PromotionBenefit {
-    ///Progressive discount tiers offering increased benefits as customers purchase more. For example: buy 2 get 10% off, buy 3 get 15% off. For multi-tier `BASKET_BUILDING` promotions, each tier specifies additional purchase conditions and corresponding discounts beyond the first tier (defined in `benefit.discount` and `purchaseRequirements.condition`).
+    /// Progressive discount tiers offering increased benefits as customers purchase more. For example: buy 2 get 10% off, buy 3 get 15% off. For multi-tier `BASKET_BUILDING` promotions, each tier specifies additional purchase conditions and corresponding discounts beyond the first tier (defined in `benefit.discount` and `purchaseRequirements.condition`).
     #[serde(
         rename = "additionalTiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_tiers: ::std::option::Option<::std::vec::Vec<BenefitTier>>,
-    ///The quantity of items from the benefit selection that receive the discount after the customer satisfies purchase conditions. This property is specific to `BASKET_BUILDING` promotions.
+    /// The quantity of items from the benefit selection that receive the discount after the customer satisfies purchase conditions. This property is specific to `BASKET_BUILDING` promotions.
     #[serde(
         rename = "benefitQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub benefit_quantity: ::std::option::Option<i64>,
-    ///The discount configuration for the promotion. For multi-tier `BASKET_BUILDING` promotions, this represents the first tier discount. Additional tier discounts are defined in `additionalTiers`.
+    /// The discount configuration for the promotion. For multi-tier `BASKET_BUILDING` promotions, this represents the first tier discount. Additional tier discounts are defined in `additionalTiers`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub discount: ::std::option::Option<Discount>,
-    ///The maximum number of uses per customer for this promotion.
+    /// The maximum number of uses per customer for this promotion.
     #[serde(
         rename = "perCustomerUses",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub per_customer_uses: ::std::option::Option<::std::num::NonZeroU64>,
-    ///Whether this benefit can be stacked with other promotions.
+    /// Whether this benefit can be stacked with other promotions.
     ///
-    ///Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.
+    /// Known values: `ALLOWED`, `NOT_ALLOWED`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub stacking: ::std::option::Option<::std::string::String>,
 }
-///The promotion's fee information (rates and incentive programs) that was locked at the time of promotion creation. You can estimate promotion fees (fee preview) at time t1, while promotion creation can happen at time t2. This object includes the fee information captured at time t2. If empty, it means that no fee information was recorded, which indicates that either a promotion type or a marketplace does not currently support promotion fees.
+/// The promotion's fee information (rates and incentive programs) that was locked at the time of promotion creation. You can estimate promotion fees (fee preview) at time t1, while promotion creation can happen at time t2. This object includes the fee information captured at time t2. If empty, it means that no fee information was recorded, which indicates that either a promotion type or a marketplace does not currently support promotion fees.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PromotionFeeSnapshot {
     #[serde(
@@ -971,7 +971,7 @@ pub struct PromotionFeeSnapshot {
     )]
     pub previewed_fee_rates: ::std::option::Option<PreviewedFeeRates>,
 }
-///A promotion-level validation issue.
+/// A promotion-level validation issue.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PromotionIssue(pub Issue);
@@ -991,27 +991,27 @@ impl ::std::convert::From<Issue> for PromotionIssue {
         Self(value)
     }
 }
-///Common promotion fields shared between the published promotion and the latest revision. Contains all promotion attributes except lifecycle status.
+/// Common promotion fields shared between the published promotion and the latest revision. Contains all promotion attributes except lifecycle status.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PromotionRevisionAttributes {
-    ///Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
+    /// Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<PromotionBenefit>,
-    ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
+    /// Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /// The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
     ///
-    ///Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
+    /// Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupon_type: ::std::option::Option<CouponType>,
-    ///When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The target customer segments for the promotion.
+    /// The target customer segments for the promotion.
     #[serde(
         rename = "customerSegments",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1022,64 +1022,64 @@ pub struct PromotionRevisionAttributes {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_snapshot: ::std::option::Option<PromotionFeeSnapshot>,
-    ///Promotion-level validation issues found during processing.
+    /// Promotion-level validation issues found during processing.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<PromotionIssue>>,
-    ///When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The merchandising configuration that determines promotion display on the retail website.
+    /// The merchandising configuration that determines promotion display on the retail website.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub merchandising: ::std::option::Option<Merchandising>,
-    ///The unique promotion identifier.
+    /// The unique promotion identifier.
     #[serde(rename = "promotionId")]
     pub promotion_id: ::std::string::String,
-    ///The name of the promotion for the selling partner. This value is not displayed to buyers.
+    /// The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /// The promotion type.
     ///
-    ///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
+    /// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
-    ///Purchase requirements for `BASKET_BUILDING` promotions.
+    /// Purchase requirements for `BASKET_BUILDING` promotions.
     #[serde(
         rename = "purchaseRequirements",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
-    ///The promotion schedule configuration.
+    /// The promotion schedule configuration.
     pub schedule: Schedule,
-    ///A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
+    /// A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
     pub selection: Selection,
-    ///The tracking ID you can use to uniquely identify a promotion and track its performance.
+    /// The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
     pub tracking_id: ::std::string::String,
 }
-///Summary information for a promotion in search results.
+/// Summary information for a promotion in search results.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PromotionSummary {
-    ///Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
+    /// Promotion-level benefit configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the benefit is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<PromotionBenefit>,
-    ///Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
+    /// Promotion-level budget configuration. Applicable to `COUPON` and `BASKET_BUILDING` promotion types. For `DEAL` and `PRICE_DISCOUNT` promotion types, the budget is configured at the item level within the selection.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<Budget>,
-    ///The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
+    /// The subtype of a COUPON promotion. Only present when `promotionType` is `COUPON`; when omitted, the coupon is treated as `STANDARD`.
     ///
-    ///Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
+    /// Known values: `STANDARD`, `SUBSCRIBE_AND_SAVE`, `REORDER_REWARDS`. Other values may be returned by Amazon.
     #[serde(
         rename = "couponType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coupon_type: ::std::option::Option<CouponType>,
-    ///When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was created. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The target customer segments for the promotion.
+    /// The target customer segments for the promotion.
     #[serde(
         rename = "customerSegments",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1090,56 +1090,56 @@ pub struct PromotionSummary {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_snapshot: ::std::option::Option<PromotionFeeSnapshot>,
-    ///Promotion-level validation issues found during processing.
+    /// Promotion-level validation issues found during processing.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<PromotionIssue>>,
-    ///When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// When the promotion was last updated. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The latest revision data, when it diverges from the published revision. Present only when an edit is still processing (`revisionStatus: PROCESSING`) or was rejected (`revisionStatus: FAILED`). Absent when the latest revision matches the published revision (stable state).
+    /// The latest revision data, when it diverges from the published revision. Present only when an edit is still processing (`revisionStatus: PROCESSING`) or was rejected (`revisionStatus: FAILED`). Absent when the latest revision matches the published revision (stable state).
     #[serde(
         rename = "latestRevision",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub latest_revision: ::std::option::Option<LatestRevision>,
-    ///The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon store identifier. For a complete list of `marketplaceId` values, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The merchandising configuration that determines promotion display on the retail website.
+    /// The merchandising configuration that determines promotion display on the retail website.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub merchandising: ::std::option::Option<Merchandising>,
-    ///The unique promotion identifier.
+    /// The unique promotion identifier.
     #[serde(rename = "promotionId")]
     pub promotion_id: ::std::string::String,
-    ///The name of the promotion for the selling partner. This value is not displayed to buyers.
+    /// The name of the promotion for the selling partner. This value is not displayed to buyers.
     #[serde(rename = "promotionTitle")]
     pub promotion_title: ::std::string::String,
-    ///The promotion type.
+    /// The promotion type.
     ///
-    ///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
+    /// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
-    ///Purchase requirements for `BASKET_BUILDING` promotions.
+    /// Purchase requirements for `BASKET_BUILDING` promotions.
     #[serde(
         rename = "purchaseRequirements",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
-    ///The promotion schedule configuration.
+    /// The promotion schedule configuration.
     pub schedule: Schedule,
-    ///A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
+    /// A selection that defines which items in the customer's order qualify for the promotion benefit. The discount or offer is applied to items in this selection. For `BASKET_BUILDING` promotions, this denotes the items that receive the discount after purchase requirements are met. For `DEAL`, `PRICE_DISCOUNT`, and `COUPON` promotions, this denotes the eligible items that receive the benefit.
     pub selection: Selection,
-    ///Current promotion status indicating the lifecycle state of the promotion.
+    /// Current promotion status indicating the lifecycle state of the promotion.
     ///
-    ///Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.
+    /// Known values: `PROCESSING`, `UPCOMING`, `RUNNING`, `EXPIRED`, `FAILED`, `CANCELLING`, `CANCELLED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The tracking ID you can use to uniquely identify a promotion and track its performance.
+    /// The tracking ID you can use to uniquely identify a promotion and track its performance.
     #[serde(rename = "trackingId")]
     pub tracking_id: ::std::string::String,
 }
-///The type of promotion, categorized by the discount rules and eligibility criteria.
+/// The type of promotion, categorized by the discount rules and eligibility criteria.
 ///
-///Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
+/// Known values: `BASKET_BUILDING`, `DEAL`, `PRICE_DISCOUNT`, `COUPON`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1180,136 +1180,136 @@ impl ::std::str::FromStr for PromotionType {
         Ok(Self(value.to_string()))
     }
 }
-///Minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. You can specify conditions within purchase requirements and multi-tier benefit configurations. You must specify exactly one of `quantityThreshold` or `amountThreshold`.
+/// Minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. You can specify conditions within purchase requirements and multi-tier benefit configurations. You must specify exactly one of `quantityThreshold` or `amountThreshold`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PurchaseCondition {
-    ///Amount-based purchase requirement. Specify this for minimum spend conditions.
+    /// Amount-based purchase requirement. Specify this for minimum spend conditions.
     #[serde(
         rename = "amountThreshold",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_threshold: ::std::option::Option<AmountThreshold>,
-    ///Quantity-based purchase requirement. Specify this for item count conditions.
+    /// Quantity-based purchase requirement. Specify this for item count conditions.
     #[serde(
         rename = "quantityThreshold",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_threshold: ::std::option::Option<QuantityThreshold>,
 }
-///Purchase requirements that customers must meet to qualify for a basket building promotion. Contains eligibility selection (what to buy), purchase condition (how much to buy), and an optional claim code. This is the 'Buy X' portion of 'Buy X Get Y' promotions.
+/// Purchase requirements that customers must meet to qualify for a basket building promotion. Contains eligibility selection (what to buy), purchase condition (how much to buy), and an optional claim code. This is the 'Buy X' portion of 'Buy X Get Y' promotions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PurchaseRequirements {
-    ///An optional claim code customers must enter to access the promotion. When present, the promotion is code-gated and only available to customers who provide this code.
+    /// An optional claim code customers must enter to access the promotion. When present, the promotion is code-gated and only available to customers who provide this code.
     #[serde(
         rename = "claimCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub claim_code: ::std::option::Option<ClaimCode>,
-    ///Minimum purchase requirement that specify either the quantity of items or the total spend amount that customers must meet to qualify. For multi-tier `BASKET_BUILDING` promotions, this is the first-tier purchase condition. Additional tier conditions are defined in `benefit.additionalTiers`.
+    /// Minimum purchase requirement that specify either the quantity of items or the total spend amount that customers must meet to qualify. For multi-tier `BASKET_BUILDING` promotions, this is the first-tier purchase condition. Additional tier conditions are defined in `benefit.additionalTiers`.
     pub condition: PurchaseCondition,
-    ///Which items customers must purchase to qualify for the promotion. References the eligibility product set. This selection only contains `selectionId`, `revisionId`, and `type`; the `selectionDetails` field is not included. For some `BASKET_BUILDING` promotions, this selection may be the same as the benefit selection when purchase requirements and benefits apply to the same set of items.
+    /// Which items customers must purchase to qualify for the promotion. References the eligibility product set. This selection only contains `selectionId`, `revisionId`, and `type`; the `selectionDetails` field is not included. For some `BASKET_BUILDING` promotions, this selection may be the same as the benefit selection when purchase requirements and benefits apply to the same set of items.
     pub selection: Selection,
 }
-///Quantity-based purchase conditions for basket building promotions.
+/// Quantity-based purchase conditions for basket building promotions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct QuantityThreshold {
-    ///The number of items required to meet this purchase condition.
+    /// The number of items required to meet this purchase condition.
     pub quantity: ::std::num::NonZeroU64,
-    ///How the quantity requirement is evaluated.
+    /// How the quantity requirement is evaluated.
     ///
-    ///Known values: `AT_LEAST`, `FOR_EACH`. Other values may be returned by Amazon.
+    /// Known values: `AT_LEAST`, `FOR_EACH`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///A promotion's start and end dates with optional event association.
+/// A promotion's start and end dates with optional event association.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Schedule {
-    ///The promotion's end date and time. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// The promotion's end date and time. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(rename = "endDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///An event identifier that associates the promotion with a specific event. For event promotions, this field contains the event name when available (for example, `Prime Day`). For historic event promotions, this field may contain `EVENT` as a placeholder.
+    /// An event identifier that associates the promotion with a specific event. For event promotions, this field contains the event name when available (for example, `Prime Day`). For historic event promotions, this field may contain `EVENT` as a placeholder.
     #[serde(rename = "eventId", skip_serializing_if = "::std::option::Option::is_none")]
     pub event_id: ::std::option::Option<::std::string::String>,
-    ///The promotion's start date and time. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
+    /// The promotion's start date and time. Formatted in ISO 8601 format, including the timezone. For example: `1970-01-01T00:00:00-07:00`.
     #[serde(
         rename = "startDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-///The response schema for the `searchPromotions` operation. **Note:** The `selectionDetails` field is not present in the selection object within promotion summaries.
+/// The response schema for the `searchPromotions` operation. **Note:** The `selectionDetails` field is not present in the selection object within promotion summaries.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SearchPromotionsResponse {
-    ///Pagination information for navigating results.
+    /// Pagination information for navigating results.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
-    ///A list of promotion summaries that matches the search criteria.
+    /// A list of promotion summaries that matches the search criteria.
     pub promotions: ::std::vec::Vec<PromotionSummary>,
-    ///The total number of promotions matching the search criteria, across all pages. This count remains consistent across paginated requests. **Note:** In rare cases, individual records cannot be returned and are omitted from the response. When this happens, a page may contain fewer items than expected, and the combined number of items across all pages may be less than `totalResults`. The request itself still completes successfully.
+    /// The total number of promotions matching the search criteria, across all pages. This count remains consistent across paginated requests. **Note:** In rare cases, individual records cannot be returned and are omitted from the response. When this happens, a page may contain fewer items than expected, and the combined number of items across all pages may be less than `totalResults`. The request itself still completes successfully.
     #[serde(rename = "totalResults")]
     pub total_results: u64,
 }
-///Defines which products qualify for a benefit, allowing either specific items to be selected by ASIN or the entire catalog with optional exclusions.
+/// Defines which products qualify for a benefit, allowing either specific items to be selected by ASIN or the entire catalog with optional exclusions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Selection {
-    ///The revision identifier for the selection. Pass this value to the `getSelection` operation's `revisionId` query parameter to retrieve the correct version of the selection. A promotion may have multiple selection revisions when an update is in progress. **Note:** This field is absent when `type` is `CATALOG`.
+    /// The revision identifier for the selection. Pass this value to the `getSelection` operation's `revisionId` query parameter to retrieve the correct version of the selection. A promotion may have multiple selection revisions when an update is in progress. **Note:** This field is absent when `type` is `CATALOG`.
     #[serde(
         rename = "revisionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub revision_id: ::std::option::Option<::std::num::NonZeroU64>,
-    ///Detailed selection information.
+    /// Detailed selection information.
     #[serde(
         rename = "selectionDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selection_details: ::std::option::Option<SelectionDetails>,
-    ///The unique identifier for this selection configuration. **Note:** This field is absent when `type` is `CATALOG`.
+    /// The unique identifier for this selection configuration. **Note:** This field is absent when `type` is `CATALOG`.
     #[serde(
         rename = "selectionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selection_id: ::std::option::Option<::std::string::String>,
-    ///Selection type.
+    /// Selection type.
     ///
-    ///Known values: `CATALOG`, `ITEMS`. Other values may be returned by Amazon.
+    /// Known values: `CATALOG`, `ITEMS`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///Detailed selection information including items, rules, issues, and pagination.
+/// Detailed selection information including items, rules, issues, and pagination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SelectionDetails {
-    ///Item-level validation issues for items in this selection. Only present when `ISSUES` is included in the `includedData` query parameter.
+    /// Item-level validation issues for items in this selection. Only present when `ISSUES` is included in the `includedData` query parameter.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<ItemIssue>>,
-    ///List of specific items to include. Only valid when `type` is `ITEMS` (maximum 100 items).
+    /// List of specific items to include. Only valid when `type` is `ITEMS` (maximum 100 items).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub items: ::std::option::Option<::std::vec::Vec<Item>>,
-    ///Pagination metadata for navigating through pages of selection items.
+    /// Pagination metadata for navigating through pages of selection items.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
-    ///Rule configuration for catalog-based selections. Only valid when `type` is `CATALOG`.
+    /// Rule configuration for catalog-based selections. Only valid when `type` is `CATALOG`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub rules: ::std::option::Option<SelectionRules>,
 }
-///Rules for catalog-based selections.
+/// Rules for catalog-based selections.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SelectionRules {
-    ///Items to exclude from the catalog selection (maximum 100 items).
+    /// Items to exclude from the catalog selection (maximum 100 items).
     #[serde(
         rename = "excludedItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub excluded_items: ::std::option::Option<::std::vec::Vec<Item>>,
 }
-///Upfront fee (or a flat fee) for each promotion submitted.
+/// Upfront fee (or a flat fee) for each promotion submitted.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpfrontFee {
-    ///Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.
+    /// Known values: `ONE_TIME`, `DAILY`. Other values may be returned by Amazon.
     pub frequency: FeeFrequency,
     pub rate: Currency,
 }
-///Performance based fee, usually represented as a percentage of promotion sales with a cap amount.
+/// Performance based fee, usually represented as a percentage of promotion sales with a cap amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VariableFee {
     #[serde(
@@ -1317,7 +1317,7 @@ pub struct VariableFee {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_cap_amount: ::std::option::Option<Currency>,
-    ///Sales Percentage
+    /// Sales Percentage
     #[serde(rename = "salesPercentage")]
     pub sales_percentage: ::serde_json::Number,
 }

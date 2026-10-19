@@ -2,34 +2,34 @@
 // Source: schemas/notifications/ItemSalesEventChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`ItemSalesEventChange`
+/// `ItemSalesEventChange`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemSalesEventChange {
-    ///The merchant customer ID or vendor group ID of the partner account this notification is sent to.
+    /// The merchant customer ID or vendor group ID of the partner account this notification is sent to.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The Amazon Standard Identification Number of the product.
+    /// The Amazon Standard Identification Number of the product.
     pub asin: ::std::string::String,
-    ///The currency code of any monetary amounts in ISO 4217 format.
+    /// The currency code of any monetary amounts in ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
-    ///The end of the date-time range of the sales data in ISO 8601 format in UTC time.
+    /// The end of the date-time range of the sales data in ISO 8601 format in UTC time.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The marketplace identifier of the sales data.
+    /// The marketplace identifier of the sales data.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The ordered product sales in the specified time frame. Adjustments are made for cancellations.
+    /// The ordered product sales in the specified time frame. Adjustments are made for cancellations.
     #[serde(rename = "orderedRevenue")]
     pub ordered_revenue: ::serde_json::Number,
-    ///The number of units ordered by Amazon customers in the specified time frame. This number can be negative if there are more cancellations than orders.
+    /// The number of units ordered by Amazon customers in the specified time frame. This number can be negative if there are more cancellations than orders.
     #[serde(rename = "orderedUnits")]
     pub ordered_units: i64,
-    ///The start of the date-time range of the sales data in ISO 8601 format in UTC time.
+    /// The start of the date-time range of the sales data in ISO 8601 format in UTC time.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///`ItemSalesEventChanges`
+/// `ItemSalesEventChanges`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemSalesEventChanges(pub ::std::vec::Vec<ItemSalesEventChange>);
@@ -51,7 +51,7 @@ for ItemSalesEventChanges {
         Self(value)
     }
 }
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
     #[serde(rename = "eventTime")]
@@ -66,7 +66,7 @@ pub struct Notification {
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
     #[serde(rename = "applicationId")]
@@ -78,7 +78,7 @@ pub struct NotificationMetadata {
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
     #[serde(rename = "itemSalesEventChanges")]

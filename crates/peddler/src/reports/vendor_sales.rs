@@ -2,16 +2,16 @@
 // Source: schemas/reports/vendorSalesReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Amount`
+/// `Amount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Amount {
-    ///The amount.
+    /// The amount.
     pub amount: ::serde_json::Number,
-    ///Currency code of the amount. In ISO 4217 format.
+    /// Currency code of the amount. In ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///This report shares data on the sales performance of vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
+/// This report shares data on the sales performance of vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "reportSpecification")]
@@ -21,119 +21,119 @@ pub struct Report {
     #[serde(rename = "salesByAsin")]
     pub sales_by_asin: ::std::vec::Vec<SalesByAsin>,
 }
-///The report summary including reporting date range, distributor view, selling program, and last updated date in the input.
+/// The report summary including reporting date range, distributor view, selling program, and last updated date in the input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
+    /// The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to only one marketplaceId.
+    /// This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to only one marketplaceId.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_VENDOR_SALES_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_SALES_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
+/// Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The distributor view.
+    /// The distributor view.
     ///
-    ///Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.
+    /// Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.
     #[serde(rename = "distributorView")]
     pub distributor_view: ::std::string::String,
-    ///Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
+    /// Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
-    ///The selling program.
+    /// The selling program.
     ///
-    ///Known values: `RETAIL`, `BUSINESS`, `FRESH`. Other values may be returned by Amazon.
+    /// Known values: `RETAIL`, `BUSINESS`, `FRESH`. Other values may be returned by Amazon.
     #[serde(rename = "sellingProgram")]
     pub selling_program: ::std::string::String,
 }
-///Describes aggregated sales metrics for ASINs in the vendor's account.
+/// Describes aggregated sales metrics for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SalesAggregate {
-    ///The quantity of units returned. This field is populated when sellingProgram is RETAIL or BUSINESS.
+    /// The quantity of units returned. This field is populated when sellingProgram is RETAIL or BUSINESS.
     #[serde(
         rename = "customerReturns",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_returns: ::std::option::Option<u64>,
-    ///The end date of the aggregated data.
+    /// The end date of the aggregated data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///Ordered product sales in the selected time frame. Adjustments are made for returns. This field is populated when distributorView is MANUFACTURING.
+    /// Ordered product sales in the selected time frame. Adjustments are made for returns. This field is populated when distributorView is MANUFACTURING.
     #[serde(
         rename = "orderedRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_revenue: ::std::option::Option<Amount>,
-    ///Number of units ordered by Amazon customers. This field is populated when distributorView is MANUFACTURING.
+    /// Number of units ordered by Amazon customers. This field is populated when distributorView is MANUFACTURING.
     #[serde(
         rename = "orderedUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_units: ::std::option::Option<u64>,
-    ///Revenue based on the cost of goods sold. Adjustments are made for returns.
+    /// Revenue based on the cost of goods sold. Adjustments are made for returns.
     #[serde(rename = "shippedCogs")]
     pub shipped_cogs: Amount,
-    ///Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
+    /// Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
     #[serde(rename = "shippedRevenue")]
     pub shipped_revenue: Amount,
-    ///Number of units shipped to Amazon customers.
+    /// Number of units shipped to Amazon customers.
     #[serde(rename = "shippedUnits")]
     pub shipped_units: u64,
-    ///The start date of the aggregated data.
+    /// The start date of the aggregated data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///Describes aggregated ASIN-level sales metrics for ASINs in the vendor's account.
+/// Describes aggregated ASIN-level sales metrics for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SalesByAsin {
-    ///The Amazon Standard Identification Number.
+    /// The Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///The quantity of units returned. This field is populated when sellingProgram is RETAIL or BUSINESS.
+    /// The quantity of units returned. This field is populated when sellingProgram is RETAIL or BUSINESS.
     #[serde(
         rename = "customerReturns",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_returns: ::std::option::Option<u64>,
-    ///The end date of the aggregated ASIN-level data.
+    /// The end date of the aggregated ASIN-level data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///Ordered product sales in the selected time frame. Adjustments are made for returns. This field is populated when distributorView is MANUFACTURING
+    /// Ordered product sales in the selected time frame. Adjustments are made for returns. This field is populated when distributorView is MANUFACTURING
     #[serde(
         rename = "orderedRevenue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_revenue: ::std::option::Option<Amount>,
-    ///Number of units ordered by Amazon customers. This field is populated when distributorView is MANUFACTURING
+    /// Number of units ordered by Amazon customers. This field is populated when distributorView is MANUFACTURING
     #[serde(
         rename = "orderedUnits",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_units: ::std::option::Option<u64>,
-    ///Revenue based on the cost of goods sold. Adjustments are made for returns.
+    /// Revenue based on the cost of goods sold. Adjustments are made for returns.
     #[serde(rename = "shippedCogs")]
     pub shipped_cogs: Amount,
-    ///Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
+    /// Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
     #[serde(rename = "shippedRevenue")]
     pub shipped_revenue: Amount,
-    ///Number of units shipped to Amazon customers.
+    /// Number of units shipped to Amazon customers.
     #[serde(rename = "shippedUnits")]
     pub shipped_units: u64,
-    ///The start date of the aggregated ASIN-level data.
+    /// The start date of the aggregated ASIN-level data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }

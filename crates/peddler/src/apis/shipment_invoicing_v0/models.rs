@@ -2,70 +2,70 @@
 // Source: shipment-invoicing-api-model/shipmentInvoicingV0.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The shipping address details of the shipment.
+/// The shipping address details of the shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Address {
-    ///The street address.
+    /// The street address.
     #[serde(
         rename = "AddressLine1",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line1: ::std::option::Option<::std::string::String>,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "AddressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///Additional street address information, if required.
+    /// Additional street address information, if required.
     #[serde(
         rename = "AddressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
+    /// Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
     #[serde(
         rename = "AddressType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_type: ::std::option::Option<AddressTypeEnum>,
-    ///The city.
+    /// The city.
     #[serde(rename = "City", skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The country code.
+    /// The country code.
     #[serde(
         rename = "CountryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub country_code: ::std::option::Option<::std::string::String>,
-    ///The county.
+    /// The county.
     #[serde(rename = "County", skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district.
+    /// The district.
     #[serde(rename = "District", skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name.
+    /// The name.
     #[serde(rename = "Name", skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///The phone number.
+    /// The phone number.
     #[serde(rename = "Phone", skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal code.
+    /// The postal code.
     #[serde(
         rename = "PostalCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_code: ::std::option::Option<::std::string::String>,
-    ///The state or region.
+    /// The state or region.
     #[serde(
         rename = "StateOrRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-///The shipping address type.
+/// The shipping address type.
 ///
-///Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
+/// Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -106,7 +106,7 @@ impl ::std::str::FromStr for AddressTypeEnum {
         Ok(Self(value.to_string()))
     }
 }
-///Shipment invoice document content.
+/// Shipment invoice document content.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -147,10 +147,10 @@ impl ::std::str::FromStr for Blob {
         Ok(Self(value.to_string()))
     }
 }
-///Tax information about the buyer.
+/// Tax information about the buyer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BuyerTaxInfo {
-    ///The legal name of the company.
+    /// The legal name of the company.
     #[serde(
         rename = "CompanyLegalName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -161,25 +161,25 @@ pub struct BuyerTaxInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_classifications: ::std::option::Option<TaxClassificationList>,
-    ///The country or region imposing the tax.
+    /// The country or region imposing the tax.
     #[serde(
         rename = "TaxingRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxing_region: ::std::option::Option<::std::string::String>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -199,28 +199,28 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The response schema for the getInvoiceStatus operation.
+/// The response schema for the getInvoiceStatus operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInvoiceStatusResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the getInvoiceStatus operation.
+    /// The payload for the getInvoiceStatus operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ShipmentInvoiceStatusResponse>,
 }
-///The response schema for the getShipmentDetails operation.
+/// The response schema for the getShipmentDetails operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetShipmentDetailsResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the getShipmentDetails operation
+    /// The payload for the getShipmentDetails operation
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<ShipmentDetail>,
 }
-///Tax information about the marketplace.
+/// Tax information about the marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceTaxInfo {
-    ///The legal name of the company.
+    /// The legal name of the company.
     #[serde(
         rename = "CompanyLegalName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -231,63 +231,63 @@ pub struct MarketplaceTaxInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_classifications: ::std::option::Option<TaxClassificationList>,
-    ///The country or region imposing the tax.
+    /// The country or region imposing the tax.
     #[serde(
         rename = "TaxingRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxing_region: ::std::option::Option<::std::string::String>,
 }
-///The currency type and amount.
+/// The currency type and amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Money {
-    ///The currency amount.
+    /// The currency amount.
     #[serde(rename = "Amount", skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<::std::string::String>,
-    ///Three-digit currency code in ISO 4217 format.
+    /// Three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "CurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///Information about a payment transaction.
+/// Information about a payment transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PaymentInformation {
-    ///The government ID of the acquirer.
+    /// The government ID of the acquirer.
     #[serde(
         rename = "AcquirerId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub acquirer_id: ::std::option::Option<::std::string::String>,
-    ///The authorization code of this payment.
+    /// The authorization code of this payment.
     #[serde(
         rename = "AuthorizationCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub authorization_code: ::std::option::Option<::std::string::String>,
-    ///The credit card brand if the payment method is `CreditCard`.
+    /// The credit card brand if the payment method is `CreditCard`.
     #[serde(
         rename = "CardBrand",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub card_brand: ::std::option::Option<::std::string::String>,
-    ///The name of the payment method.
+    /// The name of the payment method.
     ///
-    ///Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "PaymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method: ::std::option::Option<PaymentMethodEnum>,
-    ///The amount paid in this payment.
+    /// The amount paid in this payment.
     #[serde(
         rename = "PaymentValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_value: ::std::option::Option<Money>,
 }
-///A list of payment transactions.
+/// A list of payment transactions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PaymentInformationList(pub ::std::vec::Vec<PaymentInformation>);
@@ -309,7 +309,7 @@ for PaymentInformationList {
         Self(value)
     }
 }
-///The list of payment method details.
+/// The list of payment method details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PaymentMethodDetailItemList(pub ::std::vec::Vec<::std::string::String>);
@@ -331,9 +331,9 @@ for PaymentMethodDetailItemList {
         Self(value)
     }
 }
-///Payment methods
+/// Payment methods
 ///
-///Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
+/// Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -374,7 +374,7 @@ impl ::std::str::FromStr for PaymentMethodEnum {
         Ok(Self(value.to_string()))
     }
 }
-///The list of serial numbers.
+/// The list of serial numbers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SerialNumbersList(pub ::std::vec::Vec<::std::string::String>);
@@ -394,28 +394,28 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for SerialNumb
         Self(value)
     }
 }
-///The information required by a selling partner to issue a shipment invoice.
+/// The information required by a selling partner to issue a shipment invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentDetail {
-    ///The Amazon-defined identifier for the order.
+    /// The Amazon-defined identifier for the order.
     #[serde(
         rename = "AmazonOrderId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_order_id: ::std::option::Option<::std::string::String>,
-    ///The Amazon-defined identifier for the shipment.
+    /// The Amazon-defined identifier for the shipment.
     #[serde(
         rename = "AmazonShipmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_shipment_id: ::std::option::Option<::std::string::String>,
-    ///The county of the buyer.
+    /// The county of the buyer.
     #[serde(
         rename = "BuyerCounty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_county: ::std::option::Option<::std::string::String>,
-    ///The name of the buyer.
+    /// The name of the buyer.
     #[serde(
         rename = "BuyerName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -426,7 +426,7 @@ pub struct ShipmentDetail {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_tax_info: ::std::option::Option<BuyerTaxInfo>,
-    ///The identifier for the marketplace where the order was placed.
+    /// The identifier for the marketplace where the order was placed.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -444,19 +444,19 @@ pub struct ShipmentDetail {
     pub payment_method_details: ::std::option::Option<PaymentMethodDetailItemList>,
     #[serde(rename = "Payments", skip_serializing_if = "::std::option::Option::is_none")]
     pub payments: ::std::option::Option<PaymentInformationList>,
-    ///The date and time when the order was created.
+    /// The date and time when the order was created.
     #[serde(
         rename = "PurchaseDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///The seller’s friendly name registered in the marketplace.
+    /// The seller’s friendly name registered in the marketplace.
     #[serde(
         rename = "SellerDisplayName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_display_name: ::std::option::Option<::std::string::String>,
-    ///The seller identifier.
+    /// The seller identifier.
     #[serde(rename = "SellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
     #[serde(
@@ -469,16 +469,16 @@ pub struct ShipmentDetail {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_address: ::std::option::Option<Address>,
-    ///The Amazon-defined identifier for the warehouse.
+    /// The Amazon-defined identifier for the warehouse.
     #[serde(
         rename = "WarehouseId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub warehouse_id: ::std::option::Option<::std::string::String>,
 }
-///The shipment invoice status.
+/// The shipment invoice status.
 ///
-///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
+/// Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -519,23 +519,23 @@ impl ::std::str::FromStr for ShipmentInvoiceStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The shipment invoice status information.
+/// The shipment invoice status information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentInvoiceStatusInfo {
-    ///The Amazon-defined shipment identifier.
+    /// The Amazon-defined shipment identifier.
     #[serde(
         rename = "AmazonShipmentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_shipment_id: ::std::option::Option<::std::string::String>,
-    ///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
+    /// Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
     #[serde(
         rename = "InvoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_status: ::std::option::Option<ShipmentInvoiceStatus>,
 }
-///The shipment invoice status response.
+/// The shipment invoice status response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentInvoiceStatusResponse {
     #[serde(
@@ -544,71 +544,71 @@ pub struct ShipmentInvoiceStatusResponse {
     )]
     pub shipments: ::std::option::Option<ShipmentInvoiceStatusInfo>,
 }
-///The shipment item information required by a seller to issue a shipment invoice.
+/// The shipment item information required by a seller to issue a shipment invoice.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentItem {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The gift wrap price of the item.
+    /// The gift wrap price of the item.
     #[serde(
         rename = "GiftWrapPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub gift_wrap_price: ::std::option::Option<Money>,
-    ///The selling price of the item multiplied by the quantity ordered. Note that ItemPrice excludes ShippingPrice and GiftWrapPrice.
+    /// The selling price of the item multiplied by the quantity ordered. Note that ItemPrice excludes ShippingPrice and GiftWrapPrice.
     #[serde(
         rename = "ItemPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_price: ::std::option::Option<Money>,
-    ///The Amazon-defined identifier for the order item.
+    /// The Amazon-defined identifier for the order item.
     #[serde(
         rename = "OrderItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_item_id: ::std::option::Option<::std::string::String>,
-    ///The total of all promotional discounts in the offer.
+    /// The total of all promotional discounts in the offer.
     #[serde(
         rename = "PromotionDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_discount: ::std::option::Option<Money>,
-    ///The number of items ordered.
+    /// The number of items ordered.
     #[serde(
         rename = "QuantityOrdered",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_ordered: ::std::option::Option<::serde_json::Number>,
-    ///The seller SKU of the item.
+    /// The seller SKU of the item.
     #[serde(
         rename = "SellerSKU",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
-    ///The list of serial numbers.
+    /// The list of serial numbers.
     #[serde(
         rename = "SerialNumbers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub serial_numbers: ::std::option::Option<SerialNumbersList>,
-    ///The discount on the shipping price.
+    /// The discount on the shipping price.
     #[serde(
         rename = "ShippingDiscount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_discount: ::std::option::Option<Money>,
-    ///The shipping price of the item.
+    /// The shipping price of the item.
     #[serde(
         rename = "ShippingPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_price: ::std::option::Option<Money>,
-    ///The name of the item.
+    /// The name of the item.
     #[serde(rename = "Title", skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
 }
-///A list of shipment items.
+/// A list of shipment items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ShipmentItems(pub ::std::vec::Vec<ShipmentItem>);
@@ -628,38 +628,38 @@ impl ::std::convert::From<::std::vec::Vec<ShipmentItem>> for ShipmentItems {
         Self(value)
     }
 }
-///The request schema for the submitInvoice operation.
+/// The request schema for the submitInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SubmitInvoiceRequest {
-    ///MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
+    /// MD5 sum for validating the invoice data. For more information about calculating this value, see [Working with Content-MD5 Checksums](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_MD5.html).
     #[serde(rename = "ContentMD5Value")]
     pub content_md5_value: ::std::string::String,
     #[serde(rename = "InvoiceContent")]
     pub invoice_content: Blob,
-    ///An Amazon marketplace identifier.
+    /// An Amazon marketplace identifier.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
 }
-///The response schema for the submitInvoice operation.
+/// The response schema for the submitInvoice operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoiceResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The tax classification for the entity.
+/// The tax classification for the entity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxClassification {
-    ///The type of tax.
+    /// The type of tax.
     #[serde(rename = "Name", skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///The entity's tax identifier.
+    /// The entity's tax identifier.
     #[serde(rename = "Value", skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::std::string::String>,
 }
-///The list of tax classifications.
+/// The list of tax classifications.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TaxClassificationList(pub ::std::vec::Vec<TaxClassification>);

@@ -4,17 +4,17 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_browse_node_return_topics`].
+/// The parameters of [`get_browse_node_return_topics`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBrowseNodeReturnTopicsParams {
-    ///A browse node ID is a unique identifier for a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
+    /// A browse node ID is a unique identifier for a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
     pub browse_node_id: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
 }
 impl GetBrowseNodeReturnTopicsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(browse_node_id: String, marketplace_id: String) -> Self {
         Self {
             browse_node_id,
@@ -22,25 +22,25 @@ impl GetBrowseNodeReturnTopicsParams {
         }
     }
 }
-///The response of [`get_browse_node_return_topics`]. Nothing is parsed until asked.
+/// The response of [`get_browse_node_return_topics`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetBrowseNodeReturnTopicsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetBrowseNodeReturnTopicsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::BrowseNodeReturnTopicsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve the topics that customers mention when they return items in a browse node.
+/// Retrieve the topics that customers mention when they return items in a browse node.
 pub async fn get_browse_node_return_topics(
     client: &Client,
     params: GetBrowseNodeReturnTopicsParams,
@@ -68,17 +68,17 @@ pub async fn get_browse_node_return_topics(
         raw,
     })
 }
-///The parameters of [`get_browse_node_return_trends`].
+/// The parameters of [`get_browse_node_return_trends`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBrowseNodeReturnTrendsParams {
-    ///A browse node ID is a unique identifier of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
+    /// A browse node ID is a unique identifier of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
     pub browse_node_id: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
 }
 impl GetBrowseNodeReturnTrendsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(browse_node_id: String, marketplace_id: String) -> Self {
         Self {
             browse_node_id,
@@ -86,25 +86,25 @@ impl GetBrowseNodeReturnTrendsParams {
         }
     }
 }
-///The response of [`get_browse_node_return_trends`]. Nothing is parsed until asked.
+/// The response of [`get_browse_node_return_trends`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetBrowseNodeReturnTrendsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetBrowseNodeReturnTrendsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::BrowseNodeReturnTrendsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve the trends of topics that customers mention when they return items in a browse node.
+/// Retrieve the trends of topics that customers mention when they return items in a browse node.
 pub async fn get_browse_node_return_trends(
     client: &Client,
     params: GetBrowseNodeReturnTrendsParams,
@@ -132,21 +132,21 @@ pub async fn get_browse_node_return_trends(
         raw,
     })
 }
-///The parameters of [`get_browse_node_review_topics`].
+/// The parameters of [`get_browse_node_review_topics`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBrowseNodeReviewTopicsParams {
-    ///The ID of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
+    /// The ID of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
     pub browse_node_id: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
-    ///The metric by which to sort the data in the response.
+    /// The metric by which to sort the data in the response.
     ///
-    ///Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
+    /// Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
     pub sort_by: String,
 }
 impl GetBrowseNodeReviewTopicsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(browse_node_id: String, marketplace_id: String, sort_by: String) -> Self {
         Self {
             browse_node_id,
@@ -155,25 +155,25 @@ impl GetBrowseNodeReviewTopicsParams {
         }
     }
 }
-///The response of [`get_browse_node_review_topics`]. Nothing is parsed until asked.
+/// The response of [`get_browse_node_review_topics`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetBrowseNodeReviewTopicsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetBrowseNodeReviewTopicsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::BrowseNodeReviewTopicsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve a browse node's ten most positive and ten most negative review topics.
+/// Retrieve a browse node's ten most positive and ten most negative review topics.
 pub async fn get_browse_node_review_topics(
     client: &Client,
     params: GetBrowseNodeReviewTopicsParams,
@@ -202,17 +202,17 @@ pub async fn get_browse_node_review_topics(
         raw,
     })
 }
-///The parameters of [`get_browse_node_review_trends`].
+/// The parameters of [`get_browse_node_review_trends`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetBrowseNodeReviewTrendsParams {
-    ///A browse node ID is a unique identifier of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
+    /// A browse node ID is a unique identifier of a browse node. A browse node is a named location in a browse tree that is used for navigation, product classification, and website content.
     pub browse_node_id: String,
-    ///The marketplace ID is the globally unique identifier of a marketplace. For more information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The marketplace ID is the globally unique identifier of a marketplace. For more information, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl GetBrowseNodeReviewTrendsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(browse_node_id: String, marketplace_id: String) -> Self {
         Self {
             browse_node_id,
@@ -220,25 +220,25 @@ impl GetBrowseNodeReviewTrendsParams {
         }
     }
 }
-///The response of [`get_browse_node_review_trends`]. Nothing is parsed until asked.
+/// The response of [`get_browse_node_review_trends`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetBrowseNodeReviewTrendsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetBrowseNodeReviewTrendsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::BrowseNodeReviewTrendsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve the positive and negative review trends of items in a browse node for the past six months.
+/// Retrieve the positive and negative review trends of items in a browse node for the past six months.
 pub async fn get_browse_node_review_trends(
     client: &Client,
     params: GetBrowseNodeReviewTrendsParams,
@@ -266,38 +266,38 @@ pub async fn get_browse_node_review_trends(
         raw,
     })
 }
-///The parameters of [`get_item_browse_node`].
+/// The parameters of [`get_item_browse_node`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemBrowseNodeParams {
-    ///The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
+    /// The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace.
     pub asin: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
 }
 impl GetItemBrowseNodeParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(asin: String, marketplace_id: String) -> Self {
         Self { asin, marketplace_id }
     }
 }
-///The response of [`get_item_browse_node`]. Nothing is parsed until asked.
+/// The response of [`get_item_browse_node`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetItemBrowseNodeResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetItemBrowseNodeResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(&self) -> Result<super::models::BrowseNodeResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree that is used for navigation, product classification, and website content on the Amazon retail website.
+/// This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree that is used for navigation, product classification, and website content on the Amazon retail website.
 pub async fn get_item_browse_node(
     client: &Client,
     params: GetItemBrowseNodeParams,
@@ -323,21 +323,21 @@ pub async fn get_item_browse_node(
         .await?;
     Ok(GetItemBrowseNodeResponse { raw })
 }
-///The parameters of [`get_item_review_topics`].
+/// The parameters of [`get_item_review_topics`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemReviewTopicsParams {
-    ///The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace. The value must be a child ASIN.
+    /// The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace. The value must be a child ASIN.
     pub asin: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
-    ///The metric by which to sort data in the response.
+    /// The metric by which to sort data in the response.
     ///
-    ///Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
+    /// Known values: `MENTIONS`, `STAR_RATING_IMPACT`.
     pub sort_by: String,
 }
 impl GetItemReviewTopicsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(asin: String, marketplace_id: String, sort_by: String) -> Self {
         Self {
             asin,
@@ -346,25 +346,25 @@ impl GetItemReviewTopicsParams {
         }
     }
 }
-///The response of [`get_item_review_topics`]. Nothing is parsed until asked.
+/// The response of [`get_item_review_topics`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetItemReviewTopicsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetItemReviewTopicsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::ItemReviewTopicsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve an item's ten most positive and ten most negative review topics.
+/// Retrieve an item's ten most positive and ten most negative review topics.
 pub async fn get_item_review_topics(
     client: &Client,
     params: GetItemReviewTopicsParams,
@@ -391,40 +391,40 @@ pub async fn get_item_review_topics(
         .await?;
     Ok(GetItemReviewTopicsResponse { raw })
 }
-///The parameters of [`get_item_review_trends`].
+/// The parameters of [`get_item_review_trends`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemReviewTrendsParams {
-    ///The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace. This API takes child ASIN as an input.
+    /// The Amazon Standard Identification Number (ASIN) is the unique identifier of a product within a marketplace. This API takes child ASIN as an input.
     pub asin: String,
-    ///The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
+    /// The MarketplaceId is the globally unique identifier of a marketplace, you can refer to the marketplaceId here : https://developer-docs.amazon.com/sp-api/docs/marketplace-ids.
     pub marketplace_id: String,
 }
 impl GetItemReviewTrendsParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(asin: String, marketplace_id: String) -> Self {
         Self { asin, marketplace_id }
     }
 }
-///The response of [`get_item_review_trends`]. Nothing is parsed until asked.
+/// The response of [`get_item_review_trends`]. Nothing is parsed until asked.
 #[derive(Debug)]
 pub struct GetItemReviewTrendsResponse {
-    ///The response as it arrived, whatever its status.
+    /// The response as it arrived, whatever its status.
     pub raw: Response,
 }
 impl GetItemReviewTrendsResponse {
-    ///The response as it arrived.
+    /// The response as it arrived.
     pub fn into_raw(self) -> Response {
         self.raw
     }
-    ///Parses the body into the model of a 200 response.
+    /// Parses the body into the model of a 200 response.
     pub fn json_200(
         &self,
     ) -> Result<super::models::ItemReviewTrendsResponse, DecodeError> {
         crate::operation::decode_status(&self.raw, 200)
     }
 }
-///Retrieve an item's positive and negative review trends for the past six months.
+/// Retrieve an item's positive and negative review trends for the past six months.
 pub async fn get_item_review_trends(
     client: &Client,
     params: GetItemReviewTrendsParams,

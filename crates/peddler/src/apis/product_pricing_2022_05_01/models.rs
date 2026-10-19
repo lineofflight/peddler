@@ -2,16 +2,16 @@
 // Source: product-pricing-api-model/productPricing_2022-05-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
+/// Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AmountThreshold {
-    ///Minimum spend amount customers must meet.
+    /// Minimum spend amount customers must meet.
     pub currency: MoneyType,
-    ///Indicates how the amount requirement is evaluated. For spend-based conditions, the supported value is AT_LEAST, meaning the customer must spend at least the specified dollar amount to qualify.
+    /// Indicates how the amount requirement is evaluated. For spend-based conditions, the supported value is AT_LEAST, meaning the customer must spend at least the specified dollar amount to qualify.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///The ASIN of the item.
+/// The ASIN of the item.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -52,39 +52,39 @@ impl ::std::str::FromStr for Asin {
         Ok(Self(value.to_string()))
     }
 }
-///The common properties for individual requests within a batch.
+/// The common properties for individual requests within a batch.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BatchRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub body: ::std::option::Option<HttpBody>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub headers: ::std::option::Option<HttpHeaders>,
-    ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
+    /// Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    ///The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
+    /// The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
     pub uri: ::std::string::String,
 }
-///The common properties for responses to individual requests within a batch.
+/// The common properties for responses to individual requests within a batch.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BatchResponse {
     pub headers: HttpHeaders,
     pub status: HttpStatusLine,
 }
-///The `competitiveSummary` batch request data.
+/// The `competitiveSummary` batch request data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CompetitiveSummaryBatchRequest {
-    ///A batched list of `competitiveSummary` requests.
+    /// A batched list of `competitiveSummary` requests.
     pub requests: CompetitiveSummaryRequestList,
 }
-///The response schema for the `competitiveSummaryBatch` operation.
+/// The response schema for the `competitiveSummaryBatch` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CompetitiveSummaryBatchResponse {
-    ///The response list for the `competitiveSummaryBatch` operation.
+    /// The response list for the `competitiveSummaryBatch` operation.
     pub responses: CompetitiveSummaryResponseList,
 }
-///The supported data types in the `getCompetitiveSummary` API.
+/// The supported data types in the `getCompetitiveSummary` API.
 ///
-///Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
+/// Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -125,17 +125,17 @@ impl ::std::str::FromStr for CompetitiveSummaryIncludedData {
         Ok(Self(value.to_string()))
     }
 }
-///An individual `competitiveSummary` request for an ASIN and `marketplaceId`.
+/// An individual `competitiveSummary` request for an ASIN and `marketplaceId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CompetitiveSummaryRequest {
-    ///The Amazon Standard Identification Number for the item.
+    /// The Amazon Standard Identification Number for the item.
     pub asin: Asin,
-    ///The list of requested competitive pricing data for the product.
+    /// The list of requested competitive pricing data for the product.
     ///
-    ///Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
+    /// Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
     #[serde(rename = "includedData")]
     pub included_data: ::std::vec::Vec<CompetitiveSummaryIncludedData>,
-    ///The list of `lowestPricedOffersInput` parameters that are used to build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is requested in `includedData`
+    /// The list of `lowestPricedOffersInput` parameters that are used to build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is requested in `includedData`
     #[serde(
         rename = "lowestPricedOffersInputs",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -143,17 +143,17 @@ pub struct CompetitiveSummaryRequest {
     pub lowest_priced_offers_inputs: ::std::option::Option<
         ::std::vec::Vec<LowestPricedOffersInput>,
     >,
-    ///An Amazon store identifier.
+    /// An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///HTTP method type
+    /// HTTP method type
     ///
-    ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
+    /// Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    ///The URI associated with the individual APIs that are called as part of the batch request. For `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
+    /// The URI associated with the individual APIs that are called as part of the batch request. For `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
     pub uri: HttpUri,
 }
-///A batched list of `competitiveSummary` requests.
+/// A batched list of `competitiveSummary` requests.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct CompetitiveSummaryRequestList(pub ::std::vec::Vec<CompetitiveSummaryRequest>);
@@ -175,23 +175,23 @@ for CompetitiveSummaryRequestList {
         Self(value)
     }
 }
-///The response for the individual `competitiveSummary` request in the batch operation.
+/// The response for the individual `competitiveSummary` request in the batch operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CompetitiveSummaryResponse {
-    ///The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
+    /// The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
     pub body: CompetitiveSummaryResponseBody,
-    ///The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+    /// The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
     pub status: HttpStatusLine,
 }
-///The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
+/// The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CompetitiveSummaryResponseBody {
-    ///The Amazon identifier for the item.
+    /// The Amazon identifier for the item.
     pub asin: Asin,
-    ///A list of errors
+    /// A list of errors
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///A list of featured buying options for the specified ASIN `marketplaceId` combination.
+    /// A list of featured buying options for the specified ASIN `marketplaceId` combination.
     #[serde(
         rename = "featuredBuyingOptions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -199,29 +199,29 @@ pub struct CompetitiveSummaryResponseBody {
     pub featured_buying_options: ::std::option::Option<
         ::std::vec::Vec<FeaturedBuyingOption>,
     >,
-    ///A list of lowest priced offers for the specified ASIN `marketplaceId` combination.
+    /// A list of lowest priced offers for the specified ASIN `marketplaceId` combination.
     #[serde(
         rename = "lowestPricedOffers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub lowest_priced_offers: ::std::option::Option<::std::vec::Vec<LowestPricedOffer>>,
-    ///An Amazon store identifier.
+    /// An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///A list of reference prices for the specified ASIN `marketplaceId` combination.
+    /// A list of reference prices for the specified ASIN `marketplaceId` combination.
     #[serde(
         rename = "referencePrices",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reference_prices: ::std::option::Option<::std::vec::Vec<ReferencePrice>>,
-    ///A list of similar items for the specified ASIN `marketplaceId` combination.
+    /// A list of similar items for the specified ASIN `marketplaceId` combination.
     #[serde(
         rename = "similarItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub similar_items: ::std::option::Option<::std::vec::Vec<SimilarItems>>,
 }
-///The response list for the `competitiveSummaryBatch` operation.
+/// The response list for the `competitiveSummaryBatch` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct CompetitiveSummaryResponseList(
@@ -245,9 +245,9 @@ for CompetitiveSummaryResponseList {
         Self(value)
     }
 }
-///The condition of the item.
+/// The condition of the item.
 ///
-///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
+/// Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -288,7 +288,7 @@ impl ::std::str::FromStr for Condition {
         Ok(Self(value.to_string()))
     }
 }
-///Method used to calculate the discount amount. Supported values: PERCENTAGE_OFF (discount applied as a percentage off the original price), AMOUNT_OFF (discount applied as a fixed amount off the original price).
+/// Method used to calculate the discount amount. Supported values: PERCENTAGE_OFF (discount applied as a percentage off the original price), AMOUNT_OFF (discount applied as a fixed amount off the original price).
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -329,18 +329,18 @@ impl ::std::str::FromStr for DiscountType {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses that are returned when a request is unsuccessful.
+/// A list of error responses that are returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -360,50 +360,50 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Errors {
-    ///One or more unexpected errors occurred during the operation.
+    /// One or more unexpected errors occurred during the operation.
     pub errors: ErrorList,
 }
-///Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.
+/// Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedBuyingOption {
-    ///The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
+    /// The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
     ///
-    ///Known values: `New`. Other values may be returned by Amazon.
+    /// Known values: `New`. Other values may be returned by Amazon.
     #[serde(rename = "buyingOptionType")]
     pub buying_option_type: ::std::string::String,
-    ///A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.
+    /// A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.
     #[serde(rename = "segmentedFeaturedOffers")]
     pub segmented_featured_offers: ::std::vec::Vec<SegmentedFeaturedOffer>,
 }
-///Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
+/// Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOffer {
-    ///The item condition.
+    /// The item condition.
     ///
-    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<Condition>,
-    ///An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.
+    /// An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.
     #[serde(rename = "offerIdentifier")]
     pub offer_identifier: OfferIdentifier,
-    ///The current active price of the offer.
+    /// The current active price of the offer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub price: ::std::option::Option<Price>,
 }
-///The item price at or below which the target offer may be featured.
+/// The item price at or below which the target offer may be featured.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferExpectedPrice {
-    ///A computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions).
+    /// A computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions).
     #[serde(rename = "listingPrice")]
     pub listing_price: MoneyType,
-    ///The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+    /// The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
 }
-///An individual FOEP request for a particular SKU.
+/// An individual FOEP request for a particular SKU.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferExpectedPriceRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -412,15 +412,15 @@ pub struct FeaturedOfferExpectedPriceRequest {
     pub headers: ::std::option::Option<HttpHeaders>,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
+    /// Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub segment: ::std::option::Option<Segment>,
     pub sku: Sku,
-    ///The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
+    /// The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.
     pub uri: ::std::string::String,
 }
-///A batched list of FOEP requests.
+/// A batched list of FOEP requests.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeaturedOfferExpectedPriceRequestList(
@@ -444,7 +444,7 @@ for FeaturedOfferExpectedPriceRequestList {
         Self(value)
     }
 }
-///The parameters for an individual request.
+/// The parameters for an individual request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferExpectedPriceRequestParams {
     #[serde(rename = "marketplaceId")]
@@ -453,23 +453,23 @@ pub struct FeaturedOfferExpectedPriceRequestParams {
     pub segment: ::std::option::Option<Segment>,
     pub sku: Sku,
 }
-///Schema for an individual FOEP response.
+/// Schema for an individual FOEP response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferExpectedPriceResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub body: ::std::option::Option<FeaturedOfferExpectedPriceResponseBody>,
     pub headers: HttpHeaders,
-    ///Use these request parameters to map the response back to the request.
+    /// Use these request parameters to map the response back to the request.
     pub request: FeaturedOfferExpectedPriceRequestParams,
     pub status: HttpStatusLine,
 }
-///The FOEP response data for a requested SKU.
+/// The FOEP response data for a requested SKU.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeaturedOfferExpectedPriceResponseBody {
-    ///The errors that occurred if the operation wasn't successful (HTTP status code non-200).
+    /// The errors that occurred if the operation wasn't successful (HTTP status code non-200).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The FOEP results for the requested target offer.
+    /// The FOEP results for the requested target offer.
     #[serde(
         rename = "featuredOfferExpectedPriceResults",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -477,14 +477,14 @@ pub struct FeaturedOfferExpectedPriceResponseBody {
     pub featured_offer_expected_price_results: ::std::option::Option<
         FeaturedOfferExpectedPriceResultList,
     >,
-    ///Metadata that identifies the target offer for which the FOEP result data was computed.
+    /// Metadata that identifies the target offer for which the FOEP result data was computed.
     #[serde(
         rename = "offerIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub offer_identifier: ::std::option::Option<OfferIdentifier>,
 }
-///A batched list of FOEP responses.
+/// A batched list of FOEP responses.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeaturedOfferExpectedPriceResponseList(
@@ -508,16 +508,16 @@ for FeaturedOfferExpectedPriceResponseList {
         Self(value)
     }
 }
-///The FOEP result data for the requested offer.
+/// The FOEP result data for the requested offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferExpectedPriceResult {
-    ///The offer that will likely be the featured offer if the target offer is priced above its FOEP. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`.
+    /// The offer that will likely be the featured offer if the target offer is priced above its FOEP. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`.
     #[serde(
         rename = "competingFeaturedOffer",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub competing_featured_offer: ::std::option::Option<FeaturedOffer>,
-    ///The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`.
+    /// The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`.
     #[serde(
         rename = "currentFeaturedOffer",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -528,11 +528,11 @@ pub struct FeaturedOfferExpectedPriceResult {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub featured_offer_expected_price: ::std::option::Option<FeaturedOfferExpectedPrice>,
-    ///The status of the FOEP computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values might be added in the future.
+    /// The status of the FOEP computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values might be added in the future.
     #[serde(rename = "resultStatus")]
     pub result_status: ::std::string::String,
 }
-///A list of FOEP results for the requested offer.
+/// A list of FOEP results for the requested offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeaturedOfferExpectedPriceResultList(
@@ -556,21 +556,21 @@ for FeaturedOfferExpectedPriceResultList {
         Self(value)
     }
 }
-///Describes the segment in which the offer is featured.
+/// Describes the segment in which the offer is featured.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferSegment {
-    ///The customer membership type that makes up this segment
+    /// The customer membership type that makes up this segment
     ///
-    ///Known values: `PRIME`, `NON_PRIME`, `DEFAULT`. Other values may be returned by Amazon.
+    /// Known values: `PRIME`, `NON_PRIME`, `DEFAULT`. Other values may be returned by Amazon.
     #[serde(rename = "customerMembership")]
     pub customer_membership: ::std::string::String,
-    ///The details about the segment.
+    /// The details about the segment.
     #[serde(rename = "segmentDetails")]
     pub segment_details: SegmentDetails,
 }
-///Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+/// Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
 ///
-///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
+/// Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -611,19 +611,19 @@ impl ::std::str::FromStr for FulfillmentType {
         Ok(Self(value.to_string()))
     }
 }
-///The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
+/// The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetFeaturedOfferExpectedPriceBatchRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requests: ::std::option::Option<FeaturedOfferExpectedPriceRequestList>,
 }
-///The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
+/// The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetFeaturedOfferExpectedPriceBatchResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub responses: ::std::option::Option<FeaturedOfferExpectedPriceResponseList>,
 }
-///Additional HTTP body information that is associated with an individual request within a batch.
+/// Additional HTTP body information that is associated with an individual request within a batch.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct HttpBody(pub ::serde_json::Map<::std::string::String, ::serde_json::Value>);
@@ -647,7 +647,7 @@ for HttpBody {
         Self(value)
     }
 }
-///A mapping of additional HTTP headers to send or receive for an individual request within a batch.
+/// A mapping of additional HTTP headers to send or receive for an individual request within a batch.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct HttpHeaders(
@@ -679,9 +679,9 @@ impl ::std::convert::From<
         Self(value)
     }
 }
-///The HTTP method associated with an individual request within a batch.
+/// The HTTP method associated with an individual request within a batch.
 ///
-///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
+/// Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -722,23 +722,23 @@ impl ::std::str::FromStr for HttpMethod {
         Ok(Self(value.to_string()))
     }
 }
-///The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+/// The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct HttpStatusLine {
-    ///The HTTP response reason phrase.
+    /// The HTTP response reason phrase.
     #[serde(
         rename = "reasonPhrase",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_phrase: ::std::option::Option<::std::string::String>,
-    ///The HTTP response status code.
+    /// The HTTP response status code.
     #[serde(
         rename = "statusCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub status_code: ::std::option::Option<i64>,
 }
-///The URI associated with the individual APIs that are called as part of the batch request.
+/// The URI associated with the individual APIs that are called as part of the batch request.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct HttpUri(::std::string::String);
@@ -795,34 +795,34 @@ impl<'de> ::serde::Deserialize<'de> for HttpUri {
             })
     }
 }
-///A similar item for the specified ASIN `marketplaceId` combination.
+/// A similar item for the specified ASIN `marketplaceId` combination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Item {
-    ///The Amazon identifier for the item.
+    /// The Amazon identifier for the item.
     pub asin: Asin,
 }
-///Describes the lowest priced offers for the specified item condition and offer type.
+/// Describes the lowest priced offers for the specified item condition and offer type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LowestPricedOffer {
-    ///The filtering criteria that are used to retrieve the lowest priced offers that correspond to the `lowestPricedOffersInputs` request.
+    /// The filtering criteria that are used to retrieve the lowest priced offers that correspond to the `lowestPricedOffersInputs` request.
     #[serde(rename = "lowestPricedOffersInput")]
     pub lowest_priced_offers_input: LowestPricedOffersInput,
-    ///A list of up to 20 lowest priced offers that match the criteria specified in `lowestPricedOffersInput`.
+    /// A list of up to 20 lowest priced offers that match the criteria specified in `lowestPricedOffersInput`.
     pub offers: ::std::vec::Vec<Offer>,
 }
-///The input required for building `LowestPricedOffers` data in the response.
+/// The input required for building `LowestPricedOffers` data in the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LowestPricedOffersInput {
-    ///The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`. `New` is the default value for `itemCondition`.
+    /// The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`. `New` is the default value for `itemCondition`.
     ///
-    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(rename = "itemCondition")]
     pub item_condition: Condition,
-    ///The input parameter specifies the type of offers requested for `LowestPricedOffers`. This applies to `Consumer` and `Business` offers. `Consumer` is the default `offerType`.
+    /// The input parameter specifies the type of offers requested for `LowestPricedOffers`. This applies to `Consumer` and `Business` offers. `Consumer` is the default `offerType`.
     #[serde(rename = "offerType")]
     pub offer_type: ::std::string::String,
 }
-///The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+/// The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -863,191 +863,191 @@ impl ::std::str::FromStr for MarketplaceId {
         Ok(Self(value.to_string()))
     }
 }
-///Currency type and monetary value schema to demonstrate pricing information.
+/// Currency type and monetary value schema to demonstrate pricing information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MoneyType {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///The offer data of a product.
+/// The offer data of a product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Offer {
-    ///Item Condition.
+    /// Item Condition.
     ///
-    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     pub condition: Condition,
-    ///The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network).
+    /// The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network).
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
-    ///The offer buying price. This doesn't include shipping, points, or applicable promotions.
+    /// The offer buying price. This doesn't include shipping, points, or applicable promotions.
     #[serde(rename = "listingPrice")]
     pub listing_price: MoneyType,
-    ///The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points. Note that the Points element is only returned in Japan (JP).
+    /// The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points. Note that the Points element is only returned in Japan (JP).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    ///Amazon Prime details.
+    /// Amazon Prime details.
     #[serde(
         rename = "primeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prime_details: ::std::option::Option<PrimeDetails>,
-    ///A list of live promotions with this offer
+    /// A list of live promotions with this offer
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promotions: ::std::option::Option<Promotions>,
-    ///The seller identifier for the offer.
+    /// The seller identifier for the offer.
     #[serde(rename = "sellerId")]
     pub seller_id: ::std::string::String,
-    ///A list of shipping options associated with this offer
+    /// A list of shipping options associated with this offer
     #[serde(
         rename = "shippingOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_options: ::std::option::Option<::std::vec::Vec<ShippingOption>>,
-    ///The item subcondition of the offer.
+    /// The item subcondition of the offer.
     ///
-    ///Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "subCondition",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sub_condition: ::std::option::Option<::std::string::String>,
 }
-///Identifies an offer from a particular seller for a specified ASIN.
+/// Identifies an offer from a particular seller for a specified ASIN.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferIdentifier {
-    ///The Amazon identifier for the item.
+    /// The Amazon identifier for the item.
     pub asin: Asin,
-    ///The fulfillment type for the offer.
+    /// The fulfillment type for the offer.
     ///
-    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
+    /// Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_type: ::std::option::Option<FulfillmentType>,
-    ///An Amazon store identifier.
+    /// An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    ///The seller identifier for the offer.
+    /// The seller identifier for the offer.
     #[serde(rename = "sellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
-    ///The seller SKU of the item. This will only be present for the target offer, which belongs to the requesting seller.
+    /// The seller SKU of the item. This will only be present for the target offer, which belongs to the requesting seller.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
 }
-///The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+/// The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Points {
-    ///The monetary value of the Amazon Points.
+    /// The monetary value of the Amazon Points.
     #[serde(
         rename = "pointsMonetaryValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub points_monetary_value: ::std::option::Option<MoneyType>,
-    ///The number of Amazon Points.
+    /// The number of Amazon Points.
     #[serde(
         rename = "pointsNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub points_number: ::std::option::Option<i32>,
 }
-///Postal code value with country code
+/// Postal code value with country code
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PostalCode {
-    ///Country code value
+    /// Country code value
     #[serde(
         rename = "countryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub country_code: ::std::option::Option<::std::string::String>,
-    ///Postal code value
+    /// Postal code value
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::std::string::String>,
 }
-///The schema for item's price information, including listing price, shipping price, and Amazon Points.
+/// The schema for item's price information, including listing price, shipping price, and Amazon Points.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Price {
-    ///The listing price for the item, excluding any promotions.
+    /// The listing price for the item, excluding any promotions.
     #[serde(rename = "listingPrice")]
     pub listing_price: MoneyType,
-    ///The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+    /// The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    ///The shipping cost of the product. Note that the shipping cost is not always available.
+    /// The shipping cost of the product. Note that the shipping cost is not always available.
     #[serde(
         rename = "shippingPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_price: ::std::option::Option<MoneyType>,
 }
-///Amazon Prime details.
+/// Amazon Prime details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PrimeDetails {
-    ///Indicates whether the offer is an Amazon Prime offer.
+    /// Indicates whether the offer is an Amazon Prime offer.
     ///
-    ///Known values: `NATIONAL`, `REGIONAL`, `NONE`. Other values may be returned by Amazon.
+    /// Known values: `NATIONAL`, `REGIONAL`, `NONE`. Other values may be returned by Amazon.
     pub eligibility: ::std::string::String,
 }
-///A promotion applicable to the offer.
+/// A promotion applicable to the offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Promotion {
-    ///The savings applied by the promotion, including discount amount, percentage off, and discounted price.
+    /// The savings applied by the promotion, including discount amount, percentage off, and discounted price.
     #[serde(rename = "promotionSavings")]
     pub promotion_savings: PromotionSavings,
-    ///The type of promotion, categorized by the customer-facing experience.
+    /// The type of promotion, categorized by the customer-facing experience.
     #[serde(rename = "promotionType")]
     pub promotion_type: PromotionType,
-    ///Purchase requirements for BASKET_BUILDING promotions. Defines what customers must buy to qualify.
+    /// Purchase requirements for BASKET_BUILDING promotions. Defines what customers must buy to qualify.
     #[serde(
         rename = "purchaseRequirements",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_requirements: ::std::option::Option<PurchaseRequirements>,
 }
-///Discount details applied by the promotion.
+/// Discount details applied by the promotion.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PromotionDiscount {
-    ///The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
+    /// The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
     #[serde(
         rename = "amountOff",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_off: ::std::option::Option<MoneyType>,
-    ///The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.
+    /// The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.
     #[serde(
         rename = "percentOff",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub percent_off: ::std::option::Option<::serde_json::Number>,
-    ///The type of discount off, categorized by the customer-facing experience.
+    /// The type of discount off, categorized by the customer-facing experience.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<DiscountType>,
 }
-///Details about the savings applied by the promotion.
+/// Details about the savings applied by the promotion.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PromotionSavings {
-    ///The discount applied by the promotion.
+    /// The discount applied by the promotion.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub discount: ::std::option::Option<PromotionDiscount>,
-    ///The final price after the promotion is applied.
+    /// The final price after the promotion is applied.
     #[serde(
         rename = "discountedPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub discounted_price: ::std::option::Option<MoneyType>,
 }
-///Indicates the type of promotion based on the customer-facing experience. Possible values include:
+/// Indicates the type of promotion based on the customer-facing experience. Possible values include:
 ///
-///- COUPON: The offer has a live coupon that customers can clip and apply at checkout.
-///- DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.
-///- BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category
+/// - COUPON: The offer has a live coupon that customers can clip and apply at checkout.
+/// - DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.
+/// - BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1088,7 +1088,7 @@ impl ::std::str::FromStr for PromotionType {
         Ok(Self(value.to_string()))
     }
 }
-///A list of live promotions applicable to this offer.
+/// A list of live promotions applicable to this offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Promotions(pub ::std::vec::Vec<Promotion>);
@@ -1108,50 +1108,50 @@ impl ::std::convert::From<::std::vec::Vec<Promotion>> for Promotions {
         Self(value)
     }
 }
-///Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of quantityThreshold or amountThreshold must be specified.
+/// Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of quantityThreshold or amountThreshold must be specified.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PurchaseCondition {
-    ///Amount-based purchase conditions for basket building promotions. Customers must purchase a minimum amount for the promotion to apply
+    /// Amount-based purchase conditions for basket building promotions. Customers must purchase a minimum amount for the promotion to apply
     #[serde(
         rename = "amountThreshold",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_threshold: ::std::option::Option<AmountThreshold>,
-    ///Quantity-based purchase conditions for basket building promotions. Customer must purchase at least the specified quantity of items
+    /// Quantity-based purchase conditions for basket building promotions. Customer must purchase at least the specified quantity of items
     #[serde(
         rename = "quantityThreshold",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_threshold: ::std::option::Option<QuantityThreshold>,
 }
-///Purchase requirements that customers must meet to qualify for basket building promotions. Contains the purchase condition (how much to buy). Represents the 'Buy X' portion of Buy X Get Y promotions.
+/// Purchase requirements that customers must meet to qualify for basket building promotions. Contains the purchase condition (how much to buy). Represents the 'Buy X' portion of Buy X Get Y promotions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PurchaseRequirements {
-    ///Minimum purchase requirement specifying either quantity of items or total spend amount that customers must meet to qualify.
+    /// Minimum purchase requirement specifying either quantity of items or total spend amount that customers must meet to qualify.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<PurchaseCondition>,
 }
-///Quantity-based purchase conditions for basket building promotions.
+/// Quantity-based purchase conditions for basket building promotions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct QuantityThreshold {
-    ///Number of items required to meet this purchase condition.
+    /// Number of items required to meet this purchase condition.
     pub quantity: ::std::num::NonZeroU64,
-    ///Indicates how the quantity requirement is evaluated. Possible values include:
+    /// Indicates how the quantity requirement is evaluated. Possible values include:
     ///
-    ///- AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
-    ///- FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).
+    /// - AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
+    /// - FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///The reference price for the specified ASIN `marketplaceId` combination.
+/// The reference price for the specified ASIN `marketplaceId` combination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReferencePrice {
-    ///Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For definitions, refer to the [Product Pricing API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api).
+    /// Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For definitions, refer to the [Product Pricing API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api).
     pub name: ::std::string::String,
-    ///The reference price for the ASIN `marketplaceId` combination.
+    /// The reference price for the ASIN `marketplaceId` combination.
     pub price: MoneyType,
 }
-///Information about a location. It uses a postal code to identify the location.
+/// Information about a location. It uses a postal code to identify the location.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SampleLocation {
     #[serde(
@@ -1160,97 +1160,97 @@ pub struct SampleLocation {
     )]
     pub postal_code: ::std::option::Option<PostalCode>,
 }
-///Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.
+/// Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Segment {
-    ///Segment details
+    /// Segment details
     #[serde(
         rename = "segmentDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub segment_details: ::std::option::Option<SegmentDetails>,
 }
-///The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.
+/// The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SegmentDetails {
-    ///The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.
+    /// The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.
     #[serde(
         rename = "glanceViewWeightPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub glance_view_weight_percentage: ::std::option::Option<::serde_json::Number>,
-    ///The representative location that features the offer for the segment.
+    /// The representative location that features the offer for the segment.
     #[serde(
         rename = "sampleLocation",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sample_location: ::std::option::Option<SampleLocation>,
 }
-///A product offer with segment information indicating where it's featured.
+/// A product offer with segment information indicating where it's featured.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SegmentedFeaturedOffer {
-    ///Item Condition.
+    /// Item Condition.
     ///
-    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     pub condition: Condition,
-    ///The list of segment information in which the offer is featured.
+    /// The list of segment information in which the offer is featured.
     #[serde(rename = "featuredOfferSegments")]
     pub featured_offer_segments: ::std::vec::Vec<FeaturedOfferSegment>,
-    ///The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network).
+    /// The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network).
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
-    ///The offer buying price. This doesn't include shipping, points, or applicable promotions.
+    /// The offer buying price. This doesn't include shipping, points, or applicable promotions.
     #[serde(rename = "listingPrice")]
     pub listing_price: MoneyType,
-    ///The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points. Note that the Points element is only returned in Japan (JP).
+    /// The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points. Note that the Points element is only returned in Japan (JP).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    ///Amazon Prime details.
+    /// Amazon Prime details.
     #[serde(
         rename = "primeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prime_details: ::std::option::Option<PrimeDetails>,
-    ///A list of live promotions with this offer
+    /// A list of live promotions with this offer
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub promotions: ::std::option::Option<Promotions>,
-    ///The seller identifier for the offer.
+    /// The seller identifier for the offer.
     #[serde(rename = "sellerId")]
     pub seller_id: ::std::string::String,
-    ///A list of shipping options associated with this offer
+    /// A list of shipping options associated with this offer
     #[serde(
         rename = "shippingOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_options: ::std::option::Option<::std::vec::Vec<ShippingOption>>,
-    ///The item subcondition of the offer.
+    /// The item subcondition of the offer.
     ///
-    ///Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "subCondition",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sub_condition: ::std::option::Option<::std::string::String>,
 }
-///The shipping option available for the offer.
+/// The shipping option available for the offer.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingOption {
-    ///Shipping price for the offer.
+    /// Shipping price for the offer.
     pub price: MoneyType,
-    ///The type of shipping option.
+    /// The type of shipping option.
     ///
-    ///Known values: `DEFAULT`. Other values may be returned by Amazon.
+    /// Known values: `DEFAULT`. Other values may be returned by Amazon.
     #[serde(rename = "shippingOptionType")]
     pub shipping_option_type: ::std::string::String,
 }
-///The summary of similar items for the specified ASIN `marketplaceId` combination.
+/// The summary of similar items for the specified ASIN `marketplaceId` combination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SimilarItems {
-    ///A list of similar items for the specified ASIN `marketplaceId` combination.
+    /// A list of similar items for the specified ASIN `marketplaceId` combination.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub items: ::std::option::Option<::std::vec::Vec<Item>>,
 }
-///The seller SKU of the item.
+/// The seller SKU of the item.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

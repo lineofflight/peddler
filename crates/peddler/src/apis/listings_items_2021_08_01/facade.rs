@@ -4,21 +4,21 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`delete_listings_item`].
+/// The parameters of [`delete_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteListingsItemParams {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon store identifiers for the request.
+    /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
     pub issue_locale: Option<String>,
 }
 impl DeleteListingsItemParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(seller_id: String, sku: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             seller_id,
@@ -28,7 +28,7 @@ impl DeleteListingsItemParams {
         }
     }
 }
-///Delete a listings item for a selling partner.
+/// Delete a listings item for a selling partner.
 pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
@@ -60,26 +60,26 @@ pub async fn delete_listings_item(
 fn get_listings_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"summaries\"]").expect("validated schema default"))
 }
-///The parameters of [`get_listings_item`].
+/// The parameters of [`get_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetListingsItemParams {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon store identifiers for the request.
+    /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
     pub issue_locale: Option<String>,
-    ///A comma-delimited list of data sets to include in the response. Default: `summaries`.
+    /// A comma-delimited list of data sets to include in the response. Default: `summaries`.
     ///
-    ///Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
+    /// Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
     #[serde(default = "get_listings_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
 }
 impl GetListingsItemParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(seller_id: String, sku: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             seller_id,
@@ -90,7 +90,7 @@ impl GetListingsItemParams {
         }
     }
 }
-///Returns details about a listings item for a selling partner.
+/// Returns details about a listings item for a selling partner.
 pub async fn get_listings_item(
     client: &Client,
     params: GetListingsItemParams,
@@ -124,32 +124,32 @@ pub async fn get_listings_item(
 fn patch_listings_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"issues\"]").expect("validated schema default"))
 }
-///The parameters of [`patch_listings_item`].
+/// The parameters of [`patch_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PatchListingsItemParams<B = serde_json::Value> {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon store identifiers for the request.
+    /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of data sets to include in the response. Default: `issues`.
+    /// A comma-delimited list of data sets to include in the response. Default: `issues`.
     ///
-    ///Known values: `identifiers`, `issues`.
+    /// Known values: `identifiers`, `issues`.
     #[serde(default = "patch_listings_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///Describes the mode of operation for the request.
+    /// Describes the mode of operation for the request.
     ///
-    ///Known values: `VALIDATION_PREVIEW`.
+    /// Known values: `VALIDATION_PREVIEW`.
     pub mode: Option<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
     pub issue_locale: Option<String>,
-    ///The request body schema for the `patchListingsItem` operation.
+    /// The request body schema for the `patchListingsItem` operation.
     pub body: B,
 }
 impl<B> PatchListingsItemParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         seller_id: String,
         sku: String,
@@ -167,7 +167,7 @@ impl<B> PatchListingsItemParams<B> {
         }
     }
 }
-///Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+/// Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
 pub async fn patch_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PatchListingsItemParams<B>,
@@ -202,32 +202,32 @@ pub async fn patch_listings_item<B: serde::Serialize>(
 fn put_listings_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"issues\"]").expect("validated schema default"))
 }
-///The parameters of [`put_listings_item`].
+/// The parameters of [`put_listings_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PutListingsItemParams<B = serde_json::Value> {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: String,
-    ///A comma-delimited list of Amazon store identifiers for the request.
+    /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of data sets to include in the response. Default: `issues`.
+    /// A comma-delimited list of data sets to include in the response. Default: `issues`.
     ///
-    ///Known values: `identifiers`, `issues`.
+    /// Known values: `identifiers`, `issues`.
     #[serde(default = "put_listings_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///Describes the mode of operation for the request.
+    /// Describes the mode of operation for the request.
     ///
-    ///Known values: `VALIDATION_PREVIEW`.
+    /// Known values: `VALIDATION_PREVIEW`.
     pub mode: Option<String>,
-    ///A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
+    /// A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale.
     pub issue_locale: Option<String>,
-    ///The request body schema for the `putListingsItem` operation.
+    /// The request body schema for the `putListingsItem` operation.
     pub body: B,
 }
 impl<B> PutListingsItemParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         seller_id: String,
         sku: String,
@@ -245,7 +245,7 @@ impl<B> PutListingsItemParams<B> {
         }
     }
 }
-///Creates a new or fully-updates an existing listings item for a selling partner.
+/// Creates a new or fully-updates an existing listings item for a selling partner.
 pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,
@@ -289,80 +289,80 @@ fn search_listings_items_sort_order_default() -> Option<String> {
 fn search_listings_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`search_listings_items`] and [`search_listings_items_pages`].
+/// The parameters of [`search_listings_items`] and [`search_listings_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchListingsItemsParams {
-    ///A selling partner identifier, such as a merchant account or vendor code.
+    /// A selling partner identifier, such as a merchant account or vendor code.
     pub seller_id: String,
-    ///A comma-delimited list of Amazon store identifiers for the request.
+    /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
+    /// A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
     pub issue_locale: Option<String>,
-    ///A comma-delimited list of data sets that you want to include in the response. Default: `summaries`.
+    /// A comma-delimited list of data sets that you want to include in the response. Default: `summaries`.
     ///
-    ///Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
+    /// Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
     #[serde(default = "search_listings_items_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///A comma-delimited list of product identifiers that you can use to search for listings items.
+    /// A comma-delimited list of product identifiers that you can use to search for listings items.
     ///
-    ///**Note**:
-    ///1. This is required when you specify `identifiersType`.
-    ///2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
+    /// **Note**:
+    /// 1. This is required when you specify `identifiersType`.
+    /// 2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
     pub identifiers: Option<Vec<String>>,
-    ///A type of product identifiers that you can use to search for listings items.
+    /// A type of product identifiers that you can use to search for listings items.
     ///
-    ///**Note**:
-    ///This is required when `identifiers` is provided.
+    /// **Note**:
+    /// This is required when `identifiers` is provided.
     ///
-    ///Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
+    /// Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
     pub identifiers_type: Option<String>,
-    ///Filters results to include listing items that are variation children of the specified SKU.
+    /// Filters results to include listing items that are variation children of the specified SKU.
     ///
-    ///**Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request.
+    /// **Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request.
     pub variation_parent_sku: Option<String>,
-    ///Filter results to include listing items that contain or are contained by the specified SKU.
+    /// Filter results to include listing items that contain or are contained by the specified SKU.
     ///
-    ///**Note**: You cannot use `packageHierarchySku` if you include `identifiers` or `variationParentSku` in your request.
+    /// **Note**: You cannot use `packageHierarchySku` if you include `identifiers` or `variationParentSku` in your request.
     pub package_hierarchy_sku: Option<String>,
-    ///A date-time that is used to filter listing items. The response includes listings items that were created at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// A date-time that is used to filter listing items. The response includes listings items that were created at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_after: Option<String>,
-    ///A date-time that is used to filter listing items. The response includes listings items that were created at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// A date-time that is used to filter listing items. The response includes listings items that were created at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_before: Option<String>,
-    ///A date-time that is used to filter listing items. The response includes listings items that were last updated at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// A date-time that is used to filter listing items. The response includes listings items that were last updated at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub last_updated_after: Option<String>,
-    ///A date-time that is used to filter listing items. The response includes listings items that were last updated at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// A date-time that is used to filter listing items. The response includes listings items that were last updated at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub last_updated_before: Option<String>,
-    ///Filter results to include only listing items that have issues that match one or more of the specified severity levels.
+    /// Filter results to include only listing items that have issues that match one or more of the specified severity levels.
     ///
-    ///Known values: `WARNING`, `ERROR`.
+    /// Known values: `WARNING`, `ERROR`.
     pub with_issue_severity: Option<Vec<String>>,
-    ///Filter results to include only listing items that have the specified status.
+    /// Filter results to include only listing items that have the specified status.
     ///
-    ///Known values: `BUYABLE`, `DISCOVERABLE`.
+    /// Known values: `BUYABLE`, `DISCOVERABLE`.
     pub with_status: Option<Vec<String>>,
-    ///Filter results to include only listing items that don't contain the specified statuses.
+    /// Filter results to include only listing items that don't contain the specified statuses.
     ///
-    ///Known values: `BUYABLE`, `DISCOVERABLE`.
+    /// Known values: `BUYABLE`, `DISCOVERABLE`.
     pub without_status: Option<Vec<String>>,
-    ///An attribute by which to sort the returned listing items.
+    /// An attribute by which to sort the returned listing items.
     ///
-    ///Known values: `sku`, `createdDate`, `lastUpdatedDate`.
+    /// Known values: `sku`, `createdDate`, `lastUpdatedDate`.
     #[serde(default = "search_listings_items_sort_by_default")]
     pub sort_by: Option<String>,
-    ///The order in which to sort the result items.
+    /// The order in which to sort the result items.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     #[serde(default = "search_listings_items_sort_order_default")]
     pub sort_order: Option<String>,
-    ///The number of results that you want to include on each page.
+    /// The number of results that you want to include on each page.
     #[serde(default = "search_listings_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token that you can use to fetch a specific page when there are multiple pages of results.
+    /// A token that you can use to fetch a specific page when there are multiple pages of results.
     pub page_token: Option<String>,
 }
 impl SearchListingsItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(seller_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             seller_id,
@@ -387,9 +387,9 @@ impl SearchListingsItemsParams {
         }
     }
 }
-///Search for and return a list of selling partner listings items and their respective details.
+/// Search for and return a list of selling partner listings items and their respective details.
 ///
-///Its pages: [`search_listings_items_pages`].
+/// Its pages: [`search_listings_items_pages`].
 pub async fn search_listings_items(
     client: &Client,
     params: SearchListingsItemsParams,
@@ -453,7 +453,7 @@ pub async fn search_listings_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`search_listings_items`].
+/// Each page of [`search_listings_items`].
 pub fn search_listings_items_pages<'a>(
     client: &'a Client,
     params: SearchListingsItemsParams,

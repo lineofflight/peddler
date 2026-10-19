@@ -4,19 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`list_catalog_categories`].
+/// The parameters of [`list_catalog_categories`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListCatalogCategoriesParams {
-    ///A marketplace identifier. Specifies the marketplace for the item.
+    /// A marketplace identifier. Specifies the marketplace for the item.
     pub marketplace_id: String,
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: Option<String>,
-    ///Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
+    /// Used to identify items in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     pub seller_sku: Option<String>,
 }
 impl ListCatalogCategoriesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -25,7 +25,7 @@ impl ListCatalogCategoriesParams {
         }
     }
 }
-///Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
+/// Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
 pub async fn list_catalog_categories(
     client: &Client,
     params: ListCatalogCategoriesParams,

@@ -4,7 +4,7 @@
 // Patch: lib/generator/patches/pricing_health.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The average selling price of the item
+/// The average selling price of the item
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct AverageSellingPrice(pub MoneyType);
@@ -24,7 +24,7 @@ impl ::std::convert::From<MoneyType> for AverageSellingPrice {
         Self(value)
     }
 }
-///`BuyBoxPrice`
+/// `BuyBoxPrice`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BuyBoxPrice {
     pub condition: Condition,
@@ -36,7 +36,7 @@ pub struct BuyBoxPrice {
     pub points: ::std::option::Option<Points>,
     pub shipping: Shipping,
 }
-///The competitive price threshold from external competitors of Amazon
+/// The competitive price threshold from external competitors of Amazon
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct CompetitivePriceThreshold(pub MoneyType);
@@ -56,7 +56,7 @@ impl ::std::convert::From<MoneyType> for CompetitivePriceThreshold {
         Self(value)
     }
 }
-///Indicates the condition of the item
+/// Indicates the condition of the item
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -97,9 +97,9 @@ impl ::std::str::FromStr for Condition {
         Ok(Self(value.to_string()))
     }
 }
-///Indicates whether the item is fulfilled by Amazon or by the seller
+/// Indicates whether the item is fulfilled by Amazon or by the seller
 ///
-///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
+/// Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -140,7 +140,7 @@ impl ::std::str::FromStr for FulfillmentType {
         Ok(Self(value.to_string()))
     }
 }
-///ListingPrice + Shipping
+/// ListingPrice + Shipping
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct LandedPrice(pub MoneyType);
@@ -160,7 +160,7 @@ impl ::std::convert::From<MoneyType> for LandedPrice {
         Self(value)
     }
 }
-///The price of the item
+/// The price of the item
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ListingPrice(pub MoneyType);
@@ -180,11 +180,11 @@ impl ::std::convert::From<MoneyType> for ListingPrice {
         Self(value)
     }
 }
-///Offer details of the merchant receiving the notification
+/// Offer details of the merchant receiving the notification
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MerchantOffer {
     pub condition: Condition,
-    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
+    /// Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
     #[serde(rename = "landedPrice")]
@@ -195,14 +195,14 @@ pub struct MerchantOffer {
     pub points: ::std::option::Option<Points>,
     pub shipping: Shipping,
 }
-///`MoneyType`
+/// `MoneyType`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MoneyType {
     pub amount: ::serde_json::Number,
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///The manufacturer suggested retail price for the ASIN
+/// The manufacturer suggested retail price for the ASIN
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct MsrpPrice(pub MoneyType);
@@ -222,112 +222,112 @@ impl ::std::convert::From<MoneyType> for MsrpPrice {
         Self(value)
     }
 }
-///`Notification`
+/// `Notification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The date and time (in UTC) that the event which triggered the notification occurred
+    /// The date and time (in UTC) that the event which triggered the notification occurred
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type. Combined with payload version controls the structure of payload object
+    /// The notification type. Combined with payload version controls the structure of payload object
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version. This controls the structure of the notification
+    /// The notification version. This controls the structure of the notification
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
     pub payload: Payload,
-    ///The payload version. Combined with notification type controls the structure of payload
+    /// The payload version. Combined with notification type controls the structure of payload
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///The identifier for the application that uses the notifications
+    /// The identifier for the application that uses the notifications
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///A unique identifier for this notification instance
+    /// A unique identifier for this notification instance
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The date and time (in UTC) that the notification was sent
+    /// The date and time (in UTC) that the notification was sent
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///A unique identifier for the subscription which resulted in this notification
+    /// A unique identifier for the subscription which resulted in this notification
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`NotificationResponse`
+/// `NotificationResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationResponse {
-    ///The date and time (in UTC) that the event which triggered the notification occurred
+    /// The date and time (in UTC) that the event which triggered the notification occurred
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type. Combined with payload version controls the structure of payload object
+    /// The notification type. Combined with payload version controls the structure of payload object
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version. This controls the structure of the notification
+    /// The notification version. This controls the structure of the notification
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
     pub payload: Payload,
-    ///The payload version. Combined with notification type controls the structure of payload
+    /// The payload version. Combined with notification type controls the structure of payload
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The event that caused the notification to be sent
+/// The event that caused the notification to be sent
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferChangeTrigger {
-    ///The asin for the item that had an offer change
+    /// The asin for the item that had an offer change
     pub asin: ::std::string::String,
-    ///The condition of the item that had an offer change
+    /// The condition of the item that had an offer change
     #[serde(rename = "itemCondition")]
     pub item_condition: ::std::string::String,
-    ///The marketplace identifier of the item that had an offer change
+    /// The marketplace identifier of the item that had an offer change
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The update time for the offer that caused this notification
+    /// The update time for the offer that caused this notification
     #[serde(
         rename = "timeOfOfferChange",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub time_of_offer_change: ::std::option::Option<::std::string::String>,
 }
-///`OfferCount`
+/// `OfferCount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferCount {
     pub condition: Condition,
-    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
+    /// Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(rename = "fulfillmentType")]
     pub fulfillment_type: FulfillmentType,
-    ///The total number of offers for the specified condition and fulfillment channel
+    /// The total number of offers for the specified condition and fulfillment channel
     #[serde(rename = "offerCount")]
     pub offer_count: i64,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The issue type for the notification
+    /// The issue type for the notification
     #[serde(rename = "issueType")]
     pub issue_type: ::std::string::String,
     #[serde(rename = "merchantOffer")]
     pub merchant_offer: MerchantOffer,
     #[serde(rename = "offerChangeTrigger")]
     pub offer_change_trigger: OfferChangeTrigger,
-    ///The seller identifier for the offer
+    /// The seller identifier for the offer
     #[serde(rename = "sellerId")]
     pub seller_id: ::std::string::String,
     pub summary: Summary,
 }
-///The number of Amazon Points offered with the purchase of an item
+/// The number of Amazon Points offered with the purchase of an item
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Points {
-    ///The number of Amazon Points offered with the purchase of an item
+    /// The number of Amazon Points offered with the purchase of an item
     #[serde(rename = "pointsNumber")]
     pub points_number: i64,
 }
-///A set of reference prices for the given ASIN
+/// A set of reference prices for the given ASIN
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReferencePrice {
     #[serde(
@@ -351,7 +351,7 @@ pub struct ReferencePrice {
     )]
     pub retail_offer_price: ::std::option::Option<RetailOfferPrice>,
 }
-///The 14 day maximum of retail offer price
+/// The 14 day maximum of retail offer price
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RetailOfferPrice(pub MoneyType);
@@ -371,16 +371,16 @@ impl ::std::convert::From<MoneyType> for RetailOfferPrice {
         Self(value)
     }
 }
-///`SalesRank`
+/// `SalesRank`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SalesRank {
-    ///The product category for the rank
+    /// The product category for the rank
     #[serde(rename = "productCategoryId")]
     pub product_category_id: ::std::string::String,
-    ///The sales rank of the ASIN
+    /// The sales rank of the ASIN
     pub rank: i64,
 }
-///The shipping cost
+/// The shipping cost
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Shipping(pub MoneyType);
@@ -400,24 +400,24 @@ impl ::std::convert::From<MoneyType> for Shipping {
         Self(value)
     }
 }
-///`Summary`
+/// `Summary`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Summary {
-    ///A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and fulfillment channels
+    /// A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and fulfillment channels
     #[serde(rename = "buyBoxEligibleOffers")]
     pub buy_box_eligible_offers: ::std::vec::Vec<OfferCount>,
-    ///A list that contains the Buy Box price of the item for the given conditions
+    /// A list that contains the Buy Box price of the item for the given conditions
     #[serde(
         rename = "buyBoxPrices",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buy_box_prices: ::std::option::Option<::std::vec::Vec<BuyBoxPrice>>,
-    ///A list that contains the total number of offers for the item for the given conditions and fulfillment channels
+    /// A list that contains the total number of offers for the item for the given conditions and fulfillment channels
     #[serde(rename = "numberOfOffers")]
     pub number_of_offers: ::std::vec::Vec<OfferCount>,
     #[serde(rename = "referencePrice")]
     pub reference_price: ReferencePrice,
-    ///A list that contains the sales rankings of the asin in various product categories
+    /// A list that contains the sales rankings of the asin in various product categories
     #[serde(
         rename = "salesRankings",
         skip_serializing_if = "::std::option::Option::is_none"

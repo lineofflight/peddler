@@ -2,28 +2,28 @@
 // Source: schemas/reports/sellingPartnerMarketBasketAnalysisReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Contains market basket analysis data for each ASIN in the selling partner's catalog.
+/// Contains market basket analysis data for each ASIN in the selling partner's catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByAsin {
-    ///Amazon Standard Identification Number.
+    /// Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///Percentage of customer orders that contain both the selling partner's product and the purchasedWithAsin in comparison to the total number of customer orders that contained at least two different items including the selling partner's product.
+    /// Percentage of customer orders that contain both the selling partner's product and the purchasedWithAsin in comparison to the total number of customer orders that contained at least two different items including the selling partner's product.
     #[serde(rename = "combinationPct")]
     pub combination_pct: ::serde_json::Number,
-    ///The end date of the data for the ASIN specified in the asin property.
+    /// The end date of the data for the ASIN specified in the asin property.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///The Amazon Standard Identifier Number of a product that was purchased in the same customer order as the asin.
+    /// The Amazon Standard Identifier Number of a product that was purchased in the same customer order as the asin.
     #[serde(rename = "purchasedWithAsin")]
     pub purchased_with_asin: ::std::string::String,
-    ///The relative frequency of the purchasedWithAsin and the asin having been purchased together. Rank=1 means purchasedWithAsin is the most common product purchased in the same customer order as asin.
+    /// The relative frequency of the purchasedWithAsin and the asin having been purchased together. Rank=1 means purchasedWithAsin is the most common product purchased in the same customer order as asin.
     #[serde(rename = "purchasedWithRank")]
     pub purchased_with_rank: i64,
-    ///The start date of the data for the ASIN specified in the asin property. If the request spans multiple reportPeriods, byAsin data will be shared for each of these reportPeriods.
+    /// The start date of the data for the ASIN specified in the asin property. If the request spans multiple reportPeriods, byAsin data will be shared for each of these reportPeriods.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///The Market Basket report contains data on the items that are most commonly purchased in combination with the items in the customer's basket (cart) at checkout. The data is available across different reporting periods: DAY, WEEK, MONTH, and QUARTER. Requests can span multiple reporting periods. In this report, "asin" is an ASIN in the selling partner's catalog and "purchasedWithAsin" might or might not be an ASIN in the selling partner's catalog.
+/// The Market Basket report contains data on the items that are most commonly purchased in combination with the items in the customer's basket (cart) at checkout. The data is available across different reporting periods: DAY, WEEK, MONTH, and QUARTER. Requests can span multiple reporting periods. In this report, "asin" is an ASIN in the selling partner's catalog and "purchasedWithAsin" might or might not be an ASIN in the selling partner's catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "dataByAsin")]
@@ -31,30 +31,30 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The end date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod or else a fatal error is returned. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// The end date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the last day in the specified reportPeriod or else a fatal error is returned. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///The start date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod or else a fatal error is returned. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// The start date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this value must correspond to the first day in the specified reportPeriod or else a fatal error is returned. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. Specifying multiple marketplaces will result in a fatal error and fail to generate the report.
+    /// This parameter must match the marketplaceId of the selling partner account. This report type supports only one marketplaceId per report. Specifying multiple marketplaces will result in a fatal error and fail to generate the report.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::serde_json::Value>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///Type of the report.
+    /// Type of the report.
     ///
-    ///Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod.
+/// Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
+    /// The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

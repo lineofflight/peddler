@@ -2,19 +2,19 @@
 // Source: vehicles-api-model/vehicles_2024-11-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Engine power output of vehicle.
+/// Engine power output of vehicle.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EngineOutput {
-    ///Unit for measuring engine power.
+    /// Unit for measuring engine power.
     ///
-    ///Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
+    /// Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
     pub unit: EngineOutputUnit,
-    ///Engine power value in specified unit.
+    /// Engine power value in specified unit.
     pub value: ::serde_json::Number,
 }
-///Unit for measuring engine power.
+/// Unit for measuring engine power.
 ///
-///Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
+/// Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -55,24 +55,24 @@ impl ::std::str::FromStr for EngineOutputUnit {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///array of errors
+    /// array of errors
     pub errors: ::std::vec::Vec<Error>,
 }
-///Month in MM format
+/// Month in MM format
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Month(pub ::serde_json::Number);
@@ -115,7 +115,7 @@ impl ::std::convert::TryFrom<String> for Month {
         value.parse()
     }
 }
-///Represents a month in a specific year.
+/// Represents a month in a specific year.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MonthAndYear {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -123,95 +123,95 @@ pub struct MonthAndYear {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub year: ::std::option::Option<Year>,
 }
-///When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there will be no `nextToken` key in the pagination object.
+/// When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there will be no `nextToken` key in the pagination object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
-    ///A token that can be used to fetch the next page.
+    /// A token that can be used to fetch the next page.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A token that can be used to fetch the previous page.
+    /// A token that can be used to fetch the previous page.
     #[serde(
         rename = "previousToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub previous_token: ::std::option::Option<::std::string::String>,
 }
-///Combinations of attributes and unique identifier that represents a vehicle in vehicle list.
+/// Combinations of attributes and unique identifier that represents a vehicle in vehicle list.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Vehicle {
-    ///Body style of vehicle (example: Hatchback, Cabriolet).
+    /// Body style of vehicle (example: Hatchback, Cabriolet).
     #[serde(
         rename = "bodyStyle",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub body_style: ::std::option::Option<::std::string::String>,
-    ///Drive type of vehicle(example: Rear wheel drive).
+    /// Drive type of vehicle(example: Rear wheel drive).
     #[serde(
         rename = "driveType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub drive_type: ::std::option::Option<::std::string::String>,
-    ///Energy Source for the vehicle(example: Petrol)
+    /// Energy Source for the vehicle(example: Petrol)
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub energy: ::std::option::Option<::std::string::String>,
-    ///Engine output of vehicle.
+    /// Engine output of vehicle.
     #[serde(
         rename = "engineOutput",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub engine_output: ::std::option::Option<::std::vec::Vec<EngineOutput>>,
-    ///Identifiers that can be used to identify the vehicle uniquely
+    /// Identifiers that can be used to identify the vehicle uniquely
     pub identifiers: ::std::vec::Vec<VehicleIdentifiers>,
-    ///The date on which the vehicle was last updated, in ISO-8601 date/time format.
+    /// The date on which the vehicle was last updated, in ISO-8601 date/time format.
     #[serde(
         rename = "lastProcessedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub last_processed_date: ::std::option::Option<::std::string::String>,
-    ///Vehicle Brand.
+    /// Vehicle Brand.
     pub make: ::std::string::String,
-    ///Vehicle manufacturing start date.
+    /// Vehicle manufacturing start date.
     #[serde(
         rename = "manufacturingStartDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub manufacturing_start_date: ::std::option::Option<MonthAndYear>,
-    ///Vehicle manufacturing stop date. If it is empty, then the vehicle is still being manufactured.
+    /// Vehicle manufacturing stop date. If it is empty, then the vehicle is still being manufactured.
     #[serde(
         rename = "manufacturingStopDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub manufacturing_stop_date: ::std::option::Option<MonthAndYear>,
-    ///Specific model of a vehicle.
+    /// Specific model of a vehicle.
     pub model: ::std::string::String,
-    ///Denotes if the vehicle is active or deleted from Amazon's catalog.
+    /// Denotes if the vehicle is active or deleted from Amazon's catalog.
     ///
-    ///Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
+    /// Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<VehicleStatusInCatalog>,
-    ///Name of the vehicle variant.
+    /// Name of the vehicle variant.
     #[serde(
         rename = "variantName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub variant_name: ::std::option::Option<::std::string::String>,
 }
-///Combination of vehicle standard and id that can uniquely identify a vehicle from Amazon's catalog.
+/// Combination of vehicle standard and id that can uniquely identify a vehicle from Amazon's catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VehicleIdentifiers {
-    ///Vehicle standard used to uniquely identify a vehicle.
+    /// Vehicle standard used to uniquely identify a vehicle.
     ///
-    ///Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
+    /// Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
     pub standard: VehicleStandard,
-    ///Id that can uniquely identify a vehicle based the vehicle identification standard.
+    /// Id that can uniquely identify a vehicle based the vehicle identification standard.
     pub value: ::std::string::String,
 }
-///Standard followed to uniquely identify a vehicle.
+/// Standard followed to uniquely identify a vehicle.
 ///
-///Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
+/// Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -252,9 +252,9 @@ impl ::std::str::FromStr for VehicleStandard {
         Ok(Self(value.to_string()))
     }
 }
-///Status of vehicle in Amazon's catalog.
+/// Status of vehicle in Amazon's catalog.
 ///
-///Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
+/// Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -295,16 +295,16 @@ impl ::std::str::FromStr for VehicleStatusInCatalog {
         Ok(Self(value.to_string()))
     }
 }
-///Get paginated list of vehicle from Amazon's catalog
+/// Get paginated list of vehicle from Amazon's catalog
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VehiclesResponse {
-    ///If available, the `nextToken` and/or `previousToken` values required to return paginated results.
+    /// If available, the `nextToken` and/or `previousToken` values required to return paginated results.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
-    ///List of vehicles from Amazon's catalog.
+    /// List of vehicles from Amazon's catalog.
     pub vehicles: ::std::vec::Vec<Vehicle>,
 }
-///Year in YYYY format
+/// Year in YYYY format
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Year(pub ::serde_json::Number);

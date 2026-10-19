@@ -7,24 +7,24 @@ use crate::operation::{self, DecodeError, TypedResponse};
 fn get_catalog_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"summaries\"]").expect("validated schema default"))
 }
-///The parameters of [`get_catalog_item`].
+/// The parameters of [`get_catalog_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCatalogItemParams {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
-    ///A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
+    /// A comma-delimited list of Amazon marketplace identifiers. Data sets in the response contain data only for the specified marketplaces.
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of data sets to include in the response. Default: summaries.
+    /// A comma-delimited list of data sets to include in the response. Default: summaries.
     ///
-    ///Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
+    /// Known values: `attributes`, `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
     #[serde(default = "get_catalog_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
+    /// Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
     pub locale: Option<String>,
 }
 impl GetCatalogItemParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(asin: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             asin,
@@ -34,7 +34,7 @@ impl GetCatalogItemParams {
         }
     }
 }
-///Retrieves details for an item in the Amazon catalog.
+/// Retrieves details for an item in the Amazon catalog.
 pub async fn get_catalog_item(
     client: &Client,
     params: GetCatalogItemParams,
@@ -69,35 +69,35 @@ fn search_catalog_items_included_data_default() -> Option<Vec<String>> {
 fn search_catalog_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`search_catalog_items`] and [`search_catalog_items_pages`].
+/// The parameters of [`search_catalog_items`] and [`search_catalog_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchCatalogItemsParams {
-    ///A comma-delimited list of words or item identifiers to search the Amazon catalog for.
+    /// A comma-delimited list of words or item identifiers to search the Amazon catalog for.
     pub keywords: Vec<String>,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of data sets to include in the response. Default: summaries.
+    /// A comma-delimited list of data sets to include in the response. Default: summaries.
     ///
-    ///Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
+    /// Known values: `identifiers`, `images`, `productTypes`, `salesRanks`, `summaries`, `variations`, `vendorDetails`.
     #[serde(default = "search_catalog_items_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///A comma-delimited list of brand names to limit the search to.
+    /// A comma-delimited list of brand names to limit the search to.
     pub brand_names: Option<Vec<String>>,
-    ///A comma-delimited list of classification identifiers to limit the search to.
+    /// A comma-delimited list of classification identifiers to limit the search to.
     pub classification_ids: Option<Vec<String>>,
-    ///Number of results to be returned per page.
+    /// Number of results to be returned per page.
     #[serde(default = "search_catalog_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token to fetch a certain page when there are multiple pages worth of results.
+    /// A token to fetch a certain page when there are multiple pages worth of results.
     pub page_token: Option<String>,
-    ///The language the keywords are provided in. Defaults to the primary locale of the marketplace.
+    /// The language the keywords are provided in. Defaults to the primary locale of the marketplace.
     pub keywords_locale: Option<String>,
-    ///Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
+    /// Locale for retrieving localized summaries. Defaults to the primary locale of the marketplace.
     pub locale: Option<String>,
 }
 impl SearchCatalogItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(keywords: Vec<String>, marketplace_ids: Vec<String>) -> Self {
         Self {
             keywords,
@@ -112,9 +112,9 @@ impl SearchCatalogItemsParams {
         }
     }
 }
-///Search for and return a list of Amazon catalog items and associated information.
+/// Search for and return a list of Amazon catalog items and associated information.
 ///
-///Its pages: [`search_catalog_items_pages`].
+/// Its pages: [`search_catalog_items_pages`].
 pub async fn search_catalog_items(
     client: &Client,
     params: SearchCatalogItemsParams,
@@ -152,7 +152,7 @@ pub async fn search_catalog_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`search_catalog_items`].
+/// Each page of [`search_catalog_items`].
 pub fn search_catalog_items_pages<'a>(
     client: &'a Client,
     params: SearchCatalogItemsParams,

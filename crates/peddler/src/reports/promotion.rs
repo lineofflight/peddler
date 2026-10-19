@@ -2,161 +2,161 @@
 // Source: schemas/reports/promotionReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///An object that contains details about a product.
+/// An object that contains details about a product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByProduct {
-    ///The product ASIN.
+    /// The product ASIN.
     pub asin: ::std::string::String,
-    ///Total funding provided by the vendor at the ASIN level. For vendors only.
+    /// Total funding provided by the vendor at the ASIN level. For vendors only.
     #[serde(
         rename = "productAmountSpent",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_amount_spent: ::std::option::Option<::serde_json::Number>,
-    ///ISO 4217 currency code of productAmountSpent.
+    /// ISO 4217 currency code of productAmountSpent.
     #[serde(
         rename = "productAmountSpentCurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_amount_spent_currency_code: ::std::option::Option<::std::string::String>,
-    ///The number of customer views of the product detail page.
+    /// The number of customer views of the product detail page.
     #[serde(
         rename = "productGlanceViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_glance_views: ::std::option::Option<u64>,
-    ///The product name.
+    /// The product name.
     #[serde(rename = "productName")]
     pub product_name: ::std::string::String,
-    ///The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in the Seller Central UI.
+    /// The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in the Seller Central UI.
     #[serde(rename = "productRevenue")]
     pub product_revenue: ::serde_json::Number,
-    ///ISO 4217 currency code of productRevenue.
+    /// ISO 4217 currency code of productRevenue.
     #[serde(rename = "productRevenueCurrencyCode")]
     pub product_revenue_currency_code: ::std::string::String,
-    ///The number of units sold at the promotional price.
+    /// The number of units sold at the promotional price.
     #[serde(rename = "productUnitsSold")]
     pub product_units_sold: u64,
 }
-///An object that contains details about a promotion and every included product.
+/// An object that contains details about a promotion and every included product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByPromotion {
-    ///Total funding provided across all ASINs in the promotion. For vendors only.
+    /// Total funding provided across all ASINs in the promotion. For vendors only.
     #[serde(
         rename = "amountSpent",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_spent: ::std::option::Option<::serde_json::Number>,
-    ///The ISO 4217 currency code of amountSpent.
+    /// The ISO 4217 currency code of amountSpent.
     #[serde(
         rename = "amountSpentCurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_spent_currency_code: ::std::option::Option<::std::string::String>,
-    ///The promotion creation date-time in ISO 8601 format in UTC.
+    /// The promotion creation date-time in ISO 8601 format in UTC.
     #[serde(rename = "createdDateTime")]
     pub created_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The mode of creation for the promotion.
+    /// The mode of creation for the promotion.
     ///
-    ///Known values: `SELF-SERVICE`, `FULL-SERVICE`, `AUTOMATED`, `MANUAL`. Other values may be returned by Amazon.
+    /// Known values: `SELF-SERVICE`, `FULL-SERVICE`, `AUTOMATED`, `MANUAL`. Other values may be returned by Amazon.
     #[serde(rename = "creationChannel")]
     pub creation_channel: ::std::string::String,
-    ///Promotion end date-time in ISO 8601 format in UTC.
+    /// Promotion end date-time in ISO 8601 format in UTC.
     #[serde(rename = "endDateTime")]
     pub end_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The ID for the funding agreement. For vendors only.
+    /// The ID for the funding agreement. For vendors only.
     #[serde(
         rename = "fundingAgreementId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub funding_agreement_id: ::std::option::Option<::std::string::String>,
-    ///The total customer views for all product detail pages.
+    /// The total customer views for all product detail pages.
     #[serde(
         rename = "glanceViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub glance_views: ::std::option::Option<u64>,
-    ///List of included products and their details.
+    /// List of included products and their details.
     #[serde(rename = "includedProducts")]
     pub included_products: ::std::vec::Vec<DetailsByProduct>,
-    ///The promotion last updated date-time in ISO 8601 format in UTC.
+    /// The promotion last updated date-time in ISO 8601 format in UTC.
     #[serde(rename = "lastUpdatedDateTime")]
     pub last_updated_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The marketplace the promotion is running in.
+    /// The marketplace the promotion is running in.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The merchant customer ID associated with the promotion funding agreement. For sellers only.
+    /// The merchant customer ID associated with the promotion funding agreement. For sellers only.
     #[serde(
         rename = "merchantId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub merchant_id: ::std::option::Option<::std::string::String>,
-    ///The unique identifier of the promotion.
+    /// The unique identifier of the promotion.
     #[serde(rename = "promotionId")]
     pub promotion_id: ::std::string::String,
-    ///The customer facing name of the promotion.
+    /// The customer facing name of the promotion.
     #[serde(rename = "promotionName")]
     pub promotion_name: ::std::string::String,
-    ///Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
+    /// Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
     #[serde(
         rename = "promotionsApiMappingId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotions_api_mapping_id: ::std::option::Option<::std::string::String>,
-    ///The total revenue generated across all ASINs in the promotion. For sellers, this is equivalent to "sales" in the Seller Central UI.
+    /// The total revenue generated across all ASINs in the promotion. For sellers, this is equivalent to "sales" in the Seller Central UI.
     pub revenue: ::serde_json::Number,
-    ///The ISO 4217 currency code of revenue.
+    /// The ISO 4217 currency code of revenue.
     #[serde(rename = "revenueCurrencyCode")]
     pub revenue_currency_code: ::std::string::String,
-    ///Promotion start date-time in ISO 8601 format in UTC.
+    /// Promotion start date-time in ISO 8601 format in UTC.
     #[serde(rename = "startDateTime")]
     pub start_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The state that the promotion is in.
+    /// The state that the promotion is in.
     ///
-    ///Known values: `APPROVED`, `PENDING_APPROVAL`, `NEEDS_YOUR_ATTENTION`, `CANCELED`. Other values may be returned by Amazon.
+    /// Known values: `APPROVED`, `PENDING_APPROVAL`, `NEEDS_YOUR_ATTENTION`, `CANCELED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The type of the promotion.
+    /// The type of the promotion.
     ///
-    ///Known values: `BEST_DEAL`, `DEAL_OF_THE_DAY`, `LIGHTNING_DEAL`, `PRICE_DISCOUNT`, `SALES_DISCOUNT`, `COUPON`, `PROMO_CODE`. Other values may be returned by Amazon.
+    /// Known values: `BEST_DEAL`, `DEAL_OF_THE_DAY`, `LIGHTNING_DEAL`, `PRICE_DISCOUNT`, `SALES_DISCOUNT`, `COUPON`, `PROMO_CODE`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
-    ///The number of units sold across all ASINs in the promotion.
+    /// The number of units sold across all ASINs in the promotion.
     #[serde(rename = "unitsSold")]
     pub units_sold: u64,
-    ///The vendor code associated with the promotion funding agreement. For vendors only.
+    /// The vendor code associated with the promotion funding agreement. For vendors only.
     #[serde(
         rename = "vendorCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_code: ::std::option::Option<::std::string::String>,
 }
-///The Promotion Performance report contains data to help vendors optimize their promotions and adjust their advertising strategies. Currently three promotion types are supported: Best Deal, Lightning Deal, and Price Discount. This report supports start dates up to two years before the current date.
+/// The Promotion Performance report contains data to help vendors optimize their promotions and adjust their advertising strategies. Currently three promotion types are supported: Best Deal, Lightning Deal, and Price Discount. This report supports start dates up to two years before the current date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///The list of included promotions.
+    /// The list of included promotions.
     pub promotions: ::std::vec::Vec<DetailsByPromotion>,
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The marketplace IDs specified in the report request.
+    /// The marketplace IDs specified in the report request.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying the parameters promotionStartDateFrom and promotionStartDateTo.
+/// Report options specifying the parameters promotionStartDateFrom and promotionStartDateTo.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The start of a date and time range in ISO 8601 format used for selecting promotions to report on. All promotions with a start date-time that falls within the range will be included.
+    /// The start of a date and time range in ISO 8601 format used for selecting promotions to report on. All promotions with a start date-time that falls within the range will be included.
     #[serde(rename = "promotionStartDateFrom")]
     pub promotion_start_date_from: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The end of a date and time range in ISO 8601 format used for selecting promotions to report on. All promotions with a start date-time that falls within the range will be included.
+    /// The end of a date and time range in ISO 8601 format used for selecting promotions to report on. All promotions with a start date-time that falls within the range will be included.
     #[serde(rename = "promotionStartDateTo")]
     pub promotion_start_date_to: ::chrono::DateTime<::chrono::offset::Utc>,
 }

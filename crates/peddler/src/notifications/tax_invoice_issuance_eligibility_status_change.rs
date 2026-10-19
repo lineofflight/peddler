@@ -2,72 +2,72 @@
 // Source: schemas/notifications/TaxInvoiceIssuanceEligibilityStatusChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Notification`
+/// `Notification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The date and time when the notification event occurred, in ISO 8601 format.
+    /// The date and time when the notification event occurred, in ISO 8601 format.
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
-    ///The notification's metadata, including the publish time and the application, subscription, and notification event identifiers.
+    /// The notification's metadata, including the publish time and the application, subscription, and notification event identifiers.
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type.
+    /// The notification type.
     ///
-    ///Known values: `TAX_INVOICE_ISSUANCE_ELIGIBILITY_STATUS_CHANGE`. Other values may be returned by Amazon.
+    /// Known values: `TAX_INVOICE_ISSUANCE_ELIGIBILITY_STATUS_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The version for this notification type.
+    /// The version for this notification type.
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
-    ///Event details about the change to eligibility status.
+    /// Event details about the change to eligibility status.
     pub payload: Payload,
-    ///The version for this payload.
+    /// The version for this payload.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///The application identifier.
+    /// The application identifier.
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///The notification identifier.
+    /// The notification identifier.
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The date and time when the notification was published, in ISO 8601 format.
+    /// The date and time when the notification was published, in ISO 8601 format.
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription identifier.
+    /// The subscription identifier.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The identifier for the store where the invoice issuance eligibility status applies.
+    /// The identifier for the store where the invoice issuance eligibility status applies.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///An optional message to describe why the operation is blocked.
+    /// An optional message to describe why the operation is blocked.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     #[serde(default, deserialize_with = "deserialize_localized_messages")]
     pub message: ::std::option::Option<::std::vec::Vec<PayloadMessageItem>>,
-    ///The invoice issuance operation available to the seller.
+    /// The invoice issuance operation available to the seller.
     ///
-    ///Known values: `inbound`, `outbound-fba-offers`, `c-returns`, `removals`. Other values may be returned by Amazon.
+    /// Known values: `inbound`, `outbound-fba-offers`, `c-returns`, `removals`. Other values may be returned by Amazon.
     pub operation: ::std::string::String,
-    ///The status of the seller invoice issuance operation.
+    /// The status of the seller invoice issuance operation.
     ///
-    ///Known values: `BLOCKED`, `ALLOWED`. Other values may be returned by Amazon.
+    /// Known values: `BLOCKED`, `ALLOWED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
-///`PayloadMessageItem`
+/// `PayloadMessageItem`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PayloadMessageItem {
-    ///The language locale identifier in POSIX-style format.
+    /// The language locale identifier in POSIX-style format.
     ///
-    ///Known values: `en-US`, `pt-BR`, `es-MX`. Other values may be returned by Amazon.
+    /// Known values: `en-US`, `pt-BR`, `es-MX`. Other values may be returned by Amazon.
     pub locale: ::std::string::String,
-    ///The localized message text for the specified locale.
+    /// The localized message text for the specified locale.
     pub text: ::std::string::String,
 }
 /// Error types.

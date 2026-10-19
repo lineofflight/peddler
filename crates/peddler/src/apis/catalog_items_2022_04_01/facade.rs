@@ -7,24 +7,24 @@ use crate::operation::{self, DecodeError, TypedResponse};
 fn get_catalog_item_included_data_default() -> Option<Vec<String>> {
     Some(serde_json::from_str("[\"summaries\"]").expect("validated schema default"))
 }
-///The parameters of [`get_catalog_item`].
+/// The parameters of [`get_catalog_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCatalogItemParams {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
-    ///A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of datasets to include in the response.
+    /// A comma-delimited list of datasets to include in the response.
     ///
-    ///Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
+    /// Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
     #[serde(default = "get_catalog_item_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
+    /// The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
     pub locale: Option<String>,
 }
 impl GetCatalogItemParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(asin: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             asin,
@@ -34,7 +34,7 @@ impl GetCatalogItemParams {
         }
     }
 }
-///Retrieves details for an item in the Amazon catalog.
+/// Retrieves details for an item in the Amazon catalog.
 pub async fn get_catalog_item(
     client: &Client,
     params: GetCatalogItemParams,
@@ -69,43 +69,43 @@ fn search_catalog_items_included_data_default() -> Option<Vec<String>> {
 fn search_catalog_items_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`search_catalog_items`] and [`search_catalog_items_pages`].
+/// The parameters of [`search_catalog_items`] and [`search_catalog_items_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchCatalogItemsParams {
-    ///A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
+    /// A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request.
     pub identifiers: Option<Vec<String>>,
-    ///The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
+    /// The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request.
     ///
-    ///Known values: `ASIN`, `EAN`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
+    /// Known values: `ASIN`, `EAN`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
     pub identifiers_type: Option<String>,
-    ///A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_ids: Vec<String>,
-    ///A comma-delimited list of datasets to include in the response.
+    /// A comma-delimited list of datasets to include in the response.
     ///
-    ///Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
+    /// Known values: `attributes`, `classifications`, `dimensions`, `identifiers`, `images`, `productTypes`, `relationships`, `salesRanks`, `summaries`, `vendorDetails`.
     #[serde(default = "search_catalog_items_included_data_default")]
     pub included_data: Option<Vec<String>>,
-    ///The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
+    /// The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace.
     pub locale: Option<String>,
-    ///A selling partner identifier, such as a seller account or vendor code. **Note:** Required when `identifiersType` is `SKU`.
+    /// A selling partner identifier, such as a seller account or vendor code. **Note:** Required when `identifiersType` is `SKU`.
     pub seller_id: Option<String>,
-    ///A comma-delimited list of keywords that you can use to search the Amazon catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request.
+    /// A comma-delimited list of keywords that you can use to search the Amazon catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request.
     pub keywords: Option<Vec<String>>,
-    ///A comma-delimited list of brand names that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+    /// A comma-delimited list of brand names that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
     pub brand_names: Option<Vec<String>>,
-    ///A comma-delimited list of classification identifiers that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
+    /// A comma-delimited list of classification identifiers that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`.
     pub classification_ids: Option<Vec<String>>,
-    ///The number of results to include on each page.
+    /// The number of results to include on each page.
     #[serde(default = "search_catalog_items_page_size_default")]
     pub page_size: Option<i64>,
-    ///A token that you can use to fetch a specific page when there are multiple pages of results.
+    /// A token that you can use to fetch a specific page when there are multiple pages of results.
     pub page_token: Option<String>,
-    ///The language of the keywords that are included in queries based on `keywords`. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
+    /// The language of the keywords that are included in queries based on `keywords`. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
     pub keywords_locale: Option<String>,
 }
 impl SearchCatalogItemsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_ids: Vec<String>) -> Self {
         Self {
             identifiers: None,
@@ -123,9 +123,9 @@ impl SearchCatalogItemsParams {
         }
     }
 }
-///Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.
+/// Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.
 ///
-///Its pages: [`search_catalog_items_pages`].
+/// Its pages: [`search_catalog_items_pages`].
 pub async fn search_catalog_items(
     client: &Client,
     params: SearchCatalogItemsParams,
@@ -167,7 +167,7 @@ pub async fn search_catalog_items(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`search_catalog_items`].
+/// Each page of [`search_catalog_items`].
 pub fn search_catalog_items_pages<'a>(
     client: &'a Client,
     params: SearchCatalogItemsParams,

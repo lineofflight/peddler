@@ -2,59 +2,59 @@
 // Source: schemas/notifications/BrandedItemContentChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: TheNotificationMetadataSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: ThePayloadSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheNotificationMetadataSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePayloadSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Asin")]
     pub asin: ::std::string::String,
-    ///The array of item attributes which changed. Possible values include bullet_point, item_name, product_description, and image-related attributes shown in the examples. NOTE: the attributes that contain the word 'image' all mean the same thing right now, which is that one or more images changed on the product detail page. In a future release we may update them to mean that individual image attribute changed, but for now if any image changes all the image attributes will be present in the notification. Attribute names, descriptions, and requirements are available in the Product Type Definitions API.
+    /// The array of item attributes which changed. Possible values include bullet_point, item_name, product_description, and image-related attributes shown in the examples. NOTE: the attributes that contain the word 'image' all mean the same thing right now, which is that one or more images changed on the product detail page. In a future release we may update them to mean that individual image attribute changed, but for now if any image changes all the image attributes will be present in the notification. Attribute names, descriptions, and requirements are available in the Product Type Definitions API.
     #[serde(rename = "AttributesChanged")]
     pub attributes_changed: ::std::vec::Vec<::std::string::String>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "BrandName")]
     pub brand_name: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
     #[serde(flatten)]

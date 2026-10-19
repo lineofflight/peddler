@@ -2,18 +2,18 @@
 // Source: vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -33,80 +33,80 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///Inventory details required to update some or all items for the requested warehouse.
+/// Inventory details required to update some or all items for the requested warehouse.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryUpdate {
-    ///When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
+    /// When true, this request contains a full feed. Otherwise, this request contains a partial feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in the full feed are updated as not available. When sending a partial feed, only include the items that need an update to inventory. The status of other items will remain unchanged.
     #[serde(rename = "isFullUpdate")]
     pub is_full_update: bool,
-    ///A list of inventory items with updated details, including quantity available.
+    /// A list of inventory items with updated details, including quantity available.
     pub items: ::std::vec::Vec<ItemDetails>,
-    ///ID of the selling party or vendor.
+    /// ID of the selling party or vendor.
     #[serde(rename = "sellingParty")]
     pub selling_party: PartyIdentification,
 }
-///Updated inventory details for an item.
+/// Updated inventory details for an item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemDetails {
-    ///Total item quantity available in the warehouse.
+    /// Total item quantity available in the warehouse.
     #[serde(rename = "availableQuantity")]
     pub available_quantity: ItemQuantity,
-    ///The buyer selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
+    /// The buyer selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     #[serde(
         rename = "buyerProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_product_identifier: ::std::option::Option<::std::string::String>,
-    ///When true, the item is permanently unavailable.
+    /// When true, the item is permanently unavailable.
     #[serde(
         rename = "isObsolete",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_obsolete: ::std::option::Option<bool>,
-    ///The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
+    /// The vendor selected product identification of the item. Either buyerProductIdentifier or vendorProductIdentifier should be submitted.
     #[serde(
         rename = "vendorProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_product_identifier: ::std::option::Option<::std::string::String>,
 }
-///Details of item quantity.
+/// Details of item quantity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemQuantity {
-    ///Quantity of units available for a specific item.
+    /// Quantity of units available for a specific item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<i64>,
-    ///Unit of measure for the available quantity.
+    /// Unit of measure for the available quantity.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }
-///Name, address and tax details of a party.
+/// Name, address and tax details of a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartyIdentification {
-    ///Assigned identification for the party.
+    /// Assigned identification for the party.
     #[serde(rename = "partyId")]
     pub party_id: ::std::string::String,
 }
-///The request body for the submitInventoryUpdate operation.
+/// The request body for the submitInventoryUpdate operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInventoryUpdateRequest {
-    ///Inventory details required to update some or all items for the requested warehouse.
+    /// Inventory details required to update some or all items for the requested warehouse.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub inventory: ::std::option::Option<InventoryUpdate>,
 }
-///The response schema for the submitInventoryUpdate operation.
+/// The response schema for the submitInventoryUpdate operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInventoryUpdateResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The response payload for the submitInventoryUpdate operation.
+    /// The response payload for the submitInventoryUpdate operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionReference>,
 }
-///Response containing the transaction ID.
+/// Response containing the transaction ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionReference {
-    ///GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    /// GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     #[serde(
         rename = "transactionId",
         skip_serializing_if = "::std::option::Option::is_none"

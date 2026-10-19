@@ -4,15 +4,15 @@
 // Patch: lib/generator/patches/b2b_any_offer_changed.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`B2bAnyOfferChangedNotification`
+/// `B2bAnyOfferChangedNotification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct B2bAnyOfferChangedNotification {
     #[serde(rename = "OfferChangeTrigger")]
     pub offer_change_trigger: OfferChangeTrigger,
-    ///The top 20 competitive B2B offers for the item and condition that triggered the notification
+    /// The top 20 competitive B2B offers for the item and condition that triggered the notification
     #[serde(rename = "Offers")]
     pub offers: ::std::vec::Vec<Offer>,
-    ///The seller identifier for the offer
+    /// The seller identifier for the offer
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
     #[serde(rename = "Summary")]
@@ -20,7 +20,7 @@ pub struct B2bAnyOfferChangedNotification {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`BuyBoxPrice`
+/// `BuyBoxPrice`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct BuyBoxPrice {
     #[serde(rename = "Condition")]
@@ -43,7 +43,7 @@ pub struct BuyBoxPrice {
     pub points: ::std::option::Option<Points>,
     #[serde(rename = "QuantityTier")]
     pub quantity_tier: QuantityTier,
-    ///The seller identifier for the offer
+    /// The seller identifier for the offer
     #[serde(rename = "SellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
     #[serde(rename = "Shipping", skip_serializing_if = "::std::option::Option::is_none")]
@@ -51,7 +51,7 @@ pub struct BuyBoxPrice {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Indicates the condition of the item
+/// Indicates the condition of the item
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -92,7 +92,7 @@ impl ::std::str::FromStr for Condition {
         Ok(Self(value.to_string()))
     }
 }
-///Indicates whether the quantity tier is for Quantity Discount or Progressive Discount
+/// Indicates whether the quantity tier is for Quantity Discount or Progressive Discount
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -133,7 +133,7 @@ impl ::std::str::FromStr for DiscountType {
         Ok(Self(value.to_string()))
     }
 }
-///Indicates whether the item is fulfilled by Amazon or by the seller
+/// Indicates whether the item is fulfilled by Amazon or by the seller
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -174,7 +174,7 @@ impl ::std::str::FromStr for FulfillmentChannel {
         Ok(Self(value.to_string()))
     }
 }
-///ListingPrice + Shipping
+/// ListingPrice + Shipping
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct LandedPrice(pub MoneyType);
@@ -194,7 +194,7 @@ impl ::std::convert::From<MoneyType> for LandedPrice {
         Self(value)
     }
 }
-///The price of the item
+/// The price of the item
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ListingPrice(pub MoneyType);
@@ -214,7 +214,7 @@ impl ::std::convert::From<MoneyType> for ListingPrice {
         Self(value)
     }
 }
-///`LowestPrice`
+/// `LowestPrice`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LowestPrice {
     #[serde(rename = "Condition")]
@@ -244,7 +244,7 @@ pub struct LowestPrice {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`MoneyType`
+/// `MoneyType`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct MoneyType {
     #[serde(rename = "Amount")]
@@ -254,90 +254,90 @@ pub struct MoneyType {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`Notification`
+/// `Notification`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The date and time (in UTC) that the event which triggered the notification occurred
+    /// The date and time (in UTC) that the event which triggered the notification occurred
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type. Combined with payload version controls the structure of payload object
+    /// The notification type. Combined with payload version controls the structure of payload object
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version. This controls the structure of the notification
+    /// The notification version. This controls the structure of the notification
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: Payload,
-    ///The payload version. Combined with notification type controls the structure of payload
+    /// The payload version. Combined with notification type controls the structure of payload
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`NotificationMetadata`
+/// `NotificationMetadata`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///The identifier for the application that uses the notifications
+    /// The identifier for the application that uses the notifications
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///A unique identifier for this notification instance
+    /// A unique identifier for this notification instance
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///The date and time (in UTC) that the notification was sent
+    /// The date and time (in UTC) that the notification was sent
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///A unique identifier for the subscription which resulted in this notification
+    /// A unique identifier for the subscription which resulted in this notification
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`NotificationResponse`
+/// `NotificationResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationResponse {
-    ///The date and time (in UTC) that the event which triggered the notification occurred
+    /// The date and time (in UTC) that the event which triggered the notification occurred
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The notification type. Combined with payload version controls the structure of payload object
+    /// The notification type. Combined with payload version controls the structure of payload object
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The notification version. This controls the structure of the notification
+    /// The notification version. This controls the structure of the notification
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: Payload,
-    ///The payload version. Combined with notification type controls the structure of payload
+    /// The payload version. Combined with notification type controls the structure of payload
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`Offer`
+/// `Offer`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Offer {
-    ///Information about the condition of the item
+    /// Information about the condition of the item
     #[serde(
         rename = "ConditionNotes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub condition_notes: ::std::option::Option<::std::string::String>,
-    ///Indicates whether the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime
+    /// Indicates whether the offer is currently in the Buy Box. There can be up to two Buy Box winners at any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime
     #[serde(
         rename = "IsBuyBoxWinner",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_buy_box_winner: ::std::option::Option<bool>,
-    ///Indicates whether the seller of the item is eligible to win the Buy Box
+    /// Indicates whether the seller of the item is eligible to win the Buy Box
     #[serde(
         rename = "IsFeaturedMerchant",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_featured_merchant: ::std::option::Option<bool>,
-    ///Indicates whether the offer is fulfilled by Amazon
+    /// Indicates whether the offer is fulfilled by Amazon
     #[serde(rename = "IsFulfilledByAmazon")]
     pub is_fulfilled_by_amazon: bool,
     #[serde(rename = "ListingPrice")]
@@ -349,7 +349,7 @@ pub struct Offer {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prime_information: ::std::option::Option<PrimeInformation>,
-    ///Contains a list of pricing information that includes special pricing when buying in bulk
+    /// Contains a list of pricing information that includes special pricing when buying in bulk
     #[serde(
         rename = "QuantityDiscountPrice",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -362,7 +362,7 @@ pub struct Offer {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_feedback_rating: ::std::option::Option<SellerFeedbackRating>,
-    ///The seller identifier for the offer
+    /// The seller identifier for the offer
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
     #[serde(rename = "Shipping")]
@@ -374,38 +374,38 @@ pub struct Offer {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ships_from: ::std::option::Option<ShipsFrom>,
-    ///The subcondition of the item
+    /// The subcondition of the item
     #[serde(rename = "SubCondition")]
     pub sub_condition: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///The event that caused the notification to be sent
+/// The event that caused the notification to be sent
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferChangeTrigger {
-    ///The asin for the item that had an offer change
+    /// The asin for the item that had an offer change
     #[serde(rename = "ASIN")]
     pub asin: ::std::string::String,
-    ///The condition of the item that had an offer change
+    /// The condition of the item that had an offer change
     #[serde(rename = "ItemCondition")]
     pub item_condition: ::std::string::String,
-    ///The marketplace identifier of the item that had an offer change
+    /// The marketplace identifier of the item that had an offer change
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The update time for the offer that caused this notification
+    /// The update time for the offer that caused this notification
     #[serde(rename = "TimeOfOfferChange")]
     pub time_of_offer_change: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`OfferCount`
+/// `OfferCount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OfferCount {
     #[serde(rename = "Condition")]
     pub condition: Condition,
     #[serde(rename = "FulfillmentChannel")]
     pub fulfillment_channel: FulfillmentChannel,
-    ///The total number of offers for the specified condition and fulfillment channel
+    /// The total number of offers for the specified condition and fulfillment channel
     #[serde(
         rename = "OfferCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -414,7 +414,7 @@ pub struct OfferCount {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Indicates whether the offer is a B2B offer or a B2C offer
+/// Indicates whether the offer is a B2B offer or a B2C offer
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -455,7 +455,7 @@ impl ::std::str::FromStr for OfferType {
         Ok(Self(value.to_string()))
     }
 }
-///`Payload`
+/// `Payload`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
     #[serde(rename = "B2BAnyOfferChangedNotification")]
@@ -463,46 +463,46 @@ pub struct Payload {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`Points`
+/// `Points`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Points {
-    ///The number of Amazon Points offered with the purchase of an item
+    /// The number of Amazon Points offered with the purchase of an item
     #[serde(rename = "PointsNumber")]
     pub points_number: i64,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`PrimeInformation`
+/// `PrimeInformation`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PrimeInformation {
-    ///Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed
+    /// Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed
     #[serde(
         rename = "IsNationalPrime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_national_prime: ::std::option::Option<bool>,
-    ///Indicates whether the offer is an Amazon Prime offer
+    /// Indicates whether the offer is an Amazon Prime offer
     #[serde(rename = "IsPrime", skip_serializing_if = "::std::option::Option::is_none")]
     pub is_prime: ::std::option::Option<bool>,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Contains pricing information that includes special pricing when buying in bulk.
+/// Contains pricing information that includes special pricing when buying in bulk.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct QuantityDiscountPriceType {
-    ///The price at this quantity tier.
+    /// The price at this quantity tier.
     #[serde(rename = "ListingPrice")]
     pub listing_price: MoneyType,
-    ///Indicates the type of quantity discount this price applies to.
+    /// Indicates the type of quantity discount this price applies to.
     ///
-    ///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
+    /// Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
     #[serde(rename = "QuantityDiscountType")]
     pub quantity_discount_type: QuantityDiscountType,
-    ///Indicates at what quantity this price becomes active.
+    /// Indicates at what quantity this price becomes active.
     #[serde(rename = "QuantityTier")]
     pub quantity_tier: i32,
 }
-///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
+/// Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -543,7 +543,7 @@ impl ::std::str::FromStr for QuantityDiscountType {
         Ok(Self(value.to_string()))
     }
 }
-///The quantity tier for the offer
+/// The quantity tier for the offer
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct QuantityTier(pub i64);
@@ -586,13 +586,13 @@ impl ::std::convert::TryFrom<String> for QuantityTier {
         value.parse()
     }
 }
-///`SellerFeedbackRating`
+/// `SellerFeedbackRating`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SellerFeedbackRating {
-    ///The count of feedback received about the seller
+    /// The count of feedback received about the seller
     #[serde(rename = "FeedbackCount")]
     pub feedback_count: i64,
-    ///The percentage of positive feedback for the seller in the past 365 days
+    /// The percentage of positive feedback for the seller in the past 365 days
     #[serde(
         rename = "SellerPositiveFeedbackRating",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -601,7 +601,7 @@ pub struct SellerFeedbackRating {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///The shipping cost
+/// The shipping cost
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Shipping(pub MoneyType);
@@ -621,28 +621,28 @@ impl ::std::convert::From<MoneyType> for Shipping {
         Self(value)
     }
 }
-///`ShippingTime`
+/// `ShippingTime`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingTime {
-    ///Indicates whether the item is available for shipping now, or on a known or an unknown date in the future
+    /// Indicates whether the item is available for shipping now, or on a known or an unknown date in the future
     #[serde(
         rename = "AvailabilityType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub availability_type: ::std::option::Option<::std::string::String>,
-    ///The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping
+    /// The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping
     #[serde(
         rename = "AvailableDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub available_date: ::std::option::Option<::std::string::String>,
-    ///The maximum time, in hours, that the item will likely be shipped after the order has been placed
+    /// The maximum time, in hours, that the item will likely be shipped after the order has been placed
     #[serde(
         rename = "MaximumHours",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub maximum_hours: ::std::option::Option<i64>,
-    ///The minimum time, in hours, that the item will likely be shipped after the order has been placed
+    /// The minimum time, in hours, that the item will likely be shipped after the order has been placed
     #[serde(
         rename = "MinimumHours",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -651,7 +651,7 @@ pub struct ShippingTime {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`ShipsFrom`
+/// `ShipsFrom`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipsFrom {
     #[serde(rename = "Country", skip_serializing_if = "::std::option::Option::is_none")]
@@ -661,22 +661,22 @@ pub struct ShipsFrom {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///`Summary`
+/// `Summary`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Summary {
-    ///A list that contains the total number of B2B offers that are eligible for the Buy Box for the given conditions and fulfillment channels
+    /// A list that contains the total number of B2B offers that are eligible for the Buy Box for the given conditions and fulfillment channels
     #[serde(rename = "BuyBoxEligibleOffers")]
     pub buy_box_eligible_offers: ::std::vec::Vec<OfferCount>,
-    ///A list that contains the Buy Box price of the item for the given conditions, quantity tiers, and discount types
+    /// A list that contains the Buy Box price of the item for the given conditions, quantity tiers, and discount types
     #[serde(
         rename = "BuyBoxPrices",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buy_box_prices: ::std::option::Option<::std::vec::Vec<BuyBoxPrice>>,
-    ///A list that contains the lowest prices of the item for the given conditions, fulfillment channels, quantity tiers, and discount types
+    /// A list that contains the lowest prices of the item for the given conditions, fulfillment channels, quantity tiers, and discount types
     #[serde(rename = "LowestPrices")]
     pub lowest_prices: ::std::vec::Vec<LowestPrice>,
-    ///A list that contains the total number of B2B offers for the item for the given conditions and fulfillment channels
+    /// A list that contains the total number of B2B offers for the item for the given conditions and fulfillment channels
     #[serde(rename = "NumberOfOffers")]
     pub number_of_offers: ::std::vec::Vec<OfferCount>,
     #[serde(flatten)]

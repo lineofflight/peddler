@@ -2,167 +2,167 @@
 // Source: schemas/reports/vendorCouponReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Contains details about an asin.
+/// Contains details about an asin.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AsinDetails {
-    ///Asin of the product.
+    /// Asin of the product.
     pub asin: ::std::string::String,
-    ///Discount amount the customer receives on the product. Reflects a percentage when discountType is PERCENT_OFF_LIST_PRICE and a currency value when discountType is AMOUNT_OFF_LIST_PRICE.
+    /// Discount amount the customer receives on the product. Reflects a percentage when discountType is PERCENT_OFF_LIST_PRICE and a currency value when discountType is AMOUNT_OFF_LIST_PRICE.
     #[serde(rename = "discountAmount")]
     pub discount_amount: ::serde_json::Number,
-    ///Whether the discount is given as a fixed amount or a percentage off the list price.
+    /// Whether the discount is given as a fixed amount or a percentage off the list price.
     ///
-    ///Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.
+    /// Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.
     #[serde(rename = "discountType")]
     pub discount_type: ::std::string::String,
 }
-///Contains details about a coupon.
+/// Contains details about a coupon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CouponDetails {
-    ///Discount details of the products associated with the coupon.
+    /// Discount details of the products associated with the coupon.
     pub asins: ::std::vec::Vec<AsinDetails>,
-    ///Budget allocated to the coupon. Currency value. Only present when campaign budgetType is PER_INDIVIDUAL_COUPON.
+    /// Budget allocated to the coupon. Currency value. Only present when campaign budgetType is PER_INDIVIDUAL_COUPON.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub budget: ::std::option::Option<::serde_json::Number>,
-    ///Percentage of the allocated budget that has been spent, equal to the budgetSpent divided by budget or campaign totalBudget as appropriate.
+    /// Percentage of the allocated budget that has been spent, equal to the budgetSpent divided by budget or campaign totalBudget as appropriate.
     #[serde(rename = "budgetPercentageUsed")]
     pub budget_percentage_used: ::serde_json::Number,
-    ///Budget remaining for the coupon, equal to budget minus budgetSpent. Currency value. Only present when campaign budgetType is PER_INDIVIDUAL_COUPON. Represents a gross value, including purchases that were returned or cancelled.
+    /// Budget remaining for the coupon, equal to budget minus budgetSpent. Currency value. Only present when campaign budgetType is PER_INDIVIDUAL_COUPON. Represents a gross value, including purchases that were returned or cancelled.
     #[serde(
         rename = "budgetRemaining",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub budget_remaining: ::std::option::Option<::serde_json::Number>,
-    ///Total amount spent by the vendor on the coupon, including clip fees and redemption fees. Currency value. Represents a gross value, including purchases that were returned or cancelled.
+    /// Total amount spent by the vendor on the coupon, including clip fees and redemption fees. Currency value. Represents a gross value, including purchases that were returned or cancelled.
     #[serde(rename = "budgetSpent")]
     pub budget_spent: ::serde_json::Number,
-    ///Number of times the coupon has been applied on the product page.
+    /// Number of times the coupon has been applied on the product page.
     pub clips: u64,
-    ///Unique identifier of the coupon.
+    /// Unique identifier of the coupon.
     #[serde(rename = "couponId")]
     pub coupon_id: ::std::string::String,
-    ///The customer segment that the coupon is available to.
+    /// The customer segment that the coupon is available to.
     #[serde(rename = "customerSegment")]
     pub customer_segment: ::std::string::String,
-    ///Coupon end date-time in UTC.
+    /// Coupon end date-time in UTC.
     #[serde(rename = "endDateTime")]
     pub end_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Whether or not the coupon can only be redeemed once per customer account.
+    /// Whether or not the coupon can only be redeemed once per customer account.
     #[serde(rename = "isOncePerCustomer")]
     pub is_once_per_customer: bool,
-    ///The name given to the coupon.
+    /// The name given to the coupon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    ///Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
+    /// Unique identifier to cross-reference promotions with the Selling Partner Promotions API.
     #[serde(
         rename = "promotionsApiMappingId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotions_api_mapping_id: ::std::option::Option<::std::string::String>,
-    ///Number of times the coupon has been used for a purchase. Represents a gross value, including purchases that were returned or cancelled.
+    /// Number of times the coupon has been used for a purchase. Represents a gross value, including purchases that were returned or cancelled.
     pub redemptions: u64,
-    ///Coupon start date-time in UTC.
+    /// Coupon start date-time in UTC.
     #[serde(rename = "startDateTime")]
     pub start_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Total amount saved by customers redeeming the coupon. Currency value. Represents a gross value, including purchases that were returned or cancelled.
+    /// Total amount saved by customers redeeming the coupon. Currency value. Represents a gross value, including purchases that were returned or cancelled.
     #[serde(rename = "totalDiscount")]
     pub total_discount: ::serde_json::Number,
-    ///Message displayed with the coupon on the product page.
+    /// Message displayed with the coupon on the product page.
     #[serde(
         rename = "websiteMessage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub website_message: ::std::option::Option<::std::string::String>,
 }
-///Contains details about a campaign and every included coupon.
+/// Contains details about a campaign and every included coupon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByCampaign {
-    ///Whether the budget is allocated independently for each coupon or shared among all coupons.
+    /// Whether the budget is allocated independently for each coupon or shared among all coupons.
     ///
-    ///Known values: `PER_INDIVIDUAL_COUPON`, `SHARED_BUDGET`. Other values may be returned by Amazon.
+    /// Known values: `PER_INDIVIDUAL_COUPON`, `SHARED_BUDGET`. Other values may be returned by Amazon.
     #[serde(rename = "budgetType")]
     pub budget_type: ::std::string::String,
-    ///Unique identifier of the campaign.
+    /// Unique identifier of the campaign.
     #[serde(rename = "campaignId")]
     pub campaign_id: ::std::string::String,
-    ///Name given to the campaign.
+    /// Name given to the campaign.
     #[serde(rename = "campaignName")]
     pub campaign_name: ::std::string::String,
-    ///A list of included coupons and their details.
+    /// A list of included coupons and their details.
     pub coupons: ::std::vec::Vec<CouponDetails>,
-    ///Campaign creation date-time in UTC.
+    /// Campaign creation date-time in UTC.
     #[serde(rename = "creationDateTime")]
     pub creation_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///ISO 4217 currency code of all currency values in the campaign.
+    /// ISO 4217 currency code of all currency values in the campaign.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
-    ///Whether or not the campaign is a Subscribe and Save offer.
+    /// Whether or not the campaign is a Subscribe and Save offer.
     #[serde(rename = "isSubscribeAndSave")]
     pub is_subscribe_and_save: bool,
-    ///The latest date-time the campaign data in this report was updated. May be up to 24 hours before the current date-time.
+    /// The latest date-time the campaign data in this report was updated. May be up to 24 hours before the current date-time.
     #[serde(rename = "lastUpdatedDateTime")]
     pub last_updated_date_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The marketplace the campaign is running in.
+    /// The marketplace the campaign is running in.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Total budget allocated to the campaign. Currency value. Only present when budgetType is SHARED_BUDGET.
+    /// Total budget allocated to the campaign. Currency value. Only present when budgetType is SHARED_BUDGET.
     #[serde(
         rename = "totalBudget",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_budget: ::std::option::Option<::serde_json::Number>,
-    ///The budget remaining for the campaign, equal to totalBudget minus totalBudgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
+    /// The budget remaining for the campaign, equal to totalBudget minus totalBudgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
     #[serde(
         rename = "totalBudgetRemaining",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_budget_remaining: ::std::option::Option<::serde_json::Number>,
-    ///Total amount spent by the vendor on the campaign, including clip fees and redemption fees, equal to the sum of all coupon budgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
+    /// Total amount spent by the vendor on the campaign, including clip fees and redemption fees, equal to the sum of all coupon budgetSpent. Currency value. Only present when budgetType is SHARED_BUDGET.
     #[serde(
         rename = "totalBudgetSpent",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_budget_spent: ::std::option::Option<::serde_json::Number>,
-    ///Total number of times a coupon in the campaign has been applied on the product page, equal to the sum of all coupon clips.
+    /// Total number of times a coupon in the campaign has been applied on the product page, equal to the sum of all coupon clips.
     #[serde(rename = "totalClips")]
     pub total_clips: u64,
-    ///Total number of times a coupon in the campaign has been used for a purchase, equal to the sum of all coupon redemptions.
+    /// Total number of times a coupon in the campaign has been used for a purchase, equal to the sum of all coupon redemptions.
     #[serde(rename = "totalRedemptions")]
     pub total_redemptions: u64,
-    ///The vendor code associated with the campaign.
+    /// The vendor code associated with the campaign.
     #[serde(rename = "vendorCode")]
     pub vendor_code: ::std::string::String,
 }
-///This report contains data to help vendors optimize their coupons and adjust their advertising strategies. This report supports start dates up to two years before the current date.
+/// This report contains data to help vendors optimize their coupons and adjust their advertising strategies. This report supports start dates up to two years before the current date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///List of included campaigns.
+    /// List of included campaigns.
     pub campaigns: ::std::vec::Vec<DetailsByCampaign>,
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Marketplace IDs as specified in the report request.
+    /// Marketplace IDs as specified in the report request.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters campaignStartDateFrom and campaignStartDateTo.
+/// Report options specifying parameters campaignStartDateFrom and campaignStartDateTo.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The start of a date-time range in UTC used for selecting coupons to report on. All coupons with a start date-time that falls within the range will be included.
+    /// The start of a date-time range in UTC used for selecting coupons to report on. All coupons with a start date-time that falls within the range will be included.
     #[serde(rename = "campaignStartDateFrom")]
     pub campaign_start_date_from: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The end of a date-time range in UTC used for selecting coupons to report on. All coupons with a start date-time that falls within the range will be included.
+    /// The end of a date-time range in UTC used for selecting coupons to report on. All coupons with a start date-time that falls within the range will be included.
     #[serde(rename = "campaignStartDateTo")]
     pub campaign_start_date_to: ::chrono::DateTime<::chrono::offset::Utc>,
 }

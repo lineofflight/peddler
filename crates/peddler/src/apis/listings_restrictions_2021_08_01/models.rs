@@ -2,18 +2,18 @@
 // Source: listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -33,61 +33,61 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///A link to resources related to a listing restriction.
+/// A link to resources related to a listing restriction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Link {
-    ///The URI of the related resource.
+    /// The URI of the related resource.
     pub resource: ::std::string::String,
-    ///The title of the related resource.
+    /// The title of the related resource.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub title: ::std::option::Option<::std::string::String>,
-    ///The media type of the related resource.
+    /// The media type of the related resource.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
-    ///The HTTP verb used to interact with the related resource.
+    /// The HTTP verb used to interact with the related resource.
     ///
-    ///Known values: `GET`. Other values may be returned by Amazon.
+    /// Known values: `GET`. Other values may be returned by Amazon.
     pub verb: ::std::string::String,
 }
-///A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
+/// A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Reason {
-    ///A list of path forward links that may allow Selling Partners to remove the restriction.
+    /// A list of path forward links that may allow Selling Partners to remove the restriction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub links: ::std::option::Option<::std::vec::Vec<Link>>,
-    ///A message describing the reason for the restriction.
+    /// A message describing the reason for the restriction.
     pub message: ::std::string::String,
-    ///A code indicating why the listing is restricted.
+    /// A code indicating why the listing is restricted.
     ///
-    ///Known values: `APPROVAL_REQUIRED`, `ASIN_NOT_FOUND`, `NOT_ELIGIBLE`. Other values may be returned by Amazon.
+    /// Known values: `APPROVAL_REQUIRED`, `ASIN_NOT_FOUND`, `NOT_ELIGIBLE`. Other values may be returned by Amazon.
     #[serde(
         rename = "reasonCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_code: ::std::option::Option<::std::string::String>,
 }
-///A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
+/// A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Restriction {
-    ///The condition that applies to the restriction.
+    /// The condition that applies to the restriction.
     ///
-    ///Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.
+    /// Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.
     #[serde(
         rename = "conditionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub condition_type: ::std::option::Option<::std::string::String>,
-    ///A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
+    /// A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///A list of reasons for the restriction.
+    /// A list of reasons for the restriction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reasons: ::std::option::Option<::std::vec::Vec<Reason>>,
 }
-///A list of restrictions for the specified Amazon catalog item.
+/// A list of restrictions for the specified Amazon catalog item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RestrictionList {
-    ///A list of restrictions.
+    /// A list of restrictions.
     pub restrictions: ::std::vec::Vec<Restriction>,
 }
 /// Error types.

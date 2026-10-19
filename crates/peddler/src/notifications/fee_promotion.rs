@@ -4,29 +4,29 @@
 // Patch: lib/generator/patches/fee_promotion.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: TheNotificationMetadataSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: ThePayloadSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDetailsSchemaItem {
     #[serde(rename = "FeeAmount")]
@@ -36,12 +36,12 @@ pub struct TheFeeDetailsSchemaItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_promotion: ::std::option::Option<TheFeeDetailsSchemaItemFeePromotion>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeeType")]
     pub fee_type: ::std::string::String,
     #[serde(rename = "FinalFee")]
     pub final_fee: TheFeeDetailsSchemaItemFinalFee,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(
         rename = "IncludedFees",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -55,99 +55,99 @@ pub struct TheFeeDetailsSchemaItem {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDetailsSchemaItemFeeAmount {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDetailsSchemaItemFeePromotion {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDetailsSchemaItemFinalFee {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDetailsSchemaItemTaxAmount {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeeDiscountMonetaryAmountSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeePromotionNotificationSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeePromotionType")]
     pub fee_promotion_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeePromotionTypeDescription")]
     pub fee_promotion_type_description: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Identifiers")]
     pub identifiers: ::std::vec::Vec<TheIdentifiersSchemaItem>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "MerchantId")]
     pub merchant_id: ::std::string::String,
     #[serde(rename = "PromotionActiveTimeRange")]
     pub promotion_active_time_range: ThePromotionActiveTimeRangeSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PromotionInformation")]
     pub promotion_information: ::std::vec::Vec<ThePromotionInformationSchemaItem>,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheFeesEstimateSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeeDetails")]
     pub fee_details: ::std::vec::Vec<TheFeeDetailsSchemaItem>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "TimeOfFeesEstimated")]
     pub time_of_fees_estimated: ::std::string::String,
     #[serde(rename = "TotalFeesEstimate")]
@@ -155,41 +155,41 @@ pub struct TheFeesEstimateSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIdentifierValuesSchemaItem {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(
         rename = "IdentifierValueFriendlyName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub identifier_value_friendly_name: ::std::option::Option<::std::string::String>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "IdentifierValueId")]
     pub identifier_value_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIdentifiersSchemaItem {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "IdentifierType")]
     pub identifier_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "IdentifierValues")]
     pub identifier_values: ::std::vec::Vec<TheIdentifierValuesSchemaItem>,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIncludedFeesSchemaItem {
     #[serde(rename = "FeeAmount")]
     pub fee_amount: TheIncludedFeesSchemaItemFeeAmount,
     #[serde(rename = "FeePromotion")]
     pub fee_promotion: TheIncludedFeesSchemaItemFeePromotion,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeeType")]
     pub fee_type: ::std::string::String,
     #[serde(rename = "FinalFee")]
@@ -199,73 +199,73 @@ pub struct TheIncludedFeesSchemaItem {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIncludedFeesSchemaItemFeeAmount {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIncludedFeesSchemaItemFeePromotion {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIncludedFeesSchemaItemFinalFee {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheIncludedFeesSchemaItemTaxAmount {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheNotificationMetadataSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePayloadSchema {
     #[serde(rename = "FeePromotionNotification")]
@@ -273,31 +273,31 @@ pub struct ThePayloadSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePriceThresholdSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePromotionActiveTimeRangeSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "EffectiveFromDate")]
     pub effective_from_date: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "EffectiveThroughDate")]
     pub effective_through_date: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePromotionInformationSchemaItem {
     #[serde(
@@ -307,16 +307,16 @@ pub struct ThePromotionInformationSchemaItem {
     pub fee_discount_monetary_amount: ::std::option::Option<
         TheFeeDiscountMonetaryAmountSchema,
     >,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeeDiscountType")]
     pub fee_discount_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(
         rename = "FeeDiscountValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_discount_value: ::std::option::Option<::serde_json::Number>,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "FeeType")]
     pub fee_type: ::std::string::String,
     #[serde(
@@ -332,13 +332,13 @@ pub struct ThePromotionInformationSchemaItem {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheTotalFeesEstimateSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "Amount")]
     pub amount: i64,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "CurrencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]

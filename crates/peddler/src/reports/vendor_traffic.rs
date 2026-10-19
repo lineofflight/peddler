@@ -2,7 +2,7 @@
 // Source: schemas/reports/vendorTrafficReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///This report shares data on the customer traffic to the detail pages of the vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available for different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
+/// This report shares data on the customer traffic to the detail pages of the vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available for different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "reportSpecification")]
@@ -12,61 +12,61 @@ pub struct Report {
     #[serde(rename = "trafficByAsin")]
     pub traffic_by_asin: ::std::vec::Vec<TrafficByAsin>,
 }
-///The report summary including the specified reporting date range and the last updated date in the input.
+/// The report summary including the specified reporting date range and the last updated date in the input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod or else a fatal error is returned. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod or else a fatal error is returned. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod or else a fatal error is returned. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER, and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod or else a fatal error is returned. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date format of YYYY-MM-DD.
+    /// The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date format of YYYY-MM-DD.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account (each selling partner account belongs to one and only one marketplaceId).
+    /// This parameter must match the marketplaceId of the selling partner account (each selling partner account belongs to one and only one marketplaceId).
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The type of report.
+    /// The type of report.
     ///
-    ///Known values: `GET_VENDOR_TRAFFIC_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_TRAFFIC_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod.
+/// Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
+    /// The granularity of the data in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }
-///Describes aggregated traffic metrics for ASINs in the vendor's account.
+/// Describes aggregated traffic metrics for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TrafficAggregate {
-    ///The end date of the aggregated data.
+    /// The end date of the aggregated data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///Customer views of the vendor's product detail pages.
+    /// Customer views of the vendor's product detail pages.
     #[serde(rename = "glanceViews")]
     pub glance_views: u64,
-    ///The start date of the aggregated data.
+    /// The start date of the aggregated data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///Describes aggregated ASIN-level traffic metrics for ASINs in the vendor's account.
+/// Describes aggregated ASIN-level traffic metrics for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TrafficByAsin {
-    ///The Amazon Standard Identification Number.
+    /// The Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///The end date of the aggregated ASIN-level data.
+    /// The end date of the aggregated ASIN-level data.
     #[serde(rename = "endDate")]
     pub end_date: ::std::string::String,
-    ///The number of customer views of the product detail page.
+    /// The number of customer views of the product detail page.
     #[serde(rename = "glanceViews")]
     pub glance_views: u64,
-    ///The start date of the aggregated ASIN-level data.
+    /// The start date of the aggregated ASIN-level data.
     #[serde(rename = "startDate")]
     pub start_date: ::std::string::String,
 }

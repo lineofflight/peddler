@@ -2,71 +2,71 @@
 // Source: schemas/notifications/FeedProcessingFinishedNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///The timestamp of the event, formatted as ISO 8601 date-time.
+    /// The timestamp of the event, formatted as ISO 8601 date-time.
     #[serde(rename = "eventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationNotificationMetadata,
-    ///The type of the notification.
+    /// The type of the notification.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
-    ///The version of the notification.
+    /// The version of the notification.
     #[serde(rename = "notificationVersion")]
     pub notification_version: ::std::string::String,
     pub payload: NotificationPayload,
-    ///The version of the payload.
+    /// The version of the payload.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The metadata of the notification.
+/// The metadata of the notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationNotificationMetadata {
-    ///The application identifier.
+    /// The application identifier.
     #[serde(rename = "applicationId")]
     pub application_id: ::std::string::String,
-    ///The notification identifier.
+    /// The notification identifier.
     #[serde(rename = "notificationId")]
     pub notification_id: ::std::string::String,
-    ///The timestamp of when the notification was published, formatted as ISO 8601 date-time.
+    /// The timestamp of when the notification was published, formatted as ISO 8601 date-time.
     #[serde(rename = "publishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription identifier.
+    /// The subscription identifier.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///The details of this notification.
+/// The details of this notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationPayload {
     #[serde(rename = "feedProcessingFinishedNotification")]
     pub feed_processing_finished_notification: NotificationPayloadFeedProcessingFinishedNotification,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationPayloadFeedProcessingFinishedNotification {
-    ///The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the feed was submitted.
+    /// The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the feed was submitted.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The feed identifier.
+    /// The feed identifier.
     #[serde(rename = "feedId")]
     pub feed_id: ::std::string::String,
-    ///The feed type.
+    /// The feed type.
     #[serde(rename = "feedType")]
     pub feed_type: ::std::string::String,
-    ///The processing status of the feed.
+    /// The processing status of the feed.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
-    ///The feed document identifier. This identifier is unique only in combination with a seller ID.
+    /// The feed document identifier. This identifier is unique only in combination with a seller ID.
     #[serde(
         rename = "resultFeedDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub result_feed_document_id: ::std::option::Option<::std::string::String>,
-    ///The merchant customer identifier of the selling partner account on whose behalf the feed was submitted. This field will be null when the feed was submitted on behalf of a vendor group identifier.
+    /// The merchant customer identifier of the selling partner account on whose behalf the feed was submitted. This field will be null when the feed was submitted on behalf of a vendor group identifier.
     #[serde(rename = "sellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
 }

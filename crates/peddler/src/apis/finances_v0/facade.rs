@@ -7,22 +7,22 @@ use crate::operation::{self, DecodeError, TypedResponse};
 fn list_financial_event_groups_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
-///The parameters of [`list_financial_event_groups`] and [`list_financial_event_groups_pages`].
+/// The parameters of [`list_financial_event_groups`] and [`list_financial_event_groups_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListFinancialEventGroupsParams {
-    ///The maximum number of results per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+    /// The maximum number of results per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
     #[serde(default = "list_financial_event_groups_max_results_per_page_default")]
     pub max_results_per_page: Option<i32>,
-    ///A date that selects financial event groups that opened before (but not at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be after `FinancialEventGroupStartedAfter` and more than two minutes before the time of request. If `FinancialEventGroupStartedAfter` and `FinancialEventGroupStartedBefore` are more than 180 days apart, no financial event groups are returned.
+    /// A date that selects financial event groups that opened before (but not at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be after `FinancialEventGroupStartedAfter` and more than two minutes before the time of request. If `FinancialEventGroupStartedAfter` and `FinancialEventGroupStartedBefore` are more than 180 days apart, no financial event groups are returned.
     pub financial_event_group_started_before: Option<String>,
-    ///A date that selects financial event groups that opened after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be more than two minutes before you submit the request.
+    /// A date that selects financial event groups that opened after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be more than two minutes before you submit the request.
     pub financial_event_group_started_after: Option<String>,
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListFinancialEventGroupsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             max_results_per_page: list_financial_event_groups_max_results_per_page_default(),
@@ -37,9 +37,9 @@ impl Default for ListFinancialEventGroupsParams {
         Self::new()
     }
 }
-///Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.
+/// Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.
 ///
-///Its pages: [`list_financial_event_groups_pages`].
+/// Its pages: [`list_financial_event_groups_pages`].
 pub async fn list_financial_event_groups(
     client: &Client,
     params: ListFinancialEventGroupsParams,
@@ -75,7 +75,7 @@ pub async fn list_financial_event_groups(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_financial_event_groups`].
+/// Each page of [`list_financial_event_groups`].
 pub fn list_financial_event_groups_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventGroupsParams,
@@ -99,26 +99,26 @@ pub fn list_financial_event_groups_pages<'a>(
 fn list_financial_events_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
 }
-///The parameters of [`list_financial_events`] and [`list_financial_events_pages`].
+/// The parameters of [`list_financial_events`] and [`list_financial_events_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListFinancialEventsParams {
-    ///The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+    /// The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
     #[serde(default = "list_financial_events_max_results_per_page_default")]
     pub max_results_per_page: Option<i32>,
-    ///The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+    /// The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
     pub posted_after: Option<String>,
-    ///The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     ///
-    ///The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+    /// The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
     ///
-    ///**Default:** Two minutes before the time of the request.
+    /// **Default:** Two minutes before the time of the request.
     pub posted_before: Option<String>,
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListFinancialEventsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             max_results_per_page: list_financial_events_max_results_per_page_default(),
@@ -133,11 +133,11 @@ impl Default for ListFinancialEventsParams {
         Self::new()
     }
 }
-///Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.
+/// Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.
 ///
-///**Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
+/// **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.
 ///
-///Its pages: [`list_financial_events_pages`].
+/// Its pages: [`list_financial_events_pages`].
 pub async fn list_financial_events(
     client: &Client,
     params: ListFinancialEventsParams,
@@ -165,7 +165,7 @@ pub async fn list_financial_events(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_financial_events`].
+/// Each page of [`list_financial_events`].
 pub fn list_financial_events_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsParams,
@@ -189,28 +189,28 @@ pub fn list_financial_events_pages<'a>(
 fn list_financial_events_by_group_id_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
 }
-///The parameters of [`list_financial_events_by_group_id`] and [`list_financial_events_by_group_id_pages`].
+/// The parameters of [`list_financial_events_by_group_id`] and [`list_financial_events_by_group_id_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListFinancialEventsByGroupIdParams {
-    ///The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+    /// The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
     #[serde(default = "list_financial_events_by_group_id_max_results_per_page_default")]
     pub max_results_per_page: Option<i32>,
-    ///The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+    /// The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
     pub posted_after: Option<String>,
-    ///The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     ///
-    ///The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+    /// The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
     ///
-    ///**Default:** Two minutes before the time of the request.
+    /// **Default:** Two minutes before the time of the request.
     pub posted_before: Option<String>,
-    ///The identifier of the financial event group to which the events belong.
+    /// The identifier of the financial event group to which the events belong.
     pub event_group_id: String,
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListFinancialEventsByGroupIdParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(event_group_id: String) -> Self {
         Self {
             max_results_per_page: list_financial_events_by_group_id_max_results_per_page_default(),
@@ -221,13 +221,13 @@ impl ListFinancialEventsByGroupIdParams {
         }
     }
 }
-///Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.
+/// Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.
 ///
-///**Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
+/// **Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.
 ///
-///**Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more than two years produces an empty response.
+/// **Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more than two years produces an empty response.
 ///
-///Its pages: [`list_financial_events_by_group_id_pages`].
+/// Its pages: [`list_financial_events_by_group_id_pages`].
 pub async fn list_financial_events_by_group_id(
     client: &Client,
     params: ListFinancialEventsByGroupIdParams,
@@ -260,7 +260,7 @@ pub async fn list_financial_events_by_group_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_financial_events_by_group_id`].
+/// Each page of [`list_financial_events_by_group_id`].
 pub fn list_financial_events_by_group_id_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsByGroupIdParams,
@@ -284,20 +284,20 @@ pub fn list_financial_events_by_group_id_pages<'a>(
 fn list_financial_events_by_order_id_max_results_per_page_default() -> Option<i32> {
     Some(serde_json::from_str("100").expect("validated schema default"))
 }
-///The parameters of [`list_financial_events_by_order_id`] and [`list_financial_events_by_order_id_pages`].
+/// The parameters of [`list_financial_events_by_order_id`] and [`list_financial_events_by_order_id_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListFinancialEventsByOrderIdParams {
-    ///An Amazon-defined order identifier, in 3-7-7 format.
+    /// An Amazon-defined order identifier, in 3-7-7 format.
     pub order_id: String,
-    ///The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+    /// The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
     #[serde(default = "list_financial_events_by_order_id_max_results_per_page_default")]
     pub max_results_per_page: Option<i32>,
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListFinancialEventsByOrderIdParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self {
             order_id,
@@ -306,11 +306,11 @@ impl ListFinancialEventsByOrderIdParams {
         }
     }
 }
-///Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.
+/// Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.
 ///
-///**Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
+/// **Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.
 ///
-///Its pages: [`list_financial_events_by_order_id_pages`].
+/// Its pages: [`list_financial_events_by_order_id_pages`].
 pub async fn list_financial_events_by_order_id(
     client: &Client,
     params: ListFinancialEventsByOrderIdParams,
@@ -341,7 +341,7 @@ pub async fn list_financial_events_by_order_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_financial_events_by_order_id`].
+/// Each page of [`list_financial_events_by_order_id`].
 pub fn list_financial_events_by_order_id_pages<'a>(
     client: &'a Client,
     params: ListFinancialEventsByOrderIdParams,

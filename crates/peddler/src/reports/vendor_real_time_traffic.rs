@@ -2,45 +2,45 @@
 // Source: schemas/reports/vendorRealTimeTrafficReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///This report shares data on the customer traffic to the detail pages of the vendor's items with an hourly granularity. Requests can span multiple date range periods. For example, if the customer specified dataStartTime and dataEndTime span three hours, the report would contain data for each complete hour within the time span.
+/// This report shares data on the customer traffic to the detail pages of the vendor's items with an hourly granularity. Requests can span multiple date range periods. For example, if the customer specified dataStartTime and dataEndTime span three hours, the report would contain data for each complete hour within the time span.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///List of hour and ASIN combinations.
+    /// List of hour and ASIN combinations.
     #[serde(rename = "reportData")]
     pub report_data: ::std::vec::Vec<ReportData>,
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Contains details about hour and ASIN combinations for the specified time range.
+/// Contains details about hour and ASIN combinations for the specified time range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportData {
-    ///The Amazon Standard Identification Number (ASIN).
+    /// The Amazon Standard Identification Number (ASIN).
     pub asin: ::std::string::String,
-    ///The end of a date-time range in UTC representing the end of the hour for this object.
+    /// The end of a date-time range in UTC representing the end of the hour for this object.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The number of customer views of the product detail page for this ASIN.
+    /// The number of customer views of the product detail page for this ASIN.
     #[serde(rename = "glanceViews")]
     pub glance_views: u64,
-    ///The start of a date-time range in UTC representing the beginning of the hour for this object.
+    /// The start of a date-time range in UTC representing the beginning of the hour for this object.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The end of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. End time should be at least 60 minutes earlier than the time of the request.
+    /// The end of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. End time should be at least 60 minutes earlier than the time of the request.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The start of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range.
+    /// The start of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Marketplace IDs as specified in the report request.
+    /// Marketplace IDs as specified in the report request.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    ///The type of the report.
+    /// The type of the report.
     ///
-    ///Known values: `GET_VENDOR_REAL_TIME_TRAFFIC_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_REAL_TIME_TRAFFIC_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }

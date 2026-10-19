@@ -2,65 +2,65 @@
 // Source: schemas/notifications/ProductTypeDefinitionsChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: TheNotificationMetadataSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: ThePayloadSchema,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheNotificationMetadataSchema {
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///An explanation about the purpose of this instance.
+    /// An explanation about the purpose of this instance.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///An explanation about the purpose of this instance.
+/// An explanation about the purpose of this instance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePayloadSchema {
-    ///The Merchant Id or Vendor Group Id related to the subscription.
+    /// The Merchant Id or Vendor Group Id related to the subscription.
     #[serde(rename = "AccountId")]
     pub account_id: ::std::string::String,
-    ///The marketplace where the Product Type Definition has changed
+    /// The marketplace where the Product Type Definition has changed
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///List of new Product Types release in the marketplace.
+    /// List of new Product Types release in the marketplace.
     #[serde(
         rename = "NewProductTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub new_product_types: ::std::option::Option<::std::vec::Vec<::serde_json::Value>>,
-    ///Provides the latest released Product Type Definition version.
+    /// Provides the latest released Product Type Definition version.
     #[serde(rename = "ProductTypeVersion")]
     pub product_type_version: ::std::string::String,
     #[serde(flatten)]

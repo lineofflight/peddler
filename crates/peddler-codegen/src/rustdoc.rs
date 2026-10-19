@@ -53,11 +53,23 @@ fn doc(tokens: &[TokenTree]) -> Option<String> {
     }
 }
 
-/// A doc's lines. Rust refuses a carriage return in a doc comment, so each line break is
-/// a line feed.
+/// A doc's lines, each one that isn't blank after a space, so that it reads `/// The`.
+/// rustdoc takes away the whitespace every line starts with, as it does here first. Rust
+/// refuses a carriage return in a doc comment, so each line break is a line feed.
 fn split(text: &str) -> Vec<String> {
     let text = text.replace("\r\n", "\n").replace('\r', "\n");
-    text.split('\n').map(str::to_owned).collect()
+    let lines: Vec<&str> = text.split('\n').collect();
+    let blank = |line: &str| line.trim().is_empty();
+    let indent = |line: &str| line.chars().take_while(|c| matches!(c, ' ' | '\t')).count();
+    let lines_with_text = lines.iter().filter(|line| !blank(line));
+    let common = lines_with_text.map(|line| indent(line)).min().unwrap_or(0);
+    lines
+        .iter()
+        .map(|line| match blank(line) {
+            true => String::new(),
+            false => format!(" {}", &line[common..]),
+        })
+        .collect()
 }
 
 #[cfg(test)]
@@ -79,14 +91,14 @@ mod tests {
         assert_eq!(
             source,
             concat!(
-                "///A field.\n",
+                "/// A field.\n",
                 "///\n",
-                "///**Note**: slowly.\n",
+                "/// **Note**: slowly.\n",
                 "#[derive(Debug)]\n",
                 "pub struct A {\n",
-                "    ///x\n",
-                "    ///y\n",
-                "    ///z\n",
+                "    /// x\n",
+                "    /// y\n",
+                "    /// z\n",
                 "    #[serde(rename = \"b\")]\n",
                 "    pub b: u8,\n",
                 "}\n",
@@ -99,6 +111,21 @@ mod tests {
     #[test]
     fn docs_in_a_row_are_1_text() {
         let source = format("#[doc = \"a\"] #[doc = \"b\\nc\"] #[doc(hidden)] fn f() {}");
-        assert_eq!(source, "///a\n///b\n///c\n#[doc(hidden)]\nfn f() {}\n");
+        assert_eq!(source, "/// a\n/// b\n/// c\n#[doc(hidden)]\nfn f() {}\n");
+    }
+
+    /// A line reads `/// The`. rustdoc takes away the whitespace all lines start with,
+    /// so what a line has more than the others stays, and a doc written that way already
+    /// stays as it is.
+    #[test]
+    fn a_line_starts_after_a_space() {
+        let source = format("#[doc = \"A list:\\n  - item\\n\\n    code\\n \\t\"] fn f() {}");
+        assert_eq!(
+            source,
+            "/// A list:\n///   - item\n///\n///     code\n///\nfn f() {}\n"
+        );
+        assert_eq!(format(&source), source);
+        let indented = format("#[doc = \"  a\\n    b\"] fn f() {}");
+        assert_eq!(indented, "/// a\n///   b\nfn f() {}\n");
     }
 }

@@ -2,57 +2,57 @@
 // Source: schemas/notifications/ListingsItemMfnQuantityChange.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///To be delivered when the inventory quantity of a MFN Seller listing changes.
+/// To be delivered when the inventory quantity of a MFN Seller listing changes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///Timestamp of the event, formatted as ISO8601 date-time.
+    /// Timestamp of the event, formatted as ISO8601 date-time.
     #[serde(rename = "EventTime")]
     pub event_time: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The type of the notification.
+    /// The type of the notification.
     ///
-    ///Known values: `LISTINGS_ITEM_MFN_QUANTITY_CHANGE`. Other values may be returned by Amazon.
+    /// Known values: `LISTINGS_ITEM_MFN_QUANTITY_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The version of the notification.
+    /// The version of the notification.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: Payload,
-    ///The version of the payload.
+    /// The version of the payload.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The metadata of the notification.
+/// The metadata of the notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///An identifier of the application.
+    /// An identifier of the application.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///An identifier of the notification.
+    /// An identifier of the notification.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///Timestamp of when the notification was published, formatted as ISO8601 date-time.
+    /// Timestamp of when the notification was published, formatted as ISO8601 date-time.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///An identifier of the subscription.
+    /// An identifier of the subscription.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///The details of this notification.
+/// The details of this notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The Fulfillment channel code representing the MFN (seller-fulfilled) fulfillment program, network, or channel where the quantity is applicable.
+    /// The Fulfillment channel code representing the MFN (seller-fulfilled) fulfillment program, network, or channel where the quantity is applicable.
     #[serde(rename = "FulfillmentChannelCode")]
     pub fulfillment_channel_code: ::std::string::String,
-    ///The available quantity for MFN (seller-fulfillment) with the fulfillment program, network, or channel.
+    /// The available quantity for MFN (seller-fulfillment) with the fulfillment program, network, or channel.
     #[serde(rename = "Quantity")]
     pub quantity: i64,
-    ///Selling partner identifier, such as a merchant ID, of the affected listings item.
+    /// Selling partner identifier, such as a merchant ID, of the affected listings item.
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
-    ///A selling partner provided identifier for an Amazon listing.
+    /// A selling partner provided identifier for an Amazon listing.
     #[serde(rename = "Sku")]
     pub sku: ::std::string::String,
 }

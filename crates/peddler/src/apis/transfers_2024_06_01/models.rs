@@ -2,9 +2,9 @@
 // Source: finances-api-model/transfers_2024-06-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The default payment method type.
+/// The default payment method type.
 ///
-///Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
+/// Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -45,7 +45,7 @@ impl ::std::str::FromStr for AssignmentType {
         Ok(Self(value.to_string()))
     }
 }
-///A signed decimal number.
+/// A signed decimal number.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BigDecimal(pub ::serde_json::Number);
@@ -88,23 +88,23 @@ impl ::std::convert::TryFrom<String> for BigDecimal {
         value.parse()
     }
 }
-///A currency type and amount.
+/// A currency type and amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Currency {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(
         rename = "currencyAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_amount: ::std::option::Option<BigDecimal>,
-    ///The three-digit currency code in ISO 4217 format.
+    /// The three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+/// A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Date(pub ::chrono::DateTime<::chrono::offset::Utc>);
@@ -147,69 +147,69 @@ impl ::std::convert::TryFrom<String> for Date {
         value.parse()
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///array of errors
+    /// array of errors
     pub errors: ::std::vec::Vec<Error>,
 }
-///All the information related to an expected payout.
+/// All the information related to an expected payout.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ExpectedPayout {
-    ///The last few digits of the payment instrument.
+    /// The last few digits of the payment instrument.
     #[serde(
         rename = "accountTail",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_tail: ::std::option::Option<::std::string::String>,
-    ///The total amount of money expected in the payout. Can be null when no payout is expected
+    /// The total amount of money expected in the payout. Can be null when no payout is expected
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Currency>,
-    ///Metadata that describes the selling partner.
+    /// Metadata that describes the selling partner.
     #[serde(rename = "partnerMetadata")]
     pub partner_metadata: PartnerMetadata,
-    ///The type of payout instrument to which funds will be delivered.
+    /// The type of payout instrument to which funds will be delivered.
     ///
-    ///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
+    /// Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method: ::std::option::Option<PaymentMethodName>,
-    ///The interval considered for calculating the payout amount.
+    /// The interval considered for calculating the payout amount.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub period: ::std::option::Option<Period>,
-    ///Identifiers related to the payout, such as settlement IDs.
+    /// Identifiers related to the payout, such as settlement IDs.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<RelatedIdentifiers>,
-    ///The expected date when the payout would be initiated in Amazon's system.
+    /// The expected date when the payout would be initiated in Amazon's system.
     #[serde(
         rename = "scheduledDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scheduled_date: ::std::option::Option<Date>,
-    ///The status of the expected payout.
+    /// The status of the expected payout.
     ///
-    ///Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
+    /// Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
     pub status: ExpectedPayoutStatusName,
 }
-///Enumerated set of expected payout status names.
+/// Enumerated set of expected payout status names.
 ///
-///Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
+/// Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -250,17 +250,17 @@ impl ::std::str::FromStr for ExpectedPayoutStatusName {
         Ok(Self(value.to_string()))
     }
 }
-///The expiration date of the card used for payment. If the payment method is not `card`, the expiration date is `null`.
+/// The expiration date of the card used for payment. If the payment method is not `card`, the expiration date is `null`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ExpiryDate {
-    ///The month the card expires expressed as a number from `1` to `12`.
+    /// The month the card expires expressed as a number from `1` to `12`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub month: ::std::option::Option<::std::string::String>,
-    ///Year
+    /// Year
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub year: ::std::option::Option<::std::string::String>,
 }
-///The response schema for the `getPaymentMethods` operation.
+/// The response schema for the `getPaymentMethods` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetPaymentMethodsResponse {
     #[serde(
@@ -269,53 +269,53 @@ pub struct GetPaymentMethodsResponse {
     )]
     pub payment_methods: ::std::option::Option<PaymentMethodList>,
 }
-///The request schema for the `initiatePayout` operation.
+/// The request schema for the `initiatePayout` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InitiatePayoutRequest {
-    ///The account type in the selected marketplace for which a payout must be initiated. For supported EU marketplaces, the only account type is `Standard Orders`.
+    /// The account type in the selected marketplace for which a payout must be initiated. For supported EU marketplaces, the only account type is `Standard Orders`.
     #[serde(rename = "accountType")]
     pub account_type: ::std::string::String,
-    ///The identifier of the Amazon store. This API supports the following stores: DE, FR, IT, ES, SE, NL, PL, and BE. For a list of possible store IDs, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the Amazon store. This API supports the following stores: DE, FR, IT, ES, SE, NL, PL, and BE. For a list of possible store IDs, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
 }
-///The response schema for the `initiatePayout` operation.
+/// The response schema for the `initiatePayout` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InitiatePayoutResponse {
-    ///The financial event group ID for a successfully initiated payout. You can use this ID to track payout information.
+    /// The financial event group ID for a successfully initiated payout. You can use this ID to track payout information.
     #[serde(rename = "payoutReferenceId")]
     pub payout_reference_id: ::std::string::String,
 }
-///The response schema for the `listExpectedPayouts` operation.
+/// The response schema for the `listExpectedPayouts` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListExpectedPayoutsResponse {
-    ///A list of expected payouts for all of the selling partner's accounts matching the filters.
+    /// A list of expected payouts for all of the selling partner's accounts matching the filters.
     #[serde(
         rename = "expectedPayouts",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub expected_payouts: ::std::option::Option<::std::vec::Vec<ExpectedPayout>>,
-    ///The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The response schema for the `listPayouts` operation.
+/// The response schema for the `listPayouts` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListPayoutsResponse {
-    ///The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A list of payouts matching the request criteria.
+    /// A list of payouts matching the request criteria.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payouts: ::std::option::Option<::std::vec::Vec<Payout>>,
 }
-///The identifier of the Amazon marketplace. For the list of all marketplace IDs, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+/// The identifier of the Amazon marketplace. For the list of all marketplace IDs, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -356,67 +356,67 @@ impl ::std::str::FromStr for MarketplaceId {
         Ok(Self(value.to_string()))
     }
 }
-///Metadata that describes the selling partner.
+/// Metadata that describes the selling partner.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartnerMetadata {
-    ///The type of the selling partner's account in the payout.
+    /// The type of the selling partner's account in the payout.
     #[serde(rename = "accountType")]
     pub account_type: ::std::string::String,
-    ///The identifier of the store associated with the payout. To find the ID for your store, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the store associated with the payout. To find the ID for your store, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///A unique selling partner identifier.
+    /// A unique selling partner identifier.
     #[serde(rename = "partnerId")]
     pub partner_id: ::std::string::String,
 }
-///The details of a payment method.
+/// The details of a payment method.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PaymentMethodDetails {
-    ///The name of the account holder who is registered for the payment method.
+    /// The name of the account holder who is registered for the payment method.
     #[serde(
         rename = "accountHolderName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_holder_name: ::std::option::Option<::std::string::String>,
-    ///The payment method assignment type, whether it is assigned as default to the given marketplace or not.
+    /// The payment method assignment type, whether it is assigned as default to the given marketplace or not.
     ///
-    ///Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
+    /// Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
     #[serde(
         rename = "assignmentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub assignment_type: ::std::option::Option<AssignmentType>,
-    ///The two-letter country code in ISO 3166-1 alpha-2 format. For payment methods in the `card` category, the code is for the country where the card was issued. For payment methods in the `bank account` category, the code is for the country where the account is located.
+    /// The two-letter country code in ISO 3166-1 alpha-2 format. For payment methods in the `card` category, the code is for the country where the card was issued. For payment methods in the `bank account` category, the code is for the country where the account is located.
     #[serde(
         rename = "countryCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub country_code: ::std::option::Option<::std::string::String>,
-    ///The expiration date of the card used for payment.
+    /// The expiration date of the card used for payment.
     #[serde(
         rename = "expiryDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub expiry_date: ::std::option::Option<ExpiryDate>,
-    ///The payment method identifier.
+    /// The payment method identifier.
     #[serde(
         rename = "paymentMethodId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method_id: ::std::option::Option<::std::string::String>,
-    ///The payment method type.
+    /// The payment method type.
     ///
-    ///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
+    /// Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethodType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method_type: ::std::option::Option<PaymentMethodType>,
-    ///The last three or four digits of the payment method.
+    /// The last three or four digits of the payment method.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub tail: ::std::option::Option<::std::string::String>,
 }
-///The list of payment methods with payment method details.
+/// The list of payment methods with payment method details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PaymentMethodList(pub ::std::vec::Vec<PaymentMethodDetails>);
@@ -436,9 +436,9 @@ impl ::std::convert::From<::std::vec::Vec<PaymentMethodDetails>> for PaymentMeth
         Self(value)
     }
 }
-///Enumerated set of payment methods for payout transfers.
+/// Enumerated set of payment methods for payout transfers.
 ///
-///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
+/// Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -479,9 +479,9 @@ impl ::std::str::FromStr for PaymentMethodName {
         Ok(Self(value.to_string()))
     }
 }
-///The type of payment method.
+/// The type of payment method.
 ///
-///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
+/// Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -522,9 +522,9 @@ impl ::std::str::FromStr for PaymentMethodType {
         Ok(Self(value.to_string()))
     }
 }
-///The list of payment method types that are present.
+/// The list of payment method types that are present.
 ///
-///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
+/// Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PaymentMethodTypeList(pub ::std::vec::Vec<PaymentMethodType>);
@@ -544,89 +544,89 @@ impl ::std::convert::From<::std::vec::Vec<PaymentMethodType>> for PaymentMethodT
         Self(value)
     }
 }
-///All the information related to a payout.
+/// All the information related to a payout.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payout {
-    ///The last few digits of the payment instrument. May be omitted when the configured payment instrument is invalid.
+    /// The last few digits of the payment instrument. May be omitted when the configured payment instrument is invalid.
     #[serde(
         rename = "accountTail",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_tail: ::std::option::Option<::std::string::String>,
-    ///The total amount of the payout. Can be null when there is no payout amount to disburse.
+    /// The total amount of the payout. Can be null when there is no payout amount to disburse.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Currency>,
-    ///The date when the payout was created.
+    /// The date when the payout was created.
     #[serde(
         rename = "creationDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub creation_date: ::std::option::Option<Date>,
-    ///The current status of the payout. This value corresponds to the most recent entry in the `statusHistory` list.
+    /// The current status of the payout. This value corresponds to the most recent entry in the `statusHistory` list.
     ///
-    ///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
+    /// Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
     #[serde(rename = "currentStatus")]
     pub current_status: PayoutStatusName,
-    ///The unique identifier of the payout.
+    /// The unique identifier of the payout.
     pub id: ::std::string::String,
-    ///Metadata that describes the selling partner.
+    /// Metadata that describes the selling partner.
     #[serde(rename = "partnerMetadata")]
     pub partner_metadata: PartnerMetadata,
-    ///The type of payout instrument to which funds are delivered.
+    /// The type of payout instrument to which funds are delivered.
     ///
-    ///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
+    /// Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method: ::std::option::Option<PaymentMethodName>,
-    ///The underlying payment network or clearing system used to transmit the payout.
+    /// The underlying payment network or clearing system used to transmit the payout.
     #[serde(
         rename = "paymentRail",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_rail: ::std::option::Option<::std::string::String>,
-    ///The time interval for calculating the payout amount.
+    /// The time interval for calculating the payout amount.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub period: ::std::option::Option<Period>,
-    ///Identifiers related to the payout, such as settlement IDs.
+    /// Identifiers related to the payout, such as settlement IDs.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<RelatedIdentifiers>,
-    ///A chronological list of payout status updates.
+    /// A chronological list of payout status updates.
     #[serde(rename = "statusHistory")]
     pub status_history: ::std::vec::Vec<PayoutStatusEntry>,
-    ///The banking network's unique identifier for a fund transfer request.
+    /// The banking network's unique identifier for a fund transfer request.
     #[serde(rename = "traceId", skip_serializing_if = "::std::option::Option::is_none")]
     pub trace_id: ::std::option::Option<::std::string::String>,
-    ///The type of payout. Can be null when there is no payout.
+    /// The type of payout. Can be null when there is no payout.
     ///
-    ///Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
+    /// Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<PayoutTypeName>,
 }
-///A record of a payout's status at a specific point in time.
+/// A record of a payout's status at a specific point in time.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PayoutStatusEntry {
-    ///The reason the payout failed.
+    /// The reason the payout failed.
     #[serde(
         rename = "failureReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub failure_reason: ::std::option::Option<::std::string::String>,
-    ///The date when this status was last updated.
+    /// The date when this status was last updated.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: Date,
-    ///The payout status when this entry was recorded.
+    /// The payout status when this entry was recorded.
     ///
-    ///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
+    /// Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
     pub status: PayoutStatusName,
 }
-///Enumerated set of payout status names.
+/// Enumerated set of payout status names.
 ///
-///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
+/// Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -667,9 +667,9 @@ impl ::std::str::FromStr for PayoutStatusName {
         Ok(Self(value.to_string()))
     }
 }
-///Enumerated set of payout type names.
+/// Enumerated set of payout type names.
 ///
-///Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
+/// Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -710,31 +710,31 @@ impl ::std::str::FromStr for PayoutTypeName {
         Ok(Self(value.to_string()))
     }
 }
-///The time interval for calculating the payout amount.
+/// The time interval for calculating the payout amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Period {
-    ///The ending date for a time interval.
+    /// The ending date for a time interval.
     #[serde(rename = "endDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_date: ::std::option::Option<Date>,
-    ///The starting date for a time interval.
+    /// The starting date for a time interval.
     #[serde(rename = "startDate")]
     pub start_date: Date,
 }
-///Related business identifier of the payout.
+/// Related business identifier of the payout.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedIdentifier {
-    ///An enumerated set of related business identifier names.
+    /// An enumerated set of related business identifier names.
     ///
-    ///Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
+    /// Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: RelatedIdentifierName,
-    ///Corresponding value of `RelatedIdentifierName`.
+    /// Corresponding value of `RelatedIdentifierName`.
     #[serde(rename = "relatedIdentifierValue")]
     pub related_identifier_value: ::std::string::String,
 }
-///Enumerated set of related business identifier names.
+/// Enumerated set of related business identifier names.
 ///
-///Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
+/// Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -775,7 +775,7 @@ impl ::std::str::FromStr for RelatedIdentifierName {
         Ok(Self(value.to_string()))
     }
 }
-///Related business identifiers of the payout.
+/// Related business identifiers of the payout.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RelatedIdentifiers(pub ::std::vec::Vec<RelatedIdentifier>);

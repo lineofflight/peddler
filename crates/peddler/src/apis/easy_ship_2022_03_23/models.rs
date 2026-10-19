@@ -2,7 +2,7 @@
 // Source: easy-ship-model/easyShip_2022-03-23.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///An Amazon-defined order identifier. Identifies the order that the seller wants to deliver using Amazon Easy Ship.
+/// An Amazon-defined order identifier. Identifies the order that the seller wants to deliver using Amazon Easy Ship.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -43,9 +43,9 @@ impl ::std::str::FromStr for AmazonOrderId {
         Ok(Self(value.to_string()))
     }
 }
-///An error code that identifies the type of error that occurred. The error codes listed below are specific to the Easy Ship section.
+/// An error code that identifies the type of error that occurred. The error codes listed below are specific to the Easy Ship section.
 ///
-///Known values: `InvalidInput`, `InvalidTimeSlotId`, `ScheduledPackageAlreadyExists`, `ScheduleWindowExpired`, `RetryableAfterGettingNewSlots`, `TimeSlotNotAvailable`, `ResourceNotFound`, `InvalidOrderState`, `RegionNotSupported`, `OrderNotEligibleForRescheduling`, `InternalServerError`. Other values may be returned by Amazon.
+/// Known values: `InvalidInput`, `InvalidTimeSlotId`, `ScheduledPackageAlreadyExists`, `ScheduleWindowExpired`, `RetryableAfterGettingNewSlots`, `TimeSlotNotAvailable`, `ResourceNotFound`, `InvalidOrderState`, `RegionNotSupported`, `OrderNotEligibleForRescheduling`, `InternalServerError`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -86,7 +86,7 @@ impl ::std::str::FromStr for Code {
         Ok(Self(value.to_string()))
     }
 }
-///The request schema for the `createScheduledPackage` operation.
+/// The request schema for the `createScheduledPackage` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateScheduledPackageRequest {
     #[serde(rename = "amazonOrderId")]
@@ -96,19 +96,19 @@ pub struct CreateScheduledPackageRequest {
     #[serde(rename = "packageDetails")]
     pub package_details: PackageDetails,
 }
-///The request body for the POST /easyShip/2022-03-23/packages/bulk API.
+/// The request body for the POST /easyShip/2022-03-23/packages/bulk API.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateScheduledPackagesRequest {
-    ///Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
+    /// Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
     #[serde(rename = "labelFormat")]
     pub label_format: LabelFormat,
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: String,
-    ///An array allowing users to specify orders to be scheduled.
+    /// An array allowing users to specify orders to be scheduled.
     #[serde(rename = "orderScheduleDetailsList")]
     pub order_schedule_details_list: ::std::vec::Vec<OrderScheduleDetails>,
 }
-///The response schema for the bulk scheduling API. It returns by the bulk scheduling API containing an array of the scheduled packtages, an optional list of orders we couldn't schedule with the reason, and a pre-signed URL for a ZIP file containing the associated shipping labels plus the documents enabled for your marketplace.
+/// The response schema for the bulk scheduling API. It returns by the bulk scheduling API containing an array of the scheduled packtages, an optional list of orders we couldn't schedule with the reason, and a pre-signed URL for a ZIP file containing the associated shipping labels plus the documents enabled for your marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateScheduledPackagesResponse {
     #[serde(
@@ -116,20 +116,20 @@ pub struct CreateScheduledPackagesResponse {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub printable_documents_url: ::std::option::Option<Url>,
-    ///A list of orders we couldn't scheduled on your behalf. Each element contains the reason and details on the error.
+    /// A list of orders we couldn't scheduled on your behalf. Each element contains the reason and details on the error.
     #[serde(
         rename = "rejectedOrders",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rejected_orders: ::std::option::Option<::std::vec::Vec<RejectedOrder>>,
-    ///A list of packages. Refer to the `Package` object.
+    /// A list of packages. Refer to the `Package` object.
     #[serde(
         rename = "scheduledPackages",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scheduled_packages: ::std::option::Option<::std::vec::Vec<Package>>,
 }
-///A datetime value in ISO 8601 format.
+/// A datetime value in ISO 8601 format.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DateTime(pub ::chrono::DateTime<::chrono::offset::Utc>);
@@ -172,7 +172,7 @@ impl ::std::convert::TryFrom<String> for DateTime {
         value.parse()
     }
 }
-///The numerical value of the specified dimension.
+/// The numerical value of the specified dimension.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Dimension(pub ::serde_json::Number);
@@ -215,45 +215,45 @@ impl ::std::convert::TryFrom<String> for Dimension {
         value.parse()
     }
 }
-///The dimensions of the scheduled package.
+/// The dimensions of the scheduled package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Dimensions {
-    ///The height dimension.
+    /// The height dimension.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub height: ::std::option::Option<Dimension>,
-    ///Identifier for custom package dimensions.
+    /// Identifier for custom package dimensions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub identifier: ::std::option::Option<String>,
-    ///The length dimension.
+    /// The length dimension.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub length: ::std::option::Option<Dimension>,
-    ///Known values: `cm`. Other values may be returned by Amazon.
+    /// Known values: `cm`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub unit: ::std::option::Option<UnitOfLength>,
-    ///The width dimension.
+    /// The width dimension.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub width: ::std::option::Option<Dimension>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Identifies the method by which a seller will hand a package over to Amazon Logistics.
+/// Identifies the method by which a seller will hand a package over to Amazon Logistics.
 ///
-///Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
+/// Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -294,20 +294,20 @@ impl ::std::str::FromStr for HandoverMethod {
         Ok(Self(value.to_string()))
     }
 }
-///Invoice number and date.
+/// Invoice number and date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceData {
-    ///The date that the invoice was generated.
+    /// The date that the invoice was generated.
     #[serde(
         rename = "invoiceDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_date: ::std::option::Option<DateTime>,
-    ///The invoice number.
+    /// The invoice number.
     #[serde(rename = "invoiceNumber")]
     pub invoice_number: String,
 }
-///Item identifier and serial number information.
+/// Item identifier and serial number information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Item {
     #[serde(
@@ -321,7 +321,7 @@ pub struct Item {
     )]
     pub order_item_serial_numbers: ::std::option::Option<OrderItemSerialNumbers>,
 }
-///A list of items contained in the package.
+/// A list of items contained in the package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Items(pub ::std::vec::Vec<Item>);
@@ -341,9 +341,9 @@ impl ::std::convert::From<::std::vec::Vec<Item>> for Items {
         Self(value)
     }
 }
-///The file format in which the shipping label will be created.
+/// The file format in which the shipping label will be created.
 ///
-///Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
+/// Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -384,7 +384,7 @@ impl ::std::str::FromStr for LabelFormat {
         Ok(Self(value.to_string()))
     }
 }
-///The request schema for the `listHandoverSlots` operation.
+/// The request schema for the `listHandoverSlots` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListHandoverSlotsRequest {
     #[serde(rename = "amazonOrderId")]
@@ -396,7 +396,7 @@ pub struct ListHandoverSlotsRequest {
     #[serde(rename = "packageWeight")]
     pub package_weight: Weight,
 }
-///The response schema for the `listHandoverSlots` operation.
+/// The response schema for the `listHandoverSlots` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListHandoverSlotsResponse {
     #[serde(rename = "amazonOrderId")]
@@ -404,7 +404,7 @@ pub struct ListHandoverSlotsResponse {
     #[serde(rename = "timeSlots")]
     pub time_slots: TimeSlots,
 }
-///The Amazon-defined order item identifier.
+/// The Amazon-defined order item identifier.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct OrderItemId(::std::string::String);
@@ -458,7 +458,7 @@ impl<'de> ::serde::Deserialize<'de> for OrderItemId {
             })
     }
 }
-///A serial number for an item associated with the `OrderItemId` value.
+/// A serial number for an item associated with the `OrderItemId` value.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct OrderItemSerialNumber(::std::string::String);
@@ -512,7 +512,7 @@ impl<'de> ::serde::Deserialize<'de> for OrderItemSerialNumber {
             })
     }
 }
-///A list of serial numbers for the items associated with the `OrderItemId` value.
+/// A list of serial numbers for the items associated with the `OrderItemId` value.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderItemSerialNumbers(pub ::std::vec::Vec<OrderItemSerialNumber>);
@@ -534,7 +534,7 @@ for OrderItemSerialNumbers {
         Self(value)
     }
 }
-///This object allows users to specify an order to be scheduled. Only the amazonOrderId is required.
+/// This object allows users to specify an order to be scheduled. Only the amazonOrderId is required.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OrderScheduleDetails {
     #[serde(rename = "amazonOrderId")]
@@ -545,7 +545,7 @@ pub struct OrderScheduleDetails {
     )]
     pub package_details: ::std::option::Option<PackageDetails>,
 }
-///This object contains all the details of the scheduled Easy Ship package.
+/// This object contains all the details of the scheduled Easy Ship package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Package {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -562,7 +562,7 @@ pub struct Package {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub package_items: ::std::option::Option<Items>,
-    ///Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
+    /// Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
     #[serde(
         rename = "packageStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -580,7 +580,7 @@ pub struct Package {
     )]
     pub tracking_details: ::std::option::Option<TrackingDetails>,
 }
-///Package details. Includes `packageItems`, `packageTimeSlot`, and `packageIdentifier`.
+/// Package details. Includes `packageItems`, `packageTimeSlot`, and `packageIdentifier`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PackageDetails {
     #[serde(
@@ -596,7 +596,7 @@ pub struct PackageDetails {
     #[serde(rename = "packageTimeSlot")]
     pub package_time_slot: TimeSlot,
 }
-///An Amazon-defined identifier for the scheduled package.
+/// An Amazon-defined identifier for the scheduled package.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -637,7 +637,7 @@ impl ::std::str::FromStr for PackageId {
         Ok(Self(value.to_string()))
     }
 }
-///Optional seller-created identifier that is printed on the shipping label to help the seller identify the package.
+/// Optional seller-created identifier that is printed on the shipping label to help the seller identify the package.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -678,9 +678,9 @@ impl ::std::str::FromStr for PackageIdentifier {
         Ok(Self(value.to_string()))
     }
 }
-///The status of the package.
+/// The status of the package.
 ///
-///Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
+/// Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -721,13 +721,13 @@ impl ::std::str::FromStr for PackageStatus {
         Ok(Self(value.to_string()))
     }
 }
-///A list of packages.
+/// A list of packages.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Packages {
-    ///A list of packages.
+    /// A list of packages.
     pub packages: ::std::vec::Vec<Package>,
 }
-///A order which we couldn't schedule on your behalf. It contains its id, and information on the error.
+/// A order which we couldn't schedule on your behalf. It contains its id, and information on the error.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RejectedOrder {
     #[serde(rename = "amazonOrderId")]
@@ -735,7 +735,7 @@ pub struct RejectedOrder {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub error: ::std::option::Option<Error>,
 }
-///Identifies the scheduled package to be updated.
+/// Identifies the scheduled package to be updated.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ScheduledPackageId {
     #[serde(rename = "amazonOrderId")]
@@ -746,7 +746,7 @@ pub struct ScheduledPackageId {
     )]
     pub package_id: ::std::option::Option<PackageId>,
 }
-///A string of up to 255 characters.
+/// A string of up to 255 characters.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct String(::std::string::String);
@@ -803,31 +803,31 @@ impl<'de> ::serde::Deserialize<'de> for String {
             })
     }
 }
-///A time window to hand over an Easy Ship package to Amazon Logistics.
+/// A time window to hand over an Easy Ship package to Amazon Logistics.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TimeSlot {
-    ///The end date and time of the time slot.
+    /// The end date and time of the time slot.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<DateTime>,
-    ///The method by which a seller will hand a package over to Amazon Logistics.
+    /// The method by which a seller will hand a package over to Amazon Logistics.
     ///
-    ///Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
+    /// Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
     #[serde(
         rename = "handoverMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub handover_method: ::std::option::Option<HandoverMethod>,
-    ///An Amazon-defined identifier for a time slot.
+    /// An Amazon-defined identifier for a time slot.
     #[serde(rename = "slotId")]
     pub slot_id: String,
-    ///The start date and time of the time slot.
+    /// The start date and time of the time slot.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<DateTime>,
 }
-///A list of time slots.
+/// A list of time slots.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct TimeSlots(pub ::std::vec::Vec<TimeSlot>);
@@ -847,19 +847,19 @@ impl ::std::convert::From<::std::vec::Vec<TimeSlot>> for TimeSlots {
         Self(value)
     }
 }
-///Representation of tracking metadata.
+/// Representation of tracking metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TrackingDetails {
-    ///The tracking identifier for the scheduled package.
+    /// The tracking identifier for the scheduled package.
     #[serde(
         rename = "trackingId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tracking_id: ::std::option::Option<String>,
 }
-///The unit of measurement used to measure the length.
+/// The unit of measurement used to measure the length.
 ///
-///Known values: `cm`. Other values may be returned by Amazon.
+/// Known values: `cm`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -900,9 +900,9 @@ impl ::std::str::FromStr for UnitOfLength {
         Ok(Self(value.to_string()))
     }
 }
-///The unit of measurement used to measure the weight.
+/// The unit of measurement used to measure the weight.
 ///
-///Known values: `grams`, `g`. Other values may be returned by Amazon.
+/// Known values: `grams`, `g`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -943,7 +943,7 @@ impl ::std::str::FromStr for UnitOfWeight {
         Ok(Self(value.to_string()))
     }
 }
-///Request to update the time slot of a package.
+/// Request to update the time slot of a package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpdatePackageDetails {
     #[serde(rename = "packageTimeSlot")]
@@ -951,7 +951,7 @@ pub struct UpdatePackageDetails {
     #[serde(rename = "scheduledPackageId")]
     pub scheduled_package_id: ScheduledPackageId,
 }
-///A list of package update details.
+/// A list of package update details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct UpdatePackageDetailsList(pub ::std::vec::Vec<UpdatePackageDetails>);
@@ -973,7 +973,7 @@ for UpdatePackageDetailsList {
         Self(value)
     }
 }
-///The request schema for the `updateScheduledPackages` operation.
+/// The request schema for the `updateScheduledPackages` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct UpdateScheduledPackagesRequest {
     #[serde(rename = "marketplaceId")]
@@ -981,7 +981,7 @@ pub struct UpdateScheduledPackagesRequest {
     #[serde(rename = "updatePackageDetailsList")]
     pub update_package_details_list: UpdatePackageDetailsList,
 }
-///A pre-signed URL for the zip document containing the shipping labels and the documents enabled for your marketplace.
+/// A pre-signed URL for the zip document containing the shipping labels and the documents enabled for your marketplace.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1022,16 +1022,16 @@ impl ::std::str::FromStr for Url {
         Ok(Self(value.to_string()))
     }
 }
-///The weight of the scheduled package
+/// The weight of the scheduled package
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Weight {
-    ///Known values: `grams`, `g`. Other values may be returned by Amazon.
+    /// Known values: `grams`, `g`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub unit: ::std::option::Option<UnitOfWeight>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<WeightValue>,
 }
-///The weight of the package.
+/// The weight of the package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct WeightValue(pub ::serde_json::Number);

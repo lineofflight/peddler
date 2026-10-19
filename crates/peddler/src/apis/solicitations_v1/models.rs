@@ -2,24 +2,24 @@
 // Source: solicitations-api-model/solicitations.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
+/// The response schema for the createProductReviewAndSellerFeedbackSolicitation operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateProductReviewAndSellerFeedbackSolicitationResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -39,7 +39,7 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///`GetSchemaResponse`
+/// `GetSchemaResponse`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSchemaResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -49,13 +49,13 @@ pub struct GetSchemaResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Schema>,
 }
-///`GetSchemaResponseLinks`
+/// `GetSchemaResponseLinks`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSchemaResponseLinks {
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
+/// Describes a solicitation action that can be taken for an order. Provides a JSON Hypertext Application Language (HAL) link to the JSON schema document that describes the expected input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSolicitationActionResponse {
     #[serde(
@@ -70,20 +70,20 @@ pub struct GetSolicitationActionResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<SolicitationsAction>,
 }
-///`GetSolicitationActionResponseEmbedded`
+/// `GetSolicitationActionResponseEmbedded`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSolicitationActionResponseEmbedded {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub schema: ::std::option::Option<GetSchemaResponse>,
 }
-///`GetSolicitationActionResponseLinks`
+/// `GetSolicitationActionResponseLinks`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSolicitationActionResponseLinks {
     pub schema: LinkObject,
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///The response schema for the getSolicitationActionsForOrder operation.
+/// The response schema for the getSolicitationActionsForOrder operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSolicitationActionsForOrderResponse {
     #[serde(
@@ -96,29 +96,29 @@ pub struct GetSolicitationActionsForOrderResponse {
     #[serde(rename = "_links", skip_serializing_if = "::std::option::Option::is_none")]
     pub links: ::std::option::Option<GetSolicitationActionsForOrderResponseLinks>,
 }
-///`GetSolicitationActionsForOrderResponseEmbedded`
+/// `GetSolicitationActionsForOrderResponseEmbedded`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSolicitationActionsForOrderResponseEmbedded {
     pub actions: ::std::vec::Vec<GetSolicitationActionResponse>,
 }
-///`GetSolicitationActionsForOrderResponseLinks`
+/// `GetSolicitationActionsForOrderResponseLinks`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetSolicitationActionsForOrderResponseLinks {
-    ///Eligible actions for the specified amazonOrderId.
+    /// Eligible actions for the specified amazonOrderId.
     pub actions: ::std::vec::Vec<LinkObject>,
     #[serde(rename = "self")]
     pub self_: LinkObject,
 }
-///A Link object.
+/// A Link object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LinkObject {
-    ///A URI for this object.
+    /// A URI for this object.
     pub href: ::std::string::String,
-    ///An identifier for this object.
+    /// An identifier for this object.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
 }
-///A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+/// A JSON schema document describing the expected payload of the action. This object can be validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Schema(pub ::serde_json::Map<::std::string::String, ::serde_json::Value>);
@@ -142,7 +142,7 @@ for Schema {
         Self(value)
     }
 }
-///A simple object containing the name of the template.
+/// A simple object containing the name of the template.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SolicitationsAction {
     pub name: ::std::string::String,

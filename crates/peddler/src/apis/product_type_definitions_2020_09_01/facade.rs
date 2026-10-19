@@ -16,42 +16,42 @@ fn get_definitions_product_type_requirements_enforced_default() -> Option<String
 fn get_definitions_product_type_locale_default() -> Option<String> {
     Some(serde_json::from_str("\"DEFAULT\"").expect("validated schema default"))
 }
-///The parameters of [`get_definitions_product_type`].
+/// The parameters of [`get_definitions_product_type`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetDefinitionsProductTypeParams {
-    ///The Amazon product type name.
+    /// The Amazon product type name.
     pub product_type: String,
-    ///A selling partner identifier. When provided, seller-specific requirements and values are populated within the product type definition schema, such as brand names associated with the selling partner.
+    /// A selling partner identifier. When provided, seller-specific requirements and values are populated within the product type definition schema, such as brand names associated with the selling partner.
     pub seller_id: Option<String>,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
-    ///Note: This parameter is limited to one marketplaceId at this time.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// Note: This parameter is limited to one marketplaceId at this time.
     pub marketplace_ids: Vec<String>,
-    ///The version of the Amazon product type to retrieve. Defaults to "LATEST". Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease version is currently available, the "LATEST" live version will be provided.
+    /// The version of the Amazon product type to retrieve. Defaults to "LATEST". Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease version is currently available, the "LATEST" live version will be provided.
     #[serde(default = "get_definitions_product_type_product_type_version_default")]
     pub product_type_version: Option<String>,
-    ///The name of the requirements set to retrieve requirements for.
+    /// The name of the requirements set to retrieve requirements for.
     ///
-    ///Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
+    /// Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
     #[serde(default = "get_definitions_product_type_requirements_default")]
     pub requirements: Option<String>,
-    ///Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates).
+    /// Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates).
     ///
-    ///Known values: `ENFORCED`, `NOT_ENFORCED`.
+    /// Known values: `ENFORCED`, `NOT_ENFORCED`.
     #[serde(default = "get_definitions_product_type_requirements_enforced_default")]
     pub requirements_enforced: Option<String>,
-    ///Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request.
+    /// Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request.
     ///
-    ///Known values: `DEFAULT`, `ar`, `ar_AE`, `de`, `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`, `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`, `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
+    /// Known values: `DEFAULT`, `ar`, `ar_AE`, `de`, `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`, `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`, `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
     #[serde(default = "get_definitions_product_type_locale_default")]
     pub locale: Option<String>,
-    ///The parentage level of the listing to retrieve a schema for. When provided, the schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in a smaller schema with fewer conditions.
+    /// The parentage level of the listing to retrieve a schema for. When provided, the schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in a smaller schema with fewer conditions.
     ///
-    ///Known values: `NONE`, `CHILD`, `PARENT`.
+    /// Known values: `NONE`, `CHILD`, `PARENT`.
     pub parentage_level: Option<String>,
 }
 impl GetDefinitionsProductTypeParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(product_type: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             product_type,
@@ -65,7 +65,7 @@ impl GetDefinitionsProductTypeParams {
         }
     }
 }
-///Retrieve an Amazon product type definition.
+/// Retrieve an Amazon product type definition.
 pub async fn get_definitions_product_type(
     client: &Client,
     params: GetDefinitionsProductTypeParams,
@@ -105,23 +105,23 @@ pub async fn get_definitions_product_type(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`search_definitions_product_types`].
+/// The parameters of [`search_definitions_product_types`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchDefinitionsProductTypesParams {
-    ///A comma-delimited list of keywords to search product types. **Note:** Cannot be used with `itemName`.
+    /// A comma-delimited list of keywords to search product types. **Note:** Cannot be used with `itemName`.
     pub keywords: Option<Vec<String>>,
-    ///A comma-delimited list of Amazon marketplace identifiers for the request.
+    /// A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    ///Title of ASIN to get product type recommendation. **Note:** Cannot be used with `keywords`.
+    /// Title of ASIN to get product type recommendation. **Note:** Cannot be used with `keywords`.
     pub item_name: Option<String>,
-    ///Locale for display names in response. Defaults to primary locale of the marketplace.
+    /// Locale for display names in response. Defaults to primary locale of the marketplace.
     pub locale: Option<String>,
-    ///Language used for `keywords` or `itemName` parameters. Defaults to primary locale of the marketplace.
+    /// Language used for `keywords` or `itemName` parameters. Defaults to primary locale of the marketplace.
     pub search_locale: Option<String>,
 }
 impl SearchDefinitionsProductTypesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_ids: Vec<String>) -> Self {
         Self {
             keywords: None,
@@ -132,7 +132,7 @@ impl SearchDefinitionsProductTypesParams {
         }
     }
 }
-///Search for and return a list of Amazon product types that have definitions available.
+/// Search for and return a list of Amazon product types that have definitions available.
 pub async fn search_definitions_product_types(
     client: &Client,
     params: SearchDefinitionsProductTypesParams,

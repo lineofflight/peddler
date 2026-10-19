@@ -2,30 +2,30 @@
 // Source: feeds-api-model/feeds_2021-06-30.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Information required to upload a feed document's contents.
+/// Information required to upload a feed document's contents.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateFeedDocumentResponse {
-    ///The identifier of the feed document.
+    /// The identifier of the feed document.
     #[serde(rename = "feedDocumentId")]
     pub feed_document_id: ::std::string::String,
-    ///The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
+    /// The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
     pub url: ::std::string::String,
 }
-///Specifies the content type for the createFeedDocument operation.
+/// Specifies the content type for the createFeedDocument operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateFeedDocumentSpecification {
-    ///The content type of the feed.
+    /// The content type of the feed.
     #[serde(rename = "contentType")]
     pub content_type: ::std::string::String,
 }
-///Response schema.
+/// Response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateFeedResponse {
-    ///The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "feedId")]
     pub feed_id: ::std::string::String,
 }
-///Information required to create the feed.
+/// Information required to create the feed.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateFeedSpecification {
     #[serde(
@@ -33,52 +33,52 @@ pub struct CreateFeedSpecification {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feed_options: ::std::option::Option<FeedOptions>,
-    ///The feed type.
+    /// The feed type.
     #[serde(rename = "feedType")]
     pub feed_type: ::std::string::String,
-    ///The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
+    /// The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
     #[serde(rename = "inputFeedDocumentId")]
     pub input_feed_document_id: ::std::string::String,
-    ///A list of identifiers for marketplaces that you want the feed to be applied to.
+    /// A list of identifiers for marketplaces that you want the feed to be applied to.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///An error response returned when the request is unsuccessful.
+    /// An error response returned when the request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Detailed information about the feed.
+/// Detailed information about the feed.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Feed {
-    ///The date and time when the feed was created, in ISO 8601 date time format.
+    /// The date and time when the feed was created, in ISO 8601 date time format.
     #[serde(rename = "createdTime")]
     pub created_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The identifier for the feed. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "feedId")]
     pub feed_id: ::std::string::String,
-    ///The feed type.
+    /// The feed type.
     #[serde(rename = "feedType")]
     pub feed_type: ::std::string::String,
-    ///A list of identifiers for the marketplaces that the feed is applied to.
+    /// A list of identifiers for the marketplaces that the feed is applied to.
     #[serde(
         rename = "marketplaceIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The date and time when feed processing completed, in ISO 8601 date time format.
+    /// The date and time when feed processing completed, in ISO 8601 date time format.
     #[serde(
         rename = "processingEndTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -86,7 +86,7 @@ pub struct Feed {
     pub processing_end_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The date and time when feed processing started, in ISO 8601 date time format.
+    /// The date and time when feed processing started, in ISO 8601 date time format.
     #[serde(
         rename = "processingStartTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -94,36 +94,36 @@ pub struct Feed {
     pub processing_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The processing status of the feed.
+    /// The processing status of the feed.
     ///
-    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
+    /// Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
-    ///The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     #[serde(
         rename = "resultFeedDocumentId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub result_feed_document_id: ::std::option::Option<::std::string::String>,
 }
-///Information required for the feed document.
+/// Information required for the feed document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeedDocument {
-    ///If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
+    /// If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
     ///
-    ///Known values: `GZIP`. Other values may be returned by Amazon.
+    /// Known values: `GZIP`. Other values may be returned by Amazon.
     #[serde(
         rename = "compressionAlgorithm",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub compression_algorithm: ::std::option::Option<::std::string::String>,
-    ///The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+    /// The identifier for the feed document. This identifier is unique only in combination with a seller ID.
     #[serde(rename = "feedDocumentId")]
     pub feed_document_id: ::std::string::String,
-    ///A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
+    /// A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
     pub url: ::std::string::String,
 }
-///A list of feeds.
+/// A list of feeds.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeedList(pub ::std::vec::Vec<Feed>);
@@ -143,7 +143,7 @@ impl ::std::convert::From<::std::vec::Vec<Feed>> for FeedList {
         Self(value)
     }
 }
-///Additional options to control the feed. These vary by feed type.
+/// Additional options to control the feed. These vary by feed type.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeedOptions(
@@ -175,12 +175,12 @@ impl ::std::convert::From<
         Self(value)
     }
 }
-///Response schema.
+/// Response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetFeedsResponse {
-    ///The feeds.
+    /// The feeds.
     pub feeds: FeedList,
-    ///Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+    /// Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"

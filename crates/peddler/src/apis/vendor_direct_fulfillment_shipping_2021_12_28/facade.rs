@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`create_container_label`].
+/// The parameters of [`create_container_label`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateContainerLabelParams<B = serde_json::Value> {
-    ///Request body containing the container label data.
+    /// Request body containing the container label data.
     pub body: B,
 }
 impl<B> CreateContainerLabelParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a container (pallet) label for the associated shipment package.
+/// Creates a container (pallet) label for the associated shipment package.
 pub async fn create_container_label<B: serde::Serialize>(
     client: &Client,
     params: CreateContainerLabelParams<B>,
@@ -37,17 +37,17 @@ pub async fn create_container_label<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`create_shipping_labels`].
+/// The parameters of [`create_shipping_labels`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateShippingLabelsParams<B = serde_json::Value> {
-    ///The purchase order number for which you want to return the shipping labels. It should be the same number as the `purchaseOrderNumber` in the order.
+    /// The purchase order number for which you want to return the shipping labels. It should be the same number as the `purchaseOrderNumber` in the order.
     pub purchase_order_number: String,
-    ///The request payload that contains the parameters for creating shipping labels.
+    /// The request payload that contains the parameters for creating shipping labels.
     pub body: B,
 }
 impl<B> CreateShippingLabelsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(purchase_order_number: String, body: B) -> Self {
         Self {
             purchase_order_number,
@@ -55,7 +55,7 @@ impl<B> CreateShippingLabelsParams<B> {
         }
     }
 }
-///Creates shipping labels for a purchase order and returns the labels.
+/// Creates shipping labels for a purchase order and returns the labels.
 pub async fn create_shipping_labels<B: serde::Serialize>(
     client: &Client,
     params: CreateShippingLabelsParams<B>,
@@ -78,20 +78,20 @@ pub async fn create_shipping_labels<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_customer_invoice`].
+/// The parameters of [`get_customer_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCustomerInvoiceParams {
-    ///Purchase order number of the shipment for which to return the invoice.
+    /// Purchase order number of the shipment for which to return the invoice.
     pub purchase_order_number: String,
 }
 impl GetCustomerInvoiceParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(purchase_order_number: String) -> Self {
         Self { purchase_order_number }
     }
 }
-///Returns a customer invoice based on the purchaseOrderNumber that you specify.
+/// Returns a customer invoice based on the purchaseOrderNumber that you specify.
 pub async fn get_customer_invoice(
     client: &Client,
     params: GetCustomerInvoiceParams,
@@ -114,25 +114,25 @@ pub async fn get_customer_invoice(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_customer_invoices`] and [`get_customer_invoices_pages`].
+/// The parameters of [`get_customer_invoices`] and [`get_customer_invoices_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCustomerInvoicesParams {
-    ///The vendor warehouseId for order fulfillment. If not specified, the result will contain orders for all warehouses.
+    /// The vendor warehouseId for order fulfillment. If not specified, the result will contain orders for all warehouses.
     pub ship_from_party_id: Option<String>,
-    ///The limit to the number of records returned
+    /// The limit to the number of records returned
     pub limit: Option<i64>,
-    ///Orders that became available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Orders that became available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_after: String,
-    ///Orders that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Orders that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_before: String,
-    ///Sort ASC or DESC by order creation date.
+    /// Sort ASC or DESC by order creation date.
     pub sort_order: Option<String>,
-    ///Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
+    /// Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
     pub next_token: Option<String>,
 }
 impl GetCustomerInvoicesParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(created_after: String, created_before: String) -> Self {
         Self {
             ship_from_party_id: None,
@@ -144,9 +144,9 @@ impl GetCustomerInvoicesParams {
         }
     }
 }
-///Returns a list of customer invoices created during a time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+/// Returns a list of customer invoices created during a time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
 ///
-///Its pages: [`get_customer_invoices_pages`].
+/// Its pages: [`get_customer_invoices_pages`].
 pub async fn get_customer_invoices(
     client: &Client,
     params: GetCustomerInvoicesParams,
@@ -173,7 +173,7 @@ pub async fn get_customer_invoices(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_customer_invoices`].
+/// Each page of [`get_customer_invoices`].
 pub fn get_customer_invoices_pages<'a>(
     client: &'a Client,
     params: GetCustomerInvoicesParams,
@@ -195,20 +195,20 @@ pub fn get_customer_invoices_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_packing_slip`].
+/// The parameters of [`get_packing_slip`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPackingSlipParams {
-    ///The `purchaseOrderNumber` for the packing slip that you want.
+    /// The `purchaseOrderNumber` for the packing slip that you want.
     pub purchase_order_number: String,
 }
 impl GetPackingSlipParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(purchase_order_number: String) -> Self {
         Self { purchase_order_number }
     }
 }
-///Returns a packing slip based on the purchaseOrderNumber that you specify.
+/// Returns a packing slip based on the purchaseOrderNumber that you specify.
 pub async fn get_packing_slip(
     client: &Client,
     params: GetPackingSlipParams,
@@ -234,28 +234,28 @@ pub async fn get_packing_slip(
 fn get_packing_slips_sort_order_default() -> Option<String> {
     Some(serde_json::from_str("\"ASC\"").expect("validated schema default"))
 }
-///The parameters of [`get_packing_slips`] and [`get_packing_slips_pages`].
+/// The parameters of [`get_packing_slips`] and [`get_packing_slips_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPackingSlipsParams {
-    ///The vendor `warehouseId` for order fulfillment. If not specified, the result contains orders for all warehouses.
+    /// The vendor `warehouseId` for order fulfillment. If not specified, the result contains orders for all warehouses.
     pub ship_from_party_id: Option<String>,
-    ///The maximum number of records to return.
+    /// The maximum number of records to return.
     pub limit: Option<i64>,
-    ///Packing slips that become available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Packing slips that become available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_after: String,
-    ///Packing slips that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Packing slips that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_before: String,
-    ///The packing slip creation dates, which are sorted by ascending or descending order.
+    /// The packing slip creation dates, which are sorted by ascending or descending order.
     ///
-    ///Known values: `ASC`, `DESC`.
+    /// Known values: `ASC`, `DESC`.
     #[serde(default = "get_packing_slips_sort_order_default")]
     pub sort_order: Option<String>,
-    ///Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
+    /// Used for pagination when there are more packing slips than the specified result size limit. The token value is returned in the previous API call.
     pub next_token: Option<String>,
 }
 impl GetPackingSlipsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(created_after: String, created_before: String) -> Self {
         Self {
             ship_from_party_id: None,
@@ -267,9 +267,9 @@ impl GetPackingSlipsParams {
         }
     }
 }
-///Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+/// Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
 ///
-///Its pages: [`get_packing_slips_pages`].
+/// Its pages: [`get_packing_slips_pages`].
 pub async fn get_packing_slips(
     client: &Client,
     params: GetPackingSlipsParams,
@@ -296,7 +296,7 @@ pub async fn get_packing_slips(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_packing_slips`].
+/// Each page of [`get_packing_slips`].
 pub fn get_packing_slips_pages<'a>(
     client: &'a Client,
     params: GetPackingSlipsParams,
@@ -318,20 +318,20 @@ pub fn get_packing_slips_pages<'a>(
         &params,
     )
 }
-///The parameters of [`get_shipping_label`].
+/// The parameters of [`get_shipping_label`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShippingLabelParams {
-    ///The purchase order number for which you want to return the shipping label. It should be the same `purchaseOrderNumber` that you received in the order.
+    /// The purchase order number for which you want to return the shipping label. It should be the same `purchaseOrderNumber` that you received in the order.
     pub purchase_order_number: String,
 }
 impl GetShippingLabelParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(purchase_order_number: String) -> Self {
         Self { purchase_order_number }
     }
 }
-///Returns a shipping label for the `purchaseOrderNumber` that you specify.
+/// Returns a shipping label for the `purchaseOrderNumber` that you specify.
 pub async fn get_shipping_label(
     client: &Client,
     params: GetShippingLabelParams,
@@ -357,26 +357,26 @@ pub async fn get_shipping_label(
 fn get_shipping_labels_sort_order_default() -> Option<String> {
     Some(serde_json::from_str("\"ASC\"").expect("validated schema default"))
 }
-///The parameters of [`get_shipping_labels`] and [`get_shipping_labels_pages`].
+/// The parameters of [`get_shipping_labels`] and [`get_shipping_labels_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShippingLabelsParams {
-    ///The vendor `warehouseId` for order fulfillment. If not specified, the result contains orders for all warehouses.
+    /// The vendor `warehouseId` for order fulfillment. If not specified, the result contains orders for all warehouses.
     pub ship_from_party_id: Option<String>,
-    ///The limit to the number of records returned.
+    /// The limit to the number of records returned.
     pub limit: Option<i64>,
-    ///Shipping labels that became available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Shipping labels that became available after this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_after: String,
-    ///Shipping labels that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    /// Shipping labels that became available before this date and time will be included in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub created_before: String,
-    ///The sort order creation date. You can choose between ascending (`ASC`) or descending (`DESC`) sort order.
+    /// The sort order creation date. You can choose between ascending (`ASC`) or descending (`DESC`) sort order.
     #[serde(default = "get_shipping_labels_sort_order_default")]
     pub sort_order: Option<String>,
-    ///Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
+    /// Used for pagination when there are more ship labels than the specified result size limit. The token value is returned in the previous API call.
     pub next_token: Option<String>,
 }
 impl GetShippingLabelsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(created_after: String, created_before: String) -> Self {
         Self {
             ship_from_party_id: None,
@@ -388,9 +388,9 @@ impl GetShippingLabelsParams {
         }
     }
 }
-///Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to search must not be more than seven days.
+/// Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to search must not be more than seven days.
 ///
-///Its pages: [`get_shipping_labels_pages`].
+/// Its pages: [`get_shipping_labels_pages`].
 pub async fn get_shipping_labels(
     client: &Client,
     params: GetShippingLabelsParams,
@@ -417,7 +417,7 @@ pub async fn get_shipping_labels(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`get_shipping_labels`].
+/// Each page of [`get_shipping_labels`].
 pub fn get_shipping_labels_pages<'a>(
     client: &'a Client,
     params: GetShippingLabelsParams,
@@ -439,20 +439,20 @@ pub fn get_shipping_labels_pages<'a>(
         &params,
     )
 }
-///The parameters of [`submit_shipment_confirmations`].
+/// The parameters of [`submit_shipment_confirmations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitShipmentConfirmationsParams<B = serde_json::Value> {
-    ///Request body containing the shipment confirmations data.
+    /// Request body containing the shipment confirmations data.
     pub body: B,
 }
 impl<B> SubmitShipmentConfirmationsParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Submits one or more shipment confirmations for vendor orders.
+/// Submits one or more shipment confirmations for vendor orders.
 pub async fn submit_shipment_confirmations<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentConfirmationsParams<B>,
@@ -472,20 +472,20 @@ pub async fn submit_shipment_confirmations<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`submit_shipment_status_updates`].
+/// The parameters of [`submit_shipment_status_updates`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitShipmentStatusUpdatesParams<B = serde_json::Value> {
-    ///Request body containing the shipment status update data.
+    /// Request body containing the shipment status update data.
     pub body: B,
 }
 impl<B> SubmitShipmentStatusUpdatesParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
+/// This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
 pub async fn submit_shipment_status_updates<B: serde::Serialize>(
     client: &Client,
     params: SubmitShipmentStatusUpdatesParams<B>,
@@ -505,20 +505,20 @@ pub async fn submit_shipment_status_updates<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`submit_shipping_label_request`].
+/// The parameters of [`submit_shipping_label_request`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitShippingLabelRequestParams<B = serde_json::Value> {
-    ///The request body that contains the shipping labels data.
+    /// The request body that contains the shipping labels data.
     pub body: B,
 }
 impl<B> SubmitShippingLabelRequestParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Creates a shipping label for a purchase order and returns a `transactionId` for reference.
+/// Creates a shipping label for a purchase order and returns a `transactionId` for reference.
 pub async fn submit_shipping_label_request<B: serde::Serialize>(
     client: &Client,
     params: SubmitShippingLabelRequestParams<B>,

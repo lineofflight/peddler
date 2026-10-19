@@ -2,29 +2,29 @@
 // Source: external-fulfillment/externalFulfillmentInventory_2024-09-11.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Error details you can take action on.
+/// Error details you can take action on.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ActionableError {
-    ///The secondary level error type.
+    /// The secondary level error type.
     #[serde(
         rename = "errorSubType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_sub_type: ::std::option::Option<::std::string::String>,
-    ///The top level error type that may contain multiple error subtypes.
+    /// The top level error type that may contain multiple error subtypes.
     #[serde(
         rename = "errorType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub error_type: ::std::option::Option<::std::string::String>,
 }
-///A list of inventory requests.
+/// A list of inventory requests.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BatchInventoryRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requests: ::std::option::Option<BatchInventoryRequestList>,
 }
-///A list of inventory requests.
+/// A list of inventory requests.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BatchInventoryRequestList(pub ::std::vec::Vec<InventoryRequest>);
@@ -46,13 +46,13 @@ for BatchInventoryRequestList {
         Self(value)
     }
 }
-///The response of the `batchInventory` operation.
+/// The response of the `batchInventory` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BatchInventoryResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub responses: ::std::option::Option<BatchInventoryResponseList>,
 }
-///A list of inventory request responses.
+/// A list of inventory request responses.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BatchInventoryResponseList(pub ::std::vec::Vec<InventoryResponse>);
@@ -74,26 +74,26 @@ for BatchInventoryResponseList {
         Self(value)
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///An object containing a list of error responses returned when a request is unsuccessful.
+/// An object containing a list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The HTTP method associated with an individual request within a batch.
+/// The HTTP method associated with an individual request within a batch.
 ///
-///Known values: `GET`, `POST`. Other values may be returned by Amazon.
+/// Known values: `GET`, `POST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -134,39 +134,39 @@ impl ::std::str::FromStr for HttpMethod {
         Ok(Self(value.to_string()))
     }
 }
-///The HTTP status associated with the response for an individual request within a batch.
+/// The HTTP status associated with the response for an individual request within a batch.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct HttpStatusLine {
-    ///The HTTP response reason phrase.
+    /// The HTTP response reason phrase.
     #[serde(
         rename = "reasonPhrase",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reason_phrase: ::std::option::Option<::std::string::String>,
-    ///The HTTP response status code.
+    /// The HTTP response status code.
     #[serde(
         rename = "statusCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub status_code: ::std::option::Option<i64>,
 }
-///An inventory request.
+/// An inventory request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryRequest {
-    ///The body associated with the individual APIs being called as part of the batch request.
+    /// The body associated with the individual APIs being called as part of the batch request.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub body: ::std::option::Option<InventoryRequestParams>,
-    ///The method associated with the individual operation from the batch request. To make an update, use `POST`.
+    /// The method associated with the individual operation from the batch request. To make an update, use `POST`.
     ///
-    ///Known values: `GET`, `POST`. Other values may be returned by Amazon.
+    /// Known values: `GET`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    ///The URI associated with the individual APIs from the batch request. The user must provide the resource identifier for the operation they want to use.
+    /// The URI associated with the individual APIs from the batch request. The user must provide the resource identifier for the operation they want to use.
     pub uri: ::std::string::String,
 }
-///The parameters for an individual request.
+/// The parameters for an individual request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InventoryRequestParams {
-    ///The latest sequence number for the inventory update operation. You find this value in the `clientSequenceNumber` property in the response to the `batchInventory` operation.
+    /// The latest sequence number for the inventory update operation. You find this value in the `clientSequenceNumber` property in the response to the `batchInventory` operation.
     #[serde(
         rename = "clientSequenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -177,34 +177,34 @@ pub struct InventoryRequestParams {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_attributes: ::std::option::Option<MarketplaceAttributes>,
-    ///The absolute inventory quantity.
+    /// The absolute inventory quantity.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<i64>,
 }
-///A response to an individual inventory request.
+/// A response to an individual inventory request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryResponse {
-    ///The body of the response.
+    /// The body of the response.
     pub body: InventoryResponseBody,
-    ///The HTTP status code associated with the response.
+    /// The HTTP status code associated with the response.
     pub status: HttpStatusLine,
 }
-///The response to an inventory request.
+/// The response to an inventory request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InventoryResponseBody {
-    ///Inventory operation errors that require seller action before retrying the inventory request.
+    /// Inventory operation errors that require seller action before retrying the inventory request.
     #[serde(
         rename = "actionableErrors",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub actionable_errors: ::std::option::Option<::std::vec::Vec<ActionableError>>,
-    ///Latest sequence number for an inventory update.
+    /// Latest sequence number for an inventory update.
     #[serde(
         rename = "clientSequenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub client_sequence_number: ::std::option::Option<i64>,
-    ///The location where inventory is updated or retrieved.
+    /// The location where inventory is updated or retrieved.
     #[serde(
         rename = "locationId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -215,34 +215,34 @@ pub struct InventoryResponseBody {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_attributes: ::std::option::Option<MarketplaceAttributes>,
-    ///The number of items of the specified SKU created in any marketplace that are reserved for shipment and yet to be fulfilled.
+    /// The number of items of the specified SKU created in any marketplace that are reserved for shipment and yet to be fulfilled.
     #[serde(
         rename = "reservedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reserved_quantity: ::std::option::Option<u64>,
-    ///The number of items of the specified SKU that are available for purchase.
+    /// The number of items of the specified SKU that are available for purchase.
     #[serde(
         rename = "sellableQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sellable_quantity: ::std::option::Option<u64>,
-    ///The SKU ID for which inventory is updated or retrieved
+    /// The SKU ID for which inventory is updated or retrieved
     #[serde(rename = "skuId", skip_serializing_if = "::std::option::Option::is_none")]
     pub sku_id: ::std::option::Option<::std::string::String>,
 }
-///The channel name and marketplace ID. This is required only when multiple channels have the same location ID.
+/// The channel name and marketplace ID. This is required only when multiple channels have the same location ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceAttributes {
-    ///The name of the fulfillment channel in which to update inventory.
+    /// The name of the fulfillment channel in which to update inventory.
     ///
-    ///Known values: `FBA`, `MFN`, `DF`. Other values may be returned by Amazon.
+    /// Known values: `FBA`, `MFN`, `DF`. Other values may be returned by Amazon.
     #[serde(
         rename = "channelName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub channel_name: ::std::option::Option<::std::string::String>,
-    ///The marketplace ID of the marketplace where you want to update inventory.
+    /// The marketplace ID of the marketplace where you want to update inventory.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"

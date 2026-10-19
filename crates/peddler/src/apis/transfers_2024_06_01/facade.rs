@@ -4,19 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_payment_methods`].
+/// The parameters of [`get_payment_methods`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPaymentMethodsParams {
-    ///The identifier of the Amazon store from which you want to retrieve payment methods. For the list of store identifiers, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the Amazon store from which you want to retrieve payment methods. For the list of store identifiers, refer to [Store Identifiers](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
-    ///A comma-separated list of the payment method types you want to include in the response.
+    /// A comma-separated list of the payment method types you want to include in the response.
     ///
-    ///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
+    /// Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`.
     pub payment_method_types: Option<Vec<String>>,
 }
 impl GetPaymentMethodsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -24,7 +24,7 @@ impl GetPaymentMethodsParams {
         }
     }
 }
-///Returns the list of payment methods for the seller, which can be filtered by method type.
+/// Returns the list of payment methods for the seller, which can be filtered by method type.
 pub async fn get_payment_methods(
     client: &Client,
     params: GetPaymentMethodsParams,
@@ -55,20 +55,20 @@ pub async fn get_payment_methods(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`initiate_payout`].
+/// The parameters of [`initiate_payout`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct InitiatePayoutParams<B = serde_json::Value> {
-    ///The request body for the `initiatePayout` operation.
+    /// The request body for the `initiatePayout` operation.
     pub body: B,
 }
 impl<B> InitiatePayoutParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace and account type within a 24-hour period.
+/// Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace and account type within a 24-hour period.
 pub async fn initiate_payout<B: serde::Serialize>(
     client: &Client,
     params: InitiatePayoutParams<B>,
@@ -87,19 +87,19 @@ pub async fn initiate_payout<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`list_expected_payouts`] and [`list_expected_payouts_pages`].
+/// The parameters of [`list_expected_payouts`] and [`list_expected_payouts_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListExpectedPayoutsParams {
-    ///The Amazon stores from which to retrieve payouts. The Amazon store ID is a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all applicable stores. To find the Amazon store ID for your region, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon stores from which to retrieve payouts. The Amazon store ID is a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all applicable stores. To find the Amazon store ID for your region, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     pub marketplace_ids: Option<Vec<String>>,
-    ///The response only includes the accounts of the specified account type.
+    /// The response only includes the accounts of the specified account type.
     pub account_type: Option<String>,
-    ///The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListExpectedPayoutsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             marketplace_ids: None,
@@ -113,9 +113,9 @@ impl Default for ListExpectedPayoutsParams {
         Self::new()
     }
 }
-///Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified parameters.
+/// Returns the upcoming expected payouts from Amazon associated with a partner's account for the specified parameters.
 ///
-///Its pages: [`list_expected_payouts_pages`].
+/// Its pages: [`list_expected_payouts_pages`].
 pub async fn list_expected_payouts(
     client: &Client,
     params: ListExpectedPayoutsParams,
@@ -139,7 +139,7 @@ pub async fn list_expected_payouts(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_expected_payouts`].
+/// Each page of [`list_expected_payouts`].
 pub fn list_expected_payouts_pages<'a>(
     client: &'a Client,
     params: ListExpectedPayoutsParams,
@@ -160,25 +160,25 @@ pub fn list_expected_payouts_pages<'a>(
         &params,
     )
 }
-///The parameters of [`list_payouts`] and [`list_payouts_pages`].
+/// The parameters of [`list_payouts`] and [`list_payouts_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListPayoutsParams {
-    ///The Amazon stores from which to retrieve payouts. The Amazon store ID is a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all applicable stores. To find the Amazon store ID for your region, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
+    /// The Amazon stores from which to retrieve payouts. The Amazon store ID is a globally unique identifier assigned to each Amazon store. If omitted, the response includes payouts from all applicable stores. To find the Amazon store ID for your region, refer to [Store Identifiers](https://developer-docs.amazon/sp-api/docs/store-identifiers).
     pub marketplace_ids: Option<Vec<String>>,
-    ///The response only includes payouts created on or after this date-time. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If omitted, no start date filter is applied.
+    /// The response only includes payouts created on or after this date-time. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If omitted, no start date filter is applied.
     pub created_after: Option<String>,
-    ///The response only includes payouts created before this date-time. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If omitted, no end date filter is applied.
+    /// The response only includes payouts created before this date-time. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. If omitted, no end date filter is applied.
     pub created_before: Option<String>,
-    ///The response only includes the payout matching the specified identifier.
+    /// The response only includes the payout matching the specified identifier.
     pub payout_id: Option<String>,
-    ///The response only includes payouts associated with the specified account type.
+    /// The response only includes payouts associated with the specified account type.
     pub account_type: Option<String>,
-    ///The response includes `nextToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the page size. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListPayoutsParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             marketplace_ids: None,
@@ -195,9 +195,9 @@ impl Default for ListPayoutsParams {
         Self::new()
     }
 }
-///Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`, `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the response includes payouts for all available marketplaces and account types. Results are grouped by the seller's account groups. Within each account group results are sorted by their creation date, with the most recent appearing first.
+/// Retrieve a list of payouts for the selling partner's account. You can filter results by `marketplaceIds`, `accountType`, date range (`createdAfter` and `createdBefore`), or a specific `payoutId`. By default, the response includes payouts for all available marketplaces and account types. Results are grouped by the seller's account groups. Within each account group results are sorted by their creation date, with the most recent appearing first.
 ///
-///Its pages: [`list_payouts_pages`].
+/// Its pages: [`list_payouts_pages`].
 pub async fn list_payouts(
     client: &Client,
     params: ListPayoutsParams,
@@ -224,7 +224,7 @@ pub async fn list_payouts(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///Each page of [`list_payouts`].
+/// Each page of [`list_payouts`].
 pub fn list_payouts_pages<'a>(
     client: &'a Client,
     params: ListPayoutsParams,

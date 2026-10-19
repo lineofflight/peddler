@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`batch_inventory`].
+/// The parameters of [`batch_inventory`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct BatchInventoryParams<B = serde_json::Value> {
-    ///A list of inventory requests.
+    /// A list of inventory requests.
     pub body: B,
 }
 impl<B> BatchInventoryParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Make up to 10 inventory requests. The response includes the set of responses that correspond to requests. The response for each successful request in the set includes the  inventory count for the provided `sku` and `locationId` pair.
+/// Make up to 10 inventory requests. The response includes the set of responses that correspond to requests. The response for each successful request in the set includes the  inventory count for the provided `sku` and `locationId` pair.
 pub async fn batch_inventory<B: serde::Serialize>(
     client: &Client,
     params: BatchInventoryParams<B>,

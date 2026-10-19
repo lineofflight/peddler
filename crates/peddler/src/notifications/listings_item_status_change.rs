@@ -2,71 +2,71 @@
 // Source: schemas/notifications/ListingsItemStatusChangeNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///To be delivered when the status (e.g. buyability, discoverability) of a listings item changes.
+/// To be delivered when the status (e.g. buyability, discoverability) of a listings item changes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///Timestamp of the event, formatted as ISO8601 date-time.
+    /// Timestamp of the event, formatted as ISO8601 date-time.
     #[serde(rename = "EventTime")]
     pub event_time: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    ///The type of the notification.
+    /// The type of the notification.
     ///
-    ///Known values: `LISTINGS_ITEM_STATUS_CHANGED`. Other values may be returned by Amazon.
+    /// Known values: `LISTINGS_ITEM_STATUS_CHANGED`. Other values may be returned by Amazon.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The version of the notification.
+    /// The version of the notification.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: Payload,
-    ///The version of the payload.
+    /// The version of the payload.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
 }
-///The metadata of the notification.
+/// The metadata of the notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NotificationMetadata {
-    ///Identifies the application.
+    /// Identifies the application.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///Identifies the notification.
+    /// Identifies the notification.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///Timestamp of when the notification was published, formatted as ISO8601 date-time.
+    /// Timestamp of when the notification was published, formatted as ISO8601 date-time.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Identifies the subscription.
+    /// Identifies the subscription.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///The details of this notification.
+/// The details of this notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Payload {
-    ///The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated with the listings item.
+    /// The Amazon Standard Identification Number (ASIN) identifier of the catalog item associated with the listings item.
     #[serde(rename = "Asin", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Timestamp of when the listings item was created, formatted as ISO8601 date-time.
+    /// Timestamp of when the listings item was created, formatted as ISO8601 date-time.
     #[serde(
         rename = "CreatedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub created_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Amazon marketplace identifier of the affected listings item.
+    /// Amazon marketplace identifier of the affected listings item.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///Selling partner identifier, such as a merchant account, of the affected listings item.
+    /// Selling partner identifier, such as a merchant account, of the affected listings item.
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
-    ///Identifier of the affected listings item.
+    /// Identifier of the affected listings item.
     #[serde(rename = "Sku")]
     pub sku: ::std::string::String,
-    ///Array of status states currently associated with the affected listings item. The absence of a value indicates the status state is not currently applicable to the listings item. For example, if "BUYABLE" is not present, the listings item is not currently buyable.
+    /// Array of status states currently associated with the affected listings item. The absence of a value indicates the status state is not currently applicable to the listings item. For example, if "BUYABLE" is not present, the listings item is not currently buyable.
     ///
-    ///Known values: `BUYABLE`, `DISCOVERABLE`, `DELETED`. Other values may be returned by Amazon.
+    /// Known values: `BUYABLE`, `DISCOVERABLE`, `DELETED`. Other values may be returned by Amazon.
     #[serde(rename = "Status")]
     pub status: ::std::vec::Vec<::std::string::String>,
 }

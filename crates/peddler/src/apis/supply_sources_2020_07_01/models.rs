@@ -2,52 +2,52 @@
 // Source: supply-sources-api-model/supplySources_2020-07-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A physical address.
+/// A physical address.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///The first line of the address.
+    /// The first line of the address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///The additional address information, if required.
+    /// The additional address information, if required.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///The additional address information, if required.
+    /// The additional address information, if required.
     #[serde(
         rename = "addressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///The city where the person, business or institution is located.
+    /// The city where the person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The two digit country code. In ISO 3166-1 alpha-2 format.
+    /// The two digit country code. In ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: ::std::string::String,
-    ///The county where person, business or institution is located.
+    /// The county where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district where person, business or institution is located.
+    /// The district where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name of the person, business or institution at that address.
+    /// The name of the person, business or institution at that address.
     pub name: ::std::string::String,
-    ///The phone number of the person, business or institution located at that address.
+    /// The phone number of the person, business or institution located at that address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
+    /// The postal code of that address. It conatins a series of letters or digits or both, sometimes including spaces or punctuation.
     #[serde(
         rename = "postalCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_code: ::std::option::Option<::std::string::String>,
-    ///The state or region where person, business or institution is located.
+    /// The state or region where person, business or institution is located.
     #[serde(rename = "stateOrRegion")]
     pub state_or_region: ::std::string::String,
 }
-///The address and contact details.
+/// The address and contact details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AddressWithContact {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -58,22 +58,22 @@ pub struct AddressWithContact {
     )]
     pub contact_details: ::std::option::Option<ContactDetails>,
 }
-///The contact details
+/// The contact details
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ContactDetails {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub primary: ::std::option::Option<ContactDetailsPrimary>,
 }
-///`ContactDetailsPrimary`
+/// `ContactDetailsPrimary`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ContactDetailsPrimary {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub email: ::std::option::Option<EmailAddress>,
-    ///The phone number of the person, business or institution.
+    /// The phone number of the person, business or institution.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
 }
-///A request to create a supply source.
+/// A request to create a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateSupplySourceRequest {
     pub address: Address,
@@ -81,7 +81,7 @@ pub struct CreateSupplySourceRequest {
     #[serde(rename = "supplySourceCode")]
     pub supply_source_code: SupplySourceCode,
 }
-///The result of creating a new supply source.
+/// The result of creating a new supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateSupplySourceResponse {
     #[serde(rename = "supplySourceCode")]
@@ -89,22 +89,22 @@ pub struct CreateSupplySourceResponse {
     #[serde(rename = "supplySourceId")]
     pub supply_source_id: SupplySourceId,
 }
-///The curbside pickup configuration of a supply source.
+/// The curbside pickup configuration of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CurbsidePickupConfiguration {
-    ///When true, curbside pickup is supported by the supply source.
+    /// When true, curbside pickup is supported by the supply source.
     #[serde(
         rename = "isSupported",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_supported: ::std::option::Option<bool>,
-    ///The operational configuration for the curbside pickup configuration.
+    /// The operational configuration for the curbside pickup configuration.
     #[serde(
         rename = "operationalConfiguration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub operational_configuration: ::std::option::Option<OperationalConfiguration>,
-    ///The parking configuration for curbside pickup with address for customers to use.
+    /// The parking configuration for curbside pickup with address for customers to use.
     #[serde(
         rename = "parkingWithAddressConfiguration",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -113,7 +113,7 @@ pub struct CurbsidePickupConfiguration {
         ParkingWithAddressConfiguration,
     >,
 }
-///A date and time in the rfc3339 format.
+/// A date and time in the rfc3339 format.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -154,7 +154,7 @@ impl ::std::str::FromStr for DateTime {
         Ok(Self(value.to_string()))
     }
 }
-///The delivery channel of a supply source.
+/// The delivery channel of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeliveryChannel {
     #[serde(
@@ -168,16 +168,16 @@ pub struct DeliveryChannel {
     )]
     pub operational_configuration: ::std::option::Option<OperationalConfiguration>,
 }
-///The duration of time.
+/// The duration of time.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Duration {
-    ///Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
+    /// Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
     #[serde(rename = "timeUnit", skip_serializing_if = "::std::option::Option::is_none")]
     pub time_unit: ::std::option::Option<TimeUnit>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<NonNegativeInteger>,
 }
-///The email address to which email messages are delivered.
+/// The email address to which email messages are delivered.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct EmailAddress(::std::string::String);
@@ -241,27 +241,27 @@ impl<'de> ::serde::Deserialize<'de> for EmailAddress {
             })
     }
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The paginated list of supply sources.
+/// The paginated list of supply sources.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSupplySourcesResponse {
-    ///If present, use this pagination token to retrieve the next page of supply sources.
+    /// If present, use this pagination token to retrieve the next page of supply sources.
     #[serde(
         rename = "nextPageToken",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -273,23 +273,23 @@ pub struct GetSupplySourcesResponse {
     )]
     pub supply_sources: ::std::option::Option<SupplySourceList>,
 }
-///The in-store pickup configuration of a supply source.
+/// The in-store pickup configuration of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InStorePickupConfiguration {
-    ///When true, in-store pickup is supported by the supply source (default: `isSupported` value in `PickupChannel`).
+    /// When true, in-store pickup is supported by the supply source (default: `isSupported` value in `PickupChannel`).
     #[serde(
         rename = "isSupported",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_supported: ::std::option::Option<bool>,
-    ///The parking configuration for in-store pickup.
+    /// The parking configuration for in-store pickup.
     #[serde(
         rename = "parkingConfiguration",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parking_configuration: ::std::option::Option<ParkingConfiguration>,
 }
-///An unsigned integer that can be only positive or zero.
+/// An unsigned integer that can be only positive or zero.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct NonNegativeInteger(pub u64);
@@ -332,20 +332,20 @@ impl ::std::convert::TryFrom<String> for NonNegativeInteger {
         value.parse()
     }
 }
-///The operating hour schema
+/// The operating hour schema
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OperatingHour {
-    ///The closing time, ISO 8601 formatted timestamp without date, HH:mm.
+    /// The closing time, ISO 8601 formatted timestamp without date, HH:mm.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::std::string::String>,
-    ///The opening time, ISO 8601 formatted timestamp without date, HH:mm.
+    /// The opening time, ISO 8601 formatted timestamp without date, HH:mm.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<::std::string::String>,
 }
-///A list of Operating Hours.
+/// A list of Operating Hours.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OperatingHours(pub ::std::vec::Vec<OperatingHour>);
@@ -365,7 +365,7 @@ impl ::std::convert::From<::std::vec::Vec<OperatingHour>> for OperatingHours {
         Self(value)
     }
 }
-///The operating hours per day
+/// The operating hours per day
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OperatingHoursByDay {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -383,7 +383,7 @@ pub struct OperatingHoursByDay {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub wednesday: ::std::option::Option<OperatingHours>,
 }
-///The operational configuration of `supplySources`.
+/// The operational configuration of `supplySources`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OperationalConfiguration {
     #[serde(
@@ -407,7 +407,7 @@ pub struct OperationalConfiguration {
     )]
     pub throughput_config: ::std::option::Option<ThroughputConfig>,
 }
-///The outbound capability of a supply source.
+/// The outbound capability of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OutboundCapability {
     #[serde(
@@ -436,26 +436,26 @@ pub struct OutboundCapability {
     )]
     pub return_location: ::std::option::Option<ReturnLocation>,
 }
-///The parking configuration.
+/// The parking configuration.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ParkingConfiguration {
-    ///The number of parking spots.
+    /// The number of parking spots.
     #[serde(
         rename = "numberOfParkingSpots",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_parking_spots: ::std::option::Option<NonNegativeInteger>,
-    ///The type of cost at parking location.
+    /// The type of cost at parking location.
     ///
-    ///Known values: `Free`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `Free`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingCostType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parking_cost_type: ::std::option::Option<ParkingCostType>,
-    ///The type of parking spot identification used at parking location.
+    /// The type of parking spot identification used at parking location.
     ///
-    ///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingSpotIdentificationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -464,9 +464,9 @@ pub struct ParkingConfiguration {
         ParkingSpotIdentificationType,
     >,
 }
-///The parking cost type.
+/// The parking cost type.
 ///
-///Known values: `Free`, `Other`. Other values may be returned by Amazon.
+/// Known values: `Free`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -507,9 +507,9 @@ impl ::std::str::FromStr for ParkingCostType {
         Ok(Self(value.to_string()))
     }
 }
-///The type of parking spot identification.
+/// The type of parking spot identification.
 ///
-///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
+/// Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -550,29 +550,29 @@ impl ::std::str::FromStr for ParkingSpotIdentificationType {
         Ok(Self(value.to_string()))
     }
 }
-///The parking configuration with the address.
+/// The parking configuration with the address.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ParkingWithAddressConfiguration {
-    ///The address of the parking location.
+    /// The address of the parking location.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    ///The number of parking spots.
+    /// The number of parking spots.
     #[serde(
         rename = "numberOfParkingSpots",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_parking_spots: ::std::option::Option<NonNegativeInteger>,
-    ///The type of cost at parking location.
+    /// The type of cost at parking location.
     ///
-    ///Known values: `Free`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `Free`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingCostType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parking_cost_type: ::std::option::Option<ParkingCostType>,
-    ///The type of parking spot identification used at parking location.
+    /// The type of parking spot identification used at parking location.
     ///
-    ///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
+    /// Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingSpotIdentificationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -581,10 +581,10 @@ pub struct ParkingWithAddressConfiguration {
         ParkingSpotIdentificationType,
     >,
 }
-///The pick up channel of a supply source.
+/// The pick up channel of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PickupChannel {
-    ///The configuration for supporting curbside pickup.
+    /// The configuration for supporting curbside pickup.
     #[serde(
         rename = "curbsidePickupConfiguration",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -592,7 +592,7 @@ pub struct PickupChannel {
     pub curbside_pickup_configuration: ::std::option::Option<
         CurbsidePickupConfiguration,
     >,
-    ///The configuration for supporting in-store pickup.
+    /// The configuration for supporting in-store pickup.
     #[serde(
         rename = "inStorePickupConfiguration",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -614,7 +614,7 @@ pub struct PickupChannel {
     )]
     pub operational_configuration: ::std::option::Option<OperationalConfiguration>,
 }
-///The address or reference to another `supplySourceId` to act as a return location.
+/// The address or reference to another `supplySourceId` to act as a return location.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReturnLocation {
     #[serde(
@@ -622,17 +622,17 @@ pub struct ReturnLocation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_with_contact: ::std::option::Option<AddressWithContact>,
-    ///The Amazon provided `supplySourceId` where orders can be returned to.
+    /// The Amazon provided `supplySourceId` where orders can be returned to.
     #[serde(
         rename = "supplySourceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub supply_source_id: ::std::option::Option<::std::string::String>,
 }
-///The services capability of a supply source.
+/// The services capability of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServicesCapability {
-    ///When true, `SupplySource` supports the Service capability.
+    /// When true, `SupplySource` supports the Service capability.
     #[serde(
         rename = "isSupported",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -644,7 +644,7 @@ pub struct ServicesCapability {
     )]
     pub operational_configuration: ::std::option::Option<OperationalConfiguration>,
 }
-///The supply source details, including configurations and capabilities.
+/// The supply source details, including configurations and capabilities.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SupplySource {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -660,7 +660,7 @@ pub struct SupplySource {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub created_at: ::std::option::Option<DateTime>,
-    ///Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.
+    /// Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<SupplySourceStatusReadOnly>,
     #[serde(
@@ -679,7 +679,7 @@ pub struct SupplySource {
     )]
     pub updated_at: ::std::option::Option<DateTime>,
 }
-///The custom alias for this supply source
+/// The custom alias for this supply source
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -720,7 +720,7 @@ impl ::std::str::FromStr for SupplySourceAlias {
         Ok(Self(value.to_string()))
     }
 }
-///The capabilities of a supply source.
+/// The capabilities of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SupplySourceCapabilities {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -728,7 +728,7 @@ pub struct SupplySourceCapabilities {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub services: ::std::option::Option<ServicesCapability>,
 }
-///The seller-provided unique supply source code.
+/// The seller-provided unique supply source code.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -769,7 +769,7 @@ impl ::std::str::FromStr for SupplySourceCode {
         Ok(Self(value.to_string()))
     }
 }
-///Includes configuration and timezone of a supply source.
+/// Includes configuration and timezone of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SupplySourceConfiguration {
     #[serde(
@@ -777,11 +777,11 @@ pub struct SupplySourceConfiguration {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub operational_configuration: ::std::option::Option<OperationalConfiguration>,
-    ///Please see RFC 6557, should be a canonical time zone ID as listed here: https://www.joda.org/joda-time/timezones.html.
+    /// Please see RFC 6557, should be a canonical time zone ID as listed here: https://www.joda.org/joda-time/timezones.html.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub timezone: ::std::option::Option<::std::string::String>,
 }
-///An Amazon generated unique supply source ID.
+/// An Amazon generated unique supply source ID.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -822,7 +822,7 @@ impl ::std::str::FromStr for SupplySourceId {
         Ok(Self(value.to_string()))
     }
 }
-///The list of `SupplySource`s.
+/// The list of `SupplySource`s.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct SupplySourceList(pub ::std::vec::Vec<SupplySourceListItem>);
@@ -842,7 +842,7 @@ impl ::std::convert::From<::std::vec::Vec<SupplySourceListItem>> for SupplySourc
         Self(value)
     }
 }
-///`SupplySourceListItem`
+/// `SupplySourceListItem`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SupplySourceListItem {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -860,9 +860,9 @@ pub struct SupplySourceListItem {
     )]
     pub supply_source_id: ::std::option::Option<SupplySourceId>,
 }
-///The `SupplySource` status
+/// The `SupplySource` status
 ///
-///Known values: `Active`, `Inactive`. Other values may be returned by Amazon.
+/// Known values: `Active`, `Inactive`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -903,9 +903,9 @@ impl ::std::str::FromStr for SupplySourceStatus {
         Ok(Self(value.to_string()))
     }
 }
-///The `SupplySource` status.
+/// The `SupplySource` status.
 ///
-///Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.
+/// Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -946,16 +946,16 @@ impl ::std::str::FromStr for SupplySourceStatusReadOnly {
         Ok(Self(value.to_string()))
     }
 }
-///The throughput capacity
+/// The throughput capacity
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ThroughputCap {
-    ///Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
+    /// Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
     #[serde(rename = "timeUnit", skip_serializing_if = "::std::option::Option::is_none")]
     pub time_unit: ::std::option::Option<TimeUnit>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<NonNegativeInteger>,
 }
-///The throughput configuration.
+/// The throughput configuration.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThroughputConfig {
     #[serde(
@@ -963,13 +963,13 @@ pub struct ThroughputConfig {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub throughput_cap: ::std::option::Option<ThroughputCap>,
-    ///Known values: `Order`. Other values may be returned by Amazon.
+    /// Known values: `Order`. Other values may be returned by Amazon.
     #[serde(rename = "throughputUnit")]
     pub throughput_unit: ThroughputUnit,
 }
-///The throughput unit
+/// The throughput unit
 ///
-///Known values: `Order`. Other values may be returned by Amazon.
+/// Known values: `Order`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1010,9 +1010,9 @@ impl ::std::str::FromStr for ThroughputUnit {
         Ok(Self(value.to_string()))
     }
 }
-///The time unit
+/// The time unit
 ///
-///Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
+/// Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1053,7 +1053,7 @@ impl ::std::str::FromStr for TimeUnit {
         Ok(Self(value.to_string()))
     }
 }
-///A request to update the configuration and capabilities of a supply source.
+/// A request to update the configuration and capabilities of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateSupplySourceRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -1063,10 +1063,10 @@ pub struct UpdateSupplySourceRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub configuration: ::std::option::Option<SupplySourceConfiguration>,
 }
-///A request to update the status of a supply source.
+/// A request to update the status of a supply source.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UpdateSupplySourceStatusRequest {
-    ///Known values: `Active`, `Inactive`. Other values may be returned by Amazon.
+    /// Known values: `Active`, `Inactive`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<SupplySourceStatus>,
 }

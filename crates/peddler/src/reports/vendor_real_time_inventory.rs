@@ -2,45 +2,45 @@
 // Source: schemas/reports/vendorRealTimeInventoryReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///This report shares inventory data at an ASIN level, aggregated to an hourly granularity. Requests can span multiple date range periods, including the current day.
+/// This report shares inventory data at an ASIN level, aggregated to an hourly granularity. Requests can span multiple date range periods, including the current day.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
-    ///List of ASIN and inventory count combinations.
+    /// List of ASIN and inventory count combinations.
     #[serde(rename = "reportData")]
     pub report_data: ::std::vec::Vec<ReportData>,
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///Contains details about ASIN and inventory count combinations for the specified time range.
+/// Contains details about ASIN and inventory count combinations for the specified time range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportData {
-    ///The Amazon Standard Identification Number (ASIN).
+    /// The Amazon Standard Identification Number (ASIN).
     pub asin: ::std::string::String,
-    ///The end of a date-time range in UTC representing the end of the hour for this object.
+    /// The end of a date-time range in UTC representing the end of the hour for this object.
     #[serde(rename = "endTime")]
     pub end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The number of units available to be sold on the website, based on units in Amazon fulfillment centers that are in sellable condition less units in customer shopping carts or otherwise bound for other orders (e.g. known subscribe-and-save orders).
+    /// The number of units available to be sold on the website, based on units in Amazon fulfillment centers that are in sellable condition less units in customer shopping carts or otherwise bound for other orders (e.g. known subscribe-and-save orders).
     #[serde(rename = "highlyAvailableInventory")]
     pub highly_available_inventory: u64,
-    ///The start of a date-time range in UTC representing the beginning of the hour for this object.
+    /// The start of a date-time range in UTC representing the beginning of the hour for this object.
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-///Summarizes the original report request.
+/// Summarizes the original report request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The end of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. End time should not be more than 24 hours from the start time.
+    /// The end of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. End time should not be more than 24 hours from the start time.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The start of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. Start time can be up to 168 hours before the time of the request.
+    /// The start of a date-time range in UTC used to determine hours to report on. Output will include all full hours that fall within the range. Start time can be up to 168 hours before the time of the request.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Marketplace IDs as specified in the report request.
+    /// Marketplace IDs as specified in the report request.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }

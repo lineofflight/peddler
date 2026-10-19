@@ -2,46 +2,46 @@
 // Source: finances-api-model/finances_2024-06-19.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Additional information related to Amazon Pay.
+/// Additional information related to Amazon Pay.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AmazonPayContext {
-    ///The channel of the transaction. For example: `MFN`.
+    /// The channel of the transaction. For example: `MFN`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub channel: ::std::option::Option<::std::string::String>,
-    ///The order type of the transaction.
+    /// The order type of the transaction.
     #[serde(
         rename = "orderType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_type: ::std::option::Option<::std::string::String>,
-    ///The name of the store that is related to the transaction.
+    /// The name of the store that is related to the transaction.
     #[serde(
         rename = "storeName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///All information relevant to a balance.
+/// All information relevant to a balance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Balance {
-    ///Total amount of the balance type.
+    /// Total amount of the balance type.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Currency>,
-    ///The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
+    /// The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
     #[serde(rename = "asOfDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub as_of_date: ::std::option::Option<Date>,
-    ///The type of balance.
+    /// The type of balance.
     ///
-    ///Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`. Other values may be returned by Amazon.
+    /// Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`. Other values may be returned by Amazon.
     #[serde(
         rename = "balanceType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub balance_type: ::std::option::Option<::std::string::String>,
-    ///A list of balances that comprise this balance.
+    /// A list of balances that comprise this balance.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub balances: ::std::option::Option<::std::vec::Vec<Balance>>,
-    ///The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.
+    /// The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.
     #[serde(
         rename = "lastUpdatedTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -49,14 +49,14 @@ pub struct Balance {
     pub last_updated_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///Metadata describing the seller.
+    /// Metadata describing the seller.
     #[serde(
         rename = "partnerMetadata",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_metadata: ::std::option::Option<PartnerMetadata>,
 }
-///A list of balances.
+/// A list of balances.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Balances(pub ::std::vec::Vec<Balance>);
@@ -76,7 +76,7 @@ impl ::std::convert::From<::std::vec::Vec<Balance>> for Balances {
         Self(value)
     }
 }
-///A signed decimal number.
+/// A signed decimal number.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct BigDecimal(pub ::serde_json::Number);
@@ -119,26 +119,26 @@ impl ::std::convert::TryFrom<String> for BigDecimal {
         value.parse()
     }
 }
-///Details about the movement of money in the financial transaction.
+/// Details about the movement of money in the financial transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Breakdown {
-    ///The monetary amount of the charge.
+    /// The monetary amount of the charge.
     #[serde(
         rename = "breakdownAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub breakdown_amount: ::std::option::Option<Currency>,
-    ///The type of charge.
+    /// The type of charge.
     #[serde(
         rename = "breakdownType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub breakdown_type: ::std::option::Option<::std::string::String>,
-    ///A list of breakdowns that detail how the total amount is calculated for the transaction.
+    /// A list of breakdowns that detail how the total amount is calculated for the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
 }
-///A list of breakdowns that detail how the total amount is calculated for the transaction.
+/// A list of breakdowns that detail how the total amount is calculated for the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Breakdowns(pub ::std::vec::Vec<Breakdown>);
@@ -158,93 +158,93 @@ impl ::std::convert::From<::std::vec::Vec<Breakdown>> for Breakdowns {
         Self(value)
     }
 }
-///Information about the line of business associated with a transaction.
+/// Information about the line of business associated with a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BusinessContext {
-    ///The store name associated with the transaction.
+    /// The store name associated with the transaction.
     ///
-    ///Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.
+    /// Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.
     #[serde(
         rename = "storeName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///Additional information about the item.
+/// Additional information about the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Context {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The channel of the transaction. For example: `MFN`.
+    /// The channel of the transaction. For example: `MFN`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub channel: ::std::option::Option<::std::string::String>,
-    ///The type of context.
+    /// The type of context.
     #[serde(rename = "contextType")]
     pub context_type: ::std::string::String,
-    ///The deferral policy applied to the transaction.
+    /// The deferral policy applied to the transaction.
     ///
-    ///**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
+    /// **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
     #[serde(
         rename = "deferralReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub deferral_reason: ::std::option::Option<::std::string::String>,
-    ///The end time of the transaction.
+    /// The end time of the transaction.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<Date>,
-    ///The fulfillment network of the item.
+    /// The fulfillment network of the item.
     #[serde(
         rename = "fulfillmentNetwork",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_network: ::std::option::Option<::std::string::String>,
-    ///The release date of the transaction.
+    /// The release date of the transaction.
     #[serde(
         rename = "maturityDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub maturity_date: ::std::option::Option<Date>,
-    ///The order type of the transaction.
+    /// The order type of the transaction.
     #[serde(
         rename = "orderType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_type: ::std::option::Option<::std::string::String>,
-    ///The date of the payment.
+    /// The date of the payment.
     #[serde(
         rename = "paymentDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_date: ::std::option::Option<Date>,
-    ///The method of payment.
+    /// The method of payment.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method: ::std::option::Option<::std::string::String>,
-    ///The reference number of the payment.
+    /// The reference number of the payment.
     #[serde(
         rename = "paymentReference",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_reference: ::std::option::Option<::std::string::String>,
-    ///The type of payment.
+    /// The type of payment.
     #[serde(
         rename = "paymentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_type: ::std::option::Option<::std::string::String>,
-    ///The quantity of the item shipped.
+    /// The quantity of the item shipped.
     #[serde(
         rename = "quantityShipped",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_shipped: ::std::option::Option<i32>,
-    ///The Stock Keeping Unit (SKU) of the item.
+    /// The Stock Keeping Unit (SKU) of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
-    ///The start time of the transaction.
+    /// The start time of the transaction.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -256,7 +256,7 @@ pub struct Context {
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
 }
-///A list of additional information about the item.
+/// A list of additional information about the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Contexts(pub ::std::vec::Vec<Context>);
@@ -276,23 +276,23 @@ impl ::std::convert::From<::std::vec::Vec<Context>> for Contexts {
         Self(value)
     }
 }
-///A currency type and amount.
+/// A currency type and amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Currency {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(
         rename = "currencyAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_amount: ::std::option::Option<BigDecimal>,
-    ///The three-digit currency code in ISO 4217 format.
+    /// The three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+/// A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Date(pub ::chrono::DateTime<::chrono::offset::Utc>);
@@ -335,85 +335,85 @@ impl ::std::convert::TryFrom<String> for Date {
         value.parse()
     }
 }
-///Additional information related to deferred transactions.
+/// Additional information related to deferred transactions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeferredContext {
-    ///The deferral policy applied to the transaction.
+    /// The deferral policy applied to the transaction.
     ///
-    ///**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
+    /// **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
     #[serde(
         rename = "deferralReason",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub deferral_reason: ::std::option::Option<::std::string::String>,
-    ///The release date of the transaction.
+    /// The release date of the transaction.
     #[serde(
         rename = "maturityDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub maturity_date: ::std::option::Option<Date>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///The error responses that are returned when the request is unsuccessful.
+    /// The error responses that are returned when the request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Additional information about an item in a transaction.
+/// Additional information about an item in a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Item {
-    ///A list of breakdowns that detail how the total amount is calculated for the transaction.
+    /// A list of breakdowns that detail how the total amount is calculated for the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    ///Additional Information about the item.
+    /// Additional Information about the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub contexts: ::std::option::Option<Contexts>,
-    ///A description of the items in a transaction.
+    /// A description of the items in a transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///Related business identifiers of the item.
+    /// Related business identifiers of the item.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<ItemRelatedIdentifiers>,
-    ///The total monetary amount of the item.
+    /// The total monetary amount of the item.
     #[serde(
         rename = "totalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
 }
-///Related business identifiers of the item.
+/// Related business identifiers of the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemRelatedIdentifier {
-    ///Enumerated set of related item identifier names for the item.
+    /// Enumerated set of related item identifier names for the item.
     ///
-    ///Known values: `ORDER_ADJUSTMENT_ITEM_ID`, `COUPON_ID`, `REMOVAL_SHIPMENT_ITEM_ID`, `TRANSACTION_ID`. Other values may be returned by Amazon.
+    /// Known values: `ORDER_ADJUSTMENT_ITEM_ID`, `COUPON_ID`, `REMOVAL_SHIPMENT_ITEM_ID`, `TRANSACTION_ID`. Other values may be returned by Amazon.
     #[serde(
         rename = "itemRelatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_related_identifier_name: ::std::option::Option<::std::string::String>,
-    ///Corresponding value to `ItemRelatedIdentifierName`.
+    /// Corresponding value to `ItemRelatedIdentifierName`.
     #[serde(
         rename = "itemRelatedIdentifierValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_related_identifier_value: ::std::option::Option<::std::string::String>,
 }
-///Related business identifiers of the item in the transaction.
+/// Related business identifiers of the item in the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemRelatedIdentifiers(pub ::std::vec::Vec<ItemRelatedIdentifier>);
@@ -435,7 +435,7 @@ for ItemRelatedIdentifiers {
         Self(value)
     }
 }
-///A list of items in the transaction.
+/// A list of items in the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Items(pub ::std::vec::Vec<Item>);
@@ -455,132 +455,132 @@ impl ::std::convert::From<::std::vec::Vec<Item>> for Items {
         Self(value)
     }
 }
-///The response to the `listBalances` operation.
+/// The response to the `listBalances` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListBalancesResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub balances: ::std::option::Option<Balances>,
-    ///A token to retrieve the next page of results. If null, no more results are available.
+    /// A token to retrieve the next page of results. If null, no more results are available.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The response to the `listTransactions` operation.
+/// The response to the `listTransactions` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListTransactionsResponse {
-    ///The payload for the `listTransactions` operation.
+    /// The payload for the `listTransactions` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionsPayload>,
 }
-///Information about the marketplace where the transaction occurred.
+/// Information about the marketplace where the transaction occurred.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceDetails {
-    ///The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`
+    /// The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`
     #[serde(
         rename = "marketplaceName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_name: ::std::option::Option<::std::string::String>,
 }
-///Metadata that describes the seller.
+/// Metadata that describes the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PartnerMetadata {
-    ///The type of account.
+    /// The type of account.
     #[serde(
         rename = "accountType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_type: ::std::option::Option<::std::string::String>,
-    ///The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The unique seller identifier.
+    /// The unique seller identifier.
     #[serde(
         rename = "partnerId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_id: ::std::option::Option<::std::string::String>,
 }
-///Additional information related to payments-related transactions.
+/// Additional information related to payments-related transactions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PaymentsContext {
-    ///The date of the payment.
+    /// The date of the payment.
     #[serde(
         rename = "paymentDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_date: ::std::option::Option<Date>,
-    ///The method of payment.
+    /// The method of payment.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method: ::std::option::Option<::std::string::String>,
-    ///The reference number of the payment.
+    /// The reference number of the payment.
     #[serde(
         rename = "paymentReference",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_reference: ::std::option::Option<::std::string::String>,
-    ///The type of payment.
+    /// The type of payment.
     #[serde(
         rename = "paymentType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_type: ::std::option::Option<::std::string::String>,
 }
-///Additional information related to the product.
+/// Additional information related to the product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ProductContext {
-    ///The Amazon Standard Identification Number (ASIN) of the item.
+    /// The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The fulfillment network of the item.
+    /// The fulfillment network of the item.
     #[serde(
         rename = "fulfillmentNetwork",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_network: ::std::option::Option<::std::string::String>,
-    ///The quantity of the item shipped.
+    /// The quantity of the item shipped.
     #[serde(
         rename = "quantityShipped",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub quantity_shipped: ::std::option::Option<i32>,
-    ///The Stock Keeping Unit (SKU) of the item.
+    /// The Stock Keeping Unit (SKU) of the item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
 }
-///Related business identifier of the transaction.
+/// Related business identifier of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RelatedIdentifier {
-    ///An enumerated set of related business identifier names.
+    /// An enumerated set of related business identifier names.
     ///
-    ///Known values: `ORDER_ID`, `SHIPMENT_ID`, `FINANCIAL_EVENT_GROUP_ID`, `REFUND_ID`, `INVOICE_ID`, `DISBURSEMENT_ID`, `TRANSFER_ID`, `DEFERRED_TRANSACTION_ID`, `RELEASE_TRANSACTION_ID`, `SETTLEMENT_ID`. Other values may be returned by Amazon.
+    /// Known values: `ORDER_ID`, `SHIPMENT_ID`, `FINANCIAL_EVENT_GROUP_ID`, `REFUND_ID`, `INVOICE_ID`, `DISBURSEMENT_ID`, `TRANSFER_ID`, `DEFERRED_TRANSACTION_ID`, `RELEASE_TRANSACTION_ID`, `SETTLEMENT_ID`. Other values may be returned by Amazon.
     #[serde(
         rename = "relatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifier_name: ::std::option::Option<::std::string::String>,
-    ///Corresponding value of `RelatedIdentifierName`.
+    /// Corresponding value of `RelatedIdentifierName`.
     #[serde(
         rename = "relatedIdentifierValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifier_value: ::std::option::Option<::std::string::String>,
 }
-///Related business identifiers of the transaction.
+/// Related business identifiers of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RelatedIdentifiers(pub ::std::vec::Vec<RelatedIdentifier>);
@@ -600,166 +600,166 @@ impl ::std::convert::From<::std::vec::Vec<RelatedIdentifier>> for RelatedIdentif
         Self(value)
     }
 }
-///Metadata that describes the seller.
+/// Metadata that describes the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SellingPartnerMetadata {
-    ///The type of account in the transaction.
+    /// The type of account in the transaction.
     #[serde(
         rename = "accountType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_type: ::std::option::Option<::std::string::String>,
-    ///The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+    /// The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///The unique seller identifier.
+    /// The unique seller identifier.
     #[serde(
         rename = "sellingPartnerId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selling_partner_id: ::std::option::Option<::std::string::String>,
 }
-///Contains all information related to the financial summary.
+/// Contains all information related to the financial summary.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Summary {
-    ///A list of breakdowns that detail how the net proceeds are calculated.
+    /// A list of breakdowns that detail how the net proceeds are calculated.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub breakdowns: ::std::option::Option<Breakdowns>,
-    ///The net proceeds for the summary period.
+    /// The net proceeds for the summary period.
     #[serde(
         rename = "netProceeds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_proceeds: ::std::option::Option<Currency>,
-    ///Metadata describing the seller.
+    /// Metadata describing the seller.
     #[serde(
         rename = "partnerMetadata",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_metadata: ::std::option::Option<PartnerMetadata>,
-    ///The end date and time of the summary.
+    /// The end date and time of the summary.
     #[serde(
         rename = "periodEnd",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub period_end: ::std::option::Option<Date>,
-    ///The start date and time of the summary.
+    /// The start date and time of the summary.
     #[serde(
         rename = "periodStart",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub period_start: ::std::option::Option<Date>,
-    ///Identifiers related to the summary, such as the settlement ID.
+    /// Identifiers related to the summary, such as the settlement ID.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<RelatedIdentifiers>,
 }
-///The response to the `listSummary` operation.
+/// The response to the `listSummary` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SummaryResponse {
-    ///A token to retrieve the next page of results. If null, no more results are available.
+    /// A token to retrieve the next page of results. If null, no more results are available.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A list of financial summaries.
+    /// A list of financial summaries.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub summaries: ::std::option::Option<::std::vec::Vec<Summary>>,
 }
-///Additional information that is related to the time range of the transaction.
+/// Additional information that is related to the time range of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TimeRangeContext {
-    ///The end time of the transaction.
+    /// The end time of the transaction.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<Date>,
-    ///The start time of the transaction.
+    /// The start time of the transaction.
     #[serde(
         rename = "startTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_time: ::std::option::Option<Date>,
 }
-///All the information related to a transaction.
+/// All the information related to a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Transaction {
-    ///A list of breakdowns that detail how the total amount is calculated for the transaction.
+    /// A list of breakdowns that detail how the total amount is calculated for the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    ///Additional Information about the transaction.
+    /// Additional Information about the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub contexts: ::std::option::Option<Contexts>,
-    ///Describes the reasons for the transaction.
+    /// Describes the reasons for the transaction.
     ///
-    ///**Example:** `Order Payment`, `Refund Order`
+    /// **Example:** `Order Payment`, `Refund Order`
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///Additional information about the items in the transaction.
+    /// Additional information about the items in the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub items: ::std::option::Option<Items>,
-    ///Information about the marketplace where the transaction occurred.
+    /// Information about the marketplace where the transaction occurred.
     #[serde(
         rename = "marketplaceDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_details: ::std::option::Option<MarketplaceDetails>,
-    ///The date and time when the transaction was posted.
+    /// The date and time when the transaction was posted.
     #[serde(
         rename = "postedDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    ///Identifiers related to the transaction, such as order and shipment IDs.
+    /// Identifiers related to the transaction, such as order and shipment IDs.
     #[serde(
         rename = "relatedIdentifiers",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<RelatedIdentifiers>,
-    ///Metadata that describes the seller.
+    /// Metadata that describes the seller.
     #[serde(
         rename = "sellingPartnerMetadata",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub selling_partner_metadata: ::std::option::Option<SellingPartnerMetadata>,
-    ///The total amount of money in the transaction.
+    /// The total amount of money in the transaction.
     #[serde(
         rename = "totalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
-    ///The unique identifier of the transaction.
+    /// The unique identifier of the transaction.
     #[serde(
         rename = "transactionId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_id: ::std::option::Option<::std::string::String>,
-    ///The status of the transaction.
+    /// The status of the transaction.
     ///
-    ///**Possible values:**
+    /// **Possible values:**
     ///
-    ///* `DEFERRED`: the transaction is currently deferred.
-    ///* `RELEASED`: the transaction is currently released.
-    ///* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
+    /// * `DEFERRED`: the transaction is currently deferred.
+    /// * `RELEASED`: the transaction is currently released.
+    /// * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
     #[serde(
         rename = "transactionStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_status: ::std::option::Option<::std::string::String>,
-    ///The type of transaction.
+    /// The type of transaction.
     ///
-    ///**Possible value:** `Shipment`
+    /// **Possible value:** `Shipment`
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_type: ::std::option::Option<::std::string::String>,
 }
-///A list of transactions within the specified time period.
+/// A list of transactions within the specified time period.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Transactions(pub ::std::vec::Vec<Transaction>);
@@ -779,10 +779,10 @@ impl ::std::convert::From<::std::vec::Vec<Transaction>> for Transactions {
         Self(value)
     }
 }
-///The payload for the `listTransactions` operation.
+/// The payload for the `listTransactions` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionsPayload {
-    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+    /// The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"

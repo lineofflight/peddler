@@ -2,35 +2,35 @@
 // Source: schemas/reports/vendorNetPureProductMarginReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Describes the aggregated net pure product margin for ASINs in the vendor's account.
+/// Describes the aggregated net pure product margin for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NetPureProductMarginAggregateDetails {
-    ///The end date of the aggregated data.
+    /// The end date of the aggregated data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
+    /// A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
     #[serde(rename = "netPureProductMargin")]
     pub net_pure_product_margin: ::serde_json::Number,
-    ///The start date of the aggregated data.
+    /// The start date of the aggregated data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///Describes the aggregated ASIN-level net pure product margin for ASINs in the vendor's account.
+/// Describes the aggregated ASIN-level net pure product margin for ASINs in the vendor's account.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct NetPureProductMarginDetailsByAsin {
-    ///The Amazon Standard Identification Number.
+    /// The Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///The end date of the aggregated ASIN-level data.
+    /// The end date of the aggregated ASIN-level data.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
+    /// A measure of Amazon's profitability considering Amazon's wholesale cost and vendor-funded cooperative marketing funds: (Product Revenue – Product COGS – Vendor Funded Coop) / Product Revenue. The value is a fraction with values between 0 and 1. To represent as a percentage, multiply the value by 100.
     #[serde(rename = "netPureProductMargin")]
     pub net_pure_product_margin: ::serde_json::Number,
-    ///The start date of the aggregated ASIN-level data.
+    /// The start date of the aggregated ASIN-level data.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///The Net Pure Product Margin report shares data with vendors on Amazon's profit margin selling the vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
+/// The Net Pure Product Margin report shares data with vendors on Amazon's profit margin selling the vendor's items both at an aggregated level (across the vendor's entire catalog of items) and at a per-ASIN level. Data is available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span multiple date range periods.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "netPureProductMarginAggregate")]
@@ -44,33 +44,33 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///The report summary including the specified reporting date range and the last updated date in the input.
+/// The report summary including the specified reporting date range and the last updated date in the input.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+    /// Determines the end date of the report - the time component is ignored. For WEEK, MONTH, QUARTER and YEAR reportPeriods, this value must correspond to the last day in the specified reportPeriod. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
     #[serde(rename = "dataEndTime")]
     pub data_end_time: ::chrono::naive::NaiveDate,
-    ///Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+    /// Determines the start date of the report - the time component is ignored. For WEEK, MONTH, QUARTER and YEAR reportPeriods, this value must correspond to the first day in the specified reportPeriod. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
     #[serde(rename = "dataStartTime")]
     pub data_start_time: ::chrono::naive::NaiveDate,
-    ///The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
+    /// The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the vendor account. Each vendor account belongs to only one marketplaceId.
+    /// This parameter must match the marketplaceId of the vendor account. Each vendor account belongs to only one marketplaceId.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_NET_PURE_PRODUCT_MARGIN_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as reportPeriod.
+/// Report options specifying parameters such as reportPeriod.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///Determines the period by which data in the report is aggregated. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
+    /// Determines the period by which data in the report is aggregated. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
 }

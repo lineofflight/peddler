@@ -2,7 +2,7 @@
 // Source: fba-inventory-api-model/fbaInventory.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///The object with the list of Inventory to be added
+/// The object with the list of Inventory to be added
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AddInventoryRequest {
     #[serde(
@@ -11,53 +11,53 @@ pub struct AddInventoryRequest {
     )]
     pub inventory_items: ::std::option::Option<InventoryItems>,
 }
-///The response schema for the AddInventory operation.
+/// The response schema for the AddInventory operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AddInventoryResponse {
-    ///One or more unexpected errors occurred during the AddInventory operation.
+    /// One or more unexpected errors occurred during the AddInventory operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///An item to be created in the inventory.
+/// An item to be created in the inventory.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateInventoryItemRequest {
-    ///The marketplaceId.
+    /// The marketplaceId.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The name of the item.
+    /// The name of the item.
     #[serde(rename = "productName")]
     pub product_name: ::std::string::String,
-    ///The seller SKU of the item.
+    /// The seller SKU of the item.
     #[serde(rename = "sellerSku")]
     pub seller_sku: ::std::string::String,
 }
-///The response schema for the CreateInventoryItem operation.
+/// The response schema for the CreateInventoryItem operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateInventoryItemResponse {
-    ///One or more unexpected errors occurred during the CreateInventoryItem operation.
+    /// One or more unexpected errors occurred during the CreateInventoryItem operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The response schema for the DeleteInventoryItem operation.
+/// The response schema for the DeleteInventoryItem operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeleteInventoryItemResponse {
-    ///One or more unexpected errors occurred during the DeleteInventoryItem operation.
+    /// One or more unexpected errors occurred during the DeleteInventoryItem operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional information that can help the caller understand or fix the issue.
+    /// Additional information that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition in a human-readable form.
+    /// A message that describes the error condition in a human-readable form.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub message: ::std::option::Option<::std::string::String>,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -77,63 +77,63 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The Response schema.
+/// The Response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetInventorySummariesResponse {
-    ///One or more unexpected errors occurred during the getInventorySummaries operation.
+    /// One or more unexpected errors occurred during the getInventorySummaries operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
-    ///The payload for the getInventorySummaries operation.
+    /// The payload for the getInventorySummaries operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<GetInventorySummariesResult>,
 }
-///The payload schema for the getInventorySummaries operation.
+/// The payload schema for the getInventorySummaries operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetInventorySummariesResult {
     pub granularity: Granularity,
     #[serde(rename = "inventorySummaries")]
     pub inventory_summaries: InventorySummaries,
 }
-///Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+/// Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Granularity {
-    ///The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
+    /// The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
     #[serde(
         rename = "granularityId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub granularity_id: ::std::option::Option<::std::string::String>,
-    ///The granularity type for the inventory aggregation level.
+    /// The granularity type for the inventory aggregation level.
     #[serde(
         rename = "granularityType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub granularity_type: ::std::option::Option<::std::string::String>,
 }
-///Summarized inventory details. This object will not appear if the details parameter in the request is false.
+/// Summarized inventory details. This object will not appear if the details parameter in the request is false.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InventoryDetails {
-    ///The item quantity that can be picked, packed, and shipped.
+    /// The item quantity that can be picked, packed, and shipped.
     #[serde(
         rename = "fulfillableQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillable_quantity: ::std::option::Option<i64>,
-    ///The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.
+    /// The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.
     #[serde(
         rename = "inboundReceivingQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub inbound_receiving_quantity: ::std::option::Option<i64>,
-    ///The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number.
+    /// The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number.
     #[serde(
         rename = "inboundShippedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub inbound_shipped_quantity: ::std::option::Option<i64>,
-    ///The number of units in an inbound shipment for which you have notified Amazon.
+    /// The number of units in an inbound shipment for which you have notified Amazon.
     #[serde(
         rename = "inboundWorkingQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -155,19 +155,19 @@ pub struct InventoryDetails {
     )]
     pub unfulfillable_quantity: ::std::option::Option<UnfulfillableQuantity>,
 }
-///An item in the list of inventory to be added.
+/// An item in the list of inventory to be added.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InventoryItem {
-    ///The marketplaceId.
+    /// The marketplaceId.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The quantity of item to add.
+    /// The quantity of item to add.
     pub quantity: i64,
-    ///The seller SKU of the item.
+    /// The seller SKU of the item.
     #[serde(rename = "sellerSku")]
     pub seller_sku: ::std::string::String,
 }
-///List of Inventory to be added
+/// List of Inventory to be added
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct InventoryItems(pub ::std::vec::Vec<InventoryItem>);
@@ -187,7 +187,7 @@ impl ::std::convert::From<::std::vec::Vec<InventoryItem>> for InventoryItems {
         Self(value)
     }
 }
-///A list of inventory summaries.
+/// A list of inventory summaries.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct InventorySummaries(pub ::std::vec::Vec<InventorySummary>);
@@ -207,16 +207,16 @@ impl ::std::convert::From<::std::vec::Vec<InventorySummary>> for InventorySummar
         Self(value)
     }
 }
-///Inventory summary for a specific item.
+/// Inventory summary for a specific item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InventorySummary {
-    ///The Amazon Standard Identification Number (ASIN) of an item.
+    /// The Amazon Standard Identification Number (ASIN) of an item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///The condition of the item as described by the seller (for example, New Item).
+    /// The condition of the item as described by the seller (for example, New Item).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<::std::string::String>,
-    ///Amazon's fulfillment network SKU identifier.
+    /// Amazon's fulfillment network SKU identifier.
     #[serde(rename = "fnSku", skip_serializing_if = "::std::option::Option::is_none")]
     pub fn_sku: ::std::option::Option<::std::string::String>,
     #[serde(
@@ -224,7 +224,7 @@ pub struct InventorySummary {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub inventory_details: ::std::option::Option<InventoryDetails>,
-    ///The date and time that any quantity was last updated.
+    /// The date and time that any quantity was last updated.
     #[serde(
         rename = "lastUpdatedTime",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -232,42 +232,42 @@ pub struct InventorySummary {
     pub last_updated_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    ///The localized language product title of the item within the specific marketplace.
+    /// The localized language product title of the item within the specific marketplace.
     #[serde(
         rename = "productName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_name: ::std::option::Option<::std::string::String>,
-    ///The seller SKU of the item.
+    /// The seller SKU of the item.
     #[serde(
         rename = "sellerSku",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
-    ///A list of seller-enrolled stores that apply to this seller SKU.
+    /// A list of seller-enrolled stores that apply to this seller SKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub stores: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The total number of units in an inbound shipment or in Amazon fulfillment centers.
+    /// The total number of units in an inbound shipment or in Amazon fulfillment centers.
     #[serde(
         rename = "totalQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_quantity: ::std::option::Option<i64>,
 }
-///The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
+/// The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
-    ///A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
+    /// A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-///The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
+/// The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ResearchingQuantity {
-    ///A list of quantity details for items currently being researched.
+    /// A list of quantity details for items currently being researched.
     #[serde(
         rename = "researchingQuantityBreakdown",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -275,91 +275,91 @@ pub struct ResearchingQuantity {
     pub researching_quantity_breakdown: ::std::option::Option<
         ::std::vec::Vec<ResearchingQuantityEntry>,
     >,
-    ///The total number of units currently being researched in Amazon's fulfillment network.
+    /// The total number of units currently being researched in Amazon's fulfillment network.
     #[serde(
         rename = "totalResearchingQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_researching_quantity: ::std::option::Option<i64>,
 }
-///The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
+/// The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ResearchingQuantityEntry {
-    ///The duration of the research.
+    /// The duration of the research.
     ///
-    ///Known values: `researchingQuantityInShortTerm`, `researchingQuantityInMidTerm`, `researchingQuantityInLongTerm`. Other values may be returned by Amazon.
+    /// Known values: `researchingQuantityInShortTerm`, `researchingQuantityInMidTerm`, `researchingQuantityInLongTerm`. Other values may be returned by Amazon.
     pub name: ::std::string::String,
-    ///The number of units.
+    /// The number of units.
     pub quantity: i64,
 }
-///The quantity of reserved inventory.
+/// The quantity of reserved inventory.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ReservedQuantity {
-    ///The number of units that have been sidelined at the fulfillment center for additional processing.
+    /// The number of units that have been sidelined at the fulfillment center for additional processing.
     #[serde(
         rename = "fcProcessingQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fc_processing_quantity: ::std::option::Option<i64>,
-    ///The number of units reserved for customer orders.
+    /// The number of units reserved for customer orders.
     #[serde(
         rename = "pendingCustomerOrderQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub pending_customer_order_quantity: ::std::option::Option<i64>,
-    ///The number of units being transferred from one fulfillment center to another.
+    /// The number of units being transferred from one fulfillment center to another.
     #[serde(
         rename = "pendingTransshipmentQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub pending_transshipment_quantity: ::std::option::Option<i64>,
-    ///The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
+    /// The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
     #[serde(
         rename = "totalReservedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_reserved_quantity: ::std::option::Option<i64>,
 }
-///The quantity of unfulfillable inventory.
+/// The quantity of unfulfillable inventory.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct UnfulfillableQuantity {
-    ///The number of units in carrier damaged disposition.
+    /// The number of units in carrier damaged disposition.
     #[serde(
         rename = "carrierDamagedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub carrier_damaged_quantity: ::std::option::Option<i64>,
-    ///The number of units in customer damaged disposition.
+    /// The number of units in customer damaged disposition.
     #[serde(
         rename = "customerDamagedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub customer_damaged_quantity: ::std::option::Option<i64>,
-    ///The number of units in defective disposition.
+    /// The number of units in defective disposition.
     #[serde(
         rename = "defectiveQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub defective_quantity: ::std::option::Option<i64>,
-    ///The number of units in distributor damaged disposition.
+    /// The number of units in distributor damaged disposition.
     #[serde(
         rename = "distributorDamagedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub distributor_damaged_quantity: ::std::option::Option<i64>,
-    ///The number of units in expired disposition.
+    /// The number of units in expired disposition.
     #[serde(
         rename = "expiredQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub expired_quantity: ::std::option::Option<i64>,
-    ///The total number of units in Amazon's fulfillment network in unsellable condition.
+    /// The total number of units in Amazon's fulfillment network in unsellable condition.
     #[serde(
         rename = "totalUnfulfillableQuantity",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_unfulfillable_quantity: ::std::option::Option<i64>,
-    ///The number of units in warehouse damaged disposition.
+    /// The number of units in warehouse damaged disposition.
     #[serde(
         rename = "warehouseDamagedQuantity",
         skip_serializing_if = "::std::option::Option::is_none"

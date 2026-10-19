@@ -2,17 +2,17 @@
 // Source: schemas/notifications/FulfillmentOrderStatusNotification.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///`Amount`
+/// `Amount`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Amount {
-    ///The unit of measure for the amount. Possible values: EACHES.
+    /// The unit of measure for the amount. Possible values: EACHES.
     pub unit: ::std::string::String,
-    ///The amount of a product in the associated unit of measurement.
+    /// The amount of a product in the associated unit of measurement.
     pub value: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -53,39 +53,39 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///An amount of money, including units in the form of currency.
+/// An amount of money, including units in the form of currency.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Money {
     pub amount: Decimal,
-    ///Three digit currency code in ISO 4217 format.
+    /// Three digit currency code in ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///The root schema comprises the entire JSON document.
+/// The root schema comprises the entire JSON document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Notification {
-    ///Timestamp of the event, formatted as ISO 8601 date-time.
+    /// Timestamp of the event, formatted as ISO 8601 date-time.
     #[serde(rename = "EventTime")]
     pub event_time: ::std::string::String,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: TheNotificationMetadataSchema,
-    ///The type of notification being sent.
+    /// The type of notification being sent.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
-    ///The version of the notification.
+    /// The version of the notification.
     #[serde(rename = "NotificationVersion")]
     pub notification_version: ::std::string::String,
     #[serde(rename = "Payload")]
     pub payload: ThePayloadSchema,
-    ///The version of the payload format.
+    /// The version of the payload format.
     #[serde(rename = "PayloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Identifies a package in a shipment.
+/// Identifies a package in a shipment.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -126,28 +126,28 @@ impl ::std::str::FromStr for PackageId {
         Ok(Self(value.to_string()))
     }
 }
-///Identifies a product.
+/// Identifies a product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ProductIdentifier {
-    ///The merchant SKU of the item.
+    /// The merchant SKU of the item.
     #[serde(rename = "amazonSku")]
     pub amazon_sku: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///The Amazon facility from which the shipment is sent.
+/// The Amazon facility from which the shipment is sent.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheAmazonFacilitySchema {
-    ///An identifier for the Amazon facility from which the shipment is sent.
+    /// An identifier for the Amazon facility from which the shipment is sent.
     #[serde(rename = "facilityId")]
     pub facility_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Amazon tracking information for a package.
+/// Amazon tracking information for a package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheAmazonSchema {
-    ///The Amazon tracking number that can be used to obtain tracking and delivery information.
+    /// The Amazon tracking number that can be used to obtain tracking and delivery information.
     #[serde(
         rename = "trackingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -156,13 +156,13 @@ pub struct TheAmazonSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Carrier tracking information for a package.
+/// Carrier tracking information for a package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheCarrierSchema {
-    ///Identifies the carrier who delivers the shipment to the recipient.
+    /// Identifies the carrier who delivers the shipment to the recipient.
     #[serde(rename = "carrierCode")]
     pub carrier_code: ::std::string::String,
-    ///The tracking number, if provided, can be used to obtain tracking and delivery information.
+    /// The tracking number, if provided, can be used to obtain tracking and delivery information.
     #[serde(
         rename = "trackingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -171,22 +171,22 @@ pub struct TheCarrierSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///A line item in the fulfillment order.
+/// A line item in the fulfillment order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheLineItemSchema {
-    ///A quantity based on the specified unit of measurement.
+    /// A quantity based on the specified unit of measurement.
     pub amount: Amount,
-    ///The cancelled quantity based on the specified unit of measurement.
+    /// The cancelled quantity based on the specified unit of measurement.
     #[serde(
         rename = "cancelledAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cancelled_amount: ::std::option::Option<Amount>,
-    ///The line item identifier for the fulfillment order.
+    /// The line item identifier for the fulfillment order.
     #[serde(rename = "lineItemId")]
     pub line_item_id: ::std::string::String,
     pub product: TheProductSchema,
-    ///The unfulfillable quantity based on the specified unit of measurement.
+    /// The unfulfillable quantity based on the specified unit of measurement.
     #[serde(
         rename = "unfulfillableAmount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -195,128 +195,128 @@ pub struct TheLineItemSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Metadata about the notification.
+/// Metadata about the notification.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheNotificationMetadataSchema {
-    ///The application ID that subscribed to this notification.
+    /// The application ID that subscribed to this notification.
     #[serde(rename = "ApplicationId")]
     pub application_id: ::std::string::String,
-    ///The unique identifier for this notification.
+    /// The unique identifier for this notification.
     #[serde(rename = "NotificationId")]
     pub notification_id: ::std::string::String,
-    ///Timestamp of when the notification was published, formatted as ISO 8601 date-time.
+    /// Timestamp of when the notification was published, formatted as ISO 8601 date-time.
     #[serde(rename = "PublishTime")]
     pub publish_time: ::std::string::String,
-    ///The subscription ID for this notification.
+    /// The subscription ID for this notification.
     #[serde(rename = "SubscriptionId")]
     pub subscription_id: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Contains detailed information about the fulfillment order.
+/// Contains detailed information about the fulfillment order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheOrderSchema {
-    ///A list of items to include in the fulfillment order, including quantity.
+    /// A list of items to include in the fulfillment order, including quantity.
     #[serde(
         rename = "lineItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub line_items: ::std::option::Option<::std::vec::Vec<TheLineItemSchema>>,
-    ///The fulfillment order identifier submitted with the `createOrder` operation.
+    /// The fulfillment order identifier submitted with the `createOrder` operation.
     #[serde(rename = "orderId")]
     pub order_id: ::std::string::String,
-    ///An array of fulfillment shipment information.
+    /// An array of fulfillment shipment information.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub shipments: ::std::option::Option<::std::vec::Vec<TheShipmentSchema>>,
-    ///The current status of the fulfillment order. Possible values are PROCESSING, COMPLETE, COMPLETE_PARTIAL, CANCELLED, UNFULFILLABLE, INVALID.
+    /// The current status of the fulfillment order. Possible values are PROCESSING, COMPLETE, COMPLETE_PARTIAL, CANCELLED, UNFULFILLABLE, INVALID.
     pub status: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Package information for a shipment in a fulfillment order.
+/// Package information for a shipment in a fulfillment order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePackageSchema {
-    ///The estimated delivery date and time of the package, in ISO 8601 date time format.
+    /// The estimated delivery date and time of the package, in ISO 8601 date time format.
     #[serde(
         rename = "deliveryTime",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub delivery_time: ::std::option::Option<::std::string::String>,
-    ///Identifies a package in a shipment.
+    /// Identifies a package in a shipment.
     #[serde(rename = "packageId")]
     pub package_id: PackageId,
-    ///The shipment item identifiers contained in this package.
+    /// The shipment item identifiers contained in this package.
     #[serde(
         rename = "shipmentItemIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_item_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The current status of this package. Possible values are PROCESSING, IN_TRANSIT, DELAYED, OUT_FOR_DELIVERY, DELIVERED, UNDELIVERABLE, EXPIRED.
+    /// The current status of this package. Possible values are PROCESSING, IN_TRANSIT, DELAYED, OUT_FOR_DELIVERY, DELIVERED, UNDELIVERABLE, EXPIRED.
     pub status: ::std::string::String,
-    ///Tracking information for the package.
+    /// Tracking information for the package.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub tracking: ::std::option::Option<Tracking>,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Contains the fulfillment order status notification data.
+/// Contains the fulfillment order status notification data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ThePayloadSchema {
-    ///The type of event that triggered this notification.
+    /// The type of event that triggered this notification.
     #[serde(rename = "eventType")]
     pub event_type: ::std::string::String,
-    ///The identifier of the fulfillment service used for this operation.
+    /// The identifier of the fulfillment service used for this operation.
     #[serde(
         rename = "fulfillmentServiceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_service_id: ::std::option::Option<::std::string::String>,
-    ///The merchant identifier for the fulfillment order.
+    /// The merchant identifier for the fulfillment order.
     #[serde(rename = "merchantId")]
     pub merchant_id: ::std::string::String,
     pub order: TheOrderSchema,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Product information for the line item.
+/// Product information for the line item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheProductSchema {
-    ///The monetary value assigned by the merchant to each unit.
+    /// The monetary value assigned by the merchant to each unit.
     #[serde(
         rename = "perUnitDeclaredValue",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub per_unit_declared_value: ::std::option::Option<Money>,
-    ///Product identifier input that locates a product for MCF.
+    /// Product identifier input that locates a product for MCF.
     #[serde(rename = "productIdentifier")]
     pub product_identifier: ProductIdentifier,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Item information for a shipment in a fulfillment order.
+/// Item information for a shipment in a fulfillment order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheShipmentItemSchema {
-    ///The shipped quantity based on the specified unit of measurement.
+    /// The shipped quantity based on the specified unit of measurement.
     pub amount: Amount,
-    ///The fulfillment order item identifier that the seller created and submitted with a call to the `createOrder` operation.
+    /// The fulfillment order item identifier that the seller created and submitted with a call to the `createOrder` operation.
     #[serde(rename = "lineItemId")]
     pub line_item_id: ::std::string::String,
-    ///An identifier for the package that contains the item quantity.
+    /// An identifier for the package that contains the item quantity.
     #[serde(
         rename = "packageId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub package_id: ::std::option::Option<PackageId>,
-    ///Product identifier for the shipment item.
+    /// Product identifier for the shipment item.
     #[serde(rename = "productIdentifier")]
     pub product_identifier: ProductIdentifier,
-    ///A unique identifier for the shipment item.
+    /// A unique identifier for the shipment item.
     #[serde(
         rename = "shipmentItemId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_item_id: ::std::option::Option<::std::string::String>,
-    ///A map of unit identifier types to lists of identifier values.
+    /// A map of unit identifier types to lists of identifier values.
     #[serde(
         rename = "unitIdentifiers",
         default,
@@ -329,7 +329,7 @@ pub struct TheShipmentItemSchema {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Delivery and item information for a shipment in a fulfillment order.
+/// Delivery and item information for a shipment in a fulfillment order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TheShipmentSchema {
     #[serde(
@@ -337,20 +337,20 @@ pub struct TheShipmentSchema {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_facility: ::std::option::Option<TheAmazonFacilitySchema>,
-    ///A shipment identifier assigned by Amazon.
+    /// A shipment identifier assigned by Amazon.
     #[serde(rename = "amazonShipmentId")]
     pub amazon_shipment_id: ::std::string::String,
-    ///An array of fulfillment shipment item information.
+    /// An array of fulfillment shipment item information.
     pub items: ::std::vec::Vec<TheShipmentItemSchema>,
-    ///An array of fulfillment shipment package information.
+    /// An array of fulfillment shipment package information.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub packages: ::std::option::Option<::std::vec::Vec<ThePackageSchema>>,
-    ///The current status of the shipment. Possible values are PROCESSING, SHIPPED, CANCELLED.
+    /// The current status of the shipment. Possible values are PROCESSING, SHIPPED, CANCELLED.
     pub status: ::std::string::String,
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///Tracking information for a package.
+/// Tracking information for a package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Tracking {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -360,7 +360,7 @@ pub struct Tracking {
     #[serde(flatten)]
     pub extra: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
 }
-///The tracking number, if provided, can be used to obtain tracking and delivery information.
+/// The tracking number, if provided, can be used to obtain tracking and delivery information.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

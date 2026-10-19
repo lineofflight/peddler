@@ -4,29 +4,29 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`get_invoice_status`].
+/// The parameters of [`get_invoice_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoiceStatusParams {
-    ///The order identifier.
+    /// The order identifier.
     pub order_id: Option<String>,
-    ///The shipment identifier.
+    /// The shipment identifier.
     pub shipment_id: Option<String>,
-    ///The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve the status of a specific invoice.
+    /// The invoice access key (NF-e access key for Brazilian invoices). Use this to retrieve the status of a specific invoice.
     pub invoice_id: Option<String>,
-    ///The Amazon store identifier.
+    /// The Amazon store identifier.
     pub marketplace_id: String,
-    ///The invoice's type.
+    /// The invoice's type.
     ///
-    ///Known values: `Outbound`.
+    /// Known values: `Outbound`.
     pub invoice_type: String,
-    ///The Amazon program that seller is currently enrolled.
+    /// The Amazon program that seller is currently enrolled.
     ///
-    ///Known values: `EasyShip`, `FbaOnSite`, `SelfShip`.
+    /// Known values: `EasyShip`, `FbaOnSite`, `SelfShip`.
     pub program_type: String,
 }
 impl GetInvoiceStatusParams {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         marketplace_id: String,
         invoice_type: String,
@@ -42,7 +42,7 @@ impl GetInvoiceStatusParams {
         }
     }
 }
-///Returns the invoice status for the order or shipment you specify. You must specify either an `orderId`, `shipmentId`, or `invoiceId` as a query parameter. If multiple parameters are supplied, `orderId` takes precedence over `shipmentId`, which takes precedence over `invoiceId`.
+/// Returns the invoice status for the order or shipment you specify. You must specify either an `orderId`, `shipmentId`, or `invoiceId` as a query parameter. If multiple parameters are supplied, `orderId` takes precedence over `shipmentId`, which takes precedence over `invoiceId`.
 pub async fn get_invoice_status(
     client: &Client,
     params: GetInvoiceStatusParams,
@@ -68,19 +68,19 @@ pub async fn get_invoice_status(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`submit_invoice`].
+/// The parameters of [`submit_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitInvoiceParams<B = serde_json::Value> {
-    ///The identifier for the order.
+    /// The identifier for the order.
     pub order_id: Option<String>,
-    ///The identifier for the shipment.
+    /// The identifier for the shipment.
     pub shipment_id: Option<String>,
-    ///The request body that specifies invoice, program and `marketplaceId` values.
+    /// The request body that specifies invoice, program and `marketplaceId` values.
     pub body: B,
 }
 impl<B> SubmitInvoiceParams<B> {
-    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
+    /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             order_id: None,
@@ -89,7 +89,7 @@ impl<B> SubmitInvoiceParams<B> {
         }
     }
 }
-///Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId` as query parameter. If both parameters are supplied, `orderId` takes precedence over `shipmentId`.
+/// Submits a shipment invoice for a given order or shipment. You must specify either an `orderId` or `shipmentId` as query parameter. If both parameters are supplied, `orderId` takes precedence over `shipmentId`.
 pub async fn submit_invoice<B: serde::Serialize>(
     client: &Client,
     params: SubmitInvoiceParams<B>,

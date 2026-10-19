@@ -2,7 +2,7 @@
 // Source: notifications-api-model/notifications.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///A filter you can use to select the aggregation time period at which to send notifications (for example, limit to one notification every five minutes for high frequency notifications).
+/// A filter you can use to select the aggregation time period at which to send notifications (for example, limit to one notification every five minutes for high frequency notifications).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AggregationFilter {
     #[serde(
@@ -11,18 +11,18 @@ pub struct AggregationFilter {
     )]
     pub aggregation_settings: ::std::option::Option<AggregationSettings>,
 }
-///A container that holds all of the necessary properties to configure the aggregation of notifications.
+/// A container that holds all of the necessary properties to configure the aggregation of notifications.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AggregationSettings {
-    ///The supported time period to use to perform marketplace-ASIN level aggregation.
+    /// The supported time period to use to perform marketplace-ASIN level aggregation.
     ///
-    ///Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
+    /// Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
     #[serde(rename = "aggregationTimePeriod")]
     pub aggregation_time_period: AggregationTimePeriod,
 }
-///The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
+/// The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
 ///
-///Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
+/// Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -63,32 +63,32 @@ impl ::std::str::FromStr for AggregationTimePeriod {
         Ok(Self(value.to_string()))
     }
 }
-///The request schema for the `createDestination` operation.
+/// The request schema for the `createDestination` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateDestinationRequest {
-    ///A developer-defined name to help identify this destination.
+    /// A developer-defined name to help identify this destination.
     pub name: ::std::string::String,
-    ///The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+    /// The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
     #[serde(rename = "resourceSpecification")]
     pub resource_specification: DestinationResourceSpecification,
 }
-///The response schema for the createDestination operation.
+/// The response schema for the createDestination operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateDestinationResponse {
-    ///One or more unexpected errors occurred during the `createDestination` operation.
+    /// One or more unexpected errors occurred during the `createDestination` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `createDestination` operation.
+    /// The payload for the `createDestination` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Destination>,
 }
-///The request schema for the `createSubscription` operation.
+/// The request schema for the `createSubscription` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateSubscriptionRequest {
-    ///The identifier for the destination where notifications will be delivered.
+    /// The identifier for the destination where notifications will be delivered.
     #[serde(rename = "destinationId")]
     pub destination_id: ::std::string::String,
-    ///The version of the payload object to be used in the notification.
+    /// The version of the payload object to be used in the notification.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(
@@ -97,42 +97,42 @@ pub struct CreateSubscriptionRequest {
     )]
     pub processing_directive: ::std::option::Option<ProcessingDirective>,
 }
-///The response schema for the `createSubscription` operation.
+/// The response schema for the `createSubscription` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreateSubscriptionResponse {
-    ///One or more unexpected errors occurred during the `createSubscription` operation.
+    /// One or more unexpected errors occurred during the `createSubscription` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `createSubscription` operation.
+    /// The payload for the `createSubscription` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Subscription>,
 }
-///The response schema for the `deleteDestination` operation.
+/// The response schema for the `deleteDestination` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeleteDestinationResponse {
-    ///One or more unexpected errors occurred during the `deleteDestination` operation.
+    /// One or more unexpected errors occurred during the `deleteDestination` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///The response schema for the `deleteSubscriptionById` operation.
+/// The response schema for the `deleteSubscriptionById` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeleteSubscriptionByIdResponse {
-    ///An unexpected condition occurred during the `deleteSubscriptionById` operation.
+    /// An unexpected condition occurred during the `deleteSubscriptionById` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-///Information about the destination you create when you call the `createDestination` operation.
+/// Information about the destination you create when you call the `createDestination` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Destination {
-    ///The destination identifier generated when you created the destination.
+    /// The destination identifier generated when you created the destination.
     #[serde(rename = "destinationId")]
     pub destination_id: ::std::string::String,
-    ///The developer-defined name for this destination.
+    /// The developer-defined name for this destination.
     pub name: DestinationName,
-    ///The resource that will receive notifications associated with this destination.
+    /// The resource that will receive notifications associated with this destination.
     pub resource: DestinationResource,
 }
-///A list of destinations.
+/// A list of destinations.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DestinationList(pub ::std::vec::Vec<Destination>);
@@ -152,7 +152,7 @@ impl ::std::convert::From<::std::vec::Vec<Destination>> for DestinationList {
         Self(value)
     }
 }
-///The developer-defined name for this destination.
+/// The developer-defined name for this destination.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct DestinationName(::std::string::String);
@@ -206,44 +206,44 @@ impl<'de> ::serde::Deserialize<'de> for DestinationName {
             })
     }
 }
-///The destination resource types.
+/// The destination resource types.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DestinationResource {
-    ///An Amazon EventBridge destination.
+    /// An Amazon EventBridge destination.
     #[serde(
         rename = "eventBridge",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_bridge: ::std::option::Option<EventBridgeResource>,
-    ///An Amazon Simple Queue Service (SQS) queue destination.
+    /// An Amazon Simple Queue Service (SQS) queue destination.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sqs: ::std::option::Option<SqsResource>,
 }
-///The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
+/// The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DestinationResourceSpecification {
-    ///The information required to create an Amazon EventBridge destination.
+    /// The information required to create an Amazon EventBridge destination.
     #[serde(
         rename = "eventBridge",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_bridge: ::std::option::Option<EventBridgeResourceSpecification>,
-    ///The information required to create an Amazon Simple Queue Service (SQS) queue destination.
+    /// The information required to create an Amazon Simple Queue Service (SQS) queue destination.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sqs: ::std::option::Option<SqsResource>,
 }
-///An error response returned when the request is unsuccessful.
+/// An error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -263,18 +263,18 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The Amazon EventBridge destination.
+/// The Amazon EventBridge destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EventBridgeResource {
-    ///The identifier for the AWS account that is responsible for charges related to receiving notifications.
+    /// The identifier for the AWS account that is responsible for charges related to receiving notifications.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The name of the partner event source associated with the destination.
+    /// The name of the partner event source associated with the destination.
     pub name: EventBridgeResourceName,
-    ///The AWS region in which you receive the notifications. For AWS regions that Amazon EventBridge supports, refer to [Amazon EventBridge endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html).
+    /// The AWS region in which you receive the notifications. For AWS regions that Amazon EventBridge supports, refer to [Amazon EventBridge endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html).
     pub region: ::std::string::String,
 }
-///The name of the partner event source associated with the destination.
+/// The name of the partner event source associated with the destination.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct EventBridgeResourceName(::std::string::String);
@@ -328,16 +328,16 @@ impl<'de> ::serde::Deserialize<'de> for EventBridgeResourceName {
             })
     }
 }
-///The information required to create an Amazon EventBridge destination.
+/// The information required to create an Amazon EventBridge destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EventBridgeResourceSpecification {
-    ///The identifier for the AWS account that is responsible for charges related to receiving notifications.
+    /// The identifier for the AWS account that is responsible for charges related to receiving notifications.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    ///The AWS region in which you will be receiving the notifications.
+    /// The AWS region in which you will be receiving the notifications.
     pub region: ::std::string::String,
 }
-///A `notificationType` filter. This object contains all of the available filters and properties that you can use to define a `notificationType` specific filter.
+/// A `notificationType` filter. This object contains all of the available filters and properties that you can use to define a `notificationType` specific filter.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EventFilter {
     #[serde(
@@ -345,9 +345,9 @@ pub struct EventFilter {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aggregation_settings: ::std::option::Option<AggregationSettings>,
-    ///An `eventFilterType` value that the `notificationType` supports. The subscription service uses the `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType` supports an `eventFilterType`, refer to [Notification Type Values]( https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+    /// An `eventFilterType` value that the `notificationType` supports. The subscription service uses the `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType` supports an `eventFilterType`, refer to [Notification Type Values]( https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
     ///
-    ///Known values: `ANY_OFFER_CHANGED`, `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`. Other values may be returned by Amazon.
+    /// Known values: `ANY_OFFER_CHANGED`, `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`. Other values may be returned by Amazon.
     #[serde(rename = "eventFilterType")]
     pub event_filter_type: ::std::string::String,
     #[serde(
@@ -355,7 +355,7 @@ pub struct EventFilter {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<MarketplaceIds>,
-    ///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -367,70 +367,70 @@ pub struct EventFilter {
     )]
     pub tracking_identifier: ::std::option::Option<TrackingIdentifier>,
 }
-///The response schema for the `getDestination` operation.
+/// The response schema for the `getDestination` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetDestinationResponse {
-    ///One or more unexpected errors occurred during the `getDestination` operation.
+    /// One or more unexpected errors occurred during the `getDestination` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getDestination` operation.
+    /// The payload for the `getDestination` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Destination>,
 }
-///The response schema for the `getDestinations` operation.
+/// The response schema for the `getDestinations` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetDestinationsResponse {
-    ///One or more unexpected errors occurred during the `getDestinations` operation.
+    /// One or more unexpected errors occurred during the `getDestinations` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getDestinations` operation.
+    /// The payload for the `getDestinations` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<DestinationList>,
 }
-///The response schema for the `getSubscriptionById` operation.
+/// The response schema for the `getSubscriptionById` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSubscriptionByIdResponse {
-    ///An unexpected condition occurred during the `getSubscriptionById` operation.
+    /// An unexpected condition occurred during the `getSubscriptionById` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getSubscriptionById` operation.
+    /// The payload for the `getSubscriptionById` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Subscription>,
 }
-///The response schema for the `getSubscription` operation.
+/// The response schema for the `getSubscription` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSubscriptionResponse {
-    ///One or more unexpected errors occurred during the `getSubscription` operation.
+    /// One or more unexpected errors occurred during the `getSubscription` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getSubscription` operation.
+    /// The payload for the `getSubscription` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Subscription>,
 }
-///The payload for the `getSubscriptions` operation.
+/// The payload for the `getSubscriptions` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSubscriptionsPayload {
-    ///A token that you can use to retrieve the next page of results. When this field is not empty, pass its value in the `nextToken` query parameter of the next request.
+    /// A token that you can use to retrieve the next page of results. When this field is not empty, pass its value in the `nextToken` query parameter of the next request.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A list of subscriptions.
+    /// A list of subscriptions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub subscriptions: ::std::option::Option<Subscriptions>,
 }
-///The response schema for the `getSubscriptions` operation.
+/// The response schema for the `getSubscriptions` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetSubscriptionsResponse {
-    ///One or more unexpected errors occurred during the `getSubscriptions` operation.
+    /// One or more unexpected errors occurred during the `getSubscriptions` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `getSubscriptions` operation.
+    /// The payload for the `getSubscriptions` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<GetSubscriptionsPayload>,
 }
-///An event filter you can use to customize your subscription to send notifications for specific `marketplaceId`s.
+/// An event filter you can use to customize your subscription to send notifications for specific `marketplaceId`s.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceFilter {
     #[serde(
@@ -439,7 +439,7 @@ pub struct MarketplaceFilter {
     )]
     pub marketplace_ids: ::std::option::Option<MarketplaceIds>,
 }
-///A list of marketplace identifiers you can subscribe to (for example, `ATVPDKIKX0DER`). To receive notifications in every marketplace, do not provide this list.
+/// A list of marketplace identifiers you can subscribe to (for example, `ATVPDKIKX0DER`). To receive notifications in every marketplace, do not provide this list.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct MarketplaceIds(pub ::std::vec::Vec<::std::string::String>);
@@ -459,9 +459,9 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for Marketplac
         Self(value)
     }
 }
-///The supported order change type of ORDER_CHANGE notification.
+/// The supported order change type of ORDER_CHANGE notification.
 ///
-///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -502,19 +502,19 @@ impl ::std::str::FromStr for OrderChangeTypeEnum {
         Ok(Self(value.to_string()))
     }
 }
-///An event filter you can use to customize your subscription to send notifications for a specific `orderChangeType`.
+/// An event filter you can use to customize your subscription to send notifications for a specific `orderChangeType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OrderChangeTypeFilter {
-    ///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_change_types: ::std::option::Option<OrderChangeTypes>,
 }
-///A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
+/// A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
 ///
-///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderChangeTypes(pub ::std::vec::Vec<OrderChangeTypeEnum>);
@@ -534,25 +534,25 @@ impl ::std::convert::From<::std::vec::Vec<OrderChangeTypeEnum>> for OrderChangeT
         Self(value)
     }
 }
-///Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the `marketplaceId`s that you specify, or select the aggregation time period at which to send notifications (for example, you can set a limit of one notification every five minutes for high frequency notifications). You can also use `filterExpression` to filter events based on notification payload. The specific features available can vary by the `notificationType`.
+/// Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the `marketplaceId`s that you specify, or select the aggregation time period at which to send notifications (for example, you can set a limit of one notification every five minutes for high frequency notifications). You can also use `filterExpression` to filter events based on notification payload. The specific features available can vary by the `notificationType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ProcessingDirective {
-    ///A `notificationType` filter. Note: eventFilter and filterExpression are mutually exclusive, meaning if eventFilter is provided, filterExpression field cannot be used.
+    /// A `notificationType` filter. Note: eventFilter and filterExpression are mutually exclusive, meaning if eventFilter is provided, filterExpression field cannot be used.
     #[serde(
         rename = "eventFilter",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_filter: ::std::option::Option<EventFilter>,
-    ///An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
-    /// Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
+    /// An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
+    ///  Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
     #[serde(
         rename = "filterExpression",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub filter_expression: ::std::option::Option<ProcessingDirectiveFilterExpression>,
 }
-///An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
-/// Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
+/// An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
+///  Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ProcessingDirectiveFilterExpression(::std::string::String);
@@ -611,10 +611,10 @@ impl<'de> ::serde::Deserialize<'de> for ProcessingDirectiveFilterExpression {
             })
     }
 }
-///The request schema for the `sendTestNotification` operation.
+/// The request schema for the `sendTestNotification` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SendTestNotificationRequest {
-    ///The identifier for the destination where notifications will be delivered.
+    /// The identifier for the destination where notifications will be delivered.
     #[serde(
         rename = "destinationId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -626,23 +626,23 @@ pub struct SendTestNotificationRequest {
     )]
     pub test_notification: ::std::option::Option<TestNotification>,
 }
-///The response schema for the `sendTestNotification` operation.
+/// The response schema for the `sendTestNotification` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SendTestNotificationResponse {
-    ///One or more unexpected errors occurred during the `sendTestNotification` operation.
+    /// One or more unexpected errors occurred during the `sendTestNotification` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the `sendTestNotification` operation.
+    /// The payload for the `sendTestNotification` operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<::serde_json::Value>,
 }
-///The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+/// The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SqsResource {
-    ///The Amazon Resource Name (ARN) associated with the SQS queue.
+    /// The Amazon Resource Name (ARN) associated with the SQS queue.
     pub arn: SqsResourceArn,
 }
-///The Amazon Resource Name (ARN) associated with the SQS queue.
+/// The Amazon Resource Name (ARN) associated with the SQS queue.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct SqsResourceArn(::std::string::String);
@@ -701,13 +701,13 @@ impl<'de> ::serde::Deserialize<'de> for SqsResourceArn {
             })
     }
 }
-///Information about the subscription.
+/// Information about the subscription.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Subscription {
-    ///The identifier for the destination where notifications will be delivered.
+    /// The identifier for the destination where notifications will be delivered.
     #[serde(rename = "destinationId")]
     pub destination_id: ::std::string::String,
-    ///The version of the payload object to be used in the notification.
+    /// The version of the payload object to be used in the notification.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
     #[serde(
@@ -715,11 +715,11 @@ pub struct Subscription {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub processing_directive: ::std::option::Option<ProcessingDirective>,
-    ///The subscription identifier generated when the subscription is created.
+    /// The subscription identifier generated when the subscription is created.
     #[serde(rename = "subscriptionId")]
     pub subscription_id: ::std::string::String,
 }
-///A list of subscriptions.
+/// A list of subscriptions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct Subscriptions(pub ::std::vec::Vec<Subscription>);
@@ -739,20 +739,20 @@ impl ::std::convert::From<::std::vec::Vec<Subscription>> for Subscriptions {
         Self(value)
     }
 }
-///The describer for the test notification that will be delivered.
+/// The describer for the test notification that will be delivered.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TestNotification {
-    ///The version of the payload object to be used in the notification.
+    /// The version of the payload object to be used in the notification.
     #[serde(rename = "payloadVersion")]
     pub payload_version: ::std::string::String,
-    ///The scenario of the specified notification to be used in the notification payload. If testScenario is empty, a 400 response will be returned back to the developer. The scenarios supported for each notification type can be found in the Selling Partner API Developer Guide.
+    /// The scenario of the specified notification to be used in the notification payload. If testScenario is empty, a 400 response will be returned back to the developer. The scenarios supported for each notification type can be found in the Selling Partner API Developer Guide.
     #[serde(
         rename = "testScenario",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub test_scenario: ::std::option::Option<::std::string::String>,
 }
-///An event filter you can use to customize your subscription to receive shipment tracking milestone notifications for a specific tracking identifier.
+/// An event filter you can use to customize your subscription to receive shipment tracking milestone notifications for a specific tracking identifier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TrackingFilter {
     #[serde(
@@ -761,13 +761,13 @@ pub struct TrackingFilter {
     )]
     pub tracking_identifier: ::std::option::Option<TrackingIdentifier>,
 }
-///Specifies the tracking identifier used to filter your subscription notifications. Provide exactly one identifier field. Providing multiple identifier fields in a single request is not supported.
+/// Specifies the tracking identifier used to filter your subscription notifications. Provide exactly one identifier field. Providing multiple identifier fields in a single request is not supported.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TrackingIdentifier {
-    ///Air Cargo Shipment Identification Number.
+    /// Air Cargo Shipment Identification Number.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub acsin: ::std::option::Option<::std::string::String>,
-    ///Amazon Fulfillment Tracking Number.
+    /// Amazon Fulfillment Tracking Number.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub aftn: ::std::option::Option<::std::string::String>,
     #[serde(
@@ -775,32 +775,32 @@ pub struct TrackingIdentifier {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub carrier_tracking: ::std::option::Option<TrackingIdentifierCarrierTracking>,
-    ///Container number provided by the Logistics Service Provider.
+    /// Container number provided by the Logistics Service Provider.
     #[serde(
         rename = "containerNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_number: ::std::option::Option<::std::string::String>,
-    ///House Bill of Lading number.
+    /// House Bill of Lading number.
     #[serde(
         rename = "houseBillOfLadingNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub house_bill_of_lading_number: ::std::option::Option<::std::string::String>,
-    ///Amazon unique tracking identifier.
+    /// Amazon unique tracking identifier.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub id: ::std::option::Option<::std::string::String>,
 }
-///Carrier-provided tracking identifier.
+/// Carrier-provided tracking identifier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TrackingIdentifierCarrierTracking {
-    ///Carrier code
+    /// Carrier code
     #[serde(
         rename = "carrierCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub carrier_code: ::std::option::Option<::std::string::String>,
-    ///Carrier tracking number
+    /// Carrier tracking number
     #[serde(rename = "trackingNumber")]
     pub tracking_number: ::std::string::String,
 }

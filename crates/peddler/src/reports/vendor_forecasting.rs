@@ -2,34 +2,34 @@
 // Source: schemas/reports/vendorForecastingReport.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Describes forecast units for a particular ASIN for a specific period of time in the future.
+/// Describes forecast units for a particular ASIN for a specific period of time in the future.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ForecastByAsin {
-    ///The Amazon Standard Identification Number.
+    /// The Amazon Standard Identification Number.
     pub asin: ::std::string::String,
-    ///The end date of the time period being forecasted. The forecasted time period includes this date.
+    /// The end date of the time period being forecasted. The forecasted time period includes this date.
     #[serde(rename = "endDate")]
     pub end_date: ::chrono::naive::NaiveDate,
-    ///The date that the forecast was generated.
+    /// The date that the forecast was generated.
     #[serde(rename = "forecastGenerationDate")]
     pub forecast_generation_date: ::chrono::naive::NaiveDate,
-    ///The average amount of forecast units that Amazon has predicted for this date range. This means that, on average, Amazon predicts that this many stock units will be purchased during this date range.
+    /// The average amount of forecast units that Amazon has predicted for this date range. This means that, on average, Amazon predicts that this many stock units will be purchased during this date range.
     #[serde(rename = "meanForecastUnits")]
     pub mean_forecast_units: ::serde_json::Number,
-    ///The 70th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted a 70% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
+    /// The 70th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted a 70% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
     #[serde(rename = "p70ForecastUnits")]
     pub p70_forecast_units: ::serde_json::Number,
-    ///The 80th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted an 80% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
+    /// The 80th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted an 80% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
     #[serde(rename = "p80ForecastUnits")]
     pub p80_forecast_units: ::serde_json::Number,
-    ///The 90th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted a 90% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
+    /// The 90th percentile of forecast units that Amazon has predicted for this date range. This means that Amazon has forecasted a 90% probability that the ASIN will not run out of stock during the date range if this many units of inventory are present at the start of the date range.
     #[serde(rename = "p90ForecastUnits")]
     pub p90_forecast_units: ::serde_json::Number,
-    ///The start date of the time period being forecasted. The forecasted time period includes this date.
+    /// The start date of the time period being forecasted. The forecasted time period includes this date.
     #[serde(rename = "startDate")]
     pub start_date: ::chrono::naive::NaiveDate,
 }
-///Forecast customer demand of your products for production and inventory planning purposes.
+/// Forecast customer demand of your products for production and inventory planning purposes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Report {
     #[serde(rename = "forecastByAsin")]
@@ -37,29 +37,29 @@ pub struct Report {
     #[serde(rename = "reportSpecification")]
     pub report_specification: ReportReportSpecification,
 }
-///The report input summary which includes the marketplace, selling program, and last updated date.
+/// The report input summary which includes the marketplace, selling program, and last updated date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecification {
-    ///The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
+    /// The date when the report was last updated. Follows the <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> Date format of YYYY-MM-DD.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::naive::NaiveDate,
-    ///This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to only one marketplaceId.
+    /// This parameter must match the marketplaceId of the selling partner account. Each selling partner account belongs to only one marketplaceId.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    ///The report type.
+    /// The report type.
     ///
-    ///Known values: `GET_VENDOR_FORECASTING_REPORT`. Other values may be returned by Amazon.
+    /// Known values: `GET_VENDOR_FORECASTING_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
-///Report options specifying parameters such as sellingProgram.
+/// Report options specifying parameters such as sellingProgram.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    ///The selling program.
+    /// The selling program.
     ///
-    ///Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
+    /// Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
     #[serde(rename = "sellingProgram")]
     pub selling_program: ::std::string::String,
 }

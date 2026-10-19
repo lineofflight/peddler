@@ -2,18 +2,18 @@
 // Source: product-fees-api-model/productFeesV0.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///An object representing an error that occurred during the API operation.
+/// An object representing an error that occurred during the API operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -33,22 +33,22 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///The type of fee, fee amount, and other details.
+/// The type of fee, fee amount, and other details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeeDetail {
-    ///The amount charged for a given fee.
+    /// The amount charged for a given fee.
     #[serde(rename = "FeeAmount")]
     pub fee_amount: MoneyType,
-    ///The promotion amount for a given fee.
+    /// The promotion amount for a given fee.
     #[serde(
         rename = "FeePromotion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_promotion: ::std::option::Option<MoneyType>,
-    ///The type of fee charged to a seller.
+    /// The type of fee charged to a seller.
     #[serde(rename = "FeeType")]
     pub fee_type: ::std::string::String,
-    ///The final fee amount for a given fee.
+    /// The final fee amount for a given fee.
     #[serde(rename = "FinalFee")]
     pub final_fee: MoneyType,
     #[serde(
@@ -56,14 +56,14 @@ pub struct FeeDetail {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub included_fee_detail_list: ::std::option::Option<IncludedFeeDetailList>,
-    ///The tax amount for a given fee.
+    /// The tax amount for a given fee.
     #[serde(
         rename = "TaxAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<MoneyType>,
 }
-///A list of other fees that contribute to a given fee.
+/// A list of other fees that contribute to a given fee.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeeDetailList(pub ::std::vec::Vec<FeeDetail>);
@@ -83,7 +83,7 @@ impl ::std::convert::From<::std::vec::Vec<FeeDetail>> for FeeDetailList {
         Self(value)
     }
 }
-///The total estimated fees for an item and a list of details.
+/// The total estimated fees for an item and a list of details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeesEstimate {
     #[serde(
@@ -91,17 +91,17 @@ pub struct FeesEstimate {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_detail_list: ::std::option::Option<FeeDetailList>,
-    ///The time at which the fees were estimated. This defaults to the time the request is made.
+    /// The time at which the fees were estimated. This defaults to the time the request is made.
     #[serde(rename = "TimeOfFeesEstimation")]
     pub time_of_fees_estimation: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Total estimated fees for a given item, price, and fulfillment channel.
+    /// Total estimated fees for a given item, price, and fulfillment channel.
     #[serde(
         rename = "TotalFeesEstimate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_fees_estimate: ::std::option::Option<MoneyType>,
 }
-///A product, marketplace, and proposed price used to request estimated fees.
+/// A product, marketplace, and proposed price used to request estimated fees.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeesEstimateByIdRequest {
     #[serde(
@@ -109,29 +109,29 @@ pub struct FeesEstimateByIdRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fees_estimate_request: ::std::option::Option<FeesEstimateRequest>,
-    ///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
+    /// Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
     #[serde(rename = "IdType")]
     pub id_type: IdType,
-    ///The item identifier.
+    /// The item identifier.
     #[serde(rename = "IdValue")]
     pub id_value: ::std::string::String,
 }
-///An unexpected error occurred during this operation.
+/// An unexpected error occurred during this operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeesEstimateError {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     #[serde(rename = "Code")]
     pub code: ::std::string::String,
     #[serde(rename = "Detail")]
     pub detail: FeesEstimateErrorDetail,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     #[serde(rename = "Message")]
     pub message: ::std::string::String,
-    ///An error type, identifying either the receiver or the sender as the originator of the error.
+    /// An error type, identifying either the receiver or the sender as the originator of the error.
     #[serde(rename = "Type")]
     pub type_: ::std::string::String,
 }
-///Additional information that can help the caller understand or fix the issue.
+/// Additional information that can help the caller understand or fix the issue.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct FeesEstimateErrorDetail(
@@ -166,97 +166,97 @@ impl ::std::convert::From<
         Self(value)
     }
 }
-///An item identifier, marketplace, time of request, and other details that identify an estimate.
+/// An item identifier, marketplace, time of request, and other details that identify an estimate.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeesEstimateIdentifier {
-    ///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
+    /// Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
     #[serde(rename = "IdType", skip_serializing_if = "::std::option::Option::is_none")]
     pub id_type: ::std::option::Option<IdType>,
-    ///The item identifier.
+    /// The item identifier.
     #[serde(rename = "IdValue", skip_serializing_if = "::std::option::Option::is_none")]
     pub id_value: ::std::option::Option<::std::string::String>,
-    ///When true, the offer is fulfilled by Amazon.
+    /// When true, the offer is fulfilled by Amazon.
     #[serde(
         rename = "IsAmazonFulfilled",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_amazon_fulfilled: ::std::option::Option<bool>,
-    ///A marketplace identifier.
+    /// A marketplace identifier.
     #[serde(
         rename = "MarketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    ///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
+    /// Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "OptionalFulfillmentProgram",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub optional_fulfillment_program: ::std::option::Option<OptionalFulfillmentProgram>,
-    ///The item price on which the fee estimate is based.
+    /// The item price on which the fee estimate is based.
     #[serde(
         rename = "PriceToEstimateFees",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub price_to_estimate_fees: ::std::option::Option<PriceToEstimateFees>,
-    ///The seller identifier.
+    /// The seller identifier.
     #[serde(rename = "SellerId", skip_serializing_if = "::std::option::Option::is_none")]
     pub seller_id: ::std::option::Option<::std::string::String>,
-    ///A unique identifier provided by the caller to track this request.
+    /// A unique identifier provided by the caller to track this request.
     #[serde(
         rename = "SellerInputIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_input_identifier: ::std::option::Option<::std::string::String>,
 }
-///A product, marketplace, and proposed price used to request estimated fees.
+/// A product, marketplace, and proposed price used to request estimated fees.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeesEstimateRequest {
-    ///A unique identifier provided by the caller to track this request.
+    /// A unique identifier provided by the caller to track this request.
     #[serde(rename = "Identifier")]
     pub identifier: ::std::string::String,
-    ///When true, the offer is fulfilled by Amazon.
+    /// When true, the offer is fulfilled by Amazon.
     #[serde(
         rename = "IsAmazonFulfilled",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_amazon_fulfilled: ::std::option::Option<bool>,
-    ///A marketplace identifier.
+    /// A marketplace identifier.
     #[serde(rename = "MarketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
+    /// Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "OptionalFulfillmentProgram",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub optional_fulfillment_program: ::std::option::Option<OptionalFulfillmentProgram>,
-    ///The product price that the fee estimate is based on.
+    /// The product price that the fee estimate is based on.
     #[serde(rename = "PriceToEstimateFees")]
     pub price_to_estimate_fees: PriceToEstimateFees,
 }
-///An item identifier and the estimated fees for the item.
+/// An item identifier and the estimated fees for the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeesEstimateResult {
-    ///An error object with a type, code, and message.
+    /// An error object with a type, code, and message.
     #[serde(rename = "Error", skip_serializing_if = "::std::option::Option::is_none")]
     pub error: ::std::option::Option<FeesEstimateError>,
-    ///The total estimated fees for an item and a list of details.
+    /// The total estimated fees for an item and a list of details.
     #[serde(
         rename = "FeesEstimate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fees_estimate: ::std::option::Option<FeesEstimate>,
-    ///Information used to identify a fees estimate request.
+    /// Information used to identify a fees estimate request.
     #[serde(
         rename = "FeesEstimateIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fees_estimate_identifier: ::std::option::Option<FeesEstimateIdentifier>,
-    ///The status of the fee request. Possible values: Success, ClientError, ServiceError.
+    /// The status of the fee request. Possible values: Success, ClientError, ServiceError.
     #[serde(rename = "Status", skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<::std::string::String>,
 }
-///Request schema.
+/// Request schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMyFeesEstimateRequest {
     #[serde(
@@ -265,33 +265,33 @@ pub struct GetMyFeesEstimateRequest {
     )]
     pub fees_estimate_request: ::std::option::Option<FeesEstimateRequest>,
 }
-///The response object for the GetMyFeesEstimate operation.
+/// The response object for the GetMyFeesEstimate operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMyFeesEstimateResponse {
-    ///A list of errors that may have occurred during the GetMyFeesEstimate operation.
+    /// A list of errors that may have occurred during the GetMyFeesEstimate operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The payload for the operation.
+    /// The payload for the operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<GetMyFeesEstimateResult>,
 }
-///Response schema.
+/// Response schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct GetMyFeesEstimateResult {
-    ///The item's estimated fees.
+    /// The item's estimated fees.
     #[serde(
         rename = "FeesEstimateResult",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fees_estimate_result: ::std::option::Option<FeesEstimateResult>,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetMyFeesEstimatesErrorList {
-    ///A list of error responses returned when a request is unsuccessful.
+    /// A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-///Request for estimated fees for a list of products.
+/// Request for estimated fees for a list of products.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct GetMyFeesEstimatesRequest(pub ::std::vec::Vec<FeesEstimateByIdRequest>);
@@ -313,7 +313,7 @@ for GetMyFeesEstimatesRequest {
         Self(value)
     }
 }
-///Estimated fees for a list of products.
+/// Estimated fees for a list of products.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct GetMyFeesEstimatesResponse(pub ::std::vec::Vec<FeesEstimateResult>);
@@ -335,9 +335,9 @@ for GetMyFeesEstimatesResponse {
         Self(value)
     }
 }
-///The type of product identifier used in a `FeesEstimateByIdRequest`.
+/// The type of product identifier used in a `FeesEstimateByIdRequest`.
 ///
-///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
+/// Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -378,32 +378,32 @@ impl ::std::str::FromStr for IdType {
         Ok(Self(value.to_string()))
     }
 }
-///The type of fee, fee amount, and other details.
+/// The type of fee, fee amount, and other details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IncludedFeeDetail {
-    ///The amount charged for a given fee.
+    /// The amount charged for a given fee.
     #[serde(rename = "FeeAmount")]
     pub fee_amount: MoneyType,
-    ///The promotion amount for a given fee.
+    /// The promotion amount for a given fee.
     #[serde(
         rename = "FeePromotion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fee_promotion: ::std::option::Option<MoneyType>,
-    ///The type of fee charged to a seller.
+    /// The type of fee charged to a seller.
     #[serde(rename = "FeeType")]
     pub fee_type: ::std::string::String,
-    ///The final fee amount for a given fee.
+    /// The final fee amount for a given fee.
     #[serde(rename = "FinalFee")]
     pub final_fee: MoneyType,
-    ///The tax amount for a given fee.
+    /// The tax amount for a given fee.
     #[serde(
         rename = "TaxAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<MoneyType>,
 }
-///A list of other fees that contribute to a given fee.
+/// A list of other fees that contribute to a given fee.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct IncludedFeeDetailList(pub ::std::vec::Vec<IncludedFeeDetail>);
@@ -423,22 +423,22 @@ impl ::std::convert::From<::std::vec::Vec<IncludedFeeDetail>> for IncludedFeeDet
         Self(value)
     }
 }
-///An object representing a monetary value with its currency information.
+/// An object representing a monetary value with its currency information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MoneyType {
-    ///The monetary value.
+    /// The monetary value.
     #[serde(rename = "Amount", skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<::serde_json::Number>,
-    ///The currency code in ISO 4217 format.
+    /// The currency code in ISO 4217 format.
     #[serde(
         rename = "CurrencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+/// An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
 ///
-///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
+/// Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -479,7 +479,7 @@ impl ::std::str::FromStr for OptionalFulfillmentProgram {
         Ok(Self(value.to_string()))
     }
 }
-///The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.
+/// The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Points {
     #[serde(
@@ -487,23 +487,23 @@ pub struct Points {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub points_monetary_value: ::std::option::Option<MoneyType>,
-    ///The number of Amazon Points
+    /// The number of Amazon Points
     #[serde(
         rename = "PointsNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub points_number: ::std::option::Option<i32>,
 }
-///Price information for an item, used to estimate fees.
+/// Price information for an item, used to estimate fees.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PriceToEstimateFees {
-    ///The price of the item.
+    /// The price of the item.
     #[serde(rename = "ListingPrice")]
     pub listing_price: MoneyType,
-    ///The number of Amazon Points offered with the purchase of an item.
+    /// The number of Amazon Points offered with the purchase of an item.
     #[serde(rename = "Points", skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    ///The shipping cost.
+    /// The shipping cost.
     #[serde(rename = "Shipping", skip_serializing_if = "::std::option::Option::is_none")]
     pub shipping: ::std::option::Option<MoneyType>,
 }

@@ -4,20 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
-///The parameters of [`generate_order_scenarios`].
+/// The parameters of [`generate_order_scenarios`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateOrderScenariosParams<B = serde_json::Value> {
-    ///The request payload containing parameters for generating test order data scenarios.
+    /// The request payload containing parameters for generating test order data scenarios.
     pub body: B,
 }
 impl<B> GenerateOrderScenariosParams<B> {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
-///Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
+/// Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
 pub async fn generate_order_scenarios<B: serde::Serialize>(
     client: &Client,
     params: GenerateOrderScenariosParams<B>,
@@ -36,20 +36,20 @@ pub async fn generate_order_scenarios<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
-///The parameters of [`get_order_scenarios`].
+/// The parameters of [`get_order_scenarios`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderScenariosParams {
-    ///The transaction identifier returned in the response to the generateOrderScenarios operation.
+    /// The transaction identifier returned in the response to the generateOrderScenarios operation.
     pub transaction_id: String,
 }
 impl GetOrderScenariosParams {
-    ///Takes the required parameters.
+    /// Takes the required parameters.
     pub fn new(transaction_id: String) -> Self {
         Self { transaction_id }
     }
 }
-///Returns the status of the transaction indicated by the specified transactionId. If the transaction was successful, also returns the requested test order data.
+/// Returns the status of the transaction indicated by the specified transactionId. If the transaction was successful, also returns the requested test order data.
 pub async fn get_order_scenarios(
     client: &Client,
     params: GetOrderScenariosParams,

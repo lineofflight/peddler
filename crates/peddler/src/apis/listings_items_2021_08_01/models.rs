@@ -2,26 +2,26 @@
 // Source: listings-items-api-model/listingsItems_2021-08-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Buyer segment or program this offer is applicable to.
+/// Buyer segment or program this offer is applicable to.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Audience {
-    ///Localized display name for the audience.
+    /// Localized display name for the audience.
     #[serde(
         rename = "displayName",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub display_name: ::std::option::Option<::std::string::String>,
-    ///Name of the audience an offer is applicable to.
+    /// Name of the audience an offer is applicable to.
     ///
-    ///Common values:
+    /// Common values:
     ///
-    ///* 'ALL' - Standard offer audience for buyers on Amazon retail websites.
+    /// * 'ALL' - Standard offer audience for buyers on Amazon retail websites.
     ///
-    ///* 'B2B' - Offer audience for Amazon Business website buyers.
+    /// * 'B2B' - Offer audience for Amazon Business website buyers.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::std::string::String>,
 }
-///A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -62,104 +62,104 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ErrorList {
-    ///A list of error responses.
+    /// A list of error responses.
     pub errors: ::std::vec::Vec<Error>,
 }
-///The listings item's fulfillment availability details.
+/// The listings item's fulfillment availability details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FulfillmentAvailability {
-    ///Designates which fulfillment network is used.
+    /// Designates which fulfillment network is used.
     #[serde(rename = "fulfillmentChannelCode")]
     pub fulfillment_channel_code: ::std::string::String,
-    ///The item quantity that you're making available for sale.
+    /// The item quantity that you're making available for sale.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<u64>,
 }
-///An issue with a listings item.
+/// An issue with a listings item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Issue {
-    ///Names of the attributes that are associated with the issue, if applicable.
+    /// Names of the attributes that are associated with the issue, if applicable.
     #[serde(
         rename = "attributeNames",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub attribute_names: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///List of issue categories.
+    /// List of issue categories.
     pub categories: ::std::vec::Vec<::std::string::String>,
-    ///An issue code that identifies the type of issue.
+    /// An issue code that identifies the type of issue.
     pub code: ::std::string::String,
-    ///Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+    /// Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub enforcements: ::std::option::Option<IssueEnforcements>,
-    ///List of Amazon store identifiers.
+    /// List of Amazon store identifiers.
     #[serde(
         rename = "marketplaceIds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///A message that describes the issue.
+    /// A message that describes the issue.
     pub message: ::std::string::String,
-    ///The severity of the issue.
+    /// The severity of the issue.
     ///
-    ///Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
+    /// Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
-///The enforcement action taken by Amazon that affect the publishing or status of a listing
+/// The enforcement action taken by Amazon that affect the publishing or status of a listing
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueEnforcementAction {
-    ///The enforcement action name.
+    /// The enforcement action name.
     ///
-    ///Possible values:
+    /// Possible values:
     ///
-    ///* `LISTING_SUPPRESSED` - This enforcement takes down the current listing item's buyability.
+    /// * `LISTING_SUPPRESSED` - This enforcement takes down the current listing item's buyability.
     ///
-    ///* `ATTRIBUTE_SUPPRESSED` - An attribute's value on the listing item is invalid, which causes it to be rejected by Amazon.
+    /// * `ATTRIBUTE_SUPPRESSED` - An attribute's value on the listing item is invalid, which causes it to be rejected by Amazon.
     ///
-    ///* `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the applicable Amazon store are non-buyable.
+    /// * `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the applicable Amazon store are non-buyable.
     ///
-    ///* `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
+    /// * `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
     pub action: ::std::string::String,
 }
-///Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+/// Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueEnforcements {
-    ///List of enforcement actions taken by Amazon that affect the publishing or status of a listing.
+    /// List of enforcement actions taken by Amazon that affect the publishing or status of a listing.
     pub actions: ::std::vec::Vec<IssueEnforcementAction>,
-    ///The `exemption` field serves to convey the status of enforcement actions by Amazon.
+    /// The `exemption` field serves to convey the status of enforcement actions by Amazon.
     pub exemption: IssueExemption,
 }
-///Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date.
+/// Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueExemption {
-    ///Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary exemptions expires, and Amazon begins enforcing the listed actions.
+    /// Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary exemptions expires, and Amazon begins enforcing the listed actions.
     #[serde(
         rename = "expiryDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub expiry_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    ///Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
+    /// Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
     pub status: ::std::string::String,
 }
-///A listings item.
+/// A listings item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Item {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub attributes: ::std::option::Option<ItemAttributes>,
-    ///The listings item's fulfillment availability.
+    /// The listings item's fulfillment availability.
     #[serde(
         rename = "fulfillmentAvailability",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -171,7 +171,7 @@ pub struct Item {
     pub issues: ::std::option::Option<ItemIssues>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub offers: ::std::option::Option<ItemOffers>,
-    ///The listings item's vendor procurement information.
+    /// The listings item's vendor procurement information.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub procurement: ::std::option::Option<::std::vec::Vec<ItemProcurement>>,
     #[serde(
@@ -181,12 +181,12 @@ pub struct Item {
     pub product_types: ::std::option::Option<ItemProductTypes>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub relationships: ::std::option::Option<ItemRelationships>,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub summaries: ::std::option::Option<ItemSummaries>,
 }
-///JSON object containing structured listings item attribute data keyed by attribute name.
+/// JSON object containing structured listings item attribute data keyed by attribute name.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemAttributes(
@@ -212,7 +212,7 @@ for ItemAttributes {
         Self(value)
     }
 }
-///Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
+/// Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemIdentifiers(pub ::std::vec::Vec<ItemIdentifiersByMarketplace>);
@@ -234,30 +234,30 @@ for ItemIdentifiers {
         Self(value)
     }
 }
-///Identity attributes associated with the item in the Amazon catalog for the indicated Amazon store.
+/// Identity attributes associated with the item in the Amazon catalog for the indicated Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemIdentifiersByMarketplace {
-    ///The ASIN of the listings item.
+    /// The ASIN of the listings item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Amazon store identifier. Identifies the listings item's Amazon store.
+    /// Amazon store identifier. Identifies the listings item's Amazon store.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
 }
-///The listings item's image.
+/// The listings item's image.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemImage {
-    ///The image's height, in pixels.
+    /// The image's height, in pixels.
     pub height: i64,
-    ///The image's link or URL.
+    /// The image's link or URL.
     pub link: ::std::string::String,
-    ///The image's width, in pixels.
+    /// The image's width, in pixels.
     pub width: i64,
 }
-///Issues associated with the listings item.
+/// Issues associated with the listings item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemIssues(pub ::std::vec::Vec<Issue>);
@@ -277,26 +277,26 @@ impl ::std::convert::From<::std::vec::Vec<Issue>> for ItemIssues {
         Self(value)
     }
 }
-///Offer details for a listings item for the specified Amazon store.
+/// Offer details for a listings item for the specified Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemOfferByMarketplace {
-    ///Buyer segment or program this offer is applicable to.
+    /// Buyer segment or program this offer is applicable to.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub audience: ::std::option::Option<Audience>,
-    ///Amazon store identifier.
+    /// Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The listings item's offer type.
+    /// The listings item's offer type.
     ///
-    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
+    /// Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(rename = "offerType")]
     pub offer_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    ///Purchase price of the listings item
+    /// Purchase price of the listings item
     pub price: Money,
 }
-///The listings item's offer details.
+/// The listings item's offer details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemOffers(pub ::std::vec::Vec<ItemOfferByMarketplace>);
@@ -316,24 +316,24 @@ impl ::std::convert::From<::std::vec::Vec<ItemOfferByMarketplace>> for ItemOffer
         Self(value)
     }
 }
-///The listings item's vendor procurement information.
+/// The listings item's vendor procurement information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemProcurement {
-    ///The price (numeric value) that you want Amazon to pay you for this product.
+    /// The price (numeric value) that you want Amazon to pay you for this product.
     #[serde(rename = "costPrice")]
     pub cost_price: Money,
 }
-///Product types that are associated with the listing item for the specified Amazon store.
+/// Product types that are associated with the listing item for the specified Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemProductTypeByMarketplace {
-    ///Amazon store identifier.
+    /// Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The name of the product type that is submitted by the Selling Partner.
+    /// The name of the product type that is submitted by the Selling Partner.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
 }
-///Product types for a listing item, by Amazon store.
+/// Product types for a listing item, by Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemProductTypes(pub ::std::vec::Vec<ItemProductTypeByMarketplace>);
@@ -355,34 +355,34 @@ for ItemProductTypes {
         Self(value)
     }
 }
-///The relationship details for a listing item.
+/// The relationship details for a listing item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemRelationship {
-    ///Identifiers (SKUs) of the related items that are children of this listing item.
+    /// Identifiers (SKUs) of the related items that are children of this listing item.
     #[serde(
         rename = "childSkus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub child_skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///Identifiers (SKUs) of the related items that are parents of this listing item.
+    /// Identifiers (SKUs) of the related items that are parents of this listing item.
     #[serde(
         rename = "parentSkus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    ///The type of relationship.
+    /// The type of relationship.
     ///
-    ///Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.
+    /// Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
-    ///For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
+    /// For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
     #[serde(
         rename = "variationTheme",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub variation_theme: ::std::option::Option<ItemVariationTheme>,
 }
-///Relationships for a listing item, by Amazon store (for example, variations).
+/// Relationships for a listing item, by Amazon store (for example, variations).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemRelationships(pub ::std::vec::Vec<ItemRelationshipsByMarketplace>);
@@ -404,30 +404,30 @@ for ItemRelationships {
         Self(value)
     }
 }
-///Relationship details for the listing item in the specified Amazon store.
+/// Relationship details for the listing item in the specified Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemRelationshipsByMarketplace {
-    ///Amazon store identifier.
+    /// Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///Relationships for the listing item.
+    /// Relationships for the listing item.
     pub relationships: ::std::vec::Vec<ItemRelationship>,
 }
-///Selling partner listings items and search related metadata.
+/// Selling partner listings items and search related metadata.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemSearchResults {
-    ///A list of listings items.
+    /// A list of listings items.
     pub items: ::std::vec::Vec<Item>,
-    ///The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
+    /// The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
     ///
-    ///Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.
+    /// Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.
     #[serde(rename = "numberOfResults")]
     pub number_of_results: i64,
-    ///If available, the `nextToken` and/or `previousToken` values required to return paginated results.
+    /// If available, the `nextToken` and/or `previousToken` values required to return paginated results.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<Pagination>,
 }
-///Summary details for a listings item.
+/// Summary details for a listings item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ItemSummaries(pub ::std::vec::Vec<ItemSummaryByMarketplace>);
@@ -447,141 +447,141 @@ impl ::std::convert::From<::std::vec::Vec<ItemSummaryByMarketplace>> for ItemSum
         Self(value)
     }
 }
-///Summary details for a listings item for an Amazon store.
+/// Summary details for a listings item for an Amazon store.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemSummaryByMarketplace {
-    ///The ASIN of the listings item.
+    /// The ASIN of the listings item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    ///Identifies the condition of the listings item.
+    /// Identifies the condition of the listings item.
     ///
-    ///Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.
+    /// Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.
     #[serde(
         rename = "conditionType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub condition_type: ::std::option::Option<::std::string::String>,
-    ///Date the listings item was created, in ISO 8601 format.
+    /// Date the listings item was created, in ISO 8601 format.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
+    /// Fulfillment network stock keeping unit is an identifier used by Amazon fulfillment centers to identify each unique item.
     #[serde(rename = "fnSku", skip_serializing_if = "::std::option::Option::is_none")]
     pub fn_sku: ::std::option::Option<::std::string::String>,
-    ///Name, or title, associated with an Amazon catalog item.
+    /// Name, or title, associated with an Amazon catalog item.
     #[serde(rename = "itemName", skip_serializing_if = "::std::option::Option::is_none")]
     pub item_name: ::std::option::Option<::std::string::String>,
-    ///Date the listings item was last updated, in ISO 8601 format.
+    /// Date the listings item was last updated, in ISO 8601 format.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    ///The listings item's main image.
+    /// The listings item's main image.
     #[serde(
         rename = "mainImage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub main_image: ::std::option::Option<ItemImage>,
-    ///A marketplace identifier. Identifies the listings item's Amazon store.
+    /// A marketplace identifier. Identifies the listings item's Amazon store.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    ///The listings item's Amazon product type.
+    /// The listings item's Amazon product type.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    ///Statuses that apply to the listings item.
+    /// Statuses that apply to the listings item.
     ///
-    ///Known values: `BUYABLE`, `DISCOVERABLE`. Other values may be returned by Amazon.
+    /// Known values: `BUYABLE`, `DISCOVERABLE`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<::std::string::String>,
 }
-///A variation theme that indicates the combination of listing item attributes that define the variation family.
+/// A variation theme that indicates the combination of listing item attributes that define the variation family.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemVariationTheme {
-    ///The names of the listing item attributes that are associated with the variation theme.
+    /// The names of the listing item attributes that are associated with the variation theme.
     pub attributes: ::std::vec::Vec<::std::string::String>,
-    ///The variation theme that indicates the combination of listing item attributes that define the variation family.
+    /// The variation theme that indicates the combination of listing item attributes that define the variation family.
     pub theme: ::std::string::String,
 }
-///The request body schema for the `patchListingsItem` operation.
+/// The request body schema for the `patchListingsItem` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemPatchRequest {
-    ///One or more JSON Patch operations to perform on the listings item.
+    /// One or more JSON Patch operations to perform on the listings item.
     pub patches: ::std::vec::Vec<PatchOperation>,
-    ///The Amazon product type of the listings item.
+    /// The Amazon product type of the listings item.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
 }
-///The request body schema for the `putListingsItem` operation.
+/// The request body schema for the `putListingsItem` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemPutRequest {
-    ///JSON object containing structured listings item attribute data keyed by attribute name.
+    /// JSON object containing structured listings item attribute data keyed by attribute name.
     pub attributes: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
-    ///The listings item's Amazon product type.
+    /// The listings item's Amazon product type.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    ///The name of the requirements set for the provided data.
+    /// The name of the requirements set for the provided data.
     ///
-    ///Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
+    /// Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requirements: ::std::option::Option<::std::string::String>,
 }
-///Response containing the results of a submission to the Selling Partner API for Listings Items.
+/// Response containing the results of a submission to the Selling Partner API for Listings Items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ListingsItemSubmissionResponse {
-    ///Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
+    /// Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub identifiers: ::std::option::Option<ItemIdentifiers>,
-    ///Listings item issues related to the listings item submission.
+    /// Listings item issues related to the listings item submission.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub issues: ::std::option::Option<::std::vec::Vec<Issue>>,
-    ///A selling partner-provided identifier for an Amazon listing.
+    /// A selling partner-provided identifier for an Amazon listing.
     pub sku: ::std::string::String,
-    ///The status of the listings item submission.
+    /// The status of the listings item submission.
     ///
-    ///Known values: `ACCEPTED`, `INVALID`, `VALID`. Other values may be returned by Amazon.
+    /// Known values: `ACCEPTED`, `INVALID`, `VALID`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
-    ///The unique identifier of the listings item submission.
+    /// The unique identifier of the listings item submission.
     #[serde(rename = "submissionId")]
     pub submission_id: ::std::string::String,
 }
-///The currency type and the amount.
+/// The currency type and the amount.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Money {
-    ///The currency amount.
+    /// The currency amount.
     pub amount: Decimal,
-    ///Three-digit currency code. In ISO 4217 format.
+    /// Three-digit currency code. In ISO 4217 format.
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-///When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
+/// When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
-    ///A token that can be used to fetch the next page.
+    /// A token that can be used to fetch the next page.
     #[serde(
         rename = "nextToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    ///A token that can be used to fetch the previous page.
+    /// A token that can be used to fetch the previous page.
     #[serde(
         rename = "previousToken",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub previous_token: ::std::option::Option<::std::string::String>,
 }
-///Individual JSON Patch operation for an HTTP PATCH request.
+/// Individual JSON Patch operation for an HTTP PATCH request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PatchOperation {
-    ///Type of JSON Patch operation. Supported JSON Patch operations include `add`, `replace`, `merge` and `delete`. Refer to <https://tools.ietf.org/html/rfc6902>.
+    /// Type of JSON Patch operation. Supported JSON Patch operations include `add`, `replace`, `merge` and `delete`. Refer to <https://tools.ietf.org/html/rfc6902>.
     pub op: ::std::string::String,
-    ///JSON Pointer path of the element to patch. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information.
+    /// JSON Pointer path of the element to patch. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information.
     pub path: ::std::string::String,
-    ///JSON value to `add`, `replace`, `merge` or `delete`.
+    /// JSON value to `add`, `replace`, `merge` or `delete`.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<
         ::std::vec::Vec<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
     >,
 }
-///The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP).
+/// The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Points {
-    ///The number of Amazon Points offered with the purchase of an item, and their monetary value.
+    /// The number of Amazon Points offered with the purchase of an item, and their monetary value.
     #[serde(rename = "pointsNumber")]
     pub points_number: i64,
 }

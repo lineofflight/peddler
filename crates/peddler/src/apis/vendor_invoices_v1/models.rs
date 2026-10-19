@@ -2,84 +2,84 @@
 // Source: vendor-invoices-api-model/vendorInvoices.json
 
 #![allow(clippy::doc_lazy_continuation)]
-///Additional information provided by the selling party for tax-related or any other purpose.
+/// Additional information provided by the selling party for tax-related or any other purpose.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AdditionalDetails {
-    ///The detail of the additional information provided by the selling party.
+    /// The detail of the additional information provided by the selling party.
     pub detail: ::std::string::String,
-    ///The language code of the additional information detail.
+    /// The language code of the additional information detail.
     #[serde(
         rename = "languageCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub language_code: ::std::option::Option<::std::string::String>,
-    ///The type of the additional information provided by the selling party.
+    /// The type of the additional information provided by the selling party.
     ///
-    ///Known values: `SUR`, `OCR`, `CartonCount`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.
+    /// Known values: `SUR`, `OCR`, `CartonCount`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///An additional corporate or fiscal registration identifier for a party.
+/// An additional corporate or fiscal registration identifier for a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AdditionalPartyIdentification {
-    ///The value of the additional party identifier.
+    /// The value of the additional party identifier.
     #[serde(rename = "identificationNumber")]
     pub identification_number: ::std::string::String,
-    ///The type of the additional party identifier.
+    /// The type of the additional party identifier.
     ///
-    ///Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.
+    /// Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.
     #[serde(rename = "identificationType")]
     pub identification_type: ::std::string::String,
 }
-///A physical address.
+/// A physical address.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Address {
-    ///First line of street address.
+    /// First line of street address.
     #[serde(rename = "addressLine1")]
     pub address_line1: ::std::string::String,
-    ///Additional address information, if required.
+    /// Additional address information, if required.
     #[serde(
         rename = "addressLine2",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line2: ::std::option::Option<::std::string::String>,
-    ///Additional address information, if required.
+    /// Additional address information, if required.
     #[serde(
         rename = "addressLine3",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    ///The city where the person, business or institution is located.
+    /// The city where the person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    ///The two digit country code. In ISO 3166-1 alpha-2 format.
+    /// The two digit country code. In ISO 3166-1 alpha-2 format.
     #[serde(rename = "countryCode")]
     pub country_code: AddressCountryCode,
-    ///The county where person, business or institution is located.
+    /// The county where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub county: ::std::option::Option<::std::string::String>,
-    ///The district where person, business or institution is located.
+    /// The district where person, business or institution is located.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    ///The name of the person, business or institution at that address.
+    /// The name of the person, business or institution at that address.
     pub name: ::std::string::String,
-    ///The phone number of the person, business or institution located at that address.
+    /// The phone number of the person, business or institution located at that address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
-    ///The postal or zip code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    /// The postal or zip code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
     #[serde(
         rename = "postalOrZipCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub postal_or_zip_code: ::std::option::Option<::std::string::String>,
-    ///The state or region where person, business or institution is located.
+    /// The state or region where person, business or institution is located.
     #[serde(
         rename = "stateOrRegion",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-///The two digit country code. In ISO 3166-1 alpha-2 format.
+/// The two digit country code. In ISO 3166-1 alpha-2 format.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AddressCountryCode(::std::string::String);
@@ -133,98 +133,98 @@ impl<'de> ::serde::Deserialize<'de> for AddressCountryCode {
             })
     }
 }
-///Monetary and tax details of the allowance.
+/// Monetary and tax details of the allowance.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AllowanceDetails {
-    ///Total monetary amount related to this allowance.
+    /// Total monetary amount related to this allowance.
     #[serde(rename = "allowanceAmount")]
     pub allowance_amount: Money,
-    ///Description of the allowance.
+    /// Description of the allowance.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///Tax amount details applied on this allowance.
+    /// Tax amount details applied on this allowance.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
-    ///Type of the allowance applied.
+    /// Type of the allowance applied.
     ///
-    ///Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.
+    /// Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///Monetary and tax details of the charge.
+/// Monetary and tax details of the charge.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ChargeDetails {
-    ///Total monetary amount related to this charge.
+    /// Total monetary amount related to this charge.
     #[serde(rename = "chargeAmount")]
     pub charge_amount: Money,
-    ///Description of the charge.
+    /// Description of the charge.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
-    ///Tax amount details applied on this charge.
+    /// Tax amount details applied on this charge.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
-    ///Type of the charge applied.
+    /// Type of the charge applied.
     ///
-    ///Known values: `Freight`, `Packing`, `Duty`, `Service`, `SmallOrder`, `InsurancePlacementCost`, `InsuranceFee`, `SpecialHandlingService`, `CollectionAndRecyclingService`, `EnvironmentalProtectionService`, `TaxCollectedAtSource`. Other values may be returned by Amazon.
+    /// Known values: `Freight`, `Packing`, `Duty`, `Service`, `SmallOrder`, `InsurancePlacementCost`, `InsuranceFee`, `SpecialHandlingService`, `CollectionAndRecyclingService`, `EnvironmentalProtectionService`, `TaxCollectedAtSource`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
-///References required in order to process a credit note. This information is required only if InvoiceType is CreditNote.
+/// References required in order to process a credit note. This information is required only if InvoiceType is CreditNote.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct CreditNoteDetails {
-    ///Identifies the consignor reference number (VRET number), if generated by Amazon.
+    /// Identifies the consignor reference number (VRET number), if generated by Amazon.
     #[serde(
         rename = "consignorsReferenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub consignors_reference_number: ::std::option::Option<::std::string::String>,
-    ///Identifies the COOP reference used for COOP agreement. Failure to provide the COOP reference number or the Debit Note number may lead to a rejection of the Credit Note.
+    /// Identifies the COOP reference used for COOP agreement. Failure to provide the COOP reference number or the Debit Note number may lead to a rejection of the Credit Note.
     #[serde(
         rename = "coopReferenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub coop_reference_number: ::std::option::Option<::std::string::String>,
-    ///Debit Note Number as generated by Amazon. Recommended for Returns and COOP Credit Notes.
+    /// Debit Note Number as generated by Amazon. Recommended for Returns and COOP Credit Notes.
     #[serde(
         rename = "debitNoteNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub debit_note_number: ::std::option::Option<::std::string::String>,
-    ///Date that a return is received by the vendor. It is mandatory for Returns Credit Note.
+    /// Date that a return is received by the vendor. It is mandatory for Returns Credit Note.
     #[serde(
         rename = "goodsReturnDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub goods_return_date: ::std::option::Option<DateTime>,
-    ///Date of the original invoice that this credit note references. Pairs with referenceInvoiceNumber.
+    /// Date of the original invoice that this credit note references. Pairs with referenceInvoiceNumber.
     #[serde(
         rename = "originalInvoiceDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub original_invoice_date: ::std::option::Option<DateTime>,
-    ///Original Invoice Number when sending a credit note relating to an existing invoice. One Invoice only to be processed per Credit Note. This is mandatory for AP Credit Notes.
+    /// Original Invoice Number when sending a credit note relating to an existing invoice. One Invoice only to be processed per Credit Note. This is mandatory for AP Credit Notes.
     #[serde(
         rename = "referenceInvoiceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reference_invoice_number: ::std::option::Option<::std::string::String>,
-    ///Identifies the Returns Notice Number. Mandatory for all Returns Credit Notes.
+    /// Identifies the Returns Notice Number. Mandatory for all Returns Credit Notes.
     #[serde(
         rename = "returnsReferenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub returns_reference_number: ::std::option::Option<::std::string::String>,
-    ///Identifies the Returned Merchandise Authorization ID, if generated.
+    /// Identifies the Returned Merchandise Authorization ID, if generated.
     #[serde(rename = "rmaId", skip_serializing_if = "::std::option::Option::is_none")]
     pub rma_id: ::std::option::Option<::std::string::String>,
 }
-///Defines a date and time according to ISO8601.
+/// Defines a date and time according to ISO8601.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct DateTime(pub ::chrono::DateTime<::chrono::offset::Utc>);
@@ -267,7 +267,7 @@ impl ::std::convert::TryFrom<String> for DateTime {
         value.parse()
     }
 }
-///A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
+/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation. <br>**Pattern** : `^-?(0|([1-9]\d*))(\.\d+)?([eE][+-]?\d+)?$`.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -308,18 +308,18 @@ impl ::std::str::FromStr for Decimal {
         Ok(Self(value.to_string()))
     }
 }
-///Error response returned when the request is unsuccessful.
+/// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    ///An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error that occurred.
     pub code: ::std::string::String,
-    ///Additional details that can help the caller understand or fix the issue.
+    /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    ///A message that describes the error condition.
+    /// A message that describes the error condition.
     pub message: ::std::string::String,
 }
-///A list of error responses returned when a request is unsuccessful.
+/// A list of error responses returned when a request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ErrorList(pub ::std::vec::Vec<Error>);
@@ -339,224 +339,224 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-///Represents an invoice or credit note document with details about the transaction, parties involved, and line items.
+/// Represents an invoice or credit note document with details about the transaction, parties involved, and line items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Invoice {
-    ///Additional details provided by the selling party, for tax related or other purposes.
+    /// Additional details provided by the selling party, for tax related or other purposes.
     #[serde(
         rename = "additionalDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_details: ::std::option::Option<::std::vec::Vec<AdditionalDetails>>,
-    ///Total allowance amount details for all line items.
+    /// Total allowance amount details for all line items.
     #[serde(
         rename = "allowanceDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub allowance_details: ::std::option::Option<::std::vec::Vec<AllowanceDetails>>,
-    ///Name, address and tax details of the party that issues this invoice.
+    /// Name, address and tax details of the party that issues this invoice.
     #[serde(
         rename = "billFromParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bill_from_party: ::std::option::Option<PartyIdentification>,
-    ///Name, address and tax details of the party to whom this invoice is issued.
+    /// Name, address and tax details of the party to whom this invoice is issued.
     #[serde(
         rename = "billToParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub bill_to_party: ::std::option::Option<PartyIdentification>,
-    ///Total charge amount details for all line items.
+    /// Total charge amount details for all line items.
     #[serde(
         rename = "chargeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_details: ::std::option::Option<::std::vec::Vec<ChargeDetails>>,
-    ///Date when the invoice/credit note information was generated in the origin's accounting system. The invoice date should be on or after the purchase order creation date.
+    /// Date when the invoice/credit note information was generated in the origin's accounting system. The invoice date should be on or after the purchase order creation date.
     pub date: DateTime,
-    ///Unique number relating to the charges defined in this document. This will be invoice number if the document type is Invoice or CreditNote number if the document type is Credit Note. Failure to provide this reference will result in a rejection.
+    /// Unique number relating to the charges defined in this document. This will be invoice number if the document type is Invoice or CreditNote number if the document type is Credit Note. Failure to provide this reference will result in a rejection.
     pub id: ::std::string::String,
-    ///Sum of all invoice line net amounts, excluding tax, charges and allowances. Provided for EU e-invoice interoperability.
+    /// Sum of all invoice line net amounts, excluding tax, charges and allowances. Provided for EU e-invoice interoperability.
     #[serde(
         rename = "invoiceBaseAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_base_amount: ::std::option::Option<Money>,
-    ///Total monetary amount charged in the invoice or full value of credit note to be paid including all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms discount (if discount is applicable).
+    /// Total monetary amount charged in the invoice or full value of credit note to be paid including all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms discount (if discount is applicable).
     #[serde(rename = "invoiceTotal")]
     pub invoice_total: Money,
-    ///Identifies the type of invoice.
+    /// Identifies the type of invoice.
     ///
-    ///Known values: `Invoice`, `CreditNote`. Other values may be returned by Amazon.
+    /// Known values: `Invoice`, `CreditNote`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
-    ///The list of invoice items.
+    /// The list of invoice items.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub items: ::std::option::Option<::std::vec::Vec<InvoiceItem>>,
-    ///The payment terms for the invoice.
+    /// The payment terms for the invoice.
     #[serde(
         rename = "paymentTerms",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_terms: ::std::option::Option<PaymentTerms>,
-    ///An additional unique reference number used for regulatory or other purposes.
+    /// An additional unique reference number used for regulatory or other purposes.
     #[serde(
         rename = "referenceNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reference_number: ::std::option::Option<::std::string::String>,
-    ///Name, address and tax details of the party receiving the payment of this invoice.
+    /// Name, address and tax details of the party receiving the payment of this invoice.
     #[serde(rename = "remitToParty")]
     pub remit_to_party: PartyIdentification,
-    ///Name, address and tax details of the party sending a shipment of products.
+    /// Name, address and tax details of the party sending a shipment of products.
     #[serde(
         rename = "shipFromParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_from_party: ::std::option::Option<PartyIdentification>,
-    ///Name, address and tax details of the party receiving a shipment of products.
+    /// Name, address and tax details of the party receiving a shipment of products.
     #[serde(
         rename = "shipToParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_to_party: ::std::option::Option<PartyIdentification>,
-    ///Total tax amount details for all line items.
+    /// Total tax amount details for all line items.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
-    ///The date on which the tax becomes chargeable, if different from the invoice date. When absent, the invoice date applies.
+    /// The date on which the tax becomes chargeable, if different from the invoice date. When absent, the invoice date applies.
     #[serde(
         rename = "taxPointDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_point_date: ::std::option::Option<DateTime>,
-    ///Name, address and tax registration details of the supplier's fiscal or tax representative, where one is required. Conditionally mandatory for applicable EU e-invoice scenarios.
+    /// Name, address and tax registration details of the supplier's fiscal or tax representative, where one is required. Conditionally mandatory for applicable EU e-invoice scenarios.
     #[serde(
         rename = "taxRepresentativeParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_representative_party: ::std::option::Option<PartyIdentification>,
-    ///Name, address and tax registration details of the VAT group representative member, when the supplier reports VAT as part of a VAT group. Conditionally mandatory for applicable EU e-invoice scenarios.
+    /// Name, address and tax registration details of the VAT group representative member, when the supplier reports VAT as part of a VAT group. Conditionally mandatory for applicable EU e-invoice scenarios.
     #[serde(
         rename = "vatGroupParty",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vat_group_party: ::std::option::Option<PartyIdentification>,
 }
-///Details of the item being invoiced.
+/// Details of the item being invoiced.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct InvoiceItem {
-    ///Line-level additional details provided by the selling party, e.g. tax exemption reason code and text.
+    /// Line-level additional details provided by the selling party, e.g. tax exemption reason code and text.
     #[serde(
         rename = "additionalDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub additional_details: ::std::option::Option<::std::vec::Vec<AdditionalDetails>>,
-    ///Individual allowance details per line item.
+    /// Individual allowance details per line item.
     #[serde(
         rename = "allowanceDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub allowance_details: ::std::option::Option<::std::vec::Vec<AllowanceDetails>>,
-    ///Amazon Standard Identification Number (ASIN) of an item.
+    /// Amazon Standard Identification Number (ASIN) of an item.
     #[serde(
         rename = "amazonProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amazon_product_identifier: ::std::option::Option<::std::string::String>,
-    ///Individual charge details per line item.
+    /// Individual charge details per line item.
     #[serde(
         rename = "chargeDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub charge_details: ::std::option::Option<::std::vec::Vec<ChargeDetails>>,
-    ///Details required in order to process a credit note. This information is required only if invoiceType is CreditNote.
+    /// Details required in order to process a credit note. This information is required only if invoiceType is CreditNote.
     #[serde(
         rename = "creditNoteDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub credit_note_details: ::std::option::Option<CreditNoteDetails>,
-    ///HSN Tax code. The HSN number cannot contain alphabets.
+    /// HSN Tax code. The HSN number cannot contain alphabets.
     #[serde(rename = "hsnCode", skip_serializing_if = "::std::option::Option::is_none")]
     pub hsn_code: ::std::option::Option<::std::string::String>,
-    ///Invoiced quantity of this item. Quantity must be greater than zero.
+    /// Invoiced quantity of this item. Quantity must be greater than zero.
     #[serde(rename = "invoicedQuantity")]
     pub invoiced_quantity: ItemQuantity,
-    ///Product or service description for the invoiced line item.
+    /// Product or service description for the invoiced line item.
     #[serde(
         rename = "itemDescription",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_description: ::std::option::Option<::std::string::String>,
-    ///Unique number related to this line item.
+    /// Unique number related to this line item.
     #[serde(rename = "itemSequenceNumber")]
     pub item_sequence_number: i64,
-    ///The item cost to Amazon, which should match the cost on the order. Price information should not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
+    /// The item cost to Amazon, which should match the cost on the order. Price information should not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
     #[serde(rename = "netCost")]
     pub net_cost: Money,
-    ///This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
+    /// This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
     ///
-    ///Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
+    /// Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
     #[serde(
         rename = "netCostUnitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_cost_unit_of_measure: ::std::option::Option<NetCostUnitOfMeasure>,
-    ///The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when invoiceType is CreditNote.
+    /// The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when invoiceType is CreditNote.
     #[serde(
         rename = "purchaseOrderNumber",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub purchase_order_number: ::std::option::Option<::std::string::String>,
-    ///Individual tax details per line item.
+    /// Individual tax details per line item.
     #[serde(
         rename = "taxDetails",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetails>>,
-    ///The vendor selected product identifier of the item. Should be the same as was provided in the purchase order.
+    /// The vendor selected product identifier of the item. Should be the same as was provided in the purchase order.
     #[serde(
         rename = "vendorProductIdentifier",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub vendor_product_identifier: ::std::option::Option<::std::string::String>,
 }
-///Details of quantity.
+/// Details of quantity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemQuantity {
-    ///Quantity of an item. This value should not be zero.
+    /// Quantity of an item. This value should not be zero.
     pub amount: i64,
     #[serde(
         rename = "totalWeight",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_weight: ::std::option::Option<TotalWeight>,
-    ///Unit of measure for the quantity.
+    /// Unit of measure for the quantity.
     ///
-    ///Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.
+    /// Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
-    ///The case size, if the unit of measure value is Cases.
+    /// The case size, if the unit of measure value is Cases.
     #[serde(rename = "unitSize", skip_serializing_if = "::std::option::Option::is_none")]
     pub unit_size: ::std::option::Option<i64>,
 }
-///An amount of money, including units in the form of currency.
+/// An amount of money, including units in the form of currency.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Money {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Decimal>,
-    ///Three-digit currency code in ISO 4217 format.
+    /// Three-digit currency code in ISO 4217 format.
     #[serde(
         rename = "currencyCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-///This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
+/// This field represents weight unit of measure of items that are ordered by cases and supporting priced by weight.
 ///
-///Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
+/// Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -597,10 +597,10 @@ impl ::std::str::FromStr for NetCostUnitOfMeasure {
         Ok(Self(value.to_string()))
     }
 }
-///Name, address and tax details of a party.
+/// Name, address and tax details of a party.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartyIdentification {
-    ///Additional corporate or fiscal registration identifiers for the party that are not VAT/GST registrations (e.g. FR SIREN, or DE W-IdNr.).
+    /// Additional corporate or fiscal registration identifiers for the party that are not VAT/GST registrations (e.g. FR SIREN, or DE W-IdNr.).
     #[serde(
         rename = "additionalPartyIdentifications",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -608,13 +608,13 @@ pub struct PartyIdentification {
     pub additional_party_identifications: ::std::option::Option<
         ::std::vec::Vec<AdditionalPartyIdentification>,
     >,
-    ///Identification of the party by address.
+    /// Identification of the party by address.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    ///Assigned identification for the party.
+    /// Assigned identification for the party.
     #[serde(rename = "partyId")]
     pub party_id: ::std::string::String,
-    ///Tax registration details of the party.
+    /// Tax registration details of the party.
     #[serde(
         rename = "taxRegistrationDetails",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -623,96 +623,96 @@ pub struct PartyIdentification {
         ::std::vec::Vec<TaxRegistrationDetails>,
     >,
 }
-///Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
+/// Terms of the payment for the invoice. The basis of the payment terms is the invoice date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PaymentTerms {
-    ///The number of calendar days from the Base date (Invoice date) until the discount is no longer valid.
+    /// The number of calendar days from the Base date (Invoice date) until the discount is no longer valid.
     #[serde(
         rename = "discountDueDays",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub discount_due_days: ::std::option::Option<::serde_json::Number>,
-    ///The discount percent value, which is good until the discount due date.
+    /// The discount percent value, which is good until the discount due date.
     #[serde(
         rename = "discountPercent",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub discount_percent: ::std::option::Option<Decimal>,
-    ///The number of calendar days from the base date (invoice date) until the total amount on the invoice is due.
+    /// The number of calendar days from the base date (invoice date) until the total amount on the invoice is due.
     #[serde(
         rename = "netDueDays",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_due_days: ::std::option::Option<::serde_json::Number>,
-    ///The payment term type for the invoice.
+    /// The payment term type for the invoice.
     ///
-    ///Known values: `Basic`, `EndOfMonth`, `FixedDate`, `Proximo`, `PaymentDueUponReceiptOfInvoice`, `LetterofCredit`. Other values may be returned by Amazon.
+    /// Known values: `Basic`, `EndOfMonth`, `FixedDate`, `Proximo`, `PaymentDueUponReceiptOfInvoice`, `LetterofCredit`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
 }
-///The request schema for the submitInvoices operation.
+/// The request schema for the submitInvoices operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoicesRequest {
-    ///An array of Invoice objects representing the invoices or credit notes to be submitted.
+    /// An array of Invoice objects representing the invoices or credit notes to be submitted.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub invoices: ::std::option::Option<::std::vec::Vec<Invoice>>,
 }
-///The response schema for the submitInvoices operation.
+/// The response schema for the submitInvoices operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SubmitInvoicesResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    ///The response payload for the submitInvoices operation.
+    /// The response payload for the submitInvoices operation.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionId>,
 }
-///Details of tax amount applied.
+/// Details of tax amount applied.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxDetails {
-    ///Total tax amount applied on invoice total or an item total.
+    /// Total tax amount applied on invoice total or an item total.
     #[serde(rename = "taxAmount")]
     pub tax_amount: Money,
-    ///Tax percentage applied. Expressed as a whole-percent integer string. For example, "20" for 20% VAT.
+    /// Tax percentage applied. Expressed as a whole-percent integer string. For example, "20" for 20% VAT.
     #[serde(rename = "taxRate", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_rate: ::std::option::Option<Decimal>,
-    ///Type of the tax applied.
+    /// Type of the tax applied.
     ///
-    ///Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.
+    /// Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.
     #[serde(rename = "taxType")]
     pub tax_type: ::std::string::String,
-    ///The invoice amount that is taxable at the rate specified in the tax rate field.
+    /// The invoice amount that is taxable at the rate specified in the tax rate field.
     #[serde(
         rename = "taxableAmount",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxable_amount: ::std::option::Option<Money>,
 }
-///Tax registration details of the entity.
+/// Tax registration details of the entity.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxRegistrationDetails {
-    ///The tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
+    /// The tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    ///The tax registration type for the entity.
+    /// The tax registration type for the entity.
     ///
-    ///Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.
+    /// Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.
     #[serde(rename = "taxRegistrationType")]
     pub tax_registration_type: ::std::string::String,
 }
-///The aggregate weight of this item being invoiced. This information will be available for items sold by weight.
+/// The aggregate weight of this item being invoiced. This information will be available for items sold by weight.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TotalWeight {
     pub amount: Decimal,
-    ///The unit of measure for items sold by weight.
+    /// The unit of measure for items sold by weight.
     ///
-    ///Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
+    /// Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }
-///Response containing the transaction ID.
+/// Response containing the transaction ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TransactionId {
-    ///GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
+    /// GUID to identify this transaction. This value can be used with the Transaction Status API to return the status of this transaction.
     #[serde(
         rename = "transactionId",
         skip_serializing_if = "::std::option::Option::is_none"
