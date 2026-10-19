@@ -75,6 +75,8 @@ The tests read the pinned checkout, so run the setup task first. `cargo test --w
 
 The Rust items carry the spec's text as their docs. A function and an API's module have the text of the Ruby method and class. A field of a parameter struct has the parameter's description and its known values, as a field of a model has.
 
+Every generated doc, a model's too, is written as `///` lines. In it, Amazon's `doc:` links are full URLs, as in Ruby, and a code block is marked `text`, so that `cargo test` doesn't run it as a doctest.
+
 A generated function builds its request itself. It escapes each path parameter as 1 segment. It joins an array into 1 comma-separated query parameter, or repeats the parameter where the model says `collectionFormat: multi`. It serializes the body as JSON.
 
 It doesn't check a value against the model's constraints, such as a pattern or a maximum: Amazon does. It keeps the defaults the model declares.
@@ -98,7 +100,7 @@ To add an API version, add a `ModelSpec` to `src/manifest.rs` with the model's p
 [Typify](https://github.com/oxidecomputer/typify) writes the models from a model's definitions, after `src/models.rs` has normalized them:
 
 - A number is a `serde_json::Number` with arbitrary precision, so no digit of an amount is lost.
-- A string enum stays open: a value Amazon adds later still decodes.
+- A string enum stays open: a value Amazon adds later still decodes. An enum whose values are all strings is one, whether or not the model says `type: string`.
 - A default is removed, so that a field Amazon didn't send stays absent.
 
 ## Pagination
