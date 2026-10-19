@@ -145,7 +145,8 @@ fn inert(text: &str) -> Result<String, GenerationError> {
             }
         }
     }
-    edits.sort_by_key(|(range, _)| std::cmp::Reverse(range.start));
+    // Where 1 block ends and the next starts, the closing fence goes in before the opening.
+    edits.sort_by_key(|(range, _)| std::cmp::Reverse((range.start, range.end)));
     let mut text = text.to_owned();
     for (range, replacement) in edits {
         text.replace_range(range, &replacement);
@@ -378,6 +379,16 @@ mod tests {
         assert_eq!(
             inert(PLANTED[13]).unwrap(),
             "Indented after a tab in a list item:\n\n- ```text\n  \t  panic!(\"a spec ran\");\n  ```"
+        );
+    }
+
+    /// Where 1 block ends and the next starts, the first one's closing fence comes first.
+    #[test]
+    fn a_block_that_ends_where_the_next_starts_keeps_its_fence() {
+        let planted = ">     panic!(\"a spec ran\");\n    panic!(\"a spec ran\");";
+        assert_eq!(
+            inert(planted).unwrap(),
+            "> ```text\n>     panic!(\"a spec ran\");\n> ```\n```text\n    panic!(\"a spec ran\");\n```"
         );
     }
 
