@@ -342,6 +342,89 @@ module Generator
       assert_nil(comment)
     end
 
+    def test_format_property_comment_lists_known_values
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "description" => "The type of shipping", "enum" => ["Marketplace", "Self"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # The type of shipping. Known values: `Marketplace`, `Self`.", comment)
+    end
+
+    def test_format_property_comment_lists_known_values_without_description
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      comment = type.send(:format_property_comment, { "type" => "string", "enum" => ["A", "B"] })
+
+      assert_equal("        # Known values: `A`, `B`.", comment)
+    end
+
+    def test_format_property_comment_lists_known_values_from_ref
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "Status" => { "type" => "string", "enum" => ["Open", "Closed"] },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "$ref" => "#/definitions/Status", "description" => "The status." }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # The status. Known values: `Open`, `Closed`.", comment)
+    end
+
+    def test_format_property_comment_lists_known_values_of_array_items
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "Program" => { "type" => "string", "enum" => ["SELLER_FLEX"] },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "array", "items" => { "type" => "string", "enum" => ["HAZMAT", "MPS"] } }
+
+      assert_equal("        # Known values: `HAZMAT`, `MPS`.", type.send(:format_property_comment, prop))
+
+      prop = { "type" => "array", "items" => { "$ref" => "#/definitions/Program" } }
+
+      assert_equal("        # Known values: `SELLER_FLEX`.", type.send(:format_property_comment, prop))
+    end
+
+    def test_format_property_comment_skips_known_values_the_description_already_lists
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "description" => "Possible values: `Open`, `Closed`.", "enum" => ["Open", "Closed"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # Possible values: `Open`, `Closed`.", comment)
+    end
+
+    # A spec is data, its enum too: a value is written as the text it is, whatever it holds.
+    def test_format_property_comment_writes_hostile_known_values_as_text
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "enum" => ["a`b", "`c`", "\#{exit}", '"d"', "e\n\n:stopdoc:\n@rbs f"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # Known values: ``a`b``, `` `c` ``, `\#{exit}`, `\"d\"`, `e :stopdoc: @rbs f`.", comment)
+
+      # A wrap that begins a line inside a value leaves no directive there either.
+      prop = { "type" => "string", "description" => "a" * 90, "enum" => ["x :include: /etc/passwd"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # #{"a" * 90}. Known values: `x\n        # \\:include: /etc/passwd`.", comment)
+    end
+
     def test_required_properties
       definition = {
         "type" => "object",

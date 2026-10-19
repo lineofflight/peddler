@@ -233,7 +233,7 @@ module Generator
     end
 
     def format_property_comment(prop_def)
-      super(prop_def, base_indent: 8)
+      super(prop_def, base_indent: 8, definitions: specification&.dig("definitions"))
     end
 
     def class_description

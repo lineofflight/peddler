@@ -3,6 +3,7 @@
 //! RDoc reads. `lib/generator` on `main` has the Ruby the text follows.
 use crate::{
     clients::{Operation, Parameter},
+    known_values,
     manifest::ModelSpec,
 };
 use regress::Regex;
@@ -26,7 +27,7 @@ fn regex(pattern: &str) -> Regex {
 pub(crate) const RATE_LIMIT: &str = "(Float | Integer)?";
 
 /// The comment above an operation's method: its description, a note on the sandbox,
-/// each argument and what it returns.
+/// each argument with its known values and what it returns.
 pub(crate) fn operation(op: &Operation) -> String {
     let mut lines = prose(&description(&op.description), METHOD);
     lines.push("#".into());
@@ -39,7 +40,8 @@ pub(crate) fn operation(op: &Operation) -> String {
     for p in parameters {
         static SPACES: LazyLock<Regex> = LazyLock::new(|| regex(r"[\s]+"));
         let description = p.description.as_deref().unwrap_or_default();
-        let description = links(&SPACES.replace_all(description, " "));
+        let description = known_values::append(description, &p.known);
+        let description = links(&SPACES.replace_all(&description, " "));
         let name = p.ruby_name();
         let ty = rbs_type(p);
         lines.extend(annotation(&if description.is_empty() {
@@ -302,6 +304,7 @@ mod tests {
             position: 0,
             location: "query".into(),
             description: Some(text.into()),
+            known: Vec::new(),
             required: true,
             schema: json!({"type": "string"}),
             csv: false,
@@ -423,6 +426,52 @@ mod tests {
                 "after {space:?} in {operation}"
             );
         }
+    }
+
+    #[test]
+    fn an_argument_lists_its_known_values() {
+        let (_, mut op) = described("The channel", "get_thing");
+        op.parameters[0].known = vec![json!("MFN"), json!("AFN")];
+        assert!(
+            operation(&op)
+                .contains("      # @rbs id: String -- The channel. Known values: `MFN`, `AFN`.\n"),
+            "{}",
+            operation(&op)
+        );
+        // A description that lists every value keeps its own list.
+        let (_, mut op) = described("Possible values: `Open`, `Closed`.", "get_thing");
+        op.parameters[0].known = vec![json!("Open"), json!("Closed")];
+        assert!(
+            operation(&op)
+                .contains("      # @rbs id: String -- Possible values: `Open`, `Closed`.\n")
+        );
+    }
+
+    #[test]
+    fn a_known_value_is_written_as_text() {
+        // A spec's enum is data as its text is: a value with a line break, an annotation,
+        // a directive, a backtick, a quote or interpolation in it is written as text.
+        let (_, mut op) = described(&"a".repeat(25), "get_thing");
+        op.parameters[0].known = vec![
+            json!("a`b"),
+            json!("\"c\" #{exit}"),
+            json!("x\n@rbs return: untyped\n\n:include: /etc/passwd"),
+        ];
+        let comment = operation(&op);
+        assert!(
+            comment.contains(concat!(
+                "      # @rbs id: String -- aaaaaaaaaaaaaaaaaaaaaaaaa. Known values: ``a`b``, ",
+                "`\"c\" #{exit}`, `x @rbs return: untyped\n",
+                "      #   \\:include: /etc/passwd`.\n",
+            )),
+            "{comment}"
+        );
+        let annotations: Vec<&str> = comment
+            .lines()
+            .map(str::trim_start)
+            .filter(|line| line.starts_with("# @rbs") || line.starts_with("#:"))
+            .collect();
+        assert_eq!(annotations.len(), 3, "{comment}");
     }
 
     #[test]

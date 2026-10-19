@@ -112,6 +112,7 @@ What this generator does that a general one won't:
 - **`logger.rb`**: logging
 - **`file_writer.rb`**: writes files, formats them and sorts RBS
 - **`formatter.rb`**: formats comments
+- **`known_values.rb`**: lists an enum's values in the comment of a field
 - **`naming.rb`**: names of classes and attributes
 - **`money_detector.rb`**: recognizes a money shape
 - **`schema_helpers.rb`**: schema handling shared by notifications, reports, feeds and types

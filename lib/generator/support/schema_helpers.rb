@@ -3,6 +3,7 @@
 require_relative "../parsers/json_schema_extractor"
 require_relative "../resolvers/type_resolver"
 require_relative "formatter"
+require_relative "known_values"
 require_relative "money_detector"
 require_relative "naming"
 
@@ -24,15 +25,16 @@ module Generator
       description.match?(/^An explanation about the purpose of this instance\.?$/i)
     end
 
-    # The comment above a property: its description, or nil when the schema has none worth repeating. The
-    # declaration under it and the signature say the type.
+    # The comment above a property: its description and its known values, or nil when the schema has neither worth
+    # repeating. The declaration under it and the signature say the type. `definitions` are those a `$ref` names.
     # base_indent can be overridden by subclasses
-    def format_property_comment(prop_def, base_indent: 0)
+    def format_property_comment(prop_def, base_indent: 0, definitions: nil)
       description = prop_def["description"]
-      return if description.nil? || description.strip.empty? || generic_placeholder?(description)
+      description = nil if description.nil? || description.strip.empty? || generic_placeholder?(description)
+      description &&= convert_doc_links_to_full_url(convert_html_links_to_markdown(description))
+      description = KnownValues.append(description, KnownValues.enum_values(prop_def, definitions))
+      return unless description
 
-      description = convert_html_links_to_markdown(description)
-      description = convert_doc_links_to_full_url(description)
       split_long_comment_line(description, base_indent: base_indent)
     end
 

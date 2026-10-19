@@ -18,6 +18,39 @@ fn string_enums_allow_future_values_and_document_known_values() {
 }
 
 #[test]
+fn fields_document_known_values_through_a_ref_and_on_items() {
+    let output = normalize(json!({
+        "Status": {"type": "string", "enum": ["OPEN", "CLOSED"]},
+        "Order": {"type": "object", "properties": {
+            "status": {"$ref": "#/definitions/Status", "description": "The status."},
+            "programs": {"type": "array", "items": {"type": "string", "enum": ["HAZMAT"]}},
+            "listed": {"type": "string", "enum": ["A", "B"], "description": "`A` or `B`."},
+            "hostile": {"type": "string", "enum": ["a`b", "\"c\"\n:stopdoc:"]}
+        }}
+    }));
+    let description = |name: &str| output["Order"]["properties"][name]["description"].clone();
+    let other = "Other values may be returned by Amazon.";
+    assert_eq!(
+        description("status"),
+        format!("The status.\n\nKnown values: `OPEN`, `CLOSED`. {other}")
+    );
+    assert_eq!(
+        description("programs"),
+        format!("Known values: `HAZMAT`. {other}")
+    );
+    // A description that lists every value keeps its own list.
+    assert_eq!(description("listed"), "`A` or `B`.");
+    assert_eq!(
+        description("hostile"),
+        format!("Known values: ``a`b``, `\"c\" :stopdoc:`. {other}")
+    );
+    assert_eq!(
+        output["Status"]["description"],
+        format!("Known values: `OPEN`, `CLOSED`. {other}")
+    );
+}
+
+#[test]
 fn swagger_exclusive_bounds_become_numeric_draft7_bounds() {
     let output = normalize(json!({
         "Exclusive": {"type":"number", "minimum": 1, "exclusiveMinimum": true,

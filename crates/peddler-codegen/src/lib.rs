@@ -8,6 +8,7 @@ pub mod checkout;
 pub mod clients;
 mod docs;
 pub mod facades;
+mod known_values;
 pub mod manifest;
 pub mod models;
 pub mod pagination;

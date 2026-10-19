@@ -1,5 +1,5 @@
 //! Every operation of an API and its parameters, read from Amazon's Swagger 2 spec.
-use crate::{GenerationError, manifest::ModelSpec};
+use crate::{GenerationError, known_values, manifest::ModelSpec};
 use heck::{ToPascalCase, ToSnakeCase};
 use serde_json::{Map, Value, json};
 
@@ -25,6 +25,8 @@ pub struct Parameter {
     pub position: usize,
     pub location: String,
     pub description: Option<String>,
+    /// The values its docs list. `schema` keeps only what a request is checked against.
+    pub known: Vec<Value>,
     pub required: bool,
     pub schema: Value,
     pub csv: bool,
@@ -237,6 +239,7 @@ fn body_parameter(
         position,
         location: "body".into(),
         description: description(value),
+        known: Vec::new(),
         required: value["required"] == true,
         schema,
         csv: false,
@@ -307,6 +310,7 @@ fn parameter(
         position,
         location,
         description: description(value),
+        known: known_values::enum_values(value, None).to_vec(),
         required,
         schema,
         csv,

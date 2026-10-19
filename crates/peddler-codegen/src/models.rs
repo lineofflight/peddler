@@ -1,4 +1,4 @@
-use crate::GenerationError;
+use crate::{GenerationError, known_values};
 use serde_json::{Map, Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -19,6 +19,8 @@ fn normalize_schema(
     schema: &mut Value,
     definitions: &Map<String, Value>,
 ) -> Result<(), GenerationError> {
+    // Fields stay strings, and the values a schema lists for one are documentation.
+    let known = known_values::enum_values(schema, Some(definitions)).to_vec();
     let Some(node) = schema.as_object_mut() else {
         return Ok(());
     };
@@ -62,21 +64,15 @@ fn normalize_schema(
     }
     if node.get("type").and_then(Value::as_str) == Some("string")
         && let Some(values) = node.remove("enum")
+        && !values.is_array()
     {
-        let known = values
-            .as_array()
-            .ok_or_else(|| GenerationError("enum must be an array".into()))?
-            .iter()
-            .map(Value::to_string)
-            .collect::<Vec<_>>()
-            .join(", ");
-        let description = node
-            .get("description")
-            .and_then(Value::as_str)
-            .unwrap_or("");
-        let documentation = format!(
-            "{description}\n\nKnown values: {known}. Other values may be returned by Amazon."
-        );
+        return Err(GenerationError("enum must be an array".into()));
+    }
+    let description = node.get("description").and_then(Value::as_str);
+    let description = description.unwrap_or_default();
+    if let Some(sentence) = known_values::sentence(description, &known) {
+        let documentation =
+            format!("{description}\n\n{sentence} Other values may be returned by Amazon.");
         node.insert(
             "description".into(),
             Value::String(documentation.trim().into()),
