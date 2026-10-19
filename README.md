@@ -102,7 +102,7 @@ Bundler installs a precompiled gem where one exists:
 | Linux with musl, 32-bit ARM with hardware floating point | `arm-linux-musl` |
 | Windows, x64, with RubyInstaller's Ruby | `x64-mingw-ucrt` |
 
-Each carries a build for Ruby 3.3, 3.4 and 4.0 and needs no compiler.
+Each carries a build for Ruby 3.3, 3.4 and 4.0 and needs no compiler. The musl gems need `libgcc_s.so.1`: on Alpine, the `libgcc` package, which the official Ruby images have.
 
 On any other platform, Bundler installs the source gem and compiles the extension during installation. That needs:
 
