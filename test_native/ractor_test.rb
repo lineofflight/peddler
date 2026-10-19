@@ -450,7 +450,6 @@ class RactorTest < NativeTest
   end
 
   def test_typed_models_parse_in_a_ractor
-    skip_unless_models_are_shareable
     notification = fixture("notifications/order_change.json")
     report = fixture("reports/vendor_real_time_inventory.json")
     feed = fixture("feeds/listings_feed_processing_report_with_optional_fields.json")
@@ -482,8 +481,27 @@ class RactorTest < NativeTest
     end
   end
 
+  # Parsing a Date in several Ractors at once crashed Ruby 4.0 before structure 4.5.
+  def test_ractors_parse_dates_at_once
+    output = run_ruby(<<~RUBY)
+      Peddler.eager_load!
+      ractors = Array.new(8) do |index|
+        Ractor.new(index) do |offset|
+          3000.times.all? do |round|
+            day = (round + offset) % 28 + 1
+            parsed = Peddler::APIs::Orders20260101::ExceptionDate.parse({ "exceptionDate" => format("2024-03-%02d", day) })
+            parsed.exception_date == Date.new(2024, 3, day)
+          end
+        end
+      end
+      puts ractors.map { |ractor| take(ractor) }.inspect
+    RUBY
+
+    assert_equal("#{[true] * 8}\n", output)
+  end
+
   # The typed models load on first use. Ruby 3.3 loads code in the main Ractor only, so another Ractor finds them
-  # loaded or fails. A model that is loaded parses there when the structure gem defines it for any Ractor.
+  # loaded or fails. A model that is loaded parses there.
   def test_eager_load_is_what_a_ractor_needs_to_find_a_model
     without = run_ruby(<<~RUBY)
       response = Peddler::Response.new(200, [], '{"asin":"B01"}', nil, operation: "catalog_items_2022_04_01.get_catalog_item")
@@ -568,13 +586,6 @@ class RactorTest < NativeTest
 
   def fixture(path)
     JSON.parse(File.read(File.expand_path("../test/fixtures/#{path}", __dir__)))
-  end
-
-  # The models of structure 4.4 and earlier are defined with blocks, which only the Ractor that defined them calls.
-  def skip_unless_models_are_shareable
-    return if Ractor.shareable?(Peddler::APIs::CatalogItems20220401::Item.__structure_meta__)
-
-    skip("structure #{Gem.loaded_specs.fetch("structure").version} defines models for the main Ractor only")
   end
 
   # A script in a Ruby of its own where nothing is loaded yet but Peddler. An error a Ractor raised prints as its

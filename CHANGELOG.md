@@ -67,6 +67,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
 - Add a runtime dependency on `bigdecimal`, and on `rb_sys` for the source gem
 - Require `zeitwerk` 2.7 or later. On Ruby 3.3 and 3.4, 2.6 loses the typed models of a namespace that the main Ractor first uses after another Ractor ran
+- Require `structure` 4.5 or later, which defines the typed models for every Ractor
 - Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and the anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
 - Link the gem's page on RubyGems to the [documentation site](https://lineofflight.github.io/peddler/) in place of rubydoc.info
 - List the known values of enum fields and parameters in the docs and the signatures. The types stay `String`: Amazon changes these lists without a version bump and the API can return values the spec does not list

@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency("bigdecimal", ">= 3.1", "< 5")
   gem.add_dependency("rb_sys", "~> 0.9.130")
-  gem.add_dependency("structure", "~> 4.2")
+  gem.add_dependency("structure", "~> 4.5")
   # 2.6 loses the children of a model namespace that the main Ractor first uses after another Ractor ran.
   gem.add_dependency("zeitwerk", "~> 2.7")
 

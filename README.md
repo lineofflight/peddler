@@ -618,7 +618,6 @@ participations = ractor.value # ractor.take before Ruby 4.0
 - A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3 or 3.4: it arrives empty on 3.3, and with a corrupted body on 3.4.
 - An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another that uses a typed model. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
-- Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
 - WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing. So does one made while WebMock is loaded and Peddler's adapter is not: `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs most such children and crashes some, with or without Peddler.
 

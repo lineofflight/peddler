@@ -400,6 +400,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - The `http` and `nokogiri` gems are no longer dependencies. If your application used either through Peddler, add it to your Gemfile.
 - `bigdecimal` is a new dependency, and `rb_sys` for the source gem.
 - `zeitwerk` 2.7 or later is required.
+- `structure` 4.5 or later is required.
 - Peddler includes a native extension. Precompiled gems cover macOS and glibc Linux on Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
 
 ### New in v6

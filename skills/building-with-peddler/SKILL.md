@@ -191,7 +191,6 @@ Peddler works in a Ractor other than the main one, by these rules:
 - A callable token source belongs to the Ractor that made it. Pass a Ractor a String token, or build the source inside it.
 - A response crosses to another Ractor as a copy. An error arrives as the `cause` of a `Ractor::RemoteError`.
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before starting another that uses a typed model.
-- Typed `parse` in a Ractor other than the main one needs a release of the `structure` gem newer than 4.4.0.
 - WebMock is for the main Ractor only: a call from another Ractor raises `Ractor::IsolationError` while WebMock is enabled, and while it is loaded and Peddler's adapter is not. `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run.
 
