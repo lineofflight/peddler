@@ -6,6 +6,7 @@
 # RBS, `# @rbs name: Type -- description`, whose lines would run together as 1 paragraph. They become a list of
 # the parameters that have a description, where the lines stood, without the types the signature already shows.
 # The sentences that say what a method raises would run together too. Several become a list under "Raises:".
+# A typed model would be a constant and no more. It becomes a class too, with a page of its attributes.
 require "rdoc"
 
 module RDocRBS
@@ -72,18 +73,70 @@ module RDocRBS
     end
   end
 
-  # RDoc documents no way to add such names, nor to keep a block of HTML out of a page, so TypeNames and InertHTML
-  # each go in front of a method of its own. Were a release to drop or rename one, the site would build, with every
-  # one of those links gone or a block of HTML live again. The docs task calls this first.
-  def self.verify!
-    unless RDoc::Store.instance_method(:type_name_lookup).super_method
-      raise "tools/rdoc_rbs.rb links the types of a signature through RDoc::Store#type_name_lookup, and RDoc " \
-        "#{RDoc::VERSION} has no such method. Find what took its place, or the signatures lose their links."
-    end
-    return if RDoc::Markup::ToHtml.instance_method(:accept_raw).super_method
+  # The full names of the typed models RDoc has read
+  def self.models
+    @models ||= Set.new
+  end
 
-    raise "tools/rdoc_rbs.rb shows a block of raw HTML as text through RDoc::Markup::ToHtml#accept_raw, and RDoc " \
-      "#{RDoc::VERSION} has no such method. Find what took its place, or a tag in a comment is live on the site."
+  # A typed model is a constant, `Item = Structure.new do ... end`, and RDoc reads no further than its name. It
+  # becomes a class as well, with a page: an attribute for each `attribute` or `attribute?` of its block, described
+  # by the comment above it, and typed by sig/. The constant keeps the description for the page of the namespace.
+  module Models
+    ATTRIBUTES = [:attribute, :attribute?].freeze
+
+    def visit_constant_write_node(node)
+      call = node.value
+      return super unless call.is_a?(Prism::CallNode) && call.receiver&.slice == "Structure" && call.name == :new
+
+      start_line = node.location.start_line
+      @scanner.process_comments_until(start_line - 1)
+      model = @scanner.add_module_or_class(
+        node.name.to_s, start_line, node.location.end_line, is_class: true, superclass_name: "::Data"
+      )
+      return super unless model
+
+      RDocRBS.models << model.full_name
+      @scanner.with_container(model) do
+        call.block&.body&.body&.each do |attribute|
+          next unless attribute.is_a?(Prism::CallNode) && ATTRIBUTES.include?(attribute.name)
+
+          line = attribute.location.start_line
+          @scanner.process_comments_until(line - 1)
+          @scanner.add_attributes([@scanner.call_node_name_argument(attribute)], "R", line)
+        end
+      end
+      super
+      @scanner.container.find_constant_named(model.name)&.comment = model.comment
+    end
+  end
+
+  # Every page lists every class at its side, and the models would make that list thousands long and the site 1 GB.
+  # The page of a namespace lists its models as constants, and the search finds each as a class.
+  module ModelIndex
+    def generate_class_index_content(classes, rel_prefix)
+      super(classes.reject { |klass| RDocRBS.models.include?(klass.full_name) }, rel_prefix)
+    end
+
+    def build_search_index
+      super.reject { |entry| entry[:type] == "constant" && RDocRBS.models.include?(entry[:full_name]) }
+    end
+  end
+
+  # RDoc documents no way to add such names, to keep a block of HTML out of a page, nor to shorten its lists, so
+  # each of these goes in front of a method of its own. Were a release to drop or rename one, the site would build
+  # without what it does. The docs task calls this first.
+  def self.verify!
+    [
+      [RDoc::Store, :type_name_lookup, "links the types of a signature", "the signatures lose their links"],
+      [RDoc::Markup::ToHtml, :accept_raw, "shows a block of raw HTML as text", "a tag in a comment is live on the site"],
+      [RDoc::Generator::Aliki, :generate_class_index_content, "lists classes at the side", "each page lists every model"],
+      [RDoc::Generator::Aliki, :build_search_index, "indexes the search", "the search finds each model twice"],
+    ].each do |owner, name, what, loss|
+      next if owner.instance_method(name).super_method
+
+      raise "tools/rdoc_rbs.rb #{what} through #{owner}##{name}, and RDoc #{RDoc::VERSION} has no such method. " \
+        "Find what took its place, or #{loss}."
+    end
   end
 end
 
@@ -94,3 +147,5 @@ RDoc::Markup::PreProcess.post_process do |comment, _code_object|
   comment.text = RDocRBS.prose(comment.text) if comment.is_a?(RDoc::Comment)
 end
 RDoc::Store.prepend(RDocRBS::TypeNames)
+RDoc::Parser::Ruby::RDocVisitor.prepend(RDocRBS::Models)
+RDoc::Generator::Aliki.prepend(RDocRBS::ModelIndex)

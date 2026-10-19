@@ -35,6 +35,29 @@ Rake::Task["doc/created.rid"].enhance do
   end
 end
 
+# A typed model is a constant of its namespace and a class with a page of its own: see tools/rdoc_rbs.rb. The page
+# of the namespace lists the constants, and the name of each links to the page of its model.
+Rake::Task["doc/created.rid"].enhance do
+  models = Dir["lib/peddler/**/*.rb"].sum { |file| File.read(file).scan(/^ *\w+ = Structure\.new do$/).size }
+  linked = 0
+  Dir["doc/Peddler/**/*.html"].each do |page|
+    namespace = page.delete_suffix(".html")
+    next unless File.directory?(namespace)
+
+    html = File.read(page).gsub(%r{<dt id="(\w+)">\1</dt>}) do |term|
+      name = Regexp.last_match(1)
+      next term unless File.exist?("#{namespace}/#{name}.html")
+
+      linked += 1
+      %(<dt id="#{name}"><a href="#{File.basename(namespace)}/#{name}.html">#{name}</a></dt>)
+    end
+    File.write(page, html)
+  end
+  next if linked == models
+
+  abort("#{models} typed models in lib, and the pages of their namespaces link #{linked}: see tools/rdoc_rbs.rb.")
+end
+
 # RDocRBS makes a list of the `@rbs` lines of a comment. RDoc calls it for every comment and promises no such call:
 # were a release to stop, the site would build with the lines as they are written.
 Rake::Task[:rdoc].enhance do
