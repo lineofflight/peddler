@@ -69,6 +69,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Require `zeitwerk` 2.7 or later. On Ruby 3.3 and 3.4, 2.6 loses the typed models of a namespace that the main Ractor first uses after another Ractor ran
 - Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and the anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
 - Link the gem's page on RubyGems to the [documentation site](https://lineofflight.github.io/peddler/) in place of rubydoc.info
+- List the known values of enum fields and parameters in the docs and the signatures. The types stay `String`: Amazon changes these lists without a version bump and the API can return values the spec does not list
 
 ### Removed
 
@@ -118,6 +119,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`; `invoice_id` parameter on `get_invoice_status`
 - **Added**: Shipping v2: `link_carrier_account_put` operation, the PUT twin of `link_carrier_account`
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
+- **Added**: Notifications: `ShipmentTrackingMilestoneChanged` now has a full envelope (`event_time`, `notification_metadata`, `notification_type`, `notification_version`, `payload_version`) and a payload carrying `shipment_tracking_milestone_changed_notification`, with new tracking types (`TrackingDetail`, `TrackingMilestone`, `TrackingEstimate`, `TrackingIdentifier`, `CarrierTracking`, and others)
 
 ## [5.5.0] - 2026-06-10
 
