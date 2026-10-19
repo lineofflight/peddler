@@ -236,26 +236,26 @@ pub struct ReportReportSpecification {
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    /**The type of report.
-
-Known values: `GET_VENDOR_INVENTORY_REPORT`. Other values may be returned by Amazon.*/
+    ///The type of report.
+    ///
+    ///Known values: `GET_VENDOR_INVENTORY_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
 ///Report options specifying parameters such as reportPeriod, distributorView, and sellingProgram.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    /**The distributor view.
-
-Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.*/
+    ///The distributor view.
+    ///
+    ///Known values: `MANUFACTURING`, `SOURCING`. Other values may be returned by Amazon.
     #[serde(rename = "distributorView")]
     pub distributor_view: ::std::string::String,
     ///Determines what granularity of data is expected in the report. Valid values are: DAY, WEEK, MONTH, QUARTER, YEAR.
     #[serde(rename = "reportPeriod")]
     pub report_period: ::std::string::String,
-    /**The selling program.
-
-Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.*/
+    ///The selling program.
+    ///
+    ///Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
     #[serde(rename = "sellingProgram")]
     pub selling_program: ::std::string::String,
 }

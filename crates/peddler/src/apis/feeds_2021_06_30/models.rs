@@ -94,9 +94,9 @@ pub struct Feed {
     pub processing_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**The processing status of the feed.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.*/
+    ///The processing status of the feed.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The identifier for the feed document. This identifier is unique only in combination with a seller ID.
@@ -109,9 +109,9 @@ Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other val
 ///Information required for the feed document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeedDocument {
-    /**If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
-
-Known values: `GZIP`. Other values may be returned by Amazon.*/
+    ///If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
+    ///
+    ///Known values: `GZIP`. Other values may be returned by Amazon.
     #[serde(
         rename = "compressionAlgorithm",
         skip_serializing_if = "::std::option::Option::is_none"

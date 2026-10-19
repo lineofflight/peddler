@@ -10,9 +10,9 @@ pub struct Notification {
     pub event_time: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    /**The type of the notification.
-
-Known values: `LISTINGS_ITEM_MFN_QUANTITY_CHANGE`. Other values may be returned by Amazon.*/
+    ///The type of the notification.
+    ///
+    ///Known values: `LISTINGS_ITEM_MFN_QUANTITY_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
     ///The version of the notification.

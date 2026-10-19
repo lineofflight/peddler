@@ -2,9 +2,9 @@
 // Source: finances-api-model/transfers_2024-06-01.json
 
 #![allow(clippy::doc_lazy_continuation)]
-/**The default payment method type.
-
-Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.*/
+///The default payment method type.
+///
+///Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -179,9 +179,9 @@ pub struct ExpectedPayout {
     ///Metadata that describes the selling partner.
     #[serde(rename = "partnerMetadata")]
     pub partner_metadata: PartnerMetadata,
-    /**The type of payout instrument to which funds will be delivered.
-
-Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.*/
+    ///The type of payout instrument to which funds will be delivered.
+    ///
+    ///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -202,14 +202,14 @@ Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amaz
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub scheduled_date: ::std::option::Option<Date>,
-    /**The status of the expected payout.
-
-Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.*/
+    ///The status of the expected payout.
+    ///
+    ///Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
     pub status: ExpectedPayoutStatusName,
 }
-/**Enumerated set of expected payout status names.
-
-Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.*/
+///Enumerated set of expected payout status names.
+///
+///Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -378,9 +378,9 @@ pub struct PaymentMethodDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub account_holder_name: ::std::option::Option<::std::string::String>,
-    /**The payment method assignment type, whether it is assigned as default to the given marketplace or not.
-
-Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.*/
+    ///The payment method assignment type, whether it is assigned as default to the given marketplace or not.
+    ///
+    ///Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.
     #[serde(
         rename = "assignmentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -404,9 +404,9 @@ Known values: `DEFAULT_DEPOSIT_METHOD`. Other values may be returned by Amazon.*
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_method_id: ::std::option::Option<::std::string::String>,
-    /**The payment method type.
-
-Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.*/
+    ///The payment method type.
+    ///
+    ///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethodType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -436,9 +436,9 @@ impl ::std::convert::From<::std::vec::Vec<PaymentMethodDetails>> for PaymentMeth
         Self(value)
     }
 }
-/**Enumerated set of payment methods for payout transfers.
-
-Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.*/
+///Enumerated set of payment methods for payout transfers.
+///
+///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -479,9 +479,9 @@ impl ::std::str::FromStr for PaymentMethodName {
         Ok(Self(value.to_string()))
     }
 }
-/**The type of payment method.
-
-Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.*/
+///The type of payment method.
+///
+///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -522,9 +522,9 @@ impl ::std::str::FromStr for PaymentMethodType {
         Ok(Self(value.to_string()))
     }
 }
-/**The list of payment method types that are present.
-
-Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.*/
+///The list of payment method types that are present.
+///
+///Known values: `BANK_ACCOUNT`, `CARD`, `SELLER_WALLET`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PaymentMethodTypeList(pub ::std::vec::Vec<PaymentMethodType>);
@@ -562,9 +562,9 @@ pub struct Payout {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub creation_date: ::std::option::Option<Date>,
-    /**The current status of the payout. This value corresponds to the most recent entry in the `statusHistory` list.
-
-Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.*/
+    ///The current status of the payout. This value corresponds to the most recent entry in the `statusHistory` list.
+    ///
+    ///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
     #[serde(rename = "currentStatus")]
     pub current_status: PayoutStatusName,
     ///The unique identifier of the payout.
@@ -572,9 +572,9 @@ Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT
     ///Metadata that describes the selling partner.
     #[serde(rename = "partnerMetadata")]
     pub partner_metadata: PartnerMetadata,
-    /**The type of payout instrument to which funds are delivered.
-
-Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.*/
+    ///The type of payout instrument to which funds are delivered.
+    ///
+    ///Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -601,9 +601,9 @@ Known values: `BANK_ACCOUNT`, `DEBIT_CARD`. Other values may be returned by Amaz
     ///The banking network's unique identifier for a fund transfer request.
     #[serde(rename = "traceId", skip_serializing_if = "::std::option::Option::is_none")]
     pub trace_id: ::std::option::Option<::std::string::String>,
-    /**The type of payout. Can be null when there is no payout.
-
-Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.*/
+    ///The type of payout. Can be null when there is no payout.
+    ///
+    ///Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<PayoutTypeName>,
 }
@@ -619,14 +619,14 @@ pub struct PayoutStatusEntry {
     ///The date when this status was last updated.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: Date,
-    /**The payout status when this entry was recorded.
-
-Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.*/
+    ///The payout status when this entry was recorded.
+    ///
+    ///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
     pub status: PayoutStatusName,
 }
-/**Enumerated set of payout status names.
-
-Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.*/
+///Enumerated set of payout status names.
+///
+///Known values: `STARTED`, `IN_TRANSIT`, `PAID`, `FAILED`, `CANCELLED`, `NO_PAYOUT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -667,9 +667,9 @@ impl ::std::str::FromStr for PayoutStatusName {
         Ok(Self(value.to_string()))
     }
 }
-/**Enumerated set of payout type names.
-
-Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.*/
+///Enumerated set of payout type names.
+///
+///Known values: `SCHEDULED`, `ON_DEMAND`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -723,18 +723,18 @@ pub struct Period {
 ///Related business identifier of the payout.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedIdentifier {
-    /**An enumerated set of related business identifier names.
-
-Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.*/
+    ///An enumerated set of related business identifier names.
+    ///
+    ///Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: RelatedIdentifierName,
     ///Corresponding value of `RelatedIdentifierName`.
     #[serde(rename = "relatedIdentifierValue")]
     pub related_identifier_value: ::std::string::String,
 }
-/**Enumerated set of related business identifier names.
-
-Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.*/
+///Enumerated set of related business identifier names.
+///
+///Known values: `SETTLEMENT_ID`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

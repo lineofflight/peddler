@@ -25,9 +25,9 @@ pub struct Transaction {
     ///Error code and message for the failed transaction. Only available when transaction status is 'Failure'.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
-    /**Current processing status of the transaction.
-
-Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.*/
+    ///Current processing status of the transaction.
+    ///
+    ///Known values: `Failure`, `Processing`, `Success`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
     ///The unique identifier sent in the 'transactionId' field in response to the post request of a specific transaction.
     #[serde(rename = "transactionId")]

@@ -43,9 +43,9 @@ impl ::std::str::FromStr for AmazonOrderId {
         Ok(Self(value.to_string()))
     }
 }
-/**An error code that identifies the type of error that occurred. The error codes listed below are specific to the Easy Ship section.
-
-Known values: `InvalidInput`, `InvalidTimeSlotId`, `ScheduledPackageAlreadyExists`, `ScheduleWindowExpired`, `RetryableAfterGettingNewSlots`, `TimeSlotNotAvailable`, `ResourceNotFound`, `InvalidOrderState`, `RegionNotSupported`, `OrderNotEligibleForRescheduling`, `InternalServerError`. Other values may be returned by Amazon.*/
+///An error code that identifies the type of error that occurred. The error codes listed below are specific to the Easy Ship section.
+///
+///Known values: `InvalidInput`, `InvalidTimeSlotId`, `ScheduledPackageAlreadyExists`, `ScheduleWindowExpired`, `RetryableAfterGettingNewSlots`, `TimeSlotNotAvailable`, `ResourceNotFound`, `InvalidOrderState`, `RegionNotSupported`, `OrderNotEligibleForRescheduling`, `InternalServerError`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -251,9 +251,9 @@ pub struct ErrorList {
     ///A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-/**Identifies the method by which a seller will hand a package over to Amazon Logistics.
-
-Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.*/
+///Identifies the method by which a seller will hand a package over to Amazon Logistics.
+///
+///Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -341,9 +341,9 @@ impl ::std::convert::From<::std::vec::Vec<Item>> for Items {
         Self(value)
     }
 }
-/**The file format in which the shipping label will be created.
-
-Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.*/
+///The file format in which the shipping label will be created.
+///
+///Known values: `PDF`, `ZPL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -678,9 +678,9 @@ impl ::std::str::FromStr for PackageIdentifier {
         Ok(Self(value.to_string()))
     }
 }
-/**The status of the package.
-
-Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.*/
+///The status of the package.
+///
+///Known values: `ReadyForPickup`, `PickedUp`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `Rejected`, `Undeliverable`, `ReturnedToSeller`, `LostInTransit`, `LabelCanceled`, `DamagedInTransit`, `OutForDelivery`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -809,9 +809,9 @@ pub struct TimeSlot {
     ///The end date and time of the time slot.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<DateTime>,
-    /**The method by which a seller will hand a package over to Amazon Logistics.
-
-Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.*/
+    ///The method by which a seller will hand a package over to Amazon Logistics.
+    ///
+    ///Known values: `PICKUP`, `DROPOFF`. Other values may be returned by Amazon.
     #[serde(
         rename = "handoverMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -857,9 +857,9 @@ pub struct TrackingDetails {
     )]
     pub tracking_id: ::std::option::Option<String>,
 }
-/**The unit of measurement used to measure the length.
-
-Known values: `cm`. Other values may be returned by Amazon.*/
+///The unit of measurement used to measure the length.
+///
+///Known values: `cm`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -900,9 +900,9 @@ impl ::std::str::FromStr for UnitOfLength {
         Ok(Self(value.to_string()))
     }
 }
-/**The unit of measurement used to measure the weight.
-
-Known values: `grams`, `g`. Other values may be returned by Amazon.*/
+///The unit of measurement used to measure the weight.
+///
+///Known values: `grams`, `g`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

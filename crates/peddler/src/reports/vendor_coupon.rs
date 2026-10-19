@@ -10,9 +10,9 @@ pub struct AsinDetails {
     ///Discount amount the customer receives on the product. Reflects a percentage when discountType is PERCENT_OFF_LIST_PRICE and a currency value when discountType is AMOUNT_OFF_LIST_PRICE.
     #[serde(rename = "discountAmount")]
     pub discount_amount: ::serde_json::Number,
-    /**Whether the discount is given as a fixed amount or a percentage off the list price.
-
-Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.*/
+    ///Whether the discount is given as a fixed amount or a percentage off the list price.
+    ///
+    ///Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.
     #[serde(rename = "discountType")]
     pub discount_type: ::std::string::String,
 }
@@ -77,9 +77,9 @@ pub struct CouponDetails {
 ///Contains details about a campaign and every included coupon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct DetailsByCampaign {
-    /**Whether the budget is allocated independently for each coupon or shared among all coupons.
-
-Known values: `PER_INDIVIDUAL_COUPON`, `SHARED_BUDGET`. Other values may be returned by Amazon.*/
+    ///Whether the budget is allocated independently for each coupon or shared among all coupons.
+    ///
+    ///Known values: `PER_INDIVIDUAL_COUPON`, `SHARED_BUDGET`. Other values may be returned by Amazon.
     #[serde(rename = "budgetType")]
     pub budget_type: ::std::string::String,
     ///Unique identifier of the campaign.

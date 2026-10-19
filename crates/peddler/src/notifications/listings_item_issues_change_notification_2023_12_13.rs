@@ -10,9 +10,9 @@ pub struct Notification {
     pub event_time: ::chrono::DateTime<::chrono::offset::Utc>,
     #[serde(rename = "NotificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    /**The type of the notification.
-
-Known values: `LISTINGS_ITEM_ISSUES_CHANGE`. Other values may be returned by Amazon.*/
+    ///The type of the notification.
+    ///
+    ///Known values: `LISTINGS_ITEM_ISSUES_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "NotificationType")]
     pub notification_type: ::std::string::String,
     ///The version of the notification.
@@ -63,9 +63,9 @@ pub struct Payload {
     ///Selling partner identifier, such as a merchant account or vendor code, of the affected listings item.
     #[serde(rename = "SellerId")]
     pub seller_id: ::std::string::String,
-    /**Array of severities for the issues currently associated with the affected listings item. When no issues are affecting the listings item, "NONE" is provided instead.
-
-Known values: `NONE`, `ERROR`, `WARNING`. Other values may be returned by Amazon.*/
+    ///Array of severities for the issues currently associated with the affected listings item. When no issues are affecting the listings item, "NONE" is provided instead.
+    ///
+    ///Known values: `NONE`, `ERROR`, `WARNING`. Other values may be returned by Amazon.
     #[serde(rename = "Severities")]
     pub severities: ::std::vec::Vec<::std::string::String>,
     ///Identifier of the affected listings item.

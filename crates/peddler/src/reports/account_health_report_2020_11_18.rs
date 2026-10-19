@@ -218,9 +218,9 @@ pub struct ReportAccountStatusesItem {
     ///A requested marketplace ID.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    /**Seller's account status for a requested marketplace.
-
-Known values: `NORMAL`, `AT_RISK`, `DEACTIVATED`. Other values may be returned by Amazon.*/
+    ///Seller's account status for a requested marketplace.
+    ///
+    ///Known values: `NORMAL`, `AT_RISK`, `DEACTIVATED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
 ///Report data for the program.

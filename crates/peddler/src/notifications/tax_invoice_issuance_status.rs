@@ -11,9 +11,9 @@ pub struct Notification {
     ///The notification's metadata.
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    /**The notification type.
-
-Known values: `TAX_INVOICE_ISSUANCE_STATUS`. Other values may be returned by Amazon.*/
+    ///The notification type.
+    ///
+    ///Known values: `TAX_INVOICE_ISSUANCE_STATUS`. Other values may be returned by Amazon.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
     ///The notification version.
@@ -57,9 +57,9 @@ pub struct Payload {
     ///The order identifier associated with the invoice.
     #[serde(rename = "orderId", skip_serializing_if = "::std::option::Option::is_none")]
     pub order_id: ::std::option::Option<::std::string::String>,
-    /**The status of the tax invoice issuance.
-
-Known values: `SUCCESS`, `ERROR`. Other values may be returned by Amazon.*/
+    ///The status of the tax invoice issuance.
+    ///
+    ///Known values: `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
 ///Error details when the invoice issuance fails. Only present for error statuses.

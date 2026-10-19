@@ -23,9 +23,9 @@ pub struct Address {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub address_line3: ::std::option::Option<::std::string::String>,
-    /**The address type of the shipping address.
-
-Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.*/
+    ///The address type of the shipping address.
+    ///
+    ///Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
     #[serde(
         rename = "AddressType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -34,9 +34,9 @@ Known values: `Residential`, `Commercial`. Other values may be returned by Amazo
     ///The city.
     #[serde(rename = "City", skip_serializing_if = "::std::option::Option::is_none")]
     pub city: ::std::option::Option<::std::string::String>,
-    /**The company name of the recipient.
-
-**Note**: This attribute is only available for shipping address.*/
+    ///The company name of the recipient.
+    ///
+    ///**Note**: This attribute is only available for shipping address.
     #[serde(
         rename = "CompanyName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -54,9 +54,9 @@ Known values: `Residential`, `Commercial`. Other values may be returned by Amazo
     ///The district.
     #[serde(rename = "District", skip_serializing_if = "::std::option::Option::is_none")]
     pub district: ::std::option::Option<::std::string::String>,
-    /**Extended address fields for additional address components including the street name or number.
-
-Note: Available for grocery sellers and Brazil shipping addresses.*/
+    ///Extended address fields for additional address components including the street name or number.
+    ///
+    ///Note: Available for grocery sellers and Brazil shipping addresses.
     #[serde(
         rename = "ExtendedFields",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -71,13 +71,13 @@ Note: Available for grocery sellers and Brazil shipping addresses.*/
     ///The name.
     #[serde(rename = "Name", skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    /**The phone number of the buyer.
-
-**Note**:
-1. This attribute is only available for shipping address.
-2. In some cases, the buyer phone number is suppressed:
-a. Phone is suppressed for all `AFN` (fulfilled by Amazon) orders.
-b. Phone is suppressed for the shipped `MFN` (fulfilled by seller) order when the current date is past the Latest Delivery Date.*/
+    ///The phone number of the buyer.
+    ///
+    ///**Note**:
+    ///1. This attribute is only available for shipping address.
+    ///2. In some cases, the buyer phone number is suppressed:
+    ///a. Phone is suppressed for all `AFN` (fulfilled by Amazon) orders.
+    ///b. Phone is suppressed for the shipped `MFN` (fulfilled by seller) order when the current date is past the Latest Delivery Date.
     #[serde(rename = "Phone", skip_serializing_if = "::std::option::Option::is_none")]
     pub phone: ::std::option::Option<::std::string::String>,
     ///The postal code.
@@ -93,9 +93,9 @@ b. Phone is suppressed for the shipped `MFN` (fulfilled by seller) order when th
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-/**Extended address fields for additional address components including the street name or number.
-
-Note: Available for grocery sellers and Brazil shipping addresses.*/
+///Extended address fields for additional address components including the street name or number.
+///
+///Note: Available for grocery sellers and Brazil shipping addresses.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AddressExtendedFields {
     ///The floor number/unit number in the building/private house number.
@@ -104,9 +104,9 @@ pub struct AddressExtendedFields {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub complement: ::std::option::Option<::std::string::String>,
-    /**Latitude and longitude coordinates for the shipping address using the WGS84 coordinate system.
-
-Note: Available for sellers that support geographic coordinates.*/
+    ///Latitude and longitude coordinates for the shipping address using the WGS84 coordinate system.
+    ///
+    ///Note: Available for sellers that support geographic coordinates.
     #[serde(
         rename = "GeoCoordinates",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -131,15 +131,15 @@ Note: Available for sellers that support geographic coordinates.*/
     )]
     pub street_number: ::std::option::Option<::std::string::String>,
 }
-/**Contains the list of programs that Amazon associates with an item.
-
-Possible programs are:
- - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products. - **FBM Ship+**: Unlocks expedited shipping without the extra cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection from late deliveries, a discount on expedited shipping rates, and cash back when you ship.*/
+///Contains the list of programs that Amazon associates with an item.
+///
+///Possible programs are:
+/// - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products. - **FBM Ship+**: Unlocks expedited shipping without the extra cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection from late deliveries, a discount on expedited shipping rates, and cash back when you ship.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AmazonPrograms {
-    /**A list of the programs that Amazon associates with the order item.
-
-**Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`*/
+    ///A list of the programs that Amazon associates with the order item.
+    ///
+    ///**Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`
     #[serde(rename = "Programs")]
     pub programs: ::std::vec::Vec<::std::string::String>,
 }
@@ -197,9 +197,9 @@ pub struct AssociatedItem {
     )]
     pub order_item_id: ::std::option::Option<::std::string::String>,
 }
-/**The type of association an item has with an order item.
-
-Known values: `VALUE_ADD_SERVICE`. Other values may be returned by Amazon.*/
+///The type of association an item has with an order item.
+///
+///Known values: `VALUE_ADD_SERVICE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -265,9 +265,9 @@ pub struct AutomatedShippingSettings {
 ///Business days and hours when the destination is open for deliveries.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BusinessHours {
-    /**Day of the week.
-
-Known values: `SUN`, `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`. Other values may be returned by Amazon.*/
+    ///Day of the week.
+    ///
+    ///Known values: `SUN`, `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`. Other values may be returned by Amazon.
     #[serde(
         rename = "DayOfWeek",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -293,9 +293,9 @@ pub struct BuyerCustomizedInfoDetail {
 ///Buyer information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BuyerInfo {
-    /**The county of the buyer.
-
-**Note**: This attribute is only available in the Brazil marketplace.*/
+    ///The county of the buyer.
+    ///
+    ///**Note**: This attribute is only available in the Brazil marketplace.
     #[serde(
         rename = "BuyerCounty",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -313,9 +313,9 @@ pub struct BuyerInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_name: ::std::option::Option<::std::string::String>,
-    /**Tax information about the buyer. Sellers could use this data to issue electronic invoices for business orders.
-
-**Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.*/
+    ///Tax information about the buyer. Sellers could use this data to issue electronic invoices for business orders.
+    ///
+    ///**Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.
     #[serde(
         rename = "BuyerTaxInfo",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -337,9 +337,9 @@ pub struct BuyerRequestedCancel {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_cancel_reason: ::std::option::Option<::std::string::String>,
-    /**Indicate whether the buyer has requested cancellation.
-
-**Possible Values**: `true`, `false`.*/
+    ///Indicate whether the buyer has requested cancellation.
+    ///
+    ///**Possible Values**: `true`, `false`.
     #[serde(
         rename = "IsBuyerRequestedCancel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -443,9 +443,9 @@ for ConfirmShipmentOrderItemsList {
 ///The request schema for an shipment confirmation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ConfirmShipmentRequest {
-    /**The COD collection method (only supported in the JP marketplace).
-
-Known values: `DirectPayment`. Other values may be returned by Amazon.*/
+    ///The COD collection method (only supported in the JP marketplace).
+    ///
+    ///Known values: `DirectPayment`. Other values may be returned by Amazon.
     #[serde(
         rename = "codCollectionMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -456,9 +456,9 @@ Known values: `DirectPayment`. Other values may be returned by Amazon.*/
     #[serde(rename = "packageDetail")]
     pub package_detail: PackageDetail,
 }
-/**Details the importance of the constraint present on the item
-
-Known values: `MANDATORY`. Other values may be returned by Amazon.*/
+///Details the importance of the constraint present on the item
+///
+///Known values: `MANDATORY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -514,9 +514,9 @@ pub struct DeliveryPreferences {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub drop_off_location: ::std::option::Option<::std::string::String>,
-    /**Enumerated list of miscellaneous delivery attributes associated with the shipping address.
-
-Known values: `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`. Other values may be returned by Amazon.*/
+    ///Enumerated list of miscellaneous delivery attributes associated with the shipping address.
+    ///
+    ///Known values: `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`. Other values may be returned by Amazon.
     #[serde(
         rename = "OtherAttributes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -531,9 +531,9 @@ Known values: `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`. Other val
     )]
     pub preferred_delivery_time: ::std::option::Option<PreferredDeliveryTime>,
 }
-/**The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship orders.
-
-Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`, `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`, `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`. Other values may be returned by Amazon.*/
+///The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship orders.
+///
+///Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`, `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`, `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -574,9 +574,9 @@ impl ::std::str::FromStr for EasyShipShipmentStatus {
         Ok(Self(value.to_string()))
     }
 }
-/**The status of the electronic invoice. Only available for Easy Ship orders and orders in the BR marketplace.
-
-Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Other values may be returned by Amazon.*/
+///The status of the electronic invoice. Only available for Easy Ship orders and orders in the BR marketplace.
+///
+///Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -773,17 +773,17 @@ pub struct InterimStatusDetail {
 ///A single item's buyer information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemBuyerInfo {
-    /**Buyer information for custom orders from the Amazon Custom program.
-
-**Note**: This attribute is only available for MFN (fulfilled by seller) orders.*/
+    ///Buyer information for custom orders from the Amazon Custom program.
+    ///
+    ///**Note**: This attribute is only available for MFN (fulfilled by seller) orders.
     #[serde(
         rename = "BuyerCustomizedInfo",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_customized_info: ::std::option::Option<BuyerCustomizedInfoDetail>,
-    /**A gift message provided by the buyer.
-
-**Note**: This attribute is only available for MFN (fulfilled by seller) orders.*/
+    ///A gift message provided by the buyer.
+    ///
+    ///**Note**: This attribute is only available for MFN (fulfilled by seller) orders.
     #[serde(
         rename = "GiftMessageText",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -862,9 +862,9 @@ pub struct MarketplaceTaxInfo {
 ///Measurement information for an order item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Measurement {
-    /**The unit of measure.
-
-Known values: `OUNCES`, `POUNDS`, `KILOGRAMS`, `GRAMS`, `MILLIGRAMS`, `INCHES`, `FEET`, `METERS`, `CENTIMETERS`, `MILLIMETERS`, `SQUARE_METERS`, `SQUARE_CENTIMETERS`, `SQUARE_FEET`, `SQUARE_INCHES`, `GALLONS`, `PINTS`, `QUARTS`, `FLUID_OUNCES`, `LITERS`, `CUBIC_METERS`, `CUBIC_FEET`, `CUBIC_INCHES`, `CUBIC_CENTIMETERS`, `COUNT`. Other values may be returned by Amazon.*/
+    ///The unit of measure.
+    ///
+    ///Known values: `OUNCES`, `POUNDS`, `KILOGRAMS`, `GRAMS`, `MILLIGRAMS`, `INCHES`, `FEET`, `METERS`, `CENTIMETERS`, `MILLIMETERS`, `SQUARE_METERS`, `SQUARE_CENTIMETERS`, `SQUARE_FEET`, `SQUARE_INCHES`, `GALLONS`, `PINTS`, `QUARTS`, `FLUID_OUNCES`, `LITERS`, `CUBIC_METERS`, `CUBIC_FEET`, `CUBIC_INCHES`, `CUBIC_CENTIMETERS`, `COUNT`. Other values may be returned by Amazon.
     #[serde(rename = "Unit")]
     pub unit: ::std::string::String,
     ///The measurement value.
@@ -919,29 +919,29 @@ pub struct Order {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub automated_shipping_settings: ::std::option::Option<AutomatedShippingSettings>,
-    /**Buyer information.
-
-**Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `BuyerInfo`. For example, `BuyerName`, `BuyerTaxInfo`, and `PurchaseOrderNumber`.*/
+    ///Buyer information.
+    ///
+    ///**Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `BuyerInfo`. For example, `BuyerName`, `BuyerTaxInfo`, and `PurchaseOrderNumber`.
     #[serde(
         rename = "BuyerInfo",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_info: ::std::option::Option<BuyerInfo>,
-    /**The buyer's invoicing preference. Sellers can use this data to issue electronic invoices for orders in Turkey.
-
-**Note**: This attribute is only available in the Turkey marketplace.
-
-Known values: `INDIVIDUAL`, `BUSINESS`. Other values may be returned by Amazon.*/
+    ///The buyer's invoicing preference. Sellers can use this data to issue electronic invoices for orders in Turkey.
+    ///
+    ///**Note**: This attribute is only available in the Turkey marketplace.
+    ///
+    ///Known values: `INDIVIDUAL`, `BUSINESS`. Other values may be returned by Amazon.
     #[serde(
         rename = "BuyerInvoicePreference",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_invoice_preference: ::std::option::Option<::std::string::String>,
-    /**Contains the business invoice tax information. Sellers could use this data to issue electronic invoices for business orders in Turkey.
-
-**Note**:
-1. This attribute is only available in the Turkey marketplace for the orders that `BuyerInvoicePreference` is BUSINESS.
-2. The `BuyerTaxInformation` is a restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access this restricted data.*/
+    ///Contains the business invoice tax information. Sellers could use this data to issue electronic invoices for business orders in Turkey.
+    ///
+    ///**Note**:
+    ///1. This attribute is only available in the Turkey marketplace for the orders that `BuyerInvoicePreference` is BUSINESS.
+    ///2. The `BuyerTaxInformation` is a restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access this restricted data.
     #[serde(
         rename = "BuyerTaxInformation",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -965,25 +965,25 @@ Known values: `INDIVIDUAL`, `BUSINESS`. Other values may be returned by Amazon.*
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub earliest_delivery_date: ::std::option::Option<::std::string::String>,
-    /**The start of the time period within which you have committed to ship the order. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. Only returned for seller-fulfilled orders.
-
-__Note__: `EarliestShipDate` might not be returned for orders placed before February 1, 2013.*/
+    ///The start of the time period within which you have committed to ship the order. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. Only returned for seller-fulfilled orders.
+    ///
+    ///__Note__: `EarliestShipDate` might not be returned for orders placed before February 1, 2013.
     #[serde(
         rename = "EarliestShipDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub earliest_ship_date: ::std::option::Option<::std::string::String>,
-    /**The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship orders.
-
-Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`, `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`, `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`. Other values may be returned by Amazon.*/
+    ///The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship orders.
+    ///
+    ///Known values: `PendingSchedule`, `PendingPickUp`, `PendingDropOff`, `LabelCanceled`, `PickedUp`, `DroppedOff`, `AtOriginFC`, `AtDestinationFC`, `Delivered`, `RejectedByBuyer`, `Undeliverable`, `ReturningToSeller`, `ReturnedToSeller`, `Lost`, `OutForDelivery`, `Damaged`. Other values may be returned by Amazon.
     #[serde(
         rename = "EasyShipShipmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub easy_ship_shipment_status: ::std::option::Option<EasyShipShipmentStatus>,
-    /**The status of the electronic invoice.
-
-Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Other values may be returned by Amazon.*/
+    ///The status of the electronic invoice.
+    ///
+    ///Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Other values may be returned by Amazon.
     #[serde(
         rename = "ElectronicInvoiceStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1058,9 +1058,9 @@ Known values: `NotRequired`, `NotFound`, `Processing`, `Errored`, `Accepted`. Ot
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_sold_by_ab: ::std::option::Option<bool>,
-    /**The date when the order was last updated.
-
-__Note__: `LastUpdateDate` is returned with an incorrect date for orders that were last updated before 2009-04-01.*/
+    ///The date when the order was last updated.
+    ///
+    ///__Note__: `LastUpdateDate` is returned with an incorrect date for orders that were last updated before 2009-04-01.
     #[serde(rename = "LastUpdateDate")]
     pub last_update_date: ::std::string::String,
     ///The end of the time period within which you have committed to fulfill the order. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. Only returned for seller-fulfilled orders that do not have a `PendingAvailability`, `Pending`, or `Canceled` status.
@@ -1069,9 +1069,9 @@ __Note__: `LastUpdateDate` is returned with an incorrect date for orders that we
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub latest_delivery_date: ::std::option::Option<::std::string::String>,
-    /**The end of the time period within which you have committed to ship the order. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. Only returned for seller-fulfilled orders.
-
-__Note__: `LatestShipDate` might not be returned for orders placed before February 1, 2013.*/
+    ///The end of the time period within which you have committed to ship the order. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format. Only returned for seller-fulfilled orders.
+    ///
+    ///__Note__: `LatestShipDate` might not be returned for orders placed before February 1, 2013.
     #[serde(
         rename = "LatestShipDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1083,9 +1083,9 @@ __Note__: `LatestShipDate` might not be returned for orders placed before Februa
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    /**Tax information about the marketplace where the sale took place. Sellers can use this data to issue electronic invoices for orders in Brazil.
-
-**Note**: This attribute is only available in the Brazil marketplace for the orders with `Pending` or `Unshipped` status.*/
+    ///Tax information about the marketplace where the sale took place. Sellers can use this data to issue electronic invoices for orders in Brazil.
+    ///
+    ///**Note**: This attribute is only available in the Brazil marketplace for the orders with `Pending` or `Unshipped` status.
     #[serde(
         rename = "MarketplaceTaxInfo",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1109,9 +1109,9 @@ __Note__: `LatestShipDate` might not be returned for orders placed before Februa
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_channel: ::std::option::Option<::std::string::String>,
-    /**The current order status.
-
-Known values: `Pending`, `Unshipped`, `PartiallyShipped`, `Shipped`, `Canceled`, `Unfulfillable`, `InvoiceUnconfirmed`, `PendingAvailability`. Other values may be returned by Amazon.*/
+    ///The current order status.
+    ///
+    ///Known values: `Pending`, `Unshipped`, `PartiallyShipped`, `Shipped`, `Canceled`, `Unfulfillable`, `InvoiceUnconfirmed`, `PendingAvailability`. Other values may be returned by Amazon.
     #[serde(rename = "OrderStatus")]
     pub order_status: ::std::string::String,
     ///The total charge for this order.
@@ -1120,9 +1120,9 @@ Known values: `Pending`, `Unshipped`, `PartiallyShipped`, `Shipped`, `Canceled`,
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_total: ::std::option::Option<Money>,
-    /**The order's type.
-
-Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`, `BackOrder`, `SourcingOnDemandOrder`. Other values may be returned by Amazon.*/
+    ///The order's type.
+    ///
+    ///Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`, `BackOrder`, `SourcingOnDemandOrder`. Other values may be returned by Amazon.
     #[serde(
         rename = "OrderType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1134,9 +1134,9 @@ Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`, `BackOrder`, `So
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub payment_execution_detail: ::std::option::Option<PaymentExecutionDetailItemList>,
-    /**The payment method for the order. This property is limited to COD and CVS payment methods. Unless you need the specific COD payment information provided by the `PaymentExecutionDetailItem` object, we recommend using the `PaymentMethodDetails` property to get payment method information.
-
-Known values: `COD`, `CVS`, `Other`. Other values may be returned by Amazon.*/
+    ///The payment method for the order. This property is limited to COD and CVS payment methods. Unless you need the specific COD payment information provided by the `PaymentExecutionDetailItem` object, we recommend using the `PaymentMethodDetails` property to get payment method information.
+    ///
+    ///Known values: `COD`, `CVS`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "PaymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1169,9 +1169,9 @@ Known values: `COD`, `CVS`, `Other`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sales_channel: ::std::option::Option<::std::string::String>,
-    /**The seller’s friendly name registered in the marketplace where the sale took place. Sellers can use this data to issue electronic invoices for orders in Brazil.
-
-**Note**: This attribute is only available in the Brazil marketplace for the orders with `Pending` or `Unshipped` status.*/
+    ///The seller’s friendly name registered in the marketplace where the sale took place. Sellers can use this data to issue electronic invoices for orders in Brazil.
+    ///
+    ///**Note**: This attribute is only available in the Brazil marketplace for the orders with `Pending` or `Unshipped` status.
     #[serde(
         rename = "SellerDisplayName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1189,19 +1189,19 @@ Known values: `COD`, `CVS`, `Other`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_service_level: ::std::option::Option<::std::string::String>,
-    /**The shipment service level category for the order.
-
-**Possible values**: `Expedited`, `FreeEconomy`, `NextDay`, `Priority`, `SameDay`, `SecondDay`, `Scheduled`, and `Standard`.*/
+    ///The shipment service level category for the order.
+    ///
+    ///**Possible values**: `Expedited`, `FreeEconomy`, `NextDay`, `Priority`, `SameDay`, `SecondDay`, `Scheduled`, and `Standard`.
     #[serde(
         rename = "ShipmentServiceLevelCategory",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_service_level_category: ::std::option::Option<::std::string::String>,
-    /**The shipping address for the order.
-
-**Note**:
-1. `ShippingAddress` is only available for orders with the following status values: Unshipped, `PartiallyShipped`, Shipped and `InvoiceUnconfirmed`.
-2. The `ShippingAddress` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `ShippingAddress`. For example, `Name`, `AddressLine1`, `AddressLine2`, `AddressLine3`, `Phone`, `AddressType`, and `ExtendedFields`.*/
+    ///The shipping address for the order.
+    ///
+    ///**Note**:
+    ///1. `ShippingAddress` is only available for orders with the following status values: Unshipped, `PartiallyShipped`, Shipped and `InvoiceUnconfirmed`.
+    ///2. The `ShippingAddress` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `ShippingAddress`. For example, `Name`, `AddressLine1`, `AddressLine2`, `AddressLine3`, `Phone`, `AddressType`, and `ExtendedFields`.
     #[serde(
         rename = "ShippingAddress",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1225,9 +1225,9 @@ pub struct OrderAddress {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub delivery_preferences: ::std::option::Option<DeliveryPreferences>,
-    /**The shipping address for the order.
-
-**Note**: `ShippingAddress` is only available for orders with the following status values: `Unshipped`, `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.*/
+    ///The shipping address for the order.
+    ///
+    ///**Note**: `ShippingAddress` is only available for orders with the following status values: `Unshipped`, `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.
     #[serde(
         rename = "ShippingAddress",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1240,9 +1240,9 @@ pub struct OrderBuyerInfo {
     ///An Amazon-defined order identifier, in 3-7-7 format.
     #[serde(rename = "AmazonOrderId")]
     pub amazon_order_id: ::std::string::String,
-    /**The county of the buyer.
-
-**Note**: This attribute is only available in the Brazil marketplace.*/
+    ///The county of the buyer.
+    ///
+    ///**Note**: This attribute is only available in the Brazil marketplace.
     #[serde(
         rename = "BuyerCounty",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1260,9 +1260,9 @@ pub struct OrderBuyerInfo {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_name: ::std::option::Option<::std::string::String>,
-    /**Tax information about the buyer. Sellers can use this data to issue electronic invoices for business orders.
-
-**Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.*/
+    ///Tax information about the buyer. Sellers can use this data to issue electronic invoices for business orders.
+    ///
+    ///**Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.
     #[serde(
         rename = "BuyerTaxInfo",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1293,9 +1293,9 @@ pub struct OrderItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub associated_items: ::std::option::Option<::std::vec::Vec<AssociatedItem>>,
-    /**A single item's buyer information.
-
-**Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `BuyerInfo`. For example, `BuyerCustomizedInfo` and `GiftMessageText`.*/
+    ///A single item's buyer information.
+    ///
+    ///**Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `BuyerInfo`. For example, `BuyerCustomizedInfo` and `GiftMessageText`.
     #[serde(
         rename = "BuyerInfo",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1316,9 +1316,9 @@ pub struct OrderItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub cod_fee_discount: ::std::option::Option<Money>,
-    /**The condition of the item.
-
-**Possible values**: `New`, `Used`, `Collectible`, `Refurbished`, `Preorder`, and `Club`.*/
+    ///The condition of the item.
+    ///
+    ///**Possible values**: `New`, `Used`, `Collectible`, `Refurbished`, `Preorder`, and `Club`.
     #[serde(
         rename = "ConditionId",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1330,17 +1330,17 @@ pub struct OrderItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub condition_note: ::std::option::Option<::std::string::String>,
-    /**The subcondition of the item.
-
-**Possible values**: `New`, `Mint`, `Very Good`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `Refurbished Warranty`, `Refurbished`, `Open Box`, `Any`, and `Other`.*/
+    ///The subcondition of the item.
+    ///
+    ///**Possible values**: `New`, `Mint`, `Very Good`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `Refurbished Warranty`, `Refurbished`, `Open Box`, `Any`, and `Other`.
     #[serde(
         rename = "ConditionSubtypeId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub condition_subtype_id: ::std::option::Option<::std::string::String>,
-    /**The category of deemed reseller. This applies to selling partners that are not based in the EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
-
-Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.*/
+    ///The category of deemed reseller. This applies to selling partners that are not based in the EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.
+    ///
+    ///Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.
     #[serde(
         rename = "DeemedResellerCategory",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1352,16 +1352,16 @@ Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ioss_number: ::std::option::Option<::std::string::String>,
-    /**Indicates whether the item is a gift.
-
-**Possible values**: `true` and `false`.*/
+    ///Indicates whether the item is a gift.
+    ///
+    ///**Possible values**: `true` and `false`.
     #[serde(rename = "IsGift", skip_serializing_if = "::std::option::Option::is_none")]
     pub is_gift: ::std::option::Option<::std::string::String>,
-    /**When true, the ASIN is enrolled in Transparency. The Transparency serial number that you must submit is determined by:
-
-**1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
-**2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**. The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
-**QR code SN:** Submit the URL that the QR code generates.*/
+    ///When true, the ASIN is enrolled in Transparency. The Transparency serial number that you must submit is determined by:
+    ///
+    ///**1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
+    ///**2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**. The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
+    ///**QR code SN:** Submit the URL that the QR code generates.
     #[serde(
         rename = "IsTransparency",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1391,9 +1391,9 @@ Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub points_granted: ::std::option::Option<PointsGrantedDetail>,
-    /**Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
-
-**Possible values**: `BusinessPrice`*/
+    ///Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
+    ///
+    ///**Possible values**: `BusinessPrice`
     #[serde(
         rename = "PriceDesignation",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1449,9 +1449,9 @@ Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub seller_sku: ::std::option::Option<::std::string::String>,
-    /**When true, the product type for this item has a serial number.
-
- Only returned for Amazon Easy Ship orders.*/
+    ///When true, the product type for this item has a serial number.
+    ///
+    /// Only returned for Amazon Easy Ship orders.
     #[serde(
         rename = "SerialNumberRequired",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1518,17 +1518,17 @@ Known values: `IOSS`, `UOSS`. Other values may be returned by Amazon.*/
 ///A single order item's buyer information.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct OrderItemBuyerInfo {
-    /**Buyer information for custom orders from the Amazon Custom program.
-
-**Note**: This attribute is only available for MFN (fulfilled by seller) orders.*/
+    ///Buyer information for custom orders from the Amazon Custom program.
+    ///
+    ///**Note**: This attribute is only available for MFN (fulfilled by seller) orders.
     #[serde(
         rename = "BuyerCustomizedInfo",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buyer_customized_info: ::std::option::Option<BuyerCustomizedInfoDetail>,
-    /**A gift message provided by the buyer.
-
-**Note**: This attribute is only available for MFN (fulfilled by seller) orders.*/
+    ///A gift message provided by the buyer.
+    ///
+    ///**Note**: This attribute is only available for MFN (fulfilled by seller) orders.
     #[serde(
         rename = "GiftMessageText",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1721,9 +1721,9 @@ pub struct OrdersList {
     #[serde(rename = "Orders")]
     pub orders: OrderList,
 }
-/**Miscellaneous delivery attributes associated with the shipping address.
-
-Known values: `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`. Other values may be returned by Amazon.*/
+///Miscellaneous delivery attributes associated with the shipping address.
+///
+///Known values: `HAS_ACCESS_POINT`, `PALLET_ENABLED`, `PALLET_DISABLED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1844,25 +1844,25 @@ impl ::std::str::FromStr for PackageReferenceId {
 ///Information about a sub-payment method used to pay for a COD order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PaymentExecutionDetailItem {
-    /**The Brazilian Taxpayer Identifier (CNPJ) of the payment processor or acquiring bank that authorizes the payment.
-
-**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`.*/
+    ///The Brazilian Taxpayer Identifier (CNPJ) of the payment processor or acquiring bank that authorizes the payment.
+    ///
+    ///**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`.
     #[serde(
         rename = "AcquirerId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub acquirer_id: ::std::option::Option<::std::string::String>,
-    /**The unique code that confirms the payment authorization.
-
-**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`.*/
+    ///The unique code that confirms the payment authorization.
+    ///
+    ///**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard` or `Pix`.
     #[serde(
         rename = "AuthorizationCode",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub authorization_code: ::std::option::Option<::std::string::String>,
-    /**The card network or brand used in the payment transaction (for example, Visa or Mastercard).
-
-**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard`.*/
+    ///The card network or brand used in the payment transaction (for example, Visa or Mastercard).
+    ///
+    ///**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod` is `CreditCard`.
     #[serde(
         rename = "CardBrand",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1870,16 +1870,16 @@ pub struct PaymentExecutionDetailItem {
     pub card_brand: ::std::option::Option<::std::string::String>,
     #[serde(rename = "Payment")]
     pub payment: Money,
-    /**The sub-payment method for an order.
-
-**Possible values**:
-* `COD`: Cash on delivery
-* `GC`: Gift card
-* `PointsAccount`: Amazon Points
-* `Invoice`: Invoice
-* `CreditCard`: Credit card
-* `Pix`: Pix
-* `Other`: Other.*/
+    ///The sub-payment method for an order.
+    ///
+    ///**Possible values**:
+    ///* `COD`: Cash on delivery
+    ///* `GC`: Gift card
+    ///* `PointsAccount`: Amazon Points
+    ///* `Invoice`: Invoice
+    ///* `CreditCard`: Credit card
+    ///* `Pix`: Pix
+    ///* `Other`: Other.
     #[serde(rename = "PaymentMethod")]
     pub payment_method: ::std::string::String,
 }
@@ -2032,9 +2032,9 @@ pub struct RegulatedInformationField {
     ///The name of the field.
     #[serde(rename = "FieldLabel")]
     pub field_label: ::std::string::String,
-    /**The type of field.
-
-Known values: `Text`, `FileAttachment`. Other values may be returned by Amazon.*/
+    ///The type of field.
+    ///
+    ///Known values: `Text`, `FileAttachment`. Other values may be returned by Amazon.
     #[serde(rename = "FieldType")]
     pub field_type: ::std::string::String,
     ///The content of the field as collected in regulatory form. Note that `FileAttachment` type fields contain a URL where you can download the attachment.
@@ -2065,9 +2065,9 @@ pub struct RegulatedOrderVerificationStatus {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub review_date: ::std::option::Option<::std::string::String>,
-    /**The verification status of the order.
-
-Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.*/
+    ///The verification status of the order.
+    ///
+    ///Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.
     #[serde(rename = "Status")]
     pub status: VerificationStatus,
     ///Valid interim status codes that may be used when populating `InterimStatusDetail`. Each element contains a `StatusCode` identifier and its customer-facing `StatusDescription`.
@@ -2100,9 +2100,9 @@ pub struct RejectionReason {
     #[serde(rename = "RejectionReasonId")]
     pub rejection_reason_id: ::std::string::String,
 }
-/**The shipment status to apply.
-
-Known values: `ReadyForPickup`, `PickedUp`, `RefusedPickup`. Other values may be returned by Amazon.*/
+///The shipment status to apply.
+///
+///Known values: `ReadyForPickup`, `PickedUp`, `RefusedPickup`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2146,33 +2146,33 @@ impl ::std::str::FromStr for ShipmentStatus {
 ///Delivery constraints applicable to this order.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShippingConstraints {
-    /**Indicates if the line item needs to be delivered by pallet.
-
-Known values: `MANDATORY`. Other values may be returned by Amazon.*/
+    ///Indicates if the line item needs to be delivered by pallet.
+    ///
+    ///Known values: `MANDATORY`. Other values may be returned by Amazon.
     #[serde(
         rename = "PalletDelivery",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub pallet_delivery: ::std::option::Option<ConstraintType>,
-    /**Indicates that the carrier must confirm the recipient is of the legal age to receive the line item upon delivery.
-
-Known values: `MANDATORY`. Other values may be returned by Amazon.*/
+    ///Indicates that the carrier must confirm the recipient is of the legal age to receive the line item upon delivery.
+    ///
+    ///Known values: `MANDATORY`. Other values may be returned by Amazon.
     #[serde(
         rename = "RecipientAgeVerification",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recipient_age_verification: ::std::option::Option<ConstraintType>,
-    /**Indicates that the person receiving the line item must be the same as the intended recipient of the order.
-
-Known values: `MANDATORY`. Other values may be returned by Amazon.*/
+    ///Indicates that the person receiving the line item must be the same as the intended recipient of the order.
+    ///
+    ///Known values: `MANDATORY`. Other values may be returned by Amazon.
     #[serde(
         rename = "RecipientIdentityVerification",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub recipient_identity_verification: ::std::option::Option<ConstraintType>,
-    /**Indicates that the recipient of the line item must sign to confirm its delivery.
-
-Known values: `MANDATORY`. Other values may be returned by Amazon.*/
+    ///Indicates that the recipient of the line item must sign to confirm its delivery.
+    ///
+    ///Known values: `MANDATORY`. Other values may be returned by Amazon.
     #[serde(
         rename = "SignatureConfirmation",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2238,9 +2238,9 @@ pub struct SubstitutionPreferences {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub substitution_options: ::std::option::Option<SubstitutionOptionList>,
-    /**The type of substitution that these preferences represent.
-
-Known values: `CUSTOMER_PREFERENCE`, `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`. Other values may be returned by Amazon.*/
+    ///The type of substitution that these preferences represent.
+    ///
+    ///Known values: `CUSTOMER_PREFERENCE`, `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`. Other values may be returned by Amazon.
     #[serde(rename = "SubstitutionType")]
     pub substitution_type: ::std::string::String,
 }
@@ -2257,14 +2257,14 @@ pub struct TaxClassification {
 ///Information about withheld taxes.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxCollection {
-    /**The tax collection model applied to the item.
-
-Known values: `MarketplaceFacilitator`. Other values may be returned by Amazon.*/
+    ///The tax collection model applied to the item.
+    ///
+    ///Known values: `MarketplaceFacilitator`. Other values may be returned by Amazon.
     #[serde(rename = "Model", skip_serializing_if = "::std::option::Option::is_none")]
     pub model: ::std::option::Option<::std::string::String>,
-    /**The party responsible for withholding the taxes and remitting them to the taxing authority.
-
-Known values: `Amazon Services, Inc.`. Other values may be returned by Amazon.*/
+    ///The party responsible for withholding the taxes and remitting them to the taxing authority.
+    ///
+    ///Known values: `Amazon Services, Inc.`. Other values may be returned by Amazon.
     #[serde(
         rename = "ResponsibleParty",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2379,9 +2379,9 @@ pub struct UpdateVerificationStatusRequestBody {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rejection_reason_id: ::std::option::Option<::std::string::String>,
-    /**The new verification status of the order.
-
-Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.*/
+    ///The new verification status of the order.
+    ///
+    ///Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<VerificationStatus>,
     ///Additional information regarding the verification of the order.
@@ -2433,9 +2433,9 @@ pub struct VerificationDetails {
     )]
     pub prescription_detail: ::std::option::Option<PrescriptionDetail>,
 }
-/**The verification status of the order.
-
-Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.*/
+///The verification status of the order.
+///
+///Known values: `Pending`, `Approved`, `Rejected`, `Expired`, `Cancelled`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

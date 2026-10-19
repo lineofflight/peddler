@@ -91,9 +91,9 @@ pub struct ErrorList {
     ///A list of error responses returned when a request is unsuccessful.
     pub errors: ::std::vec::Vec<Error>,
 }
-/**The HTTP method associated with an individual request within a batch.
-
-Known values: `GET`, `POST`. Other values may be returned by Amazon.*/
+///The HTTP method associated with an individual request within a batch.
+///
+///Known values: `GET`, `POST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -156,9 +156,9 @@ pub struct InventoryRequest {
     ///The body associated with the individual APIs being called as part of the batch request.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub body: ::std::option::Option<InventoryRequestParams>,
-    /**The method associated with the individual operation from the batch request. To make an update, use `POST`.
-
-Known values: `GET`, `POST`. Other values may be returned by Amazon.*/
+    ///The method associated with the individual operation from the batch request. To make an update, use `POST`.
+    ///
+    ///Known values: `GET`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
     ///The URI associated with the individual APIs from the batch request. The user must provide the resource identifier for the operation they want to use.
     pub uri: ::std::string::String,
@@ -234,9 +234,9 @@ pub struct InventoryResponseBody {
 ///The channel name and marketplace ID. This is required only when multiple channels have the same location ID.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MarketplaceAttributes {
-    /**The name of the fulfillment channel in which to update inventory.
-
-Known values: `FBA`, `MFN`, `DF`. Other values may be returned by Amazon.*/
+    ///The name of the fulfillment channel in which to update inventory.
+    ///
+    ///Known values: `FBA`, `MFN`, `DF`. Other values may be returned by Amazon.
     #[serde(
         rename = "channelName",
         skip_serializing_if = "::std::option::Option::is_none"

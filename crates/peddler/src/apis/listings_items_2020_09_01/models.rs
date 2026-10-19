@@ -31,9 +31,9 @@ pub struct Issue {
     pub code: ::std::string::String,
     ///A message that describes the issue.
     pub message: ::std::string::String,
-    /**The severity of the issue.
-
-Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.*/
+    ///The severity of the issue.
+    ///
+    ///Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
 ///The request body schema for the patchListingsItem operation.
@@ -53,9 +53,9 @@ pub struct ListingsItemPutRequest {
     ///The Amazon product type of the listings item.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    /**The name of the requirements set for the provided data.
-
-Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.*/
+    ///The name of the requirements set for the provided data.
+    ///
+    ///Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requirements: ::std::option::Option<::std::string::String>,
 }
@@ -67,9 +67,9 @@ pub struct ListingsItemSubmissionResponse {
     pub issues: ::std::option::Option<::std::vec::Vec<Issue>>,
     ///A selling partner provided identifier for an Amazon listing.
     pub sku: ::std::string::String,
-    /**The status of the listings item submission.
-
-Known values: `ACCEPTED`, `INVALID`. Other values may be returned by Amazon.*/
+    ///The status of the listings item submission.
+    ///
+    ///Known values: `ACCEPTED`, `INVALID`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
     ///The unique identifier of the listings item submission.
     #[serde(rename = "submissionId")]

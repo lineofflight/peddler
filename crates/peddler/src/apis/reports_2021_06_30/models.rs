@@ -30,9 +30,9 @@ pub struct CreateReportScheduleSpecification {
     pub next_report_creation_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**One of a set of predefined <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> periods that specifies how often a report should be created.
-
-Known values: `PT5M`, `PT15M`, `PT30M`, `PT1H`, `PT2H`, `PT4H`, `PT8H`, `PT12H`, `P1D`, `P2D`, `P3D`, `PT84H`, `P7D`, `P14D`, `P15D`, `P18D`, `P30D`, `P1M`. Other values may be returned by Amazon.*/
+    ///One of a set of predefined <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> periods that specifies how often a report should be created.
+    ///
+    ///Known values: `PT5M`, `PT15M`, `PT30M`, `PT1H`, `PT2H`, `PT4H`, `PT8H`, `PT12H`, `P1D`, `P2D`, `P3D`, `PT84H`, `P7D`, `P14D`, `P15D`, `P18D`, `P30D`, `P1M`. Other values may be returned by Amazon.
     pub period: ::std::string::String,
     #[serde(
         rename = "reportOptions",
@@ -143,9 +143,9 @@ pub struct Report {
     pub processing_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**The processing status of the report.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.*/
+    ///The processing status of the report.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
@@ -170,9 +170,9 @@ Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other val
 ///Information required for the report document.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportDocument {
-    /**If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
-
-Known values: `GZIP`. Other values may be returned by Amazon.*/
+    ///If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
+    ///
+    ///Known values: `GZIP`. Other values may be returned by Amazon.
     #[serde(
         rename = "compressionAlgorithm",
         skip_serializing_if = "::std::option::Option::is_none"

@@ -66,9 +66,9 @@ pub struct Notification {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /**The type of this notification
-
-Known values: `FBA_INVENTORY_AVAILABILITY_CHANGES`. Other values may be returned by Amazon.*/
+    ///The type of this notification
+    ///
+    ///Known values: `FBA_INVENTORY_AVAILABILITY_CHANGES`. Other values may be returned by Amazon.
     #[serde(
         rename = "NotificationType",
         skip_serializing_if = "::std::option::Option::is_none"

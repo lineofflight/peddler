@@ -79,9 +79,9 @@ pub struct TestOrder {
 ///The transaction details including the status. If the transaction was successful, also includes the requested test order data.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Transaction {
-    /**The current processing status of the transaction.
-
-Known values: `FAILURE`, `PROCESSING`, `SUCCESS`. Other values may be returned by Amazon.*/
+    ///The current processing status of the transaction.
+    ///
+    ///Known values: `FAILURE`, `PROCESSING`, `SUCCESS`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
     ///Test case data for the transaction. Only available when the transaction status is SUCCESS.
     #[serde(

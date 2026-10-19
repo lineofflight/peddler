@@ -56,28 +56,28 @@ pub struct AdSummary {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub charge: ::std::option::Option<AggregatedDetail>,
 }
-/**The aggregated transaction detail for the seller's account aggregated by
-transaction event type and transaction type, for example: charge and
-"fbaFulfillmentFee".*/
+///The aggregated transaction detail for the seller's account aggregated by
+///transaction event type and transaction type, for example: charge and
+///"fbaFulfillmentFee".
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AggregatedDetail {
     ///Amount calculated by rate card.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<Amount>,
-    /**Final charge amount per unit after promotion and tax are considered. This
-value is calculated by dividing totalAmount by quantity. This value will be
-null when quantity is null.*/
+    ///Final charge amount per unit after promotion and tax are considered. This
+    ///value is calculated by dividing totalAmount by quantity. This value will be
+    ///null when quantity is null.
     #[serde(
         rename = "amountPerUnit",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub amount_per_unit: ::std::option::Option<Amount>,
-    /**The per unit amount delta is calculated by subtracting the previous
-amountPerUnit from the current amountPerUnit. This value is mainly used to
-indicate the change in amountPerUnit before and after an Amazon fee change.
-This value will be null if there are no Amazon fee change in the selected time
-range or if the previous amountPerUnit is null.
-Example: if the previous amountPerUnit is $5 and the current amountPerUnit is $7, the amountPerUnitDelta would be $2.*/
+    ///The per unit amount delta is calculated by subtracting the previous
+    ///amountPerUnit from the current amountPerUnit. This value is mainly used to
+    ///indicate the change in amountPerUnit before and after an Amazon fee change.
+    ///This value will be null if there are no Amazon fee change in the selected time
+    ///range or if the previous amountPerUnit is null.
+    ///Example: if the previous amountPerUnit is $5 and the current amountPerUnit is $7, the amountPerUnitDelta would be $2.
     #[serde(
         rename = "amountPerUnitDelta",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -89,8 +89,8 @@ Example: if the previous amountPerUnit is $5 and the current amountPerUnit is $7
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub promotion_amount: ::std::option::Option<Amount>,
-    /**Charged quantity for a given product in the seller's account. When the fee is
-not charged on a per unit basis, this value may be null or may not be an integer.*/
+    ///Charged quantity for a given product in the seller's account. When the fee is
+    ///not charged on a per unit basis, this value may be null or may not be an integer.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub quantity: ::std::option::Option<::serde_json::Number>,
     ///The tax amount associated with this transaction type. This value is added to amount when computing totalAmount.
@@ -99,8 +99,8 @@ not charged on a per unit basis, this value may be null or may not be an integer
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<Amount>,
-    /**Final charge amount after promotion and tax are considered. This value is
-calculated as amount - promotionAmount + taxAmount.*/
+    ///Final charge amount after promotion and tax are considered. This value is
+    ///calculated as amount - promotionAmount + taxAmount.
     #[serde(
         rename = "totalAmount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -123,22 +123,22 @@ pub struct Amount {
 ///A root type for seller economics queries version 2024_03_15.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct AnalyticsEconomics20240315 {
-    /**A query to retrieve seller economics data for the seller's account aggregated
-by date and product identifier. The seller economics data consists of
-aggregated sales, fees, and cost for selected period. The data sets are
-refreshed daily with the latest sales, fees, and cost data. The supported fee
-types and advertisement charge types can be found
-[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).*/
+    ///A query to retrieve seller economics data for the seller's account aggregated
+    ///by date and product identifier. The seller economics data consists of
+    ///aggregated sales, fees, and cost for selected period. The data sets are
+    ///refreshed daily with the latest sales, fees, and cost data. The supported fee
+    ///types and advertisement charge types can be found
+    ///[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub economics: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<Economics>>,
     >,
-    /**A query to preview seller economics data for the seller's account aggregated
-by date range specified by startDate and endDate. The seller preview economics
-data consists of aggregated estimated sales, fees, and cost for selected
-period. The data sets are refreshed daily with the latest estimated sales,
-fees, and cost data. The supported fee types and advertisement charge types can be found
-[here](https://sellercentral.amazon.com/help/hub/reference/GQNVDV46U9JQ25HY).*/
+    ///A query to preview seller economics data for the seller's account aggregated
+    ///by date range specified by startDate and endDate. The seller preview economics
+    ///data consists of aggregated estimated sales, fees, and cost for selected
+    ///period. The data sets are refreshed daily with the latest estimated sales,
+    ///fees, and cost data. The supported fee types and advertisement charge types can be found
+    ///[here](https://sellercentral.amazon.com/help/hub/reference/GQNVDV46U9JQ25HY).
     #[serde(
         rename = "economicsPreview",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -146,10 +146,10 @@ fees, and cost data. The supported fee types and advertisement charge types can 
     pub economics_preview: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<Economics>>,
     >,
-    /**A query that simulates seller economics data for specified items, aggregated
-by a date range between startDate and endDate. The data includes estimated
-sales, fees, and costs, which vary based on the action type during the
-selected period.*/
+    ///A query that simulates seller economics data for specified items, aggregated
+    ///by a date range between startDate and endDate. The data includes estimated
+    ///sales, fees, and costs, which vary based on the action type during the
+    ///selected period.
     #[serde(
         rename = "economicsSimulation",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -205,19 +205,19 @@ pub struct Economics {
     ///The advertising spend data for the product within the specified date range.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub ads: ::std::option::Option<::std::vec::Vec<::std::option::Option<AdSummary>>>,
-    /**The Amazon Standard Identification Number of the child product. Child products
-are unique, sellable products that are related in our catalog to a single,
-non-sellable parent product. Note: This field is only present when product
-aggregation is CHILD_ASIN, FNSKU or MSKU.*/
+    ///The Amazon Standard Identification Number of the child product. Child products
+    ///are unique, sellable products that are related in our catalog to a single,
+    ///non-sellable parent product. Note: This field is only present when product
+    ///aggregation is CHILD_ASIN, FNSKU or MSKU.
     #[serde(
         rename = "childAsin",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub child_asin: ::std::option::Option<::std::string::String>,
-    /**The off Amazon cost provided by the seller for this product (per unit). The
-off Amazon cost can be provided on [SKU
-Central](https://sellercentral.amazon.com/skucentral?mSku=xxx) and [Revenue
-Calculator](https://sellercentral.amazon.com/revcal).*/
+    ///The off Amazon cost provided by the seller for this product (per unit). The
+    ///off Amazon cost can be provided on [SKU
+    ///Central](https://sellercentral.amazon.com/skucentral?mSku=xxx) and [Revenue
+    ///Calculator](https://sellercentral.amazon.com/revcal).
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub cost: ::std::option::Option<PerUnitCost>,
     ///The end date of the seller economics data. Note that this date may be adjusted to the end of DateGranularity.
@@ -226,10 +226,10 @@ Calculator](https://sellercentral.amazon.com/revcal).*/
     ///The fees applied to the product within the specified date range.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub fees: ::std::option::Option<::std::vec::Vec<::std::option::Option<FeeSummary>>>,
-    /**The Fulfillment Network Stock Keeping Unit (FNSKU) of the product. Note: This
-field is only present when product aggregation is FNSKU or MSKU. This field
-may be null when product aggregation is MSKU and the row is associated with
-more than one FNSKU.*/
+    ///The Fulfillment Network Stock Keeping Unit (FNSKU) of the product. Note: This
+    ///field is only present when product aggregation is FNSKU or MSKU. This field
+    ///may be null when product aggregation is MSKU and the row is associated with
+    ///more than one FNSKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub fnsku: ::std::option::Option<::std::string::String>,
     ///The marketplace identifier of the seller economics data.
@@ -238,21 +238,21 @@ more than one FNSKU.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    /**The Merchant Stock Keeping Unit (MSKU) of the product. Note: This field is
-only present when product aggregation is FNSKU or MSKU. This field may be null
-when product aggregation is FNSKU and the row is associated with more than one MSKU.*/
+    ///The Merchant Stock Keeping Unit (MSKU) of the product. Note: This field is
+    ///only present when product aggregation is FNSKU or MSKU. This field may be null
+    ///when product aggregation is FNSKU and the row is associated with more than one MSKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub msku: ::std::option::Option<::std::string::String>,
-    /**The net proceeds for this product within the specified date range. The value
-remains unchanged regardless of whether sales, fees, ads, or cost are selected in the query.*/
+    ///The net proceeds for this product within the specified date range. The value
+    ///remains unchanged regardless of whether sales, fees, ads, or cost are selected in the query.
     #[serde(
         rename = "netProceeds",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_proceeds: ::std::option::Option<NetProceeds>,
-    /**The Amazon Standard Identification Number of the parent product. A parent
-product appears in our catalog as a non-buyable, generic identifier for a
-product that has buyable variations (child products).*/
+    ///The Amazon Standard Identification Number of the parent product. A parent
+    ///product appears in our catalog as a non-buyable, generic identifier for a
+    ///product that has buyable variations (child products).
     #[serde(
         rename = "parentAsin",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -368,23 +368,23 @@ pub struct EconomicsProperty {
     )]
     pub property_value: ::std::option::Option<::std::string::String>,
 }
-/**The item level per unit cost provided by the seller and applicable to
-Fulfillment by Amazon (FBA) products. Fields in this type will be null if not
-provided by the seller.*/
+///The item level per unit cost provided by the seller and applicable to
+///Fulfillment by Amazon (FBA) products. Fields in this type will be null if not
+///provided by the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FbaPerUnitCost {
-    /**Cost of shipping the Fulfillment by Amazon (FBA) item to an Amazon fulfillment
-center. This value is provided by the seller and applicable to Fulfillment by
-Amazon (FBA) products.*/
+    ///Cost of shipping the Fulfillment by Amazon (FBA) item to an Amazon fulfillment
+    ///center. This value is provided by the seller and applicable to Fulfillment by
+    ///Amazon (FBA) products.
     #[serde(
         rename = "shippingToAmazonCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_to_amazon_cost: ::std::option::Option<Amount>,
 }
-/**A fee applied to a given product in the seller's account within a given date
-range. Fee information can be found
-[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).*/
+///A fee applied to a given product in the seller's account within a given date
+///range. Fee information can be found
+///[here](https://sellercentral.amazon.com/gp/help/GZ8Y22NL2FSRY8M5).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Fee {
     ///Fee aggregated transaction detail.
@@ -393,50 +393,50 @@ pub struct Fee {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aggregated_detail: ::std::option::Option<AggregatedDetail>,
-    /**A breakdown of the fee into individual components. This field will be null for
-fee types that cannot be divided into individual components.*/
+    ///A breakdown of the fee into individual components. This field will be null for
+    ///fee types that cannot be divided into individual components.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub components: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<FeeComponent>>,
     >,
-    /**The end date of the seller economics data for current fee. In most cases, this
-value is the same as the request 'endDate'. However, when the request date
-range includes the Amazon fee change date, in order to better show the impact
-of the Amazon fee changes before and after the fee change date, the response
-will split the request date range and display the fee separately. This will
-cause the 'endDate' in 'Fee' to be different than the request 'endDate'.
-Example: If the request date range is [2024-07-01, 2024-07-30] and the Amazon
-fee change date is 2024-07-15, then the request date range will be split into
-[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].*/
+    ///The end date of the seller economics data for current fee. In most cases, this
+    ///value is the same as the request 'endDate'. However, when the request date
+    ///range includes the Amazon fee change date, in order to better show the impact
+    ///of the Amazon fee changes before and after the fee change date, the response
+    ///will split the request date range and display the fee separately. This will
+    ///cause the 'endDate' in 'Fee' to be different than the request 'endDate'.
+    ///Example: If the request date range is [2024-07-01, 2024-07-30] and the Amazon
+    ///fee change date is 2024-07-15, then the request date range will be split into
+    ///[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].
     #[serde(rename = "endDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_date: ::std::option::Option<::std::string::String>,
     ///A unique identifier used to track this fee
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub identifier: ::std::option::Option<::std::string::String>,
-    /**The properties used to calculate the 'aggregatedDetail' value in 'Fee'.
-Example: Product Size Tier, an important property that determines the
-amountPerUnit of FBA_FULFILLMENT_FEE.*/
+    ///The properties used to calculate the 'aggregatedDetail' value in 'Fee'.
+    ///Example: Product Size Tier, an important property that determines the
+    ///amountPerUnit of FBA_FULFILLMENT_FEE.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub properties: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<EconomicsProperty>>,
     >,
-    /**The start date of the seller economics data for current fee. In most cases,
-this value is the same as the request 'startDate'. However, when the request
-date range includes the Amazon fee change date, in order to better show the
-impact of the Amazon fee changes before and after the fee change date, the
-response will split the request date range and display the fee separately.
-This will cause the 'startDate' in 'Fee' to be different than the request 'startDate'.
-Example: If the request date range is [2024-07-01, 2024-07-30] and the Amazon
-fee change date is 2024-07-15, then the request date range will be split into
-[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].*/
+    ///The start date of the seller economics data for current fee. In most cases,
+    ///this value is the same as the request 'startDate'. However, when the request
+    ///date range includes the Amazon fee change date, in order to better show the
+    ///impact of the Amazon fee changes before and after the fee change date, the
+    ///response will split the request date range and display the fee separately.
+    ///This will cause the 'startDate' in 'Fee' to be different than the request 'startDate'.
+    ///Example: If the request date range is [2024-07-01, 2024-07-30] and the Amazon
+    ///fee change date is 2024-07-15, then the request date range will be split into
+    ///[2024-07-01, 2024-07-14], [2024-07-15, 2024-07-30].
     #[serde(
         rename = "startDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub start_date: ::std::option::Option<::std::string::String>,
 }
-/**The fee component data applied to a given product in the seller's account within
-a given date range. It's breakdown of parent fee.*/
+///The fee component data applied to a given product in the seller's account within
+///a given date range. It's breakdown of parent fee.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct FeeComponent {
     ///Fee component aggregated detail.
@@ -448,9 +448,9 @@ pub struct FeeComponent {
     ///Fee component name, for example: "Base fulfillment fee".
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub name: ::std::option::Option<::std::string::String>,
-    /**The properties used to calculate the 'aggregatedDetail' value in
-'FeeComponent'. Example: Product Size Tier, an important property that
-determines the amountPerUnit of FBA_FULFILLMENT_FEE component.*/
+    ///The properties used to calculate the 'aggregatedDetail' value in
+    ///'FeeComponent'. Example: Product Size Tier, an important property that
+    ///determines the amountPerUnit of FBA_FULFILLMENT_FEE component.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub properties: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<EconomicsProperty>>,
@@ -513,36 +513,36 @@ impl ::std::str::FromStr for FeeType {
         Ok(Self(value.to_string()))
     }
 }
-/**The item level per unit cost provided by the seller and applicable to Merchant
-Fulfilled Network (MFN) products. Fields in this type will be null if not
-provided by the seller.*/
+///The item level per unit cost provided by the seller and applicable to Merchant
+///Fulfilled Network (MFN) products. Fields in this type will be null if not
+///provided by the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct MfnPerUnitCost {
-    /**Cost of fulfilling an order containing the product, including labor, packing
-material, shipping to customer, customer service etc. This value is provided
-by the seller and applicable to Merchant Fulfilled Network (MFN) products.*/
+    ///Cost of fulfilling an order containing the product, including labor, packing
+    ///material, shipping to customer, customer service etc. This value is provided
+    ///by the seller and applicable to Merchant Fulfilled Network (MFN) products.
     #[serde(
         rename = "fulfillmentCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_cost: ::std::option::Option<Amount>,
-    /**Cost to store a single unit of the product per month. This value is provided
-by the seller and applicable to Merchant Fulfilled Network (MFN) products.*/
+    ///Cost to store a single unit of the product per month. This value is provided
+    ///by the seller and applicable to Merchant Fulfilled Network (MFN) products.
     #[serde(
         rename = "storageCost",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub storage_cost: ::std::option::Option<Amount>,
 }
-/**The net proceeds for a given product in the seller's account for a given time
-range. These fields are calculated as sales.netProductSales - sum of
-fees.charge.totalAmount - sum of ads.charge.totalAmount - (cost of Merchant
-Fulfilled Network (MFN) products or cost of Fulfillment by Amazon (FBA)
-products) * sales.netUnitsSold.*/
+///The net proceeds for a given product in the seller's account for a given time
+///range. These fields are calculated as sales.netProductSales - sum of
+///fees.charge.totalAmount - sum of ads.charge.totalAmount - (cost of Merchant
+///Fulfilled Network (MFN) products or cost of Fulfillment by Amazon (FBA)
+///products) * sales.netUnitsSold.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct NetProceeds {
-    /**Net proceeds per unit for a given product in the seller's account for a given
-time range. This value is calculated by dividing total by sales.netUnitsSold.*/
+    ///Net proceeds per unit for a given product in the seller's account for a given
+    ///time range. This value is calculated by dividing total by sales.netUnitsSold.
     #[serde(rename = "perUnit", skip_serializing_if = "::std::option::Option::is_none")]
     pub per_unit: ::std::option::Option<Amount>,
     ///"Total net proceeds for a given product in the seller's account for a given time range.
@@ -552,9 +552,9 @@ time range. This value is calculated by dividing total by sales.netUnitsSold.*/
 ///The item level per unit cost provided by seller. Fields in this type will be null if not provided by the seller.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PerUnitCost {
-    /**Cost to manufacture or acquire the product. This value is provided by the
-seller and is applicable to both Fulfillment by Amazon (FBA) and Merchant
-Fulfilled Network (MFN) products.*/
+    ///Cost to manufacture or acquire the product. This value is provided by the
+    ///seller and is applicable to both Fulfillment by Amazon (FBA) and Merchant
+    ///Fulfilled Network (MFN) products.
     #[serde(
         rename = "costOfGoodsSold",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -566,9 +566,9 @@ Fulfilled Network (MFN) products.*/
     ///The item level per unit cost provided by the seller and applicable to Merchant Fulfilled Network (MFN) products.
     #[serde(rename = "mfnCost", skip_serializing_if = "::std::option::Option::is_none")]
     pub mfn_cost: ::std::option::Option<MfnPerUnitCost>,
-    /**Miscellaneous costs not related to this specific product, ex: overhead, etc.
-This value is provided by the seller and applicable to both Fulfillment by
-Amazon (FBA) and Merchant Fulfilled Network (MFN) products.*/
+    ///Miscellaneous costs not related to this specific product, ex: overhead, etc.
+    ///This value is provided by the seller and applicable to both Fulfillment by
+    ///Amazon (FBA) and Merchant Fulfilled Network (MFN) products.
     #[serde(
         rename = "miscellaneousCost",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -710,9 +710,9 @@ pub struct Response {
 ///The sales data for a given product in the seller's account within a given date range.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Sales {
-    /**The average price of the units sold in the selected time period, calculated by
-dividing the orderedProductSales by unitsOrdered for the selected time period.
-This field will be null when unitsOrdered is 0.*/
+    ///The average price of the units sold in the selected time period, calculated by
+    ///dividing the orderedProductSales by unitsOrdered for the selected time period.
+    ///This field will be null when unitsOrdered is 0.
     #[serde(
         rename = "averageSellingPrice",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -730,8 +730,8 @@ This field will be null when unitsOrdered is 0.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_units_sold: ::std::option::Option<i64>,
-    /**The amount of ordered product sales, calculated by multiplying the price of
-products and the number of units sold for the selected time period.*/
+    ///The amount of ordered product sales, calculated by multiplying the price of
+    ///products and the number of units sold for the selected time period.
     #[serde(
         rename = "orderedProductSales",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -743,10 +743,10 @@ products and the number of units sold for the selected time period.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub refunded_product_sales: ::std::option::Option<Amount>,
-    /**The number of units ordered for the selected time period. Example: For an
-order containing 2 copies of book A and 3 copies of book B, the number of
-orders is 1, the number of order items is 2 (book A and book B), and the
-number of units is 5 (2 + 3).*/
+    ///The number of units ordered for the selected time period. Example: For an
+    ///order containing 2 copies of book A and 3 copies of book B, the number of
+    ///orders is 1, the number of order items is 2 (book A and book B), and the
+    ///number of units is 5 (2 + 3).
     #[serde(
         rename = "unitsOrdered",
         skip_serializing_if = "::std::option::Option::is_none"

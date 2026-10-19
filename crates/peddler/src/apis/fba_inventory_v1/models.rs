@@ -285,9 +285,9 @@ pub struct ResearchingQuantity {
 ///The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ResearchingQuantityEntry {
-    /**The duration of the research.
-
-Known values: `researchingQuantityInShortTerm`, `researchingQuantityInMidTerm`, `researchingQuantityInLongTerm`. Other values may be returned by Amazon.*/
+    ///The duration of the research.
+    ///
+    ///Known values: `researchingQuantityInShortTerm`, `researchingQuantityInMidTerm`, `researchingQuantityInLongTerm`. Other values may be returned by Amazon.
     pub name: ::std::string::String,
     ///The number of units.
     pub quantity: i64,

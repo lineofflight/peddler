@@ -11,9 +11,9 @@ pub struct Notification {
     ///The notification's metadata, including the publish time and the application, subscription, and notification event identifiers.
     #[serde(rename = "notificationMetadata")]
     pub notification_metadata: NotificationMetadata,
-    /**The notification type.
-
-Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`. Other values may be returned by Amazon.*/
+    ///The notification type.
+    ///
+    ///Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`. Other values may be returned by Amazon.
     #[serde(rename = "notificationType")]
     pub notification_type: ::std::string::String,
     ///The version for this notification type.

@@ -990,9 +990,9 @@ pub struct Dimensions {
     pub height: ::serde_json::Number,
     ///The length of the container.
     pub length: ::serde_json::Number,
-    /**The unit of these measurements.
-
-Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
+    ///The unit of these measurements.
+    ///
+    ///Known values: `IN`, `CM`. Other values may be returned by Amazon.
     pub unit: ::std::string::String,
     ///The width of the container.
     pub width: ::serde_json::Number,
@@ -1638,9 +1638,9 @@ impl ::std::convert::From<::std::vec::Vec<ServiceRate>> for ServiceRateList {
         Self(value)
     }
 }
-/**The type of shipping service that will be used for the service offering.
-
-Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.*/
+///The type of shipping service that will be used for the service offering.
+///
+///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1681,9 +1681,9 @@ impl ::std::str::FromStr for ServiceType {
         Ok(Self(value.to_string()))
     }
 }
-/**A list of service types that can be used to send the shipment.
-
-Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.*/
+///A list of service types that can be used to send the shipment.
+///
+///Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct ServiceTypeList(pub ::std::vec::Vec<ServiceType>);
@@ -1966,9 +1966,9 @@ impl<'de> ::serde::Deserialize<'de> for TrackingSummaryStatus {
 ///The weight.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
-    /**The unit of measurement.
-
-Known values: `g`, `kg`, `oz`, `lb`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `g`, `kg`, `oz`, `lb`. Other values may be returned by Amazon.
     pub unit: ::std::string::String,
     ///The measurement value.
     pub value: ::serde_json::Number,

@@ -445,17 +445,17 @@ pub struct ParkingConfiguration {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_parking_spots: ::std::option::Option<NonNegativeInteger>,
-    /**The type of cost at parking location.
-
-Known values: `Free`, `Other`. Other values may be returned by Amazon.*/
+    ///The type of cost at parking location.
+    ///
+    ///Known values: `Free`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingCostType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parking_cost_type: ::std::option::Option<ParkingCostType>,
-    /**The type of parking spot identification used at parking location.
-
-Known values: `Numbered`, `Other`. Other values may be returned by Amazon.*/
+    ///The type of parking spot identification used at parking location.
+    ///
+    ///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingSpotIdentificationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -464,9 +464,9 @@ Known values: `Numbered`, `Other`. Other values may be returned by Amazon.*/
         ParkingSpotIdentificationType,
     >,
 }
-/**The parking cost type.
-
-Known values: `Free`, `Other`. Other values may be returned by Amazon.*/
+///The parking cost type.
+///
+///Known values: `Free`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -507,9 +507,9 @@ impl ::std::str::FromStr for ParkingCostType {
         Ok(Self(value.to_string()))
     }
 }
-/**The type of parking spot identification.
-
-Known values: `Numbered`, `Other`. Other values may be returned by Amazon.*/
+///The type of parking spot identification.
+///
+///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -562,17 +562,17 @@ pub struct ParkingWithAddressConfiguration {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub number_of_parking_spots: ::std::option::Option<NonNegativeInteger>,
-    /**The type of cost at parking location.
-
-Known values: `Free`, `Other`. Other values may be returned by Amazon.*/
+    ///The type of cost at parking location.
+    ///
+    ///Known values: `Free`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingCostType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parking_cost_type: ::std::option::Option<ParkingCostType>,
-    /**The type of parking spot identification used at parking location.
-
-Known values: `Numbered`, `Other`. Other values may be returned by Amazon.*/
+    ///The type of parking spot identification used at parking location.
+    ///
+    ///Known values: `Numbered`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "parkingSpotIdentificationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -860,9 +860,9 @@ pub struct SupplySourceListItem {
     )]
     pub supply_source_id: ::std::option::Option<SupplySourceId>,
 }
-/**The `SupplySource` status
-
-Known values: `Active`, `Inactive`. Other values may be returned by Amazon.*/
+///The `SupplySource` status
+///
+///Known values: `Active`, `Inactive`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -903,9 +903,9 @@ impl ::std::str::FromStr for SupplySourceStatus {
         Ok(Self(value.to_string()))
     }
 }
-/**The `SupplySource` status.
-
-Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.*/
+///The `SupplySource` status.
+///
+///Known values: `Active`, `Inactive`, `Archived`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -967,9 +967,9 @@ pub struct ThroughputConfig {
     #[serde(rename = "throughputUnit")]
     pub throughput_unit: ThroughputUnit,
 }
-/**The throughput unit
-
-Known values: `Order`. Other values may be returned by Amazon.*/
+///The throughput unit
+///
+///Known values: `Order`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1010,9 +1010,9 @@ impl ::std::str::FromStr for ThroughputUnit {
         Ok(Self(value.to_string()))
     }
 }
-/**The time unit
-
-Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.*/
+///The time unit
+///
+///Known values: `Hours`, `Minutes`, `Days`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

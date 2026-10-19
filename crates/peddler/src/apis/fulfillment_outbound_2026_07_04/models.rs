@@ -1667,12 +1667,12 @@ pub struct Shipment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_level: ::std::option::Option<ShipmentServiceLevel>,
-    /**The meaning of `shipTime` depends on the current status of the shipment:
-
-* Processing - `shipTime` is the estimated time that the shipment will leave the Amazon fulfillment center.
-* Shipped - `shipTime` is the date that the shipment left the Amazon fulfillment center.
-
-If a shipment includes more than one package, `shipTime` applies to all of the packages in the shipment. If the shipment status is `CANCELLED`, `shipTime` is not returned. The value must be in ISO 8601 date time format.*/
+    ///The meaning of `shipTime` depends on the current status of the shipment:
+    ///
+    ///* Processing - `shipTime` is the estimated time that the shipment will leave the Amazon fulfillment center.
+    ///* Shipped - `shipTime` is the date that the shipment left the Amazon fulfillment center.
+    ///
+    ///If a shipment includes more than one package, `shipTime` applies to all of the packages in the shipment. If the shipment status is `CANCELLED`, `shipTime` is not returned. The value must be in ISO 8601 date time format.
     #[serde(rename = "shipTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub ship_time: ::std::option::Option<Timestamp>,
     ///Provides additional insight into shipment timeline. Primarily used to communicate that actual delivery dates aren't available.

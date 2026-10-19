@@ -29,14 +29,14 @@ pub struct Address {
     ///Name of the individual or business.
     #[serde(rename = "Name")]
     pub name: AddressName,
-    /**The postal code.
-
-If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.*/
+    ///The postal code.
+    ///
+    ///If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.
     #[serde(rename = "PostalCode")]
     pub postal_code: AddressPostalCode,
-    /**The state or province code.
-
-If state or province codes are used in your marketplace, it is recommended that you include one with your request. This helps Amazon to select the most appropriate Amazon fulfillment center for your inbound shipment plan.*/
+    ///The state or province code.
+    ///
+    ///If state or province codes are used in your marketplace, it is recommended that you include one with your request. This helps Amazon to select the most appropriate Amazon fulfillment center for your inbound shipment plan.
     #[serde(rename = "StateOrProvinceCode")]
     pub state_or_province_code: ::std::string::String,
 }
@@ -310,9 +310,9 @@ impl<'de> ::serde::Deserialize<'de> for AddressName {
             })
     }
 }
-/**The postal code.
-
-If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.*/
+///The postal code.
+///
+///If postal codes are used in your marketplace, we recommended that you include one with your request. This helps Amazon select the most appropriate Amazon fulfillment center for the inbound shipment plan.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct AddressPostalCode(::std::string::String);
@@ -461,9 +461,9 @@ for AsinPrepInstructionsList {
         Self(value)
     }
 }
-/**Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
-
-Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`. Other values may be returned by Amazon.*/
+///Labeling requirements for the item. For more information about FBA labeling requirements, see the Seller Central Help for your marketplace.
+///
+///Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -576,9 +576,9 @@ pub struct BoxContentsFeeDetails {
     )]
     pub total_units: ::std::option::Option<Quantity>,
 }
-/**Where the seller provided box contents information for a shipment.
-
-Known values: `NONE`, `FEED`, `2D_BARCODE`, `INTERACTIVE`. Other values may be returned by Amazon.*/
+///Where the seller provided box contents information for a shipment.
+///
+///Known values: `NONE`, `FEED`, `2D_BARCODE`, `INTERACTIVE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -619,9 +619,9 @@ impl ::std::str::FromStr for BoxContentsSource {
         Ok(Self(value.to_string()))
     }
 }
-/**The currency code.
-
-Known values: `USD`, `GBP`. Other values may be returned by Amazon.*/
+///The currency code.
+///
+///Known values: `USD`, `GBP`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -736,9 +736,9 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-/**The reason that the ASIN is invalid.
-
-Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
+///The reason that the ASIN is invalid.
+///
+///Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1028,9 +1028,9 @@ pub struct InvalidAsin {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    /**The reason that the ASIN is invalid.
-
-Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
+    ///The reason that the ASIN is invalid.
+    ///
+    ///Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.
     #[serde(
         rename = "ErrorReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1060,9 +1060,9 @@ impl ::std::convert::From<::std::vec::Vec<InvalidAsin>> for InvalidAsinList {
 ///Contains detail about an invalid SKU
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvalidSku {
-    /**The reason why the seller SKU is invalid.
-
-Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.*/
+    ///The reason why the seller SKU is invalid.
+    ///
+    ///Known values: `DoesNotExist`, `InvalidASIN`. Other values may be returned by Amazon.
     #[serde(
         rename = "ErrorReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1105,9 +1105,9 @@ pub struct LabelDownloadUrl {
     )]
     pub download_url: ::std::option::Option<::std::string::String>,
 }
-/**The type of label preparation that is required for the inbound shipment.
-
-Known values: `NO_LABEL`, `SELLER_LABEL`, `AMAZON_LABEL`. Other values may be returned by Amazon.*/
+///The type of label preparation that is required for the inbound shipment.
+///
+///Known values: `NO_LABEL`, `SELLER_LABEL`, `AMAZON_LABEL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1178,9 +1178,9 @@ impl ::std::convert::From<::std::vec::Vec<PrepDetails>> for PrepDetailsList {
         Self(value)
     }
 }
-/**Item preparation instructions.
-
-Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`. Other values may be returned by Amazon.*/
+///Item preparation instructions.
+///
+///Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1221,9 +1221,9 @@ impl ::std::str::FromStr for PrepGuidance {
         Ok(Self(value.to_string()))
     }
 }
-/**Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
-
-Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.*/
+///Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, see the Seller Central Help for your marketplace.
+///
+///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1264,9 +1264,9 @@ impl ::std::str::FromStr for PrepInstruction {
         Ok(Self(value.to_string()))
     }
 }
-/**A list of preparation instructions to help with item sourcing decisions.
-
-Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.*/
+///A list of preparation instructions to help with item sourcing decisions.
+///
+///Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PrepInstructionList(pub ::std::vec::Vec<PrepInstruction>);
@@ -1286,9 +1286,9 @@ impl ::std::convert::From<::std::vec::Vec<PrepInstruction>> for PrepInstructionL
         Self(value)
     }
 }
-/**Indicates who will prepare the item.
-
-Known values: `AMAZON`, `SELLER`. Other values may be returned by Amazon.*/
+///Indicates who will prepare the item.
+///
+///Known values: `AMAZON`, `SELLER`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1372,9 +1372,9 @@ impl ::std::convert::TryFrom<String> for Quantity {
         value.parse()
     }
 }
-/**Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
-
-Known values: `WORKING`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`. Other values may be returned by Amazon.*/
+///Indicates the status of the inbound shipment. When used with the createInboundShipment operation, WORKING is the only valid value. When used with the updateInboundShipment operation, possible values are WORKING, SHIPPED or CANCELLED.
+///
+///Known values: `WORKING`, `SHIPPED`, `RECEIVING`, `CANCELLED`, `DELETED`, `CLOSED`, `ERROR`, `IN_TRANSIT`, `DELIVERED`, `CHECKED_IN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

@@ -34,9 +34,9 @@ pub struct AnalyticsSalesAndTraffic20240424 {
     pub sales_and_traffic_by_date: ::std::option::Option<
         ::std::vec::Vec<::std::option::Option<SalesAndTrafficByDate>>,
     >,
-    /**This query retrieves sales and traffic trend data for a specified list of
-ASINs within a date range. The data can be aggregated at different time
-intervals to support various analytical needs.*/
+    ///This query retrieves sales and traffic trend data for a specified list of
+    ///ASINs within a date range. The data can be aggregated at different time
+    ///intervals to support various analytical needs.
     #[serde(
         rename = "salesAndTrafficTrends",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -89,16 +89,16 @@ impl ::std::str::FromStr for AsinGranularity {
 ///The sales data for the seller's account aggregated by ASIN.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ByAsinSales {
-    /**The amount of ordered product sales, calculated by multiplying the price of
-products and the number of units sold for the selected time period.*/
+    ///The amount of ordered product sales, calculated by multiplying the price of
+    ///products and the number of units sold for the selected time period.
     #[serde(
         rename = "orderedProductSales",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_product_sales: ::std::option::Option<Amount>,
-    /**The amount of ordered product sales to Amazon Business customers, calculated
-by multiplying the price of products and the number of units sold for the
-selected time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The amount of ordered product sales to Amazon Business customers, calculated
+    ///by multiplying the price of products and the number of units sold for the
+    ///selected time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "orderedProductSalesB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -110,24 +110,24 @@ selected time period. Note: This field is only populated when the seller is a B2
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub orders_shipped: ::std::option::Option<i64>,
-    /**The number of orders shipped to Amazon Business customers for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of orders shipped to Amazon Business customers for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "ordersShippedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub orders_shipped_b2b: ::std::option::Option<i64>,
-    /**The percentage conversion metric indicating how many orders were refunded,
-calculated by dividing unitsRefunded by unitsOrdered for the selected time period.*/
+    ///The percentage conversion metric indicating how many orders were refunded,
+    ///calculated by dividing unitsRefunded by unitsOrdered for the selected time period.
     #[serde(
         rename = "refundRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub refund_rate: ::std::option::Option<::serde_json::Number>,
-    /**The percentage conversion metric indicating how many orders were refunded by
-Amazon Business customers, calculated by dividing unitsRefundedB2B by
-unitsOrderedB2B for the selected time period. Note: This field is only
-populated when the seller is a B2B seller.*/
+    ///The percentage conversion metric indicating how many orders were refunded by
+    ///Amazon Business customers, calculated by dividing unitsRefundedB2B by
+    ///unitsOrderedB2B for the selected time period. Note: This field is only
+    ///populated when the seller is a B2B seller.
     #[serde(
         rename = "refundRateB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -139,9 +139,9 @@ populated when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_product_sales: ::std::option::Option<Amount>,
-    /**The amount of ordered product sales shipped to Amazon Business customers for
-the selected time period. Note: This field is only populated when the seller
-is a B2B seller.*/
+    ///The amount of ordered product sales shipped to Amazon Business customers for
+    ///the selected time period. Note: This field is only populated when the seller
+    ///is a B2B seller.
     #[serde(
         rename = "shippedProductSalesB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -153,8 +153,8 @@ is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_order_items: ::std::option::Option<i64>,
-    /**The number of items that were ordered by Amazon Business customers for the
-selected time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of items that were ordered by Amazon Business customers for the
+    ///selected time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "totalOrderItemsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -166,8 +166,8 @@ selected time period. Note: This field is only populated when the seller is a B2
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_ordered: ::std::option::Option<i64>,
-    /**The number of units ordered by Amazon Business customers. Note: This field is
-only populated when the seller is a B2B seller.*/
+    ///The number of units ordered by Amazon Business customers. Note: This field is
+    ///only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsOrderedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -179,8 +179,8 @@ only populated when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_refunded: ::std::option::Option<i64>,
-    /**The number of units refunded by Amazon Business customers for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of units refunded by Amazon Business customers for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsRefundedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -192,8 +192,8 @@ time period. Note: This field is only populated when the seller is a B2B seller.
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_shipped: ::std::option::Option<i64>,
-    /**The number of units shipped to Amazon Business customers for the selected time
-period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of units shipped to Amazon Business customers for the selected time
+    ///period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsShippedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -209,106 +209,106 @@ pub struct ByAsinTraffic {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views: ::std::option::Option<i64>,
-    /**Browser B2B page views are the number of times an Amazon Business customer
-visited your Amazon.com browser pages for the selected time period. Note: This
-field is only populated when the seller is a B2B seller.*/
+    ///Browser B2B page views are the number of times an Amazon Business customer
+    ///visited your Amazon.com browser pages for the selected time period. Note: This
+    ///field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "browserPageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views_b2b: ::std::option::Option<i64>,
-    /**The percentage of browser page views that a particular SKU/ASIN receives
-relative to the total number of browser page views for all products.*/
+    ///The percentage of browser page views that a particular SKU/ASIN receives
+    ///relative to the total number of browser page views for all products.
     #[serde(
         rename = "browserPageViewsPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of browser views by Amazon Business customers that a particular
-SKU/ASIN receives relative to the total number of mobile page views by Amazon
-Business customers for all products. Note: This field is only populated when
-the seller is a B2B seller.*/
+    ///The percentage of browser views by Amazon Business customers that a particular
+    ///SKU/ASIN receives relative to the total number of mobile page views by Amazon
+    ///Business customers for all products. Note: This field is only populated when
+    ///the seller is a B2B seller.
     #[serde(
         rename = "browserPageViewsPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of browser sessions that contain at least one page view for a
-particular SKU/ASIN relative to the total number of browser sessions for all products.*/
+    ///The percentage of browser sessions that contain at least one page view for a
+    ///particular SKU/ASIN relative to the total number of browser sessions for all products.
     #[serde(
         rename = "browserSessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of browser sessions that contain at least one page view by an
-Amazon Business customer for a particular SKU/ASIN relative to the total
-number of browser sessions by Amazon Business customers for all products.
-Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage of browser sessions that contain at least one page view by an
+    ///Amazon Business customer for a particular SKU/ASIN relative to the total
+    ///number of browser sessions by Amazon Business customers for all products.
+    ///Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "browserSessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_session_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Browser sessions are visits to your Amazon.com browser pages by a user. All
-browser activity within a 24-hour period is considered a browser session. For
-example, if a user visits your pages using a browser multiple times within a
-24 hour period it is counted as a single browser session.*/
+    ///Browser sessions are visits to your Amazon.com browser pages by a user. All
+    ///browser activity within a 24-hour period is considered a browser session. For
+    ///example, if a user visits your pages using a browser multiple times within a
+    ///24 hour period it is counted as a single browser session.
     #[serde(
         rename = "browserSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_sessions: ::std::option::Option<i64>,
-    /**Browser B2B sessions are visits to your Amazon.com browser pages by an Amazon
-Business customer. All activity within a 24-hour period is considered a
-browser session. For example, if an Amazon Business customer visits your pages
-using browser multiple times within a 24 hour period it is counted as a single
-session. Note: This field is only populated when the seller is a B2B seller.*/
+    ///Browser B2B sessions are visits to your Amazon.com browser pages by an Amazon
+    ///Business customer. All activity within a 24-hour period is considered a
+    ///browser session. For example, if an Amazon Business customer visits your pages
+    ///using browser multiple times within a 24 hour period it is counted as a single
+    ///session. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "browserSessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_sessions_b2b: ::std::option::Option<i64>,
-    /**The percentage of page views where the buy box (the add to shopping cart link)
-appeared on the page for customers to add your product to their cart.*/
+    ///The percentage of page views where the buy box (the add to shopping cart link)
+    ///appeared on the page for customers to add your product to their cart.
     #[serde(
         rename = "buyBoxPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buy_box_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of page views by Amazon Business customers where the buy box
-(the add to shopping cart link) appeared on the page for customers to add your
-product to their cart. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage of page views by Amazon Business customers where the buy box
+    ///(the add to shopping cart link) appeared on the page for customers to add your
+    ///product to their cart. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "buyBoxPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buy_box_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Mobile app page views are the number of times a user visited your Amazon.com
-mobile app pages for the selected time period.*/
+    ///Mobile app page views are the number of times a user visited your Amazon.com
+    ///mobile app pages for the selected time period.
     #[serde(
         rename = "mobileAppPageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views: ::std::option::Option<i64>,
-    /**Mobile app B2B page views are the number of times an Amazon Business customer
-visited your Amazon.com mobile app pages for the selected time period. Note:
-This field is only populated when the seller is a B2B seller.*/
+    ///Mobile app B2B page views are the number of times an Amazon Business customer
+    ///visited your Amazon.com mobile app pages for the selected time period. Note:
+    ///This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppPageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views_b2b: ::std::option::Option<i64>,
-    /**The percentage of mobile app page views that a particular SKU/ASIN receives
-relative to the total number of mobile app page views for all products.*/
+    ///The percentage of mobile app page views that a particular SKU/ASIN receives
+    ///relative to the total number of mobile app page views for all products.
     #[serde(
         rename = "mobileAppPageViewsPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of mobile page views by Amazon Business customers that a
-particular SKU/ASIN receives relative to the total number of mobile page views
-by Amazon Business customers for all products. Note: This field is only
-populated when the seller is a B2B seller.*/
+    ///The percentage of mobile page views by Amazon Business customers that a
+    ///particular SKU/ASIN receives relative to the total number of mobile page views
+    ///by Amazon Business customers for all products. Note: This field is only
+    ///populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppPageViewsPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -316,117 +316,117 @@ populated when the seller is a B2B seller.*/
     pub mobile_app_page_views_percentage_b2b: ::std::option::Option<
         ::serde_json::Number,
     >,
-    /**The percentage of mobile app sessions that contain at least one page view for
-a particular SKU/ASIN relative to the total number of mobile app sessions for all products.*/
+    ///The percentage of mobile app sessions that contain at least one page view for
+    ///a particular SKU/ASIN relative to the total number of mobile app sessions for all products.
     #[serde(
         rename = "mobileAppSessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of mobile app sessions that contain at least one page view by
-an Amazon Business customer for a particular SKU/ASIN relative to the total
-number of mobile app sessions by Amazon Business customers for all products.
-Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage of mobile app sessions that contain at least one page view by
+    ///an Amazon Business customer for a particular SKU/ASIN relative to the total
+    ///number of mobile app sessions by Amazon Business customers for all products.
+    ///Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppSessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_session_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
-All mobile app activity within a 24-hour period is considered a mobile app
-session. For example, if a user visits your pages using a mobile app multiple
-times within a 24 hour period it is counted as a single mobile app session.*/
+    ///Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
+    ///All mobile app activity within a 24-hour period is considered a mobile app
+    ///session. For example, if a user visits your pages using a mobile app multiple
+    ///times within a 24 hour period it is counted as a single mobile app session.
     #[serde(
         rename = "mobileAppSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_sessions: ::std::option::Option<i64>,
-    /**Mobile app B2B sessions are visits to your Amazon.com mobile app pages by an
-Amazon Business customer. All activity within a 24-hour period is considered a
-mobile app session. For example, if an Amazon Business customer visits your
-pages using mobile app multiple times within a 24 hour period it is counted as
-a single session. Note: This field is only populated when the seller is a B2B seller.*/
+    ///Mobile app B2B sessions are visits to your Amazon.com mobile app pages by an
+    ///Amazon Business customer. All activity within a 24-hour period is considered a
+    ///mobile app session. For example, if an Amazon Business customer visits your
+    ///pages using mobile app multiple times within a 24 hour period it is counted as
+    ///a single session. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppSessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_sessions_b2b: ::std::option::Option<i64>,
-    /**Page views are the number of times a user visited your Amazon.com browser or
-mobile app pages for the selected time period. It is calculated as the sum of
-browserPageViews and mobileAppPageViews.*/
+    ///Page views are the number of times a user visited your Amazon.com browser or
+    ///mobile app pages for the selected time period. It is calculated as the sum of
+    ///browserPageViews and mobileAppPageViews.
     #[serde(
         rename = "pageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views: ::std::option::Option<i64>,
-    /**B2B page views are the number of times an Amazon Business customer visited
-your Amazon.com pages using browser or mobile app for the selected time
-period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///B2B page views are the number of times an Amazon Business customer visited
+    ///your Amazon.com pages using browser or mobile app for the selected time
+    ///period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "pageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views_b2b: ::std::option::Option<i64>,
-    /**The percentage of browser and mobile app page views that a particular SKU/ASIN
-receives relative to the total number of browser and mobile app page views for all products.*/
+    ///The percentage of browser and mobile app page views that a particular SKU/ASIN
+    ///receives relative to the total number of browser and mobile app page views for all products.
     #[serde(
         rename = "pageViewsPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of page views by Amazon Business customers that a particular
-SKU/ASIN receives relative to the total number of page views by Amazon
-Business customers for all products. Note: This field is only populated when
-the seller is a B2B seller.*/
+    ///The percentage of page views by Amazon Business customers that a particular
+    ///SKU/ASIN receives relative to the total number of page views by Amazon
+    ///Business customers for all products. Note: This field is only populated when
+    ///the seller is a B2B seller.
     #[serde(
         rename = "pageViewsPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of sessions that contain at least one page view for a
-particular SKU/ASIN relative to the total number of sessions for all products.*/
+    ///The percentage of sessions that contain at least one page view for a
+    ///particular SKU/ASIN relative to the total number of sessions for all products.
     #[serde(
         rename = "sessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of sessions that contain at least one page view by an Amazon
-Business customer for a particular SKU/ASIN relative to the total number of
-sessions by Amazon Business customers for all products. Note: This field is
-only populated when the seller is a B2B seller.*/
+    ///The percentage of sessions that contain at least one page view by an Amazon
+    ///Business customer for a particular SKU/ASIN relative to the total number of
+    ///sessions by Amazon Business customers for all products. Note: This field is
+    ///only populated when the seller is a B2B seller.
     #[serde(
         rename = "sessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub session_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Sessions are visits to your Amazon.com browser or mobile app pages by a user.
-All browser and mobile app activity within a 24-hour period is considered a
-session. It is calculated as the sum of browserSessions and mobileAppSessions.*/
+    ///Sessions are visits to your Amazon.com browser or mobile app pages by a user.
+    ///All browser and mobile app activity within a 24-hour period is considered a
+    ///session. It is calculated as the sum of browserSessions and mobileAppSessions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sessions: ::std::option::Option<i64>,
-    /**B2B sessions are visits to your Amazon.com pages using browser or mobile app
-by an Amazon Business customer. All activity within a 24-hour period is
-considered a session. For example, if an Amazon Business customer visits your
-pages multiple times using mobile app or browser within a 24 hour period it is
-counted as a single session. Note: This field is only populated when the
-seller is a B2B seller.*/
+    ///B2B sessions are visits to your Amazon.com pages using browser or mobile app
+    ///by an Amazon Business customer. All activity within a 24-hour period is
+    ///considered a session. For example, if an Amazon Business customer visits your
+    ///pages multiple times using mobile app or browser within a 24 hour period it is
+    ///counted as a single session. Note: This field is only populated when the
+    ///seller is a B2B seller.
     #[serde(
         rename = "sessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sessions_b2b: ::std::option::Option<i64>,
-    /**The percentage conversion metric indicating how many units were purchased
-relative to the number of people who viewed the products, calculated by
-dividing unitsOrdered by sessions.*/
+    ///The percentage conversion metric indicating how many units were purchased
+    ///relative to the number of people who viewed the products, calculated by
+    ///dividing unitsOrdered by sessions.
     #[serde(
         rename = "unitSessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unit_session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage conversion metric indicating how many units were purchased by
-Amazon Business customers relative to the number of Amazon Business customers
-who viewed the products, calculated by dividing unitsOrderedB2B by sessions.
-Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage conversion metric indicating how many units were purchased by
+    ///Amazon Business customers relative to the number of Amazon Business customers
+    ///who viewed the products, calculated by dividing unitsOrderedB2B by sessions.
+    ///Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitSessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -436,31 +436,31 @@ Note: This field is only populated when the seller is a B2B seller.*/
 ///The sales data for the seller's account aggregated by date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ByDateSales {
-    /**The average ordered product sales, calculated by dividing orderedProductSales
-by totalOrderItems for the selected time period.*/
+    ///The average ordered product sales, calculated by dividing orderedProductSales
+    ///by totalOrderItems for the selected time period.
     #[serde(
         rename = "averageSalesPerOrderItem",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_sales_per_order_item: ::std::option::Option<Amount>,
-    /**The average ordered product sales to Amazon Business customers, calculated by
-dividing orderedProductSalesB2B by totalOrderItemsB2B for the selected time
-period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The average ordered product sales to Amazon Business customers, calculated by
+    ///dividing orderedProductSalesB2B by totalOrderItemsB2B for the selected time
+    ///period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "averageSalesPerOrderItemB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_sales_per_order_item_b2b: ::std::option::Option<Amount>,
-    /**The average price of the units sold for the selected time period, calculated
-by dividing the orderedProductSales by unitsOrdered for the selected time period.*/
+    ///The average price of the units sold for the selected time period, calculated
+    ///by dividing the orderedProductSales by unitsOrdered for the selected time period.
     #[serde(
         rename = "averageSellingPrice",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_selling_price: ::std::option::Option<Amount>,
-    /**The average price of the units sold to Amazon Business customers, calculated
-by dividing the orderedProductSalesB2B by unitsOrderedB2B for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The average price of the units sold to Amazon Business customers, calculated
+    ///by dividing the orderedProductSalesB2B by unitsOrderedB2B for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "averageSellingPriceB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -472,9 +472,9 @@ time period. Note: This field is only populated when the seller is a B2B seller.
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub average_units_per_order_item: ::std::option::Option<::serde_json::Number>,
-    /**The average number of units in each order item ordered by Amazon Business
-customers for the selected time period. Note: This field is only populated
-when the seller is a B2B seller.*/
+    ///The average number of units in each order item ordered by Amazon Business
+    ///customers for the selected time period. Note: This field is only populated
+    ///when the seller is a B2B seller.
     #[serde(
         rename = "averageUnitsPerOrderItemB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -486,8 +486,8 @@ when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub claims_amount: ::std::option::Option<Amount>,
-    /**Monetary amount of filed A-to-z guarantee claims for Amazon Business
-customers. Note: This field is only populated when the seller is a B2B seller.*/
+    ///Monetary amount of filed A-to-z guarantee claims for Amazon Business
+    ///customers. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "claimsAmountB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -499,23 +499,23 @@ customers. Note: This field is only populated when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub claims_granted: ::std::option::Option<i64>,
-    /**The number of A-to-z guarantee claims granted for Amazon Business customers.
-Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of A-to-z guarantee claims granted for Amazon Business customers.
+    ///Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "claimsGrantedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub claims_granted_b2b: ::std::option::Option<i64>,
-    /**The amount of ordered product sales, calculated by multiplying the price of
-products and the number of units sold for the selected time period.*/
+    ///The amount of ordered product sales, calculated by multiplying the price of
+    ///products and the number of units sold for the selected time period.
     #[serde(
         rename = "orderedProductSales",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ordered_product_sales: ::std::option::Option<Amount>,
-    /**The amount of ordered product sales to Amazon Business customers, calculated
-by multiplying the price of products and the number of units sold for the
-selected time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The amount of ordered product sales to Amazon Business customers, calculated
+    ///by multiplying the price of products and the number of units sold for the
+    ///selected time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "orderedProductSalesB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -527,25 +527,25 @@ selected time period. Note: This field is only populated when the seller is a B2
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub orders_shipped: ::std::option::Option<i64>,
-    /**The number of orders shipped to Amazon Business customers for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of orders shipped to Amazon Business customers for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "ordersShippedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub orders_shipped_b2b: ::std::option::Option<i64>,
-    /**The percentage conversion metric indicating how many orders were refunded by
-the seller, calculated by dividing unitsRefunded by unitsOrdered for the
-selected time period.*/
+    ///The percentage conversion metric indicating how many orders were refunded by
+    ///the seller, calculated by dividing unitsRefunded by unitsOrdered for the
+    ///selected time period.
     #[serde(
         rename = "refundRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub refund_rate: ::std::option::Option<::serde_json::Number>,
-    /**The percentage conversion metric indicating how many orders were refunded by
-Amazon Business customers, calculated by dividing unitsRefundedB2B by
-unitsOrderedB2B for the selected time period. Note: This field is only
-populated when the seller is a B2B seller.*/
+    ///The percentage conversion metric indicating how many orders were refunded by
+    ///Amazon Business customers, calculated by dividing unitsRefundedB2B by
+    ///unitsOrderedB2B for the selected time period. Note: This field is only
+    ///populated when the seller is a B2B seller.
     #[serde(
         rename = "refundRateB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -557,47 +557,47 @@ populated when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_product_sales: ::std::option::Option<Amount>,
-    /**The amount of ordered product sales shipped to Amazon Business customers for
-the selected time period. Note: This field is only populated when the seller
-is a B2B seller.*/
+    ///The amount of ordered product sales shipped to Amazon Business customers for
+    ///the selected time period. Note: This field is only populated when the seller
+    ///is a B2B seller.
     #[serde(
         rename = "shippedProductSalesB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_product_sales_b2b: ::std::option::Option<Amount>,
-    /**The number of items that were ordered for the selected time period. Example:
-For an order containing 2 copies of book A and 3 copies of book B, the number
-of orders is 1, the number of order items is 2 (book A and book B), and the
-number of units is 5 (2 + 3).*/
+    ///The number of items that were ordered for the selected time period. Example:
+    ///For an order containing 2 copies of book A and 3 copies of book B, the number
+    ///of orders is 1, the number of order items is 2 (book A and book B), and the
+    ///number of units is 5 (2 + 3).
     #[serde(
         rename = "totalOrderItems",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_order_items: ::std::option::Option<i64>,
-    /**The number of items that were ordered by Amazon Business customers for the
-selected time period. Example: For an order containing 2 copies of book A and
-3 copies of book B, the number of orders is 1, the number of order items is 2
-(book A and book B), and the number of units is 5 (2 + 3). Note: This field is
-only populated when the seller is a B2B seller.*/
+    ///The number of items that were ordered by Amazon Business customers for the
+    ///selected time period. Example: For an order containing 2 copies of book A and
+    ///3 copies of book B, the number of orders is 1, the number of order items is 2
+    ///(book A and book B), and the number of units is 5 (2 + 3). Note: This field is
+    ///only populated when the seller is a B2B seller.
     #[serde(
         rename = "totalOrderItemsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_order_items_b2b: ::std::option::Option<i64>,
-    /**The number of units ordered for the selected time period. Example: For an
-order containing 2 copies of book A and 3 copies of book B, the number of
-orders is 1, the number of order items is 2 (book A and book B), and the
-number of units is 5 (2 + 3).*/
+    ///The number of units ordered for the selected time period. Example: For an
+    ///order containing 2 copies of book A and 3 copies of book B, the number of
+    ///orders is 1, the number of order items is 2 (book A and book B), and the
+    ///number of units is 5 (2 + 3).
     #[serde(
         rename = "unitsOrdered",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_ordered: ::std::option::Option<i64>,
-    /**The number of units ordered by Amazon Business customers for the selected time
-period. Example: For an order containing 2 copies of book A and 3 copies of
-book B, the number of orders is 1, the number of order items is 2 (book A and
-book B), and the number of units is 5 (2 + 3). Note: This field is only
-populated when the seller is a B2B seller.*/
+    ///The number of units ordered by Amazon Business customers for the selected time
+    ///period. Example: For an order containing 2 copies of book A and 3 copies of
+    ///book B, the number of orders is 1, the number of order items is 2 (book A and
+    ///book B), and the number of units is 5 (2 + 3). Note: This field is only
+    ///populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsOrderedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -609,8 +609,8 @@ populated when the seller is a B2B seller.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_refunded: ::std::option::Option<i64>,
-    /**The number of units refunded by Amazon Business customers for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of units refunded by Amazon Business customers for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsRefundedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -622,8 +622,8 @@ time period. Note: This field is only populated when the seller is a B2B seller.
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub units_shipped: ::std::option::Option<i64>,
-    /**The number of units shipped to Amazon Business customers for the selected time
-period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of units shipped to Amazon Business customers for the selected time
+    ///period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitsShippedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -633,9 +633,9 @@ period. Note: This field is only populated when the seller is a B2B seller.*/
 ///The traffic data for the seller's account aggregated by date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ByDateTraffic {
-    /**The average number of offers listed for sale for the selected time period. It
-is calculated from the total number of offers and the total number of days for
-the selected time period.*/
+    ///The average number of offers listed for sale for the selected time period. It
+    ///is calculated from the total number of offers and the total number of days for
+    ///the selected time period.
     #[serde(
         rename = "averageOfferCount",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -653,43 +653,43 @@ the selected time period.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views: ::std::option::Option<i64>,
-    /**Browser B2B page views are the number of times an Amazon Business customer
-visited your Amazon.com browser pages for the selected time period. Note: This
-field is only populated when the seller is a B2B seller.*/
+    ///Browser B2B page views are the number of times an Amazon Business customer
+    ///visited your Amazon.com browser pages for the selected time period. Note: This
+    ///field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "browserPageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_page_views_b2b: ::std::option::Option<i64>,
-    /**Browser sessions are visits to your Amazon.com browser pages by a user. All
-browser activity within a 24-hour period is considered a browser session. For
-example, if a user visits your pages using a browser multiple times within a
-24 hour period it is counted as a single browser session.*/
+    ///Browser sessions are visits to your Amazon.com browser pages by a user. All
+    ///browser activity within a 24-hour period is considered a browser session. For
+    ///example, if a user visits your pages using a browser multiple times within a
+    ///24 hour period it is counted as a single browser session.
     #[serde(
         rename = "browserSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_sessions: ::std::option::Option<i64>,
-    /**Browser B2B sessions are visits to your Amazon.com browser pages by an Amazon
-Business customer. All activity within a 24-hour period is considered a
-browser session. For example, if an Amazon Business customer visits your pages
-using browser multiple times within a 24 hour period it is counted as a single
-session. Note: This field is only populated when the seller is a B2B seller.*/
+    ///Browser B2B sessions are visits to your Amazon.com browser pages by an Amazon
+    ///Business customer. All activity within a 24-hour period is considered a
+    ///browser session. For example, if an Amazon Business customer visits your pages
+    ///using browser multiple times within a 24 hour period it is counted as a single
+    ///session. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "browserSessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub browser_sessions_b2b: ::std::option::Option<i64>,
-    /**The percentage of page views where the buy box (the add to shopping cart link)
-appeared on the page for customers to add your product to their cart.*/
+    ///The percentage of page views where the buy box (the add to shopping cart link)
+    ///appeared on the page for customers to add your product to their cart.
     #[serde(
         rename = "buyBoxPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub buy_box_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage of page views by Amazon Business customers where the buy box
-(the add to shopping cart link) appeared on the page for customers to add your
-product to their cart. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage of page views by Amazon Business customers where the buy box
+    ///(the add to shopping cart link) appeared on the page for customers to add your
+    ///product to their cart. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "buyBoxPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -701,42 +701,42 @@ product to their cart. Note: This field is only populated when the seller is a B
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feedback_received: ::std::option::Option<i64>,
-    /**The number of times Amazon Business customers left feedback for the selected
-time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of times Amazon Business customers left feedback for the selected
+    ///time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "feedbackReceivedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub feedback_received_b2b: ::std::option::Option<i64>,
-    /**Mobile app page views are the number of times a user visited your Amazon.com
-mobile app pages for the selected time period.*/
+    ///Mobile app page views are the number of times a user visited your Amazon.com
+    ///mobile app pages for the selected time period.
     #[serde(
         rename = "mobileAppPageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views: ::std::option::Option<i64>,
-    /**Mobile app B2B page views are the number of times an Amazon Business customer
-visited your Amazon.com mobile app pages for the selected time period. Note:
-This field is only populated when the seller is a B2B seller.*/
+    ///Mobile app B2B page views are the number of times an Amazon Business customer
+    ///visited your Amazon.com mobile app pages for the selected time period. Note:
+    ///This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppPageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_page_views_b2b: ::std::option::Option<i64>,
-    /**Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
-All mobile app activity within a 24-hour period is considered a mobile app
-session. For example, if a user visits your pages using a mobile app multiple
-times within a 24 hour period it is counted as a single mobile app session.*/
+    ///Mobile app sessions are visits to your Amazon.com mobile app pages by a user.
+    ///All mobile app activity within a 24-hour period is considered a mobile app
+    ///session. For example, if a user visits your pages using a mobile app multiple
+    ///times within a 24 hour period it is counted as a single mobile app session.
     #[serde(
         rename = "mobileAppSessions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub mobile_app_sessions: ::std::option::Option<i64>,
-    /**Mobile app B2B sessions are visits to your Amazon.com mobile app pages by an
-Amazon Business customer. All activity within a 24-hour period is considered a
-mobile app session. For example, if an Amazon Business customer visits your
-pages using mobile app multiple times within a 24 hour period it is counted as
-a single session. Note: This field is only populated when the seller is a B2B seller.*/
+    ///Mobile app B2B sessions are visits to your Amazon.com mobile app pages by an
+    ///Amazon Business customer. All activity within a 24-hour period is considered a
+    ///mobile app session. For example, if an Amazon Business customer visits your
+    ///pages using mobile app multiple times within a 24 hour period it is counted as
+    ///a single session. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "mobileAppSessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -748,87 +748,87 @@ a single session. Note: This field is only populated when the seller is a B2B se
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_feedback_received: ::std::option::Option<i64>,
-    /**The number of times Amazon Business customers left negative feedback for the
-selected time period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The number of times Amazon Business customers left negative feedback for the
+    ///selected time period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "negativeFeedbackReceivedB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub negative_feedback_received_b2b: ::std::option::Option<i64>,
-    /**The percentage conversion metric indicating how many order items were
-generated relative to the number of people who viewed the products.*/
+    ///The percentage conversion metric indicating how many order items were
+    ///generated relative to the number of people who viewed the products.
     #[serde(
         rename = "orderItemSessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_item_session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage conversion metric indicating how many order items were
-generated by Amazon Business customers relative to the number of Amazon
-Business customers who viewed the products. Note: This field is only populated
-when the seller is a B2B seller.*/
+    ///The percentage conversion metric indicating how many order items were
+    ///generated by Amazon Business customers relative to the number of Amazon
+    ///Business customers who viewed the products. Note: This field is only populated
+    ///when the seller is a B2B seller.
     #[serde(
         rename = "orderItemSessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub order_item_session_percentage_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Page views are the number of times a user visited your Amazon.com browser or
-mobile app pages for the selected time period. It is calculated as the sum of
-browserPageViews and mobileAppPageViews.*/
+    ///Page views are the number of times a user visited your Amazon.com browser or
+    ///mobile app pages for the selected time period. It is calculated as the sum of
+    ///browserPageViews and mobileAppPageViews.
     #[serde(
         rename = "pageViews",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views: ::std::option::Option<i64>,
-    /**B2B page views are the number of times an Amazon Business customer visited
-your Amazon.com pages using browser or mobile app for the selected time
-period. Note: This field is only populated when the seller is a B2B seller.*/
+    ///B2B page views are the number of times an Amazon Business customer visited
+    ///your Amazon.com pages using browser or mobile app for the selected time
+    ///period. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "pageViewsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub page_views_b2b: ::std::option::Option<i64>,
-    /**The negative feedback rate is the number of orders that have received negative
-feedback divided by the number of orders for the selected time period.*/
+    ///The negative feedback rate is the number of orders that have received negative
+    ///feedback divided by the number of orders for the selected time period.
     #[serde(
         rename = "receivedNegativeFeedbackRate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub received_negative_feedback_rate: ::std::option::Option<::serde_json::Number>,
-    /**The negative feedback rate for Amazon Business customers is the number of
-orders that have received negative feedback divided by the number of orders
-for the selected time period. Note: This field is only populated when the
-seller is a B2B seller.*/
+    ///The negative feedback rate for Amazon Business customers is the number of
+    ///orders that have received negative feedback divided by the number of orders
+    ///for the selected time period. Note: This field is only populated when the
+    ///seller is a B2B seller.
     #[serde(
         rename = "receivedNegativeFeedbackRateB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub received_negative_feedback_rate_b2b: ::std::option::Option<::serde_json::Number>,
-    /**Sessions are visits to your Amazon.com browser or mobile app pages by a user.
-All browser and mobile app activity within a 24-hour period is considered a
-session. It is calculated as the sum of browserSessions and mobileAppSessions.*/
+    ///Sessions are visits to your Amazon.com browser or mobile app pages by a user.
+    ///All browser and mobile app activity within a 24-hour period is considered a
+    ///session. It is calculated as the sum of browserSessions and mobileAppSessions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sessions: ::std::option::Option<i64>,
-    /**B2B sessions are visits to your Amazon.com pages using browser or mobile app
-by an Amazon Business customer. All activity within a 24-hour period is
-considered a session. For example, if an Amazon Business customer visits your
-pages multiple times using mobile app or browser within a 24 hour period it is
-counted as a single session. Note: This field is only populated when the
-seller is a B2B seller.*/
+    ///B2B sessions are visits to your Amazon.com pages using browser or mobile app
+    ///by an Amazon Business customer. All activity within a 24-hour period is
+    ///considered a session. For example, if an Amazon Business customer visits your
+    ///pages multiple times using mobile app or browser within a 24 hour period it is
+    ///counted as a single session. Note: This field is only populated when the
+    ///seller is a B2B seller.
     #[serde(
         rename = "sessionsB2B",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub sessions_b2b: ::std::option::Option<i64>,
-    /**The percentage conversion metric indicating how many units were purchased
-relative to the number of people who viewed the products.*/
+    ///The percentage conversion metric indicating how many units were purchased
+    ///relative to the number of people who viewed the products.
     #[serde(
         rename = "unitSessionPercentage",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub unit_session_percentage: ::std::option::Option<::serde_json::Number>,
-    /**The percentage conversion metric indicating how many units were purchased by
-Amazon Business customers relative to number of Amazon Business customers who
-viewed the products. Note: This field is only populated when the seller is a B2B seller.*/
+    ///The percentage conversion metric indicating how many units were purchased by
+    ///Amazon Business customers relative to number of Amazon Business customers who
+    ///viewed the products. Note: This field is only populated when the seller is a B2B seller.
     #[serde(
         rename = "unitSessionPercentageB2B",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -891,10 +891,10 @@ pub struct Response {
 ///The sales and traffic data for the seller's account aggregated by ASIN.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SalesAndTrafficByAsin {
-    /**The Amazon Standard Identification Number of the child product. Child products
-are unique, sellable products that are related in our catalog to a single,
-non-sellable parent product. Note: This field is only present when ASIN
-aggregation is CHILD or SKU.*/
+    ///The Amazon Standard Identification Number of the child product. Child products
+    ///are unique, sellable products that are related in our catalog to a single,
+    ///non-sellable parent product. Note: This field is only present when ASIN
+    ///aggregation is CHILD or SKU.
     #[serde(
         rename = "childAsin",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -909,9 +909,9 @@ aggregation is CHILD or SKU.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    /**The Amazon Standard Identification Number of the parent product. A parent
-product appears in our catalog as a non-buyable, generic identifier for a
-product that has buyable variations (child products).*/
+    ///The Amazon Standard Identification Number of the parent product. A parent
+    ///product appears in our catalog as a non-buyable, generic identifier for a
+    ///product that has buyable variations (child products).
     #[serde(
         rename = "parentAsin",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -920,8 +920,8 @@ product that has buyable variations (child products).*/
     ///The sales data for the parentAsin/childAsin/sku within the specified date range.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sales: ::std::option::Option<ByAsinSales>,
-    /**The Stock Keeping Unit of the product. The SKU is a seller specific product
-identifier. Note: This field is only present when ASIN aggregation is SKU.*/
+    ///The Stock Keeping Unit of the product. The SKU is a seller specific product
+    ///identifier. Note: This field is only present when ASIN aggregation is SKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
     ///The start date of the period of the aggregated data.
@@ -962,18 +962,18 @@ pub struct SalesAndTrafficByDate {
 ///`SalesAndTrafficTrends`
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct SalesAndTrafficTrends {
-    /**Indicates the ASIN level at which the data is aggregated. Currently only CHILD is supported.
-
-Known values: `CHILD`, `PARENT`, `SKU`. Other values may be returned by Amazon.*/
+    ///Indicates the ASIN level at which the data is aggregated. Currently only CHILD is supported.
+    ///
+    ///Known values: `CHILD`, `PARENT`, `SKU`. Other values may be returned by Amazon.
     #[serde(
         rename = "asinAggregation",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub asin_aggregation: ::std::option::Option<AsinGranularity>,
-    /**The Amazon Standard Identification Number of the child product. Child products
-are unique, sellable products that are related in our catalog to a single,
-non-sellable parent product. Note: This field is only present when ASIN
-aggregation is CHILD or SKU.*/
+    ///The Amazon Standard Identification Number of the child product. Child products
+    ///are unique, sellable products that are related in our catalog to a single,
+    ///non-sellable parent product. Note: This field is only present when ASIN
+    ///aggregation is CHILD or SKU.
     #[serde(
         rename = "childAsin",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -988,9 +988,9 @@ aggregation is CHILD or SKU.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_id: ::std::option::Option<::std::string::String>,
-    /**The Amazon Standard Identification Number of the parent product. A parent
-product appears in our catalog as a non-buyable, generic identifier for a
-product that has buyable variations (child products).*/
+    ///The Amazon Standard Identification Number of the parent product. A parent
+    ///product appears in our catalog as a non-buyable, generic identifier for a
+    ///product that has buyable variations (child products).
     #[serde(
         rename = "parentAsin",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -999,8 +999,8 @@ product that has buyable variations (child products).*/
     ///The sales data for the parentAsin/childAsin/sku within the specified date range.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sales: ::std::option::Option<ByAsinSales>,
-    /**The Stock Keeping Unit of the product. The SKU is a seller specific product
-identifier. Note: This field is only present when ASIN aggregation is SKU.*/
+    ///The Stock Keeping Unit of the product. The SKU is a seller specific product
+    ///identifier. Note: This field is only present when ASIN aggregation is SKU.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub sku: ::std::option::Option<::std::string::String>,
     ///The start date of the period of the aggregated sales and traffic data.

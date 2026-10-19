@@ -38,9 +38,9 @@ pub struct ReportReportSpecification {
     ///Marketplace IDs as specified in the report request.
     #[serde(rename = "marketplaceIds")]
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
-    /**The report type.
-
-Known values: `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`. Other values may be returned by Amazon.*/
+    ///The report type.
+    ///
+    ///Known values: `GET_VENDOR_REAL_TIME_INVENTORY_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }

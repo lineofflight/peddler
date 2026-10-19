@@ -63,9 +63,9 @@ pub struct Address {
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-/**The shipping address type.
-
-Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.*/
+///The shipping address type.
+///
+///Known values: `Residential`, `Commercial`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -272,9 +272,9 @@ pub struct PaymentInformation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub card_brand: ::std::option::Option<::std::string::String>,
-    /**The name of the payment method.
-
-Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.*/
+    ///The name of the payment method.
+    ///
+    ///Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "PaymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -331,9 +331,9 @@ for PaymentMethodDetailItemList {
         Self(value)
     }
 }
-/**Payment methods
-
-Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.*/
+///Payment methods
+///
+///Known values: `CreditCard`, `DebitCard`, `Pix`, `BankSlip`, `GiftCard`, `Other`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -476,9 +476,9 @@ pub struct ShipmentDetail {
     )]
     pub warehouse_id: ::std::option::Option<::std::string::String>,
 }
-/**The shipment invoice status.
-
-Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.*/
+///The shipment invoice status.
+///
+///Known values: `Processing`, `Accepted`, `Errored`, `NotFound`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

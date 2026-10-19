@@ -1363,9 +1363,9 @@ impl<'de> ::serde::Deserialize<'de> for AddressStateOrProvinceCode {
             })
     }
 }
-/**A constraint that applies to all owners. If no constraint is specified, defer to any individual owner constraints.
-
-Known values: `MUST_MATCH`. Other values may be returned by Amazon.*/
+///A constraint that applies to all owners. If no constraint is specified, defer to any individual owner constraints.
+///
+///Known values: `MUST_MATCH`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1597,9 +1597,9 @@ impl<'de> ::serde::Deserialize<'de> for BoxBoxId {
             })
     }
 }
-/**Indication of how box content is meant to be provided.
-
-Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.*/
+///Indication of how box content is meant to be provided.
+///
+///Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -3943,18 +3943,18 @@ pub struct FreightInformation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub declared_value: ::std::option::Option<Currency>,
-    /**Freight class.
-
-Possible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.*/
+    ///Freight class.
+    ///
+    ///Possible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.
     #[serde(
         rename = "freightClass",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub freight_class: ::std::option::Option<FreightInformationFreightClass>,
 }
-/**Freight class.
-
-Possible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.*/
+///Freight class.
+///
+///Possible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct FreightInformationFreightClass(::std::string::String);
@@ -5967,9 +5967,9 @@ impl ::std::str::FromStr for LabelOwner {
         Ok(Self(value.to_string()))
     }
 }
-/**Indicates the type of print type for a given label.
-
-Known values: `STANDARD_FORMAT`, `THERMAL_PRINTING`. Other values may be returned by Amazon.*/
+///Indicates the type of print type for a given label.
+///
+///Known values: `STANDARD_FORMAT`, `THERMAL_PRINTING`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -6455,9 +6455,9 @@ pub struct MskuPrepDetail {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_owner_constraint: ::std::option::Option<OwnerConstraint>,
-    /**A list of preparation types associated with a preparation category.
-
-Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
+    ///A list of preparation types associated with a preparation category.
+    ///
+    ///Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.
     #[serde(rename = "prepTypes")]
     pub prep_types: ::std::vec::Vec<PrepType>,
 }
@@ -6469,9 +6469,9 @@ pub struct MskuPrepDetailInput {
     ///Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.
     #[serde(rename = "prepCategory")]
     pub prep_category: PrepCategory,
-    /**A list of preparation types associated with a preparation category.
-
-Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
+    ///A list of preparation types associated with a preparation category.
+    ///
+    ///Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.
     #[serde(rename = "prepTypes")]
     pub prep_types: ::std::vec::Vec<PrepType>,
 }
@@ -6892,9 +6892,9 @@ impl<'de> ::serde::Deserialize<'de> for OperationProblemSeverity {
             })
     }
 }
-/**The status of an operation.
-
-Known values: `SUCCESS`, `FAILED`, `IN_PROGRESS`. Other values may be returned by Amazon.*/
+///The status of an operation.
+///
+///Known values: `SUCCESS`, `FAILED`, `IN_PROGRESS`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -6935,9 +6935,9 @@ impl ::std::str::FromStr for OperationStatus {
         Ok(Self(value.to_string()))
     }
 }
-/**A constraint that can apply to an individual owner. If no constraint is specified, both `AMAZON` and `SELLER` are acceptable.
-
-Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`. Other values may be returned by Amazon.*/
+///A constraint that can apply to an individual owner. If no constraint is specified, both `AMAZON` and `SELLER` are acceptable.
+///
+///Known values: `AMAZON_ONLY`, `NONE_ONLY`, `SELLER_ONLY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -7124,9 +7124,9 @@ impl<'de> ::serde::Deserialize<'de> for PackageGroupingInputShipmentId {
 ///A way to configure this packing option. Some box content information sources might not be allowed. Non-standard minimum and maximum box weights might be enforced.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PackingConfiguration {
-    /**The box content information sources that are allowed.
-
-Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.*/
+    ///The box content information sources that are allowed.
+    ///
+    ///Known values: `BOX_CONTENT_PROVIDED`, `MANUAL_PROCESS`, `BARCODE_2D`. Other values may be returned by Amazon.
     #[serde(
         rename = "boxPackingMethods",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -7974,9 +7974,9 @@ impl<'de> ::serde::Deserialize<'de> for PlacementOptionSummaryStatus {
             })
     }
 }
-/**The preparation category for shipping an item to Amazon's fulfillment network.
-
-Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.*/
+///The preparation category for shipping an item to Amazon's fulfillment network.
+///
+///Known values: `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`, `UNKNOWN`, `NONE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8028,9 +8028,9 @@ pub struct PrepInstruction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub prep_owner: ::std::option::Option<PrepInstructionPrepOwner>,
-    /**Type of preparation that should be done.
-
-Possible values: `ITEM_LABELING`, `ITEM_BUBBLEWRAP`, `ITEM_POLYBAGGING`, `ITEM_TAPING`, `ITEM_BLACK_SHRINKWRAP`, `ITEM_HANG_GARMENT`, `ITEM_BOXING`, `ITEM_SETCREAT`, `ITEM_RMOVHANG`, `ITEM_SUFFOSTK`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_NO_PREP`, `ADULT`, `BABY`, `TEXTILE`, `HANGER`, `FRAGILE`, `LIQUID`, `SHARP`, `SMALL`, `PERFORATED`, `GRANULAR`, `SET`, `FC_PROVIDED`, `UNKNOWN`, `NONE`.*/
+    ///Type of preparation that should be done.
+    ///
+    ///Possible values: `ITEM_LABELING`, `ITEM_BUBBLEWRAP`, `ITEM_POLYBAGGING`, `ITEM_TAPING`, `ITEM_BLACK_SHRINKWRAP`, `ITEM_HANG_GARMENT`, `ITEM_BOXING`, `ITEM_SETCREAT`, `ITEM_RMOVHANG`, `ITEM_SUFFOSTK`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_NO_PREP`, `ADULT`, `BABY`, `TEXTILE`, `HANGER`, `FRAGILE`, `LIQUID`, `SHARP`, `SMALL`, `PERFORATED`, `GRANULAR`, `SET`, `FC_PROVIDED`, `UNKNOWN`, `NONE`.
     #[serde(rename = "prepType", skip_serializing_if = "::std::option::Option::is_none")]
     pub prep_type: ::std::option::Option<PrepInstructionPrepType>,
 }
@@ -8091,9 +8091,9 @@ impl<'de> ::serde::Deserialize<'de> for PrepInstructionPrepOwner {
             })
     }
 }
-/**Type of preparation that should be done.
-
-Possible values: `ITEM_LABELING`, `ITEM_BUBBLEWRAP`, `ITEM_POLYBAGGING`, `ITEM_TAPING`, `ITEM_BLACK_SHRINKWRAP`, `ITEM_HANG_GARMENT`, `ITEM_BOXING`, `ITEM_SETCREAT`, `ITEM_RMOVHANG`, `ITEM_SUFFOSTK`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_NO_PREP`, `ADULT`, `BABY`, `TEXTILE`, `HANGER`, `FRAGILE`, `LIQUID`, `SHARP`, `SMALL`, `PERFORATED`, `GRANULAR`, `SET`, `FC_PROVIDED`, `UNKNOWN`, `NONE`.*/
+///Type of preparation that should be done.
+///
+///Possible values: `ITEM_LABELING`, `ITEM_BUBBLEWRAP`, `ITEM_POLYBAGGING`, `ITEM_TAPING`, `ITEM_BLACK_SHRINKWRAP`, `ITEM_HANG_GARMENT`, `ITEM_BOXING`, `ITEM_SETCREAT`, `ITEM_RMOVHANG`, `ITEM_SUFFOSTK`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_NO_PREP`, `ADULT`, `BABY`, `TEXTILE`, `HANGER`, `FRAGILE`, `LIQUID`, `SHARP`, `SMALL`, `PERFORATED`, `GRANULAR`, `SET`, `FC_PROVIDED`, `UNKNOWN`, `NONE`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PrepInstructionPrepType(::std::string::String);
@@ -8150,9 +8150,9 @@ impl<'de> ::serde::Deserialize<'de> for PrepInstructionPrepType {
             })
     }
 }
-/**The owner of the preparations, if special preparations are required.
-
-Known values: `AMAZON`, `SELLER`, `NONE`. Other values may be returned by Amazon.*/
+///The owner of the preparations, if special preparations are required.
+///
+///Known values: `AMAZON`, `SELLER`, `NONE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8193,9 +8193,9 @@ impl ::std::str::FromStr for PrepOwner {
         Ok(Self(value.to_string()))
     }
 }
-/**Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, refer to [Seller Central Help for your marketplace](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls).
-
-Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.*/
+///Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for shipment to Amazon's fulfillment network, refer to [Seller Central Help for your marketplace](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls).
+///
+///Known values: `ITEM_BLACK_SHRINKWRAP`, `ITEM_BLANKSTK`, `ITEM_BOXING`, `ITEM_BUBBLEWRAP`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_HANG_GARMENT`, `ITEM_LABELING`, `ITEM_NO_PREP`, `ITEM_POLYBAGGING`, `ITEM_RMOVHANG`, `ITEM_SETCREAT`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_SUFFOSTK`, `ITEM_TAPING`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8250,9 +8250,9 @@ pub struct Quote {
     )]
     pub voidable_until: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
 }
-/**Reason for cancelling or rescheduling a self-ship appointment.
-
-Known values: `APPOINTMENT_REQUESTED_BY_MISTAKE`, `VEHICLE_DELAY`, `SLOT_NOT_SUITABLE`, `OUTSIDE_CARRIER_BUSINESS_HOURS`, `UNFAVOURABLE_EXTERNAL_CONDITIONS`, `PROCUREMENT_DELAY`, `SHIPPING_PLAN_CHANGED`, `INCREASED_QUANTITY`, `OTHER`. Other values may be returned by Amazon.*/
+///Reason for cancelling or rescheduling a self-ship appointment.
+///
+///Known values: `APPOINTMENT_REQUESTED_BY_MISTAKE`, `VEHICLE_DELAY`, `SLOT_NOT_SUITABLE`, `OUTSIDE_CARRIER_BUSINESS_HOURS`, `UNFAVOURABLE_EXTERNAL_CONDITIONS`, `PROCUREMENT_DELAY`, `SHIPPING_PLAN_CHANGED`, `INCREASED_QUANTITY`, `OTHER`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -8965,9 +8965,9 @@ pub struct Shipment {
     #[serde(rename = "shipmentId")]
     pub shipment_id: ShipmentShipmentId,
     pub source: ShipmentSource,
-    /**The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
-
-Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`*/
+    ///The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
+    ///
+    ///Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<ShipmentStatus>,
     #[serde(
@@ -9475,9 +9475,9 @@ impl<'de> ::serde::Deserialize<'de> for ShipmentSourceSourceType {
             })
     }
 }
-/**The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
-
-Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`*/
+///The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
+///
+///Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShipmentStatus(::std::string::String);
@@ -9540,9 +9540,9 @@ pub struct ShipmentSummary {
     ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     #[serde(rename = "shipmentId")]
     pub shipment_id: ShipmentSummaryShipmentId,
-    /**The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
-
-Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`*/
+    ///The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
+    ///
+    ///Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
     pub status: ShipmentSummaryStatus,
 }
 ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
@@ -9607,9 +9607,9 @@ impl<'de> ::serde::Deserialize<'de> for ShipmentSummaryShipmentId {
             })
     }
 }
-/**The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
-
-Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`*/
+///The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.
+///
+///Possible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShipmentSummaryStatus(::std::string::String);
@@ -9756,9 +9756,9 @@ impl<'de> ::serde::Deserialize<'de> for ShipmentTransportationConfigurationShipm
 ///The shipping configurations supported for the packing option. Available modes are ground small parcel, freight less-than-truckload (LTL), freight full-truckload (FTL) palletized, freight FTL non-palletized, ocean less-than-container-load (LCL), ocean full-container load (FCL), air small parcel, and air small parcel express.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShippingConfiguration {
-    /**Mode of shipment transportation that this option will provide.
-
-Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.*/
+    ///Mode of shipment transportation that this option will provide.
+    ///
+    ///Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.
     #[serde(
         rename = "shippingMode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -9771,9 +9771,9 @@ Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FR
     )]
     pub shipping_solution: ::std::option::Option<ShippingConfigurationShippingSolution>,
 }
-/**Mode of shipment transportation that this option will provide.
-
-Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.*/
+///Mode of shipment transportation that this option will provide.
+///
+///Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ShippingConfigurationShippingMode(::std::string::String);
@@ -10352,9 +10352,9 @@ impl<'de> ::serde::Deserialize<'de> for SpdTrackingItemTrackingNumberValidationS
             })
     }
 }
-/**Indicates whether pallets will be stacked when carrier arrives for pick-up.
-
-Known values: `STACKABLE`, `NON_STACKABLE`. Other values may be returned by Amazon.*/
+///Indicates whether pallets will be stacked when carrier arrives for pick-up.
+///
+///Known values: `STACKABLE`, `NON_STACKABLE`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -10581,9 +10581,9 @@ pub struct TransportationOption {
     ///Identifier of a shipment. A shipment contains the boxes and units being inbounded.
     #[serde(rename = "shipmentId")]
     pub shipment_id: TransportationOptionShipmentId,
-    /**Mode of shipment transportation that this option will provide.
-
-Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.*/
+    ///Mode of shipment transportation that this option will provide.
+    ///
+    ///Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.
     #[serde(rename = "shippingMode")]
     pub shipping_mode: TransportationOptionShippingMode,
     ///Shipping program for the option. Possible values: `AMAZON_PARTNERED_CARRIER`, `USE_YOUR_OWN_CARRIER`.
@@ -10655,9 +10655,9 @@ impl<'de> ::serde::Deserialize<'de> for TransportationOptionShipmentId {
             })
     }
 }
-/**Mode of shipment transportation that this option will provide.
-
-Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.*/
+///Mode of shipment transportation that this option will provide.
+///
+///Possible values: `GROUND_SMALL_PARCEL`, `FREIGHT_LTL`, `FREIGHT_FTL_PALLET`, `FREIGHT_FTL_NONPALLET`, `OCEAN_LCL`, `OCEAN_FCL`, `AIR_SMALL_PARCEL`, `AIR_SMALL_PARCEL_EXPRESS`.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct TransportationOptionShippingMode(::std::string::String);
@@ -10980,9 +10980,9 @@ impl<'de> ::serde::Deserialize<'de> for TransportationSelectionTransportationOpt
             })
     }
 }
-/**Unit of linear measure.
-
-Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
+///Unit of linear measure.
+///
+///Known values: `IN`, `CM`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -11023,9 +11023,9 @@ impl ::std::str::FromStr for UnitOfMeasurement {
         Ok(Self(value.to_string()))
     }
 }
-/**Unit of the weight being measured.
-
-Known values: `LB`, `KG`. Other values may be returned by Amazon.*/
+///Unit of the weight being measured.
+///
+///Known values: `LB`, `KG`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

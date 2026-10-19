@@ -44,9 +44,9 @@ pub struct GetDocumentResponse {
     ///The identifier for the Data Kiosk document. This identifier is unique only in combination with a selling partner account ID.
     #[serde(rename = "documentId")]
     pub document_id: ::std::string::String,
-    /**A presigned URL that can be used to retrieve the Data Kiosk document. This URL expires after 5 minutes. If the Data Kiosk document is compressed, the `Content-Encoding` header will indicate the compression algorithm.
-
-**Note:** Most HTTP clients are capable of automatically decompressing downloaded files based on the `Content-Encoding` header.*/
+    ///A presigned URL that can be used to retrieve the Data Kiosk document. This URL expires after 5 minutes. If the Data Kiosk document is compressed, the `Content-Encoding` header will indicate the compression algorithm.
+    ///
+    ///**Note:** Most HTTP clients are capable of automatically decompressing downloaded files based on the `Content-Encoding` header.
     #[serde(rename = "documentUrl")]
     pub document_url: ::std::string::String,
 }
@@ -104,9 +104,9 @@ pub struct Query {
     pub processing_start_time: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**The processing status of the query.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.*/
+    ///The processing status of the query.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The submitted query.

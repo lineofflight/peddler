@@ -45,9 +45,9 @@ pub struct ReportReportSpecification {
     pub marketplace_ids: ::std::vec::Vec<::serde_json::Value>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    /**Type of the report.
-
-Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`. Other values may be returned by Amazon.*/
+    ///Type of the report.
+    ///
+    ///Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }

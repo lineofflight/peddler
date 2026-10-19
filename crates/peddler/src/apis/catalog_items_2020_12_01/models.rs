@@ -185,9 +185,9 @@ pub struct ItemImage {
     pub height: i64,
     ///Link, or URL, for the image.
     pub link: ::std::string::String,
-    /**Variant of the image, such as MAIN or PT01.
-
-Known values: `MAIN`, `PT01`, `PT02`, `PT03`, `PT04`, `PT05`, `PT06`, `PT07`, `PT08`, `SWCH`. Other values may be returned by Amazon.*/
+    ///Variant of the image, such as MAIN or PT01.
+    ///
+    ///Known values: `MAIN`, `PT01`, `PT02`, `PT03`, `PT04`, `PT05`, `PT06`, `PT07`, `PT08`, `SWCH`. Other values may be returned by Amazon.
     pub variant: ::std::string::String,
     ///Width of the image in pixels.
     pub width: i64,
@@ -306,9 +306,9 @@ pub struct ItemSalesRanksByMarketplace {
 pub struct ItemSearchResults {
     ///A list of items from the Amazon catalog.
     pub items: ::std::vec::Vec<Item>,
-    /**The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).
-
-Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.*/
+    ///The estimated total number of products matched by the search query (only results up to the page count limit will be returned per request regardless of the number found).
+    ///
+    ///Note: The maximum number of items (ASINs) that can be returned and paged through is 1000.
     #[serde(rename = "numberOfResults")]
     pub number_of_results: i64,
     ///If available, the nextToken and/or previousToken values required to return paginated results.
@@ -473,9 +473,9 @@ pub struct ItemVendorDetailsByMarketplace {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub product_group: ::std::option::Option<::std::string::String>,
-    /**Replenishment category associated with an Amazon catalog item.
-
-Known values: `ALLOCATED`, `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`, `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`. Other values may be returned by Amazon.*/
+    ///Replenishment category associated with an Amazon catalog item.
+    ///
+    ///Known values: `ALLOCATED`, `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`, `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`. Other values may be returned by Amazon.
     #[serde(
         rename = "replenishmentCategory",
         skip_serializing_if = "::std::option::Option::is_none"

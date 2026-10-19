@@ -48,18 +48,18 @@ pub struct ReportReportSpecification {
     pub marketplace_ids: ::std::vec::Vec<::std::string::String>,
     #[serde(rename = "reportOptions")]
     pub report_options: ReportReportSpecificationReportOptions,
-    /**The report type.
-
-Known values: `GET_VENDOR_FORECASTING_REPORT`. Other values may be returned by Amazon.*/
+    ///The report type.
+    ///
+    ///Known values: `GET_VENDOR_FORECASTING_REPORT`. Other values may be returned by Amazon.
     #[serde(rename = "reportType")]
     pub report_type: ::std::string::String,
 }
 ///Report options specifying parameters such as sellingProgram.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ReportReportSpecificationReportOptions {
-    /**The selling program.
-
-Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.*/
+    ///The selling program.
+    ///
+    ///Known values: `RETAIL`, `FRESH`. Other values may be returned by Amazon.
     #[serde(rename = "sellingProgram")]
     pub selling_program: ::std::string::String,
 }

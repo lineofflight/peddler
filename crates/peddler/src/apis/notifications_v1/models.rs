@@ -14,15 +14,15 @@ pub struct AggregationFilter {
 ///A container that holds all of the necessary properties to configure the aggregation of notifications.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct AggregationSettings {
-    /**The supported time period to use to perform marketplace-ASIN level aggregation.
-
-Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.*/
+    ///The supported time period to use to perform marketplace-ASIN level aggregation.
+    ///
+    ///Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
     #[serde(rename = "aggregationTimePeriod")]
     pub aggregation_time_period: AggregationTimePeriod,
 }
-/**The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
-
-Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.*/
+///The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
+///
+///Known values: `FiveMinutes`, `TenMinutes`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -345,9 +345,9 @@ pub struct EventFilter {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub aggregation_settings: ::std::option::Option<AggregationSettings>,
-    /**An `eventFilterType` value that the `notificationType` supports. The subscription service uses the `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType` supports an `eventFilterType`, refer to [Notification Type Values]( https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
-
-Known values: `ANY_OFFER_CHANGED`, `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`. Other values may be returned by Amazon.*/
+    ///An `eventFilterType` value that the `notificationType` supports. The subscription service uses the `eventFilterType` to determine the type of event filter. To determine if a specific `notificationType` supports an `eventFilterType`, refer to [Notification Type Values]( https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
+    ///
+    ///Known values: `ANY_OFFER_CHANGED`, `ORDER_CHANGE`, `SHIPMENT_TRACKING_MILESTONE_CHANGED`. Other values may be returned by Amazon.
     #[serde(rename = "eventFilterType")]
     pub event_filter_type: ::std::string::String,
     #[serde(
@@ -459,9 +459,9 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for Marketplac
         Self(value)
     }
 }
-/**The supported order change type of ORDER_CHANGE notification.
-
-Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.*/
+///The supported order change type of ORDER_CHANGE notification.
+///
+///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -512,9 +512,9 @@ pub struct OrderChangeTypeFilter {
     )]
     pub order_change_types: ::std::option::Option<OrderChangeTypes>,
 }
-/**A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
-
-Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.*/
+///A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
+///
+///Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderChangeTypes(pub ::std::vec::Vec<OrderChangeTypeEnum>);
@@ -543,16 +543,16 @@ pub struct ProcessingDirective {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub event_filter: ::std::option::Option<EventFilter>,
-    /**An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
- Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.*/
+    ///An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
+    /// Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
     #[serde(
         rename = "filterExpression",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub filter_expression: ::std::option::Option<ProcessingDirectiveFilterExpression>,
 }
-/**An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
- Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.*/
+///An expression for filtering events before delivery to destination based on the notification payload (example: FulfillmentOrderStatusNotification.FulfillmentOrderStatus == `SHIPPED` ). The `filterExpression` is a string that follows the CEL expression syntax (https://github.com/google/cel-spec) excluding arithmetic operators (+, -, *, /, %) and list/map indexing ([]). Refer to Notification Type Values to determine if filter Expression is supported for a Notification Type. Refer to CEL Operators (https://developer-docs.amazon.com/sp-api/docs/filter-notification-subscriptions) to see if a CEL operator is supported.
+/// Note: eventFilter and filterExpression are mutually exclusive. You can use filterExpression to replace existing eventFilter configurations.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct ProcessingDirectiveFilterExpression(::std::string::String);

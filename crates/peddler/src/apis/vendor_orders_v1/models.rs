@@ -277,17 +277,17 @@ pub struct ImportDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub import_containers: ::std::option::Option<ImportDetailsImportContainers>,
-    /**Incoterms (International Commercial Terms) are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices. This is for import purchase orders only.
-
-Known values: `ExWorks`, `FreeCarrier`, `FreeOnBoard`, `FreeAlongSideShip`, `CarriagePaidTo`, `CostAndFreight`, `CarriageAndInsurancePaidTo`, `CostInsuranceAndFreight`, `DeliveredAtTerminal`, `DeliveredAtPlace`, `DeliverDutyPaid`. Other values may be returned by Amazon.*/
+    ///Incoterms (International Commercial Terms) are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices. This is for import purchase orders only.
+    ///
+    ///Known values: `ExWorks`, `FreeCarrier`, `FreeOnBoard`, `FreeAlongSideShip`, `CarriagePaidTo`, `CostAndFreight`, `CarriageAndInsurancePaidTo`, `CostInsuranceAndFreight`, `DeliveredAtTerminal`, `DeliveredAtPlace`, `DeliverDutyPaid`. Other values may be returned by Amazon.
     #[serde(
         rename = "internationalCommercialTerms",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub international_commercial_terms: ::std::option::Option<::std::string::String>,
-    /**If the recipient requests, contains the shipment method of payment. This is for import PO's only.
-
-Known values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`, `FOBPortOfCall`, `PrepaidBySeller`, `PaidBySeller`. Other values may be returned by Amazon.*/
+    ///If the recipient requests, contains the shipment method of payment. This is for import PO's only.
+    ///
+    ///Known values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`, `FOBPortOfCall`, `PrepaidBySeller`, `PaidBySeller`. Other values may be returned by Amazon.
     #[serde(
         rename = "methodOfPayment",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -420,9 +420,9 @@ pub struct ItemQuantity {
     ///Acknowledged quantity. This value should not be zero.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<i64>,
-    /**Unit of measure for the acknowledged quantity.
-
-Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.*/
+    ///Unit of measure for the acknowledged quantity.
+    ///
+    ///Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.
     #[serde(
         rename = "unitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -463,9 +463,9 @@ pub struct Money {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub currency_code: ::std::option::Option<MoneyCurrencyCode>,
-    /**The unit of measure for prices of items sold by weight. If this field is absent, the item is sold by eaches.
-
-Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
+    ///The unit of measure for prices of items sold by weight. If this field is absent, the item is sold by eaches.
+    ///
+    ///Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
     #[serde(
         rename = "unitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -538,9 +538,9 @@ pub struct Order {
     ///The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ::std::string::String,
-    /**This field will contain the current state of the purchase order.
-
-Known values: `New`, `Acknowledged`, `Closed`. Other values may be returned by Amazon.*/
+    ///This field will contain the current state of the purchase order.
+    ///
+    ///Known values: `New`, `Acknowledged`, `Closed`. Other values may be returned by Amazon.
     #[serde(rename = "purchaseOrderState")]
     pub purchase_order_state: ::std::string::String,
 }
@@ -634,9 +634,9 @@ pub struct OrderDetails {
     pub import_details: ::std::option::Option<ImportDetails>,
     ///A list of items in this purchase order.
     pub items: ::std::vec::Vec<OrderItem>,
-    /**Payment method used.
-
-Known values: `Invoice`, `Consignment`, `CreditCard`, `Prepaid`. Other values may be returned by Amazon.*/
+    ///Payment method used.
+    ///
+    ///Known values: `Invoice`, `Consignment`, `CreditCard`, `Prepaid`. Other values may be returned by Amazon.
     #[serde(
         rename = "paymentMethod",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -656,9 +656,9 @@ Known values: `Invoice`, `Consignment`, `CreditCard`, `Prepaid`. Other values ma
     ///The date when current purchase order state was changed. Current purchase order state is available in the field 'purchaseOrderState'. Must be in ISO-8601 date/time format.
     #[serde(rename = "purchaseOrderStateChangedDate")]
     pub purchase_order_state_changed_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    /**Type of purchase order.
-
-Known values: `RegularOrder`, `ConsignedOrder`, `NewProductIntroduction`, `RushOrder`. Other values may be returned by Amazon.*/
+    ///Type of purchase order.
+    ///
+    ///Known values: `RegularOrder`, `ConsignedOrder`, `NewProductIntroduction`, `RushOrder`. Other values may be returned by Amazon.
     #[serde(
         rename = "purchaseOrderType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -723,14 +723,14 @@ pub struct OrderItemAcknowledgement {
     ///Details of quantity acknowledged with the above acknowledgement code.
     #[serde(rename = "acknowledgedQuantity")]
     pub acknowledged_quantity: ItemQuantity,
-    /**This indicates the acknowledgement code.
-
-Known values: `Accepted`, `Backordered`, `Rejected`. Other values may be returned by Amazon.*/
+    ///This indicates the acknowledgement code.
+    ///
+    ///Known values: `Accepted`, `Backordered`, `Rejected`. Other values may be returned by Amazon.
     #[serde(rename = "acknowledgementCode")]
     pub acknowledgement_code: ::std::string::String,
-    /**Indicates the reason for rejection.
-
-Known values: `TemporarilyUnavailable`, `InvalidProductIdentifier`, `ObsoleteProduct`. Other values may be returned by Amazon.*/
+    ///Indicates the reason for rejection.
+    ///
+    ///Known values: `TemporarilyUnavailable`, `InvalidProductIdentifier`, `ObsoleteProduct`. Other values may be returned by Amazon.
     #[serde(
         rename = "rejectionReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -815,9 +815,9 @@ pub struct OrderItemStatusAcknowledgementStatus {
     pub acknowledgement_status_details: ::std::option::Option<
         ::std::vec::Vec<AcknowledgementStatusDetails>,
     >,
-    /**Confirmation status of line item.
-
-Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`. Other values may be returned by Amazon.*/
+    ///Confirmation status of line item.
+    ///
+    ///Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`. Other values may be returned by Amazon.
     #[serde(
         rename = "confirmationStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -859,9 +859,9 @@ pub struct OrderItemStatusReceivingStatus {
     pub last_receive_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**Receive status of the line item.
-
-Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`. Other values may be returned by Amazon.*/
+    ///Receive status of the line item.
+    ///
+    ///Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`. Other values may be returned by Amazon.
     #[serde(
         rename = "receiveStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -915,9 +915,9 @@ pub struct OrderStatus {
     ///The buyer's purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
     #[serde(rename = "purchaseOrderNumber")]
     pub purchase_order_number: ::std::string::String,
-    /**The status of the buyer's purchase order for this order.
-
-Known values: `OPEN`, `CLOSED`. Other values may be returned by Amazon.*/
+    ///The status of the buyer's purchase order for this order.
+    ///
+    ///Known values: `OPEN`, `CLOSED`. Other values may be returned by Amazon.
     #[serde(rename = "purchaseOrderStatus")]
     pub purchase_order_status: ::std::string::String,
     ///Name/Address and tax details of the selling party.
@@ -994,9 +994,9 @@ pub struct TaxRegistrationDetails {
     ///Tax registration number for the entity. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(rename = "taxRegistrationType")]
     pub tax_registration_type: ::std::string::String,
 }

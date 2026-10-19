@@ -103,9 +103,9 @@ pub struct Export {
     pub generate_export_started_at: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**The identifier for the export documents. To get the information required to retrieve the export document's contents, pass each ID in the `getInvoicesDocument` operation.
-
-This list is empty until the status is `DONE`.*/
+    ///The identifier for the export documents. To get the information required to retrieve the export document's contents, pass each ID in the `getInvoicesDocument` operation.
+    ///
+    ///This list is empty until the status is `DONE`.
     #[serde(
         rename = "invoicesDocumentIds",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -153,9 +153,9 @@ pub struct ExportInvoicesRequest {
     ///The series number of the invoices you want included in the response.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub series: ::std::option::Option<::std::string::String>,
-    /**A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
-
-Min count: 1*/
+    ///A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
+    ///
+    ///Min count: 1
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub statuses: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     #[serde(
@@ -183,9 +183,9 @@ pub struct ExportInvoicesResponse {
     #[serde(rename = "exportId", skip_serializing_if = "::std::option::Option::is_none")]
     pub export_id: ::std::option::Option<::std::string::String>,
 }
-/**The current status of the request.
-
-Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.*/
+///The current status of the request.
+///
+///Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -226,9 +226,9 @@ impl ::std::str::FromStr for ExportStatus {
         Ok(Self(value.to_string()))
     }
 }
-/**Supported invoice file extensions.
-
-Known values: `XML`. Other values may be returned by Amazon.*/
+///Supported invoice file extensions.
+///
+///Known values: `XML`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -325,9 +325,9 @@ pub struct GetInvoicesResponse {
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-/**The current status of a government invoice creation request.
-
-Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.*/
+///The current status of a government invoice creation request.
+///
+///Known values: `PROCESSING`, `SUCCESS`, `ERROR`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

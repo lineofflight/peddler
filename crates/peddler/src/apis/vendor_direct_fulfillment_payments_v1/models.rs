@@ -13,9 +13,9 @@ pub struct AdditionalDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub language_code: ::std::option::Option<::std::string::String>,
-    /**The type of the additional information provided by the selling party.
-
-Known values: `SUR`, `OCR`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.*/
+    ///The type of the additional information provided by the selling party.
+    ///
+    ///Known values: `SUR`, `OCR`, `TaxExemptReason`, `LegalTerms`, `RegulatoryNote`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -25,9 +25,9 @@ pub struct AdditionalPartyIdentification {
     ///The value of the additional party identifier.
     #[serde(rename = "identificationNumber")]
     pub identification_number: ::std::string::String,
-    /**The type of the additional party identifier.
-
-Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.*/
+    ///The type of the additional party identifier.
+    ///
+    ///Known values: `FR_SIREN`, `DE_WIDNR`. Other values may be returned by Amazon.
     #[serde(rename = "identificationType")]
     pub identification_type: ::std::string::String,
 }
@@ -87,9 +87,9 @@ pub struct AllowanceDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    /**Type of the allowance applied.
-
-Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.*/
+    ///Type of the allowance applied.
+    ///
+    ///Known values: `Discount`, `DiscountIncentive`, `Defective`, `Promotional`, `UnsaleableMerchandise`, `Special`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -104,9 +104,9 @@ pub struct ChargeDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_details: ::std::option::Option<::std::vec::Vec<TaxDetail>>,
-    /**Type of charge applied.
-
-Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`. Other values may be returned by Amazon.*/
+    ///Type of charge applied.
+    ///
+    ///Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -434,9 +434,9 @@ pub struct TaxDetail {
     ///Tax percentage applied. Percentage must be expressed in decimal.
     #[serde(rename = "taxRate", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_rate: ::std::option::Option<Decimal>,
-    /**Type of the tax applied.
-
-Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.*/
+    ///Type of the tax applied.
+    ///
+    ///Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`. Other values may be returned by Amazon.
     #[serde(rename = "taxType")]
     pub tax_type: ::std::string::String,
     ///This field will contain the invoice amount that is taxable at the rate specified in the tax rate field.
@@ -464,9 +464,9 @@ pub struct TaxRegistrationDetail {
     ///Tax registration number for the entity. For example, VAT ID, Consumption Tax ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`, `LocalTaxNumber`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"

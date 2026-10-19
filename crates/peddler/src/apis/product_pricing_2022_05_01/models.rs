@@ -82,9 +82,9 @@ pub struct CompetitiveSummaryBatchResponse {
     ///The response list for the `competitiveSummaryBatch` operation.
     pub responses: CompetitiveSummaryResponseList,
 }
-/**The supported data types in the `getCompetitiveSummary` API.
-
-Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.*/
+///The supported data types in the `getCompetitiveSummary` API.
+///
+///Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -130,9 +130,9 @@ impl ::std::str::FromStr for CompetitiveSummaryIncludedData {
 pub struct CompetitiveSummaryRequest {
     ///The Amazon Standard Identification Number for the item.
     pub asin: Asin,
-    /**The list of requested competitive pricing data for the product.
-
-Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.*/
+    ///The list of requested competitive pricing data for the product.
+    ///
+    ///Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, `similarItems`. Other values may be returned by Amazon.
     #[serde(rename = "includedData")]
     pub included_data: ::std::vec::Vec<CompetitiveSummaryIncludedData>,
     ///The list of `lowestPricedOffersInput` parameters that are used to build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is requested in `includedData`
@@ -146,9 +146,9 @@ Known values: `featuredBuyingOptions`, `referencePrices`, `lowestPricedOffers`, 
     ///An Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: MarketplaceId,
-    /**HTTP method type
-
-Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.*/
+    ///HTTP method type
+    ///
+    ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
     ///The URI associated with the individual APIs that are called as part of the batch request. For `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
     pub uri: HttpUri,
@@ -245,9 +245,9 @@ for CompetitiveSummaryResponseList {
         Self(value)
     }
 }
-/**The condition of the item.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+///The condition of the item.
+///
+///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -369,9 +369,9 @@ pub struct Errors {
 ///Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedBuyingOption {
-    /**The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
-
-Known values: `New`. Other values may be returned by Amazon.*/
+    ///The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
+    ///
+    ///Known values: `New`. Other values may be returned by Amazon.
     #[serde(rename = "buyingOptionType")]
     pub buying_option_type: ::std::string::String,
     ///A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.
@@ -381,9 +381,9 @@ Known values: `New`. Other values may be returned by Amazon.*/
 ///Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOffer {
-    /**The item condition.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///The item condition.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<Condition>,
     ///An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.
@@ -559,18 +559,18 @@ for FeaturedOfferExpectedPriceResultList {
 ///Describes the segment in which the offer is featured.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FeaturedOfferSegment {
-    /**The customer membership type that makes up this segment
-
-Known values: `PRIME`, `NON_PRIME`, `DEFAULT`. Other values may be returned by Amazon.*/
+    ///The customer membership type that makes up this segment
+    ///
+    ///Known values: `PRIME`, `NON_PRIME`, `DEFAULT`. Other values may be returned by Amazon.
     #[serde(rename = "customerMembership")]
     pub customer_membership: ::std::string::String,
     ///The details about the segment.
     #[serde(rename = "segmentDetails")]
     pub segment_details: SegmentDetails,
 }
-/**Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
-
-Known values: `AFN`, `MFN`. Other values may be returned by Amazon.*/
+///Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+///
+///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -679,9 +679,9 @@ impl ::std::convert::From<
         Self(value)
     }
 }
-/**The HTTP method associated with an individual request within a batch.
-
-Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.*/
+///The HTTP method associated with an individual request within a batch.
+///
+///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -813,9 +813,9 @@ pub struct LowestPricedOffer {
 ///The input required for building `LowestPricedOffers` data in the response.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LowestPricedOffersInput {
-    /**The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`. `New` is the default value for `itemCondition`.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`. `New` is the default value for `itemCondition`.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(rename = "itemCondition")]
     pub item_condition: Condition,
     ///The input parameter specifies the type of offers requested for `LowestPricedOffers`. This applies to `Consumer` and `Business` offers. `Consumer` is the default `offerType`.
@@ -879,9 +879,9 @@ pub struct MoneyType {
 ///The offer data of a product.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Offer {
-    /**Item Condition.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///Item Condition.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     pub condition: Condition,
     ///The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network).
     #[serde(rename = "fulfillmentType")]
@@ -910,9 +910,9 @@ Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values 
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_options: ::std::option::Option<::std::vec::Vec<ShippingOption>>,
-    /**The item subcondition of the offer.
-
-Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.*/
+    ///The item subcondition of the offer.
+    ///
+    ///Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "subCondition",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -924,9 +924,9 @@ Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `
 pub struct OfferIdentifier {
     ///The Amazon identifier for the item.
     pub asin: Asin,
-    /**The fulfillment type for the offer.
-
-Known values: `AFN`, `MFN`. Other values may be returned by Amazon.*/
+    ///The fulfillment type for the offer.
+    ///
+    ///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -990,9 +990,9 @@ pub struct Price {
 ///Amazon Prime details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PrimeDetails {
-    /**Indicates whether the offer is an Amazon Prime offer.
-
-Known values: `NATIONAL`, `REGIONAL`, `NONE`. Other values may be returned by Amazon.*/
+    ///Indicates whether the offer is an Amazon Prime offer.
+    ///
+    ///Known values: `NATIONAL`, `REGIONAL`, `NONE`. Other values may be returned by Amazon.
     pub eligibility: ::std::string::String,
 }
 ///A promotion applicable to the offer.
@@ -1043,11 +1043,11 @@ pub struct PromotionSavings {
     )]
     pub discounted_price: ::std::option::Option<MoneyType>,
 }
-/**Indicates the type of promotion based on the customer-facing experience. Possible values include:
-
-- COUPON: The offer has a live coupon that customers can clip and apply at checkout.
-- DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.
-- BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category*/
+///Indicates the type of promotion based on the customer-facing experience. Possible values include:
+///
+///- COUPON: The offer has a live coupon that customers can clip and apply at checkout.
+///- DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.
+///- BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1136,10 +1136,10 @@ pub struct PurchaseRequirements {
 pub struct QuantityThreshold {
     ///Number of items required to meet this purchase condition.
     pub quantity: ::std::num::NonZeroU64,
-    /**Indicates how the quantity requirement is evaluated. Possible values include:
-
-- AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
-- FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).*/
+    ///Indicates how the quantity requirement is evaluated. Possible values include:
+    ///
+    ///- AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
+    ///- FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -1189,9 +1189,9 @@ pub struct SegmentDetails {
 ///A product offer with segment information indicating where it's featured.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct SegmentedFeaturedOffer {
-    /**Item Condition.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///Item Condition.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     pub condition: Condition,
     ///The list of segment information in which the offer is featured.
     #[serde(rename = "featuredOfferSegments")]
@@ -1223,9 +1223,9 @@ Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values 
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipping_options: ::std::option::Option<::std::vec::Vec<ShippingOption>>,
-    /**The item subcondition of the offer.
-
-Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.*/
+    ///The item subcondition of the offer.
+    ///
+    ///Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `RefurbishedWarranty`, `Refurbished`, `OpenBox`, `Other`. Other values may be returned by Amazon.
     #[serde(
         rename = "subCondition",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1237,9 +1237,9 @@ Known values: `New`, `Mint`, `VeryGood`, `Good`, `Acceptable`, `Poor`, `Club`, `
 pub struct ShippingOption {
     ///Shipping price for the offer.
     pub price: MoneyType,
-    /**The type of shipping option.
-
-Known values: `DEFAULT`. Other values may be returned by Amazon.*/
+    ///The type of shipping option.
+    ///
+    ///Known values: `DEFAULT`. Other values may be returned by Amazon.
     #[serde(rename = "shippingOptionType")]
     pub shipping_option_type: ::std::string::String,
 }

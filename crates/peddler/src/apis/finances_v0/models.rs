@@ -67,18 +67,18 @@ pub struct AdjustmentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub adjustment_item_list: ::std::option::Option<AdjustmentItemList>,
-    /**The type of adjustment.
-
-Possible values:
-
-* `FBAInventoryReimbursement`: An FBA inventory reimbursement to a seller's account. This occurs if a seller's inventory is damaged.
-* `ReserveEvent`: A reserve event that is generated at the time a settlement period closes. This occurs when some money from a seller's account is held back.
-* `PostageBilling`: The amount paid by a seller for shipping labels.
-* `PostageRefund`: The reimbursement of shipping labels purchased for orders that were canceled or refunded.
-* `LostOrDamagedReimbursement`: An Amazon Easy Ship reimbursement to a seller's account for a package that we lost or damaged.
-* `CanceledButPickedUpReimbursement`: An Amazon Easy Ship reimbursement to a seller's account. This occurs when a package is picked up and the order is subsequently canceled. This value is used only in the India marketplace.
-* `ReimbursementClawback`: An Amazon Easy Ship reimbursement clawback from a seller's account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
-* `SellerRewards`: An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.*/
+    ///The type of adjustment.
+    ///
+    ///Possible values:
+    ///
+    ///* `FBAInventoryReimbursement`: An FBA inventory reimbursement to a seller's account. This occurs if a seller's inventory is damaged.
+    ///* `ReserveEvent`: A reserve event that is generated at the time a settlement period closes. This occurs when some money from a seller's account is held back.
+    ///* `PostageBilling`: The amount paid by a seller for shipping labels.
+    ///* `PostageRefund`: The reimbursement of shipping labels purchased for orders that were canceled or refunded.
+    ///* `LostOrDamagedReimbursement`: An Amazon Easy Ship reimbursement to a seller's account for a package that we lost or damaged.
+    ///* `CanceledButPickedUpReimbursement`: An Amazon Easy Ship reimbursement to a seller's account. This occurs when a package is picked up and the order is subsequently canceled. This value is used only in the India marketplace.
+    ///* `ReimbursementClawback`: An Amazon Easy Ship reimbursement clawback from a seller's account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
+    ///* `SellerRewards`: An award credited to a seller's account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.
     #[serde(
         rename = "AdjustmentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -222,12 +222,12 @@ pub struct AffordabilityExpenseEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_expense: ::std::option::Option<Currency>,
-    /**The type of transaction.
-
-Possible values:
-
-* `Charge`: an affordability promotion expense.
-* `Refund`: an affordability promotion expense reversal.*/
+    ///The type of transaction.
+    ///
+    ///Possible values:
+    ///
+    ///* `Charge`: an affordability promotion expense.
+    ///* `Refund`: an affordability promotion expense reversal.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -351,73 +351,73 @@ for CapacityReservationBillingEventList {
         Self(value)
     }
 }
-/**A charge on the seller's account.
-
-Possible values:
-
-* `Principal`: The selling price of the order item, which is equal to the selling price of the item multiplied by the quantity ordered.
-
-* `Tax`: The tax on the principal that is collected by the seller.
-
-* `MarketplaceFacilitatorTax-Principal`: The tax that is withheld on the principal.
-
-* `MarketplaceFacilitatorTax-Shipping`: The tax that is withheld on the `ShippingCharge`.
-
-* `MarketplaceFacilitatorTax-Giftwrap`: The tax that is withheld on the Giftwrap charge.
-
-* `MarketplaceFacilitatorTax-Other`: The tax that is withheld on other miscellaneous charges.
-
-* `Discount`: The promotional discount for an order item.
-
-* `TaxDiscount`: The tax that is deducted for promotional rebates.
-
-* `CODItemCharge`: The COD charge for an order item.
-
-* `CODItemTaxCharge`: The tax that is collected by the seller on a `CODItemCharge`.
-
-* `CODOrderCharge`: The COD charge for an order.
-
-* `CODOrderTaxCharge`: The tax that is collected by the seller on a `CODOrderCharge`.
-
-* `CODShippingCharge`: Shipping charges for a COD order.
-
-* `CODShippingTaxCharge`: The tax that is collected by the seller on a `CODShippingCharge`.
-
-* `ShippingCharge`: The shipping charge.
-
-* `ShippingTax`: The tax that is collected by the seller on a `ShippingCharge`.
-
-* `Goodwill`: The amount of money that is given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
-
-* `Giftwrap`: The gift wrap charge.
-
-* `GiftwrapTax`: The tax that is collected by the seller on a gift wrap charge.
-
-* `RestockingFee`: The charge that is applied to the buyer when returning a product in certain categories.
-
-* `ReturnShipping`: The amount of money that is given to the buyer to compensate for shipping the item back if we are at fault.
-
-* `PointsFee`: The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
-
-* `GenericDeduction`: A generic bad debt deduction.
-
-* `FreeReplacementReturnShipping`: The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
-
-* `PaymentMethodFee`: The fee that is collected for certain payment methods in certain marketplaces.
-
-* `ExportCharge`: The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
-
-* `SAFE-TReimbursement`: The SAFE-T claim amount for the item.
-
-* `TCS-CGST`: Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
-
-* `TCS-SGST`: Tax Collected at Source for State Goods and Services Tax (SGST).
-
-* `TCS-IGST`: Tax Collected at Source for Integrated Goods and Services Tax (IGST).
-
-* `TCS-UTGST`: Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
-
-* `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.*/
+///A charge on the seller's account.
+///
+///Possible values:
+///
+///* `Principal`: The selling price of the order item, which is equal to the selling price of the item multiplied by the quantity ordered.
+///
+///* `Tax`: The tax on the principal that is collected by the seller.
+///
+///* `MarketplaceFacilitatorTax-Principal`: The tax that is withheld on the principal.
+///
+///* `MarketplaceFacilitatorTax-Shipping`: The tax that is withheld on the `ShippingCharge`.
+///
+///* `MarketplaceFacilitatorTax-Giftwrap`: The tax that is withheld on the Giftwrap charge.
+///
+///* `MarketplaceFacilitatorTax-Other`: The tax that is withheld on other miscellaneous charges.
+///
+///* `Discount`: The promotional discount for an order item.
+///
+///* `TaxDiscount`: The tax that is deducted for promotional rebates.
+///
+///* `CODItemCharge`: The COD charge for an order item.
+///
+///* `CODItemTaxCharge`: The tax that is collected by the seller on a `CODItemCharge`.
+///
+///* `CODOrderCharge`: The COD charge for an order.
+///
+///* `CODOrderTaxCharge`: The tax that is collected by the seller on a `CODOrderCharge`.
+///
+///* `CODShippingCharge`: Shipping charges for a COD order.
+///
+///* `CODShippingTaxCharge`: The tax that is collected by the seller on a `CODShippingCharge`.
+///
+///* `ShippingCharge`: The shipping charge.
+///
+///* `ShippingTax`: The tax that is collected by the seller on a `ShippingCharge`.
+///
+///* `Goodwill`: The amount of money that is given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+///
+///* `Giftwrap`: The gift wrap charge.
+///
+///* `GiftwrapTax`: The tax that is collected by the seller on a gift wrap charge.
+///
+///* `RestockingFee`: The charge that is applied to the buyer when returning a product in certain categories.
+///
+///* `ReturnShipping`: The amount of money that is given to the buyer to compensate for shipping the item back if we are at fault.
+///
+///* `PointsFee`: The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+///
+///* `GenericDeduction`: A generic bad debt deduction.
+///
+///* `FreeReplacementReturnShipping`: The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+///
+///* `PaymentMethodFee`: The fee that is collected for certain payment methods in certain marketplaces.
+///
+///* `ExportCharge`: The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+///
+///* `SAFE-TReimbursement`: The SAFE-T claim amount for the item.
+///
+///* `TCS-CGST`: Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+///
+///* `TCS-SGST`: Tax Collected at Source for State Goods and Services Tax (SGST).
+///
+///* `TCS-IGST`: Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+///
+///* `TCS-UTGST`: Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+///
+///* `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ChargeComponent {
     ///The amount of the charge.
@@ -716,13 +716,13 @@ pub struct DebtRecoveryEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub debt_recovery_item_list: ::std::option::Option<DebtRecoveryItemList>,
-    /**The debt recovery type.
-
-Possible values:
-
-* `DebtPayment`
-* `DebtPaymentFailure`
-* `DebtAdjustment`*/
+    ///The debt recovery type.
+    ///
+    ///Possible values:
+    ///
+    ///* `DebtPayment`
+    ///* `DebtPaymentFailure`
+    ///* `DebtAdjustment`
     #[serde(
         rename = "DebtRecoveryType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -818,21 +818,21 @@ pub struct DirectPayment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub direct_payment_amount: ::std::option::Option<Currency>,
-    /**The type of payment.
-
-Possible values:
-
-* `StoredValueCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a stored value card.
-
-* `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
-
-* `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a private label credit card offered by Amazon.
-
-* `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
-
-* `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
-
-* `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.*/
+    ///The type of payment.
+    ///
+    ///Possible values:
+    ///
+    ///* `StoredValueCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a stored value card.
+    ///
+    ///* `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
+    ///
+    ///* `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller's account because the seller received money through a private label credit card offered by Amazon.
+    ///
+    ///* `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
+    ///
+    ///* `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
+    ///
+    ///* `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.
     #[serde(
         rename = "DirectPaymentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1137,12 +1137,12 @@ pub struct FinancialEventGroup {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub original_total: ::std::option::Option<Currency>,
-    /**The processing status of the financial event group indicates whether the balance of the financial event group is settled.
-
-Possible values:
-
-* `Open`
-* `Closed`*/
+    ///The processing status of the financial event group indicates whether the balance of the financial event group is settled.
+    ///
+    ///Possible values:
+    ///
+    ///* `Open`
+    ///* `Closed`
     #[serde(
         rename = "ProcessingStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1485,15 +1485,15 @@ pub struct LoanServicingEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub loan_amount: ::std::option::Option<Currency>,
-    /**The type of event.
-
-Possible values:
-
-* `LoanAdvance`
-
-* `LoanPayment`
-
-* `LoanRefund`*/
+    ///The type of event.
+    ///
+    ///Possible values:
+    ///
+    ///* `LoanAdvance`
+    ///
+    ///* `LoanPayment`
+    ///
+    ///* `LoanRefund`
     #[serde(
         rename = "SourceBusinessEventType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1564,13 +1564,13 @@ pub struct NetworkComminglingTransactionEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_exclusive_amount: ::std::option::Option<Currency>,
-    /**The type of network item swap.
-
-Possible values:
-
-* `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
-
-* `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.*/
+    ///The type of network item swap.
+    ///
+    ///Possible values:
+    ///
+    ///* `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
+    ///
+    ///* `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1622,23 +1622,23 @@ pub struct PayWithAmazonEvent {
     ///A list of fees associated with the event.
     #[serde(rename = "FeeList", skip_serializing_if = "::std::option::Option::is_none")]
     pub fee_list: ::std::option::Option<FeeComponentList>,
-    /**The fulfillment channel.
-
-Possible values:
-
-* `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
-
-* `MFN`: Merchant Fulfillment Network (self-fulfilled)*/
+    ///The fulfillment channel.
+    ///
+    ///Possible values:
+    ///
+    ///* `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
+    ///
+    ///* `MFN`: Merchant Fulfillment Network (self-fulfilled)
     #[serde(
         rename = "FulfillmentChannel",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub fulfillment_channel: ::std::option::Option<::std::string::String>,
-    /**The type of payment.
-
-Possible values:
-
-* `Sales`*/
+    ///The type of payment.
+    ///
+    ///Possible values:
+    ///
+    ///* `Sales`
     #[serde(
         rename = "PaymentAmountType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1715,13 +1715,13 @@ pub struct ProductAdsPaymentEvent {
     ///Tax amount of the transaction.
     #[serde(rename = "taxValue", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_value: ::std::option::Option<Currency>,
-    /**Indicates if the transaction is for a charge or a refund.
-
-Possible values:
-
-* `charge`
-
-* `refund`*/
+    ///Indicates if the transaction is for a charge or a refund.
+    ///
+    ///Possible values:
+    ///
+    ///* `charge`
+    ///
+    ///* `refund`
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1830,11 +1830,11 @@ pub struct RemovalShipmentAdjustmentEvent {
     pub removal_shipment_item_adjustment_list: ::std::option::Option<
         ::std::vec::Vec<RemovalShipmentItemAdjustment>,
     >,
-    /**The type of removal order.
-
-Possible values:
-
-* `WHOLESALE_LIQUIDATION`.*/
+    ///The type of removal order.
+    ///
+    ///Possible values:
+    ///
+    ///* `WHOLESALE_LIQUIDATION`.
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1895,11 +1895,11 @@ pub struct RemovalShipmentEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub store_name: ::std::option::Option<::std::string::String>,
-    /**The type of removal order.
-
-Possible values:
-
-* `WHOLESALE_LIQUIDATION`*/
+    ///The type of removal order.
+    ///
+    ///Possible values:
+    ///
+    ///* `WHOLESALE_LIQUIDATION`
     #[serde(
         rename = "TransactionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1961,12 +1961,12 @@ pub struct RemovalShipmentItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount: ::std::option::Option<Currency>,
-    /**The tax collection model that is applied to the item.
-
-Possible values:
-
-* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.*/
+    ///The tax collection model that is applied to the item.
+    ///
+    ///Possible values:
+    ///
+    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2012,12 +2012,12 @@ pub struct RemovalShipmentItemAdjustment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub tax_amount_adjustment: ::std::option::Option<Currency>,
-    /**The tax collection model that is applied to the item.
-
-Possible values:
-
-* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.*/
+    ///The tax collection model that is applied to the item.
+    ///
+    ///Possible values:
+    ///
+    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2085,23 +2085,23 @@ pub struct RentalTransactionEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rental_charge_list: ::std::option::Option<ChargeComponentList>,
-    /**The type of rental event.
-
-Possible values:
-
-* `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
-
-* `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
-
-* `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
-
-* `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
-
-* `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
-
-* `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
-
-* `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.*/
+    ///The type of rental event.
+    ///
+    ///Possible values:
+    ///
+    ///* `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
+    ///
+    ///* `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
+    ///
+    ///* `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
+    ///
+    ///* `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
+    ///
+    ///* `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
+    ///
+    ///* `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
+    ///
+    ///* `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.
     #[serde(
         rename = "RentalEventType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2178,13 +2178,13 @@ pub struct RetrochargeEvent {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub posted_date: ::std::option::Option<Date>,
-    /**The type of event.
-
-Possible values:
-
-* `Retrocharge`
-
-* `RetrochargeReversal`*/
+    ///The type of event.
+    ///
+    ///Possible values:
+    ///
+    ///* `Retrocharge`
+    ///
+    ///* `RetrochargeReversal`
     #[serde(
         rename = "RetrochargeEventType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2828,12 +2828,12 @@ for SolutionProviderCreditEventList {
 ///Information about the taxes withheld.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxWithheldComponent {
-    /**The tax collection model applied to the item.
-
-Possible values:
-
-* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.*/
+    ///The tax collection model applied to the item.
+    ///
+    ///Possible values:
+    ///
+    ///* `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+    ///* `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.
     #[serde(
         rename = "TaxCollectionModel",
         skip_serializing_if = "::std::option::Option::is_none"

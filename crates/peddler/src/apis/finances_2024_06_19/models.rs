@@ -30,9 +30,9 @@ pub struct Balance {
     ///The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
     #[serde(rename = "asOfDate", skip_serializing_if = "::std::option::Option::is_none")]
     pub as_of_date: ::std::option::Option<Date>,
-    /**The type of balance.
-
-Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`. Other values may be returned by Amazon.*/
+    ///The type of balance.
+    ///
+    ///Known values: `AVAILABLE`, `RESERVED`, `ACCOUNT_LEVEL_RESERVE`, `DEFERRED`, `TOTAL`. Other values may be returned by Amazon.
     #[serde(
         rename = "balanceType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -161,9 +161,9 @@ impl ::std::convert::From<::std::vec::Vec<Breakdown>> for Breakdowns {
 ///Information about the line of business associated with a transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct BusinessContext {
-    /**The store name associated with the transaction.
-
-Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.*/
+    ///The store name associated with the transaction.
+    ///
+    ///Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.
     #[serde(
         rename = "storeName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -182,9 +182,9 @@ pub struct Context {
     ///The type of context.
     #[serde(rename = "contextType")]
     pub context_type: ::std::string::String,
-    /**The deferral policy applied to the transaction.
-
-**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)*/
+    ///The deferral policy applied to the transaction.
+    ///
+    ///**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
     #[serde(
         rename = "deferralReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -338,9 +338,9 @@ impl ::std::convert::TryFrom<String> for Date {
 ///Additional information related to deferred transactions.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DeferredContext {
-    /**The deferral policy applied to the transaction.
-
-**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)*/
+    ///The deferral policy applied to the transaction.
+    ///
+    ///**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
     #[serde(
         rename = "deferralReason",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -398,9 +398,9 @@ pub struct Item {
 ///Related business identifiers of the item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ItemRelatedIdentifier {
-    /**Enumerated set of related item identifier names for the item.
-
-Known values: `ORDER_ADJUSTMENT_ITEM_ID`, `COUPON_ID`, `REMOVAL_SHIPMENT_ITEM_ID`, `TRANSACTION_ID`. Other values may be returned by Amazon.*/
+    ///Enumerated set of related item identifier names for the item.
+    ///
+    ///Known values: `ORDER_ADJUSTMENT_ITEM_ID`, `COUPON_ID`, `REMOVAL_SHIPMENT_ITEM_ID`, `TRANSACTION_ID`. Other values may be returned by Amazon.
     #[serde(
         rename = "itemRelatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -565,9 +565,9 @@ pub struct ProductContext {
 ///Related business identifier of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RelatedIdentifier {
-    /**An enumerated set of related business identifier names.
-
-Known values: `ORDER_ID`, `SHIPMENT_ID`, `FINANCIAL_EVENT_GROUP_ID`, `REFUND_ID`, `INVOICE_ID`, `DISBURSEMENT_ID`, `TRANSFER_ID`, `DEFERRED_TRANSACTION_ID`, `RELEASE_TRANSACTION_ID`, `SETTLEMENT_ID`. Other values may be returned by Amazon.*/
+    ///An enumerated set of related business identifier names.
+    ///
+    ///Known values: `ORDER_ID`, `SHIPMENT_ID`, `FINANCIAL_EVENT_GROUP_ID`, `REFUND_ID`, `INVOICE_ID`, `DISBURSEMENT_ID`, `TRANSFER_ID`, `DEFERRED_TRANSACTION_ID`, `RELEASE_TRANSACTION_ID`, `SETTLEMENT_ID`. Other values may be returned by Amazon.
     #[serde(
         rename = "relatedIdentifierName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -694,9 +694,9 @@ pub struct Transaction {
     ///Additional Information about the transaction.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub contexts: ::std::option::Option<Contexts>,
-    /**Describes the reasons for the transaction.
-
-**Example:** `Order Payment`, `Refund Order`*/
+    ///Describes the reasons for the transaction.
+    ///
+    ///**Example:** `Order Payment`, `Refund Order`
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub description: ::std::option::Option<::std::string::String>,
     ///Additional information about the items in the transaction.
@@ -738,21 +738,21 @@ pub struct Transaction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_id: ::std::option::Option<::std::string::String>,
-    /**The status of the transaction.
-
-**Possible values:**
-
-* `DEFERRED`: the transaction is currently deferred.
-* `RELEASED`: the transaction is currently released.
-* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.*/
+    ///The status of the transaction.
+    ///
+    ///**Possible values:**
+    ///
+    ///* `DEFERRED`: the transaction is currently deferred.
+    ///* `RELEASED`: the transaction is currently released.
+    ///* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
     #[serde(
         rename = "transactionStatus",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub transaction_status: ::std::option::Option<::std::string::String>,
-    /**The type of transaction.
-
-**Possible value:** `Shipment`*/
+    ///The type of transaction.
+    ///
+    ///**Possible value:** `Shipment`
     #[serde(
         rename = "transactionType",
         skip_serializing_if = "::std::option::Option::is_none"

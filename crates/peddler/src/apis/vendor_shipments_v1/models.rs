@@ -146,9 +146,9 @@ pub struct ContainerIdentification {
     ///Container identification number that adheres to the definition of the container identification type.
     #[serde(rename = "containerIdentificationNumber")]
     pub container_identification_number: ::std::string::String,
-    /**The container identification type.
-
-Known values: `SSCC`, `AMZNCC`, `GTIN`, `BPS`, `CID`. Other values may be returned by Amazon.*/
+    ///The container identification type.
+    ///
+    ///Known values: `SSCC`, `AMZNCC`, `GTIN`, `BPS`, `CID`. Other values may be returned by Amazon.
     #[serde(rename = "containerIdentificationType")]
     pub container_identification_type: ::std::string::String,
 }
@@ -192,9 +192,9 @@ pub struct Containers {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_sequence_number: ::std::option::Option<::std::string::String>,
-    /**The type of container.
-
-Known values: `carton`, `pallet`. Other values may be returned by Amazon.*/
+    ///The type of container.
+    ///
+    ///Known values: `carton`, `pallet`. Other values may be returned by Amazon.
     #[serde(rename = "containerType")]
     pub container_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -270,9 +270,9 @@ pub struct Dimensions {
     pub height: Decimal,
     ///The length of the container.
     pub length: Decimal,
-    /**The unit of measure for dimensions.
-
-Known values: `In`, `Ft`, `Meter`, `Yard`. Other values may be returned by Amazon.*/
+    ///The unit of measure for dimensions.
+    ///
+    ///Known values: `In`, `Ft`, `Meter`, `Yard`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The width of the container.
@@ -281,9 +281,9 @@ Known values: `In`, `Ft`, `Meter`, `Yard`. Other values may be returned by Amazo
 ///Duration after manufacturing date during which the product is valid for consumption.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Duration {
-    /**Unit for duration.
-
-Known values: `Days`, `Months`. Other values may be returned by Amazon.*/
+    ///Unit for duration.
+    ///
+    ///Known values: `Days`, `Months`. Other values may be returned by Amazon.
     #[serde(rename = "durationUnit")]
     pub duration_unit: ::std::string::String,
     ///Value for the duration in terms of the durationUnit.
@@ -378,9 +378,9 @@ pub struct ImportDetails {
     pub estimated_ship_by_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**Identification of the instructions on how specified item/carton/pallet should be handled.
-
-Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may be returned by Amazon.*/
+    ///Identification of the instructions on how specified item/carton/pallet should be handled.
+    ///
+    ///Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may be returned by Amazon.
     #[serde(
         rename = "handlingInstructions",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -392,9 +392,9 @@ Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub import_containers: ::std::option::Option<ImportDetailsImportContainers>,
-    /**This is used for import purchase orders only. If the recipient requests, this field will contain the shipment method of payment.
-
-Known values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`, `FOBPortOfCall`, `PrepaidBySeller`, `PaidBySeller`. Other values may be returned by Amazon.*/
+    ///This is used for import purchase orders only. If the recipient requests, this field will contain the shipment method of payment.
+    ///
+    ///Known values: `PaidByBuyer`, `CollectOnDelivery`, `DefinedByBuyerAndSeller`, `FOBPortOfCall`, `PrepaidBySeller`, `PaidBySeller`. Other values may be returned by Amazon.
     #[serde(
         rename = "methodOfPayment",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -521,9 +521,9 @@ pub struct ItemDetails {
     ///Expiry refers to the collection of dates required  for certain items. These could be either expiryDate or mfgDate and expiryAfterDuration. These are mandatory for perishable items.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub expiry: ::std::option::Option<Expiry>,
-    /**Identification of the instructions on how specified item/carton/pallet should be handled.
-
-Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may be returned by Amazon.*/
+    ///Identification of the instructions on how specified item/carton/pallet should be handled.
+    ///
+    ///Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may be returned by Amazon.
     #[serde(
         rename = "handlingCode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -541,9 +541,9 @@ Known values: `Oversized`, `Fragile`, `Food`, `HandleWithCare`. Other values may
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub lot_number_source_reference: ::std::option::Option<::std::string::String>,
-    /**The identifier type used for the lot number source. Provide this field when you specify `lotNumberSourceReference`.
-
-Known values: `GLN`, `FFRN`, `USDA_E`, `URL`. Other values may be returned by Amazon.*/
+    ///The identifier type used for the lot number source. Provide this field when you specify `lotNumberSourceReference`.
+    ///
+    ///Known values: `GLN`, `FFRN`, `USDA_E`, `URL`. Other values may be returned by Amazon.
     #[serde(
         rename = "lotNumberSourceType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -634,9 +634,9 @@ pub struct ItemQuantity {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_weight: ::std::option::Option<TotalWeight>,
-    /**Unit of measure for the shipped quantity.
-
-Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.*/
+    ///Unit of measure for the shipped quantity.
+    ///
+    ///Known values: `Cases`, `Eaches`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The case size, in the event that we ordered using cases. Otherwise, 1.
@@ -655,9 +655,9 @@ pub struct LabelData {
     ///The base-64 encoded string that represents the shipment label.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub label: ::std::option::Option<::std::string::String>,
-    /**The format of the label.
-
-Known values: `PDF`. Other values may be returned by Amazon.*/
+    ///The format of the label.
+    ///
+    ///Known values: `PDF`. Other values may be returned by Amazon.
     #[serde(
         rename = "labelFormat",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -917,9 +917,9 @@ pub struct Shipment {
     ///A list of the items in this transportation and their associated inner container details. If any of the item detail fields are common at a carton or a pallet level, provide them at the corresponding carton or pallet level.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub containers: ::std::option::Option<::std::vec::Vec<Containers>>,
-    /**Indicates the current shipment status.
-
-Known values: `Created`, `TransportationRequested`, `CarrierAssigned`, `Shipped`. Other values may be returned by Amazon.*/
+    ///Indicates the current shipment status.
+    ///
+    ///Known values: `Created`, `TransportationRequested`, `CarrierAssigned`, `Shipped`. Other values may be returned by Amazon.
     #[serde(
         rename = "currentShipmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1055,9 +1055,9 @@ pub struct ShipmentConfirmation {
     ///Date on which the shipment confirmation was submitted.
     #[serde(rename = "shipmentConfirmationDate")]
     pub shipment_confirmation_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    /**Indicates if this shipment confirmation is the initial confirmation, or intended to replace an already posted shipment confirmation. If replacing an existing shipment confirmation, be sure to provide the identical shipmentIdentifier and sellingParty information as in the previous confirmation.
-
-Known values: `Original`, `Replace`. Other values may be returned by Amazon.*/
+    ///Indicates if this shipment confirmation is the initial confirmation, or intended to replace an already posted shipment confirmation. If replacing an existing shipment confirmation, be sure to provide the identical shipmentIdentifier and sellingParty information as in the previous confirmation.
+    ///
+    ///Known values: `Original`, `Replace`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentConfirmationType")]
     pub shipment_confirmation_type: ::std::string::String,
     ///Unique shipment ID (not used over the last 365 days).
@@ -1068,17 +1068,17 @@ Known values: `Original`, `Replace`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_measurements: ::std::option::Option<ShipmentMeasurements>,
-    /**Shipment hierarchical structure.
-
-Known values: `PalletizedAssortmentCase`, `LooseAssortmentCase`, `PalletOfItems`, `PalletizedStandardCase`, `LooseStandardCase`, `MasterPallet`, `MasterCase`. Other values may be returned by Amazon.*/
+    ///Shipment hierarchical structure.
+    ///
+    ///Known values: `PalletizedAssortmentCase`, `LooseAssortmentCase`, `PalletOfItems`, `PalletizedStandardCase`, `LooseStandardCase`, `MasterPallet`, `MasterCase`. Other values may be returned by Amazon.
     #[serde(
         rename = "shipmentStructure",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipment_structure: ::std::option::Option<::std::string::String>,
-    /**The type of shipment.
-
-Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`. Other values may be returned by Amazon.*/
+    ///The type of shipment.
+    ///
+    ///Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`. Other values may be returned by Amazon.
     #[serde(
         rename = "shipmentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1132,9 +1132,9 @@ pub struct ShipmentInformation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub ship_from_party: ::std::option::Option<PartyIdentification>,
-    /**Type of shipment whether it is Small Parcel
-
-Known values: `SmallParcel`, `LTL`. Other values may be returned by Amazon.*/
+    ///Type of shipment whether it is Small Parcel
+    ///
+    ///Known values: `SmallParcel`, `LTL`. Other values may be returned by Amazon.
     #[serde(rename = "shipMode", skip_serializing_if = "::std::option::Option::is_none")]
     pub ship_mode: ::std::option::Option<::std::string::String>,
     ///The name and address of the destination warehouse where the shipment is being shipped.
@@ -1193,9 +1193,9 @@ pub struct ShipmentMeasurements {
 ///Shipment Status details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ShipmentStatusDetails {
-    /**Current status of the shipment on whether it is picked up or scheduled.
-
-Known values: `Created`, `TransportationRequested`, `CarrierAssigned`, `Shipped`. Other values may be returned by Amazon.*/
+    ///Current status of the shipment on whether it is picked up or scheduled.
+    ///
+    ///Known values: `Created`, `TransportationRequested`, `CarrierAssigned`, `Shipped`. Other values may be returned by Amazon.
     #[serde(
         rename = "shipmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1225,9 +1225,9 @@ pub struct Stop {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub departure_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /**Provide the function code.
-
-Known values: `PortOfDischarge`, `FreightPayableAt`, `PortOfLoading`. Other values may be returned by Amazon.*/
+    ///Provide the function code.
+    ///
+    ///Known values: `PortOfDischarge`, `FreightPayableAt`, `PortOfLoading`. Other values may be returned by Amazon.
     #[serde(rename = "functionCode")]
     pub function_code: ::std::string::String,
     #[serde(
@@ -1270,9 +1270,9 @@ pub struct TaxRegistrationDetails {
     ///Tax registration number for the entity. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(rename = "taxRegistrationType")]
     pub tax_registration_type: ::std::string::String,
 }
@@ -1280,9 +1280,9 @@ Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TotalWeight {
     pub amount: Decimal,
-    /**The unit of measure for the weight of items that are ordered by cases and support pricing by weight.
-
-Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.*/
+    ///The unit of measure for the weight of items that are ordered by cases and support pricing by weight.
+    ///
+    ///Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
 }
@@ -1377,9 +1377,9 @@ pub struct TransportationDetails {
     pub estimated_delivery_date: ::std::option::Option<
         ::chrono::DateTime<::chrono::offset::Utc>,
     >,
-    /**The type of shipment.
-
-Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`. Other values may be returned by Amazon.*/
+    ///The type of shipment.
+    ///
+    ///Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`. Other values may be returned by Amazon.
     #[serde(rename = "shipMode", skip_serializing_if = "::std::option::Option::is_none")]
     pub ship_mode: ::std::option::Option<::std::string::String>,
     ///Date on which shipment will be delivered from Vendor to Buyer
@@ -1396,9 +1396,9 @@ Known values: `TruckLoad`, `LessThanTruckLoad`, `SmallParcel`. Other values may 
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub shipped_date: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /**The mode of transportation for this shipment.
-
-Known values: `Road`, `Air`, `Ocean`. Other values may be returned by Amazon.*/
+    ///The mode of transportation for this shipment.
+    ///
+    ///Known values: `Road`, `Air`, `Ocean`. Other values may be returned by Amazon.
     #[serde(
         rename = "transportationMode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1426,9 +1426,9 @@ pub struct TransportationDetailsForShipmentConfirmation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub carrier_shipment_reference_number: ::std::option::Option<::std::string::String>,
-    /**The mode of transportation for this shipment.
-
-Known values: `Road`, `Air`, `Ocean`. Other values may be returned by Amazon.*/
+    ///The mode of transportation for this shipment.
+    ///
+    ///Known values: `Road`, `Air`, `Ocean`. Other values may be returned by Amazon.
     #[serde(
         rename = "transportationMode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1466,9 +1466,9 @@ pub struct VendorDetails {
 ///The volume of the shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Volume {
-    /**The unit of measurement.
-
-Known values: `CuFt`, `CuIn`, `CuM`, `CuY`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `CuFt`, `CuIn`, `CuM`, `CuY`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The measurement value.
@@ -1477,9 +1477,9 @@ Known values: `CuFt`, `CuIn`, `CuM`, `CuY`. Other values may be returned by Amaz
 ///The weight of the shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
-    /**The unit of measurement.
-
-Known values: `G`, `Kg`, `Oz`, `Lb`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `G`, `Kg`, `Oz`, `Lb`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The measurement value.

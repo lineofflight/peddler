@@ -577,9 +577,9 @@ pub struct CancelShipmentResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Shipment>,
 }
-/**Carrier will pick up option.
-
-Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`. Other values may be returned by Amazon.*/
+///Carrier will pick up option.
+///
+///Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -751,9 +751,9 @@ impl ::std::str::FromStr for CountryCode {
 ///Request schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateShipmentRequest {
-    /**Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information about hazardous materials.
-
-Known values: `None`, `LQHazmat`. Other values may be returned by Amazon.*/
+    ///Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information about hazardous materials.
+    ///
+    ///Known values: `None`, `LQHazmat`. Other values may be returned by Amazon.
     #[serde(
         rename = "HazmatType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -915,17 +915,17 @@ impl<'de> ::serde::Deserialize<'de> for CustomTextForLabel {
 ///Details related to any dangerous goods or items that are shipped.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct DangerousGoodsDetails {
-    /**The specific packaging group of the item being shipped.
-
-Known values: `I`, `II`, `III`. Other values may be returned by Amazon.*/
+    ///The specific packaging group of the item being shipped.
+    ///
+    ///Known values: `I`, `II`, `III`. Other values may be returned by Amazon.
     #[serde(
         rename = "PackingGroup",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub packing_group: ::std::option::Option<::std::string::String>,
-    /**The specific packing instruction of the item being shipped.
-
-Known values: `PI965_SECTION_IA`, `PI965_SECTION_IB`, `PI965_SECTION_II`, `PI966_SECTION_I`, `PI966_SECTION_II`, `PI967_SECTION_I`, `PI967_SECTION_II`, `PI968_SECTION_IA`, `PI968_SECTION_IB`, `PI969_SECTION_I`, `PI969_SECTION_II`, `PI970_SECTION_I`, `PI970_SECTION_II`. Other values may be returned by Amazon.*/
+    ///The specific packing instruction of the item being shipped.
+    ///
+    ///Known values: `PI965_SECTION_IA`, `PI965_SECTION_IB`, `PI965_SECTION_II`, `PI966_SECTION_I`, `PI966_SECTION_II`, `PI967_SECTION_I`, `PI967_SECTION_II`, `PI968_SECTION_IA`, `PI968_SECTION_IB`, `PI969_SECTION_I`, `PI969_SECTION_II`, `PI970_SECTION_I`, `PI970_SECTION_II`. Other values may be returned by Amazon.
     #[serde(
         rename = "PackingInstruction",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1066,9 +1066,9 @@ impl<'de> ::serde::Deserialize<'de> for DangerousGoodsDetailsUnitedNationsRegula
             })
     }
 }
-/**The delivery confirmation level.
-
-Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`. Other values may be returned by Amazon.*/
+///The delivery confirmation level.
+///
+///Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1109,9 +1109,9 @@ impl ::std::str::FromStr for DeliveryExperienceOption {
         Ok(Self(value.to_string()))
     }
 }
-/**The delivery confirmation level.
-
-Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.*/
+///The delivery confirmation level.
+///
+///Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1332,9 +1332,9 @@ pub struct FileContents {
     #[serde(rename = "FileType")]
     pub file_type: FileType,
 }
-/**The file type for a label.
-
-Known values: `application/pdf`, `application/zpl`, `image/png`. Other values may be returned by Amazon.*/
+///The file type for a label.
+///
+///Known values: `application/pdf`, `application/zpl`, `image/png`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1468,9 +1468,9 @@ pub struct GetShipmentResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<Shipment>,
 }
-/**Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
-
-Known values: `None`, `LQHazmat`. Other values may be returned by Amazon.*/
+///Hazardous materials options for a package. Consult the terms and conditions for each carrier for more information on hazardous materials.
+///
+///Known values: `None`, `LQHazmat`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1531,9 +1531,9 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for IncludedBe
         Self(value)
     }
 }
-/**Indicates whether the additional seller input is at the item or shipment level.
-
-Known values: `SHIPMENT_LEVEL`, `ITEM_LEVEL`. Other values may be returned by Amazon.*/
+///Indicates whether the additional seller input is at the item or shipment level.
+///
+///Known values: `SHIPMENT_LEVEL`, `ITEM_LEVEL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1838,18 +1838,18 @@ pub struct LabelDimensions {
     ///The length dimension.
     #[serde(rename = "Length")]
     pub length: LabelDimension,
-    /**The unit of measurement.
-
-Known values: `inches`, `centimeters`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `inches`, `centimeters`. Other values may be returned by Amazon.
     #[serde(rename = "Unit")]
     pub unit: UnitOfLength,
     ///The width dimension.
     #[serde(rename = "Width")]
     pub width: LabelDimension,
 }
-/**The label format.
-
-Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.*/
+///The label format.
+///
+///Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1890,9 +1890,9 @@ impl ::std::str::FromStr for LabelFormat {
         Ok(Self(value.to_string()))
     }
 }
-/**List of label formats.
-
-Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.*/
+///List of label formats.
+///
+///Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct LabelFormatList(pub ::std::vec::Vec<LabelFormat>);
@@ -1951,9 +1951,9 @@ pub struct Length {
 ///Liquid volume.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct LiquidVolume {
-    /**The unit of measurement.
-
-Known values: `ML`, `L`, `FL_OZ`, `GAL`, `PT`, `QT`, `C`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `ML`, `L`, `FL_OZ`, `GAL`, `PT`, `QT`, `C`. Other values may be returned by Amazon.
     #[serde(rename = "Unit")]
     pub unit: ::std::string::String,
     ///The measurement value.
@@ -2061,9 +2061,9 @@ pub struct PackageDimensions {
     pub predefined_package_dimensions: ::std::option::Option<
         PredefinedPackageDimensions,
     >,
-    /**The unit of measurement. If you don't specify `PredefinedPackageDimensions`, you must specify the unit.
-
-Known values: `inches`, `centimeters`. Other values may be returned by Amazon.*/
+    ///The unit of measurement. If you don't specify `PredefinedPackageDimensions`, you must specify the unit.
+    ///
+    ///Known values: `inches`, `centimeters`. Other values may be returned by Amazon.
     #[serde(rename = "Unit", skip_serializing_if = "::std::option::Option::is_none")]
     pub unit: ::std::option::Option<UnitOfLength>,
     ///The width dimension. If you don't specify `PredefinedPackageDimensions`, you must specify the width.
@@ -2178,9 +2178,9 @@ impl<'de> ::serde::Deserialize<'de> for PostalCode {
             })
     }
 }
-/**An enumeration of predefined parcel tokens. If you specify a `PredefinedPackageDimensions` token, you are not obligated to use a branded package from a carrier. For example, if you specify the `FedEx_Box_10kg` token, you do not have to use that particular package from FedEx. You are only obligated to use a box that matches the dimensions specified by the token. Note: Carriers can have restrictions on the type of package allowed for certain ship methods. Check the carrier website for details. Example: Flat rate pricing is available when materials are sent by USPS in a USPS-produced Flat Rate envelope or box.
-
-Known values: `FedEx_Box_10kg`, `FedEx_Box_25kg`, `FedEx_Box_Extra_Large_1`, `FedEx_Box_Extra_Large_2`, `FedEx_Box_Large_1`, `FedEx_Box_Large_2`, `FedEx_Box_Medium_1`, `FedEx_Box_Medium_2`, `FedEx_Box_Small_1`, `FedEx_Box_Small_2`, `FedEx_Envelope`, `FedEx_Padded_Pak`, `FedEx_Pak_1`, `FedEx_Pak_2`, `FedEx_Tube`, `FedEx_XL_Pak`, `UPS_Box_10kg`, `UPS_Box_25kg`, `UPS_Express_Box`, `UPS_Express_Box_Large`, `UPS_Express_Box_Medium`, `UPS_Express_Box_Small`, `UPS_Express_Envelope`, `UPS_Express_Hard_Pak`, `UPS_Express_Legal_Envelope`, `UPS_Express_Pak`, `UPS_Express_Tube`, `UPS_Laboratory_Pak`, `UPS_Pad_Pak`, `UPS_Pallet`, `USPS_Card`, `USPS_Flat`, `USPS_FlatRateCardboardEnvelope`, `USPS_FlatRateEnvelope`, `USPS_FlatRateGiftCardEnvelope`, `USPS_FlatRateLegalEnvelope`, `USPS_FlatRatePaddedEnvelope`, `USPS_FlatRateWindowEnvelope`, `USPS_LargeFlatRateBoardGameBox`, `USPS_LargeFlatRateBox`, `USPS_Letter`, `USPS_MediumFlatRateBox1`, `USPS_MediumFlatRateBox2`, `USPS_RegionalRateBoxA1`, `USPS_RegionalRateBoxA2`, `USPS_RegionalRateBoxB1`, `USPS_RegionalRateBoxB2`, `USPS_RegionalRateBoxC`, `USPS_SmallFlatRateBox`, `USPS_SmallFlatRateEnvelope`. Other values may be returned by Amazon.*/
+///An enumeration of predefined parcel tokens. If you specify a `PredefinedPackageDimensions` token, you are not obligated to use a branded package from a carrier. For example, if you specify the `FedEx_Box_10kg` token, you do not have to use that particular package from FedEx. You are only obligated to use a box that matches the dimensions specified by the token. Note: Carriers can have restrictions on the type of package allowed for certain ship methods. Check the carrier website for details. Example: Flat rate pricing is available when materials are sent by USPS in a USPS-produced Flat Rate envelope or box.
+///
+///Known values: `FedEx_Box_10kg`, `FedEx_Box_25kg`, `FedEx_Box_Extra_Large_1`, `FedEx_Box_Extra_Large_2`, `FedEx_Box_Large_1`, `FedEx_Box_Large_2`, `FedEx_Box_Medium_1`, `FedEx_Box_Medium_2`, `FedEx_Box_Small_1`, `FedEx_Box_Small_2`, `FedEx_Envelope`, `FedEx_Padded_Pak`, `FedEx_Pak_1`, `FedEx_Pak_2`, `FedEx_Tube`, `FedEx_XL_Pak`, `UPS_Box_10kg`, `UPS_Box_25kg`, `UPS_Express_Box`, `UPS_Express_Box_Large`, `UPS_Express_Box_Medium`, `UPS_Express_Box_Small`, `UPS_Express_Envelope`, `UPS_Express_Hard_Pak`, `UPS_Express_Legal_Envelope`, `UPS_Express_Pak`, `UPS_Express_Tube`, `UPS_Laboratory_Pak`, `UPS_Pad_Pak`, `UPS_Pallet`, `USPS_Card`, `USPS_Flat`, `USPS_FlatRateCardboardEnvelope`, `USPS_FlatRateEnvelope`, `USPS_FlatRateGiftCardEnvelope`, `USPS_FlatRateLegalEnvelope`, `USPS_FlatRatePaddedEnvelope`, `USPS_FlatRateWindowEnvelope`, `USPS_LargeFlatRateBoardGameBox`, `USPS_LargeFlatRateBox`, `USPS_Letter`, `USPS_MediumFlatRateBox1`, `USPS_MediumFlatRateBox2`, `USPS_RegionalRateBoxA1`, `USPS_RegionalRateBoxA2`, `USPS_RegionalRateBoxB1`, `USPS_RegionalRateBoxB2`, `USPS_RegionalRateBoxC`, `USPS_SmallFlatRateBox`, `USPS_SmallFlatRateEnvelope`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2230,9 +2230,9 @@ pub struct RateItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rate_item_charge: ::std::option::Option<CurrencyAmount>,
-    /**Unique identifier for the RateItem.
-
-Known values: `FBM_SHIP_PLUS_CREDIT`. Other values may be returned by Amazon.*/
+    ///Unique identifier for the RateItem.
+    ///
+    ///Known values: `FBM_SHIP_PLUS_CREDIT`. Other values may be returned by Amazon.
     #[serde(rename = "RateItemID")]
     pub rate_item_id: RateItemId,
     ///Localized name for the RateItem.
@@ -2241,18 +2241,18 @@ Known values: `FBM_SHIP_PLUS_CREDIT`. Other values may be returned by Amazon.*/
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rate_item_name_localization: ::std::option::Option<::std::string::String>,
-    /**Type of the RateItem.
-
-Known values: `INCLUDED`. Other values may be returned by Amazon.*/
+    ///Type of the RateItem.
+    ///
+    ///Known values: `INCLUDED`. Other values may be returned by Amazon.
     #[serde(
         rename = "RateItemType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub rate_item_type: ::std::option::Option<RateItemType>,
 }
-/**Unique identifier for the RateItem.
-
-Known values: `FBM_SHIP_PLUS_CREDIT`. Other values may be returned by Amazon.*/
+///Unique identifier for the RateItem.
+///
+///Known values: `FBM_SHIP_PLUS_CREDIT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2293,9 +2293,9 @@ impl ::std::str::FromStr for RateItemId {
         Ok(Self(value.to_string()))
     }
 }
-/**Type for the RateItem.
-
-Known values: `INCLUDED`. Other values may be returned by Amazon.*/
+///Type for the RateItem.
+///
+///Known values: `INCLUDED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2413,9 +2413,9 @@ pub struct SellerInputDefinition {
     ///The display text for the additional input field.
     #[serde(rename = "InputDisplayText")]
     pub input_display_text: ::std::string::String,
-    /**Whether the seller input applies to the item or the shipment.
-
-Known values: `SHIPMENT_LEVEL`, `ITEM_LEVEL`. Other values may be returned by Amazon.*/
+    ///Whether the seller input applies to the item or the shipment.
+    ///
+    ///Known values: `SHIPMENT_LEVEL`, `ITEM_LEVEL`. Other values may be returned by Amazon.
     #[serde(
         rename = "InputTarget",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2525,9 +2525,9 @@ pub struct Shipment {
     pub shipment_id: ShipmentId,
     #[serde(rename = "ShippingService")]
     pub shipping_service: ShippingService,
-    /**The shipment status.
-
-Known values: `Purchased`, `RefundPending`, `RefundRejected`, `RefundApplied`. Other values may be returned by Amazon.*/
+    ///The shipment status.
+    ///
+    ///Known values: `Purchased`, `RefundPending`, `RefundRejected`, `RefundApplied`. Other values may be returned by Amazon.
     #[serde(rename = "Status")]
     pub status: ShipmentStatus,
     #[serde(
@@ -2622,9 +2622,9 @@ pub struct ShipmentRequestDetails {
     #[serde(rename = "Weight")]
     pub weight: Weight,
 }
-/**The shipment status.
-
-Known values: `Purchased`, `RefundPending`, `RefundRejected`, `RefundApplied`. Other values may be returned by Amazon.*/
+///The shipment status.
+///
+///Known values: `Purchased`, `RefundPending`, `RefundRejected`, `RefundApplied`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -2842,23 +2842,23 @@ pub struct ShippingServiceOptions {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub declared_value: ::std::option::Option<CurrencyAmount>,
-    /**The delivery confirmation level.
-
-Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.*/
+    ///The delivery confirmation level.
+    ///
+    ///Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.
     #[serde(rename = "DeliveryExperience")]
     pub delivery_experience: DeliveryExperienceType,
-    /**The seller's preferred label format.
-
-Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.*/
+    ///The seller's preferred label format.
+    ///
+    ///Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`. Other values may be returned by Amazon.
     #[serde(
         rename = "LabelFormat",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub label_format: ::std::option::Option<LabelFormat>,
 }
-/**The type of standard identifier to print on the label.
-
-Known values: `AmazonOrderId`. Other values may be returned by Amazon.*/
+///The type of standard identifier to print on the label.
+///
+///Known values: `AmazonOrderId`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -3099,11 +3099,11 @@ impl ::std::str::FromStr for TrackingId {
         Ok(Self(value.to_string()))
     }
 }
-/**The transparency code associated with the item. Determine the transparency serial number with:
-
-**1D or 2D barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
-**2D barcode SN:** Submit the 7- to 20-character serial number barcode, that likely has the prefix **SN**. The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
-**QR code SN:** Submit the URL that the QR code generates.*/
+///The transparency code associated with the item. Determine the transparency serial number with:
+///
+///**1D or 2D barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
+///**2D barcode SN:** Submit the 7- to 20-character serial number barcode, that likely has the prefix **SN**. The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
+///**QR code SN:** Submit the URL that the QR code generates.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -3164,9 +3164,9 @@ impl ::std::convert::From<::std::vec::Vec<TransparencyCode>> for TransparencyCod
         Self(value)
     }
 }
-/**The unit of length.
-
-Known values: `inches`, `centimeters`. Other values may be returned by Amazon.*/
+///The unit of length.
+///
+///Known values: `inches`, `centimeters`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -3207,9 +3207,9 @@ impl ::std::str::FromStr for UnitOfLength {
         Ok(Self(value.to_string()))
     }
 }
-/**The unit of weight.
-
-Known values: `oz`, `g`. Other values may be returned by Amazon.*/
+///The unit of weight.
+///
+///Known values: `oz`, `g`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

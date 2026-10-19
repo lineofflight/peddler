@@ -97,9 +97,9 @@ impl ::std::str::FromStr for Condition {
         Ok(Self(value.to_string()))
     }
 }
-/**Indicates whether the item is fulfilled by Amazon or by the seller
-
-Known values: `AFN`, `MFN`. Other values may be returned by Amazon.*/
+///Indicates whether the item is fulfilled by Amazon or by the seller
+///
+///Known values: `AFN`, `MFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

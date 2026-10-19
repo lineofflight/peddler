@@ -61,30 +61,30 @@ pub struct Breakdown {
     ///The monetary amount of the charge.
     #[serde(rename = "breakdownAmount")]
     pub breakdown_amount: Currency,
-    /**The type of charge.
-
-**Possible values for `invoiceAmountBreakdowns`:**
-
-* `Total`: Total invoice amount.
-* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
-* `TaxAmount`: Tax amount on the invoice.
-* `MiscCharges`: Miscellaneous charges on the invoice.
-* `Other`: Other breakdown type.
-
-**Possible values for `invoiceSettlementBreakdowns`:**
-
-* `AmountPaid`: Amount that has been paid.
-* `QueuedForPayment`: Amount queued for payment.
-* `QuickPayDiscount`: Quick pay discount amount.
-* `QuantityVarianceAmount`: Quantity variance amount.
-* `PriceVariance`: Price variance amount.
-* `Other`: Other settlement breakdown type.
-
-**Possible values for `totalAmountBreakdown` (line item level):**
-
-* `ItemCostWithoutTax`: Line item cost excluding tax.
-* `ItemTaxAmount`: Tax amount on the line item.
-* `Other`: Other line item breakdown type.*/
+    ///The type of charge.
+    ///
+    ///**Possible values for `invoiceAmountBreakdowns`:**
+    ///
+    ///* `Total`: Total invoice amount.
+    ///* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
+    ///* `TaxAmount`: Tax amount on the invoice.
+    ///* `MiscCharges`: Miscellaneous charges on the invoice.
+    ///* `Other`: Other breakdown type.
+    ///
+    ///**Possible values for `invoiceSettlementBreakdowns`:**
+    ///
+    ///* `AmountPaid`: Amount that has been paid.
+    ///* `QueuedForPayment`: Amount queued for payment.
+    ///* `QuickPayDiscount`: Quick pay discount amount.
+    ///* `QuantityVarianceAmount`: Quantity variance amount.
+    ///* `PriceVariance`: Price variance amount.
+    ///* `Other`: Other settlement breakdown type.
+    ///
+    ///**Possible values for `totalAmountBreakdown` (line item level):**
+    ///
+    ///* `ItemCostWithoutTax`: Line item cost excluding tax.
+    ///* `ItemTaxAmount`: Tax amount on the line item.
+    ///* `Other`: Other line item breakdown type.
     #[serde(rename = "breakdownType")]
     pub breakdown_type: ::std::string::String,
     ///A list of breakdowns that detail how the total amount is calculated.
@@ -176,15 +176,15 @@ pub struct InvoiceHeader {
     ///The total monetary amount of the invoice.
     #[serde(rename = "invoiceAmount")]
     pub invoice_amount: Currency,
-    /**The breakdown of the invoice amount into sub-components.
-
-**Possible `breakdownType` values:**
-
-* `Total`: Total invoice amount.
-* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
-* `TaxAmount`: Tax amount on the invoice.
-* `MiscCharges`: Miscellaneous charges on the invoice.
-* `Other`: Other breakdown type.*/
+    ///The breakdown of the invoice amount into sub-components.
+    ///
+    ///**Possible `breakdownType` values:**
+    ///
+    ///* `Total`: Total invoice amount.
+    ///* `InvoiceAmountWithoutTax`: Invoice amount excluding tax.
+    ///* `TaxAmount`: Tax amount on the invoice.
+    ///* `MiscCharges`: Miscellaneous charges on the invoice.
+    ///* `Other`: Other breakdown type.
     #[serde(
         rename = "invoiceAmountBreakdowns",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -196,29 +196,29 @@ pub struct InvoiceHeader {
     ///The invoice number provided when the invoice was created.
     #[serde(rename = "invoiceNumber")]
     pub invoice_number: ::std::string::String,
-    /**The breakdown of the invoice settlement amount into sub-components.
-
-**Possible `breakdownType` values:**
-
-* `AmountPaid`: Amount that has been paid.
-* `QueuedForPayment`: Amount queued for payment.
-* `QuickPayDiscount`: Quick pay discount amount.
-* `QuantityVarianceAmount`: Quantity variance amount.
-* `PriceVariance`: Price variance amount.
-* `Other`: Other settlement breakdown type.*/
+    ///The breakdown of the invoice settlement amount into sub-components.
+    ///
+    ///**Possible `breakdownType` values:**
+    ///
+    ///* `AmountPaid`: Amount that has been paid.
+    ///* `QueuedForPayment`: Amount queued for payment.
+    ///* `QuickPayDiscount`: Quick pay discount amount.
+    ///* `QuantityVarianceAmount`: Quantity variance amount.
+    ///* `PriceVariance`: Price variance amount.
+    ///* `Other`: Other settlement breakdown type.
     #[serde(
         rename = "invoiceSettlementBreakdowns",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub invoice_settlement_breakdowns: ::std::option::Option<::std::vec::Vec<Breakdown>>,
-    /**The current state of the invoice.
-
-Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`, `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`. Other values may be returned by Amazon.*/
+    ///The current state of the invoice.
+    ///
+    ///Known values: `IN_PROGRESS`, `REJECTED`, `PARTIALLY_PAID`, `PARTIALLY_DEDUCTED`, `PAID`, `DEDUCTED`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceStatus")]
     pub invoice_status: ::std::string::String,
-    /**The type of invoice.
-
-Known values: `AP_INVENTORY`, `OTHER`. Other values may be returned by Amazon.*/
+    ///The type of invoice.
+    ///
+    ///Known values: `AP_INVENTORY`, `OTHER`. Other values may be returned by Amazon.
     #[serde(rename = "invoiceType")]
     pub invoice_type: ::std::string::String,
     ///When the invoice was issued. In ISO 8601 format.
@@ -273,13 +273,13 @@ pub struct InvoiceItem {
     ///The total monetary amount for the line item, including tax.
     #[serde(rename = "totalAmount")]
     pub total_amount: Currency,
-    /**The breakdown of the total amount into sub-components.
-
-**Possible `breakdownType` values:**
-
-* `ItemCostWithoutTax`: Line item cost excluding tax.
-* `ItemTaxAmount`: Tax amount on the line item.
-* `Other`: Other line item breakdown type.*/
+    ///The breakdown of the total amount into sub-components.
+    ///
+    ///**Possible `breakdownType` values:**
+    ///
+    ///* `ItemCostWithoutTax`: Line item cost excluding tax.
+    ///* `ItemTaxAmount`: Tax amount on the line item.
+    ///* `Other`: Other line item breakdown type.
     #[serde(
         rename = "totalAmountBreakdown",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -292,9 +292,9 @@ pub struct InvoiceItem {
 ///Identifier for an item in the invoice line item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ItemIdentifier {
-    /**The type of item identifier.
-
-Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`. Other values may be returned by Amazon.*/
+    ///The type of item identifier.
+    ///
+    ///Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`. Other values may be returned by Amazon.
     #[serde(rename = "itemIdentifierName")]
     pub item_identifier_name: ::std::string::String,
     ///The value of the item identifier.
@@ -316,9 +316,9 @@ pub struct LineItemContext {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_identifiers: ::std::option::Option<::std::vec::Vec<ItemIdentifier>>,
-    /**The type of line item.
-
-Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Amazon.*/
+    ///The type of line item.
+    ///
+    ///Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Amazon.
     #[serde(rename = "lineItemType")]
     pub line_item_type: ::std::string::String,
     ///Information related to matching of invoiced quantity with Amazon systems.
@@ -333,9 +333,9 @@ Known values: `GOODS`, `SERVICES`, `OTHERS`. Other values may be returned by Ama
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_charge_period: ::std::option::Option<ServiceChargePeriod>,
-    /**The type of service charge.
-
-Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`, `OTHER`. Other values may be returned by Amazon.*/
+    ///The type of service charge.
+    ///
+    ///Known values: `DAMAGE_ALLOWANCE`, `PRICE_PROTECTION`, `FBA_INVENTORY_STORAGE_FEE`, `OTHER`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceChargeType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -406,9 +406,9 @@ pub struct PartnerMetadata {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub partner_name: ::std::option::Option<::std::string::String>,
-    /**The type of partner.
-
-Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amazon.*/
+    ///The type of partner.
+    ///
+    ///Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amazon.
     #[serde(rename = "partnerType")]
     pub partner_type: ::std::string::String,
     ///The tax registration number of the partner.
@@ -421,9 +421,9 @@ Known values: `SELLER`, `VENDOR`, `AMAZON`. Other values may be returned by Amaz
 ///Related business identifier of the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedIdentifier {
-    /**The name of the related identifier.
-
-Known values: `PAYEE_CODE`, `PURCHASE_ORDER_IDS`, `SHORTAGE_INVOICE_IDS`, `ASN_IDS`, `RETURN_IDS`, `AGREEMENT_IDS`, `PRODUCT_LINE`, `VENDOR_CODE`, `UNIQUE_PAYMENT_IDS`, `WAREHOUSE_ID`. Other values may be returned by Amazon.*/
+    ///The name of the related identifier.
+    ///
+    ///Known values: `PAYEE_CODE`, `PURCHASE_ORDER_IDS`, `SHORTAGE_INVOICE_IDS`, `ASN_IDS`, `RETURN_IDS`, `AGREEMENT_IDS`, `PRODUCT_LINE`, `VENDOR_CODE`, `UNIQUE_PAYMENT_IDS`, `WAREHOUSE_ID`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding related identifier values.
@@ -443,43 +443,43 @@ pub struct ServiceChargePeriod {
 ///The type and underlying defect classifications explaining discrepancies between expected and actual invoice values.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VarianceReason {
-    /**List of defect types associated with the variance. These represent root cause classifications for the variance.
-
-**Possible values for PPV (Purchase Price Variance):**
-
-* `DEALBUY`: Amazon raised discounted POs at vendor-accepted discount costs, but the vendor invoiced at regular costs.
-* `PRODUCT_COST_NOT_ACTIVE`: Vendor is using a cost that is not currently active; it may be pending approval or is a historical cost.
-* `PRODUCT_COST_NOT_REGISTERED`: Vendor is using a cost that is not registered in Amazon's system, often due to offline negotiations not yet updated.
-* `VENDOR_LOWERING_COST_AT_PO_CONFIRMATION`: Vendor confirmed the PO at a lower cost but invoiced at a different (higher) amount.
-* `CCOGS_PRICE_PROTECTION_AGREEMENT_PPA`: A Price Protection clause in the vendor's Terms and Conditions agreement applies to this ASIN.
-* `FALSE_CCOGS_PPA`: Invoiced cost exceeded the confirmed PO cost due to a cost price adjustment by Amazon, likely from a previous cost decrease within the same period.
-* `AMAZON_POC_LOWERING_COST_ON_PO`: Amazon's systems reduced the cost price for this ASIN post PO confirmation, most likely due to a previous cost price decrease or on request.
-* `REJECTED_PRICE_INCREASE_ON_PO`: Vendor submitted a cost price increase that was denied, but still invoiced at the increased cost.
-* `LIST_PRICE_DISCOUNT_ISSUES`: The List Price on the PO and invoice do not match, or the Discount code on the PO does not match the invoice.
-* `ROUNDING_ISSUES`: Price variance caused by foreign exchange currency conversion or decimal place rounding differences.
-* `OTHER`: Defect type not belonging to a predefined category.
-
-**Possible values for PQV (Purchase Quantity Variance):**
-
-* `UNRECOGNISED_ASIN`: The ASIN on the invoice is not recognized or does not match Amazon's records.
-* `OVERBILLING`: The invoiced quantity exceeds the quantity received or expected by Amazon.
-* `DUPLICATE_INVOICE_DEFECT`: The invoice is a duplicate of a previously submitted invoice.
-* `DELETED_APPOINTMENT`: The delivery appointment associated with this shipment was deleted.
-* `NO_APPOINTMENT`: No delivery appointment was found for this shipment.
-* `SHORTAGES_IN_TRANSIT`: Quantity shortages detected during transit — fewer units arrived than were shipped.
-* `ASIN_MISMATCH`: Amazon's systems received an ASIN with a different cost than the one ordered on the PO, possibly due to incorrect smart-matching or cross-matching.
-* `FEED_DEFECTS`: Vendor's price feed contains defects such as unrecognized UPC/EAN codes or incorrect supplier IDs for multi-supplier updates.
-* `REJECTED_LINE_ITEM_ON_PO`: Vendor confirmed this PO line item as Rejected or On-hold but still shipped the products.
-* `FAILED_PO_CONFIRMATION`: Vendor's latest PO confirmation message for this line item failed processing and was not translated correctly.
-* `OTHER`: Defect type not belonging to a predefined category.*/
+    ///List of defect types associated with the variance. These represent root cause classifications for the variance.
+    ///
+    ///**Possible values for PPV (Purchase Price Variance):**
+    ///
+    ///* `DEALBUY`: Amazon raised discounted POs at vendor-accepted discount costs, but the vendor invoiced at regular costs.
+    ///* `PRODUCT_COST_NOT_ACTIVE`: Vendor is using a cost that is not currently active; it may be pending approval or is a historical cost.
+    ///* `PRODUCT_COST_NOT_REGISTERED`: Vendor is using a cost that is not registered in Amazon's system, often due to offline negotiations not yet updated.
+    ///* `VENDOR_LOWERING_COST_AT_PO_CONFIRMATION`: Vendor confirmed the PO at a lower cost but invoiced at a different (higher) amount.
+    ///* `CCOGS_PRICE_PROTECTION_AGREEMENT_PPA`: A Price Protection clause in the vendor's Terms and Conditions agreement applies to this ASIN.
+    ///* `FALSE_CCOGS_PPA`: Invoiced cost exceeded the confirmed PO cost due to a cost price adjustment by Amazon, likely from a previous cost decrease within the same period.
+    ///* `AMAZON_POC_LOWERING_COST_ON_PO`: Amazon's systems reduced the cost price for this ASIN post PO confirmation, most likely due to a previous cost price decrease or on request.
+    ///* `REJECTED_PRICE_INCREASE_ON_PO`: Vendor submitted a cost price increase that was denied, but still invoiced at the increased cost.
+    ///* `LIST_PRICE_DISCOUNT_ISSUES`: The List Price on the PO and invoice do not match, or the Discount code on the PO does not match the invoice.
+    ///* `ROUNDING_ISSUES`: Price variance caused by foreign exchange currency conversion or decimal place rounding differences.
+    ///* `OTHER`: Defect type not belonging to a predefined category.
+    ///
+    ///**Possible values for PQV (Purchase Quantity Variance):**
+    ///
+    ///* `UNRECOGNISED_ASIN`: The ASIN on the invoice is not recognized or does not match Amazon's records.
+    ///* `OVERBILLING`: The invoiced quantity exceeds the quantity received or expected by Amazon.
+    ///* `DUPLICATE_INVOICE_DEFECT`: The invoice is a duplicate of a previously submitted invoice.
+    ///* `DELETED_APPOINTMENT`: The delivery appointment associated with this shipment was deleted.
+    ///* `NO_APPOINTMENT`: No delivery appointment was found for this shipment.
+    ///* `SHORTAGES_IN_TRANSIT`: Quantity shortages detected during transit — fewer units arrived than were shipped.
+    ///* `ASIN_MISMATCH`: Amazon's systems received an ASIN with a different cost than the one ordered on the PO, possibly due to incorrect smart-matching or cross-matching.
+    ///* `FEED_DEFECTS`: Vendor's price feed contains defects such as unrecognized UPC/EAN codes or incorrect supplier IDs for multi-supplier updates.
+    ///* `REJECTED_LINE_ITEM_ON_PO`: Vendor confirmed this PO line item as Rejected or On-hold but still shipped the products.
+    ///* `FAILED_PO_CONFIRMATION`: Vendor's latest PO confirmation message for this line item failed processing and was not translated correctly.
+    ///* `OTHER`: Defect type not belonging to a predefined category.
     #[serde(
         rename = "defectTypes",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub defect_types: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /**The type of variance.
-
-Known values: `PQV`, `PPV`, `OTHER`. Other values may be returned by Amazon.*/
+    ///The type of variance.
+    ///
+    ///Known values: `PQV`, `PPV`, `OTHER`. Other values may be returned by Amazon.
     #[serde(rename = "varianceType")]
     pub variance_type: ::std::string::String,
 }

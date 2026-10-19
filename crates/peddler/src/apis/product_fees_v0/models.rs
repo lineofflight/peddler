@@ -335,9 +335,9 @@ for GetMyFeesEstimatesResponse {
         Self(value)
     }
 }
-/**The type of product identifier used in a `FeesEstimateByIdRequest`.
-
-Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.*/
+///The type of product identifier used in a `FeesEstimateByIdRequest`.
+///
+///Known values: `ASIN`, `SellerSKU`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -436,9 +436,9 @@ pub struct MoneyType {
     )]
     pub currency_code: ::std::option::Option<::std::string::String>,
 }
-/**An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
-
-Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.*/
+///An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+///
+///Known values: `FBA_CORE`, `FBA_SNL`, `FBA_EFN`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

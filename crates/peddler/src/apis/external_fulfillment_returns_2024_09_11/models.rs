@@ -184,9 +184,9 @@ pub struct Return {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub otp_details: ::std::option::Option<OtpDetails>,
-    /**The package delivery mode. This indicates whether the return was delivered to the seller with or without a one-time password (OTP).
-
-Known values: `WITH_OTP`, `WITHOUT_OTP`. Other values may be returned by Amazon.*/
+    ///The package delivery mode. This indicates whether the return was delivered to the seller with or without a one-time password (OTP).
+    ///
+    ///Known values: `WITH_OTP`, `WITHOUT_OTP`. Other values may be returned by Amazon.
     #[serde(
         rename = "packageDeliveryMode",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -210,22 +210,22 @@ Known values: `WITH_OTP`, `WITHOUT_OTP`. Other values may be returned by Amazon.
     ///Information about the shipping of the return packages.
     #[serde(rename = "returnShippingInfo")]
     pub return_shipping_info: ReturnShippingInfo,
-    /**The sub-type of return.
-
-Known values: `NORMAL`, `REPLACEMENT`, `EXCHANGE`. Other values may be returned by Amazon.*/
+    ///The sub-type of return.
+    ///
+    ///Known values: `NORMAL`, `REPLACEMENT`, `EXCHANGE`. Other values may be returned by Amazon.
     #[serde(
         rename = "returnSubType",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub return_sub_type: ::std::option::Option<::std::string::String>,
-    /**The type of return.
-
-Known values: `CUSTOMER`, `REJECT`. Other values may be returned by Amazon.*/
+    ///The type of return.
+    ///
+    ///Known values: `CUSTOMER`, `REJECT`. Other values may be returned by Amazon.
     #[serde(rename = "returnType")]
     pub return_type: ::std::string::String,
-    /**The current status of the return.
-
-Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`. Other values may be returned by Amazon.*/
+    ///The current status of the return.
+    ///
+    ///Known values: `CREATED`, `CARRIER_NOTIFIED_TO_PICK_UP_FROM_CUSTOMER`, `CARRIER_OUT_FOR_PICK_UP_FROM_CUSTOMER`, `CUSTOMER_CANCELLED_PICK_UP`, `CUSTOMER_RESCHEDULED_PICK_UP`, `PICKED_FROM_CUSTOMER`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `REPLANNED`, `CUSTOMER_DROPPED_OFF`, `PARTIALLY_PROCESSED`, `PROCESSED`, `REJECTED`, `CANCELLED`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
 }
 ///Metadata about the return item.

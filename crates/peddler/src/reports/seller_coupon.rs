@@ -45,9 +45,9 @@ pub struct CouponDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub discount_amount: ::std::option::Option<::serde_json::Number>,
-    /**Whether the discount is given as a fixed amount or a percentage off the list price.
-
-Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.*/
+    ///Whether the discount is given as a fixed amount or a percentage off the list price.
+    ///
+    ///Known values: `PERCENT_OFF_LIST_PRICE`, `AMOUNT_OFF_LIST_PRICE`. Other values may be returned by Amazon.
     #[serde(
         rename = "discountType",
         skip_serializing_if = "::std::option::Option::is_none"

@@ -11,13 +11,13 @@ pub struct Audience {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub display_name: ::std::option::Option<::std::string::String>,
-    /**Name of the audience an offer is applicable to.
-
-Common values:
-
-* 'ALL' - Standard offer audience for buyers on Amazon retail websites.
-
-* 'B2B' - Offer audience for Amazon Business website buyers.*/
+    ///Name of the audience an offer is applicable to.
+    ///
+    ///Common values:
+    ///
+    ///* 'ALL' - Standard offer audience for buyers on Amazon retail websites.
+    ///
+    ///* 'B2B' - Offer audience for Amazon Business website buyers.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub value: ::std::option::Option<::std::string::String>,
 }
@@ -113,25 +113,25 @@ pub struct Issue {
     pub marketplace_ids: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
     ///A message that describes the issue.
     pub message: ::std::string::String,
-    /**The severity of the issue.
-
-Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.*/
+    ///The severity of the issue.
+    ///
+    ///Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
 ///The enforcement action taken by Amazon that affect the publishing or status of a listing
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueEnforcementAction {
-    /**The enforcement action name.
-
-Possible values:
-
-* `LISTING_SUPPRESSED` - This enforcement takes down the current listing item's buyability.
-
-* `ATTRIBUTE_SUPPRESSED` - An attribute's value on the listing item is invalid, which causes it to be rejected by Amazon.
-
-* `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the applicable Amazon store are non-buyable.
-
-* `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.*/
+    ///The enforcement action name.
+    ///
+    ///Possible values:
+    ///
+    ///* `LISTING_SUPPRESSED` - This enforcement takes down the current listing item's buyability.
+    ///
+    ///* `ATTRIBUTE_SUPPRESSED` - An attribute's value on the listing item is invalid, which causes it to be rejected by Amazon.
+    ///
+    ///* `CATALOG_ITEM_REMOVED` - This catalog item is inactive on Amazon, and all offers against it in the applicable Amazon store are non-buyable.
+    ///
+    ///* `SEARCH_SUPPRESSED` - This value indicates that the catalog item is hidden from search results.
     pub action: ::std::string::String,
 }
 ///Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
@@ -286,9 +286,9 @@ pub struct ItemOfferByMarketplace {
     ///Amazon store identifier.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
-    /**The listings item's offer type.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///The listings item's offer type.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(rename = "offerType")]
     pub offer_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -370,9 +370,9 @@ pub struct ItemRelationship {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub parent_skus: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /**The type of relationship.
-
-Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.*/
+    ///The type of relationship.
+    ///
+    ///Known values: `VARIATION`, `PACKAGE_HIERARCHY`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
     ///For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
@@ -418,9 +418,9 @@ pub struct ItemRelationshipsByMarketplace {
 pub struct ItemSearchResults {
     ///A list of listings items.
     pub items: ::std::vec::Vec<Item>,
-    /**The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
-
-Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.*/
+    ///The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
+    ///
+    ///Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.
     #[serde(rename = "numberOfResults")]
     pub number_of_results: i64,
     ///If available, the `nextToken` and/or `previousToken` values required to return paginated results.
@@ -453,9 +453,9 @@ pub struct ItemSummaryByMarketplace {
     ///The ASIN of the listings item.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    /**Identifies the condition of the listings item.
-
-Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.*/
+    ///Identifies the condition of the listings item.
+    ///
+    ///Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`. Other values may be returned by Amazon.
     #[serde(
         rename = "conditionType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -485,9 +485,9 @@ Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `
     ///The listings item's Amazon product type.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    /**Statuses that apply to the listings item.
-
-Known values: `BUYABLE`, `DISCOVERABLE`. Other values may be returned by Amazon.*/
+    ///Statuses that apply to the listings item.
+    ///
+    ///Known values: `BUYABLE`, `DISCOVERABLE`. Other values may be returned by Amazon.
     pub status: ::std::vec::Vec<::std::string::String>,
 }
 ///A variation theme that indicates the combination of listing item attributes that define the variation family.
@@ -515,9 +515,9 @@ pub struct ListingsItemPutRequest {
     ///The listings item's Amazon product type.
     #[serde(rename = "productType")]
     pub product_type: ::std::string::String,
-    /**The name of the requirements set for the provided data.
-
-Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.*/
+    ///The name of the requirements set for the provided data.
+    ///
+    ///Known values: `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub requirements: ::std::option::Option<::std::string::String>,
 }
@@ -532,9 +532,9 @@ pub struct ListingsItemSubmissionResponse {
     pub issues: ::std::option::Option<::std::vec::Vec<Issue>>,
     ///A selling partner-provided identifier for an Amazon listing.
     pub sku: ::std::string::String,
-    /**The status of the listings item submission.
-
-Known values: `ACCEPTED`, `INVALID`, `VALID`. Other values may be returned by Amazon.*/
+    ///The status of the listings item submission.
+    ///
+    ///Known values: `ACCEPTED`, `INVALID`, `VALID`. Other values may be returned by Amazon.
     pub status: ::std::string::String,
     ///The unique identifier of the listings item submission.
     #[serde(rename = "submissionId")]

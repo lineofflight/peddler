@@ -49,9 +49,9 @@ pub struct NotificationPayloadReportProcessingFinishedNotification {
     ///The merchant customer identifier or vendor group identifier of the selling partner account on whose behalf the report was submitted.
     #[serde(rename = "accountId")]
     pub account_id: ::std::string::String,
-    /**The processing status of the report.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.*/
+    ///The processing status of the report.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The report document identifier. This identifier is unique only in combination with a seller ID.

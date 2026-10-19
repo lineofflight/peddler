@@ -37,15 +37,10 @@ pub(crate) fn module_doc(api: &ModelSpec, info: &Value) -> String {
     let parts: Vec<&str> = parts.into_iter().filter(|part| !part.is_empty()).collect();
     doc(&parts.join("\n\n"))
 }
-/// Text as a doc comment, an attribute for each line. A spec is data: the attribute
-/// holds the line as a string, and the formatter writes it as a comment only where
-/// nothing in it ends one. In 1 block comment, rustc would drop the `*` that starts each
-/// line after the first, when they all start with one. Rust refuses a carriage return
-/// in a doc comment, so each line break is a line feed.
+/// Text as a doc attribute. A spec is data: the attribute holds it as a string, and
+/// `format_source` writes it as a line comment for each of its lines.
 fn doc(text: &str) -> String {
-    let text = text.replace("\r\n", "\n").replace('\r', "\n");
-    let lines = text.split('\n');
-    lines.map(|line| format!("#[doc = {line:?}]\n")).collect()
+    format!("#[doc = {text:?}]\n")
 }
 /// A parameter's doc: its description, then the values it is known to take, as a
 /// model field's doc lists them. Empty when the spec says nothing of it.

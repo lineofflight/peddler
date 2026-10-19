@@ -95,6 +95,7 @@ version = "0.1.0"
 dependencies = [
  "heck",
  "prettyplease",
+ "proc-macro2",
  "quote",
  "regress",
  "schemars",

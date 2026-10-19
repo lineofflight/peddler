@@ -50,9 +50,9 @@ pub struct Address {
     )]
     pub state_or_region: ::std::option::Option<::std::string::String>,
 }
-/**The unique carrier code for the carrier for whom container labels are requested.
-
-Known values: `SWA`. Other values may be returned by Amazon.*/
+///The unique carrier code for the carrier for whom container labels are requested.
+///
+///Known values: `SWA`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -108,9 +108,9 @@ pub struct Container {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_sequence_number: ::std::option::Option<i64>,
-    /**The type of container.
-
-Known values: `Carton`, `Pallet`. Other values may be returned by Amazon.*/
+    ///The type of container.
+    ///
+    ///Known values: `Carton`, `Pallet`. Other values may be returned by Amazon.
     #[serde(rename = "containerType")]
     pub container_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -158,14 +158,14 @@ pub struct ContainerLabel {
     pub container_tracking_number: ::std::option::Option<::std::string::String>,
     ///The container label content encoded into a Base64 string.
     pub content: ::std::string::String,
-    /**The format of the container label.
-
-Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.*/
+    ///The format of the container label.
+    ///
+    ///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
     pub format: ContainerLabelFormat,
 }
-/**The format of the container label.
-
-Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.*/
+///The format of the container label.
+///
+///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -209,9 +209,9 @@ impl ::std::str::FromStr for ContainerLabelFormat {
 ///The request body schema for the `createContainerLabel` operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct CreateContainerLabelRequest {
-    /**The container (pallet) label's carrier.
-
-Known values: `SWA`. Other values may be returned by Amazon.*/
+    ///The container (pallet) label's carrier.
+    ///
+    ///Known values: `SWA`. Other values may be returned by Amazon.
     #[serde(rename = "carrierId")]
     pub carrier_id: CarrierId,
     ///An array of package objects that associate shipment packages with a container.
@@ -373,9 +373,9 @@ pub struct Dimensions {
     pub height: Decimal,
     ///The length of the container.
     pub length: Decimal,
-    /**The unit of measure for dimensions.
-
-Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
+    ///The unit of measure for dimensions.
+    ///
+    ///Known values: `IN`, `CM`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The width of the container.
@@ -519,9 +519,9 @@ pub struct PackedItem {
 pub struct PackingSlip {
     ///A Base64 string of the packing slip PDF.
     pub content: ::std::string::String,
-    /**The format of the file such as PDF, JPEG etc.
-
-Known values: `application/pdf`. Other values may be returned by Amazon.*/
+    ///The format of the file such as PDF, JPEG etc.
+    ///
+    ///Known values: `application/pdf`. Other values may be returned by Amazon.
     #[serde(
         rename = "contentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -724,9 +724,9 @@ pub struct ShipmentDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_priority_shipment: ::std::option::Option<bool>,
-    /**The shipment status.
-
-Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.*/
+    ///The shipment status.
+    ///
+    ///Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: ::std::string::String,
     ///The date of the shipment's departure from vendor's location. Vendors send ASNs within 30 minutes of departure from their warehouse/distribution center or six hours prior to the appointment time at the Amazon destination warehouse. The shipped date mentioned in the shipment confirmation cannot be in the future.
@@ -847,9 +847,9 @@ pub struct ShippingLabel {
     ///Provides the details of the packages in this shipment.
     #[serde(rename = "labelData")]
     pub label_data: ::std::vec::Vec<LabelData>,
-    /**Format of the label.
-
-Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.*/
+    ///Format of the label.
+    ///
+    ///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
     #[serde(rename = "labelFormat")]
     pub label_format: ::std::string::String,
     ///This field will contain the Purchase Order Number for this order.
@@ -1082,9 +1082,9 @@ pub struct TaxRegistrationDetails {
     ///Tax registration number for the party. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1145,9 +1145,9 @@ impl ::std::str::FromStr for VendorContainerId {
 ///The weight.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
-    /**The unit of measurement.
-
-Known values: `KG`, `LB`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `KG`, `LB`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The measurement value.

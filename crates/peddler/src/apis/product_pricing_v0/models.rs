@@ -119,15 +119,15 @@ pub struct BatchRequest {
     pub headers: ::std::option::Option<HttpRequestHeaders>,
     ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    /**The resource path of the operation you are calling in batch without any query parameters.
-
-If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
-
-**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
-
-If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
-
-**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`*/
+    ///The resource path of the operation you are calling in batch without any query parameters.
+    ///
+    ///If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
+    ///
+    ///If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
     pub uri: ::std::string::String,
 }
 ///A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and fulfillment channels.
@@ -161,9 +161,9 @@ pub struct BuyBoxPriceType {
     ///The price of the item.
     #[serde(rename = "ListingPrice")]
     pub listing_price: MoneyType,
-    /**Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(
         rename = "offerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -172,9 +172,9 @@ Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
     ///The number of Amazon Points offered with the purchase of an item.
     #[serde(rename = "Points", skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    /**Indicates the type of quantity discount this price applies to.
-
-Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
+    ///Indicates the type of quantity discount this price applies to.
+    ///
+    ///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
     #[serde(
         rename = "quantityDiscountType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -244,20 +244,20 @@ pub struct CompetitivePriceType {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub belongs_to_requester: ::std::option::Option<bool>,
-    /**The pricing model for each price that is returned.
-
-Possible values:
-
-* 1 - New Buy Box Price.
-* 2 - Used Buy Box Price.*/
+    ///The pricing model for each price that is returned.
+    ///
+    ///Possible values:
+    ///
+    ///* 1 - New Buy Box Price.
+    ///* 2 - Used Buy Box Price.
     #[serde(rename = "CompetitivePriceId")]
     pub competitive_price_id: ::std::string::String,
     ///Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<::std::string::String>,
-    /**Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(
         rename = "offerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -266,9 +266,9 @@ Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
     ///Pricing information for a given CompetitivePriceId value.
     #[serde(rename = "Price")]
     pub price: PriceType,
-    /**Indicates the type of quantity discount this price applies to.
-
-Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
+    ///Indicates the type of quantity discount this price applies to.
+    ///
+    ///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
     #[serde(
         rename = "quantityDiscountType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -448,9 +448,9 @@ pub struct Errors {
     ///One or more unexpected errors occurred during the operation.
     pub errors: ErrorList,
 }
-/**Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
-
-Known values: `Amazon`, `Merchant`. Other values may be returned by Amazon.*/
+///Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+///
+///Known values: `Amazon`, `Merchant`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -550,9 +550,9 @@ pub struct GetOffersResult {
     ///Metadata that identifies the item.
     #[serde(rename = "Identifier")]
     pub identifier: ItemIdentifier,
-    /**The condition of the item.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///The condition of the item.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(rename = "ItemCondition")]
     pub item_condition: ConditionType,
     ///A marketplace identifier.
@@ -580,9 +580,9 @@ pub struct GetPricingResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<PriceList>,
 }
-/**The HTTP method associated with the individual APIs being called as part of the batch request.
-
-Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.*/
+///The HTTP method associated with the individual APIs being called as part of the batch request.
+///
+///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -787,9 +787,9 @@ pub struct ItemIdentifier {
     ///The Amazon Standard Identification Number (ASIN) of the item.
     #[serde(rename = "ASIN", skip_serializing_if = "::std::option::Option::is_none")]
     pub asin: ::std::option::Option<::std::string::String>,
-    /**The condition of the item.
-
-Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.*/
+    ///The condition of the item.
+    ///
+    ///Known values: `New`, `Used`, `Collectible`, `Refurbished`, `Club`. Other values may be returned by Amazon.
     #[serde(rename = "ItemCondition")]
     pub item_condition: ConditionType,
     ///A marketplace identifier. Specifies the marketplace from which prices are returned.
@@ -820,15 +820,15 @@ pub struct ItemOffersRequest {
     pub marketplace_id: MarketplaceId,
     ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    /**The resource path of the operation you are calling in batch without any query parameters.
-
-If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
-
-**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
-
-If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
-
-**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`*/
+    ///The resource path of the operation you are calling in batch without any query parameters.
+    ///
+    ///If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
+    ///
+    ///If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
     pub uri: ::std::string::String,
 }
 ///A list of `getListingOffers` batched requests to run.
@@ -919,15 +919,15 @@ pub struct ListingOffersRequest {
     pub marketplace_id: MarketplaceId,
     ///Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`. Other values may be returned by Amazon.
     pub method: HttpMethod,
-    /**The resource path of the operation you are calling in batch without any query parameters.
-
-If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
-
-**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
-
-If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
-
-**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`*/
+    ///The resource path of the operation you are calling in batch without any query parameters.
+    ///
+    ///If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
+    ///
+    ///If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
+    ///
+    ///**Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
     pub uri: ::std::string::String,
 }
 ///A list of `getListingOffers` batched requests to run.
@@ -1020,9 +1020,9 @@ pub struct LowestPriceType {
     ///The price of the item.
     #[serde(rename = "ListingPrice")]
     pub listing_price: MoneyType,
-    /**Indicates the type of customer that the offer is valid for.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///Indicates the type of customer that the offer is valid for.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(
         rename = "offerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1031,9 +1031,9 @@ Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
     ///The number of Amazon Points offered with the purchase of an item.
     #[serde(rename = "Points", skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    /**Indicates the type of quantity discount this price applies to.
-
-Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
+    ///Indicates the type of quantity discount this price applies to.
+    ///
+    ///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
     #[serde(
         rename = "quantityDiscountType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1171,9 +1171,9 @@ pub struct OfferCountType {
     ///Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub condition: ::std::option::Option<::std::string::String>,
-    /**Indicates whether the item is fulfilled by Amazon or by the seller.
-
-Known values: `Amazon`, `Merchant`. Other values may be returned by Amazon.*/
+    ///Indicates whether the item is fulfilled by Amazon or by the seller.
+    ///
+    ///Known values: `Amazon`, `Merchant`. Other values may be returned by Amazon.
     #[serde(
         rename = "fulfillmentChannel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1257,9 +1257,9 @@ pub struct OfferDetail {
     ///When true, this is the seller's offer.
     #[serde(rename = "MyOffer", skip_serializing_if = "::std::option::Option::is_none")]
     pub my_offer: ::std::option::Option<bool>,
-    /**Indicates the type of customer that the offer is valid for.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///Indicates the type of customer that the offer is valid for.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(
         rename = "offerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1348,10 +1348,10 @@ pub struct OfferType {
     ///Contains pricing information that includes promotions and contains the shipping cost.
     #[serde(rename = "BuyingPrice")]
     pub buying_price: PriceType,
-    /**The fulfillment channel for the offer listing. Possible values:
-
-* Amazon - Fulfilled by Amazon.
-* Merchant - Fulfilled by the seller.*/
+    ///The fulfillment channel for the offer listing. Possible values:
+    ///
+    ///* Amazon - Fulfilled by Amazon.
+    ///* Merchant - Fulfilled by the seller.
     #[serde(rename = "FulfillmentChannel")]
     pub fulfillment_channel: ::std::string::String,
     ///The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.
@@ -1360,9 +1360,9 @@ pub struct OfferType {
     ///The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
     #[serde(rename = "ItemSubCondition")]
     pub item_sub_condition: ::std::string::String,
-    /**Indicates the type of customer that the offer is valid for.
-
-Known values: `B2C`, `B2B`. Other values may be returned by Amazon.*/
+    ///Indicates the type of customer that the offer is valid for.
+    ///
+    ///Known values: `B2C`, `B2B`. Other values may be returned by Amazon.
     #[serde(
         rename = "offerType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1519,18 +1519,18 @@ pub struct QuantityDiscountPriceType {
     ///The price at this quantity tier.
     #[serde(rename = "listingPrice")]
     pub listing_price: MoneyType,
-    /**Indicates the type of quantity discount this price applies to.
-
-Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
+    ///Indicates the type of quantity discount this price applies to.
+    ///
+    ///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
     #[serde(rename = "quantityDiscountType")]
     pub quantity_discount_type: QuantityDiscountType,
     ///Indicates at what quantity this price becomes active.
     #[serde(rename = "quantityTier")]
     pub quantity_tier: i32,
 }
-/**Indicates the type of quantity discount this price applies to.
-
-Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.*/
+///Indicates the type of quantity discount this price applies to.
+///
+///Known values: `QUANTITY_DISCOUNT`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

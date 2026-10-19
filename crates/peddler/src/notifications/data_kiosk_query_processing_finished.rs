@@ -57,9 +57,9 @@ pub struct NotificationPayload {
     pub error_document_id: ::std::option::Option<::std::string::String>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub pagination: ::std::option::Option<NotificationPayloadPagination>,
-    /**The processing status of the query.
-
-Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.*/
+    ///The processing status of the query.
+    ///
+    ///Known values: `CANCELLED`, `DONE`, `FATAL`. Other values may be returned by Amazon.
     #[serde(rename = "processingStatus")]
     pub processing_status: ::std::string::String,
     ///The submitted query.

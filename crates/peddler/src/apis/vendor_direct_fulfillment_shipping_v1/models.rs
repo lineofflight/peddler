@@ -65,9 +65,9 @@ pub struct Container {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub container_sequence_number: ::std::option::Option<i64>,
-    /**The type of container.
-
-Known values: `carton`, `pallet`. Other values may be returned by Amazon.*/
+    ///The type of container.
+    ///
+    ///Known values: `carton`, `pallet`. Other values may be returned by Amazon.
     #[serde(rename = "containerType")]
     pub container_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -230,9 +230,9 @@ pub struct Dimensions {
     pub height: Decimal,
     ///The length of the container.
     pub length: Decimal,
-    /**The unit of measure for dimensions.
-
-Known values: `IN`, `CM`. Other values may be returned by Amazon.*/
+    ///The unit of measure for dimensions.
+    ///
+    ///Known values: `IN`, `CM`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The width of the container.
@@ -409,9 +409,9 @@ pub struct PackedItem {
 pub struct PackingSlip {
     ///A Base64encoded string of the packing slip PDF.
     pub content: ::std::string::String,
-    /**The format of the file such as PDF, JPEG etc.
-
-Known values: `application/pdf`. Other values may be returned by Amazon.*/
+    ///The format of the file such as PDF, JPEG etc.
+    ///
+    ///Known values: `application/pdf`. Other values may be returned by Amazon.
     #[serde(
         rename = "contentType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -614,9 +614,9 @@ pub struct ShipmentDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub is_priority_shipment: ::std::option::Option<bool>,
-    /**Indicate the shipment status.
-
-Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.*/
+    ///Indicate the shipment status.
+    ///
+    ///Known values: `SHIPPED`, `FLOOR_DENIAL`. Other values may be returned by Amazon.
     #[serde(rename = "shipmentStatus")]
     pub shipment_status: ::std::string::String,
     ///This field indicates the date of the departure of the shipment from vendor's location. Vendors are requested to send ASNs within 30 minutes of departure from their warehouse/distribution center or at least 6 hours prior to the appointment time at the Amazon destination warehouse, whichever is sooner. Shipped date mentioned in the Shipment Confirmation should not be in the future.
@@ -709,9 +709,9 @@ pub struct ShippingLabel {
     ///Provides the details of the packages in this shipment.
     #[serde(rename = "labelData")]
     pub label_data: ::std::vec::Vec<LabelData>,
-    /**Format of the label.
-
-Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.*/
+    ///Format of the label.
+    ///
+    ///Known values: `PNG`, `ZPL`. Other values may be returned by Amazon.
     #[serde(rename = "labelFormat")]
     pub label_format: ::std::string::String,
     ///This field will contain the Purchase Order Number for this order.
@@ -999,9 +999,9 @@ pub struct TaxRegistrationDetails {
     ///Tax registration number for the party. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1021,9 +1021,9 @@ pub struct TransactionReference {
 ///The weight.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Weight {
-    /**The unit of measurement.
-
-Known values: `KG`, `LB`. Other values may be returned by Amazon.*/
+    ///The unit of measurement.
+    ///
+    ///Known values: `KG`, `LB`. Other values may be returned by Amazon.
     #[serde(rename = "unitOfMeasure")]
     pub unit_of_measure: ::std::string::String,
     ///The measurement value.

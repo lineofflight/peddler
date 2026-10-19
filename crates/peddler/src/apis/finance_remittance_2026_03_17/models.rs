@@ -51,17 +51,17 @@ pub struct Breakdown {
     ///The monetary amount of the sub-component.
     #[serde(rename = "breakdownAmount")]
     pub breakdown_amount: Currency,
-    /**The type of sub-component.
-
-**Possible values for `totalAmountBreakdown`:**
-
-* `InvoiceAmount`: The amount on the invoice.
-* `TaxAmount`: The tax amount on the invoice.
-
-**Possible values for `netAmountPaidBreakdown`:**
-
-* `AmountPaid`: The amount paid for the line item in the remittance.
-* `TermsDiscountTaken`: The discount applied based on vendor payment terms.*/
+    ///The type of sub-component.
+    ///
+    ///**Possible values for `totalAmountBreakdown`:**
+    ///
+    ///* `InvoiceAmount`: The amount on the invoice.
+    ///* `TaxAmount`: The tax amount on the invoice.
+    ///
+    ///**Possible values for `netAmountPaidBreakdown`:**
+    ///
+    ///* `AmountPaid`: The amount paid for the line item in the remittance.
+    ///* `TermsDiscountTaken`: The discount applied based on vendor payment terms.
     #[serde(rename = "breakdownType")]
     pub breakdown_type: ::std::string::String,
 }
@@ -136,9 +136,9 @@ pub struct GetRemittancesResponse {
 ///A related business identifier for the transaction.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedIdentifier {
-    /**An enumerated set of related business identifier names.
-
-Known values: `VENDOR_CODE`, `PAYEE_CODE`. Other values may be returned by Amazon.*/
+    ///An enumerated set of related business identifier names.
+    ///
+    ///Known values: `VENDOR_CODE`, `PAYEE_CODE`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding values for `relatedIdentifierName`.
@@ -148,9 +148,9 @@ Known values: `VENDOR_CODE`, `PAYEE_CODE`. Other values may be returned by Amazo
 ///A related business identifier for a remittance line item.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RelatedItemIdentifier {
-    /**An enumerated set of related business identifier names for a line item.
-
-Known values: `VENDOR_CODE`. Other values may be returned by Amazon.*/
+    ///An enumerated set of related business identifier names for a line item.
+    ///
+    ///Known values: `VENDOR_CODE`. Other values may be returned by Amazon.
     #[serde(rename = "relatedIdentifierName")]
     pub related_identifier_name: ::std::string::String,
     ///The corresponding values for `relatedIdentifierName`.
@@ -208,9 +208,9 @@ pub struct RemittanceHeader {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub related_identifiers: ::std::option::Option<::std::vec::Vec<RelatedIdentifier>>,
-    /**The status of the remittance.
-
-Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.*/
+    ///The status of the remittance.
+    ///
+    ///Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.
     #[serde(rename = "remittanceStatus")]
     pub remittance_status: RemittanceStatus,
     ///The unique internal identifier for the payment record in the remittance system.
@@ -249,12 +249,12 @@ pub struct RemittanceItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub net_amount_paid: ::std::option::Option<Currency>,
-    /**The breakdown of `netAmountPaid` into sub-components.
-
-**Possible `breakdownType` values:**
-
-* `AmountPaid`: The amount paid for the line item in the remittance.
-* `TermsDiscountTaken`: The discount applied based on vendor payment terms. For example, early payment terms such as `1% 30, NET 60` allow a percentage discount on the invoice value when payment is made within the specified period.*/
+    ///The breakdown of `netAmountPaid` into sub-components.
+    ///
+    ///**Possible `breakdownType` values:**
+    ///
+    ///* `AmountPaid`: The amount paid for the line item in the remittance.
+    ///* `TermsDiscountTaken`: The discount applied based on vendor payment terms. For example, early payment terms such as `1% 30, NET 60` allow a percentage discount on the invoice value when payment is made within the specified period.
     #[serde(
         rename = "netAmountPaidBreakdown",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -280,12 +280,12 @@ pub struct RemittanceItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub total_amount: ::std::option::Option<Currency>,
-    /**The breakdown of `totalAmount` into sub-components.
-
-**Possible `breakdownType` values:**
-
-* `InvoiceAmount`: The amount on the invoice.
-* `TaxAmount`: The tax amount on the invoice.*/
+    ///The breakdown of `totalAmount` into sub-components.
+    ///
+    ///**Possible `breakdownType` values:**
+    ///
+    ///* `InvoiceAmount`: The amount on the invoice.
+    ///* `TaxAmount`: The tax amount on the invoice.
     #[serde(
         rename = "totalAmountBreakdown",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -298,9 +298,9 @@ pub struct RemittanceItem {
     )]
     pub withholding_amount: ::std::option::Option<Currency>,
 }
-/**The status of a remittance.
-
-Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.*/
+///The status of a remittance.
+///
+///Known values: `IN_PROGRESS`, `SUCCESSFUL`, `FAILED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,

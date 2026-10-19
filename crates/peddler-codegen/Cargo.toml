@@ -10,6 +10,7 @@ typify = { version = "=0.8.0", default-features = false }
 schemars = "0.8"
 serde_json = { version = "1", features = ["arbitrary_precision"] }
 syn = { version = "2", features = ["full"] }
+proc-macro2 = "1"
 quote = "1"
 prettyplease = "=0.2.37"
 heck = "0.5"

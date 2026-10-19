@@ -150,9 +150,9 @@ pub struct ItemQuantity {
     ///Acknowledged quantity. This value should not be zero.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub amount: ::std::option::Option<i64>,
-    /**Unit of measure for the acknowledged quantity.
-
-Known values: `Each`. Other values may be returned by Amazon.*/
+    ///Unit of measure for the acknowledged quantity.
+    ///
+    ///Known values: `Each`. Other values may be returned by Amazon.
     #[serde(
         rename = "unitOfMeasure",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -229,9 +229,9 @@ pub struct OrderDetails {
     ///The date the order was placed. This  field is expected to be in ISO-8601 date/time format, for example:2018-07-16T23:00:00Z/ 2018-07-16T23:00:00-05:00 /2018-07-16T23:00:00-08:00. If no time zone is specified, UTC should be assumed.
     #[serde(rename = "orderDate")]
     pub order_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    /**Current status of the order.
-
-Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`. Other values may be returned by Amazon.*/
+    ///Current status of the order.
+    ///
+    ///Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -453,8 +453,8 @@ pub struct SubmitAcknowledgementResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub payload: ::std::option::Option<TransactionId>,
 }
-/**The tax details for the order.
-_Note:_ Amazon calculates tax on the list price (Amazon retail price).*/
+///The tax details for the order.
+///_Note:_ Amazon calculates tax on the list price (Amazon retail price).
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct TaxDetails {
     #[serde(rename = "taxAmount")]
@@ -466,9 +466,9 @@ pub struct TaxDetails {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub taxable_amount: ::std::option::Option<Money>,
-    /**Tax type.
-
-Known values: `CONSUMPTION`, `GST`, `MwSt.`, `PST`, `TOTAL`, `TVA`, `VAT`. Other values may be returned by Amazon.*/
+    ///Tax type.
+    ///
+    ///Known values: `CONSUMPTION`, `GST`, `MwSt.`, `PST`, `TOTAL`, `TVA`, `VAT`. Other values may be returned by Amazon.
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
 }
@@ -520,9 +520,9 @@ pub struct TaxRegistrationDetails {
     ///Tax registration number for the party. For example, VAT ID.
     #[serde(rename = "taxRegistrationNumber")]
     pub tax_registration_number: ::std::string::String,
-    /**Tax registration type for the entity.
-
-Known values: `VAT`, `GST`. Other values may be returned by Amazon.*/
+    ///Tax registration type for the entity.
+    ///
+    ///Known values: `VAT`, `GST`. Other values may be returned by Amazon.
     #[serde(
         rename = "taxRegistrationType",
         skip_serializing_if = "::std::option::Option::is_none"

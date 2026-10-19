@@ -69,9 +69,9 @@ pub struct Appointment {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_id: ::std::option::Option<AppointmentId>,
-    /**The status of the appointment.
-
-Known values: `ACTIVE`, `CANCELLED`, `COMPLETED`. Other values may be returned by Amazon.*/
+    ///The status of the appointment.
+    ///
+    ///Known values: `ACTIVE`, `CANCELLED`, `COMPLETED`. Other values may be returned by Amazon.
     #[serde(
         rename = "appointmentStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -216,9 +216,9 @@ pub struct AppointmentSlotReport {
     ///End Time up to which the appointment slots are generated in ISO 8601 format.
     #[serde(rename = "endTime", skip_serializing_if = "::std::option::Option::is_none")]
     pub end_time: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /**Defines the type of slots.
-
-Known values: `REAL_TIME_SCHEDULING`, `NON_REAL_TIME_SCHEDULING`. Other values may be returned by Amazon.*/
+    ///Defines the type of slots.
+    ///
+    ///Known values: `REAL_TIME_SCHEDULING`, `NON_REAL_TIME_SCHEDULING`. Other values may be returned by Amazon.
     #[serde(
         rename = "schedulingType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -294,9 +294,9 @@ pub struct AssociatedItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub item_delivery: ::std::option::Option<ItemDelivery>,
-    /**The status of the item.
-
-Known values: `ACTIVE`, `CANCELLED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.*/
+    ///The status of the item.
+    ///
+    ///Known values: `ACTIVE`, `CANCELLED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
     #[serde(
         rename = "itemStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -443,9 +443,9 @@ pub struct CancelServiceJobByServiceJobIdResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub errors: ::std::option::Option<ErrorList>,
 }
-/**Type of capacity
-
-Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.*/
+///Type of capacity
+///
+///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -543,9 +543,9 @@ pub struct DateTimeRange {
     #[serde(rename = "startTime")]
     pub start_time: ::chrono::DateTime<::chrono::offset::Utc>,
 }
-/**The day of the week.
-
-Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.*/
+///The day of the week.
+///
+///Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -594,9 +594,9 @@ pub struct EncryptionDetails {
     pub initialization_vector: ::std::string::String,
     ///The encryption key used to encrypt or decrypt the document contents.
     pub key: ::std::string::String,
-    /**The encryption standard required to encrypt or decrypt the document contents.
-
-Known values: `AES`. Other values may be returned by Amazon.*/
+    ///The encryption standard required to encrypt or decrypt the document contents.
+    ///
+    ///Known values: `AES`. Other values may be returned by Amazon.
     pub standard: ::std::string::String,
 }
 ///Error response returned when the request is unsuccessful.
@@ -607,9 +607,9 @@ pub struct Error {
     ///Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub details: ::std::option::Option<::std::string::String>,
-    /**The type of error.
-
-Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.*/
+    ///The type of error.
+    ///
+    ///Known values: `ERROR`, `WARNING`. Other values may be returned by Amazon.
     #[serde(
         rename = "errorLevel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -709,9 +709,9 @@ pub struct FixedSlotCapacityErrors {
 ///Request schema for the `getFixedSlotCapacity` operation. This schema is used to define the time range, capacity types and slot duration which are being queried.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct FixedSlotCapacityQuery {
-    /**An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
-
-Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.*/
+    ///An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
+    ///
+    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -977,9 +977,9 @@ pub struct Poa {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub appointment_time: ::std::option::Option<AppointmentTime>,
-    /**The type of POA uploaded.
-
-Known values: `NO_SIGNATURE_DUMMY_POS`, `CUSTOMER_SIGNATURE`, `DUMMY_RECEIPT`, `POA_RECEIPT`. Other values may be returned by Amazon.*/
+    ///The type of POA uploaded.
+    ///
+    ///Known values: `NO_SIGNATURE_DUMMY_POS`, `CUSTOMER_SIGNATURE`, `DUMMY_RECEIPT`, `POA_RECEIPT`. Other values may be returned by Amazon.
     #[serde(rename = "poaType", skip_serializing_if = "::std::option::Option::is_none")]
     pub poa_type: ::std::option::Option<::std::string::String>,
     ///A list of technicians.
@@ -1057,9 +1057,9 @@ impl<'de> ::serde::Deserialize<'de> for PoaUploadingTechnician {
 ///Range capacity entity where each entry has a capacity type and corresponding slots.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct RangeCapacity {
-    /**Capacity type corresponding to the slots.
-
-Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.*/
+    ///Capacity type corresponding to the slots.
+    ///
+    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1119,9 +1119,9 @@ pub struct RangeSlotCapacityErrors {
 ///Request schema for the `getRangeSlotCapacity` operation. This schema is used to define the time range and capacity types that are being queried.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RangeSlotCapacityQuery {
-    /**An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
-
-Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.*/
+    ///An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`.
+    ///
+    ///Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`. Other values may be returned by Amazon.
     #[serde(
         rename = "capacityTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1143,9 +1143,9 @@ pub struct Recurrence {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub days_of_month: ::std::option::Option<::std::vec::Vec<::std::num::NonZeroU64>>,
-    /**Days of the week when recurrence is valid. If the schedule is valid every Monday, input will only contain `MONDAY` in the list.
-
-Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.*/
+    ///Days of the week when recurrence is valid. If the schedule is valid every Monday, input will only contain `MONDAY` in the list.
+    ///
+    ///Known values: `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`. Other values may be returned by Amazon.
     #[serde(
         rename = "daysOfWeek",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1217,9 +1217,9 @@ pub struct Reservation {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub reservation_id: ::std::option::Option<::std::string::String>,
-    /**Type of reservation.
-
-Known values: `APPOINTMENT`, `TRAVEL`, `VACATION`, `BREAK`, `TRAINING`. Other values may be returned by Amazon.*/
+    ///Type of reservation.
+    ///
+    ///Known values: `APPOINTMENT`, `TRAVEL`, `VACATION`, `BREAK`, `TRAINING`. Other values may be returned by Amazon.
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
 }
@@ -1384,9 +1384,9 @@ pub struct ServiceJob {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub service_job_provider: ::std::option::Option<ServiceJobProvider>,
-    /**The status of the service job.
-
-Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`. Other values may be returned by Amazon.*/
+    ///The status of the service job.
+    ///
+    ///Known values: `NOT_SERVICED`, `CANCELLED`, `COMPLETED`, `PENDING_SCHEDULE`, `NOT_FULFILLABLE`, `HOLD`, `PAYMENT_DECLINED`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceJobStatus",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1660,9 +1660,9 @@ pub struct ServiceLocation {
     ///The shipping address for the service job.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub address: ::std::option::Option<Address>,
-    /**The location of the service job.
-
-Known values: `IN_HOME`, `IN_STORE`, `ONLINE`. Other values may be returned by Amazon.*/
+    ///The location of the service job.
+    ///
+    ///Known values: `IN_HOME`, `IN_STORE`, `ONLINE`. Other values may be returned by Amazon.
     #[serde(
         rename = "serviceLocationType",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1681,9 +1681,9 @@ pub struct ServiceUploadDocument {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub content_md5: ::std::option::Option<ServiceUploadDocumentContentMd5>,
-    /**The content type of the to-be-uploaded file
-
-Known values: `TIFF`, `JPG`, `PNG`, `JPEG`, `GIF`, `PDF`. Other values may be returned by Amazon.*/
+    ///The content type of the to-be-uploaded file
+    ///
+    ///Known values: `TIFF`, `JPG`, `PNG`, `JPEG`, `GIF`, `PDF`. Other values may be returned by Amazon.
     #[serde(rename = "contentType")]
     pub content_type: ::std::string::String,
 }

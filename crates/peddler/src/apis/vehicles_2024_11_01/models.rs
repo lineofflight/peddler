@@ -5,16 +5,16 @@
 ///Engine power output of vehicle.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EngineOutput {
-    /**Unit for measuring engine power.
-
-Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.*/
+    ///Unit for measuring engine power.
+    ///
+    ///Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
     pub unit: EngineOutputUnit,
     ///Engine power value in specified unit.
     pub value: ::serde_json::Number,
 }
-/**Unit for measuring engine power.
-
-Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.*/
+///Unit for measuring engine power.
+///
+///Known values: `KILOWATT`, `HORSEPOWER`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -187,9 +187,9 @@ pub struct Vehicle {
     pub manufacturing_stop_date: ::std::option::Option<MonthAndYear>,
     ///Specific model of a vehicle.
     pub model: ::std::string::String,
-    /**Denotes if the vehicle is active or deleted from Amazon's catalog.
-
-Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.*/
+    ///Denotes if the vehicle is active or deleted from Amazon's catalog.
+    ///
+    ///Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<VehicleStatusInCatalog>,
     ///Name of the vehicle variant.
@@ -202,16 +202,16 @@ Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.*/
 ///Combination of vehicle standard and id that can uniquely identify a vehicle from Amazon's catalog.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct VehicleIdentifiers {
-    /**Vehicle standard used to uniquely identify a vehicle.
-
-Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.*/
+    ///Vehicle standard used to uniquely identify a vehicle.
+    ///
+    ///Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
     pub standard: VehicleStandard,
     ///Id that can uniquely identify a vehicle based the vehicle identification standard.
     pub value: ::std::string::String,
 }
-/**Standard followed to uniquely identify a vehicle.
-
-Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.*/
+///Standard followed to uniquely identify a vehicle.
+///
+///Known values: `KTYPE`, `AMAZON_ID`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -252,9 +252,9 @@ impl ::std::str::FromStr for VehicleStandard {
         Ok(Self(value.to_string()))
     }
 }
-/**Status of vehicle in Amazon's catalog.
-
-Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.*/
+///Status of vehicle in Amazon's catalog.
+///
+///Known values: `ACTIVE`, `DELETED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
