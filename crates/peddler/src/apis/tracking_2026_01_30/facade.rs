@@ -4,20 +4,31 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_shipment_tracking`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentTrackingParams {
+    ///The unique tracking request identifier.
     pub id: Option<String>,
+    ///The Air Cargo Shipment Identification Number.
     pub acsin: Option<String>,
+    ///The Amazon Fulfillment Tracking Number.
     pub aftn: Option<String>,
+    ///The container number provided by the Logistics Service Provider.
     pub container_number: Option<String>,
+    ///The House Bill of Lading (HBL) number.
     pub house_bill_of_lading_number: Option<String>,
+    ///The PRO number assigned by the freight carrier
     pub pro_number: Option<String>,
+    ///The tracking number assigned by the carrier.
     pub carrier_tracking_tracking_number: Option<String>,
+    ///The carrier code associated with the carrier tracking number.
     pub carrier_tracking_carrier_code: Option<String>,
+    ///The preferred natural language and locale of the client, in POSIX locale format. Currently supports `en-US` only.
     pub accept_language: Option<String>,
 }
 impl GetShipmentTrackingParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             id: None,
@@ -37,6 +48,7 @@ impl Default for GetShipmentTrackingParams {
         Self::new()
     }
 }
+///Returns tracking information for a shipment.
 pub async fn get_shipment_tracking(
     client: &Client,
     params: GetShipmentTrackingParams,

@@ -4,14 +4,21 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_item_eligibility_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetItemEligibilityPreviewParams {
+    ///The identifier for the marketplace in which you want to determine eligibility. Required only when program=INBOUND.
     pub marketplace_ids: Option<Vec<String>>,
+    ///The ASIN of the item for which you want an eligibility preview.
     pub asin: String,
+    /**The program that you want to check eligibility against.
+
+Known values: `INBOUND`, `COMMINGLING`.*/
     pub program: String,
 }
 impl GetItemEligibilityPreviewParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(asin: String, program: String) -> Self {
         Self {
             marketplace_ids: None,
@@ -20,6 +27,7 @@ impl GetItemEligibilityPreviewParams {
         }
     }
 }
+///This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which you want to determine the item's eligibility.
 pub async fn get_item_eligibility_preview(
     client: &Client,
     params: GetItemEligibilityPreviewParams,

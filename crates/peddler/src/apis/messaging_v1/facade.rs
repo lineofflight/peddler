@@ -4,14 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`confirm_customization_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmCustomizationDetailsParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> ConfirmCustomizationDetailsParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -20,6 +25,7 @@ impl<B> ConfirmCustomizationDetailsParams<B> {
         }
     }
 }
+///Sends a message asking a buyer to provide or verify customization details such as name spelling, images, initials, etc.
 pub async fn confirm_customization_details<B: serde::Serialize>(
     client: &Client,
     params: ConfirmCustomizationDetailsParams<B>,
@@ -46,14 +52,19 @@ pub async fn confirm_customization_details<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_confirm_delivery_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateConfirmDeliveryDetailsParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateConfirmDeliveryDetailsParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -62,6 +73,7 @@ impl<B> CreateConfirmDeliveryDetailsParams<B> {
         }
     }
 }
+///Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
 pub async fn create_confirm_delivery_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmDeliveryDetailsParams<B>,
@@ -88,14 +100,19 @@ pub async fn create_confirm_delivery_details<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_confirm_order_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateConfirmOrderDetailsParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateConfirmOrderDetailsParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -104,6 +121,7 @@ impl<B> CreateConfirmOrderDetailsParams<B> {
         }
     }
 }
+///Sends a message to ask a buyer an order-related question prior to shipping their order.
 pub async fn create_confirm_order_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmOrderDetailsParams<B>,
@@ -130,14 +148,19 @@ pub async fn create_confirm_order_details<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_confirm_service_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateConfirmServiceDetailsParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateConfirmServiceDetailsParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -146,6 +169,7 @@ impl<B> CreateConfirmServiceDetailsParams<B> {
         }
     }
 }
+///Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a service call.
 pub async fn create_confirm_service_details<B: serde::Serialize>(
     client: &Client,
     params: CreateConfirmServiceDetailsParams<B>,
@@ -172,14 +196,19 @@ pub async fn create_confirm_service_details<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_digital_access_key`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateDigitalAccessKeyParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateDigitalAccessKeyParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -188,6 +217,7 @@ impl<B> CreateDigitalAccessKeyParams<B> {
         }
     }
 }
+///Sends a buyer a message to share a digital access key that is required to utilize digital content in their order.
 pub async fn create_digital_access_key<B: serde::Serialize>(
     client: &Client,
     params: CreateDigitalAccessKeyParams<B>,
@@ -214,14 +244,19 @@ pub async fn create_digital_access_key<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_legal_disclosure`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateLegalDisclosureParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateLegalDisclosureParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -230,6 +265,7 @@ impl<B> CreateLegalDisclosureParams<B> {
         }
     }
 }
+///Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer. This message should only be used to deliver documents that are required by law.
 pub async fn create_legal_disclosure<B: serde::Serialize>(
     client: &Client,
     params: CreateLegalDisclosureParams<B>,
@@ -256,14 +292,19 @@ pub async fn create_legal_disclosure<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_unexpected_problem`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateUnexpectedProblemParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateUnexpectedProblemParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -272,6 +313,7 @@ impl<B> CreateUnexpectedProblemParams<B> {
         }
     }
 }
+///Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the order.
 pub async fn create_unexpected_problem<B: serde::Serialize>(
     client: &Client,
     params: CreateUnexpectedProblemParams<B>,
@@ -298,14 +340,19 @@ pub async fn create_unexpected_problem<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_warranty`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateWarrantyParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> CreateWarrantyParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -314,6 +361,7 @@ impl<B> CreateWarrantyParams<B> {
         }
     }
 }
+///Sends a message to a buyer to provide details about warranty information on a purchase in their order.
 pub async fn create_warranty<B: serde::Serialize>(
     client: &Client,
     params: CreateWarrantyParams<B>,
@@ -340,13 +388,17 @@ pub async fn create_warranty<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`get_attributes`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAttributesParams {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
 }
 impl GetAttributesParams {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             amazon_order_id,
@@ -354,6 +406,7 @@ impl GetAttributesParams {
         }
     }
 }
+///Returns a response containing attributes related to an order. This includes buyer preferences.
 pub async fn get_attributes(
     client: &Client,
     params: GetAttributesParams,
@@ -380,13 +433,17 @@ pub async fn get_attributes(
         .await?;
     Ok(raw)
 }
+///The parameters of [`get_messaging_actions_for_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMessagingActionsForOrderParams {
+    ///An Amazon order identifier. This specifies the order for which you want a list of available message types.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
 }
 impl GetMessagingActionsForOrderParams {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             amazon_order_id,
@@ -394,6 +451,7 @@ impl GetMessagingActionsForOrderParams {
         }
     }
 }
+///Returns a list of message types that are available for an order that you specify. A message type is represented by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to call an operation that sends a message.
 pub async fn get_messaging_actions_for_order(
     client: &Client,
     params: GetMessagingActionsForOrderParams,
@@ -419,14 +477,19 @@ pub async fn get_messaging_actions_for_order(
         .await?;
     Ok(raw)
 }
+///The parameters of [`send_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SendInvoiceParams<B = serde_json::Value> {
+    ///An Amazon order identifier. This identifies the order for which a message is sent.
     pub amazon_order_id: String,
+    ///A marketplace identifier. This identifies the marketplace in which the order was placed. You can only specify one marketplace.
     pub marketplace_ids: Vec<String>,
+    ///This contains the message body for a message.
     pub body: B,
 }
 impl<B> SendInvoiceParams<B> {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_ids: Vec<String>, body: B) -> Self {
         Self {
             amazon_order_id,
@@ -435,6 +498,7 @@ impl<B> SendInvoiceParams<B> {
         }
     }
 }
+///Sends a message providing the buyer an invoice
 pub async fn send_invoice<B: serde::Serialize>(
     client: &Client,
     params: SendInvoiceParams<B>,

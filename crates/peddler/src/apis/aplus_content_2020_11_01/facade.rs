@@ -4,17 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_content_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateContentDocumentParams<B = serde_json::Value> {
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///The content document request details.
     pub body: B,
 }
 impl<B> CreateContentDocumentParams<B> {
+    ///Takes the required parameters.
     pub fn new(marketplace_id: String, body: B) -> Self {
         Self { marketplace_id, body }
     }
 }
+///Create a new A+ Content document.
 pub async fn create_content_document<B: serde::Serialize>(
     client: &Client,
     params: CreateContentDocumentParams<B>,
@@ -35,16 +40,24 @@ pub async fn create_content_document<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_media`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateMediaParams<B = serde_json::Value> {
+    ///The media creation request details.
     pub body: B,
 }
 impl<B> CreateMediaParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**Create a media asset record. The `mediaType` field determines the type of asset to create.
+
+This operation is idempotent; if the asset or pairing already exists with identical metadata, this operation returns a `200` response with existing data. Returns `201` when a new asset or pairing is created. Returns `409` if the asset or pairing already exists but the metadata fields differ.
+
+If an `uploadDestinationId` is provided, it is resolved to its `mediaId` before any further processing. A request that references an asset by `uploadDestinationId` and a subsequent request that uses the resulting `mediaId` are treated as referring to the same identity.*/
 pub async fn create_media<B: serde::Serialize>(
     client: &Client,
     params: CreateMediaParams<B>,
@@ -63,14 +76,21 @@ pub async fn create_media<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_content_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetContentDocumentParams {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    /**The set of A+ Content data types to include in the response.
+
+Known values: `CONTENTS`, `METADATA`.*/
     pub included_data_set: Vec<String>,
 }
 impl GetContentDocumentParams {
+    ///Takes the required parameters.
     pub fn new(
         content_reference_key: String,
         marketplace_id: String,
@@ -83,6 +103,7 @@ impl GetContentDocumentParams {
         }
     }
 }
+///Retrieve an A+ Content document, if available.
 pub async fn get_content_document(
     client: &Client,
     params: GetContentDocumentParams,
@@ -109,13 +130,17 @@ pub async fn get_content_document(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_media`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMediaParams {
+    ///The unique identifier for the media asset.
     pub media_id: String,
+    ///When provided, returns only the specific association. When omitted, returns all associated media.
     pub associated_media_id: Option<String>,
 }
 impl GetMediaParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(media_id: String) -> Self {
         Self {
             media_id,
@@ -123,6 +148,9 @@ impl GetMediaParams {
         }
     }
 }
+/**Retrieve media metadata and related media for a given media ID. The response uses the unified Media shape. Related media associations are also included in the response.
+
+When `associatedMediaId` is provided, `relatedMedia` is filtered to the specific pairing. When omitted, all related media are returned.*/
 pub async fn get_media(
     client: &Client,
     params: GetMediaParams,
@@ -151,16 +179,25 @@ pub async fn get_media(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_content_document_asin_relations`] and [`list_content_document_asin_relations_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListContentDocumentAsinRelationsParams {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    /**The set of A+ Content data types to include in the response. If you do not include this parameter, the operation returns the related ASINs without metadata.
+
+Known values: `METADATA`.*/
     pub included_data_set: Option<Vec<String>>,
+    ///The set of ASINs.
     pub asin_set: Option<Vec<String>>,
+    ///A page token from the `nextPageToken` response element returned by your previous call to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken` with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are no more pages to return. A `pageToken` value is not usable across different operations.
     pub page_token: Option<String>,
 }
 impl ListContentDocumentAsinRelationsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(content_reference_key: String, marketplace_id: String) -> Self {
         Self {
             content_reference_key,
@@ -171,6 +208,9 @@ impl ListContentDocumentAsinRelationsParams {
         }
     }
 }
+/**Retrieve a list of ASINs related to the specified A+ Content document, if available. If you do not include the `asinSet` parameter, the operation returns all ASINs related to the content document.
+
+Its pages: [`list_content_document_asin_relations_pages`].*/
 pub async fn list_content_document_asin_relations(
     client: &Client,
     params: ListContentDocumentAsinRelationsParams,
@@ -204,6 +244,7 @@ pub async fn list_content_document_asin_relations(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_content_document_asin_relations`].
 pub fn list_content_document_asin_relations_pages<'a>(
     client: &'a Client,
     params: ListContentDocumentAsinRelationsParams,
@@ -227,13 +268,17 @@ pub fn list_content_document_asin_relations_pages<'a>(
         &params,
     )
 }
+///The parameters of [`post_content_document_approval_submission`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PostContentDocumentApprovalSubmissionParams {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
 }
 impl PostContentDocumentApprovalSubmissionParams {
+    ///Takes the required parameters.
     pub fn new(content_reference_key: String, marketplace_id: String) -> Self {
         Self {
             content_reference_key,
@@ -241,6 +286,7 @@ impl PostContentDocumentApprovalSubmissionParams {
         }
     }
 }
+///Submits an A+ Content document for review, approval, and publishing.
 pub async fn post_content_document_approval_submission(
     client: &Client,
     params: PostContentDocumentApprovalSubmissionParams,
@@ -269,14 +315,19 @@ pub async fn post_content_document_approval_submission(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`post_content_document_asin_relations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PostContentDocumentAsinRelationsParams<B = serde_json::Value> {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///The content document ASIN relations request details.
     pub body: B,
 }
 impl<B> PostContentDocumentAsinRelationsParams<B> {
+    ///Takes the required parameters.
     pub fn new(content_reference_key: String, marketplace_id: String, body: B) -> Self {
         Self {
             content_reference_key,
@@ -285,6 +336,7 @@ impl<B> PostContentDocumentAsinRelationsParams<B> {
         }
     }
 }
+///Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs, depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content document from that ASIN.
 pub async fn post_content_document_asin_relations<B: serde::Serialize>(
     client: &Client,
     params: PostContentDocumentAsinRelationsParams<B>,
@@ -313,13 +365,17 @@ pub async fn post_content_document_asin_relations<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`post_content_document_suspend_submission`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PostContentDocumentSuspendSubmissionParams {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
 }
 impl PostContentDocumentSuspendSubmissionParams {
+    ///Takes the required parameters.
     pub fn new(content_reference_key: String, marketplace_id: String) -> Self {
         Self {
             content_reference_key,
@@ -327,6 +383,7 @@ impl PostContentDocumentSuspendSubmissionParams {
         }
     }
 }
+///Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN relations.
 pub async fn post_content_document_suspend_submission(
     client: &Client,
     params: PostContentDocumentSuspendSubmissionParams,
@@ -355,13 +412,17 @@ pub async fn post_content_document_suspend_submission(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`search_content_documents`] and [`search_content_documents_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchContentDocumentsParams {
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///A page token from the `nextPageToken` response element returned by your previous call to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken` with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are no more pages to return. A `pageToken` value is not usable across different operations.
     pub page_token: Option<String>,
 }
 impl SearchContentDocumentsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -369,6 +430,9 @@ impl SearchContentDocumentsParams {
         }
     }
 }
+/**Retrieve a list of all A+ Content documents assigned to a selling partner. This operation returns only the metadata of the A+ Content documents. Call the `getContentDocument` operation to get the actual contents of the A+ Content documents.
+
+Its pages: [`search_content_documents_pages`].*/
 pub async fn search_content_documents(
     client: &Client,
     params: SearchContentDocumentsParams,
@@ -390,6 +454,7 @@ pub async fn search_content_documents(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`search_content_documents`].
 pub fn search_content_documents_pages<'a>(
     client: &'a Client,
     params: SearchContentDocumentsParams,
@@ -410,14 +475,19 @@ pub fn search_content_documents_pages<'a>(
         &params,
     )
 }
+///The parameters of [`search_content_publish_records`] and [`search_content_publish_records_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchContentPublishRecordsParams {
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///The Amazon Standard Identification Number (ASIN).
     pub asin: String,
+    ///A page token from the `nextPageToken` response element returned by your previous call to this operation. `nextPageToken` is returned when the results of a call exceed the page size. To get the next page of results, call the operation and include `pageToken` as the only parameter. Specifying `pageToken` with any other parameter will cause the request to fail. When no `nextPageToken` value is returned there are no more pages to return. A `pageToken` value is not usable across different operations.
     pub page_token: Option<String>,
 }
 impl SearchContentPublishRecordsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, asin: String) -> Self {
         Self {
             marketplace_id,
@@ -426,6 +496,9 @@ impl SearchContentPublishRecordsParams {
         }
     }
 }
+/**Searches for A+ Content publishing records, if available.
+
+Its pages: [`search_content_publish_records_pages`].*/
 pub async fn search_content_publish_records(
     client: &Client,
     params: SearchContentPublishRecordsParams,
@@ -448,6 +521,7 @@ pub async fn search_content_publish_records(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`search_content_publish_records`].
 pub fn search_content_publish_records_pages<'a>(
     client: &'a Client,
     params: SearchContentPublishRecordsParams,
@@ -469,14 +543,19 @@ pub fn search_content_publish_records_pages<'a>(
         &params,
     )
 }
+///The parameters of [`update_content_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateContentDocumentParams<B = serde_json::Value> {
+    ///The unique reference key for the A+ Content document. A content reference key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match any A+ Content identifier.
     pub content_reference_key: String,
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///The content document request details.
     pub body: B,
 }
 impl<B> UpdateContentDocumentParams<B> {
+    ///Takes the required parameters.
     pub fn new(content_reference_key: String, marketplace_id: String, body: B) -> Self {
         Self {
             content_reference_key,
@@ -485,6 +564,7 @@ impl<B> UpdateContentDocumentParams<B> {
         }
     }
 }
+///Update an existing A+ Content document.
 pub async fn update_content_document<B: serde::Serialize>(
     client: &Client,
     params: UpdateContentDocumentParams<B>,
@@ -509,14 +589,19 @@ pub async fn update_content_document<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`update_media`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateMediaParams<B = serde_json::Value> {
+    ///The unique identifier for the media asset to update.
     pub media_id: String,
+    ///When provided, identifies the specific video-image pairing for title updates. Required when updating a pairing title.
     pub associated_media_id: Option<String>,
+    ///The media update request details.
     pub body: B,
 }
 impl<B> UpdateMediaParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(media_id: String, body: B) -> Self {
         Self {
             media_id,
@@ -525,6 +610,11 @@ impl<B> UpdateMediaParams<B> {
         }
     }
 }
+/**Update metadata on an existing media asset. The `mediaId` path parameter identifies the target asset. For video-image pairing title updates, provide `associatedMediaId` as a query parameter. For video-level description updates or standalone image title updates, omit `associatedMediaId`.
+
+Each request updates either title or descriptions, but not both. Descriptions are upserted by locale; only provided locales are modified, and existing locales not in the request are preserved.
+
+The response contains the full unified Media shape. When `associatedMediaId` is provided, `relatedMedia` contains only the specified pairing. When `associatedMediaId` is absent, `relatedMedia` contains all affected pairings.*/
 pub async fn update_media<B: serde::Serialize>(
     client: &Client,
     params: UpdateMediaParams<B>,
@@ -553,14 +643,19 @@ pub async fn update_media<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`validate_content_document_asin_relations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ValidateContentDocumentAsinRelationsParams<B = serde_json::Value> {
+    ///The identifier for the Amazon store where the A+ Content is published.
     pub marketplace_id: String,
+    ///The set of ASINs.
     pub asin_set: Option<Vec<String>>,
+    ///The content document request details.
     pub body: B,
 }
 impl<B> ValidateContentDocumentAsinRelationsParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, body: B) -> Self {
         Self {
             marketplace_id,
@@ -569,6 +664,7 @@ impl<B> ValidateContentDocumentAsinRelationsParams<B> {
         }
     }
 }
+///Checks if the A+ Content document is valid for use on a set of ASINs.
 pub async fn validate_content_document_asin_relations<B: serde::Serialize>(
     client: &Client,
     params: ValidateContentDocumentAsinRelationsParams<B>,

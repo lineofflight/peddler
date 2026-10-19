@@ -4,17 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_packages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreatePackagesParams<B = serde_json::Value> {
+    ///The ID of the shipment.
     pub shipment_id: String,
+    ///A list of packages in the shipment.
     pub body: B,
 }
 impl<B> CreatePackagesParams<B> {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String, body: B) -> Self {
         Self { shipment_id, body }
     }
 }
+///Provide details about the packages in the specified shipment.
 pub async fn create_packages<B: serde::Serialize>(
     client: &Client,
     params: CreatePackagesParams<B>,
@@ -38,16 +43,20 @@ pub async fn create_packages<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_sandbox_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateSandboxShipmentParams<B = serde_json::Value> {
+    ///The request body for creating a sandbox shipment.
     pub body: B,
 }
 impl<B> CreateSandboxShipmentParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates a sandbox shipment to simulate order creation in the test environment. This operation is available only in the sandbox environment. The shipment is created with the specified configuration including shipping type and order type.
 pub async fn create_sandbox_shipment<B: serde::Serialize>(
     client: &Client,
     params: CreateSandboxShipmentParams<B>,
@@ -66,16 +75,20 @@ pub async fn create_sandbox_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`generate_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateInvoiceParams {
+    ///The ID of the shipment whose invoice you want.
     pub shipment_id: String,
 }
 impl GenerateInvoiceParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Get invoices for the shipment you specify.
 pub async fn generate_invoice(
     client: &Client,
     params: GenerateInvoiceParams,
@@ -99,15 +112,23 @@ pub async fn generate_invoice(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`generate_ship_labels`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateShipLabelsParams<B = serde_json::Value> {
+    ///The ID of the shipment whose shipping labels you want to generate and retrieve.
     pub shipment_id: String,
+    ///The ID of the shipping option whose shipping labels you want.
     pub shipping_option_id: Option<String>,
+    /**Specify whether you want to generate or regenerate a label.
+
+Known values: `GENERATE`, `REGENERATE`.*/
     pub operation: String,
+    ///Shipping details for when shipping is not done by the marketplace channel.
     pub body: Option<B>,
 }
 impl<B> GenerateShipLabelsParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String, operation: String) -> Self {
         Self {
             shipment_id,
@@ -117,6 +138,7 @@ impl<B> GenerateShipLabelsParams<B> {
         }
     }
 }
+///Generate and retrieve all shipping labels for one or more packages in the shipment you specify.
 pub async fn generate_ship_labels<B: serde::Serialize>(
     client: &Client,
     params: GenerateShipLabelsParams<B>,
@@ -143,16 +165,20 @@ pub async fn generate_ship_labels<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentParams {
+    ///The ID of the shipment you want to retrieve.
     pub shipment_id: String,
 }
 impl GetShipmentParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Get a single shipment with the ID you specify.
 pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,
@@ -175,19 +201,31 @@ pub async fn get_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_shipments`] and [`get_shipments_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentsParams {
+    ///The Amazon channel location identifier for the shipments you want to retrieve.
     pub location_id: Option<String>,
+    ///The marketplace ID associated with the location. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: Option<String>,
+    ///The channel name associated with the location.
     pub channel_name: Option<String>,
+    /**The status of shipment you want to include in the response. To retrieve all new shipments, set this value to `ACCEPTED`.
+
+Known values: `CREATED`, `ACCEPTED`, `CONFIRMED`, `PACKAGE_CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `CANCELLED`, `SHIPPED`, `DELIVERED`.*/
     pub status: String,
+    ///The response includes shipments whose latest update is after the specified time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub last_updated_after: Option<String>,
+    ///The response includes shipments whose latest update is before the specified time. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
     pub last_updated_before: Option<String>,
+    ///The maximum number of shipments to include in the response.
     pub max_results: Option<i64>,
+    ///A token that you use to retrieve the next page of results. The response includes `nextToken` when there are multiple pages of results. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub pagination_token: Option<String>,
 }
 impl GetShipmentsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(status: String) -> Self {
         Self {
             location_id: None,
@@ -201,6 +239,9 @@ impl GetShipmentsParams {
         }
     }
 }
+/**Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered based on the fulfillment node or the time of the shipments' last update.
+
+Its pages: [`get_shipments_pages`].*/
 pub async fn get_shipments(
     client: &Client,
     params: GetShipmentsParams,
@@ -232,6 +273,7 @@ pub async fn get_shipments(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_shipments`].
 pub fn get_shipments_pages<'a>(
     client: &'a Client,
     params: GetShipmentsParams,
@@ -253,14 +295,21 @@ pub fn get_shipments_pages<'a>(
         &params,
     )
 }
+///The parameters of [`process_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ProcessShipmentParams<B = serde_json::Value> {
+    ///The ID of the shipment you want to confirm or reject.
     pub shipment_id: String,
+    /**The status of the shipment.
+
+Known values: `CONFIRM`, `REJECT`.*/
     pub operation: String,
+    ///Information about the shipment and its line items.
     pub body: Option<B>,
 }
 impl<B> ProcessShipmentParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String, operation: String) -> Self {
         Self {
             shipment_id,
@@ -269,6 +318,7 @@ impl<B> ProcessShipmentParams<B> {
         }
     }
 }
+///Confirm or reject the specified shipment.
 pub async fn process_shipment<B: serde::Serialize>(
     client: &Client,
     params: ProcessShipmentParams<B>,
@@ -293,16 +343,20 @@ pub async fn process_shipment<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`retrieve_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RetrieveInvoiceParams {
+    ///The ID of the shipment whose invoice you want to retrieve.
     pub shipment_id: String,
 }
 impl RetrieveInvoiceParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Retrieve invoices for the shipment you specify.
 pub async fn retrieve_invoice(
     client: &Client,
     params: RetrieveInvoiceParams,
@@ -326,17 +380,22 @@ pub async fn retrieve_invoice(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`retrieve_shipping_options`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RetrieveShippingOptionsParams {
+    ///The ID of the shipment to which the package belongs.
     pub shipment_id: String,
+    ///The ID of the package for which you want to retrieve shipping options.
     pub package_id: String,
 }
 impl RetrieveShippingOptionsParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String, package_id: String) -> Self {
         Self { shipment_id, package_id }
     }
 }
+///Get a list of shipping options for a package in a shipment given the shipment's marketplace and channel. If the marketplace and channel have a pre-determined shipping option, then this operation returns an empty response.
 pub async fn retrieve_shipping_options(
     client: &Client,
     params: RetrieveShippingOptionsParams,
@@ -362,14 +421,19 @@ pub async fn retrieve_shipping_options(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`update_package`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdatePackageParams<B = serde_json::Value> {
+    ///The ID of the shipment to which the package belongs.
     pub shipment_id: String,
+    ///The ID of the package whose information you want to update.
     pub package_id: String,
+    ///The body of the request.
     pub body: B,
 }
 impl<B> UpdatePackageParams<B> {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String, package_id: String, body: B) -> Self {
         Self {
             shipment_id,
@@ -378,6 +442,7 @@ impl<B> UpdatePackageParams<B> {
         }
     }
 }
+///Updates the details about the packages that will be used to fulfill the specified shipment.
 pub async fn update_package<B: serde::Serialize>(
     client: &Client,
     params: UpdatePackageParams<B>,
@@ -402,15 +467,21 @@ pub async fn update_package<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`update_package_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdatePackageStatusParams<B = serde_json::Value> {
+    ///The ID of the shipment to which the package belongs.
     pub shipment_id: String,
+    ///The ID of the package whose status you want to update.
     pub package_id: String,
+    #[doc = "**This field is only used for the Seller Flex program**. For the Self Delivery program, package statuses are defined in the body parameter.\n\nKnown values: `SHIPPED`."]
     pub status: Option<String>,
+    ///The body of the request.
     pub body: Option<B>,
 }
 impl<B> UpdatePackageStatusParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String, package_id: String) -> Self {
         Self {
             shipment_id,
@@ -420,6 +491,7 @@ impl<B> UpdatePackageStatusParams<B> {
         }
     }
 }
+///Updates the status of the packages.
 pub async fn update_package_status<B: serde::Serialize>(
     client: &Client,
     params: UpdatePackageStatusParams<B>,
@@ -446,17 +518,22 @@ pub async fn update_package_status<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`update_sandbox_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateSandboxShipmentParams<B = serde_json::Value> {
+    ///The unique identifier of the shipment to update.
     pub shipment_id: String,
+    ///The request body for updating a sandbox shipment.
     pub body: B,
 }
 impl<B> UpdateSandboxShipmentParams<B> {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String, body: B) -> Self {
         Self { shipment_id, body }
     }
 }
+///Updates a sandbox shipment on marketplace behalf. Supports status changes, invoice availability, and transport capacity updates.
 pub async fn update_sandbox_shipment<B: serde::Serialize>(
     client: &Client,
     params: UpdateSandboxShipmentParams<B>,

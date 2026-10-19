@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_purchase_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPurchaseOrderParams {
+    ///The purchase order identifier for the order that you want. Formatting Notes: 8-character alpha-numeric code.
     pub purchase_order_number: String,
 }
 impl GetPurchaseOrderParams {
+    ///Takes the required parameters.
     pub fn new(purchase_order_number: String) -> Self {
         Self { purchase_order_number }
     }
 }
+///Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
 pub async fn get_purchase_order(
     client: &Client,
     params: GetPurchaseOrderParams,
@@ -36,23 +40,41 @@ pub async fn get_purchase_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_purchase_orders`] and [`get_purchase_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPurchaseOrdersParams {
+    ///The limit to the number of records returned. Default value is 100 records.
     pub limit: Option<i64>,
+    ///Purchase orders that became available after this time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_after: Option<String>,
+    ///Purchase orders that became available before this time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_before: Option<String>,
+    /**Sort in ascending or descending order by purchase order creation date.
+
+Known values: `ASC`, `DESC`.*/
     pub sort_order: Option<String>,
+    ///Used for pagination when there is more purchase orders than the specified result size limit. The token value is returned in the previous API call
     pub next_token: Option<String>,
+    ///When true, returns purchase orders with complete details. Otherwise, only purchase order numbers are returned. Default value is true.
     pub include_details: Option<bool>,
+    ///Purchase orders that changed after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub changed_after: Option<String>,
+    ///Purchase orders that changed before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub changed_before: Option<String>,
+    ///Current state of the purchase order item. If this value is Cancelled, this API will return purchase orders which have one or more items cancelled by Amazon with updated item quantity as zero.
     pub po_item_state: Option<String>,
+    ///When true, returns purchase orders which were modified after the order was placed. Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the original one. Default value is false.
     pub is_po_changed: Option<bool>,
+    /**Filters purchase orders based on the purchase order state.
+
+Known values: `New`, `Acknowledged`, `Closed`.*/
     pub purchase_order_state: Option<String>,
+    ///Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client application are returned.
     pub ordering_vendor_code: Option<String>,
 }
 impl GetPurchaseOrdersParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             limit: None,
@@ -75,6 +97,9 @@ impl Default for GetPurchaseOrdersParams {
         Self::new()
     }
 }
+/**Returns a list of purchase orders created or changed during the time frame that you specify. You define the time frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range must not exceed 7 days and is available to pull data from the past 6 months. You can choose to get only the purchase order numbers by setting `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific purchase order.
+
+Its pages: [`get_purchase_orders_pages`].*/
 pub async fn get_purchase_orders(
     client: &Client,
     params: GetPurchaseOrdersParams,
@@ -114,6 +139,7 @@ pub async fn get_purchase_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_purchase_orders`].
 pub fn get_purchase_orders_pages<'a>(
     client: &'a Client,
     params: GetPurchaseOrdersParams,
@@ -134,24 +160,47 @@ pub fn get_purchase_orders_pages<'a>(
         &params,
     )
 }
+///The parameters of [`get_purchase_orders_status`] and [`get_purchase_orders_status_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPurchaseOrdersStatusParams {
+    ///The limit to the number of records returned. Default value is 100 records.
     pub limit: Option<i64>,
+    /**Sort in ascending or descending order by purchase order creation date.
+
+Known values: `ASC`, `DESC`.*/
     pub sort_order: Option<String>,
+    ///Used for pagination when there are more purchase orders than the specified result size limit.
     pub next_token: Option<String>,
+    ///Purchase orders that became available after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub created_after: Option<String>,
+    ///Purchase orders that became available before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub created_before: Option<String>,
+    ///Purchase orders for which the last purchase order update happened after this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub updated_after: Option<String>,
+    ///Purchase orders for which the last purchase order update happened before this timestamp will be included in the result. Must be in ISO-8601 date/time format.
     pub updated_before: Option<String>,
+    ///Provides purchase order status for the specified purchase order number.
     pub purchase_order_number: Option<String>,
+    /**Filters purchase orders based on the specified purchase order status. If not included in filter, this will return purchase orders for all statuses.
+
+Known values: `OPEN`, `CLOSED`.*/
     pub purchase_order_status: Option<String>,
+    /**Filters purchase orders based on their item confirmation status. If the item confirmation status is not included in the filter, purchase orders for all confirmation statuses are included.
+
+Known values: `ACCEPTED`, `PARTIALLY_ACCEPTED`, `REJECTED`, `UNCONFIRMED`.*/
     pub item_confirmation_status: Option<String>,
+    /**Filters purchase orders based on the purchase order's item receive status. If the item receive status is not included in the filter, purchase orders for all receive statuses are included.
+
+Known values: `NOT_RECEIVED`, `PARTIALLY_RECEIVED`, `RECEIVED`.*/
     pub item_receive_status: Option<String>,
+    ///Filters purchase orders based on the specified ordering vendor code. This value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase orders for all the vendor codes that exist in the vendor group used to authorize API client application are returned.
     pub ordering_vendor_code: Option<String>,
+    ///Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order. If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor group purchase orders.
     pub ship_to_party_id: Option<String>,
 }
 impl GetPurchaseOrdersStatusParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             limit: None,
@@ -175,6 +224,9 @@ impl Default for GetPurchaseOrdersStatusParams {
         Self::new()
     }
 }
+/**Returns purchase order statuses based on the filters that you specify. Date range to search must not be more than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase order status by providing the purchase order number.
+
+Its pages: [`get_purchase_orders_status_pages`].*/
 pub async fn get_purchase_orders_status(
     client: &Client,
     params: GetPurchaseOrdersStatusParams,
@@ -227,6 +279,7 @@ pub async fn get_purchase_orders_status(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_purchase_orders_status`].
 pub fn get_purchase_orders_status_pages<'a>(
     client: &'a Client,
     params: GetPurchaseOrdersStatusParams,
@@ -247,16 +300,20 @@ pub fn get_purchase_orders_status_pages<'a>(
         &params,
     )
 }
+///The parameters of [`submit_acknowledgement`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitAcknowledgementParams<B = serde_json::Value> {
+    ///Submits acknowledgements for one or more purchase orders from a vendor.
     pub body: B,
 }
 impl<B> SubmitAcknowledgementParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Submits acknowledgements for one or more purchase orders.
 pub async fn submit_acknowledgement<B: serde::Serialize>(
     client: &Client,
     params: SubmitAcknowledgementParams<B>,

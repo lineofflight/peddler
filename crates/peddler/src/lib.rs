@@ -33,18 +33,23 @@
 #![warn(missing_docs)]
 
 // The generated modules. Their comments are Amazon's text, which writes a URL as it is.
+/// The operations of each API version, with its models.
 #[allow(missing_docs, rustdoc::bare_urls)]
 #[rustfmt::skip]
 pub mod apis;
+/// The models of reports.
 #[allow(missing_docs, rustdoc::bare_urls)]
 #[rustfmt::skip]
 pub mod reports;
+/// The models of feeds.
 #[allow(missing_docs, rustdoc::bare_urls)]
 #[rustfmt::skip]
 pub mod feeds;
+/// The models of notifications.
 #[allow(missing_docs, rustdoc::bare_urls)]
 #[rustfmt::skip]
 pub mod notifications;
+/// The models of Data Kiosk query results.
 #[allow(missing_docs, rustdoc::bare_urls)]
 #[rustfmt::skip]
 pub mod data_kiosk;

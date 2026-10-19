@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_government_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateGovernmentInvoiceParams<B = serde_json::Value> {
+    ///Information required to create the government invoice.
     pub body: B,
 }
 impl<B> CreateGovernmentInvoiceParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Submit an asynchronous request to create a government invoice.
 pub async fn create_government_invoice<B: serde::Serialize>(
     client: &Client,
     params: CreateGovernmentInvoiceParams<B>,
@@ -32,16 +36,20 @@ pub async fn create_government_invoice<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_invoices_export`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateInvoicesExportParams<B = serde_json::Value> {
+    ///Information required to create the export request.
     pub body: B,
 }
 impl<B> CreateInvoicesExportParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates an invoice export request.
 pub async fn create_invoices_export<B: serde::Serialize>(
     client: &Client,
     params: CreateInvoicesExportParams<B>,
@@ -60,17 +68,25 @@ pub async fn create_invoices_export<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_government_invoice_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetGovernmentInvoiceDocumentParams {
+    ///The marketplace of the invoice.
     pub marketplace_id: String,
+    ///The marketplace-specific classification of the transaction type that originated the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
     pub transaction_type: String,
+    ///The unique shipment identifier for which to get an invoice.
     pub shipment_id: String,
+    ///The marketplace-specific classification of the invoice type. Check `invoiceType` options using the `getInvoicesAttributes` operation.
     pub invoice_type: String,
+    ///The unique inbound plan identifier in which the shipment is contained and for which the invoice will be created.
     pub inbound_plan_id: Option<String>,
+    ///The file format of the invoice. The default is XML.
     pub file_format: Option<String>,
 }
 impl GetGovernmentInvoiceDocumentParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         marketplace_id: String,
         transaction_type: String,
@@ -87,6 +103,7 @@ impl GetGovernmentInvoiceDocumentParams {
         }
     }
 }
+///Retrieve the URL of an invoice document.
 pub async fn get_government_invoice_document(
     client: &Client,
     params: GetGovernmentInvoiceDocumentParams,
@@ -115,16 +132,23 @@ pub async fn get_government_invoice_document(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_government_invoice_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetGovernmentInvoiceStatusParams {
+    ///The marketplace of the invoice request.
     pub marketplace_id: String,
+    ///The marketplace-specific classification of the transaction type that originated the invoice. Check `transactionType` options using the `getInvoicesAttributes` operation.
     pub transaction_type: String,
+    ///The unique shipment identifier for which to get an invoice.
     pub shipment_id: String,
+    ///The marketplace-specific classification of the invoice type. Check `invoiceType` options using the `getInvoicesAttributes` operation.
     pub invoice_type: String,
+    ///The unique inbound plan identifier in which the shipment is contained and for which the invoice will be created.
     pub inbound_plan_id: Option<String>,
 }
 impl GetGovernmentInvoiceStatusParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         marketplace_id: String,
         transaction_type: String,
@@ -140,6 +164,7 @@ impl GetGovernmentInvoiceStatusParams {
         }
     }
 }
+///Retrieve the status of an invoice generation request.
 pub async fn get_government_invoice_status(
     client: &Client,
     params: GetGovernmentInvoiceStatusParams,
@@ -164,14 +189,19 @@ pub async fn get_government_invoice_status(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_invoice`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoiceParams {
+    ///The marketplace from which you want the invoice.
     pub marketplace_id: String,
+    ///The invoice identifier.
     pub invoice_id: String,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoiceParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, invoice_id: String) -> Self {
         Self {
             marketplace_id,
@@ -180,6 +210,8 @@ impl GetInvoiceParams {
         }
     }
 }
+/**Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer to the response definition to get all the possible attributes.
+To get the full invoice, use the `createInvoicesExport` operation to start an export request.*/
 pub async fn get_invoice(
     client: &Client,
     params: GetInvoiceParams,
@@ -205,26 +237,53 @@ pub async fn get_invoice(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_invoices`] and [`get_invoices_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoicesParams {
+    ///The name of the transaction identifier filter. If you provide a value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the `getInvoicesAttributes` operation to check `transactionIdentifierName` options.
     pub transaction_identifier_name: Option<String>,
+    /**The maximum number of invoices you want to return in a single call.
+
+Minimum: 1
+
+Maximum: 200*/
     pub page_size: Option<i64>,
+    ///The latest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the current date-time.
     pub date_end: Option<String>,
+    ///The response includes only the invoices that match the specified marketplace.
     pub marketplace_id: String,
+    ///The marketplace-specific classification of the transaction type for which the invoice was created. Use the `getInvoicesAttributes` operation to check `transactionType` options.
     pub transaction_type: Option<String>,
+    ///The ID of the transaction identifier filter. If you provide a value for this field, you must also provide a value for the `transactionIdentifierName` field.
     pub transaction_identifier_id: Option<String>,
+    ///The earliest invoice creation date for invoices that you want to include in the response. Dates are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24 hours prior to the time of the request.
     pub date_start: Option<String>,
+    ///Return invoices with the specified series number.
     pub series: Option<String>,
+    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
+    /**Sort the invoices in the response in ascending or descending order.
+
+Known values: `DESC`, `ASC`.*/
     pub sort_order: Option<String>,
+    ///The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to check `invoiceType` options.
     pub invoice_type: Option<String>,
+    /**A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check invoice status options.
+
+Min count: 1*/
     pub statuses: Option<Vec<String>>,
+    ///Return invoices that match this external ID. This is typically the Government Invoice ID.
     pub external_invoice_id: Option<String>,
+    /**The attribute by which you want to sort the invoices in the response.
+
+Known values: `START_DATE_TIME`.*/
     pub sort_by: Option<String>,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoicesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             transaction_identifier_name: None,
@@ -245,6 +304,9 @@ impl GetInvoicesParams {
         }
     }
 }
+/**Returns invoice details for the invoices that match the filters that you specify.
+
+Its pages: [`get_invoices_pages`].*/
 pub async fn get_invoices(
     client: &Client,
     params: GetInvoicesParams,
@@ -292,6 +354,7 @@ pub async fn get_invoices(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_invoices`].
 pub fn get_invoices_pages<'a>(
     client: &'a Client,
     params: GetInvoicesParams,
@@ -312,13 +375,17 @@ pub fn get_invoices_pages<'a>(
         &params,
     )
 }
+///The parameters of [`get_invoices_attributes`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoicesAttributesParams {
+    ///The marketplace identifier.
     pub marketplace_id: String,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoicesAttributesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -326,6 +393,7 @@ impl GetInvoicesAttributesParams {
         }
     }
 }
+///Returns marketplace-dependent schemas and their respective set of possible values.
 pub async fn get_invoices_attributes(
     client: &Client,
     params: GetInvoicesAttributesParams,
@@ -347,13 +415,17 @@ pub async fn get_invoices_attributes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_invoices_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoicesDocumentParams {
+    ///The export document identifier.
     pub invoices_document_id: String,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoicesDocumentParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(invoices_document_id: String) -> Self {
         Self {
             invoices_document_id,
@@ -361,6 +433,7 @@ impl GetInvoicesDocumentParams {
         }
     }
 }
+///Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices from the corresponding `createInvoicesExport` request.
 pub async fn get_invoices_document(
     client: &Client,
     params: GetInvoicesDocumentParams,
@@ -385,13 +458,17 @@ pub async fn get_invoices_document(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_invoices_export`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoicesExportParams {
+    ///The unique identifier for the export.
     pub export_id: String,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoicesExportParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(export_id: String) -> Self {
         Self {
             export_id,
@@ -399,6 +476,7 @@ impl GetInvoicesExportParams {
         }
     }
 }
+///Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
 pub async fn get_invoices_export(
     client: &Client,
     params: GetInvoicesExportParams,
@@ -423,18 +501,33 @@ pub async fn get_invoices_export(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_invoices_exports`] and [`get_invoices_exports_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInvoicesExportsParams {
+    ///The returned exports match the specified marketplace.
     pub marketplace_id: String,
+    ///The earliest export creation date and time for exports that you want to include in the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 30 days ago.
     pub date_start: Option<String>,
+    ///The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
+    /**The maximum number of invoices to return in a single call.
+
+Minimum: 1
+
+Maximum: 100*/
     pub page_size: Option<i64>,
+    ///The latest export creation date and time for exports that you want to include in the response. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default value is the time of the request.
     pub date_end: Option<String>,
+    /**Return exports matching the status specified.
+
+Known values: `REQUESTED`, `PROCESSING`, `DONE`, `ERROR`.*/
     pub status: Option<String>,
+    ///The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your WarehouseSettings in VendorCentral.
     pub warehouse_code: Option<String>,
 }
 impl GetInvoicesExportsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String) -> Self {
         Self {
             marketplace_id,
@@ -447,6 +540,9 @@ impl GetInvoicesExportsParams {
         }
     }
 }
+/**Returns invoice exports details for exports that match the filters that you specify.
+
+Its pages: [`get_invoices_exports_pages`].*/
 pub async fn get_invoices_exports(
     client: &Client,
     params: GetInvoicesExportsParams,
@@ -473,6 +569,7 @@ pub async fn get_invoices_exports(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_invoices_exports`].
 pub fn get_invoices_exports_pages<'a>(
     client: &'a Client,
     params: GetInvoicesExportsParams,

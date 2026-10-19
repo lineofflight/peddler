@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_destination`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateDestinationParams<B = serde_json::Value> {
+    ///The request schema for the `createDestination` operation.
     pub body: B,
 }
 impl<B> CreateDestinationParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn create_destination<B: serde::Serialize>(
     client: &Client,
     params: CreateDestinationParams<B>,
@@ -32,17 +36,24 @@ pub async fn create_destination<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_subscription`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateSubscriptionParams<B = serde_json::Value> {
+    /**The type of notification.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_type: String,
+    ///The request schema for the `createSubscription` operation.
     pub body: B,
 }
 impl<B> CreateSubscriptionParams<B> {
+    ///Takes the required parameters.
     pub fn new(notification_type: String, body: B) -> Self {
         Self { notification_type, body }
     }
 }
+///Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the `createDestination` operation. If the notification type that you specify supports multiple payload versions, you can use this operation to subscribe to a different payload version if you already have an existing subscription for a different payload version.
 pub async fn create_subscription<B: serde::Serialize>(
     client: &Client,
     params: CreateSubscriptionParams<B>,
@@ -65,16 +76,20 @@ pub async fn create_subscription<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delete_destination`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteDestinationParams {
+    ///The identifier for the destination that you want to delete.
     pub destination_id: String,
 }
 impl DeleteDestinationParams {
+    ///Takes the required parameters.
     pub fn new(destination_id: String) -> Self {
         Self { destination_id }
     }
 }
+///Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn delete_destination(
     client: &Client,
     params: DeleteDestinationParams,
@@ -97,13 +112,19 @@ pub async fn delete_destination(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delete_subscription_by_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteSubscriptionByIdParams {
+    ///The identifier for the subscription that you want to delete.
     pub subscription_id: String,
+    /**The type of notification.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_type: String,
 }
 impl DeleteSubscriptionByIdParams {
+    ///Takes the required parameters.
     pub fn new(subscription_id: String, notification_type: String) -> Self {
         Self {
             subscription_id,
@@ -111,6 +132,7 @@ impl DeleteSubscriptionByIdParams {
         }
     }
 }
+///Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The `deleteSubscriptionById` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn delete_subscription_by_id(
     client: &Client,
     params: DeleteSubscriptionByIdParams,
@@ -135,16 +157,20 @@ pub async fn delete_subscription_by_id(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_destination`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetDestinationParams {
+    ///The identifier generated when you created the destination.
     pub destination_id: String,
 }
 impl GetDestinationParams {
+    ///Takes the required parameters.
     pub fn new(destination_id: String) -> Self {
         Self { destination_id }
     }
 }
+///Returns information about the destination that you specify. The `getDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn get_destination(
     client: &Client,
     params: GetDestinationParams,
@@ -167,10 +193,12 @@ pub async fn get_destination(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_destinations`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetDestinationsParams {}
 impl GetDestinationsParams {
+    ///Takes the required parameters.
     pub fn new() -> Self {
         Self {}
     }
@@ -180,6 +208,7 @@ impl Default for GetDestinationsParams {
         Self::new()
     }
 }
+///Returns information about all destinations. The `getDestinations` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn get_destinations(
     client: &Client,
     params: GetDestinationsParams,
@@ -198,13 +227,19 @@ pub async fn get_destinations(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_subscription`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSubscriptionParams {
+    /**The type of notification.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_type: String,
+    ///The version of the payload object to be used in the notification.
     pub payload_version: Option<String>,
 }
 impl GetSubscriptionParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(notification_type: String) -> Self {
         Self {
             notification_type,
@@ -212,6 +247,7 @@ impl GetSubscriptionParams {
         }
     }
 }
+///Returns information about subscription of the specified notification type and payload version. `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload version subscription's information. You can use this API to get subscription information when you do not have a subscription identifier.
 pub async fn get_subscription(
     client: &Client,
     params: GetSubscriptionParams,
@@ -236,13 +272,19 @@ pub async fn get_subscription(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_subscription_by_id`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSubscriptionByIdParams {
+    ///The identifier for the subscription that you want to get.
     pub subscription_id: String,
+    /**The type of notification.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_type: String,
 }
 impl GetSubscriptionByIdParams {
+    ///Takes the required parameters.
     pub fn new(subscription_id: String, notification_type: String) -> Self {
         Self {
             subscription_id,
@@ -250,6 +292,7 @@ impl GetSubscriptionByIdParams {
         }
     }
 }
+///Returns information about a subscription for the specified notification type. The `getSubscriptionById` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.
 pub async fn get_subscription_by_id(
     client: &Client,
     params: GetSubscriptionByIdParams,
@@ -277,16 +320,24 @@ pub async fn get_subscription_by_id(
 fn get_subscriptions_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("30").expect("validated schema default"))
 }
+///The parameters of [`get_subscriptions`] and [`get_subscriptions_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSubscriptionsParams {
+    /**A list of notification types to retrieve subscriptions for. Currently limited to a single notification type per request.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_types: Vec<String>,
+    ///The version of the payload object to be used in the notification.
     pub payload_version: Option<String>,
+    ///The maximum number of subscriptions to return per page. Minimum value is 30. Maximum value is 100. Default is 30.
     #[serde(default = "get_subscriptions_page_size_default")]
     pub page_size: Option<i64>,
+    ///A token to retrieve the next page of results. If this field is not empty in a response, pass its value in the next request to retrieve the next page.
     pub next_token: Option<String>,
 }
 impl GetSubscriptionsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(notification_types: Vec<String>) -> Self {
         Self {
             notification_types,
@@ -296,6 +347,13 @@ impl GetSubscriptionsParams {
         }
     }
 }
+/**Returns information about subscriptions of the specified notification type. You can use this API to retrieve all subscriptions when multiple subscriptions exist for a notification type (for example, when using filter expressions).
+
+The operation returns all subscriptions for the caller's party.
+
+`payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns subscriptions across all payload versions.
+
+Its pages: [`get_subscriptions_pages`].*/
 pub async fn get_subscriptions(
     client: &Client,
     params: GetSubscriptionsParams,
@@ -320,6 +378,7 @@ pub async fn get_subscriptions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_subscriptions`].
 pub fn get_subscriptions_pages<'a>(
     client: &'a Client,
     params: GetSubscriptionsParams,
@@ -340,17 +399,24 @@ pub fn get_subscriptions_pages<'a>(
         &params,
     )
 }
+///The parameters of [`send_test_notification`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SendTestNotificationParams<B = serde_json::Value> {
+    /**The type of notification.
+
+ For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).*/
     pub notification_type: String,
+    ///The request schema for the `sendTestNotification` operation.
     pub body: B,
 }
 impl<B> SendTestNotificationParams<B> {
+    ///Takes the required parameters.
     pub fn new(notification_type: String, body: B) -> Self {
         Self { notification_type, body }
     }
 }
+///Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
 pub async fn send_test_notification<B: serde::Serialize>(
     client: &Client,
     params: SendTestNotificationParams<B>,

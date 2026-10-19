@@ -4,15 +4,21 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_transaction`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateTransactionParams<B = serde_json::Value> {
+    ///Digital signature for the destination bank account details. For more information, refer to [Third-Party Provider Signature Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
     pub dest_account_digital_signature: String,
+    ///Digital signature for the source currency transaction amount. Sign in the order of the request definitions. You can omit empty or optional fields. For more information, refer to [Third-Party Provider Signature Guidance](https://developer-docs.amazon.com/sp-api/docs/tpp-registration-signature-guidance).
     pub amount_digital_signature: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
+    ///The payload of the request
     pub body: B,
 }
 impl<B> CreateTransactionParams<B> {
+    ///Takes the required parameters.
     pub fn new(
         dest_account_digital_signature: String,
         amount_digital_signature: String,
@@ -27,6 +33,7 @@ impl<B> CreateTransactionParams<B> {
         }
     }
 }
+///Create a transaction request from a Seller Wallet account to another customer-provided account.
 pub async fn create_transaction<B: serde::Serialize>(
     client: &Client,
     params: CreateTransactionParams<B>,
@@ -58,15 +65,21 @@ pub async fn create_transaction<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_transfer_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateTransferScheduleParams<B = serde_json::Value> {
+    ///Digital signature for the destination bank account details.
     pub dest_account_digital_signature: String,
+    ///Digital signature for the source currency transaction amount.
     pub amount_digital_signature: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
+    ///The payload of the request.
     pub body: B,
 }
 impl<B> CreateTransferScheduleParams<B> {
+    ///Takes the required parameters.
     pub fn new(
         dest_account_digital_signature: String,
         amount_digital_signature: String,
@@ -81,6 +94,7 @@ impl<B> CreateTransferScheduleParams<B> {
         }
     }
 }
+///Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
 pub async fn create_transfer_schedule<B: serde::Serialize>(
     client: &Client,
     params: CreateTransferScheduleParams<B>,
@@ -112,13 +126,17 @@ pub async fn create_transfer_schedule<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delete_schedule_transaction`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteScheduleTransactionParams {
+    ///A unique reference ID for a scheduled transfer.
     pub transfer_schedule_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl DeleteScheduleTransactionParams {
+    ///Takes the required parameters.
     pub fn new(transfer_schedule_id: String, marketplace_id: String) -> Self {
         Self {
             transfer_schedule_id,
@@ -126,6 +144,7 @@ impl DeleteScheduleTransactionParams {
         }
     }
 }
+///Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided account.
 pub async fn delete_schedule_transaction(
     client: &Client,
     params: DeleteScheduleTransactionParams,
@@ -150,17 +169,22 @@ pub async fn delete_schedule_transaction(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_account`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAccountParams {
+    ///The ID of the Amazon Seller Wallet account.
     pub account_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl GetAccountParams {
+    ///Takes the required parameters.
     pub fn new(account_id: String, marketplace_id: String) -> Self {
         Self { account_id, marketplace_id }
     }
 }
+///Retrieve a Seller Wallet bank account by Amazon account identifier.
 pub async fn get_account(
     client: &Client,
     params: GetAccountParams,
@@ -185,13 +209,17 @@ pub async fn get_account(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_transaction`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTransactionParams {
+    ///The ID of the Amazon Seller Wallet transaction.
     pub transaction_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl GetTransactionParams {
+    ///Takes the required parameters.
     pub fn new(transaction_id: String, marketplace_id: String) -> Self {
         Self {
             transaction_id,
@@ -199,6 +227,7 @@ impl GetTransactionParams {
         }
     }
 }
+///Find a transaction by the Amazon transaction identifier.
 pub async fn get_transaction(
     client: &Client,
     params: GetTransactionParams,
@@ -223,17 +252,25 @@ pub async fn get_transaction(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_transfer_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTransferPreviewParams {
+    ///Country code of the source transaction account in ISO 3166 format.
     pub source_country_code: String,
+    ///Currency code of the source transaction country in ISO 4217 format.
     pub source_currency_code: String,
+    ///Country code of the destination transaction account in ISO 3166 format.
     pub destination_country_code: String,
+    ///Currency code of the destination transaction country in ISO 4217 format.
     pub destination_currency_code: String,
+    ///The base transaction amount without any markup fees.
     pub base_amount: serde_json::Number,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl GetTransferPreviewParams {
+    ///Takes the required parameters.
     pub fn new(
         source_country_code: String,
         source_currency_code: String,
@@ -252,6 +289,7 @@ impl GetTransferPreviewParams {
         }
     }
 }
+///Retrieve a list of potential fees on a transaction.
 pub async fn get_transfer_preview(
     client: &Client,
     params: GetTransferPreviewParams,
@@ -289,13 +327,17 @@ pub async fn get_transfer_preview(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_transfer_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTransferScheduleParams {
+    ///The schedule ID of the Amazon Seller Wallet transfer.
     pub transfer_schedule_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl GetTransferScheduleParams {
+    ///Takes the required parameters.
     pub fn new(transfer_schedule_id: String, marketplace_id: String) -> Self {
         Self {
             transfer_schedule_id,
@@ -303,6 +345,7 @@ impl GetTransferScheduleParams {
         }
     }
 }
+///Find a particular Amazon Seller Wallet account transfer schedule.
 pub async fn get_transfer_schedule(
     client: &Client,
     params: GetTransferScheduleParams,
@@ -327,17 +370,22 @@ pub async fn get_transfer_schedule(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_account_balances`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListAccountBalancesParams {
+    ///The ID of the Amazon Seller Wallet account.
     pub account_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl ListAccountBalancesParams {
+    ///Takes the required parameters.
     pub fn new(account_id: String, marketplace_id: String) -> Self {
         Self { account_id, marketplace_id }
     }
 }
+///Retrieve the balance in a given Seller Wallet bank account.
 pub async fn list_account_balances(
     client: &Client,
     params: ListAccountBalancesParams,
@@ -363,14 +411,19 @@ pub async fn list_account_balances(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_account_transactions`] and [`list_account_transactions_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListAccountTransactionsParams {
+    ///The ID of the Amazon Seller Wallet account.
     pub account_id: String,
+    ///A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds 100. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
     pub next_page_token: Option<String>,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl ListAccountTransactionsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(account_id: String, marketplace_id: String) -> Self {
         Self {
             account_id,
@@ -379,6 +432,9 @@ impl ListAccountTransactionsParams {
         }
     }
 }
+/**Retrieve a list of transactions for a given Seller Wallet bank account.
+
+Its pages: [`list_account_transactions_pages`].*/
 pub async fn list_account_transactions(
     client: &Client,
     params: ListAccountTransactionsParams,
@@ -401,6 +457,7 @@ pub async fn list_account_transactions(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_account_transactions`].
 pub fn list_account_transactions_pages<'a>(
     client: &'a Client,
     params: ListAccountTransactionsParams,
@@ -421,16 +478,20 @@ pub fn list_account_transactions_pages<'a>(
         &params,
     )
 }
+///The parameters of [`list_accounts`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListAccountsParams {
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
 }
 impl ListAccountsParams {
+    ///Takes the required parameters.
     pub fn new(marketplace_id: String) -> Self {
         Self { marketplace_id }
     }
 }
+///Get Seller Wallet accounts for a seller.
 pub async fn list_accounts(
     client: &Client,
     params: ListAccountsParams,
@@ -451,14 +512,19 @@ pub async fn list_accounts(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_transfer_schedules`] and [`list_transfer_schedules_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListTransferSchedulesParams {
+    ///The ID of the Amazon Seller Wallet account.
     pub account_id: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
+    ///A token that you use to retrieve the next page of results. The response includes `nextPageToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextPageToken` is null. Note that this operation can return empty pages.
     pub next_page_token: Option<String>,
 }
 impl ListTransferSchedulesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(account_id: String, marketplace_id: String) -> Self {
         Self {
             account_id,
@@ -467,6 +533,9 @@ impl ListTransferSchedulesParams {
         }
     }
 }
+/**Retrieve transfer schedules of a Seller Wallet bank account.
+
+Its pages: [`list_transfer_schedules_pages`].*/
 pub async fn list_transfer_schedules(
     client: &Client,
     params: ListTransferSchedulesParams,
@@ -489,6 +558,7 @@ pub async fn list_transfer_schedules(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_transfer_schedules`].
 pub fn list_transfer_schedules_pages<'a>(
     client: &'a Client,
     params: ListTransferSchedulesParams,
@@ -509,15 +579,21 @@ pub fn list_transfer_schedules_pages<'a>(
         &params,
     )
 }
+///The parameters of [`update_transfer_schedule`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateTransferScheduleParams<B = serde_json::Value> {
+    ///Digital signature for the destination bank account details.
     pub dest_account_digital_signature: String,
+    ///Digital signature for the source currency transaction amount.
     pub amount_digital_signature: String,
+    ///The marketplace for which items are returned. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
     pub marketplace_id: String,
+    ///The payload of the scheduled transfer request that is to be updated.
     pub body: B,
 }
 impl<B> UpdateTransferScheduleParams<B> {
+    ///Takes the required parameters.
     pub fn new(
         dest_account_digital_signature: String,
         amount_digital_signature: String,
@@ -532,6 +608,7 @@ impl<B> UpdateTransferScheduleParams<B> {
         }
     }
 }
+///Update transfer schedule information. Returns a transfer belonging to the updated scheduled transfer request.
 pub async fn update_transfer_schedule<B: serde::Serialize>(
     client: &Client,
     params: UpdateTransferScheduleParams<B>,

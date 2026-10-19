@@ -1,6 +1,7 @@
 //! The comment of a generated Ruby method, from the spec fields v5 read and wrapped
 //! as v5 wrapped it, with the method's types as inline RBS. The text is Markdown, which
-//! RDoc reads. `lib/generator` on `main` has the Ruby the text follows.
+//! RDoc reads. `lib/generator` on `main` has the Ruby the text follows. The crate's
+//! function of an operation and module of an API take the same text.
 use crate::{
     clients::{Operation, Parameter},
     known_values,
@@ -141,7 +142,7 @@ pub(crate) fn rbs_type(p: &Parameter) -> String {
 }
 
 /// An operation's description without its usage plan. `clients::rate` reads that.
-fn description(text: &str) -> String {
+pub(crate) fn description(text: &str) -> String {
     // Some specs spell a line break as a backslash and an n.
     let delimiter = if text.contains("\\n") { "\\n" } else { "\n" };
     let lines: Vec<&str> = text.split(delimiter).collect();
@@ -155,7 +156,7 @@ fn description(text: &str) -> String {
 }
 
 /// Amazon's links as Markdown's, and its bold spelled one way.
-fn links(text: &str) -> String {
+pub(crate) fn links(text: &str) -> String {
     static QUOTED: LazyLock<Regex> =
         LazyLock::new(|| regex(r#"<a href=['"]([^'"]+)['"]>([^<]+)</a>"#));
     static BARE: LazyLock<Regex> = LazyLock::new(|| regex(r"<a href=([^\s>]+)>([^<]+)</a>"));

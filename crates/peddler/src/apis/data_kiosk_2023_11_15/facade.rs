@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`cancel_query`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelQueryParams {
+    ///The identifier for the query. This identifier is unique only in combination with a selling partner account ID.
     pub query_id: String,
 }
 impl CancelQueryParams {
+    ///Takes the required parameters.
     pub fn new(query_id: String) -> Self {
         Self { query_id }
     }
 }
+///Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus` (`IN_QUEUE`, `IN_PROGRESS`) can be cancelled. Cancelling a query that already has a `processingStatus` of `CANCELLED` will no-op. Cancelled queries are returned in subsequent calls to the `getQuery` and `getQueries` operations.
 pub async fn cancel_query(
     client: &Client,
     params: CancelQueryParams,
@@ -36,16 +40,22 @@ pub async fn cancel_query(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_query`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateQueryParams<B = serde_json::Value> {
+    ///The body of the request.
     pub body: B,
 }
 impl<B> CreateQueryParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**Creates a Data Kiosk query request.
+
+**Note:** The retention of a query varies based on the fields requested. Each field within a schema is annotated with a `@resultRetention` directive that defines how long a query containing that field will be retained. When a query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The retention of a query's resulting documents always matches the retention of the query.*/
 pub async fn create_query<B: serde::Serialize>(
     client: &Client,
     params: CreateQueryParams<B>,
@@ -64,16 +74,20 @@ pub async fn create_query<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_document`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetDocumentParams {
+    ///The identifier for the Data Kiosk document.
     pub document_id: String,
 }
 impl GetDocumentParams {
+    ///Takes the required parameters.
     pub fn new(document_id: String) -> Self {
         Self { document_id }
     }
 }
+///Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery` operation for details about document retention.
 pub async fn get_document(
     client: &Client,
     params: GetDocumentParams,
@@ -99,17 +113,26 @@ pub async fn get_document(
 fn get_queries_page_size_default() -> Option<i64> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
+///The parameters of [`get_queries`] and [`get_queries_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetQueriesParams {
+    /**A list of processing statuses used to filter queries.
+
+Known values: `CANCELLED`, `DONE`, `FATAL`, `IN_PROGRESS`, `IN_QUEUE`.*/
     pub processing_statuses: Option<Vec<String>>,
+    ///The maximum number of queries to return in a single call.
     #[serde(default = "get_queries_page_size_default")]
     pub page_size: Option<i64>,
+    ///The earliest query creation date and time for queries to include in the response, in ISO 8601 date time format. The default is 90 days ago.
     pub created_since: Option<String>,
+    ///The latest query creation date and time for queries to include in the response, in ISO 8601 date time format. The default is the time of the `getQueries` request.
     pub created_until: Option<String>,
+    ///A token to fetch a certain page of results when there are multiple pages of results available. The value of this token is fetched from the `pagination.nextToken` field returned in the `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided with the request that generated this token, with the exception of `pageSize` which can be modified between calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
     pub pagination_token: Option<String>,
 }
 impl GetQueriesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             processing_statuses: None,
@@ -125,6 +148,9 @@ impl Default for GetQueriesParams {
         Self::new()
     }
 }
+/**Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for details about query retention.
+
+Its pages: [`get_queries_pages`].*/
 pub async fn get_queries(
     client: &Client,
     params: GetQueriesParams,
@@ -158,6 +184,7 @@ pub async fn get_queries(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_queries`].
 pub fn get_queries_pages<'a>(
     client: &'a Client,
     params: GetQueriesParams,
@@ -178,16 +205,20 @@ pub fn get_queries_pages<'a>(
         &params,
     )
 }
+///The parameters of [`get_query`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetQueryParams {
+    ///The query identifier.
     pub query_id: String,
 }
 impl GetQueryParams {
+    ///Takes the required parameters.
     pub fn new(query_id: String) -> Self {
         Self { query_id }
     }
 }
+///Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for details about query retention.
 pub async fn get_query(
     client: &Client,
     params: GetQueryParams,

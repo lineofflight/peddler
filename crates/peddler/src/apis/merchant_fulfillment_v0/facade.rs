@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`cancel_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
+    ///The Amazon-defined shipment identifier for the shipment to cancel.
     pub shipment_id: String,
 }
 impl CancelShipmentParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Cancel the shipment indicated by the specified shipment identifier.
 pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
@@ -36,16 +40,20 @@ pub async fn cancel_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateShipmentParams<B = serde_json::Value> {
+    ///The request schema for the `CreateShipment` operation.
     pub body: B,
 }
 impl<B> CreateShipmentParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Create a shipment with the information provided.
 pub async fn create_shipment<B: serde::Serialize>(
     client: &Client,
     params: CreateShipmentParams<B>,
@@ -64,16 +72,20 @@ pub async fn create_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_additional_seller_inputs`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAdditionalSellerInputsParams<B = serde_json::Value> {
+    ///The request schema for the `GetAdditionalSellerInputs` operation.
     pub body: B,
 }
 impl<B> GetAdditionalSellerInputsParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Gets a list of additional seller inputs required for a ship method. This is generally used for international shipping.
 pub async fn get_additional_seller_inputs<B: serde::Serialize>(
     client: &Client,
     params: GetAdditionalSellerInputsParams<B>,
@@ -92,16 +104,20 @@ pub async fn get_additional_seller_inputs<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_eligible_shipment_services`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetEligibleShipmentServicesParams<B = serde_json::Value> {
+    ///The request schema for the `GetEligibleShipmentServices` operation.
     pub body: B,
 }
 impl<B> GetEligibleShipmentServicesParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Returns a list of shipping service offers that satisfy the specified shipment request details.
 pub async fn get_eligible_shipment_services<B: serde::Serialize>(
     client: &Client,
     params: GetEligibleShipmentServicesParams<B>,
@@ -120,16 +136,20 @@ pub async fn get_eligible_shipment_services<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentParams {
+    ///The Amazon-defined shipment identifier for the shipment.
     pub shipment_id: String,
 }
 impl GetShipmentParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Returns the shipment information for an existing shipment.
 pub async fn get_shipment(
     client: &Client,
     params: GetShipmentParams,

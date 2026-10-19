@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`archive_supply_source`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ArchiveSupplySourceParams {
+    ///The unique identifier of a supply source.
     pub supply_source_id: String,
 }
 impl ArchiveSupplySourceParams {
+    ///Takes the required parameters.
     pub fn new(supply_source_id: String) -> Self {
         Self { supply_source_id }
     }
 }
+///Archive a supply source, making it inactive. Cannot be undone.
 pub async fn archive_supply_source(
     client: &Client,
     params: ArchiveSupplySourceParams,
@@ -36,16 +40,20 @@ pub async fn archive_supply_source(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_supply_source`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateSupplySourceParams<B = serde_json::Value> {
+    ///A request to create a supply source.
     pub body: B,
 }
 impl<B> CreateSupplySourceParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Create a new supply source.
 pub async fn create_supply_source<B: serde::Serialize>(
     client: &Client,
     params: CreateSupplySourceParams<B>,
@@ -64,16 +72,20 @@ pub async fn create_supply_source<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_supply_source`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSupplySourceParams {
+    ///The unique identifier of a supply source.
     pub supply_source_id: String,
 }
 impl GetSupplySourceParams {
+    ///Takes the required parameters.
     pub fn new(supply_source_id: String) -> Self {
         Self { supply_source_id }
     }
 }
+///Retrieve a supply source.
 pub async fn get_supply_source(
     client: &Client,
     params: GetSupplySourceParams,
@@ -99,14 +111,18 @@ pub async fn get_supply_source(
 fn get_supply_sources_page_size_default() -> Option<serde_json::Number> {
     Some(serde_json::from_str("10").expect("validated schema default"))
 }
+///The parameters of [`get_supply_sources`] and [`get_supply_sources_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetSupplySourcesParams {
+    ///The pagination token to retrieve a specific page of results.
     pub next_page_token: Option<String>,
+    ///The number of supply sources to return per paginated request.
     #[serde(default = "get_supply_sources_page_size_default")]
     pub page_size: Option<serde_json::Number>,
 }
 impl GetSupplySourcesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             next_page_token: None,
@@ -119,6 +135,9 @@ impl Default for GetSupplySourcesParams {
         Self::new()
     }
 }
+/**The path to retrieve paginated supply sources.
+
+Its pages: [`get_supply_sources_pages`].*/
 pub async fn get_supply_sources(
     client: &Client,
     params: GetSupplySourcesParams,
@@ -140,6 +159,7 @@ pub async fn get_supply_sources(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_supply_sources`].
 pub fn get_supply_sources_pages<'a>(
     client: &'a Client,
     params: GetSupplySourcesParams,
@@ -160,13 +180,16 @@ pub fn get_supply_sources_pages<'a>(
         &params,
     )
 }
+///The parameters of [`update_supply_source`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateSupplySourceParams<B = serde_json::Value> {
+    ///The unique identitier of a supply source.
     pub supply_source_id: String,
     pub body: Option<B>,
 }
 impl<B> UpdateSupplySourceParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(supply_source_id: String) -> Self {
         Self {
             supply_source_id,
@@ -174,6 +197,7 @@ impl<B> UpdateSupplySourceParams<B> {
         }
     }
 }
+///Update the configuration and capabilities of a supply source.
 pub async fn update_supply_source<B: serde::Serialize>(
     client: &Client,
     params: UpdateSupplySourceParams<B>,
@@ -196,13 +220,16 @@ pub async fn update_supply_source<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`update_supply_source_status`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateSupplySourceStatusParams<B = serde_json::Value> {
+    ///The unique identifier of a supply source.
     pub supply_source_id: String,
     pub body: Option<B>,
 }
 impl<B> UpdateSupplySourceStatusParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(supply_source_id: String) -> Self {
         Self {
             supply_source_id,
@@ -210,6 +237,7 @@ impl<B> UpdateSupplySourceStatusParams<B> {
         }
     }
 }
+///Update the status of a supply source.
 pub async fn update_supply_source_status<B: serde::Serialize>(
     client: &Client,
     params: UpdateSupplySourceStatusParams<B>,

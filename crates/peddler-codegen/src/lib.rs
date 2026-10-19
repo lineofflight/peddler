@@ -90,15 +90,19 @@ pub fn generate(
         clients.push((api, clients::render(&spec, api).map_err(located)?));
         specs.insert(api.module, spec);
     }
-    let modules = manifest::ALL_APIS
+    let modules: String = manifest::ALL_APIS
         .iter()
-        .map(|api| quote::format_ident!("{}", api.module));
+        .map(|api| {
+            let doc = facades::module_doc(api, &specs[api.module]["info"]);
+            format!("{doc}pub mod {};\n", api.module)
+        })
+        .collect();
     output.insert(
         base.join("mod.rs"),
         format!(
-            "{}{}\npub mod dispatch;\npub use dispatch::execute;\npub mod pagination;\n",
+            "{}{}\n/// Sends an operation by its key.\npub mod dispatch;\npub use dispatch::execute;\n/// The pagination mapping of each operation that returns pages.\npub mod pagination;\n",
             notice("all API models"),
-            format_source(&quote::quote!(#(pub mod #modules;)*).to_string())?
+            format_source(&modules)?
         ),
     );
     let source = match spec_dir.parent().and_then(Path::parent) {
@@ -119,7 +123,7 @@ pub fn generate(
         );
         output.insert(
             base.join(api.module).join("mod.rs"),
-            format!("{prefix}pub mod models;\nmod facade;\npub use facade::*;\n"),
+            format!("{prefix}/// The models of this API's requests and responses.\npub mod models;\nmod facade;\npub use facade::*;\n"),
         );
     }
     output.insert(

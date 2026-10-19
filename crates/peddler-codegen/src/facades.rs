@@ -2,7 +2,7 @@
 use crate::{
     GenerationError,
     clients::{Operation, Parameter, pascal, rust_type},
-    docs, format_source,
+    docs, format_source, known_values,
     manifest::ModelSpec,
     pagination::{self, Resolved},
 };
@@ -23,6 +23,39 @@ fn field_type(p: &Parameter) -> Result<String, GenerationError> {
 }
 fn params_name(op: &Operation) -> String {
     format!("{}Params", pascal(&op.name))
+}
+/// An API module's doc, as its Ruby class has it: the spec's title, its description
+/// and a link to the spec.
+pub(crate) fn module_doc(api: &ModelSpec, info: &Value) -> String {
+    let text = |key: &str| info[key].as_str().unwrap_or_default().trim();
+    let link = format!(
+        "<https://github.com/amzn/selling-partner-api-models/blob/main/models/{}>",
+        api.source
+    );
+    let description = docs::links(text("description"));
+    let parts = [text("title"), description.trim(), &link];
+    let parts: Vec<&str> = parts.into_iter().filter(|part| !part.is_empty()).collect();
+    doc(&parts.join("\n\n"))
+}
+/// Text as a doc comment. A spec is data: the attribute holds it as a string, and the
+/// formatter writes it as a comment only where nothing in it ends one. Rust refuses a
+/// carriage return in a doc comment, so each line break is a line feed.
+fn doc(text: &str) -> String {
+    let text = text.replace("\r\n", "\n").replace('\r', "\n");
+    format!("#[doc = {text:?}]\n")
+}
+/// A parameter's doc: its description, then the values it is known to take, as a
+/// model field's doc lists them. Empty when the spec says nothing of it.
+fn field_doc(p: &Parameter) -> String {
+    let description = p.description.as_deref().unwrap_or_default();
+    let text = match known_values::sentence(description, &p.known) {
+        Some(sentence) => format!("{description}\n\n{sentence}"),
+        None => description.to_owned(),
+    };
+    match text.trim() {
+        "" => String::new(),
+        text => doc(text),
+    }
 }
 /// How the type of a body appears in an operation's items. Empty when it has none.
 struct BodyType {
@@ -78,9 +111,10 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
         "use crate::{Client, Error, Request, Response};\nuse crate::operation::{self, DecodeError, TypedResponse};\n",
     );
     for op in operations {
-        params_struct(&mut source, op)?;
-        call(&mut source, op)?;
-        if let Some(mapped) = pagination.iter().find(|r| r.name == op.name) {
+        let mapped = pagination.iter().find(|r| r.name == op.name);
+        params_struct(&mut source, op, mapped.is_some())?;
+        call(&mut source, op, mapped.is_some())?;
+        if let Some(mapped) = mapped {
             pages(&mut source, op, mapped)?;
         }
     }
@@ -91,7 +125,7 @@ pub fn rust(operations: &[Operation], pagination: &[&Resolved]) -> Result<String
     ))
 }
 /// An operation's parameter struct, with its defaults and its constructor.
-fn params_struct(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
+fn params_struct(source: &mut String, op: &Operation, paged: bool) -> Result<(), GenerationError> {
     let params = params_name(op);
     let body = BodyType::of(op);
     // Each field with its type and, when the spec gives an optional one a default,
@@ -112,8 +146,15 @@ fn params_struct(source: &mut String, op: &Operation) -> Result<(), GenerationEr
             writeln!(source,"fn {function}() -> {ty} {{ Some(serde_json::from_str({value:?}).expect(\"validated schema default\")) }}").unwrap();
         }
     }
+    let takers = if paged {
+        format!("[`{0}`] and [`{0}_pages`]", op.name)
+    } else {
+        format!("[`{}`]", op.name)
+    };
+    source.push_str(&doc(&format!("The parameters of {takers}.")));
     writeln!(source,"#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]\n#[serde(deny_unknown_fields)]\npub struct {params}{} {{", body.declared).unwrap();
     for (p, ty, default) in &fields {
+        source.push_str(&field_doc(p));
         if let Some((function, _)) = default {
             writeln!(source, "#[serde(default = {function:?})]").unwrap()
         }
@@ -126,10 +167,17 @@ fn params_struct(source: &mut String, op: &Operation) -> Result<(), GenerationEr
         .map(|(p, ty, _)| format!("{}: {ty}", p.name))
         .collect::<Vec<_>>()
         .join(", ");
+    let new = if fields.iter().all(|(p, ..)| p.required) {
+        "Takes the required parameters."
+    } else {
+        "Takes the required parameters. Each optional one is `None`, or its default in the spec."
+    };
     writeln!(
         source,
-        "impl{} {params}{} {{ pub fn new({required}) -> Self {{ Self {{",
-        body.named, body.named
+        "impl{} {params}{} {{ {} pub fn new({required}) -> Self {{ Self {{",
+        body.named,
+        body.named,
+        doc(new)
     )
     .unwrap();
     for (p, _, default) in &fields {
@@ -152,8 +200,8 @@ fn params_struct(source: &mut String, op: &Operation) -> Result<(), GenerationEr
     Ok(())
 }
 /// The function that sends an operation, after the response struct it returns, if
-/// it has its own.
-fn call(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
+/// it has its own. Its doc is the operation's, as its Ruby method has it.
+fn call(source: &mut String, op: &Operation, paged: bool) -> Result<(), GenerationError> {
     let body = BodyType::of(op);
     let (returned, wrapped) = match Returns::of(op) {
         Returns::Raw => ("Response".to_owned(), "raw".to_owned()),
@@ -162,16 +210,31 @@ fn call(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
             "TypedResponse::new(raw)".to_owned(),
         ),
         Returns::ByStatus(name) => {
-            writeln!(source,"#[derive(Debug)] pub struct {name} {{ pub raw: Response }}\nimpl {name} {{ pub fn into_raw(self)->Response {{self.raw}}").unwrap();
+            write!(
+                source,
+                "{}#[derive(Debug)] pub struct {name} {{ {} pub raw: Response }}\nimpl {name} {{ {} pub fn into_raw(self)->Response {{self.raw}}",
+                doc(&format!("The response of [`{}`]. Nothing is parsed until asked.", op.name)),
+                doc("The response as it arrived, whatever its status."),
+                doc("The response as it arrived."),
+            )
+            .unwrap();
             for (status, model) in &op.successes {
                 if let Some(model) = model {
-                    writeln!(source,"pub fn json_{status}(&self)->Result<{model},DecodeError> {{ crate::operation::decode_status(&self.raw,{status}) }}").unwrap()
+                    let text = format!("Parses the body into the model of a {status} response.");
+                    writeln!(source,"{}pub fn json_{status}(&self)->Result<{model},DecodeError> {{ crate::operation::decode_status(&self.raw,{status}) }}", doc(&text)).unwrap()
                 }
             }
             source.push_str("}\n");
             (name.clone(), format!("{name} {{raw}}"))
         }
     };
+    let mut text = docs::description(&op.description);
+    if paged {
+        write!(text, "\n\nIts pages: [`{}_pages`].", op.name).unwrap();
+    }
+    if !text.trim().is_empty() {
+        source.push_str(&doc(text.trim()));
+    }
     writeln!(
         source,
         "pub async fn {}<{}>(client:&Client, params:{}{})->Result<{returned},Error> {{",
@@ -189,6 +252,7 @@ fn call(source: &mut String, op: &Operation) -> Result<(), GenerationError> {
 /// mapping asks for one.
 fn pages(source: &mut String, op: &Operation, mapped: &Resolved) -> Result<(), GenerationError> {
     let body = BodyType::of(op);
+    source.push_str(&doc(&format!("Each page of [`{}`].", op.name)));
     writeln!(source,"pub fn {}_pages<'a, {}>(client:&'a Client, params:{}{})->crate::pagination::PageStream<'a> {{ crate::pagination::pages(client, {}, &params) }}",op.name,body.bound,params_name(op),body.named,pagination::rust_expression(mapped)).unwrap();
     if mapped.mapping.continuation.adapter {
         adapter(source, op, mapped)?;
@@ -372,7 +436,7 @@ pub(crate) fn dispatch(
     resolved: &[Resolved],
 ) -> Result<String, GenerationError> {
     let mut source = String::from(
-        "type OperationFuture<'a> = std::pin::Pin<Box<dyn std::future::Future<Output=Result<crate::Response,crate::Error>> + Send + 'a>>;\ntype Handler = for<'a> fn(&'a crate::Client, &'a str)->OperationFuture<'a>;\npub fn execute<'a>(client:&'a crate::Client, operation:&str, arguments:&'a str)->OperationFuture<'a> { let handler: Handler = match operation {\n",
+        "type OperationFuture<'a> = std::pin::Pin<Box<dyn std::future::Future<Output=Result<crate::Response,crate::Error>> + Send + 'a>>;\ntype Handler = for<'a> fn(&'a crate::Client, &'a str)->OperationFuture<'a>;\n/// Sends an operation by its key, such as `orders_v0.get_orders`, with its parameters as JSON. An unknown key, or parameters that don't parse, is a [`crate::Error::InvalidRequest`]. The Ruby extension calls it.\npub fn execute<'a>(client:&'a crate::Client, operation:&str, arguments:&'a str)->OperationFuture<'a> { let handler: Handler = match operation {\n",
     );
     for (api, operations) in clients {
         for op in operations {
@@ -768,6 +832,215 @@ mod tests {
             "      #: (String seller_id, Array[String] marketplace_ids, ?next_token: String?, ?max_results: Integer?, ?with_stock: bool?, ?min_price: (Float | Integer)?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]\n",
             "      def list_items_pages(seller_id, marketplace_ids, next_token: nil, max_results: 10, with_stock: nil, min_price: nil, rate_limit: nil)\n",
         )), "{ruby}");
+    }
+
+    /// The Rust of a spec with 1 operation, which pages if `paged`.
+    fn rust_of(operation: Value, paged: bool) -> String {
+        let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
+            "/things/{id}":{"post":operation}
+        },"definitions":{"Page":{"type":"object","properties":{"nextToken":{"type":"string"}}},"Thing":{"type":"object"}}});
+        let api = &crate::manifest::ALL_APIS[0];
+        let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
+        let specs = BTreeMap::from([(api.module, spec)]);
+        let key = format!("{}.list_things", api.module);
+        let source = if paged {
+            json!({"mappings":[{"operation":key,"input":"/next_token","output":"/nextToken"}],"exclusions":[]})
+        } else {
+            json!({"mappings":[],"exclusions":[{"operation":key,"reason":"none"}]})
+        };
+        let source: pagination::Source = serde_json::from_value(source).unwrap();
+        let resolved = pagination::resolve(&source, &clients, &specs).unwrap();
+        let mapped: Vec<&Resolved> = resolved.iter().collect();
+        rust(&clients[0].1, &mapped).unwrap()
+    }
+
+    /// The doc of each item of a source, by its name: `Type.field`, `Type::method`, or
+    /// the name of a struct or a function.
+    fn docs_of(source: &str) -> BTreeMap<String, String> {
+        fn doc(attrs: &[syn::Attribute]) -> Option<String> {
+            let lines: Vec<String> = attrs
+                .iter()
+                .filter_map(|attr| match &attr.meta {
+                    syn::Meta::NameValue(meta) if meta.path.is_ident("doc") => match &meta.value {
+                        syn::Expr::Lit(syn::ExprLit {
+                            lit: syn::Lit::Str(text),
+                            ..
+                        }) => Some(text.value()),
+                        _ => None,
+                    },
+                    _ => None,
+                })
+                .collect();
+            (!lines.is_empty()).then(|| lines.join("\n"))
+        }
+        let mut docs = BTreeMap::new();
+        for item in syn::parse_file(source).unwrap().items {
+            match item {
+                syn::Item::Struct(item) => {
+                    let name = item.ident.to_string();
+                    for field in &item.fields {
+                        let field_name = field.ident.as_ref().unwrap();
+                        if let Some(text) = doc(&field.attrs) {
+                            docs.insert(format!("{name}.{field_name}"), text);
+                        }
+                    }
+                    docs.extend(doc(&item.attrs).map(|text| (name, text)));
+                }
+                syn::Item::Fn(item) => {
+                    docs.extend(doc(&item.attrs).map(|text| (item.sig.ident.to_string(), text)));
+                }
+                syn::Item::Impl(item) if item.trait_.is_none() => {
+                    let syn::Type::Path(ty) = &*item.self_ty else {
+                        continue;
+                    };
+                    let ty = &ty.path.segments[0].ident;
+                    for item in &item.items {
+                        if let syn::ImplItem::Fn(method) = item {
+                            let name = format!("{ty}::{}", method.sig.ident);
+                            docs.extend(doc(&method.attrs).map(|text| (name, text)));
+                        }
+                    }
+                }
+                _ => {}
+            }
+        }
+        docs
+    }
+
+    /// A parameter's doc is its description, then the values it is known to take, in a
+    /// paragraph of their own, as a model field's doc lists them.
+    #[test]
+    fn a_parameter_is_documented_as_a_model_field_is() {
+        let operation = json!({"operationId":"listThings","description":"Lists things.","parameters":[
+            {"name":"id","in":"path","required":true,"type":"string"},
+            {"name":"status","in":"query","type":"string","enum":["Open","Closed"],"description":"The status"},
+            {"name":"kinds","in":"query","type":"array","items":{"type":"string","enum":["A","B"]},"description":"Possible values: `A`, `B`."},
+            {"name":"sort","in":"query","type":"string","enum":["asc"]},
+            {"name":"body","in":"body","schema":{"$ref":"#/definitions/Thing"},"description":"The thing."}],
+            "responses":{"200":{"description":"ok"}}});
+        let docs = docs_of(&rust_of(operation, false));
+        assert_eq!(
+            docs["ListThingsParams.status"],
+            "The status\n\nKnown values: `Open`, `Closed`."
+        );
+        assert_eq!(docs["ListThingsParams.kinds"], "Possible values: `A`, `B`.");
+        assert_eq!(docs["ListThingsParams.sort"], "Known values: `asc`.");
+        assert_eq!(docs["ListThingsParams.body"], "The thing.");
+        assert!(!docs.contains_key("ListThingsParams.id"), "{docs:?}");
+    }
+
+    /// The struct names the functions that take it. The function takes the text of its
+    /// Ruby method, without the usage plan, and names its pages, which name it.
+    #[test]
+    fn a_function_and_its_parameters_point_to_each_other() {
+        let operation = json!({"operationId":"listThings","parameters":[
+            {"name":"id","in":"path","required":true,"type":"string"},
+            {"name":"nextToken","in":"query","type":"string"}],
+            "description":"Lists things.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 10 |",
+            "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Page"}},"202":{"description":"ok"}}});
+        let docs = docs_of(&rust_of(operation.clone(), true));
+        for (item, text) in [
+            (
+                "ListThingsParams",
+                "The parameters of [`list_things`] and [`list_things_pages`].",
+            ),
+            (
+                "ListThingsParams::new",
+                "Takes the required parameters. Each optional one is `None`, or its default in the spec.",
+            ),
+            (
+                "list_things",
+                "Lists things.\n\nIts pages: [`list_things_pages`].",
+            ),
+            ("list_things_pages", "Each page of [`list_things`]."),
+            (
+                "ListThingsResponse",
+                "The response of [`list_things`]. Nothing is parsed until asked.",
+            ),
+            (
+                "ListThingsResponse.raw",
+                "The response as it arrived, whatever its status.",
+            ),
+            (
+                "ListThingsResponse::into_raw",
+                "The response as it arrived.",
+            ),
+            (
+                "ListThingsResponse::json_200",
+                "Parses the body into the model of a 200 response.",
+            ),
+        ] {
+            assert_eq!(docs.get(item).map(String::as_str), Some(text), "{item}");
+        }
+        let docs = docs_of(&rust_of(operation, false));
+        assert_eq!(
+            docs["ListThingsParams"],
+            "The parameters of [`list_things`]."
+        );
+        assert_eq!(docs["list_things"], "Lists things.");
+    }
+
+    /// A spec is data: whatever its text holds, a doc says it as text, and none of it
+    /// ends the comment or adds an item.
+    #[test]
+    fn a_doc_is_the_text_of_the_spec() {
+        let hostile = concat!(
+            "a */ pub fn injected() {} /* b\n*/\n/// c\n#[doc = \"d\"] \"e\" \\ \\\" f\n",
+            "/* g\r\nh\ri\u{2028}j\u{0}k `l` [m](doc:n)",
+        );
+        let operation = json!({"operationId":"listThings","description":hostile,"parameters":[
+            {"name":"id","in":"path","required":true,"type":"string","description":hostile,"enum":["*/", "\"", "x\ny"]},
+            {"name":"other","in":"query","type":"string","description":"*/"},
+            {"name":"third","in":"query","type":"string","description":"a\rb"}],
+            "responses":{"200":{"description":"ok"}}});
+        let source = rust_of(operation, false);
+        assert!(!source.contains('\r'), "{source}");
+        let docs = docs_of(&source);
+        let text = hostile.replace("\r\n", "\n").replace('\r', "\n");
+        assert_eq!(
+            docs["ListThingsParams.id"],
+            format!("{text}\n\nKnown values: `*/`, `\"`, `x y`.")
+        );
+        assert_eq!(docs["ListThingsParams.other"], "*/");
+        assert_eq!(docs["ListThingsParams.third"], "a\nb");
+        assert!(docs["list_things"].starts_with("a */ pub fn injected() {} /* b\n"));
+        let items = syn::parse_file(&source).unwrap().items;
+        let names: Vec<String> = items
+            .iter()
+            .filter_map(|item| match item {
+                syn::Item::Struct(item) => Some(item.ident.to_string()),
+                syn::Item::Fn(item) => Some(item.sig.ident.to_string()),
+                _ => None,
+            })
+            .collect();
+        assert_eq!(names, ["ListThingsParams", "list_things"]);
+    }
+
+    /// An API's module takes the text of its Ruby class.
+    #[test]
+    fn a_module_is_documented_as_its_ruby_class_is() {
+        let api = &crate::manifest::ALL_APIS[0];
+        let info =
+            json!({"title":"Things API","description":"For things. See [the guide](doc:guide).\n"});
+        let source = format!("{}pub mod things;", module_doc(api, &info));
+        let item: syn::ItemMod = syn::parse_str(&source).unwrap();
+        let syn::Meta::NameValue(meta) = &item.attrs[0].meta else {
+            panic!("{source}")
+        };
+        let syn::Expr::Lit(syn::ExprLit {
+            lit: syn::Lit::Str(text),
+            ..
+        }) = &meta.value
+        else {
+            panic!("{source}")
+        };
+        assert_eq!(
+            text.value(),
+            format!(
+                "Things API\n\nFor things. See [the guide](https://developer-docs.amazon.com/sp-api/docs/guide).\n\n<https://github.com/amzn/selling-partner-api-models/blob/main/models/{}>",
+                api.source
+            )
+        );
     }
 
     /// The Ruby of a spec with 1 operation, or why it is refused.

@@ -73,6 +73,8 @@ The tests read the pinned checkout, so run the setup task first. `cargo test --w
 
 `src/clients.rs` reads each operation of a model: its method and path, its rate, its parameters and their types and defaults, the body, and the model of each successful response. `src/facades.rs` writes the Rust functions and the Ruby methods from that, and `src/docs.rs` the comments above the Ruby ones.
 
+The Rust items carry the spec's text as their docs. A function and an API's module have the text of the Ruby method and class. A field of a parameter struct has the parameter's description and its known values, as a field of a model has.
+
 A generated function builds its request itself. It escapes each path parameter as 1 segment. It joins an array into 1 comma-separated query parameter, or repeats the parameter where the model says `collectionFormat: multi`. It serializes the body as JSON.
 
 It doesn't check a value against the model's constraints, such as a pattern or a maximum: Amazon does. It keeps the defaults the model declares.

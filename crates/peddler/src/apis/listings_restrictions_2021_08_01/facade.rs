@@ -4,17 +4,27 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_listings_restrictions`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetListingsRestrictionsParams {
+    ///The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
+    /**The condition used to filter restrictions.
+
+Known values: `new_new`, `new_open_box`, `new_oem`, `refurbished_refurbished`, `used_like_new`, `used_very_good`, `used_good`, `used_acceptable`, `collectible_like_new`, `collectible_very_good`, `collectible_good`, `collectible_acceptable`, `club_club`.*/
     pub condition_type: Option<String>,
+    ///A selling partner identifier, such as a merchant account.
     pub seller_id: String,
+    ///A comma-delimited list of Amazon marketplace identifiers for the request.
     pub marketplace_ids: Vec<String>,
+    ///A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US" when a localization is not available in the specified locale.
     pub reason_locale: Option<String>,
+    ///The product type of the item. When provided with the brand name, the API evaluates GTIN exemption restrictions in addition to brand restrictions for the specified product type.
     pub product_type: Option<String>,
 }
 impl GetListingsRestrictionsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(asin: String, seller_id: String, marketplace_ids: Vec<String>) -> Self {
         Self {
             asin,
@@ -26,6 +36,7 @@ impl GetListingsRestrictionsParams {
         }
     }
 }
+///Returns listing restrictions for an item in the Amazon Catalog.
 pub async fn get_listings_restrictions(
     client: &Client,
     params: GetListingsRestrictionsParams,

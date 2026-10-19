@@ -4,13 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`cancel_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelShipmentParams {
+    ///The shipment identifier originally returned by the purchaseShipment operation.
     pub shipment_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl CancelShipmentParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String) -> Self {
         Self {
             shipment_id,
@@ -18,6 +24,7 @@ impl CancelShipmentParams {
         }
     }
 }
+///Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
 pub async fn cancel_shipment(
     client: &Client,
     params: CancelShipmentParams,
@@ -47,13 +54,19 @@ pub async fn cancel_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_claim`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateClaimParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///Request body for the createClaim operation
     pub body: B,
 }
 impl<B> CreateClaimParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -61,6 +74,7 @@ impl<B> CreateClaimParams<B> {
         }
     }
 }
+///This API will be used to create claim for single eligible shipment.
 pub async fn create_claim<B: serde::Serialize>(
     client: &Client,
     params: CreateClaimParams<B>,
@@ -85,15 +99,25 @@ pub async fn create_claim<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`direct_purchase_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DirectPurchaseShipmentParams<B = serde_json::Value> {
+    ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
+    /**The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA).
+The secondary language subtag is almost always a regional designation.
+This does not support additional subtags beyond the primary and secondary language subtags.*/
     pub locale: Option<String>,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///DirectPurchaseRequest body
     pub body: B,
 }
 impl<B> DirectPurchaseShipmentParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_idempotency_key: None,
@@ -103,6 +127,7 @@ impl<B> DirectPurchaseShipmentParams<B> {
         }
     }
 }
+///Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.
 pub async fn direct_purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: DirectPurchaseShipmentParams<B>,
@@ -133,14 +158,21 @@ pub async fn direct_purchase_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`generate_collection_form`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GenerateCollectionFormParams<B = serde_json::Value> {
+    ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///GenerateCollectionFormRequest body
     pub body: B,
 }
 impl<B> GenerateCollectionFormParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_idempotency_key: None,
@@ -149,6 +181,7 @@ impl<B> GenerateCollectionFormParams<B> {
         }
     }
 }
+///This API  Call to generate the collection form.
 pub async fn generate_collection_form<B: serde::Serialize>(
     client: &Client,
     params: GenerateCollectionFormParams<B>,
@@ -178,15 +211,25 @@ pub async fn generate_collection_form<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_access_points`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAccessPointsParams {
+    /**Access point types
+
+Known values: `HELIX`, `CAMPUS_LOCKER`, `OMNI_LOCKER`, `ODIN_LOCKER`, `DOBBY_LOCKER`, `CORE_LOCKER`, `3P`, `CAMPUS_ROOM`.*/
     pub access_point_types: Vec<String>,
+    ///Country code for access point
     pub country_code: String,
+    ///postal code for access point
     pub postal_code: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetAccessPointsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         access_point_types: Vec<String>,
         country_code: String,
@@ -200,6 +243,7 @@ impl GetAccessPointsParams {
         }
     }
 }
+///Returns a list of access points in proximity of input postal code.
 pub async fn get_access_points(
     client: &Client,
     params: GetAccessPointsParams,
@@ -229,14 +273,21 @@ pub async fn get_access_points(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_additional_inputs`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetAdditionalInputsParams {
+    ///The request token returned in the response to the getRates operation.
     pub request_token: String,
+    ///The rate identifier for the shipping offering (rate) returned in the response to the getRates operation.
     pub rate_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetAdditionalInputsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(request_token: String, rate_id: String) -> Self {
         Self {
             request_token,
@@ -245,6 +296,7 @@ impl GetAdditionalInputsParams {
         }
     }
 }
+///Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.
 pub async fn get_additional_inputs(
     client: &Client,
     params: GetAdditionalInputsParams,
@@ -272,12 +324,17 @@ pub async fn get_additional_inputs(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_carrier_account_form_inputs`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCarrierAccountFormInputsParams {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetCarrierAccountFormInputsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -289,6 +346,7 @@ impl Default for GetCarrierAccountFormInputsParams {
         Self::new()
     }
 }
+///This API will return a list of input schema required to register a shipper account with the carrier.
 pub async fn get_carrier_account_form_inputs(
     client: &Client,
     params: GetCarrierAccountFormInputsParams,
@@ -313,13 +371,19 @@ pub async fn get_carrier_account_form_inputs(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_carrier_accounts`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCarrierAccountsParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///GetCarrierAccountsRequest body
     pub body: B,
 }
 impl<B> GetCarrierAccountsParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -327,6 +391,7 @@ impl<B> GetCarrierAccountsParams<B> {
         }
     }
 }
+///This API will return Get all carrier accounts for a merchant.
 pub async fn get_carrier_accounts<B: serde::Serialize>(
     client: &Client,
     params: GetCarrierAccountsParams<B>,
@@ -351,13 +416,19 @@ pub async fn get_carrier_accounts<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_collection_form`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCollectionFormParams {
+    ///collection form Id to reprint a collection.
     pub collection_form_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetCollectionFormParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(collection_form_id: String) -> Self {
         Self {
             collection_form_id,
@@ -365,6 +436,7 @@ impl GetCollectionFormParams {
         }
     }
 }
+///This API reprint a collection form.
 pub async fn get_collection_form(
     client: &Client,
     params: GetCollectionFormParams,
@@ -393,13 +465,19 @@ pub async fn get_collection_form(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_collection_form_history`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCollectionFormHistoryParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///GetCollectionFormHistoryRequest body
     pub body: B,
 }
 impl<B> GetCollectionFormHistoryParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -407,6 +485,7 @@ impl<B> GetCollectionFormHistoryParams<B> {
         }
     }
 }
+///This API Call to get the history of the previously generated collection forms.
 pub async fn get_collection_form_history<B: serde::Serialize>(
     client: &Client,
     params: GetCollectionFormHistoryParams<B>,
@@ -431,13 +510,19 @@ pub async fn get_collection_form_history<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_rates`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetRatesParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///GetRatesRequest body
     pub body: B,
 }
 impl<B> GetRatesParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -445,6 +530,7 @@ impl<B> GetRatesParams<B> {
         }
     }
 }
+///Returns the available shipping service offerings.
 pub async fn get_rates<B: serde::Serialize>(
     client: &Client,
     params: GetRatesParams<B>,
@@ -469,16 +555,25 @@ pub async fn get_rates<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_shipment_documents`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetShipmentDocumentsParams {
+    ///The shipment identifier originally returned by the purchaseShipment operation.
     pub shipment_id: String,
+    ///The package client reference identifier originally provided in the request body parameter for the getRates operation.
     pub package_client_reference_id: String,
+    ///The file format of the document. Must be one of the supported formats returned by the getRates operation.
     pub format: Option<String>,
+    ///The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation.
     pub dpi: Option<serde_json::Number>,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetShipmentDocumentsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String, package_client_reference_id: String) -> Self {
         Self {
             shipment_id,
@@ -489,6 +584,7 @@ impl GetShipmentDocumentsParams {
         }
     }
 }
+///Returns the shipping documents associated with a package in a shipment.
 pub async fn get_shipment_documents(
     client: &Client,
     params: GetShipmentDocumentsParams,
@@ -526,14 +622,21 @@ pub async fn get_shipment_documents(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_tracking`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTrackingParams {
+    ///A carrier-generated tracking identifier originally returned by the purchaseShipment operation.
     pub tracking_id: String,
+    ///A carrier identifier originally returned by the getRates operation for the selected rate.
     pub carrier_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
 }
 impl GetTrackingParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(tracking_id: String, carrier_id: String) -> Self {
         Self {
             tracking_id,
@@ -542,6 +645,7 @@ impl GetTrackingParams {
         }
     }
 }
+///Returns tracking information for a purchased shipment.
 pub async fn get_tracking(
     client: &Client,
     params: GetTrackingParams,
@@ -569,13 +673,19 @@ pub async fn get_tracking(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_unmanifested_shipments`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetUnmanifestedShipmentsParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///GetUmanifestedShipmentsRequest body
     pub body: B,
 }
 impl<B> GetUnmanifestedShipmentsParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -583,6 +693,8 @@ impl<B> GetUnmanifestedShipmentsParams<B> {
         }
     }
 }
+/**This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+        with an eligible carrier for manifesting shall be returned.*/
 pub async fn get_unmanifested_shipments<B: serde::Serialize>(
     client: &Client,
     params: GetUnmanifestedShipmentsParams<B>,
@@ -607,14 +719,21 @@ pub async fn get_unmanifested_shipments<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`link_carrier_account`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LinkCarrierAccountParams<B = serde_json::Value> {
+    ///An identifier for the carrier with which the seller's account is being linked.
     pub carrier_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///LinkCarrierAccountRequest body
     pub body: B,
 }
 impl<B> LinkCarrierAccountParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(carrier_id: String, body: B) -> Self {
         Self {
             carrier_id,
@@ -623,6 +742,7 @@ impl<B> LinkCarrierAccountParams<B> {
         }
     }
 }
+///This API associates/links the specified carrier account with the merchant.
 pub async fn link_carrier_account<B: serde::Serialize>(
     client: &Client,
     params: LinkCarrierAccountParams<B>,
@@ -651,14 +771,21 @@ pub async fn link_carrier_account<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`link_carrier_account_put`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LinkCarrierAccountPutParams<B = serde_json::Value> {
+    ///An identifier for the carrier with which the seller's account is being linked.
     pub carrier_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///LinkCarrierAccountRequest body
     pub body: B,
 }
 impl<B> LinkCarrierAccountPutParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(carrier_id: String, body: B) -> Self {
         Self {
             carrier_id,
@@ -667,6 +794,7 @@ impl<B> LinkCarrierAccountPutParams<B> {
         }
     }
 }
+///This API associates/links the specified carrier account with the merchant.
 pub async fn link_carrier_account_put<B: serde::Serialize>(
     client: &Client,
     params: LinkCarrierAccountPutParams<B>,
@@ -695,13 +823,19 @@ pub async fn link_carrier_account_put<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`one_click_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct OneClickShipmentParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///OneClickShipmentRequest body
     pub body: B,
 }
 impl<B> OneClickShipmentParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -709,6 +843,7 @@ impl<B> OneClickShipmentParams<B> {
         }
     }
 }
+///Purchases a shipping service identifier and returns purchase-related details and documents.
 pub async fn one_click_shipment<B: serde::Serialize>(
     client: &Client,
     params: OneClickShipmentParams<B>,
@@ -733,14 +868,21 @@ pub async fn one_click_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`purchase_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct PurchaseShipmentParams<B = serde_json::Value> {
+    ///A unique value which the server uses to recognize subsequent retries of the same request.
     pub x_amzn_idempotency_key: Option<String>,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///PurchaseShipmentRequest body
     pub body: B,
 }
 impl<B> PurchaseShipmentParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_idempotency_key: None,
@@ -749,6 +891,9 @@ impl<B> PurchaseShipmentParams<B> {
         }
     }
 }
+/**Purchases a shipping service and returns purchase related details and documents.
+
+Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.*/
 pub async fn purchase_shipment<B: serde::Serialize>(
     client: &Client,
     params: PurchaseShipmentParams<B>,
@@ -778,13 +923,19 @@ pub async fn purchase_shipment<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`submit_ndr_feedback`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitNdrFeedbackParams<B = serde_json::Value> {
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///Request body for ndrFeedback operation
     pub body: B,
 }
 impl<B> SubmitNdrFeedbackParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(body: B) -> Self {
         Self {
             x_amzn_shipping_business_id: None,
@@ -792,6 +943,7 @@ impl<B> SubmitNdrFeedbackParams<B> {
         }
     }
 }
+///This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
 pub async fn submit_ndr_feedback<B: serde::Serialize>(
     client: &Client,
     params: SubmitNdrFeedbackParams<B>,
@@ -816,14 +968,21 @@ pub async fn submit_ndr_feedback<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`unlink_carrier_account`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UnlinkCarrierAccountParams<B = serde_json::Value> {
+    ///carrier Id to unlink with merchant.
     pub carrier_id: String,
+    /**Amazon shipping business to assume for this request. The default is AmazonShipping_UK.
+
+Known values: `AmazonShipping_US`, `AmazonShipping_IN`, `AmazonShipping_UK`, `AmazonShipping_UAE`, `AmazonShipping_SA`, `AmazonShipping_EG`, `AmazonShipping_IT`, `AmazonShipping_ES`, `AmazonShipping_FR`, `AmazonShipping_JP`.*/
     pub x_amzn_shipping_business_id: Option<String>,
+    ///UnlinkCarrierAccountRequest body
     pub body: B,
 }
 impl<B> UnlinkCarrierAccountParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(carrier_id: String, body: B) -> Self {
         Self {
             carrier_id,
@@ -832,6 +991,7 @@ impl<B> UnlinkCarrierAccountParams<B> {
         }
     }
 }
+///This API Unlink the specified carrier account with the merchant.
 pub async fn unlink_carrier_account<B: serde::Serialize>(
     client: &Client,
     params: UnlinkCarrierAccountParams<B>,

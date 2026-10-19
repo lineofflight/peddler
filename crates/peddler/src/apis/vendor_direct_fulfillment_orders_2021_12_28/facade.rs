@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
+    ///The order identifier for the purchase order that you want. Formatting Notes: alpha-numeric code.
     pub purchase_order_number: String,
 }
 impl GetOrderParams {
+    ///Takes the required parameters.
     pub fn new(purchase_order_number: String) -> Self {
         Self { purchase_order_number }
     }
 }
+///Returns purchase order information for the purchaseOrderNumber that you specify.
 pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
@@ -39,20 +43,34 @@ pub async fn get_order(
 fn get_orders_include_details_default() -> Option<bool> {
     Some(serde_json::from_str("true").expect("validated schema default"))
 }
+///The parameters of [`get_orders`] and [`get_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrdersParams {
+    ///The vendor warehouse identifier for the fulfillment warehouse. If not specified, the result will contain orders for all warehouses.
     pub ship_from_party_id: Option<String>,
+    /**Returns only the purchase orders that match the specified status. If not specified, the result will contain orders that match any status.
+
+Known values: `NEW`, `SHIPPED`, `ACCEPTED`, `CANCELLED`.*/
     pub status: Option<String>,
+    ///The limit to the number of purchase orders returned.
     pub limit: Option<i64>,
+    ///Purchase orders that became available after this date and time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_after: String,
+    ///Purchase orders that became available before this date and time will be included in the result. Must be in ISO-8601 date/time format.
     pub created_before: String,
+    /**Sort the list in ascending or descending order by order creation date.
+
+Known values: `ASC`, `DESC`.*/
     pub sort_order: Option<String>,
+    ///Used for pagination when there are more orders than the specified result size limit. The token value is returned in the previous API call.
     pub next_token: Option<String>,
+    ///When true, returns the complete purchase order details. Otherwise, only purchase order numbers are returned.
     #[serde(default = "get_orders_include_details_default")]
     pub include_details: Option<bool>,
 }
 impl GetOrdersParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(created_after: String, created_before: String) -> Self {
         Self {
             ship_from_party_id: None,
@@ -66,6 +84,9 @@ impl GetOrdersParams {
         }
     }
 }
+/**Returns a list of purchase orders created during the time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific order.
+
+Its pages: [`get_orders_pages`].*/
 pub async fn get_orders(
     client: &Client,
     params: GetOrdersParams,
@@ -94,6 +115,7 @@ pub async fn get_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_orders`].
 pub fn get_orders_pages<'a>(
     client: &'a Client,
     params: GetOrdersParams,
@@ -115,16 +137,20 @@ pub fn get_orders_pages<'a>(
         &params,
     )
 }
+///The parameters of [`submit_acknowledgement`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitAcknowledgementParams<B = serde_json::Value> {
+    ///The request body containing the acknowledgement to an order
     pub body: B,
 }
 impl<B> SubmitAcknowledgementParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Submits acknowledgements for one or more purchase orders.
 pub async fn submit_acknowledgement<B: serde::Serialize>(
     client: &Client,
     params: SubmitAcknowledgementParams<B>,

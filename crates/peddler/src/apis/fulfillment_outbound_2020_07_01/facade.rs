@@ -4,18 +4,22 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`cancel_fulfillment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelFulfillmentOrderParams {
+    ///The identifier assigned to the item by the seller when the fulfillment order was created.
     pub seller_fulfillment_order_id: String,
 }
 impl CancelFulfillmentOrderParams {
+    ///Takes the required parameters.
     pub fn new(seller_fulfillment_order_id: String) -> Self {
         Self {
             seller_fulfillment_order_id,
         }
     }
 }
+///Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.
 pub async fn cancel_fulfillment_order(
     client: &Client,
     params: CancelFulfillmentOrderParams,
@@ -39,16 +43,20 @@ pub async fn cancel_fulfillment_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_fulfillment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateFulfillmentOrderParams<B = serde_json::Value> {
+    ///CreateFulfillmentOrderRequest parameter
     pub body: B,
 }
 impl<B> CreateFulfillmentOrderParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.
 pub async fn create_fulfillment_order<B: serde::Serialize>(
     client: &Client,
     params: CreateFulfillmentOrderParams<B>,
@@ -67,13 +75,17 @@ pub async fn create_fulfillment_order<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_fulfillment_return`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateFulfillmentReturnParams<B = serde_json::Value> {
+    ///An identifier the seller assigns to the fulfillment order at the time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value based on the buyer's request to return items.
     pub seller_fulfillment_order_id: String,
+    ///The request body of the `createFulfillmentReturn` operation.
     pub body: B,
 }
 impl<B> CreateFulfillmentReturnParams<B> {
+    ///Takes the required parameters.
     pub fn new(seller_fulfillment_order_id: String, body: B) -> Self {
         Self {
             seller_fulfillment_order_id,
@@ -81,6 +93,7 @@ impl<B> CreateFulfillmentReturnParams<B> {
         }
     }
 }
+///Creates a fulfillment return.
 pub async fn create_fulfillment_return<B: serde::Serialize>(
     client: &Client,
     params: CreateFulfillmentReturnParams<B>,
@@ -104,16 +117,20 @@ pub async fn create_fulfillment_return<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delivery_offers`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeliveryOffersParams<B = serde_json::Value> {
+    ///GetDeliveryOffersRequest parameter
     pub body: B,
 }
 impl<B> DeliveryOffersParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that you specify.
 pub async fn delivery_offers<B: serde::Serialize>(
     client: &Client,
     params: DeliveryOffersParams<B>,
@@ -132,15 +149,21 @@ pub async fn delivery_offers<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_feature_inventory`] and [`get_feature_inventory_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeatureInventoryParams {
+    ///The marketplace for which to return a list of the inventory that is eligible for the specified feature.
     pub marketplace_id: String,
+    ///The name of the feature for which to return a list of eligible inventory.
     pub feature_name: String,
+    ///A string token returned in the response to your previous request that is used to return the next response page. A value of `null` will return the first page.
     pub next_token: Option<String>,
+    ///A date that you can use to select inventory that has been updated since a specified date. An update is defined as any change in feature-enabled inventory availability. The date must be in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
     pub query_start_date: Option<String>,
 }
 impl GetFeatureInventoryParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(marketplace_id: String, feature_name: String) -> Self {
         Self {
             marketplace_id,
@@ -150,6 +173,9 @@ impl GetFeatureInventoryParams {
         }
     }
 }
+/**Returns a list of inventory items that are eligible for the fulfillment feature you specify.
+
+Its pages: [`get_feature_inventory_pages`].*/
 pub async fn get_feature_inventory(
     client: &Client,
     params: GetFeatureInventoryParams,
@@ -176,6 +202,7 @@ pub async fn get_feature_inventory(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_feature_inventory`].
 pub fn get_feature_inventory_pages<'a>(
     client: &'a Client,
     params: GetFeatureInventoryParams,
@@ -197,14 +224,19 @@ pub fn get_feature_inventory_pages<'a>(
         &params,
     )
 }
+///The parameters of [`get_feature_sku`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeatureSkuParams {
+    ///The marketplace for which to return the count.
     pub marketplace_id: String,
+    ///The name of the feature.
     pub feature_name: String,
+    ///Used to identify an item in the given marketplace. `sellerSku` is qualified by the seller's `sellerId`, which is included with every operation that you submit.
     pub seller_sku: String,
 }
 impl GetFeatureSkuParams {
+    ///Takes the required parameters.
     pub fn new(
         marketplace_id: String,
         feature_name: String,
@@ -217,6 +249,7 @@ impl GetFeatureSkuParams {
         }
     }
 }
+///Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified feature. Note that if the `sellerSku` isn't eligible, the response will contain an empty `skuInfo` object. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn get_feature_sku(
     client: &Client,
     params: GetFeatureSkuParams,
@@ -243,16 +276,20 @@ pub async fn get_feature_sku(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_features`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFeaturesParams {
+    ///The marketplace for which to return the list of features.
     pub marketplace_id: String,
 }
 impl GetFeaturesParams {
+    ///Takes the required parameters.
     pub fn new(marketplace_id: String) -> Self {
         Self { marketplace_id }
     }
 }
+///Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.
 pub async fn get_features(
     client: &Client,
     params: GetFeaturesParams,
@@ -273,18 +310,22 @@ pub async fn get_features(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_fulfillment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFulfillmentOrderParams {
+    ///The identifier assigned to the item by the seller when the fulfillment order was created.
     pub seller_fulfillment_order_id: String,
 }
 impl GetFulfillmentOrderParams {
+    ///Takes the required parameters.
     pub fn new(seller_fulfillment_order_id: String) -> Self {
         Self {
             seller_fulfillment_order_id,
         }
     }
 }
+///Returns the fulfillment order indicated by the specified order identifier.
 pub async fn get_fulfillment_order(
     client: &Client,
     params: GetFulfillmentOrderParams,
@@ -307,16 +348,20 @@ pub async fn get_fulfillment_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_fulfillment_preview`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetFulfillmentPreviewParams<B = serde_json::Value> {
+    ///GetFulfillmentPreviewRequest parameter
     pub body: B,
 }
 impl<B> GetFulfillmentPreviewParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Returns a list of fulfillment order previews based on shipping criteria that you specify.
 pub async fn get_fulfillment_preview<B: serde::Serialize>(
     client: &Client,
     params: GetFulfillmentPreviewParams<B>,
@@ -335,16 +380,20 @@ pub async fn get_fulfillment_preview<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_package_tracking_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetPackageTrackingDetailsParams {
+    ///The unencrypted package identifier. You can obtain this value from the `getFulfillmentOrder` operation.
     pub package_number: i32,
 }
 impl GetPackageTrackingDetailsParams {
+    ///Takes the required parameters.
     pub fn new(package_number: i32) -> Self {
         Self { package_number }
     }
 }
+///Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.
 pub async fn get_package_tracking_details(
     client: &Client,
     params: GetPackageTrackingDetailsParams,
@@ -365,13 +414,17 @@ pub async fn get_package_tracking_details(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_all_fulfillment_orders`] and [`list_all_fulfillment_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListAllFulfillmentOrdersParams {
+    ///A date used to select fulfillment orders that were last updated after (or at) a specified time. An update is defined as any change in fulfillment order status, including the creation of a new fulfillment order.
     pub query_start_date: Option<String>,
+    ///A string token returned in the response to your previous request.
     pub next_token: Option<String>,
 }
 impl ListAllFulfillmentOrdersParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             query_start_date: None,
@@ -384,6 +437,9 @@ impl Default for ListAllFulfillmentOrdersParams {
         Self::new()
     }
 }
+/**Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the `nextToken` parameter.
+
+Its pages: [`list_all_fulfillment_orders_pages`].*/
 pub async fn list_all_fulfillment_orders(
     client: &Client,
     params: ListAllFulfillmentOrdersParams,
@@ -405,6 +461,7 @@ pub async fn list_all_fulfillment_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_all_fulfillment_orders`].
 pub fn list_all_fulfillment_orders_pages<'a>(
     client: &'a Client,
     params: ListAllFulfillmentOrdersParams,
@@ -426,15 +483,21 @@ pub fn list_all_fulfillment_orders_pages<'a>(
         &params,
     )
 }
+///The parameters of [`list_return_reason_codes`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListReturnReasonCodesParams {
+    ///The seller SKU for which return reason codes are required.
     pub seller_sku: String,
+    ///The marketplace for which the seller wants return reason codes.
     pub marketplace_id: Option<String>,
+    ///The identifier assigned to the item by the seller when the fulfillment order was created. The service uses this value to determine the marketplace for which the seller wants return reason codes.
     pub seller_fulfillment_order_id: Option<String>,
+    ///The language that the `TranslatedDescription` property of the `ReasonCodeDetails` response object should be translated into.
     pub language: Option<String>,
 }
 impl ListReturnReasonCodesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(seller_sku: String) -> Self {
         Self {
             seller_sku,
@@ -444,6 +507,7 @@ impl ListReturnReasonCodesParams {
         }
     }
 }
+///Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
 pub async fn list_return_reason_codes(
     client: &Client,
     params: ListReturnReasonCodesParams,
@@ -471,13 +535,17 @@ pub async fn list_return_reason_codes(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`submit_fulfillment_order_status_update`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SubmitFulfillmentOrderStatusUpdateParams<B = serde_json::Value> {
+    ///The identifier assigned to the item by the seller when the fulfillment order was created.
     pub seller_fulfillment_order_id: String,
+    ///The identifier assigned to the item by the seller when the fulfillment order was created.
     pub body: B,
 }
 impl<B> SubmitFulfillmentOrderStatusUpdateParams<B> {
+    ///Takes the required parameters.
     pub fn new(seller_fulfillment_order_id: String, body: B) -> Self {
         Self {
             seller_fulfillment_order_id,
@@ -485,6 +553,7 @@ impl<B> SubmitFulfillmentOrderStatusUpdateParams<B> {
         }
     }
 }
+///Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn submit_fulfillment_order_status_update<B: serde::Serialize>(
     client: &Client,
     params: SubmitFulfillmentOrderStatusUpdateParams<B>,
@@ -511,13 +580,17 @@ pub async fn submit_fulfillment_order_status_update<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`update_fulfillment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateFulfillmentOrderParams<B = serde_json::Value> {
+    ///The identifier assigned to the item by the seller when the fulfillment order was created.
     pub seller_fulfillment_order_id: String,
+    ///The request body of the `updateFulfillmentOrder` operation.
     pub body: B,
 }
 impl<B> UpdateFulfillmentOrderParams<B> {
+    ///Takes the required parameters.
     pub fn new(seller_fulfillment_order_id: String, body: B) -> Self {
         Self {
             seller_fulfillment_order_id,
@@ -525,6 +598,7 @@ impl<B> UpdateFulfillmentOrderParams<B> {
         }
     }
 }
+///Updates and/or requests shipment for a fulfillment order with an order hold on it.
 pub async fn update_fulfillment_order<B: serde::Serialize>(
     client: &Client,
     params: UpdateFulfillmentOrderParams<B>,

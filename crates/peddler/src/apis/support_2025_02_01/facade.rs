@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_case`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetCaseParams {
+    ///The case identifier.
     pub case_id: String,
 }
 impl GetCaseParams {
+    ///Takes the required parameters.
     pub fn new(case_id: String) -> Self {
         Self { case_id }
     }
 }
+///Retrieve a specific support case.
 pub async fn get_case(
     client: &Client,
     params: GetCaseParams,
@@ -36,16 +40,22 @@ pub async fn get_case(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_cases`] and [`list_cases_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListCasesParams<B = serde_json::Value> {
+    ///The request body for the listCases operation.
     pub body: B,
 }
 impl<B> ListCasesParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**Retrieve support cases for a selling partner.
+
+Its pages: [`list_cases_pages`].*/
 pub async fn list_cases<B: serde::Serialize>(
     client: &Client,
     params: ListCasesParams<B>,
@@ -64,6 +74,7 @@ pub async fn list_cases<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_cases`].
 pub fn list_cases_pages<'a, B: serde::Serialize>(
     client: &'a Client,
     params: ListCasesParams<B>,
@@ -90,17 +101,25 @@ fn list_contacts_max_results_default() -> Option<i32> {
 fn list_contacts_sort_order_default() -> Option<String> {
     Some(serde_json::from_str("\"DESC\"").expect("validated schema default"))
 }
+///The parameters of [`list_contacts`] and [`list_contacts_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListContactsParams {
+    ///The case identifier.
     pub case_id: String,
+    ///The maximum number of results to include in the response.
     #[serde(default = "list_contacts_max_results_default")]
     pub max_results: Option<i32>,
+    ///A token to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
+    /**Sort the returned contacts by `createdDate` in either ascending or descending order.
+
+Known values: `ASC`, `DESC`.*/
     #[serde(default = "list_contacts_sort_order_default")]
     pub sort_order: Option<String>,
 }
 impl ListContactsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(case_id: String) -> Self {
         Self {
             case_id,
@@ -110,6 +129,9 @@ impl ListContactsParams {
         }
     }
 }
+/**Retrieve contacts for a specific support case.
+
+Its pages: [`list_contacts_pages`].*/
 pub async fn list_contacts(
     client: &Client,
     params: ListContactsParams,
@@ -137,6 +159,7 @@ pub async fn list_contacts(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_contacts`].
 pub fn list_contacts_pages<'a>(
     client: &'a Client,
     params: ListContactsParams,

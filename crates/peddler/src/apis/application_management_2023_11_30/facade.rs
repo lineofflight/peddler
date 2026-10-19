@@ -4,10 +4,12 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`rotate_application_client_secret`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RotateApplicationClientSecretParams {}
 impl RotateApplicationClientSecretParams {
+    ///Takes the required parameters.
     pub fn new() -> Self {
         Self {}
     }
@@ -17,6 +19,7 @@ impl Default for RotateApplicationClientSecretParams {
         Self::new()
     }
 }
+///Rotates application client secrets for a developer application. Developers must register a destination queue in the developer console before calling this operation. When this operation is called a new client secret is generated and sent to the developer-registered queue. For more information, refer to [Rotate your application's client secret](https://developer-docs.amazon.com/sp-api/docs/rotate-your-application-client-secret).
 pub async fn rotate_application_client_secret(
     client: &Client,
     params: RotateApplicationClientSecretParams,

@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_notification`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateNotificationParams<B = serde_json::Value> {
+    ///The request body for the `createNotification` operation.
     pub body: B,
 }
 impl<B> CreateNotificationParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Create a notification for sellers in Seller Central.
 pub async fn create_notification<B: serde::Serialize>(
     client: &Client,
     params: CreateNotificationParams<B>,
@@ -32,16 +36,20 @@ pub async fn create_notification<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delete_notifications`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteNotificationsParams<B = serde_json::Value> {
+    ///The request body for the `deleteNotifications` operation.
     pub body: B,
 }
 impl<B> DeleteNotificationsParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Remove your application's notifications from the Appstore notifications dashboard.
 pub async fn delete_notifications<B: serde::Serialize>(
     client: &Client,
     params: DeleteNotificationsParams<B>,
@@ -60,17 +68,22 @@ pub async fn delete_notifications<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`record_action_feedback`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct RecordActionFeedbackParams<B = serde_json::Value> {
+    ///A `notificationId` uniquely identifies a notification.
     pub notification_id: String,
+    ///The request body for the `recordActionFeedback` operation.
     pub body: B,
 }
 impl<B> RecordActionFeedbackParams<B> {
+    ///Takes the required parameters.
     pub fn new(notification_id: String, body: B) -> Self {
         Self { notification_id, body }
     }
 }
+///Records the seller's response to a notification.
 pub async fn record_action_feedback<B: serde::Serialize>(
     client: &Client,
     params: RecordActionFeedbackParams<B>,

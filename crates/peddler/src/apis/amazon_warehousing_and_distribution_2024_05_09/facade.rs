@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`cancel_inbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CancelInboundParams {
+    ///The ID of the inbound order you want to cancel.
     pub order_id: String,
 }
 impl CancelInboundParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Cancels an AWD Inbound order and its associated shipment.
 pub async fn cancel_inbound(
     client: &Client,
     params: CancelInboundParams,
@@ -37,16 +41,20 @@ pub async fn cancel_inbound(
         .await?;
     Ok(raw)
 }
+///The parameters of [`check_inbound_eligibility`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CheckInboundEligibilityParams<B = serde_json::Value> {
+    ///Represents the packages you want to inbound.
     pub body: B,
 }
 impl<B> CheckInboundEligibilityParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Determines if the packages you specify are eligible for an AWD inbound order and contains error details for ineligible packages.
 pub async fn check_inbound_eligibility<B: serde::Serialize>(
     client: &Client,
     params: CheckInboundEligibilityParams<B>,
@@ -65,16 +73,20 @@ pub async fn check_inbound_eligibility<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`confirm_inbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmInboundParams {
+    ///The ID of the inbound order that you want to confirm.
     pub order_id: String,
 }
 impl ConfirmInboundParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Confirms an AWD inbound order in `DRAFT` status.
 pub async fn confirm_inbound(
     client: &Client,
     params: ConfirmInboundParams,
@@ -98,16 +110,20 @@ pub async fn confirm_inbound(
         .await?;
     Ok(raw)
 }
+///The parameters of [`confirm_outbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmOutboundParams {
+    ///ID for the outbound order you want to confirm.
     pub order_id: String,
 }
 impl ConfirmOutboundParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Confirms an AWD outbound order for a set of shipments that contain items that must be outbound to a destination node. You can confirm the order only if it's in an`ELIGIBLE` state.
 pub async fn confirm_outbound(
     client: &Client,
     params: ConfirmOutboundParams,
@@ -131,16 +147,21 @@ pub async fn confirm_outbound(
         .await?;
     Ok(raw)
 }
+///The parameters of [`confirm_replenishment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ConfirmReplenishmentOrderParams {
+    ///ID of the replenishment order to be confirmed.
     pub order_id: String,
 }
 impl ConfirmReplenishmentOrderParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+/**Confirms an AWD replenishment order in ELIGIBLE state with a set of shipments containing items that are needed to be replenished to an FBA node.
+Order can only be confirmed in ELIGIBLE state.*/
 pub async fn confirm_replenishment_order(
     client: &Client,
     params: ConfirmReplenishmentOrderParams,
@@ -164,16 +185,20 @@ pub async fn confirm_replenishment_order(
         .await?;
     Ok(raw)
 }
+///The parameters of [`create_inbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateInboundParams<B = serde_json::Value> {
+    ///Payload for creating an inbound order.
     pub body: B,
 }
 impl<B> CreateInboundParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one shipment per order.
 pub async fn create_inbound<B: serde::Serialize>(
     client: &Client,
     params: CreateInboundParams<B>,
@@ -192,16 +217,20 @@ pub async fn create_inbound<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_outbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateOutboundParams<B = serde_json::Value> {
+    ///Payload for creating an outbound order.
     pub body: B,
 }
 impl<B> CreateOutboundParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates a draft AWD outbound order with the specified products. The API returns the order ID for the newly created order and starts an async validation check on the outbound products. After the validation check, the order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
 pub async fn create_outbound<B: serde::Serialize>(
     client: &Client,
     params: CreateOutboundParams<B>,
@@ -220,16 +249,22 @@ pub async fn create_outbound<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_replenishment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateReplenishmentOrderParams<B = serde_json::Value> {
+    ///Payload for creating a replenishment order.
     pub body: B,
 }
 impl<B> CreateReplenishmentOrderParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**Creates an AWD replenishment order with given products to replenish.
+The API will return the order ID of the newly created order and also start an async validation check on the products to e.
+The order status will transition to ELIGIBLE/INELIGIBLE status from VALIDATING post validation check*/
 pub async fn create_replenishment_order<B: serde::Serialize>(
     client: &Client,
     params: CreateReplenishmentOrderParams<B>,
@@ -248,16 +283,20 @@ pub async fn create_replenishment_order<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_inbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInboundParams {
+    ///The ID of the inbound order that you want to retrieve.
     pub order_id: String,
 }
 impl GetInboundParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Retrieves an AWD inbound order.
 pub async fn get_inbound(
     client: &Client,
     params: GetInboundParams,
@@ -280,13 +319,19 @@ pub async fn get_inbound(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_inbound_shipment`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInboundShipmentParams {
+    ///ID for the shipment. A shipment contains the cases being inbounded.
     pub shipment_id: String,
+    /**If equal to `SHOW`, the response includes the shipment SKU quantity details.
+
+Defaults to `HIDE`, in which case the response does not contain SKU quantities*/
     pub sku_quantities: Option<String>,
 }
 impl GetInboundShipmentParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String) -> Self {
         Self {
             shipment_id,
@@ -294,6 +339,7 @@ impl GetInboundShipmentParams {
         }
     }
 }
+///Retrieves an AWD inbound shipment.
 pub async fn get_inbound_shipment(
     client: &Client,
     params: GetInboundShipmentParams,
@@ -318,14 +364,19 @@ pub async fn get_inbound_shipment(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_inbound_shipment_labels`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInboundShipmentLabelsParams {
+    ///ID for the shipment.
     pub shipment_id: String,
+    ///Page type for the generated labels. The default is `PLAIN_PAPER`.
     pub page_type: Option<String>,
+    ///The format type of the output file that contains your labels. The default format type is `PDF`.
     pub format_type: Option<String>,
 }
 impl GetInboundShipmentLabelsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(shipment_id: String) -> Self {
         Self {
             shipment_id,
@@ -334,6 +385,7 @@ impl GetInboundShipmentLabelsParams {
         }
     }
 }
+///Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label status is `GENERATED`, then the label URL is available.
 pub async fn get_inbound_shipment_labels(
     client: &Client,
     params: GetInboundShipmentLabelsParams,
@@ -360,16 +412,20 @@ pub async fn get_inbound_shipment_labels(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_label_page_types`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetLabelPageTypesParams {
+    ///ID for the shipment.
     pub shipment_id: String,
 }
 impl GetLabelPageTypesParams {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String) -> Self {
         Self { shipment_id }
     }
 }
+///Retrieves the available label page types for a shipment ID that you specify. This is an asynchronous operation. If the label status is `GENERATED`, then the pageTypes are available.
 pub async fn get_label_page_types(
     client: &Client,
     params: GetLabelPageTypesParams,
@@ -393,16 +449,20 @@ pub async fn get_label_page_types(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_outbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOutboundParams {
+    ///ID for the outbound order to be retrieved.
     pub order_id: String,
 }
 impl GetOutboundParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Retrieves an AWD outbound order with a set of shipments that contain items that are outbound into a destination channel. If the order is not eligible, the validation errors field is included in the order response. The API returns the order ID for the newly created order and starts an async validation check on the outbound products. After the validation check, the order status transitions from `VALIDATING` to `ELIGIBLE/INELIGIBLE`.
 pub async fn get_outbound(
     client: &Client,
     params: GetOutboundParams,
@@ -425,16 +485,20 @@ pub async fn get_outbound(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_replenishment_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetReplenishmentOrderParams {
+    ///ID of the replenishment order to be retrieved.
     pub order_id: String,
 }
 impl GetReplenishmentOrderParams {
+    ///Takes the required parameters.
     pub fn new(order_id: String) -> Self {
         Self { order_id }
     }
 }
+///Retrieves an AWD Replenishment order with a set of shipments containing items that is/was planned to be replenished into an FBA node.
 pub async fn get_replenishment_order(
     client: &Client,
     params: GetReplenishmentOrderParams,
@@ -460,19 +524,32 @@ pub async fn get_replenishment_order(
 fn list_inbound_shipments_max_results_default() -> Option<i32> {
     Some(serde_json::from_str("25").expect("validated schema default"))
 }
+///The parameters of [`list_inbound_shipments`] and [`list_inbound_shipments_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInboundShipmentsParams {
+    /**Field to sort results by. By default, the response will be sorted by UPDATED_AT.
+
+Known values: `UPDATED_AT`, `CREATED_AT`.*/
     pub sort_by: Option<String>,
+    ///Sort the response in ASCENDING or DESCENDING order. By default, the response will be sorted in DESCENDING order.
     pub sort_order: Option<String>,
+    /**Filter by inbound shipment status.
+
+Known values: `CREATED`, `SHIPPED`, `IN_TRANSIT`, `RECEIVING`, `DELIVERED`, `CLOSED`, `CANCELLED`.*/
     pub shipment_status: Option<String>,
+    ///List the inbound shipments that were updated after a certain time (inclusive). The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub updated_after: Option<String>,
+    ///List the inbound shipments that were updated before a certain time (inclusive). The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub updated_before: Option<String>,
+    ///Maximum number of results to return.
     #[serde(default = "list_inbound_shipments_max_results_default")]
     pub max_results: Option<i32>,
+    ///A token that is used to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListInboundShipmentsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             sort_by: None,
@@ -490,6 +567,9 @@ impl Default for ListInboundShipmentsParams {
         Self::new()
     }
 }
+/**Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply optional filters.
+
+Its pages: [`list_inbound_shipments_pages`].*/
 pub async fn list_inbound_shipments(
     client: &Client,
     params: ListInboundShipmentsParams,
@@ -516,6 +596,7 @@ pub async fn list_inbound_shipments(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_inbound_shipments`].
 pub fn list_inbound_shipments_pages<'a>(
     client: &'a Client,
     params: ListInboundShipmentsParams,
@@ -540,17 +621,24 @@ pub fn list_inbound_shipments_pages<'a>(
 fn list_inventory_max_results_default() -> Option<i32> {
     Some(serde_json::from_str("25").expect("validated schema default"))
 }
+///The parameters of [`list_inventory`] and [`list_inventory_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListInventoryParams {
+    ///Filter by seller or merchant SKU for the item.
     pub sku: Option<String>,
+    ///Sort the response in `ASCENDING` or `DESCENDING` order.
     pub sort_order: Option<String>,
+    ///Set to `SHOW` to return summaries with additional inventory details. Defaults to `HIDE,` which returns only inventory summary totals.
     pub details: Option<String>,
+    ///A token that is used to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
+    ///Maximum number of results to return.
     #[serde(default = "list_inventory_max_results_default")]
     pub max_results: Option<i32>,
 }
 impl ListInventoryParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             sku: None,
@@ -566,6 +654,9 @@ impl Default for ListInventoryParams {
         Self::new()
     }
 }
+/**Lists AWD inventory associated with a merchant with the ability to apply optional filters.
+
+Its pages: [`list_inventory_pages`].*/
 pub async fn list_inventory(
     client: &Client,
     params: ListInventoryParams,
@@ -590,6 +681,7 @@ pub async fn list_inventory(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_inventory`].
 pub fn list_inventory_pages<'a>(
     client: &'a Client,
     params: ListInventoryParams,
@@ -614,17 +706,24 @@ pub fn list_inventory_pages<'a>(
 fn list_outbounds_max_results_default() -> Option<i32> {
     Some(serde_json::from_str("25").expect("validated schema default"))
 }
+///The parameters of [`list_outbounds`] and [`list_outbounds_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListOutboundsParams {
+    ///Get the outbound orders updated after a certain time (inclusive). The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub updated_after: Option<String>,
+    ///Get the outbound orders updated before a certain time (inclusive). The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
     pub updated_before: Option<String>,
+    ///Sort the response in `ASCENDING` or `DESCENDING` order.
     pub sort_order: Option<String>,
+    ///Maximum number of results to return.
     #[serde(default = "list_outbounds_max_results_default")]
     pub max_results: Option<i32>,
+    ///A token that is used to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListOutboundsParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             updated_after: None,
@@ -640,6 +739,9 @@ impl Default for ListOutboundsParams {
         Self::new()
     }
 }
+/**Retrieves all outbound AWD orders (with optional filters) that pertain to a merchant. By default, orders are sorted by the `updatedAt` attribute in descending order.
+
+Its pages: [`list_outbounds_pages`].*/
 pub async fn list_outbounds(
     client: &Client,
     params: ListOutboundsParams,
@@ -664,6 +766,7 @@ pub async fn list_outbounds(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_outbounds`].
 pub fn list_outbounds_pages<'a>(
     client: &'a Client,
     params: ListOutboundsParams,
@@ -688,17 +791,26 @@ pub fn list_outbounds_pages<'a>(
 fn list_replenishment_orders_max_results_default() -> Option<i32> {
     Some(serde_json::from_str("25").expect("validated schema default"))
 }
+///The parameters of [`list_replenishment_orders`] and [`list_replenishment_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListReplenishmentOrdersParams {
+    /**Get the replenishment orders updated after certain time (Inclusive)
+Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.*/
     pub updated_after: Option<String>,
+    /**Get the replenishment orders updated before certain time (Inclusive)
+Date should be in ISO 8601 format as defined by date-time in - https://www.rfc-editor.org/rfc/rfc3339.*/
     pub updated_before: Option<String>,
+    ///Sort the response in ASCENDING or DESCENDING order. The default sort order is DESCENDING.
     pub sort_order: Option<String>,
+    ///Maximum results to be returned in a single response.
     #[serde(default = "list_replenishment_orders_max_results_default")]
     pub max_results: Option<i32>,
+    ///A token that is used to retrieve the next page of results. The response includes `nextToken` when the number of results exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
     pub next_token: Option<String>,
 }
 impl ListReplenishmentOrdersParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             updated_after: None,
@@ -714,6 +826,10 @@ impl Default for ListReplenishmentOrdersParams {
         Self::new()
     }
 }
+/**Retrieves all the AWD replenishment orders pertaining to a merchant with optional filters.
+API by default will sort orders by updatedAt attribute in descending order.
+
+Its pages: [`list_replenishment_orders_pages`].*/
 pub async fn list_replenishment_orders(
     client: &Client,
     params: ListReplenishmentOrdersParams,
@@ -738,6 +854,7 @@ pub async fn list_replenishment_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`list_replenishment_orders`].
 pub fn list_replenishment_orders_pages<'a>(
     client: &'a Client,
     params: ListReplenishmentOrdersParams,
@@ -759,17 +876,22 @@ pub fn list_replenishment_orders_pages<'a>(
         &params,
     )
 }
+///The parameters of [`update_inbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateInboundParams<B = serde_json::Value> {
+    ///The ID of the inbound order that you want to update.
     pub order_id: String,
+    ///Represents an AWD inbound order.
     pub body: B,
 }
 impl<B> UpdateInboundParams<B> {
+    ///Takes the required parameters.
     pub fn new(order_id: String, body: B) -> Self {
         Self { order_id, body }
     }
 }
+///Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the `packagesToInbound`, `originAddress` and `preferences` attributes.
 pub async fn update_inbound<B: serde::Serialize>(
     client: &Client,
     params: UpdateInboundParams<B>,
@@ -792,17 +914,22 @@ pub async fn update_inbound<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`update_inbound_shipment_transport_details`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateInboundShipmentTransportDetailsParams<B = serde_json::Value> {
+    ///The shipment ID.
     pub shipment_id: String,
+    ///Transportation details for the shipment.
     pub body: B,
 }
 impl<B> UpdateInboundShipmentTransportDetailsParams<B> {
+    ///Takes the required parameters.
     pub fn new(shipment_id: String, body: B) -> Self {
         Self { shipment_id, body }
     }
 }
+///Updates transport details for an AWD shipment.
 pub async fn update_inbound_shipment_transport_details<B: serde::Serialize>(
     client: &Client,
     params: UpdateInboundShipmentTransportDetailsParams<B>,
@@ -826,17 +953,22 @@ pub async fn update_inbound_shipment_transport_details<B: serde::Serialize>(
         .await?;
     Ok(raw)
 }
+///The parameters of [`update_outbound`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateOutboundParams<B = serde_json::Value> {
+    ///ID for the outbound order to be updated.
     pub order_id: String,
+    ///Represents an AWD outbound order.
     pub body: B,
 }
 impl<B> UpdateOutboundParams<B> {
+    ///Takes the required parameters.
     pub fn new(order_id: String, body: B) -> Self {
         Self { order_id, body }
     }
 }
+///Updates an AWD outbound order that is in `DRAFT`, `ELIGIBLE`, or `INELIGIBLE` status. This API allows updates on `productsToOutbound` and `orderPreferences` attributes only. Any updates will restart the outbound order validation.
 pub async fn update_outbound<B: serde::Serialize>(
     client: &Client,
     params: UpdateOutboundParams<B>,

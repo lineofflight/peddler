@@ -9,6 +9,7 @@ type OperationFuture<'a> = std::pin::Pin<
     >,
 >;
 type Handler = for<'a> fn(&'a crate::Client, &'a str) -> OperationFuture<'a>;
+/// Sends an operation by its key, such as `orders_v0.get_orders`, with its parameters as JSON. An unknown key, or parameters that don't parse, is a [`crate::Error::InvalidRequest`]. The Ruby extension calls it.
 pub fn execute<'a>(
     client: &'a crate::Client,
     operation: &str,

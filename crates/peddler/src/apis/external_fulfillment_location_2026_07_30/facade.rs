@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_sandbox_location`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateSandboxLocationParams<B = serde_json::Value> {
+    ///The request body for creating a sandbox location.
     pub body: B,
 }
 impl<B> CreateSandboxLocationParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Creates a sandbox location and merchant in the test environment. This operation is available only in the sandbox environment and is used for onboarding test locations. Idempotency is ensured on locationName.
 pub async fn create_sandbox_location<B: serde::Serialize>(
     client: &Client,
     params: CreateSandboxLocationParams<B>,

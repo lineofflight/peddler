@@ -4,17 +4,28 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_my_fees_estimate_for_asin`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMyFeesEstimateForAsinParams<B = serde_json::Value> {
+    ///The Amazon Standard Identification Number (ASIN) of the item.
     pub asin: String,
+    ///The request body schema for the getMyFeesEstimates operation
     pub body: B,
 }
 impl<B> GetMyFeesEstimateForAsinParams<B> {
+    ///Takes the required parameters.
     pub fn new(asin: String, body: B) -> Self {
         Self { asin, body }
     }
 }
+/**Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the request body.
+
+You can call `getMyFeesEstimateForASIN` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take estimated fees into account. Each fees request must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
+
+**Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
+
+**Note:** When using the `getMyFeesEstimateForASIN` operation with an ASIN, the fee estimates might be different. This is because these estimates use the item's catalog size, which might not always match the actual size of the item sent to Amazon.*/
 pub async fn get_my_fees_estimate_for_asin<B: serde::Serialize>(
     client: &Client,
     params: GetMyFeesEstimateForAsinParams<B>,
@@ -38,17 +49,30 @@ pub async fn get_my_fees_estimate_for_asin<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_my_fees_estimate_for_sku`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMyFeesEstimateForSkuParams<B = serde_json::Value> {
+    ///Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
     pub seller_sku: String,
+    ///The request body schema for the getMyFeesEstimates operation
     pub body: B,
 }
 impl<B> GetMyFeesEstimateForSkuParams<B> {
+    ///Takes the required parameters.
     pub fn new(seller_sku: String, body: B) -> Self {
         Self { seller_sku, body }
     }
 }
+/**Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
+
+**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+
+You can call `getMyFeesEstimateForSKU` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take any estimated fees into account. Each fees estimate request must include an original identifier. This identifier is included in the fees estimate so that you can correlate a fees estimate with the original request.
+
+**Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
+
+**Note:** When sellers use the `getMyFeesEstimateForSKU` operation with their `SellerSKU`, they get accurate fees based on real item measurements, but only after they've sent their items to Amazon.*/
 pub async fn get_my_fees_estimate_for_sku<B: serde::Serialize>(
     client: &Client,
     params: GetMyFeesEstimateForSkuParams<B>,
@@ -72,16 +96,20 @@ pub async fn get_my_fees_estimate_for_sku<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_my_fees_estimates`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetMyFeesEstimatesParams<B = serde_json::Value> {
+    ///The request body schema for the getMyFeesEstimates operation
     pub body: B,
 }
 impl<B> GetMyFeesEstimatesParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Returns the estimated fees for a list of products.
 pub async fn get_my_fees_estimates<B: serde::Serialize>(
     client: &Client,
     params: GetMyFeesEstimatesParams<B>,

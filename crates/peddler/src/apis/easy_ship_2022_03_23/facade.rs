@@ -4,16 +4,32 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`create_scheduled_package`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateScheduledPackageParams<B = serde_json::Value> {
+    ///The request schema for the `createScheduledPackage` operation.
     pub body: B,
 }
 impl<B> CreateScheduledPackageParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**Schedules an Easy Ship order and returns the scheduled package information.
+
+This operation does the following:
+
+*  Specifies the time slot and handover method for the order to be scheduled for delivery.
+
+* Updates the Easy Ship order status.
+
+* Generates a shipping label and an invoice. Calling `createScheduledPackage` also generates a warranty document if you specify a `SerialNumber` value. To get these documents, see [How to get invoice, shipping label, and warranty documents](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide).
+
+* Shows the status of Easy Ship orders when you call the `getOrders` operation of the Selling Partner API for Orders and examine the `EasyShipShipmentStatus` property in the response body.
+
+See the **Shipping Label**, **Invoice**, and **Warranty** columns in the [Marketplace Support Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table) to see which documents are supported in each marketplace.*/
 pub async fn create_scheduled_package<B: serde::Serialize>(
     client: &Client,
     params: CreateScheduledPackageParams<B>,
@@ -32,16 +48,28 @@ pub async fn create_scheduled_package<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_scheduled_package_bulk`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateScheduledPackageBulkParams<B = serde_json::Value> {
+    ///The request schema for the `createScheduledPackageBulk` operation.
     pub body: B,
 }
 impl<B> CreateScheduledPackageBulkParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+/**This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the associated shipping labels, along with other compliance documents according to the marketplace (refer to the [marketplace document support table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table)).
+
+Developers calling this operation may optionally assign a `packageDetails` object, allowing them to input a preferred time slot for each order in ther request. In this case, Amazon will try to schedule the respective packages using their optional settings. On the other hand, *i.e.*, if the time slot is not provided, Amazon will then pick the earliest time slot possible.
+
+Regarding the shipping label's file format, external developers are able to choose between PDF or ZPL, and Amazon will create the label accordingly.
+
+This operation returns an array composed of the scheduled packages, and a short-lived URL pointing to a zip file containing the generated shipping labels and the other documents enabled for your marketplace. If at least an order couldn't be scheduled, then Amazon adds the `rejectedOrders` list into the response, which contains an entry for each order we couldn't process. Each entry is composed of an error message describing the reason of the failure, so that sellers can take action.
+
+The table below displays the supported request and burst maximum rates:*/
 pub async fn create_scheduled_package_bulk<B: serde::Serialize>(
     client: &Client,
     params: CreateScheduledPackageBulkParams<B>,
@@ -60,13 +88,17 @@ pub async fn create_scheduled_package_bulk<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`get_scheduled_package`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetScheduledPackageParams {
+    ///An Amazon-defined order identifier. Identifies the order that the seller wants to deliver using Amazon Easy Ship.
     pub amazon_order_id: String,
+    ///An identifier for the marketplace in which the seller is selling.
     pub marketplace_id: String,
 }
 impl GetScheduledPackageParams {
+    ///Takes the required parameters.
     pub fn new(amazon_order_id: String, marketplace_id: String) -> Self {
         Self {
             amazon_order_id,
@@ -74,6 +106,7 @@ impl GetScheduledPackageParams {
         }
     }
 }
+///Returns information about a package, including dimensions, weight, time slot information for handover, invoice and item information, and status.
 pub async fn get_scheduled_package(
     client: &Client,
     params: GetScheduledPackageParams,
@@ -95,12 +128,15 @@ pub async fn get_scheduled_package(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`list_handover_slots`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ListHandoverSlotsParams<B = serde_json::Value> {
+    ///The request schema for the `listHandoverSlots` operation.
     pub body: Option<B>,
 }
 impl<B> ListHandoverSlotsParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self { body: None }
     }
@@ -110,6 +146,11 @@ impl<B> Default for ListHandoverSlotsParams<B> {
         Self::new()
     }
 }
+/**Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions that the seller specifies.
+
+This operation is available for scheduled and unscheduled orders based on marketplace support. See **Get Time Slots** in the [Marketplace Support Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
+
+This operation can return time slots that have either pickup or drop-off handover methods - see **Supported Handover Methods** in the [Marketplace Support Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).*/
 pub async fn list_handover_slots<B: serde::Serialize>(
     client: &Client,
     params: ListHandoverSlotsParams<B>,
@@ -128,12 +169,15 @@ pub async fn list_handover_slots<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`update_scheduled_packages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateScheduledPackagesParams<B = serde_json::Value> {
+    ///The request schema for the `updateScheduledPackages` operation.
     pub body: Option<B>,
 }
 impl<B> UpdateScheduledPackagesParams<B> {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self { body: None }
     }
@@ -143,6 +187,9 @@ impl<B> Default for UpdateScheduledPackagesParams<B> {
         Self::new()
     }
 }
+/**Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get the new `slotId` value for the time slot by calling the `listHandoverSlots` operation before making another `patch` call.
+
+See the **Update Package** column in the [Marketplace Support Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table) to see which marketplaces this operation is supported in.*/
 pub async fn update_scheduled_packages<B: serde::Serialize>(
     client: &Client,
     params: UpdateScheduledPackagesParams<B>,

@@ -4,16 +4,20 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_transaction`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetTransactionParams {
+    ///The GUID provided by Amazon in the 'transactionId' field in response to the post request of a specific transaction.
     pub transaction_id: String,
 }
 impl GetTransactionParams {
+    ///Takes the required parameters.
     pub fn new(transaction_id: String) -> Self {
         Self { transaction_id }
     }
 }
+///Returns the status of the transaction that you specify.
 pub async fn get_transaction(
     client: &Client,
     params: GetTransactionParams,

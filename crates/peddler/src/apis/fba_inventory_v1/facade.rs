@@ -4,13 +4,17 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`add_inventory`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AddInventoryParams<B = serde_json::Value> {
+    ///A unique token/requestId provided with each call to ensure idempotency.
     pub x_amzn_idempotency_token: String,
+    ///List of items to add to Sandbox inventory.
     pub body: B,
 }
 impl<B> AddInventoryParams<B> {
+    ///Takes the required parameters.
     pub fn new(x_amzn_idempotency_token: String, body: B) -> Self {
         Self {
             x_amzn_idempotency_token,
@@ -18,6 +22,7 @@ impl<B> AddInventoryParams<B> {
         }
     }
 }
+///Requests that Amazon add items to the Sandbox Inventory with desired amount of quantity in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn add_inventory<B: serde::Serialize>(
     client: &Client,
     params: AddInventoryParams<B>,
@@ -42,16 +47,20 @@ pub async fn add_inventory<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`create_inventory_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CreateInventoryItemParams<B = serde_json::Value> {
+    ///CreateInventoryItem Request Body Parameter.
     pub body: B,
 }
 impl<B> CreateInventoryItemParams<B> {
+    ///Takes the required parameters.
     pub fn new(body: B) -> Self {
         Self { body }
     }
 }
+///Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn create_inventory_item<B: serde::Serialize>(
     client: &Client,
     params: CreateInventoryItemParams<B>,
@@ -70,17 +79,22 @@ pub async fn create_inventory_item<B: serde::Serialize>(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`delete_inventory_item`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DeleteInventoryItemParams {
+    ///A single seller SKU used for querying the specified seller SKU inventory summaries.
     pub seller_sku: String,
+    ///The marketplace ID for the marketplace for which the sellerSku is to be deleted.
     pub marketplace_id: String,
 }
 impl DeleteInventoryItemParams {
+    ///Takes the required parameters.
     pub fn new(seller_sku: String, marketplace_id: String) -> Self {
         Self { seller_sku, marketplace_id }
     }
 }
+///Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
 pub async fn delete_inventory_item(
     client: &Client,
     params: DeleteInventoryItemParams,
@@ -108,20 +122,32 @@ pub async fn delete_inventory_item(
 fn get_inventory_summaries_details_default() -> Option<bool> {
     Some(serde_json::from_str("false").expect("validated schema default"))
 }
+///The parameters of [`get_inventory_summaries`] and [`get_inventory_summaries_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetInventorySummariesParams {
+    ///true to return inventory summaries with additional summarized inventory details and quantities. Otherwise, returns inventory summaries only (default value).
     #[serde(default = "get_inventory_summaries_details_default")]
     pub details: Option<bool>,
+    /**The granularity type for the inventory aggregation level.
+
+Known values: `Marketplace`.*/
     pub granularity_type: String,
+    ///The granularity ID for the inventory aggregation level.
     pub granularity_id: String,
+    ///A start date and time in ISO8601 format. If specified, all inventory summaries that have changed since then are returned. You must specify a date and time that is no earlier than 18 months prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity, inboundShippedQuantity and inboundReceivingQuantity are not detected.
     pub start_date_time: Option<String>,
+    ///A list of seller SKUs for which to return inventory summaries. You may specify up to 50 SKUs.
     pub seller_skus: Option<Vec<String>>,
+    ///A single seller SKU used for querying the specified seller SKU inventory summaries.
     pub seller_sku: Option<String>,
+    ///String token returned in the response of your previous request. The string token will expire 30 seconds after being created.
     pub next_token: Option<String>,
+    ///The marketplace ID for the marketplace for which to return inventory summaries.
     pub marketplace_ids: Vec<String>,
 }
 impl GetInventorySummariesParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(
         granularity_type: String,
         granularity_id: String,
@@ -139,6 +165,16 @@ impl GetInventorySummariesParams {
         }
     }
 }
+/**Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime, sellerSkus and sellerSku parameters:
+
+- All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku parameters are omitted.
+- When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and time specified.
+- When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus. The sellerSku parameter is ignored.
+- When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified sellerSku.
+
+Note: The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+
+Its pages: [`get_inventory_summaries_pages`].*/
 pub async fn get_inventory_summaries(
     client: &Client,
     params: GetInventorySummariesParams,
@@ -168,6 +204,7 @@ pub async fn get_inventory_summaries(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`get_inventory_summaries`].
 pub fn get_inventory_summaries_pages<'a>(
     client: &'a Client,
     params: GetInventorySummariesParams,

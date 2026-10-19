@@ -4,13 +4,19 @@
 #![allow(unused_imports, unused_variables, clippy::too_many_arguments)]
 use crate::{Client, Error, Request, Response};
 use crate::operation::{self, DecodeError, TypedResponse};
+///The parameters of [`get_order`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct GetOrderParams {
+    ///An Amazon-defined order identifier.
     pub order_id: String,
+    /**A list of datasets to include in the response.
+
+Known values: `BUYER`, `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`, `FULFILLMENT_ORDERS`.*/
     pub included_data: Option<Vec<String>>,
 }
 impl GetOrderParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new(order_id: String) -> Self {
         Self {
             order_id,
@@ -18,6 +24,7 @@ impl GetOrderParams {
         }
     }
 }
+///Returns the order that you specify.
 pub async fn get_order(
     client: &Client,
     params: GetOrderParams,
@@ -43,21 +50,49 @@ pub async fn get_order(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///The parameters of [`search_orders`] and [`search_orders_pages`].
 #[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SearchOrdersParams {
+    /**The response includes orders created at or after this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+
+**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter` in your request. If `createdAfter` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.*/
     pub created_after: Option<String>,
+    /**The response includes orders created at or before this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+
+**Note**: If you include `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided.*/
     pub created_before: Option<String>,
+    /**The response includes orders updated at or after this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+
+**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor `createdBefore` may be provided.*/
     pub last_updated_after: Option<String>,
+    /**The response includes orders updated at or before this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+
+**Note**: If you include `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is provided, neither `createdAfter` nor `createdBefore` may be provided.*/
     pub last_updated_before: Option<String>,
+    /**A list of `FulfillmentStatus` values you can use to filter the results.
+
+Known values: `PENDING_AVAILABILITY`, `PENDING`, `UNSHIPPED`, `PARTIALLY_SHIPPED`, `SHIPPED`, `CANCELLED`, `UNFULFILLABLE`.*/
     pub fulfillment_statuses: Option<Vec<String>>,
+    /**The response includes orders that were placed in marketplaces you include in this list.
+
+Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values.*/
     pub marketplace_ids: Option<Vec<String>>,
+    /**The response includes orders that are fulfilled by the parties that you include in this list.
+
+Known values: `MERCHANT`, `AMAZON`.*/
     pub fulfilled_by: Option<Vec<String>>,
+    ///The maximum number of orders that can be returned per page. The value must be between 1 and 100. **Default:** 100.
     pub max_results_per_page: Option<i64>,
+    ///Pagination occurs when a request produces a response that exceeds the `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page, you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not receive a `nextToken` value on the last page.
     pub pagination_token: Option<String>,
+    /**A list of datasets to include in the response.
+
+Known values: `BUYER`, `RECIPIENT`, `PROCEEDS`, `EXPENSE`, `PROMOTION`, `CANCELLATION`, `FULFILLMENT`, `PACKAGES`, `TAX`, `PAYMENT`, `FULFILLMENT_ORDERS`.*/
     pub included_data: Option<Vec<String>>,
 }
 impl SearchOrdersParams {
+    ///Takes the required parameters. Each optional one is `None`, or its default in the spec.
     pub fn new() -> Self {
         Self {
             created_after: None,
@@ -78,6 +113,9 @@ impl Default for SearchOrdersParams {
         Self::new()
     }
 }
+/**Returns orders created or updated during the time period that you specify. You can filter the response for specific types of orders.
+
+Its pages: [`search_orders_pages`].*/
 pub async fn search_orders(
     client: &Client,
     params: SearchOrdersParams,
@@ -127,6 +165,7 @@ pub async fn search_orders(
         .await?;
     Ok(TypedResponse::new(raw))
 }
+///Each page of [`search_orders`].
 pub fn search_orders_pages<'a>(
     client: &'a Client,
     params: SearchOrdersParams,
