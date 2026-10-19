@@ -63,13 +63,18 @@ def h(text) = ERB::Util.html_escape(text)
 
 def meta(name, content) = %(<meta name="#{name}" content="#{h(content)}">)
 
-# The Rust target of a platform gem. Only the 4 that are built have one.
-def target(platform)
-  cpu = platform.cpu == "arm64" ? "aarch64" : platform.cpu
-  triple = { "darwin" => "#{cpu}-apple-darwin", "linux" => "#{cpu}-unknown-linux-gnu" }[platform.os]
-  supported = ["aarch64", "x86_64"].include?(cpu) && triple && platform.version != "musl"
-  supported ? triple : abort("no platform gem is built for #{platform}")
-end
+# The Rust target of each platform gem that is built
+TARGETS = {
+  "arm64-darwin" => "aarch64-apple-darwin",
+  "x86_64-darwin" => "x86_64-apple-darwin",
+  "aarch64-linux-gnu" => "aarch64-unknown-linux-gnu",
+  "x86_64-linux-gnu" => "x86_64-unknown-linux-gnu",
+  "aarch64-linux-musl" => "aarch64-unknown-linux-musl",
+  "x86_64-linux-musl" => "x86_64-unknown-linux-musl",
+  "arm-linux-gnu" => "arm-unknown-linux-gnueabihf",
+  "arm-linux-musl" => "arm-unknown-linux-musleabihf",
+  "x64-mingw-ucrt" => "x86_64-pc-windows-gnu",
+}.freeze
 
 # The crates linked into the extension, as [name, version], without Peddler's own.
 def linked(triple)
@@ -92,9 +97,9 @@ def standard_library
 end
 
 platform = Gem::Platform.new(ARGV.fetch(0) { abort("usage: ruby tools/third_party_licenses.rb PLATFORM [OUTPUT]") })
-triple = target(platform)
-# A Linux gem is named for glibc, whatever name it was asked for by.
-platform = platform.os == "linux" ? [platform.cpu, "linux", "gnu"].join("-") : platform.to_s
+# A Linux gem without a libc in its name is named for glibc.
+platform = platform.os == "linux" && platform.version.nil? ? [platform.cpu, "linux", "gnu"].join("-") : platform.to_s
+triple = TARGETS.fetch(platform) { abort("no platform gem is built for #{platform}") }
 output = File.expand_path(ARGV.fetch(1, "THIRD_PARTY_LICENSES.html"), ROOT)
 digest = Digest::SHA256.hexdigest(INPUTS.map { |path| File.read(File.join(ROOT, path)) }.join("\0"))
 stamp = "cargo-about #{CARGO_ABOUT}; #{platform}; #{triple}; #{digest}"

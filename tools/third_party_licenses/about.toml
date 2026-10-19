@@ -25,7 +25,7 @@ private = { ignore = true }
 # chrono keeps its 2 licences in 1 file.
 workarounds = ["chrono"]
 
-# 5 crates ship a license file that cargo-about doesn't take by itself, so it would
+# 7 crates ship a license file that cargo-about doesn't take by itself, so it would
 # print the standard text of the license, without the crate's copyright line. Each
 # entry points at the file the crate ships. The last entry, for encoding_rs, keeps a
 # source file out of the notices. A checksum is of the text that is used:
@@ -40,6 +40,34 @@ license = "MIT"
 [[async-stream.clarify.files]]
 path = "LICENSE"
 checksum = "157d381f6304eba77459fc10dfb5b1b22fc0d04e384a32865f32d8e67a34c0eb"
+
+# Their MIT text is indented by 4 spaces, which cargo-about scores too low. Only
+# the Windows gem links them.
+[windows-link.clarify]
+license = "MIT OR Apache-2.0"
+
+[[windows-link.clarify.files]]
+path = "license-mit"
+license = "MIT"
+checksum = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+
+[[windows-link.clarify.files]]
+path = "license-apache-2.0"
+license = "Apache-2.0"
+checksum = "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+
+[windows-sys.clarify]
+license = "MIT OR Apache-2.0"
+
+[[windows-sys.clarify.files]]
+path = "license-mit"
+license = "MIT"
+checksum = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+
+[[windows-sys.clarify.files]]
+path = "license-apache-2.0"
+license = "Apache-2.0"
+checksum = "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
 
 # An Apache-2.0 text without its appendix is taken for the Pixar license.
 [sync_wrapper.clarify]

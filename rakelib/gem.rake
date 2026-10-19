@@ -16,18 +16,21 @@ NOTICES = "THIRD_PARTY_LICENSES.html"
 # written by tools/third_party_licenses.rb, which needs cargo-about.
 # The extension task asks cargo for package metadata when it is defined, so it
 # is skipped on machines without Rust. Other rake tasks keep working.
-cargo = ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).any? { |dir| File.executable?(File.join(dir, "cargo")) }
+cargo = ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).any? do |dir|
+  File.executable?(File.join(dir, "cargo#{RbConfig::CONFIG["EXEEXT"]}"))
+end
 if cargo
   RbSys::ExtensionTask.new("peddler_native", GEMSPEC) do |ext|
     ext.ext_dir = "crates/peddler-ruby"
     ext.lib_dir = "lib/peddler"
     ext.cross_compile = true
-    ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux"]
+    ext.cross_platform = ["arm64-darwin", "x86_64-darwin", "aarch64-linux", "x86_64-linux", "aarch64-linux-musl",
+      "x86_64-linux-musl", "arm-linux", "arm-linux-musl", "x64-mingw-ucrt"]
     ext.cross_compiling do |spec|
       # Platform gems carry binaries only; drop everything that exists for the Rust build.
       spec.files.reject! { |file| file.match?(%r{\A(Cargo\.|crates/)}) }
       spec.extensions.clear
-      # Only glibc Linux is supported. A plain "-linux" gem would also be picked by musl hosts.
+      # A plain "-linux" gem would also be picked by musl hosts, so the glibc gems are named "-gnu".
       if spec.platform.os == "linux" && spec.platform.version.nil?
         spec.platform = Gem::Platform.new([spec.platform.cpu, "linux", "gnu"])
       end

@@ -14,6 +14,8 @@ FORBIDDEN = [
 CLOSURE = ["Cargo.lock", "crates/peddler-ruby/extconf.rb"].freeze
 RUST = %r{\A(Cargo\.|crates/)}
 BINARY = %r{\Alib/peddler/(\d+\.\d+/)?peddler_native\.(bundle|so)\z}
+# The libc a Linux gem names. A plain "-linux" gem would also be picked by musl hosts.
+LIBCS = ["gnu", "musl"].freeze
 # The licenses of the crates linked into a binary. See tools/third_party_licenses.rb.
 NOTICES = "THIRD_PARTY_LICENSES.html"
 
@@ -60,7 +62,9 @@ problems = ARGV.flat_map do |path|
     found << "#{path}: platform gem lacks #{NOTICES}" unless notices
     found << "#{path}: #{NOTICES} lists no crate" if notices && !notices.include?('<tr class="crate">')
     found << "#{path}: #{NOTICES} is cut short" if notices && !notices.rstrip.end_with?("</body>\n</html>")
-    found << "#{path}: Linux gem is not -gnu (#{spec.platform})" if spec.platform.os == "linux" && spec.platform.version != "gnu"
+    if spec.platform.os == "linux" && !LIBCS.include?(spec.platform.version)
+      found << "#{path}: Linux gem is neither -gnu nor -musl (#{spec.platform})"
+    end
     found << "#{path}: platform gem ships Rust sources" if files.any? { |file| file.match?(RUST) }
     found << "#{path}: platform gem declares rb_sys" if spec.runtime_dependencies.any? { |dep| dep.name == "rb_sys" }
     found << "#{path}: platform gem is not bound to a Ruby range" unless spec.required_ruby_version.to_s.include?("<")
