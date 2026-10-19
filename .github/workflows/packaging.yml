@@ -195,8 +195,8 @@ jobs:
 
   # musl and 32-bit ARM Linux have no runner of their own. Each gem is installed and smoke tested in the official
   # Ruby image of its platform, which has no Rust: Alpine for musl, Debian for glibc. 32-bit ARM runs under QEMU.
-  # The image keeps the bigdecimal that ships with its Ruby on the gem path, built: Alpine has no compiler to build
-  # another.
+  # The image's GEM_HOME is left as it is, so the bigdecimal built with its Ruby stays on the gem path: Alpine has no
+  # compiler to build another.
   smoke-container:
     needs: cross-gem
     strategy:
