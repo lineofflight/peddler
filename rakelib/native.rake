@@ -39,9 +39,13 @@ namespace :native do
     abort "cargo metadata failed" unless status.success?
 
     target = JSON.parse(output).fetch("target_directory")
-    suffix = RbConfig::CONFIG.fetch("host_os").include?("darwin") ? "dylib" : "so"
+    library = case RbConfig::CONFIG.fetch("host_os")
+    when /darwin/ then "libpeddler_native.dylib"
+    when /mingw|mswin/ then "peddler_native.dll"
+    else "libpeddler_native.so"
+    end
     FileUtils.mkdir_p("tmp/native")
-    FileUtils.cp("#{target}/debug/libpeddler_native.#{suffix}", "tmp/native/peddler_native.#{RbConfig::CONFIG.fetch('DLEXT')}")
+    FileUtils.cp("#{target}/debug/#{library}", "tmp/native/peddler_native.#{RbConfig::CONFIG.fetch('DLEXT')}")
   end
 
   desc "Run native tests (requires native:build first)"

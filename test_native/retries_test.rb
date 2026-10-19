@@ -261,40 +261,44 @@ class RetriesTest < NativeTest
   # is woken 4 times early in that wait. Nothing is raised, so the retry is sent when the wait is over and not
   # before.
   def test_a_wakeup_or_a_trapped_signal_neither_shortens_nor_cancels_the_wait
+    skip "Windows has no SIGUSR1" unless Signal.list.key?("USR1")
+
     trapped = Queue.new
     previous = trap("USR1") { trapped << true }
-    arrived = Queue.new
-    times = []
-    responder = lambda do |*|
-      times << Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      arrived << true
-      times.size == 1 ? [429, "{}"] : [200, "{}"]
-    end
-    serve_keep_alive(responder: responder) do |url, *|
-      main = Thread.current
-      waker = Thread.new do
-        Timeout.timeout(3) { arrived.pop }
-        sleep(0.05)
-        3.times { main.wakeup }
-        Process.kill("USR1", Process.pid)
+    begin
+      arrived = Queue.new
+      times = []
+      responder = lambda do |*|
+        times << Process.clock_gettime(Process::CLOCK_MONOTONIC)
+        arrived << true
+        times.size == 1 ? [429, "{}"] : [200, "{}"]
       end
+      serve_keep_alive(responder: responder) do |url, *|
+        main = Thread.current
+        waker = Thread.new do
+          Timeout.timeout(3) { arrived.pop }
+          sleep(0.05)
+          3.times { main.wakeup }
+          Process.kill("USR1", Process.pid)
+        end
 
-      # Ruby runs a trap on the main thread, which is the thread of this test.
-      response = client(url, retries: 1).listings_items_2021_08_01.get_listings_item("seller", "sku", MARKETPLACE)
-      waker.join
+        # Ruby runs a trap on the main thread, which is the thread of this test.
+        response = client(url, retries: 1).listings_items_2021_08_01.get_listings_item("seller", "sku", MARKETPLACE)
+        waker.join
 
-      assert_equal(200, response.status)
-      Timeout.timeout(3) { trapped.pop }
+        assert_equal(200, response.status)
+        Timeout.timeout(3) { trapped.pop }
 
-      assert_equal(2, times.size)
-      assert_operator(times[1] - times[0], :>=, 0.2)
-      assert_operator(times[1] - times[0], :<, 1)
+        assert_equal(2, times.size)
+        assert_operator(times[1] - times[0], :>=, 0.2)
+        assert_operator(times[1] - times[0], :<, 1)
+      ensure
+        waker&.kill
+        waker&.join
+      end
     ensure
-      waker&.kill
-      waker&.join
+      trap("USR1", previous || "DEFAULT")
     end
-  ensure
-    trap("USR1", previous || "DEFAULT")
   end
 
   # `get_report` allows 2 requests a second, so the retry of a throttled poll waits half a second.

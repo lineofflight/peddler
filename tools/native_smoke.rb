@@ -10,6 +10,7 @@
 # for the running Ruby ABI and that no Rust toolchain is on PATH.
 # Everything talks to a loopback server; no Amazon endpoint is contacted.
 require "json"
+require "rbconfig"
 require "socket"
 require "stringio"
 require "timeout"
@@ -27,7 +28,8 @@ abort("run the smoke test from outside the repository") if File.exist?(File.join
 
 if binary
   ["cargo", "rustc"].each do |tool|
-    check(ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).none? { |dir| File.executable?(File.join(dir, tool)) },
+    executable = "#{tool}#{RbConfig::CONFIG["EXEEXT"]}"
+    check(ENV.fetch("PATH", "").split(File::PATH_SEPARATOR).none? { |dir| File.executable?(File.join(dir, executable)) },
       "#{tool} is not on PATH")
   end
 end

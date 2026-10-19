@@ -192,26 +192,30 @@ class ClientTest < NativeTest
   # request below after the wake-up was dealt with.
 
   def test_a_trapped_signal_does_not_cancel_the_request_in_flight
+    skip "Windows has no SIGUSR1" unless Signal.list.key?("USR1")
+
     trapped = Queue.new
     previous = trap("USR1") { trapped << true }
-    arrived = Queue.new
-    handler = lambda do |socket, *|
-      arrived << true
-      Timeout.timeout(3) { trapped.pop }
-      respond(socket)
-    end
-    serve(handler: handler) do |url|
-      signaller = Thread.new do
-        Timeout.timeout(3) { arrived.pop }
-        Process.kill("USR1", Process.pid)
+    begin
+      arrived = Queue.new
+      handler = lambda do |socket, *|
+        arrived << true
+        Timeout.timeout(3) { trapped.pop }
+        respond(socket)
       end
+      serve(handler: handler) do |url|
+        signaller = Thread.new do
+          Timeout.timeout(3) { arrived.pop }
+          Process.kill("USR1", Process.pid)
+        end
 
-      # Ruby runs a trap on the main thread, which is the thread of this test.
-      assert_equal(200, client(url).request("POST", "/", body: {}).status)
-      signaller.join
+        # Ruby runs a trap on the main thread, which is the thread of this test.
+        assert_equal(200, client(url).request("POST", "/", body: {}).status)
+        signaller.join
+      end
+    ensure
+      trap("USR1", previous || "DEFAULT")
     end
-  ensure
-    trap("USR1", previous || "DEFAULT")
   end
 
   def test_thread_wakeup_does_not_cancel_the_request_in_flight
