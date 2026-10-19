@@ -13,7 +13,7 @@ module Peddler
         attribute(:event_time, String, null: false, from: "eventTime")
 
         # Metadata containing application and subscription information.
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # The notification type. Always `SHIPMENT_TRACKING_MILESTONE_CHANGED` for this schema.
         attribute(:notification_type, String, null: false, from: "notificationType")

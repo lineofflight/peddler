@@ -11,7 +11,7 @@ module Peddler
       Notification = Structure.new do
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         attribute(:notification_type, String, null: false, from: "notificationType")
 

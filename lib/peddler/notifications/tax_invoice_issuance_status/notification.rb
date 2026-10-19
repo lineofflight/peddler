@@ -13,7 +13,7 @@ module Peddler
         attribute(:event_time, String, null: false, from: "eventTime")
 
         # The notification's metadata.
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # The notification type. Known values: `TAX_INVOICE_ISSUANCE_STATUS`.
         attribute(:notification_type, String, null: false, from: "notificationType")

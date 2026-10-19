@@ -14,7 +14,7 @@ module Peddler
 
         # The notification's metadata, including the publish time and the application, subscription, and notification
         # event identifiers.
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # The notification type. Known values: `TAX_INVOICE_ISSUANCE_ELIGIBILITY_STATUS_CHANGE`.
         attribute(:notification_type, String, null: false, from: "notificationType")

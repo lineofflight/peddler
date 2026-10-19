@@ -27,24 +27,24 @@ module Peddler
       end
 
       class Notification < Data
-        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
-                    | (String, String, String, String, Peddler::Notifications::DetailPageTrafficEvent::Payload, String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
-        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
-                   | (String, String, String, String, Peddler::Notifications::DetailPageTrafficEvent::Payload, String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
+        def self.new: (event_time: String, notification_metadata: Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
+                    | (String, Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata, String, String, Peddler::Notifications::DetailPageTrafficEvent::Payload, String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
+        def self.[]: (event_time: String, notification_metadata: Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
+                   | (String, Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata, String, String, Peddler::Notifications::DetailPageTrafficEvent::Payload, String) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::DetailPageTrafficEvent::Notification
 
         attr_reader event_time: String
-        attr_reader notification_metadata: String
+        attr_reader notification_metadata: Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata
         attr_reader notification_type: String
         attr_reader notification_version: String
         attr_reader payload: Peddler::Notifications::DetailPageTrafficEvent::Payload
         attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String }
+        def to_h: () -> { event_time: String, notification_metadata: Peddler::Notifications::DetailPageTrafficEvent::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::DetailPageTrafficEvent::Payload, payload_version: String }
       end
 
       class NotificationMetadata < Data
