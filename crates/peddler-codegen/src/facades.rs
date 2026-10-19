@@ -1030,6 +1030,7 @@ mod tests {
         assert!(!source.contains('\r'), "{source}");
         let docs = docs_of(&source);
         let text = hostile.replace("\r\n", "\n").replace('\r', "\n");
+        let text = text.replace("doc:n", "https://developer-docs.amazon.com/sp-api/docs/n");
         assert_eq!(
             docs["ListThingsParams.id"],
             format!("{text}\n\nKnown values: `*/`, `\"`, `x y`.")

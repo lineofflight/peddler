@@ -52,7 +52,7 @@ pub struct ErrorList {
 /// Model of a restricted resource.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RestrictedResource {
-    /// Indicates the type of Personally Identifiable Information requested. This parameter is required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the Orders API. For more information, see the [Tokens API Use Case Guide](doc:tokens-api-use-case-guide). Possible values include:
+    /// Indicates the type of Personally Identifiable Information requested. This parameter is required only when getting an RDT for use with the getOrder, getOrders, or getOrderItems operation of the Orders API. For more information, see the [Tokens API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide). Possible values include:
     /// - **buyerInfo**. On the order level this includes general identifying information about the buyer and tax-related information. On the order item level this includes gift wrap information and custom order information, if available.
     /// - **shippingAddress**. This includes information for fulfilling orders.
     /// - **buyerTaxInformation**. This includes information for issuing tax invoices.

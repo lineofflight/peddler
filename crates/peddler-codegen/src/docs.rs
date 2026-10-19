@@ -161,12 +161,18 @@ pub(crate) fn links(text: &str) -> String {
         LazyLock::new(|| regex(r#"<a href=['"]([^'"]+)['"]>([^<]+)</a>"#));
     static BARE: LazyLock<Regex> = LazyLock::new(|| regex(r"<a href=([^\s>]+)>([^<]+)</a>"));
     static BOLD: LazyLock<Regex> = LazyLock::new(|| regex(r"__([^\n]*?)__"));
-    static DOC: LazyLock<Regex> = LazyLock::new(|| regex(r"\[([^\[\]]+)\]\(doc:([^()\s]+)\)"));
     let text = QUOTED.replace_all(text, "[$2]($1)");
     let text = BARE.replace_all(&text, "[$2]($1)");
     let text = BOLD.replace_all(&text, "**$1**");
+    doc_links(&text)
+}
+
+/// Amazon's links to its docs, `[text](doc:path)`, as full URLs, by the rule of
+/// `convert_doc_links_to_full_url` in `lib/generator`.
+pub(crate) fn doc_links(text: &str) -> String {
+    static DOC: LazyLock<Regex> = LazyLock::new(|| regex(r"\[([^\[\]]+)\]\(doc:([^()\s]+)\)"));
     DOC.replace_all(
-        &text,
+        text,
         "[$1](https://developer-docs.amazon.com/sp-api/docs/$2)",
     )
 }

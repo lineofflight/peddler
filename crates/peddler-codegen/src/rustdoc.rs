@@ -1,5 +1,5 @@
 //! The docs of the generated Rust. Most are spec text, which rustdoc must read as the text
-//! it is, whatever it holds.
+//! it is, whatever it holds. Amazon's links to its docs are full URLs, as in Ruby.
 use proc_macro2::{Delimiter, Group, TokenStream, TokenTree};
 
 /// Every doc of a source as a `///` line for each of its lines. Of a doc of several
@@ -17,7 +17,8 @@ pub(crate) fn lines(tokens: TokenStream) -> TokenStream {
             i += 2;
         }
         if !docs.is_empty() {
-            for line in split(&docs.join("\n")) {
+            let text = crate::docs::doc_links(&docs.join("\n"));
+            for line in split(&text) {
                 output.extend(quote::quote!(#[doc = #line]));
             }
             continue;
@@ -112,6 +113,24 @@ mod tests {
     fn docs_in_a_row_are_1_text() {
         let source = format("#[doc = \"a\"] #[doc = \"b\\nc\"] #[doc(hidden)] fn f() {}");
         assert_eq!(source, "/// a\n/// b\n/// c\n#[doc(hidden)]\nfn f() {}\n");
+    }
+
+    /// Amazon's `doc:` links go nowhere outside its site.
+    #[test]
+    fn a_link_to_amazons_docs_is_a_full_url() {
+        let source = format(concat!(
+            "#[doc = \"See the [guide](doc:tokens-api-use-case-guide) and \"]\n",
+            "#[doc = \"[step 7](doc:feeds-guide#step-7), not doc:bare or [x](doc: y).\"]\n",
+            "fn f() {}",
+        ));
+        assert_eq!(
+            source,
+            concat!(
+                "/// See the [guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide) and\n",
+                "/// [step 7](https://developer-docs.amazon.com/sp-api/docs/feeds-guide#step-7), not doc:bare or [x](doc: y).\n",
+                "fn f() {}\n",
+            )
+        );
     }
 
     /// A line reads `/// The`. rustdoc takes away the whitespace all lines start with,
