@@ -18,6 +18,26 @@ fn string_enums_allow_future_values_and_document_known_values() {
 }
 
 #[test]
+fn an_enum_of_strings_without_a_type_is_a_string() {
+    let output = normalize(json!({"Option": {"type": "object", "properties": {
+        "kind": {"enum": ["DEFAULT"], "description": "The kind."},
+        "level": {"enum": [1, 2]},
+    }}}));
+    let kind = &output["Option"]["properties"]["kind"];
+    assert!(kind.get("enum").is_none());
+    assert_eq!(kind["type"], "string");
+    assert_eq!(
+        kind["description"],
+        "The kind.\n\nKnown values: `DEFAULT`. Other values may be returned by Amazon."
+    );
+    // An enum of numbers stays an enum, and its doc says no other value may come.
+    let level = &output["Option"]["properties"]["level"];
+    assert_eq!(level["enum"], json!([1, 2]));
+    assert!(level.get("type").is_none());
+    assert!(level.get("description").is_none());
+}
+
+#[test]
 fn fields_document_known_values_through_a_ref_and_on_items() {
     let output = normalize(json!({
         "Status": {"type": "string", "enum": ["OPEN", "CLOSED"]},

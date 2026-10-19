@@ -1241,61 +1241,7 @@ pub struct ShippingOption {
 
 Known values: `DEFAULT`. Other values may be returned by Amazon.*/
     #[serde(rename = "shippingOptionType")]
-    pub shipping_option_type: ShippingOptionShippingOptionType,
-}
-/**The type of shipping option.
-
-Known values: `DEFAULT`. Other values may be returned by Amazon.*/
-#[derive(
-    ::serde::Deserialize,
-    ::serde::Serialize,
-    Clone,
-    Copy,
-    Debug,
-    Eq,
-    Hash,
-    Ord,
-    PartialEq,
-    PartialOrd
-)]
-pub enum ShippingOptionShippingOptionType {
-    #[serde(rename = "DEFAULT")]
-    Default,
-}
-impl ::std::fmt::Display for ShippingOptionShippingOptionType {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        match *self {
-            Self::Default => f.write_str("DEFAULT"),
-        }
-    }
-}
-impl ::std::str::FromStr for ShippingOptionShippingOptionType {
-    type Err = self::error::ConversionError;
-    fn from_str(
-        value: &str,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        match value {
-            "DEFAULT" => Ok(Self::Default),
-            _ => Err("invalid value".into()),
-        }
-    }
-}
-impl ::std::convert::TryFrom<&str> for ShippingOptionShippingOptionType {
-    type Error = self::error::ConversionError;
-    fn try_from(
-        value: &str,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        value.parse()
-    }
-}
-impl ::std::convert::TryFrom<::std::string::String>
-for ShippingOptionShippingOptionType {
-    type Error = self::error::ConversionError;
-    fn try_from(
-        value: ::std::string::String,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        value.parse()
-    }
+    pub shipping_option_type: ::std::string::String,
 }
 ///The summary of similar items for the specified ASIN `marketplaceId` combination.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]

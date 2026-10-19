@@ -62,6 +62,14 @@ fn normalize_schema(
             *value = Value::Number(number);
         }
     }
+    // An enum of strings is a string, whether or not the spec says `type: string`.
+    let strings = node
+        .get("enum")
+        .and_then(Value::as_array)
+        .is_some_and(|values| values.iter().all(Value::is_string));
+    if strings && !node.contains_key("type") {
+        node.insert("type".into(), json!("string"));
+    }
     if node.get("type").and_then(Value::as_str) == Some("string")
         && let Some(values) = node.remove("enum")
         && !values.is_array()
@@ -70,7 +78,9 @@ fn normalize_schema(
     }
     let description = node.get("description").and_then(Value::as_str);
     let description = description.unwrap_or_default();
-    if let Some(sentence) = known_values::sentence(description, &known) {
+    // An enum of other values stays an enum: no other value can come.
+    let open = known.iter().all(Value::is_string);
+    if let Some(sentence) = known_values::sentence(description, &known).filter(|_| open) {
         let documentation =
             format!("{description}\n\n{sentence} Other values may be returned by Amazon.");
         node.insert(
