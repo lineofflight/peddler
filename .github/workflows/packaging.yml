@@ -103,7 +103,7 @@ jobs:
   cross-gem:
     # rb-sys-dock builds every platform inside rb-sys containers on Linux; the
     # fat gem carries Ruby 3.3, 3.4 and 4.0 binaries under lib/peddler/<minor>/.
-    # "arm-linux" is 32-bit ARM with hardware floating point, for glibc.
+    # "arm-linux" is glibc on 32-bit ARMv7 or later, hard float.
     strategy:
       fail-fast: false
       matrix:

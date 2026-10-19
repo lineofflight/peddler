@@ -401,7 +401,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - `bigdecimal` is a new dependency, and `rb_sys` for the source gem.
 - `zeitwerk` 2.7 or later is required.
 - `structure` 4.5 or later is required.
-- Peddler includes a native extension. Precompiled gems cover macOS, Linux with glibc or musl on ARM, 32-bit ARM and x86, and Windows on x64, each for Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
+- Peddler includes a native extension. Precompiled gems cover macOS, Linux with glibc or musl (on ARM, on x86, and on 32-bit ARMv7 or later, hard float) and Windows on x64, each for Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
 
 ### New in v6
 

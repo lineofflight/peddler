@@ -96,13 +96,15 @@ Bundler installs a precompiled gem where one exists:
 | macOS, Intel | `x86_64-darwin` |
 | Linux with glibc, ARM | `aarch64-linux-gnu` |
 | Linux with glibc, x86 | `x86_64-linux-gnu` |
-| Linux with glibc, 32-bit ARM with hardware floating point | `arm-linux-gnu` |
+| Linux with glibc, 32-bit ARMv7 or later, hard float | `arm-linux-gnu` |
 | Linux with musl, such as Alpine, ARM | `aarch64-linux-musl` |
 | Linux with musl, x86 | `x86_64-linux-musl` |
-| Linux with musl, 32-bit ARM with hardware floating point | `arm-linux-musl` |
+| Linux with musl, 32-bit ARMv7 or later, hard float | `arm-linux-musl` |
 | Windows, x64, with RubyInstaller's Ruby | `x64-mingw-ucrt` |
 
 Each carries a build for Ruby 3.3, 3.4 and 4.0 and needs no compiler. The musl gems need `libgcc_s.so.1`: on Alpine, the `libgcc` package, which the official Ruby images have.
+
+ARMv6 hosts, such as a Raspberry Pi 1 or Zero, and soft-float hosts get the 32-bit ARM gem from RubyGems too, but it doesn't run there: compile from source with `--platform ruby`, as below.
 
 On any other platform, Bundler installs the source gem and compiles the extension during installation. That needs:
 
