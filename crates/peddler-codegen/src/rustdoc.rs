@@ -117,6 +117,11 @@ fn inert(text: &str) -> Result<String, GenerationError> {
                 let prefix = &text[start..range.start];
                 let opening = outdent(prefix);
                 let indent = &prefix[opening.len()..];
+                // A marker that a tab separated from the block keeps a space after it.
+                let opening = &match opening.chars().last() {
+                    Some(c) if !c.is_whitespace() && c != '>' => format!("{opening} "),
+                    _ => opening.to_owned(),
+                };
                 let rest: String = opening
                     .chars()
                     .map(|c| {
@@ -256,7 +261,7 @@ mod tests {
     }
 
     /// Each kind of code block rustdoc would run, and where it stands.
-    const PLANTED: [&str; 13] = [
+    const PLANTED: [&str; 14] = [
         "Fenced:\n\n```\npanic!(\"a spec ran\");\n```",
         "Fenced as Rust:\n\n```rust\npanic!(\"a spec ran\");\n```\nAfter.",
         "With tildes:\n\n~~~\npanic!(\"a spec ran\");\n~~~",
@@ -270,6 +275,7 @@ mod tests {
         "Indented in a list item of its own:\n\n-     panic!(\"a spec ran\");",
         "Indented in a numbered one:\n\n1.     panic!(\"a spec ran\");\n\n       panic!(\"a spec ran\");",
         "Indented in a quote's list:\n\n> -     panic!(\"a spec ran\");",
+        "Indented after a tab in a list item:\n\n-\t  panic!(\"a spec ran\");",
     ];
 
     /// What rustdoc's doctests of a source say, and whether they pass.
@@ -299,7 +305,7 @@ mod tests {
         // As the spec has it, each block runs and fails.
         let (passed, output) = doctests(&source);
         assert!(!passed, "{output}");
-        assert!(output.contains("13 failed"), "{output}");
+        assert!(output.contains("14 failed"), "{output}");
         // As the crate has it, none runs.
         let formatted = format(&source);
         let (passed, output) = doctests(&formatted);
@@ -364,6 +370,15 @@ mod tests {
         ] {
             assert_eq!(inert(planted).unwrap(), expected, "{planted:?}");
         }
+    }
+
+    /// A tab after a list's marker is the space the fence needs after it too.
+    #[test]
+    fn a_marker_keeps_a_space_before_the_fence() {
+        assert_eq!(
+            inert(PLANTED[13]).unwrap(),
+            "Indented after a tab in a list item:\n\n- ```text\n  \t  panic!(\"a spec ran\");\n  ```"
+        );
     }
 
     /// The proof `inert` asks of its result: no block that rustdoc would compile.
