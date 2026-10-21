@@ -8,7 +8,7 @@ require "shellwords"
 require "steep/rake_task"
 
 # Bundler's release task tags, then pushes the source gem alone, and every user would compile Rust. A release is
-# 9 platform gems, the source gem and the crate: see RELEASING.md.
+# nine platform gems, the source gem and the crate: see RELEASING.md.
 Rake.application.tasks.select { |task| task.name.start_with?("release") }.each(&:clear)
 desc "Refuse: a release is done by hand, see RELEASING.md"
 task(:release) { abort("rake release would push the source gem alone. Follow RELEASING.md.") }
