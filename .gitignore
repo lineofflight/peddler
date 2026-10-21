@@ -13,3 +13,4 @@ vendor
 /lib/peddler/peddler_native.*
 /THIRD_PARTY_LICENSES.html
 /lib/peddler/[0-9]*/
+/.claude/settings.local.json
