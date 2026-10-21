@@ -8,8 +8,6 @@ Both cover all SP-API endpoints, reports, notifications and feeds, and run on 1 
 
 ![Peddler](https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true)
 
-Coming from Peddler 5? See [UPGRADING.md](UPGRADING.md).
-
 ## Quick start
 
 | | Ruby | Rust |
@@ -78,41 +76,6 @@ An HTTP error status is a response, not an `Err`, so the example prints the stat
 
 - [Ruby guide](RUBY.md): installing the gem, tokens, calls, errors, documents and tests
 - [Rust guide](crates/peddler/README.md): installing the crate, tokens, calls, errors and documents
-- [Upgrading](UPGRADING.md): from Peddler 5 to 6, and from 4 to 5
-
-## Development
-
-Development needs a stable Rust toolchain next to Ruby.
-
-```bash
-# Setup
-bundle install
-bundle exec rbs collection install
-
-# Build the native extension into tmp/native
-bundle exec rake native:build
-
-# Run tests and linting
-bundle exec rake
-
-# Run tests only
-bundle exec rake test
-
-# Test and lint the crate
-cargo test -p peddler --locked
-cargo clippy -p peddler --all-targets --locked -- -D warnings
-
-# Regenerate the Ruby and Rust code from Amazon's OpenAPI specs
-bundle exec rake generate
-
-# Type check with Steep
-bundle exec steep check --severity-level=hint
-
-# Build the documentation site into doc/ with RDoc
-bundle exec rake rdoc
-```
-
-`rake test` builds the extension first. Types are inline RBS comments in the Ruby files, and RDoc builds the documentation from the same comments. `rake generate` writes the signatures the gem ships into `sig/inline`, and `rake rbs:export` does after a change to hand-written code. The generators are described in [lib/generator/README.md](lib/generator/README.md) and [crates/peddler-codegen/README.md](crates/peddler-codegen/README.md). A release is made by hand: see [RELEASING.md](RELEASING.md).
 
 ## License
 
