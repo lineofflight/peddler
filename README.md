@@ -2,9 +2,9 @@
 
 Peddler is a Ruby gem and a Rust crate for the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-Both are generated from Amazon's latest OpenAPI models. A nightly job tracks Amazon's spec changes, so new endpoints and fields land shortly after Amazon publishes them. Model changes are not considered breaking and don't trigger a major version bump.
+Both are generated from Amazon's latest OpenAPI models and cover every SP-API endpoint, report, notification and feed. A nightly job tracks Amazon's spec changes, so new endpoints and fields land shortly after Amazon publishes them. Model changes are not considered breaking and don't trigger a major version bump.
 
-Both cover all SP-API endpoints, reports, notifications and feeds, and run on 1 Rust core: the crate is the core, and the gem ships it as a native extension.
+Both run on the same Rust core. The crate is that core, and the gem ships it as a native extension.
 
 ![Peddler](https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true)
 
