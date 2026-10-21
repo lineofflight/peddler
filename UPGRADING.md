@@ -212,7 +212,7 @@ rescue Peddler::TransportError
 end
 ```
 
-`Peddler::TimeoutError` is a `Peddler::TransportError`. Neither is a `Peddler::Error`. The [README](README.md#error-handling) lists every error class.
+`Peddler::TimeoutError` is a `Peddler::TransportError`. Neither is a `Peddler::Error`. The [Ruby guide](RUBY.md#error-handling) lists every error class.
 
 #### 4. Sandbox
 
@@ -376,7 +376,7 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - A required argument given as `nil`, and the other forms in the lower half of the table above, raise `ArgumentError` where v5 sent a request.
 - Any status outside 2xx raises `Peddler::Error`, from an API call and from a signed URL in the document helpers. v5 raised from 400 up and returned a 3xx as a response.
 - A `Retry-After` header that is neither a number of seconds nor a date is ignored, and the retry waits as it would without one. v5 retried at once.
-- The document helpers allow 600 seconds for a call. v5 had no limit. Past it, the transfer raises `Peddler::DocumentTimeoutError`. The request that looks a document up by its ID is a request like any other: it raises `Peddler::TimeoutError` when it takes longer than that, or than the client's `timeout:`. For a longer transfer, use `client.reports.open_report_document(id, timeout:)` and its siblings, described in the [README](README.md#documents-and-workflows).
+- The document helpers allow 600 seconds for a call. v5 had no limit. Past it, the transfer raises `Peddler::DocumentTimeoutError`. The request that looks a document up by its ID is a request like any other: it raises `Peddler::TimeoutError` when it takes longer than that, or than the client's `timeout:`. For a longer transfer, use `client.reports.open_report_document(id, timeout:)` and its siblings, described in the [Ruby guide](RUBY.md#documents-and-workflows).
 - Given a document ID, `download_report_document` returns the report decompressed when Amazon compressed it. Remove your own `Zlib::GzipReader`. Given a URL, it decompresses only when the reply says `Content-Encoding: gzip`, so a report whose metadata says `GZIP` still arrives compressed. Read it with `Zlib.gunzip(response.body)`: a response is no longer a stream.
 - `response.status` behaves as the Integer it wraps (`status == 200`, `status >= 400`, `case status when 200..299`), but it is not an instance of `Integer`. Use `response.code` where you need one. `status.to_s` is `"200"`, not `"200 OK"`, and `status.to_sym`, `status.ok?` and the other predicates named after a status are gone. `informational?`, `success?`, `redirect?`, `client_error?` and `server_error?` stay. In RBS, `status` is a `Peddler::Response::Status` where v5 declared an `Integer`: it compares as one, and `code` is the `Integer`.
 - `response.headers.to_h` and `headers.each` give header names in lowercase. `headers["Name"]`, `headers.include?("Name")` and `headers.key?("Name")` find a header whatever its case. `headers.get` and `headers.keys` are gone.
@@ -401,11 +401,11 @@ v5 sent whatever it was given. v6 sends the same request for every form that mad
 - `bigdecimal` is a new dependency, and `rb_sys` for the source gem.
 - `zeitwerk` 2.7 or later is required.
 - `structure` 4.5 or later is required.
-- Peddler includes a native extension. Precompiled gems cover macOS, Linux with glibc or musl (on ARM, on x86, and on 32-bit ARMv7 or later, hard float) and Windows on x64, each for Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [README](README.md#native-extension).
+- Peddler includes a native extension. Precompiled gems cover macOS, Linux with glibc or musl (on ARM, on x86, and on 32-bit ARMv7 or later, hard float) and Windows on x64, each for Ruby 3.3, 3.4 and 4.0. Other platforms compile it during installation and need a Rust toolchain. See the [Ruby guide](RUBY.md#native-extension).
 
 ### New in v6
 
-These need no change to existing code. The [README](README.md#ruby-guide) describes each.
+These need no change to existing code. The [Ruby guide](RUBY.md) describes each.
 
 - `*_pages` methods that enumerate the pages of an operation
 - `wait_for_report`, `wait_for_feed` and `wait_for_query`, on `client.reports`, `client.feeds` and `client.data_kiosk`, beside v5's helpers

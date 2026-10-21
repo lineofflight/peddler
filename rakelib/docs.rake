@@ -13,25 +13,25 @@ PLAIN_WORDS = [
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = "doc"
   rdoc.title = "Peddler"
-  rdoc.main = "README.md"
+  rdoc.main = "RUBY.md"
   rdoc.markup = "markdown"
   rdoc.options << "--autolink-excluded-words=#{PLAIN_WORDS.join(",")}"
-  rdoc.rdoc_files.include("README.md", "UPGRADING.md", "CHANGELOG.md", "lib/peddler.rb", "lib/peddler/**/*.rb")
+  rdoc.rdoc_files.include("RUBY.md", "UPGRADING.md", "CHANGELOG.md", "lib/peddler.rb", "lib/peddler/**/*.rb")
   rdoc.before_running_rdoc { RDocRBS.verify! }
 end
 
-# The README and the guides link to each other and to files of the repository. RDoc writes such a link as the page
-# it would make of the file. The README is the home page, though, and the site holds no other file: those links go
-# to the home page and to GitHub. An image of theirs is wider than a page, and Markdown gives it no width.
+# The guides link to each other and to files of the repository. RDoc writes such a link as the page it would make
+# of the file. The Ruby guide is the home page, though, and the site holds no other file, the README included: those
+# links go to the home page and to GitHub.
 Rake::Task["doc/created.rid"].enhance do
   Dir["doc/{index,*_md}.html"].each do |page|
     html = File.read(page).gsub(/(?<=<a href=")[^"#]+/) do |path|
-      path = "index.html" if path == "README_md.html"
+      path = "index.html" if path == "RUBY_md.html"
       next path if path.include?(":") || File.exist?(File.join("doc", path))
 
       "https://github.com/lineofflight/peddler/blob/main/#{path.sub(/_(md|rb)\.html\z/, '.\1')}"
     end
-    File.write(page, html.gsub("<img ", '<img style="max-width: 100%" '))
+    File.write(page, html)
   end
 end
 

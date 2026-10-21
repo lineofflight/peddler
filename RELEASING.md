@@ -73,7 +73,7 @@ The `cross-gem` job writes the notices on the runner, and a container builds the
 
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 
-On the first run, read the glibc version each glibc binary needs and state it in the README's platform table.
+On the first run, read the glibc version each glibc binary needs and state it in the platform table of RUBY.md.
 
 ```sh
 gem unpack artifacts/gem-x86_64-linux/peddler-6.0.0-x86_64-linux-gnu.gem
