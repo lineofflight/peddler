@@ -802,7 +802,7 @@ fn parameter_json(p: &Parameter) -> Value {
 mod tests {
     use super::*;
 
-    /// The method that enumerates pages takes its whole type in 1 line, each kind of
+    /// The method that enumerates pages takes its whole type in one line, each kind of
     /// argument in it: positional when required, a keyword that may be nil otherwise,
     /// and `rate_limit:` last.
     #[test]
@@ -832,7 +832,7 @@ mod tests {
         )), "{ruby}");
     }
 
-    /// The Rust of a spec with 1 operation, which pages if `paged`.
+    /// The Rust of a spec with one operation, which pages if `paged`.
     fn rust_of(operation: Value, paged: bool) -> String {
         let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
             "/things/{id}":{"post":operation}
@@ -1067,7 +1067,7 @@ mod tests {
         );
     }
 
-    /// The Ruby of a spec with 1 operation, or why it is refused.
+    /// The Ruby of a spec with one operation, or why it is refused.
     fn ruby_of(id: &str, parameters: Value) -> Result<String, String> {
         let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
             "/things":{"get":{"operationId":id,"parameters":parameters,"responses":{"200":{"description":"ok"}}}}

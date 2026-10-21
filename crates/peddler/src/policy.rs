@@ -209,7 +209,7 @@ mod tests {
                 assert!(close(seconds(wait), expected), "{rate} {retry}: {wait:?}");
             }
         }
-        // An operation limited to 1 request a minute waits a minute, then 2, then 4.
+        // An operation limited to 1 request a minute waits a minute, then two, then four.
         let minute = policy.wait_at(call("GET", Some(0.0167)), status(429), 1, EPOCH, 0.0);
         assert!((59.0..61.0).contains(&seconds(minute)));
         // The tenth retry of the slowest documented rate still has a wait.

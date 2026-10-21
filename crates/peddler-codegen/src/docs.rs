@@ -59,7 +59,7 @@ pub(crate) fn operation(op: &Operation) -> String {
 }
 
 /// The comment above the method that enumerates an operation's pages. It takes its
-/// whole type in 1 line: a line for each argument would leave any it missed untyped.
+/// whole type in one line: a line for each argument would leave any it missed untyped.
 pub(crate) fn pages(op: &Operation, types: &str) -> String {
     let text = format!(
         "Each page of #{}. `rate_limit` applies to every page.",
@@ -302,7 +302,7 @@ mod tests {
     use super::*;
     use serde_json::json;
 
-    /// An operation that takes 1 argument, with the same text wherever a spec has any.
+    /// An operation that takes one argument, with the same text wherever a spec has any.
     fn described(text: &str, name: &str) -> (Value, Operation) {
         let info = json!({"title": text, "description": text, "version": text});
         let parameter = Parameter {

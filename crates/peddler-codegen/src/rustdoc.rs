@@ -5,14 +5,14 @@ use proc_macro2::{Delimiter, Group, TokenStream, TokenTree};
 use pulldown_cmark::{CodeBlockKind, Event, Options, Parser, Tag};
 
 /// Every doc of a source as a `///` line for each of its lines. Of a doc of several
-/// lines the formatter writes 1 block comment, and in a block comment rustc drops the `*`
+/// lines the formatter writes one block comment, and in a block comment rustc drops the `*`
 /// that starts each line after the first when they all start with one.
 pub(crate) fn lines(tokens: TokenStream) -> Result<TokenStream, GenerationError> {
     let tokens: Vec<TokenTree> = tokens.into_iter().collect();
     let mut output = TokenStream::new();
     let mut i = 0;
     while i < tokens.len() {
-        // Docs that follow one another are 1 text to rustdoc, a line each.
+        // Docs that follow one another are one text to rustdoc, a line each.
         let mut docs = Vec::new();
         while let Some(text) = doc(&tokens[i..]) {
             docs.push(text);
@@ -152,7 +152,7 @@ fn inert(text: &str) -> Result<String, GenerationError> {
             }
         }
     }
-    // Where 1 block ends and the next starts, the closing fence goes in before the opening.
+    // Where one block ends and the next starts, the closing fence goes in before the opening.
     edits.sort_by_key(|(range, _)| std::cmp::Reverse((range.start, range.end)));
     let mut text = text.to_owned();
     for (range, replacement) in edits {
@@ -227,7 +227,7 @@ mod tests {
         );
     }
 
-    /// Docs that follow one another are 1 text, as rustdoc reads them. Other attributes
+    /// Docs that follow one another are one text, as rustdoc reads them. Other attributes
     /// stay as they are.
     #[test]
     fn docs_in_a_row_are_1_text() {
@@ -396,7 +396,7 @@ mod tests {
         );
     }
 
-    /// Where 1 block ends and the next starts, the first one's closing fence comes first.
+    /// Where one block ends and the next starts, the first one's closing fence comes first.
     #[test]
     fn a_block_that_ends_where_the_next_starts_keeps_its_fence() {
         let planted = ">     panic!(\"a spec ran\");\n    panic!(\"a spec ran\");";

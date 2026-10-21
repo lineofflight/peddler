@@ -681,7 +681,7 @@ mod tests {
         let (result, attempts, elapsed) =
             run(&client(2), "GET", None, &[Hangs, Hangs, Status(200)]).await;
         assert_eq!((result, attempts), (Ok(200), 3));
-        // 2 attempts of 30 seconds, a wait of up to 1 second and one of 1 to 2.
+        // Two attempts of 30 seconds, a wait of up to 1 second and one of 1 to 2.
         assert!(took(elapsed, 61.0, 63.0), "{elapsed}");
         let (result, attempts, elapsed) = run(&client(2), "GET", None, &[Hangs; 3]).await;
         assert_eq!((result, attempts), (Err(Error::Timeout), 3));
@@ -717,7 +717,7 @@ mod tests {
             let script = [Status(429), Status(429), Status(201)];
             let (result, attempts, elapsed) = run(&client(2), method, Some(5.0), &script).await;
             assert_eq!((result, attempts), (Ok(201), 3), "{method}");
-            // A fifth of a second, then 2 fifths, and up to a tenth more each.
+            // A fifth of a second, then two fifths, and up to a tenth more each.
             assert!(took(elapsed, 0.6, 0.8), "{elapsed}");
             for status in [500, 502, 503, 504] {
                 let (result, attempts, elapsed) =
@@ -822,7 +822,7 @@ mod tests {
     #[tokio::test(start_paused = true)]
     async fn a_view_with_a_rate_waits_by_it_in_place_of_the_documented_one() {
         let script = [Status(429), Status(429), Status(200)];
-        // At 100 requests a second: a hundredth of a second, then 2, and up to a tenth
+        // At 100 requests a second: a hundredth of a second, then two, and up to a tenth
         // more each. By the documented rate the first wait alone would be a minute.
         let slow = client(2);
         let fast = slow.with_rate_limit(Some(100.0)).unwrap();

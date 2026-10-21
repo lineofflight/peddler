@@ -101,7 +101,7 @@ fn shared(ruby: &Ruby) -> Result<&'static Shared, Error> {
     let version: String = peddler_const(ruby, "VERSION")?;
     // LWA and signed URLs get this. Ruby adds the host name for the Selling Partner API.
     let user_agent = format!("Peddler/{version} (Language=Ruby)");
-    // Built outside the slot, so 2 Ractors that both find it empty both build.
+    // Built outside the slot, so two Ractors that both find it empty both build.
     let Some(built) = Shared::build(&user_agent) else {
         return Err(native_error(
             ruby,
@@ -371,16 +371,16 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     // several Ractors share is `SHARED` and what it holds, the runtime and the pool,
     // which are `Sync`, and the flag of the exchange hook, which only the main Ractor
     // sets (see `hook`). A class or a constant is looked up in Ruby on each use, but for
-    // the 4 classes that magnus keeps, at the end of this function.
+    // the four classes that magnus keeps, at the end of this function.
     // SAFETY: called while the extension loads, before it defines a method.
     unsafe { rb_sys::rb_ext_ractor_safe(true) };
     // The names of the instance variables that only this extension uses are interned
-    // here, in the main Ractor. Ruby 3.3 and 3.4 can give a name 2 IDs when 2 Ractors are
+    // here, in the main Ractor. Ruby 3.3 and 3.4 can give a name two IDs when two Ractors are
     // the first to intern it, at once, and a source set under one is not found under the
     // other. `WebMock`, which a call looks for before anything defines it, is interned
     // too, as a precaution: a call interns the name to look it up, and the first call of
     // a Ractor could do so as the main Ractor parses the name for the first time. No run
-    // has given it 2 IDs. Every other name the extension looks up is a constant or a
+    // has given it two IDs. Every other name the extension looks up is a constant or a
     // method that Ruby code defined before the extension could look it up.
     ruby.intern(TOKEN_SOURCE);
     ruby.intern(hook::HOOK);
