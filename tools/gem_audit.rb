@@ -30,6 +30,9 @@ SIGNATURES = %r{\Asig/(inline|peddler)/.+\.rbs\z}
 # Names the libraries the signatures need. Without it `rbs collection` leaves them out, and an application's check
 # of what they type is blind.
 MANIFEST = "sig/manifest.yaml"
+# The documents a gem holds, to read where it is installed. The building-with-peddler skill sends an agent to
+# UPGRADING.md in the gem.
+DOCUMENTS = ["README.md", "RUBY.md", "UPGRADING.md", "CHANGELOG.md"].freeze
 
 # A file of a gem, or nil if the gem has none of that name
 def content(path, name)
@@ -55,6 +58,7 @@ problems = ARGV.flat_map do |path|
   found << "#{path}: lacks #{MANIFEST}" unless files.include?(MANIFEST)
   found << "#{path}: lacks the signatures of the typed models" if files.grep(%r{\Asig/peddler/apis/}).empty?
   found << "#{path}: license is not MIT" unless spec.licenses == ["MIT"] && files.include?("LICENSE")
+  found.concat((DOCUMENTS - files).map { |file| "#{path}: lacks #{file}" })
   if spec.platform == Gem::Platform::RUBY
     found << "#{path}: source gem lacks the Cargo closure" unless (CLOSURE - files).empty?
     found << "#{path}: source gem ships binaries" unless binaries.empty?
