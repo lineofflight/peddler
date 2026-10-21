@@ -36,7 +36,7 @@ Packaging builds and tests everything and publishes nothing:
 
 - `crate`: `cargo package`, then a fresh consumer that builds against the packaged crate. Run by hand on macOS only
 - `source-gem`: built, audited, installed and smoke tested on Ruby 3.3, 3.4 and 4.0. Run by hand on macOS only
-- `cross-gem`: the 9 platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates and of the standard library in its binary. **Never run**
+- `cross-gem`: the nine platform gems, each with a binary for Ruby 3.3, 3.4 and 4.0, built in rb-sys-dock containers and audited. Each carries `THIRD_PARTY_LICENSES.html`, the licenses of the Rust crates and of the standard library in its binary. **Never run**
 - `smoke`: the macOS, glibc Linux and Windows gems, each installed without Rust on a runner of its platform, for each Ruby, 15 legs. **Never run**
 - `smoke-container`: the musl and 32-bit ARM gems, each installed in the official Ruby image of its platform, which has no Rust, for each Ruby, 12 legs. 32-bit ARM runs under QEMU. **Never run**
 
@@ -63,13 +63,13 @@ Build into an empty `pkg`. The gem task does not add a new file to a package dir
 
 `tools/third_party_licenses/about.toml` lists the licenses a crate may have. When a dependency arrives under another one, the tool fails and names the crate, and so does the `cross-gem` job. Read the license. If Peddler can ship under it, add it to `accepted`. If not, replace the crate.
 
-The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, 7 today, which points at the file the crate ships and holds a checksum of the text. An eighth, for `encoding_rs`, keeps cargo-about from printing a source file as a license. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
+The notices carry each crate's own license file, with its copyright line. cargo-about doesn't take the file of every crate by itself, and would print the standard text of the license in its place. `about.toml` has a `clarify` entry for each of these crates, seven today, which points at the file the crate ships and holds a checksum of the text. An eighth, for `encoding_rs`, keeps cargo-about from printing a source file as a license. When an update changes such a file, or brings a crate whose file cargo-about doesn't take, the tool fails and names the crate. Find the license files the crate ships under `~/.cargo/registry/src/`, read them, and add or update the entry. The checksum is `shasum -a 256` of the file, or of the part from `start` to `end`.
 
 The notices of the standard library are a document the toolchain ships, `share/doc/rust/COPYRIGHT-library.html`: std, core, alloc and the crates they bundle. The tool copies it in and names the toolchain. A toolchain without it fails the tool.
 
-The Windows binary also links the MinGW-w64 runtime and winpthreads statically, from the MinGW-w64 of the rb-sys-dock image, 7.0.0 today. Their notices are in `tools/third_party_licenses/`, as MinGW-w64 ships them, and the tool adds them to the Windows gem's file; `tools/gem_audit.rb` refuses a Windows gem without them. When the image moves to another MinGW-w64, replace the 2 files with that version's.
+The Windows binary also links the MinGW-w64 runtime and winpthreads statically, from the MinGW-w64 of the rb-sys-dock image, 7.0.0 today. Their notices are in `tools/third_party_licenses/`, as MinGW-w64 ships them, and the tool adds them to the Windows gem's file; `tools/gem_audit.rb` refuses a Windows gem without them. When the image moves to another MinGW-w64, replace the two files with that version's.
 
-The `cross-gem` job writes the notices on the runner, and a container builds the binary with a toolchain of its own. When the 2 differ, the gem task says so in the job's log, and the notices name the runner's toolchain. Read the log on the first run. If they differ, install the container's version on the runner before the notices are written.
+The `cross-gem` job writes the notices on the runner, and a container builds the binary with a toolchain of its own. When the two differ, the gem task says so in the job's log, and the notices name the runner's toolchain. Read the log on the first run. If they differ, install the container's version on the runner before the notices are written.
 
 To move to a newer cargo-about, change `CARGO_ABOUT` in the tool and the version in `packaging.yml` together, and compare the notices before and after.
 
@@ -82,7 +82,7 @@ objdump -T peddler-6.0.0-x86_64-linux-gnu/lib/peddler/4.0/peddler_native.so | gr
 
 ## 4. Push the gems
 
-Push the 9 platform gems first and the source gem last. While only the source gem is out, Bundler gives it to everyone, and they compile Rust.
+Push the nine platform gems first and the source gem last. While only the source gem is out, Bundler gives it to everyone, and they compile Rust.
 
 ```sh
 gem push artifacts/gem-arm64-darwin/peddler-6.0.0-arm64-darwin.gem
@@ -118,4 +118,4 @@ It packages and builds the crate again before it uploads. The first publish need
 - With `gem install peddler -v 6.0.0 --platform ruby`, the source gem compiles and `ruby tools/native_smoke.rb` passes.
 - [docs.rs/peddler](https://docs.rs/peddler) built the crate's documentation.
 - The GitHub Release exists, with the changelog entry, and is a prerelease only if the version is one.
-- The [documentation site](https://lineofflight.github.io/peddler/) was deployed. `build-docs.yml` builds it with `bundle exec rake rdoc`. A tag of 3 numbers deploys it, and so does `main`.
+- The [documentation site](https://lineofflight.github.io/peddler/) was deployed. `build-docs.yml` builds it with `bundle exec rake rdoc`. A tag of three numbers deploys it, and so does `main`.

@@ -55,7 +55,7 @@ A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: member
 - Annotation mistakes fail `steep check` and `# steep:ignore` does not silence them.
 - Use `def self.x`, not `class << self`: Steep reads the latter as instance methods. RuboCop enforces it on these paths.
 - Steep reads no alias: write a one-line `def` with its own `#:` line.
-- `rake rbs:export` aborts, by the file and the line, on what it can't export: `private`, `public` or `protected` with arguments, `private def`, a bare `protected`, `alias`, `alias_method`, `module_function`, `class << self`, 2 definitions of 1 name. A bare `private` and `private_class_method :name` are exported.
+- `rake rbs:export` aborts, by the file and the line, on what it can't export: `private`, `public` or `protected` with arguments, `private def`, a bare `protected`, `alias`, `alias_method`, `module_function`, `class << self`, two definitions of one name. A bare `private` and `private_class_method :name` are exported.
 - Never run `steep check` on one file: it reports false unknown constants and skips the duplicate-declaration check. Check the whole project.
 - `steep check --steepfile=Steepfile.shipped` checks `lib` against the signatures an application gets.
 
@@ -64,7 +64,7 @@ A `.rbs` file under `sig/peddler/` holds only what inline RBS cannot say: member
 Comments are Markdown, and RDoc builds the site from them with the signatures. No YARD tags.
 
 - An example is a line "Example:", a blank comment line and a block indented by 4 spaces.
-- An error is a sentence: "Raises Peddler::Error if ...". Several, 1 to a line, become a list on the site.
+- An error is a sentence: "Raises Peddler::Error if ...". Several, one to a line, become a list on the site.
 - A class or a method is named as it is, and RDoc links it: `Peddler::Client#request`, `#sandbox`, `Client.new`. Don't start a line with `#name`: it breaks the paragraph.
 - A link is `[text](url)`, or the URL alone in a paragraph of its own.
 - HTML is no markup on the site: a tag shows as the text it is, in a comment and in a document. RDoc formats only its own `<b>`, `<em>`, `<i>`, `<tt>`, `<code>`, `<s>` and `<br>` in a sentence. An image is `![text](url)`.

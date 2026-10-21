@@ -53,11 +53,11 @@ client = Peddler::Client.new(
 )
 ```
 
-In a single process, `lwa.token_source(refresh_token: seller.refresh_token)` is a ready-made callable that keeps 1 token in memory. It is not shared between processes.
+In a single process, `lwa.token_source(refresh_token: seller.refresh_token)` is a ready-made callable that keeps one token in memory. It is not shared between processes.
 
 Create clients when you need them, in the job or the request. Creating one is cheap, and a client or a `Peddler::LWA` created before `fork` raises `Peddler::ForkError` in the child.
 
-For PII (buyer name, shipping address, tax info in Orders), request an RDT and batch multiple resource paths in 1 call rather than requesting an RDT per order.
+For PII (buyer name, shipping address, tax info in Orders), request an RDT and batch multiple resource paths in one call rather than requesting an RDT per order.
 
 ```ruby
 rdt = client.tokens.create_restricted_data_token({
@@ -160,7 +160,7 @@ end
 
 `each_tsv` yields each row as an Array of UTF-8 Strings, the column names first. `each_jsonl` yields each parsed line of a Data Kiosk document. For a small document, `client.reports.download_report_document(id).to_s` returns it whole.
 
-A wait that runs past its `timeout:` raises `Peddler::WorkflowTimeoutError`: reschedule the job and wait again. A download that runs past its own raises `Peddler::DocumentTimeoutError`. A single request that takes too long, such as 1 poll or looking a document up, raises `Peddler::TimeoutError`.
+A wait that runs past its `timeout:` raises `Peddler::WorkflowTimeoutError`: reschedule the job and wait again. A download that runs past its own raises `Peddler::DocumentTimeoutError`. A single request that takes too long, such as one poll or looking a document up, raises `Peddler::TimeoutError`.
 
 To submit a feed, upload its content with `client.feeds.create_and_upload_feed_document(io, content_type:)`, pass the returned ID to `client.feeds.create_feed` as `inputFeedDocumentId`, then `client.feeds.wait_for_feed(feed_id)`. Read the result with `client.feeds.open_feed_document(feed.result_feed_document_id)`, where `feed` is what the wait returned, parsed. A String, and a source that answers `size`, such as a File or a StringIO, are sent with their length. For another source, pass `content_length:`.
 
@@ -179,7 +179,7 @@ stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/#{o
 
 A stub answers operations, `client.request`, `Peddler::LWA` token requests and signed URLs. Its response is retried, paginated, parsed and raised on as Amazon's is: a status outside 2xx raises `Peddler::Error`, and `to_timeout` raises `Peddler::TimeoutError`, or `Peddler::DocumentTimeoutError` for a signed URL. With `retries:` set, a stubbed `429` waits by the operation's rate, so give the stub a `Retry-After: 0` header. VCR works once it hooks into WebMock.
 
-`require "peddler/webmock"` loads the adapter early, which only 2 cases need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call: after `WebMock.enable!(except: [:net_http])` the request is otherwise sent. The other is a call from another Ractor, below.
+`require "peddler/webmock"` loads the adapter early, which only two cases need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call: after `WebMock.enable!(except: [:net_http])` the request is otherwise sent. The other is a call from another Ractor, below.
 
 WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20: `UPGRADING.md` in the gem, under Tests, has the setting that shows them all.
 
@@ -194,7 +194,7 @@ Peddler works in a Ractor other than the main one, by these rules:
 - WebMock is for the main Ractor only: a call from another Ractor raises `Ractor::IsolationError` while WebMock is enabled, and while it is loaded and Peddler's adapter is not. `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run.
 
-Ractors pay off from Ruby 4.0, where 4 of them parse 2 to 3 times what 1 does. On Ruby 3.3 and 3.4 they parse less than 1 does alone.
+Ractors pay off from Ruby 4.0, where four of them parse two to three times what one does. On Ruby 3.3 and 3.4 they parse less than one does alone.
 
 ## Best practices checklist
 

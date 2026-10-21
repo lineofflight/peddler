@@ -4,13 +4,13 @@
 
 It is a development tool. It is not published, and neither the gem nor the crate ships it: both build from the generated code that is committed.
 
-Peddler has 2 generators. This one writes Rust, and the Ruby method of each operation with its documentation and its types. The [Ruby generator](../../lib/generator/README.md) writes the typed Ruby models.
+Peddler has two generators. This one writes Rust, and the Ruby method of each operation with its documentation and its types. The [Ruby generator](../../lib/generator/README.md) writes the typed Ruby models.
 
 ## What it reads
 
 - `selling-partner-api-models/`, a checkout of [Amazon's models][models] at the revision in `selling-partner-api-models.sha`. It reads the 70 API models under `models/` that `src/manifest.rs` lists, and the 55 report, feed, notification and Data Kiosk schemas under `schemas/` that `supplemental-sources.json` lists.
 - `pagination.json`, which says which operations return pages and how to ask for the next one.
-- `lib/generator/patches/`, 4 JSON patches that repair notification schemas. The Ruby generator applies the same ones.
+- `lib/generator/patches/`, four JSON patches that repair notification schemas. The Ruby generator applies the same ones.
 
 ## What it writes
 
@@ -77,7 +77,7 @@ The Rust items carry the spec's text as their docs. A function and an API's modu
 
 Every generated doc, a model's too, is written as `///` lines. In it, Amazon's `doc:` links are full URLs, as in Ruby, and a code block is marked `text`, so that `cargo test` doesn't run it as a doctest.
 
-A generated function builds its request itself. It escapes each path parameter as 1 segment. It joins an array into 1 comma-separated query parameter, or repeats the parameter where the model says `collectionFormat: multi`. It serializes the body as JSON.
+A generated function builds its request itself. It escapes each path parameter as one segment. It joins an array into one comma-separated query parameter, or repeats the parameter where the model says `collectionFormat: multi`. It serializes the body as JSON.
 
 It doesn't check a value against the model's constraints, such as a pattern or a maximum: Amazon does. It keeps the defaults the model declares.
 
@@ -85,11 +85,11 @@ The rate is the requests per second in the usage plan table of an operation's de
 
 A description that mentions a usage plan or a burst without such a table fails generation, and so does a rate that is not a positive number. So a change in how Amazon writes the table can't go unnoticed, and neither a rate in another unit nor the burst is taken for the rate.
 
-An operation with 1 successful response returns `TypedResponse<T>`. One with several returns a type with a decoder for each status, such as `json_200` and `json_202`. One without a model returns the raw `Response`.
+An operation with one successful response returns `TypedResponse<T>`. One with several returns a type with a decoder for each status, such as `json_200` and `json_202`. One without a model returns the raw `Response`.
 
 A Ruby method takes the required parameters in order and the optional ones as keywords, under the names Peddler 5 used. A keyword of Rust is such a name too: a parameter `type` is `type:` in Ruby and `type_` in Rust. A method or a parameter named after a keyword of Ruby is refused, and so is a method named `initialize`. It passes each argument through `Peddler::Native::Arguments`, which takes the forms Peddler 5 took and names the argument in what it raises.
 
-Each Ruby method and API class has the comment Peddler 5 gave it: the model's description and a note where the operation can run in the sandbox. Under it are the method's types as inline RBS: a `# @rbs` line for each parameter, with the model's description of it and the values its enum lists, and 1 for what it returns. A `*_pages` method and an API's method on the client have 1 line of text and their whole type in a `#:` line. The latest version of an API is a method of its own, since Steep reads no alias.
+Each Ruby method and API class has the comment Peddler 5 gave it: the model's description and a note where the operation can run in the sandbox. Under it are the method's types as inline RBS: a `# @rbs` line for each parameter, with the model's description of it and the values its enum lists, and one for what it returns. A `*_pages` method and an API's method on the client have one line of text and their whole type in a `#:` line. The latest version of an API is a method of its own, since Steep reads no alias.
 
 A model's text is data. A line break in it can't end a comment and start code: none gets through the function that writes the comment lines. A line of it that starts with `@rbs` can't pass for an annotation: it is written after a backtick.
 

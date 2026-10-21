@@ -128,7 +128,7 @@ let report_id = response.json()?.report_id;
 
 Parameters are sent as given. The crate doesn't check them against Amazon's schemas: Amazon does, and answers 400. With `Error::InvalidRequest`, it refuses what it can't send as the request you mean: `.` or `..` as a path parameter, an empty parameter at the end of a path, and a header value that HTTP doesn't allow.
 
-An operation with more than 1 successful response has a decoder for each status, such as `json_200` and `json_202` on Fulfillment Outbound's `create_order`. An operation whose response Amazon doesn't model returns the `Response` itself.
+An operation with more than one successful response has a decoder for each status, such as `json_200` and `json_202` on Fulfillment Outbound's `create_order`. An operation whose response Amazon doesn't model returns the `Response` itself.
 
 For a call the crate has no function for, send a `Request` with `client.execute`.
 
@@ -147,7 +147,7 @@ println!("{}", response.status);
 
 ## Tokens and LWA
 
-`LwaClient` requests tokens from Login with Amazon. Each call makes 1 request and keeps nothing.
+`LwaClient` requests tokens from Login with Amazon. Each call makes one request and keeps nothing.
 
 ```rust
 use peddler::auth::LwaClient;
@@ -180,7 +180,7 @@ let source = TokenSource::new(|| async {
 let client = Client::with_config(ClientConfig::new("https://sellingpartnerapi-eu.amazon.com", source))?;
 ```
 
-In a single process, `LwaClient` has a source ready. It keeps 1 access token in memory, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many tasks ask.
+In a single process, `LwaClient` has a source ready. It keeps one access token in memory, requests the next one 60 seconds before the old one expires and makes one request at a time, however many tasks ask.
 
 ```rust
 use peddler::{Client, ClientConfig};
@@ -211,7 +211,7 @@ let address = orders_v0::get_order_address(&restricted, params).await?;
 
 ## Retries and timeouts
 
-A client makes 1 attempt and allows it 30 seconds, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
+A client makes one attempt and allows it 30 seconds, unless `ClientConfig` says otherwise. A timeout of zero, or one too long to set a deadline by, is refused with `Error::InvalidRequest` when the client is built.
 
 `RetryPolicy { max_retries }` is all there is to configure: how often a call is retried, 10 times at most. What is retried and how long each wait is are fixed. The waits are those of Peddler 5 for Ruby.
 
@@ -263,7 +263,7 @@ while let Some(page) = pages.next().await {
 }
 ```
 
-The stream requests a page when it is polled, 1 at a time, and nothing when it is dropped. `pages.take(3)` stops after 3 pages. Each page is a raw `Response` and goes through the client like any call, so the token, the retries and the timeout apply to each.
+The stream requests a page when it is polled, one at a time, and nothing when it is dropped. `pages.take(3)` stops after three pages. Each page is a raw `Response` and goes through the client like any call, so the token, the retries and the timeout apply to each.
 
 The stream ends when a page carries no token for the next one. A page with an HTTP error status is yielded and ends it. A page that returns the token it was requested with, or a token that is not a string, is yielded and followed by a `PaginationError`.
 
@@ -298,7 +298,7 @@ while let Some(row) = rows.next().await {
 }
 ```
 
-A `Download` reads in 1 of these ways, each as it arrives:
+A `Download` reads in one of these ways, each as it arrives:
 
 | Method | Yields |
 | --- | --- |
@@ -331,7 +331,7 @@ A transfer is never retried and never follows a redirect. A signed URL that answ
 
 ## Workflows
 
-`client.workflows()` ties the Reports, Feeds and Data Kiosk operations to the transfers. It looks a document up by its ID with the client's token, then transfers it. 1 deadline covers both.
+`client.workflows()` ties the Reports, Feeds and Data Kiosk operations to the transfers. It looks a document up by its ID with the client's token, then transfers it. One deadline covers both.
 
 ```rust
 use futures_util::StreamExt;
@@ -350,7 +350,7 @@ if let Some(document_id) = report.report_document_id {
 }
 ```
 
-`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: 1 poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait.
+`wait_for_report`, `wait_for_feed` and `wait_for_query` poll every `interval` (5 seconds) until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check its processing status. They give up after `timeout` (300 seconds) with `WorkflowError::Timeout`. Nothing else is that error: one poll that takes longer than the client's timeout is `WorkflowError::Request(Error::Timeout)`. A poll is retried as the client's policy says, and a wait before a retry ends with the `timeout` of the whole wait.
 
 `download_report_document`, `download_feed_document` and `download_query_document` take a document ID and return a `Download`. They decompress a document whose metadata says `GZIP`. The timeout of `TransferOptions` covers the lookup, with its retries and the waits before them, and the transfer. A lookup that runs past it, or past the client's timeout, is `WorkflowError::Request(Error::Timeout)`. A transfer that does is `WorkflowError::Document(documents::Error::Timeout)`, or `documents::Error::Timeout` from the stream once the download has started.
 
@@ -379,7 +379,7 @@ A workflow never retries a transfer. It creates a feed document as the client se
 
 ## Typed models
 
-The responses of the operations are in each API module's `models`. 4 more families cover the payloads Amazon sends outside the operations: `peddler::notifications`, `peddler::reports`, `peddler::feeds` and `peddler::data_kiosk`. All of them derive `serde::Deserialize`.
+The responses of the operations are in each API module's `models`. Four more families cover the payloads Amazon sends outside the operations: `peddler::notifications`, `peddler::reports`, `peddler::feeds` and `peddler::data_kiosk`. All of them derive `serde::Deserialize`.
 
 ```rust
 use peddler::notifications::order_change::Notification;

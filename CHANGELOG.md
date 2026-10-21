@@ -14,10 +14,10 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Add `Client#with_access_token`, a view of a client that sends another token over the same connections, for another seller or a restricted data token
 - Add `Peddler::LWA#refresh`, `#client_credentials` and `#exchange_authorization_code`, which return `Peddler::LWA::Tokens`. Tokens with the same values are equal, as they were as `LWAToken`
 - Add `timeout:` and `lwa_endpoint:` to `Peddler::LWA.new`: the seconds each of its requests may take, 30 by default, and the token endpoint, for a proxy or a test
-- Add `Peddler::LWA#token_source`, an optional token source for 1 process: it keeps 1 access token, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask
+- Add `Peddler::LWA#token_source`, an optional token source for one process: it keeps one access token, requests the next one 60 seconds before the old one expires and makes one request at a time, however many threads ask
 - Add a `*_pages` method next to each of 79 paginated operations. It takes the operation's arguments and returns a lazy `Enumerator` of responses that requests a page only when asked
 - Add `wait_for_report`, `wait_for_feed` and `wait_for_query`, which poll until a job is `DONE`, `CANCELLED` or `FATAL`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`, beside 5.x's document helpers
-- Add streaming downloads: `open_report_document`, `open_feed_document` and `open_query_document` on the same 3 APIs, and `Client#download_document` for a signed URL, yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
+- Add streaming downloads: `open_report_document`, `open_feed_document` and `open_query_document` on the same three APIs, and `Client#download_document` for a signed URL, yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
 - Add `create_and_upload_feed_document` on `client.feeds`, and `Client#upload_document` for a signed URL, which upload a String or an IO. A String, and a source that answers `size`, such as a File or a StringIO, are sent with `Content-Length`, as `upload_feed_document` sends them, and `content_length:` declares the length of another source
 - Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`. A `Peddler::AuthenticationError` matches in the same way
 - Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: ids })`. A parameter value takes what an operation's argument takes, a `Peddler::Marketplace` and an Array among them
@@ -36,7 +36,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 
 ### Changed
 
-- Send requests through the native extension in place of the `http` gem. All clients in a process share 1 connection pool. After `fork`, create clients and a `Peddler::LWA` in the child: one created before the fork raises `Peddler::ForkError` there
+- Send requests through the native extension in place of the `http` gem. All clients in a process share one connection pool. After `fork`, create clients and a `Peddler::LWA` in the child: one created before the fork raises `Peddler::ForkError` there
 - Load the client, responses, errors, `Peddler::LWA`, marketplaces and `Peddler::Money` with `require "peddler"`. 5.x loaded them on first use, as the typed models still are
 - Reach WebMock and VCR through an adapter that Peddler loads by itself. Requests no longer pass Ruby's HTTP libraries, and both see them all the same; see [tests](UPGRADING.md#6-tests)
 - Send requests through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host. 5.x ignored them

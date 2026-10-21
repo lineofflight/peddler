@@ -2,7 +2,7 @@
 
 This generator writes Peddler's typed Ruby models from Amazon's specs: the response types of every API, and the types of notifications, reports, feeds and Data Kiosk schemas.
 
-Peddler has 2 generators. The Rust one, [`peddler-codegen`](../../crates/peddler-codegen/README.md), writes the Rust core and the Ruby method of each operation. This one writes what `response.parse` returns.
+Peddler has two generators. The Rust one, [`peddler-codegen`](../../crates/peddler-codegen/README.md), writes the Rust core and the Ruby method of each operation. This one writes what `response.parse` returns.
 
 Entry point: `lib/generator.rb`
 
@@ -41,7 +41,7 @@ bundle exec rake generate:update
 
 `rake generate` runs the Rust generator first, because this one reads its inventory. It needs a Rust toolchain. It ends with `rake rbs:export`, which writes `sig/inline` from the Ruby that carries inline RBS, and `generate:verify` fails if that changes too.
 
-To run 1 part of this generator, at the pinned revision and without Rust:
+To run one part of this generator, at the pinned revision and without Rust:
 
 ```sh
 bundle exec rake generate:apis
@@ -139,7 +139,7 @@ What this generator does that a general one won't:
 
 - **Parallel generation**: the orchestrators process their specs with `Parallel.each`.
 - **Type resolution**: `TypeResolver` maps OpenAPI and JSON Schema types to Ruby types.
-- **Circular dependencies**: `CircularDependencyDetector` finds them, and the type builder names 1 class of each cycle lazily, as a String.
+- **Circular dependencies**: `CircularDependencyDetector` finds them, and the type builder names one class of each cycle lazily, as a String.
 - **Introspection**: `IntrospectionLoader` loads the generated classes, so that the `structure` gem can describe them for RBS.
 
 [models]: https://github.com/amzn/selling-partner-api-models

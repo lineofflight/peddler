@@ -139,7 +139,7 @@ The client calls it before every attempt of a call, on the thread that makes the
 
 The time it takes counts against `timeout:`. The timeout can't cut a source short, so one slower than it is waited for, and the attempt has then timed out.
 
-In a single process, `token_source` does the same without a cache of your own. It keeps 1 access token in memory, requests the next one 60 seconds before the old one expires and makes 1 request at a time, however many threads ask.
+In a single process, `token_source` does the same without a cache of your own. It keeps one access token in memory, requests the next one 60 seconds before the old one expires and makes one request at a time, however many threads ask.
 
 ```ruby
 source = lwa.token_source(refresh_token: seller.refresh_token)
@@ -173,7 +173,7 @@ lwa = Peddler::LWA.new(
 
 `Peddler::LWA.new` also takes `timeout:`, the number of seconds each of its requests may take, 30 by default.
 
-`Peddler::LWA` makes 1 request per call and keeps nothing. The tokens it returns have `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
+`Peddler::LWA` makes one request per call and keeps nothing. The tokens it returns have `access_token`, `refresh_token`, `token_type`, `expires_in` and `scope`.
 
 If Amazon rejects a request, it raises `Peddler::AuthenticationError` with the HTTP `status` and Amazon's `code`, such as `"invalid_grant"`. A blank argument raises `ArgumentError` before anything is sent, such as `refresh_token must be a UTF-8 String that is not blank`.
 
@@ -225,7 +225,7 @@ orders = response.dig("payload", "Orders")
 
 A parameter value takes what an operation's argument takes: a String, a number, a boolean, a `Peddler::Marketplace`, or an Array of them, which is joined with commas. A method or a path that is not a String raises `ArgumentError`, such as `path must be a String`.
 
-The client takes 2 options. `timeout:` is the number of seconds each attempt of a call may take, 30 by default. Without `retries:` a call is 1 attempt. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
+The client takes two options. `timeout:` is the number of seconds each attempt of a call may take, 30 by default. Without `retries:` a call is one attempt. `retries:` is described under [Rate limiting](#rate-limiting). An option that breaks its rule raises `ArgumentError` that names it, such as `retries must be an Integer between 0 and 10`.
 
 A call ends early only when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. Peddler then cancels the request and closes its connection, or ends the wait before a retry. A signal your program traps and `Thread#wakeup` raise nothing, so the call goes on and a wait is no shorter.
 
@@ -238,7 +238,7 @@ other = client.with_access_token(other_seller.access_token)
 other.sellers.get_marketplace_participations
 ```
 
-All clients and views in a process share 1 connection pool, so creating a client for each job or request is cheap.
+All clients and views in a process share one connection pool, so creating a client for each job or request is cheap.
 
 After `fork`, create your clients in the child process. A client, a `Peddler::LWA` or a token source created before the fork raises `Peddler::ForkError` in the child, and the message says which to create again. With a preloading server such as Puma or Unicorn, create clients when you need them, not at boot.
 
@@ -315,7 +315,7 @@ After a 5xx, a failed connection or a timeout, Peddler waits up to 1 second, the
 
 If the response has a `Retry-After` header, Peddler waits as long as it asks instead.
 
-No wait has a ceiling. An operation limited to 1 request a minute waits 512 minutes before its tenth retry. The slowest, `search_orders` of Orders 2026-01-01, waits 179, 357 and 714 seconds before its first 3.
+No wait has a ceiling. An operation limited to 1 request a minute waits 512 minutes before its tenth retry. The slowest, `search_orders` of Orders 2026-01-01, waits 179, 357 and 714 seconds before its first three.
 
 `timeout:` limits each attempt. The waits between attempts are not counted, so a call can take far longer than `timeout:`: 7 minutes for 3 retries at 1 request a minute, and 17 hours for 10. Choose `retries:` by how long a call may take, or wrap the call in `Timeout.timeout`, which ends a wait too.
 
@@ -392,7 +392,7 @@ rescue Peddler::Error => e
 end
 ```
 
-There is 1 error class for every HTTP error. Tell them apart by `code`, such as `"QuotaExceeded"`, `"InvalidInput"` or `"Unauthorized"`.
+There is one error class for every HTTP error. Tell them apart by `code`, such as `"QuotaExceeded"`, `"InvalidInput"` or `"Unauthorized"`.
 
 A failure that is not an HTTP error response from the API has a class of its own. None of these descends from `Peddler::Error`.
 
@@ -458,11 +458,11 @@ With `retries:` set, a stubbed 429 waits as a real one does: a minute for `get_o
 
 A request without a stub raises `WebMock::NetConnectNotAllowedError` when connections are disabled. The message is WebMock's and shows the request with its headers, the access token among them.
 
-A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole. An upload is held in memory several times over, about 8 times its size at the peak.
+A document is not streamed while WebMock is enabled. An upload is read to its end before it is sent, and a download arrives whole. An upload is held in memory several times over, about eight times its size at the peak.
 
 WebMock keeps only the last value of a repeated parameter, so a stub and a cassette see only the last SKU of `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20. [Tests](UPGRADING.md#6-tests) in the upgrade guide has the setting that shows them all.
 
-`require "peddler/webmock"` loads the adapter early, which only 2 kinds of program need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent. The other is a call from another Ractor, under [Ractors](#ractors).
+`require "peddler/webmock"` loads the adapter early, which only two kinds of program need. A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request puts the line before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent. The other is a call from another Ractor, under [Ractors](#ractors).
 
 VCR records and replays Peddler's requests once it hooks into WebMock.
 
@@ -484,7 +484,7 @@ A test can also run against a server it starts. Point the client at it with `bas
 
 ## Pagination
 
-An operation that returns its results in pages has a twin that ends in `_pages`. It takes the same arguments and returns a lazy `Enumerator` of responses, 1 per page.
+An operation that returns its results in pages has a twin that ends in `_pages`. It takes the same arguments and returns a lazy `Enumerator` of responses, one per page.
 
 ```ruby
 pages = client.orders_v0.get_orders_pages(Peddler::Marketplace.ids("UK"), created_after: "2026-01-01T00:00:00Z")
@@ -493,7 +493,7 @@ pages.each do |page|
 end
 ```
 
-It requests a page only when you ask for it. `pages.first(2)` makes 2 requests, and breaking out of `each` makes no more.
+It requests a page only when you ask for it. `pages.first(2)` makes two requests, and breaking out of `each` makes no more.
 
 79 operations have a `_pages` twin. The enumerator ends when a page carries no token for the next one. To continue from a token you saved, pass it as you would to the operation, for example `next_token:`.
 
@@ -525,7 +525,7 @@ end
 
 `wait_for_report`, `wait_for_feed` and `wait_for_query` poll until the job is `DONE`, `CANCELLED` or `FATAL`, and return that response, so check `processing_status`. They take `interval:` (5 seconds) and `timeout:` (300 seconds), and raise `Peddler::WorkflowTimeoutError` when time runs out. A single poll that takes longer than the client's `timeout:` raises `Peddler::TimeoutError`, as any request does. A poll is retried as the client's `retries:` says, and a wait before a retry ends when the time of the whole wait runs out.
 
-4 helpers return a whole document in a response. They allow 600 seconds for a call.
+Four helpers return a whole document in a response. They allow 600 seconds for a call.
 
 | Helper | Takes |
 | --- | --- |
@@ -548,7 +548,7 @@ client.reports.open_report_document(report.report_document_id) do |document|
 end
 ```
 
-A document reads in 1 of 4 ways:
+A document reads in one of four ways:
 
 - `each_tsv` yields each row of a tab-separated report as an Array of Strings. The first row holds the column names.
 - `each_jsonl` yields each line of a JSON Lines document, such as a Data Kiosk result, parsed.
@@ -557,7 +557,7 @@ A document reads in 1 of 4 ways:
 
 Without a block, the `each_` methods return an Enumerator. Numbers with a fraction parse as `BigDecimal`. `document.headers` reads the headers of the download as `response.headers` does.
 
-`open_report_document`, `open_feed_document`, `open_query_document` and `download_document` take 3 options.
+`open_report_document`, `open_feed_document`, `open_query_document` and `download_document` take three options.
 
 | Option | Limits | Default |
 | --- | --- | --- |
@@ -639,7 +639,7 @@ end
 participations = ractor.value # ractor.take before Ruby 4.0
 ```
 
-- Build the client in the Ractor that uses it. A client, a `Peddler::LWA` and a `Peddler::Document` can't be copied, moved or made shareable. Building one is cheap: clients in every Ractor share the 1 connection pool.
+- Build the client in the Ractor that uses it. A client, a `Peddler::LWA` and a `Peddler::Document` can't be copied, moved or made shareable. Building one is cheap: clients in every Ractor share the one connection pool.
 - A callable token source belongs to the Ractor that made it, and is asked there before every attempt. So does `lwa.token_source`: each Ractor that builds one refreshes for itself. To share a token, pass each Ractor a String, or a source that reads a store outside the process.
 - A response crosses to another Ractor as a copy, or made shareable with `Ractor.make_shareable`. A shareable response is frozen and parses its body on every `to_h`. Don't move one on Ruby 3.3 or 3.4: it arrives empty on 3.3, and with a corrupted body on 3.4.
 - An error raised in a Ractor reaches whoever takes its value as the `cause` of a `Ractor::RemoteError`, with its `status`, `code`, `request_id` and `response`.
@@ -647,7 +647,7 @@ participations = ractor.value # ractor.take before Ruby 4.0
 - WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing. So does one made while WebMock is loaded and Peddler's adapter is not: `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs most such children and crashes some, with or without Peddler.
 
-How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, 4 Ractors together parse less than 1 does alone: about half as many typed responses. On Ruby 4.0 they parse 2 to 3 times as many.
+How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, four Ractors together parse less than one does alone: about half as many typed responses. On Ruby 4.0 they parse two to three times as many.
 
 ## Available APIs
 
@@ -745,7 +745,7 @@ feed = feeds.create_feed({
 
 ### Data Kiosk API
 
-The Data Kiosk API provides access to Amazon's analytical data through GraphQL queries. Peddler supports 4 Data Kiosk schemas, each with type-safe classes for parsing responses.
+The Data Kiosk API provides access to Amazon's analytical data through GraphQL queries. Peddler supports four Data Kiosk schemas, each with type-safe classes for parsing responses.
 
 **Available Schemas:**
 

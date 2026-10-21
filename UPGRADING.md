@@ -26,7 +26,7 @@ response = client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-
 
 `client.orders` is the latest version of an API, as `Peddler.orders` was, and `client.orders_v0` a pinned one. `Peddler.new` is short for `Peddler::Client.new`.
 
-1 of them moved since 5.5.0. `fulfillment_outbound` is now Fulfillment Outbound 2026-07-04, which has `create_order` where 2020-07-01 had `create_fulfillment_order`. To stay on the older version, call `client.fulfillment_outbound_2020_07_01`.
+One of them moved since 5.5.0. `fulfillment_outbound` is now Fulfillment Outbound 2026-07-04, which has `create_order` where 2020-07-01 had `create_fulfillment_order`. To stay on the older version, call `client.fulfillment_outbound_2020_07_01`.
 
 `Peddler.<api>` and `Peddler::APIs::OrdersV0.new` are gone. `Peddler::APIs::OrdersV0` is now a module that holds the typed models, so `Peddler::APIs::OrdersV0::Order` still works.
 
@@ -247,7 +247,7 @@ client.orders_v0.get_orders(marketplace_ids, created_after: "2026-01-01T00:00:00
 
 `retries:` waits as it did. After a 429 it waits 1 / rate seconds, doubling each time: 2, 4 and 8 seconds for an operation limited to 0.5 requests a second, and 60, 120 and 240 for one limited to 1 a minute. After a 5xx or a failed connection it waits up to 1 second, then 1 to 2, then 3 to 4. If the response has a `Retry-After` header, it waits as long as that asks instead. No wait has a ceiling.
 
-It differs in 2 ways.
+It differs in two ways.
 
 - After a 500, 502, 503 or 504, a failed connection or a timeout, v6 retries a GET only. v5 retried every method, which could submit a feed or an order twice. After a 429 both retry every method, since a throttled request was not processed.
 - `timeout:` limits each attempt, and v5 had no limit by default. The waits between attempts are not counted, so a throttled call takes as long as it did in v5.
@@ -276,7 +276,7 @@ stub_request(:get, "https://sellingpartnerapi-eu.amazon.com/orders/v0/orders/123
 client = Peddler::Client.new(region: "eu-west-1", access_token: "token")
 ```
 
-A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request adds 1 line, `require "peddler/webmock"`, before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent to Amazon.
+A suite that passes `except:` to `WebMock.enable!` or `WebMock.disable!` before Peddler's first request adds one line, `require "peddler/webmock"`, before that call. An adapter that loads later can't see the call: after `WebMock.enable!(except: [:net_http])` the request is sent to Amazon.
 
 A stubbed response is handled as one from Amazon is, so the changes above show in a test too.
 
@@ -285,7 +285,7 @@ A stubbed response is handled as one from Amazon is, so the changes above show i
 - A request without a stub raises `WebMock::NetConnectNotAllowedError`, as before. Its message shows the request with its headers, the access token among them.
 - A document is not streamed while WebMock is enabled: an upload is read to its end before it is sent, and a download arrives whole.
 
-Cassettes recorded with v5 replay, the token request in them too. 2 operations need more: `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20 now repeat `mskus`, where the cassette holds 1 value with commas. WebMock keeps only the last value of a repeated parameter unless it is told otherwise. Match a URI by its values, and tell WebMock to keep them all.
+Cassettes recorded with v5 replay, the token request in them too. Two operations need more: `list_prep_details` and `list_item_compliance_details` of Fulfillment Inbound 2024-03-20 now repeat `mskus`, where the cassette holds one value with commas. WebMock keeps only the last value of a repeated parameter unless it is told otherwise. Match a URI by its values, and tell WebMock to keep them all.
 
 ```ruby
 VCR.configure do |config|
@@ -326,7 +326,7 @@ A test that needs no HTTP can stub the method it calls and return a `Peddler::Re
 - `parse`, `to_h` and `dig` on a response, and the typed models under `Peddler::APIs`.
 - `status.success?`, `code`, `headers["Name"]`, `headers.include?("Name")`, `charset` and `to_s` on a response. A response is still its text where a String is taken, as in `JSON.parse(response)`.
 - Raising `Peddler::Error` on 4xx and 5xx, with `message` and `response`.
-- The 4 document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. `upload_feed_document` still sends the length of a String, and of a source that answers `size`, such as a File or a StringIO. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
+- The four document helpers, with their arguments: `download_report_document`, `upload_feed_document`, `download_result_feed_document` and `download_query_document`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`. `upload_feed_document` still sends the length of a String, and of a source that answers `size`, such as a File or a StringIO. An ID of `"."` or `".."`, or an empty one, raises `ArgumentError` that names the argument, before any request.
 - `Peddler::Marketplace`, `Peddler::Endpoint` and `Peddler::Money`.
 - The typed parsers under `Peddler::Notifications`, `Peddler::Reports`, `Peddler::Feeds` and `Peddler::DataKiosk`.
 
@@ -409,7 +409,7 @@ These need no change to existing code. The [Ruby guide](RUBY.md) describes each.
 
 - `*_pages` methods that enumerate the pages of an operation
 - `wait_for_report`, `wait_for_feed` and `wait_for_query`, on `client.reports`, `client.feeds` and `client.data_kiosk`, beside v5's helpers
-- Streaming downloads with `open_report_document`, `open_feed_document` and `open_query_document` on the same 3, and `client.download_document` for a signed URL, read as TSV, JSON Lines, JSON or bytes
+- Streaming downloads with `open_report_document`, `open_feed_document` and `open_query_document` on the same three, and `client.download_document` for a signed URL, read as TSV, JSON Lines, JSON or bytes
 - `client.feeds.create_and_upload_feed_document`, and `client.upload_document` for a signed URL
 - `lwa.token_source`, a token source that refreshes in the process
 - `base_url:` in place of `region:`, to point a client at a local mock or a proxy
