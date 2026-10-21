@@ -1,0 +1,28 @@
+/*
+ * Lucide's moon and sun on the theme toggle of RDoc's Aliki theme, in place of its emoji. The icon is a mask over
+ * the colour of the button, and so takes its hover state too.
+ *
+ * The rules match the class the theme gives the icon. Were a release of RDoc to rename it, they would match nothing
+ * and the emoji would show again: the rdoc task of rakelib/docs.rake aborts then. The sun shows where the theme's
+ * script sets data-theme="dark" on html.
+ *
+ * moon.svg and sun.svg of lucide-static 1.61.0, without class, width and height:
+ * https://unpkg.com/lucide-static@1.61.0/icons/
+ *
+ * @license lucide-static v1.61.0 - ISC
+ * Copyright (c) 2026 Lucide Icons and Contributors
+ * The moon derives from Feather: MIT, Copyright (c) 2013-present Cole Bemis
+ * https://unpkg.com/lucide-static@1.61.0/LICENSE
+ */
+
+.theme-toggle-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+[data-theme="dark"] .theme-toggle-icon {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E");
+}

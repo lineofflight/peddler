@@ -16,6 +16,7 @@ RDoc::Task.new do |rdoc|
   rdoc.main = "RUBY.md"
   rdoc.markup = "markdown"
   rdoc.options << "--autolink-excluded-words=#{PLAIN_WORDS.join(",")}"
+  rdoc.options << "--template-stylesheets=tools/rdoc_theme.css"
   rdoc.rdoc_files.include("RUBY.md", "UPGRADING.md", "CHANGELOG.md", "lib/peddler.rb", "lib/peddler/**/*.rb")
   rdoc.before_running_rdoc { RDocRBS.verify! }
 end
@@ -65,4 +66,11 @@ Rake::Task[:rdoc].enhance do
   next if raw.empty?
 
   abort("#{raw.size} pages of the site show a raw @rbs line, #{raw.first} among them: see tools/rdoc_rbs.rb.")
+end
+
+# tools/rdoc_theme.css draws the icon of the theme toggle, on the class the theme gives it.
+Rake::Task[:rdoc].enhance do
+  next if File.read("doc/index.html").match?(/rdoc_theme\.css.+class="theme-toggle-icon"/m)
+
+  abort("doc/index.html shows the emoji of the theme toggle: see tools/rdoc_theme.css.")
 end
