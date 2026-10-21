@@ -15,11 +15,11 @@ module Peddler
       # A String, or what v5 sent as one: see `text`
       def self.string: (String name, untyped value, ?required: bool) -> String?
 
-      # An argument that is 1 segment of the path. What the core refuses is refused here by name: `.` and `..`
+      # An argument that is one segment of the path. What the core refuses is refused here by name: `.` and `..`
       # would address another resource, and so would nothing at the end of a path, which is the collection above.
       def self.segment: (String name, untyped value, ?last: bool) -> String
 
-      # A String is a list of 1, which is how v5 sent it
+      # A String is a list of one, which is how v5 sent it
       def self.array: (String name, untyped value, ?required: bool) -> Array[String]?
 
       def self.integer: (String name, untyped value, ?required: bool) -> Integer?

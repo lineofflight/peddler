@@ -11,7 +11,7 @@ module WebMock
     # does, and an application requires nothing: Peddler loads it before the first request it makes with WebMock
     # loaded. Every exchange of a call that begins while WebMock is enabled goes through it: the operations and
     # Peddler::Client#request, the grants of Peddler::LWA, and the downloads and uploads of signed URLs. A call that
-    # is under way when WebMock is enabled, a wait between 2 polls say, finishes without it. `stub_request`,
+    # is under way when WebMock is enabled, a wait between two polls say, finishes without it. `stub_request`,
     # `assert_requested`, `WebMock.disable_net_connect!` and VCR's `hook_into :webmock` work as they do for any HTTP
     # library.
     #
@@ -26,7 +26,7 @@ module WebMock
     #
     # A document isn't streamed while WebMock is enabled: an upload is read to its end before it is sent, and a
     # download arrives whole before its first row is read. An upload is held in memory several times over, by
-    # Peddler and by WebMock: about 8 times its size at the peak.
+    # Peddler and by WebMock: about eight times its size at the peak.
     #
     # WebMock works in the main Ractor only: its stubs live there, and the adapter loads there. A call Peddler makes
     # in another Ractor raises `Ractor::IsolationError` and sends nothing while WebMock is enabled, and while WebMock

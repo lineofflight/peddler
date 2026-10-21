@@ -26,7 +26,7 @@ module Peddler
         text(name, value) || raise(ArgumentError, "#{name} must be a String")
       end
 
-      # An argument that is 1 segment of the path. What the core refuses is refused here by name: `.` and `..`
+      # An argument that is one segment of the path. What the core refuses is refused here by name: `.` and `..`
       # would address another resource, and so would nothing at the end of a path, which is the collection above.
       #: (String name, untyped value, ?last: bool) -> String
       def self.segment(name, value, last: false)
@@ -37,7 +37,7 @@ module Peddler
         segment
       end
 
-      # A String is a list of 1, which is how v5 sent it
+      # A String is a list of one, which is how v5 sent it
       #: (String name, untyped value, ?required: bool) -> Array[String]?
       def self.array(name, value, required: false)
         return missing(name, required) if value.nil?
