@@ -14,7 +14,7 @@ Both run on the same Rust core. The crate is that core, and the gem ships it as 
 | --- | --- | --- |
 | Package | [`peddler` gem](https://rubygems.org/gems/peddler) | [`peddler` crate](https://crates.io/crates/peddler) |
 | Needs | Ruby 3.3 or later | Rust 1.88 or later |
-| API docs | [lineofflight.github.io/peddler](https://lineofflight.github.io/peddler/) | [docs.rs/peddler](https://docs.rs/peddler) |
+| API docs | [lineofflight.dev/peddler](https://lineofflight.dev/peddler/) | [docs.rs/peddler](https://docs.rs/peddler) |
 
 Both examples read your [LWA credentials][view-credentials] from `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` and a seller's refresh token from `REFRESH_TOKEN`, then list the seller's marketplaces.
 

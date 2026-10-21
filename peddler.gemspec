@@ -37,6 +37,6 @@ Gem::Specification.new do |gem|
 
   # The site that .github/workflows/build-docs.yml deploys. Without this RubyGems links to rubydoc.info, which
   # builds with YARD and knows nothing of the inline RBS.
-  gem.metadata["documentation_uri"] = "https://lineofflight.github.io/peddler/"
+  gem.metadata["documentation_uri"] = "https://lineofflight.dev/peddler/"
   gem.metadata["rubygems_mfa_required"] = "true"
 end

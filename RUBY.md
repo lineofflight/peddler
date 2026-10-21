@@ -208,7 +208,7 @@ response = client.reports.create_report({
 })
 ```
 
-Every operation is documented where it is defined, in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb): what it does, each argument, and whether it can run in the sandbox. The [documentation site](https://lineofflight.github.io/peddler/) shows the same, with each method's signature.
+Every operation is documented where it is defined, in [lib/peddler/native/apis.rb](lib/peddler/native/apis.rb): what it does, each argument, and whether it can run in the sandbox. The [documentation site](https://lineofflight.dev/peddler/) shows the same, with each method's signature.
 
 The gem ships RBS signatures under `sig/`, for Steep and for an editor that reads RBS. Those of the operations carry Amazon's description of each argument, so the editor shows it on hover.
 
