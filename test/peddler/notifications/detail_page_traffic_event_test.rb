@@ -22,6 +22,14 @@ module Peddler
 
         assert_equal("DETAIL_PAGE_TRAFFIC_EVENT", notification.notification_type)
       end
+
+      def test_parses_notification_metadata
+        metadata = DetailPageTrafficEvent.parse(@payload).notification_metadata
+
+        assert_kind_of(DetailPageTrafficEvent::NotificationMetadata, metadata)
+        assert_equal("amzn1.sellerapps.app.aacccfff-4455-4b7c-4422-664ecacdd336", metadata.application_id)
+        assert_equal("2023-02-07T16:45:32.378Z", metadata.publish_time)
+      end
     end
   end
 end

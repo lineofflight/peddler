@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        # @return [String]
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        # @return [NotificationMetadata]
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # @return [String]
         attribute(:notification_type, String, null: false, from: "notificationType")

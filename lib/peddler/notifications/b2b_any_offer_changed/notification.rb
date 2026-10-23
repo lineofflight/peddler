@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The date and time (in UTC) that the event which triggered the notification occurred
         attribute(:event_time, String, null: false, from: "EventTime")
 
-        # @return [String]
-        attribute(:notification_metadata, String, null: false, from: "NotificationMetadata")
+        # @return [NotificationMetadata]
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "NotificationMetadata")
 
         # @return [String] The notification type. Combined with payload version controls the structure of payload object
         attribute(:notification_type, String, null: false, from: "NotificationType")

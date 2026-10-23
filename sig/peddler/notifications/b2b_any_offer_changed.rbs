@@ -69,24 +69,24 @@ module Peddler
       end
 
       class Notification < Data
-        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
-                    | (String, String, String, String, Peddler::Notifications::B2BAnyOfferChanged::Payload, String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
-        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
-                   | (String, String, String, String, Peddler::Notifications::B2BAnyOfferChanged::Payload, String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
+        def self.new: (event_time: String, notification_metadata: Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
+                    | (String, Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata, String, String, Peddler::Notifications::B2BAnyOfferChanged::Payload, String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
+        def self.[]: (event_time: String, notification_metadata: Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
+                   | (String, Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata, String, String, Peddler::Notifications::B2BAnyOfferChanged::Payload, String) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::B2BAnyOfferChanged::Notification
 
         attr_reader event_time: String
-        attr_reader notification_metadata: String
+        attr_reader notification_metadata: Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata
         attr_reader notification_type: String
         attr_reader notification_version: String
         attr_reader payload: Peddler::Notifications::B2BAnyOfferChanged::Payload
         attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String }
+        def to_h: () -> { event_time: String, notification_metadata: Peddler::Notifications::B2BAnyOfferChanged::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::B2BAnyOfferChanged::Payload, payload_version: String }
       end
 
       class NotificationMetadata < Data

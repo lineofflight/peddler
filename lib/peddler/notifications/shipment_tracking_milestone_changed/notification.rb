@@ -13,8 +13,8 @@ module Peddler
         #   UTC Z suffix.
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        # @return [String] Metadata containing application and subscription information.
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        # @return [NotificationMetadata] Metadata containing application and subscription information.
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # @return [String] The notification type. Always `SHIPMENT_TRACKING_MILESTONE_CHANGED` for this schema.
         attribute(:notification_type, String, null: false, from: "notificationType")

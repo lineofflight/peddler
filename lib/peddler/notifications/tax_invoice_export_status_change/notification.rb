@@ -12,9 +12,9 @@ module Peddler
         # @return [String] The date and time when the notification event occurred, in ISO 8601 format.
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        # @return [String] The notification's metadata, including the publish time and the application, subscription,
-        #   and notification event identifiers.
-        attribute(:notification_metadata, String, null: false, from: "notificationMetadata")
+        # @return [NotificationMetadata] The notification's metadata, including the publish time and the application,
+        #   subscription, and notification event identifiers.
+        attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
         # @return [String] The notification type. Known values: `TAX_INVOICE_EXPORT_STATUS_CHANGE`.
         attribute(:notification_type, String, null: false, from: "notificationType")

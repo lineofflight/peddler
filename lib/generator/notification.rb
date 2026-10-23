@@ -405,11 +405,11 @@ module Generator
     end
 
     def generate_notification_type!
-      # Build spec with Payload reference
+      # Build spec with Payload reference, and the schema's types an envelope field such as `notificationMetadata`
+      # points at
+      extracted_types = JsonSchemaExtractor.new(schema, notification_name).extract_types
       openapi_spec = {
-        "definitions" => {
-          "Payload" => payload_type_definition,
-        },
+        "definitions" => extracted_types.merge("Payload" => payload_type_definition),
       }
 
       api_name = "notifications/#{notification_name.underscore}"

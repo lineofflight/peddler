@@ -29,24 +29,24 @@ module Peddler
       end
 
       class Notification < Data
-        def self.new: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String) -> Peddler::Notifications::ItemSalesEventChange::Notification
-                    | (String, String, String, String, Peddler::Notifications::ItemSalesEventChange::Payload, String) -> Peddler::Notifications::ItemSalesEventChange::Notification
-        def self.[]: (event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String) -> Peddler::Notifications::ItemSalesEventChange::Notification
-                   | (String, String, String, String, Peddler::Notifications::ItemSalesEventChange::Payload, String) -> Peddler::Notifications::ItemSalesEventChange::Notification
+        def self.new: (event_time: String, notification_metadata: Peddler::Notifications::ItemSalesEventChange::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String) -> Peddler::Notifications::ItemSalesEventChange::Notification
+                    | (String, Peddler::Notifications::ItemSalesEventChange::NotificationMetadata, String, String, Peddler::Notifications::ItemSalesEventChange::Payload, String) -> Peddler::Notifications::ItemSalesEventChange::Notification
+        def self.[]: (event_time: String, notification_metadata: Peddler::Notifications::ItemSalesEventChange::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String) -> Peddler::Notifications::ItemSalesEventChange::Notification
+                   | (String, Peddler::Notifications::ItemSalesEventChange::NotificationMetadata, String, String, Peddler::Notifications::ItemSalesEventChange::Payload, String) -> Peddler::Notifications::ItemSalesEventChange::Notification
 
         def self.members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Notifications::ItemSalesEventChange::Notification
 
         attr_reader event_time: String
-        attr_reader notification_metadata: String
+        attr_reader notification_metadata: Peddler::Notifications::ItemSalesEventChange::NotificationMetadata
         attr_reader notification_type: String
         attr_reader notification_version: String
         attr_reader payload: Peddler::Notifications::ItemSalesEventChange::Payload
         attr_reader payload_version: String
 
         def members: () -> [ :event_time, :notification_metadata, :notification_type, :notification_version, :payload, :payload_version ]
-        def to_h: () -> { event_time: String, notification_metadata: String, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String }
+        def to_h: () -> { event_time: String, notification_metadata: Peddler::Notifications::ItemSalesEventChange::NotificationMetadata, notification_type: String, notification_version: String, payload: Peddler::Notifications::ItemSalesEventChange::Payload, payload_version: String }
       end
 
       class NotificationMetadata < Data
