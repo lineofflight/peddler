@@ -335,10 +335,10 @@ module Peddler
         def to_h: () -> { country_code: String, number: String, extension: String? }
       end
 
-      def get_case: (String) -> Peddler::Response
-      def list_cases: (Hash[untyped, untyped]) -> Peddler::Response
+      def get_case: (String, ?rate_limit: Float) -> Peddler::Response
+      def list_cases: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
-      def list_contacts: (String, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?) -> Peddler::Response
+      def list_contacts: (String, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end
