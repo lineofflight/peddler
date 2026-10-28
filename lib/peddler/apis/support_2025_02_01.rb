@@ -14,22 +14,24 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the listCases operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_cases(body)
+      def list_cases(body, rate_limit: 0.1)
         path = "/support/2025-02-01/cases"
         parser = -> { ListCasesResult }
-        post(path, body:, parser:)
+        post(path, body:, rate_limit:, parser:)
       end
 
       # Retrieve a specific support case.
       #
       # @note This operation can make a static sandbox call.
       # @param case_id [String] The case identifier.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_case(case_id)
+      def get_case(case_id, rate_limit: 0.1)
         path = "/support/2025-02-01/cases/#{percent_encode(case_id)}"
         parser = -> { Case }
-        get(path, parser:)
+        get(path, rate_limit:, parser:)
       end
 
       # Retrieve contacts for a specific support case.
@@ -43,8 +45,9 @@ module Peddler
       #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # @param sort_order [String] Sort the returned contacts by `createdDate` in either ascending or descending order.
       #   Known values: `ASC`, `DESC`.
+      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC")
+      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: 0.1)
         path = "/support/2025-02-01/cases/#{percent_encode(case_id)}/contacts"
         params = {
           "maxResults" => max_results,
@@ -52,7 +55,7 @@ module Peddler
           "sortOrder" => sort_order,
         }.compact
         parser = -> { ListContactsResult }
-        get(path, params:, parser:)
+        get(path, params:, rate_limit:, parser:)
       end
     end
   end

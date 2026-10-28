@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Listings Items 2021-08-01: `marketplace_ids` field on `Issue`
 - **Added**: Orders 2026-01-01: `cancellation_execution` field (new `ItemCancellationExecution` type) on `ItemCancellation`; `label_printing_window` field on `OrderFulfillment`
 - **Added**: Fulfillment Inbound 2024-03-20: explicit `rate_limit` parameter on all operations; `discounts` field on `DeliveryWindowOption`
+- **Added**: Support 2025-02-01: explicit `rate_limit` parameter on all operations
 - **Changed**: Invoices 2024-06-19: removed the `rate_limit` parameter from all operations
 - **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
 - **Removed**: Data Kiosk: removed the Sales and Traffic 2023-11-15 schema (`sales_and_traffic20231115`) and its generated types, deprecated by Amazon in favor of the 2024-04-24 version
