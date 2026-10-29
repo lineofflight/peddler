@@ -12,7 +12,7 @@ module Peddler
         # @return [PackageDimensions] The dimensions of the package.
         attribute(:dimensions, PackageDimensions, null: false)
 
-        # @return [String] An ID that uniquely identifies a package within a shipment.
+        # @return [String] The ID of the package whose information you want to update.
         attribute(:id, String, null: false)
 
         # @return [Array<PackageLineItem>] The list of line items in a package.
@@ -31,6 +31,10 @@ module Peddler
         # @return [String] The current status of the package. Known values: `CREATED`, `PICKUP_SLOT_RETRIEVED`,
         #   `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `SHIPPED`, `DELIVERED`, `CANCELLED`.
         attribute?(:status, String)
+
+        # @return [TrackingDetails] The carrier and tracking details of the package. This field is returned in responses
+        #   only, and is ignored if it is provided in a request.
+        attribute?(:tracking_details, TrackingDetails, from: "trackingDetails")
       end
     end
   end

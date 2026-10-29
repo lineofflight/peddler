@@ -9,7 +9,7 @@ module Peddler
     class MerchantFulfillmentV0
       # Request schema.
       GetAdditionalSellerInputsRequest = Structure.new do
-        # @return [String] An Amazon defined order identifier
+        # @return [String] An Amazon-defined order identifier.
         attribute(:order_id, String, null: false, from: "OrderId")
 
         # @return [Address] The address from which to ship.

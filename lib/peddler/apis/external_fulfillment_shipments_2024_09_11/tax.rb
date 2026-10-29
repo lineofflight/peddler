@@ -12,8 +12,8 @@ module Peddler
         # @return [ChargeBreakup] Details of individual tax charges.
         attribute(:charge, ChargeBreakup, null: false)
 
-        # @return [String] The rate of the tax.
-        attribute?(:rate, String)
+        # @return [Float] The rate of the tax.
+        attribute?(:rate, Float)
 
         # @return [String] The type of tax. Known values: `VAT`, `CST`, `IGST`, `SGST`, `CGST`, `UTGST`, `CESS`,
         #   `OTHER`, `TOTAL`.

@@ -13,7 +13,8 @@ module Peddler
         attribute(:charge, Money, null: false, from: "Charge")
 
         # @return [String] Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`,
-        #   `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`.
+        #   `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`,
+        #   `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`.
         attribute(:delivery_experience_option, String, null: false, from: "DeliveryExperienceOption")
       end
     end

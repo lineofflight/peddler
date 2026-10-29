@@ -57,7 +57,7 @@ module Peddler
         attribute?(:packages, [Package])
 
         # @return [Array<PartyIdentificationInfo>] All involved party identification and metadata for vendor, buyer,
-        #   seller. Applicable for direct-fulfillment sellers.
+        #   seller. Applicable only for direct-fulfillment sellers.
         attribute?(:party_info_list, [PartyIdentificationInfo], from: "partyInfoList")
 
         # @return [String] The reason for the sub-status.

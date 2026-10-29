@@ -1,0 +1,471 @@
+module Peddler
+  module APIs
+    class ActionPlans20260601 < API
+      class ActionItem < Data
+        def self.new: (description: Peddler::APIs::ActionPlans20260601::LocalizedText, type: Peddler::APIs::ActionPlans20260601::ActionItemType, ?references: Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
+                    | (Peddler::APIs::ActionPlans20260601::LocalizedText, Peddler::APIs::ActionPlans20260601::ActionItemType, Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
+        def self.[]: (description: Peddler::APIs::ActionPlans20260601::LocalizedText, type: Peddler::APIs::ActionPlans20260601::ActionItemType, ?references: Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
+                   | (Peddler::APIs::ActionPlans20260601::LocalizedText, Peddler::APIs::ActionPlans20260601::ActionItemType, Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
+
+        def self.members: () -> [ :description, :type, :references ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItem
+
+        attr_reader description: Peddler::APIs::ActionPlans20260601::LocalizedText
+        attr_reader references: Peddler::APIs::ActionPlans20260601::ActionItemReferences?
+        attr_reader type: Peddler::APIs::ActionPlans20260601::ActionItemType
+
+        def members: () -> [ :description, :type, :references ]
+        def to_h: () -> { description: Peddler::APIs::ActionPlans20260601::LocalizedText, type: Peddler::APIs::ActionPlans20260601::ActionItemType, references: Peddler::APIs::ActionPlans20260601::ActionItemReferences? }
+      end
+
+      class ActionItemReference < Data
+        def self.new: (action_item_id: String, ?resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef?) -> Peddler::APIs::ActionPlans20260601::ActionItemReference
+                    | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef?) -> Peddler::APIs::ActionPlans20260601::ActionItemReference
+        def self.[]: (action_item_id: String, ?resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef?) -> Peddler::APIs::ActionPlans20260601::ActionItemReference
+                   | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef?) -> Peddler::APIs::ActionPlans20260601::ActionItemReference
+
+        def self.members: () -> [ :action_item_id, :resolution ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemReference
+
+        attr_reader action_item_id: String
+        attr_reader resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef?
+
+        def members: () -> [ :action_item_id, :resolution ]
+        def to_h: () -> { action_item_id: String, resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef? }
+      end
+
+      class ActionItemReferences < Data
+        def self.new: (?steps: Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]?) -> Peddler::APIs::ActionPlans20260601::ActionItemReferences
+                    | (Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]?) -> Peddler::APIs::ActionPlans20260601::ActionItemReferences
+        def self.[]: (?steps: Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]?) -> Peddler::APIs::ActionPlans20260601::ActionItemReferences
+                   | (Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]?) -> Peddler::APIs::ActionPlans20260601::ActionItemReferences
+
+        def self.members: () -> [ :steps ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemReferences
+
+        attr_reader steps: Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]?
+
+        def members: () -> [ :steps ]
+        def to_h: () -> { steps: Array[Peddler::APIs::ActionPlans20260601::ActionItemStepReference]? }
+      end
+
+      class ActionItemResolutionRef < Data
+        def self.new: (definition: Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+                    | (Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+        def self.[]: (definition: Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+                   | (Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+
+        def self.members: () -> [ :definition ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+
+        attr_reader definition: Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+
+        def members: () -> [ :definition ]
+        def to_h: () -> { definition: Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef }
+      end
+
+      class ActionItemResolutionReference < Data
+        def self.new: (action_item_id: String, resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference
+                    | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference
+        def self.[]: (action_item_id: String, resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference
+                   | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference
+
+        def self.members: () -> [ :action_item_id, :resolution ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference
+
+        attr_reader action_item_id: String
+        attr_reader resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef
+
+        def members: () -> [ :action_item_id, :resolution ]
+        def to_h: () -> { action_item_id: String, resolution: Peddler::APIs::ActionPlans20260601::ActionItemResolutionRef }
+      end
+
+      class ActionItemStepReference < Data
+        def self.new: (step_id: String, ?attribute_names: Array[String]?) -> Peddler::APIs::ActionPlans20260601::ActionItemStepReference
+                    | (String, Array[String]?) -> Peddler::APIs::ActionPlans20260601::ActionItemStepReference
+        def self.[]: (step_id: String, ?attribute_names: Array[String]?) -> Peddler::APIs::ActionPlans20260601::ActionItemStepReference
+                   | (String, Array[String]?) -> Peddler::APIs::ActionPlans20260601::ActionItemStepReference
+
+        def self.members: () -> [ :step_id, :attribute_names ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemStepReference
+
+        attr_reader attribute_names: Array[String]?
+        attr_reader step_id: String
+
+        def members: () -> [ :step_id, :attribute_names ]
+        def to_h: () -> { step_id: String, attribute_names: Array[String]? }
+      end
+
+      class ActionItemType < Data
+        def self.new: (classifications: Array[untyped], definition: Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition) -> Peddler::APIs::ActionPlans20260601::ActionItemType
+                    | (Array[untyped], Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition) -> Peddler::APIs::ActionPlans20260601::ActionItemType
+        def self.[]: (classifications: Array[untyped], definition: Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition) -> Peddler::APIs::ActionPlans20260601::ActionItemType
+                   | (Array[untyped], Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition) -> Peddler::APIs::ActionPlans20260601::ActionItemType
+
+        def self.members: () -> [ :classifications, :definition ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemType
+
+        attr_reader classifications: Array[untyped]
+        attr_reader definition: Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+
+        def members: () -> [ :classifications, :definition ]
+        def to_h: () -> { classifications: Array[untyped], definition: Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition }
+      end
+
+      class ActionItemTypeClassifications < Array[untyped]
+        def self.parse: (Array[untyped]) -> ActionItemTypeClassifications
+      end
+
+      class ActionItemTypeDefinition < Data
+        def self.new: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, type_definition_id: String) -> Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+                    | (Peddler::APIs::ActionPlans20260601::LocalizedText, String) -> Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+        def self.[]: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, type_definition_id: String) -> Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+                   | (Peddler::APIs::ActionPlans20260601::LocalizedText, String) -> Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+
+        def self.members: () -> [ :display_name, :type_definition_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionItemTypeDefinition
+
+        attr_reader display_name: Peddler::APIs::ActionPlans20260601::LocalizedText
+        attr_reader type_definition_id: String
+
+        def members: () -> [ :display_name, :type_definition_id ]
+        def to_h: () -> { display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, type_definition_id: String }
+      end
+
+      class ActionPlan < Data
+        def self.new: (action_plan_id: String, status: Array[untyped], ?accepted_date: Time?, ?action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItem]?, ?completed_date: Time?, ?created_date: Time?, ?display_name: Peddler::APIs::ActionPlans20260601::LocalizedText?, ?inputs: Hash[untyped, untyped]?, ?last_updated_date: Time?, ?references: Peddler::APIs::ActionPlans20260601::PlanReferences?, ?started_date: Time?, ?steps: Array[Peddler::APIs::ActionPlans20260601::PlanStep]?, ?type: Peddler::APIs::ActionPlans20260601::ActionPlanType?) -> Peddler::APIs::ActionPlans20260601::ActionPlan
+                    | (String, Array[untyped], Time?, Array[Peddler::APIs::ActionPlans20260601::ActionItem]?, Time?, Time?, Peddler::APIs::ActionPlans20260601::LocalizedText?, Hash[untyped, untyped]?, Time?, Peddler::APIs::ActionPlans20260601::PlanReferences?, Time?, Array[Peddler::APIs::ActionPlans20260601::PlanStep]?, Peddler::APIs::ActionPlans20260601::ActionPlanType?) -> Peddler::APIs::ActionPlans20260601::ActionPlan
+        def self.[]: (action_plan_id: String, status: Array[untyped], ?accepted_date: Time?, ?action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItem]?, ?completed_date: Time?, ?created_date: Time?, ?display_name: Peddler::APIs::ActionPlans20260601::LocalizedText?, ?inputs: Hash[untyped, untyped]?, ?last_updated_date: Time?, ?references: Peddler::APIs::ActionPlans20260601::PlanReferences?, ?started_date: Time?, ?steps: Array[Peddler::APIs::ActionPlans20260601::PlanStep]?, ?type: Peddler::APIs::ActionPlans20260601::ActionPlanType?) -> Peddler::APIs::ActionPlans20260601::ActionPlan
+                   | (String, Array[untyped], Time?, Array[Peddler::APIs::ActionPlans20260601::ActionItem]?, Time?, Time?, Peddler::APIs::ActionPlans20260601::LocalizedText?, Hash[untyped, untyped]?, Time?, Peddler::APIs::ActionPlans20260601::PlanReferences?, Time?, Array[Peddler::APIs::ActionPlans20260601::PlanStep]?, Peddler::APIs::ActionPlans20260601::ActionPlanType?) -> Peddler::APIs::ActionPlans20260601::ActionPlan
+
+        def self.members: () -> [ :action_plan_id, :status, :accepted_date, :action_items, :completed_date, :created_date, :display_name, :inputs, :last_updated_date, :references, :started_date, :steps, :type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionPlan
+
+        attr_reader accepted_date: Time?
+        attr_reader action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItem]?
+        attr_reader action_plan_id: String
+        attr_reader completed_date: Time?
+        attr_reader created_date: Time?
+        attr_reader display_name: Peddler::APIs::ActionPlans20260601::LocalizedText?
+        attr_reader inputs: Hash[untyped, untyped]?
+        attr_reader last_updated_date: Time?
+        attr_reader references: Peddler::APIs::ActionPlans20260601::PlanReferences?
+        attr_reader started_date: Time?
+        attr_reader status: Array[untyped]
+        attr_reader steps: Array[Peddler::APIs::ActionPlans20260601::PlanStep]?
+        attr_reader type: Peddler::APIs::ActionPlans20260601::ActionPlanType?
+
+        def members: () -> [ :action_plan_id, :status, :accepted_date, :action_items, :completed_date, :created_date, :display_name, :inputs, :last_updated_date, :references, :started_date, :steps, :type ]
+        def to_h: () -> { action_plan_id: String, status: Array[untyped], accepted_date: Time?, action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItem]?, completed_date: Time?, created_date: Time?, display_name: Peddler::APIs::ActionPlans20260601::LocalizedText?, inputs: Hash[untyped, untyped]?, last_updated_date: Time?, references: Peddler::APIs::ActionPlans20260601::PlanReferences?, started_date: Time?, steps: Array[Peddler::APIs::ActionPlans20260601::PlanStep]?, type: Peddler::APIs::ActionPlans20260601::ActionPlanType? }
+      end
+
+      class ActionPlanType < Data
+        def self.new: (definition: Peddler::APIs::ActionPlans20260601::PlanDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionPlanType
+                    | (Peddler::APIs::ActionPlans20260601::PlanDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionPlanType
+        def self.[]: (definition: Peddler::APIs::ActionPlans20260601::PlanDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionPlanType
+                   | (Peddler::APIs::ActionPlans20260601::PlanDefinitionRef) -> Peddler::APIs::ActionPlans20260601::ActionPlanType
+
+        def self.members: () -> [ :definition ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ActionPlanType
+
+        attr_reader definition: Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+
+        def members: () -> [ :definition ]
+        def to_h: () -> { definition: Peddler::APIs::ActionPlans20260601::PlanDefinitionRef }
+      end
+
+      class CreateActionPlanRequest < Data
+        def self.new: (plan_template_id: String, ?action_item: Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?, ?inputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::CreateActionPlanRequest
+                    | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::CreateActionPlanRequest
+        def self.[]: (plan_template_id: String, ?action_item: Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?, ?inputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::CreateActionPlanRequest
+                   | (String, Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::CreateActionPlanRequest
+
+        def self.members: () -> [ :plan_template_id, :action_item, :inputs ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::CreateActionPlanRequest
+
+        attr_reader action_item: Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?
+        attr_reader inputs: Hash[untyped, untyped]?
+        attr_reader plan_template_id: String
+
+        def members: () -> [ :plan_template_id, :action_item, :inputs ]
+        def to_h: () -> { plan_template_id: String, action_item: Peddler::APIs::ActionPlans20260601::ActionItemResolutionReference?, inputs: Hash[untyped, untyped]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ActionPlans20260601::Error
+                    | (String, String, String?) -> Peddler::APIs::ActionPlans20260601::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::ActionPlans20260601::Error
+                   | (String, String, String?) -> Peddler::APIs::ActionPlans20260601::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::Error
+
+        attr_reader code: String
+        attr_reader details: String?
+        attr_reader message: String
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String, message: String, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::ActionPlans20260601::Error]) -> Peddler::APIs::ActionPlans20260601::ErrorList
+                    | (Array[Peddler::APIs::ActionPlans20260601::Error]) -> Peddler::APIs::ActionPlans20260601::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::ActionPlans20260601::Error]) -> Peddler::APIs::ActionPlans20260601::ErrorList
+                   | (Array[Peddler::APIs::ActionPlans20260601::Error]) -> Peddler::APIs::ActionPlans20260601::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::ActionPlans20260601::Error]
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::ActionPlans20260601::Error] }
+      end
+
+      class GetActionPlanResponse < Data
+        def self.new: (plan: Peddler::APIs::ActionPlans20260601::ActionPlan) -> Peddler::APIs::ActionPlans20260601::GetActionPlanResponse
+                    | (Peddler::APIs::ActionPlans20260601::ActionPlan) -> Peddler::APIs::ActionPlans20260601::GetActionPlanResponse
+        def self.[]: (plan: Peddler::APIs::ActionPlans20260601::ActionPlan) -> Peddler::APIs::ActionPlans20260601::GetActionPlanResponse
+                   | (Peddler::APIs::ActionPlans20260601::ActionPlan) -> Peddler::APIs::ActionPlans20260601::GetActionPlanResponse
+
+        def self.members: () -> [ :plan ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::GetActionPlanResponse
+
+        attr_reader plan: Peddler::APIs::ActionPlans20260601::ActionPlan
+
+        def members: () -> [ :plan ]
+        def to_h: () -> { plan: Peddler::APIs::ActionPlans20260601::ActionPlan }
+      end
+
+      class InputDeclaration < Data
+        def self.new: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText) -> Peddler::APIs::ActionPlans20260601::InputDeclaration
+                    | (Peddler::APIs::ActionPlans20260601::LocalizedText) -> Peddler::APIs::ActionPlans20260601::InputDeclaration
+        def self.[]: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText) -> Peddler::APIs::ActionPlans20260601::InputDeclaration
+                   | (Peddler::APIs::ActionPlans20260601::LocalizedText) -> Peddler::APIs::ActionPlans20260601::InputDeclaration
+
+        def self.members: () -> [ :display_name ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::InputDeclaration
+
+        attr_reader display_name: Peddler::APIs::ActionPlans20260601::LocalizedText
+
+        def members: () -> [ :display_name ]
+        def to_h: () -> { display_name: Peddler::APIs::ActionPlans20260601::LocalizedText }
+      end
+
+      class InputValue < Data
+        def self.new: (value: Array[String]) -> Peddler::APIs::ActionPlans20260601::InputValue
+                    | (Array[String]) -> Peddler::APIs::ActionPlans20260601::InputValue
+        def self.[]: (value: Array[String]) -> Peddler::APIs::ActionPlans20260601::InputValue
+                   | (Array[String]) -> Peddler::APIs::ActionPlans20260601::InputValue
+
+        def self.members: () -> [ :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::InputValue
+
+        attr_reader value: Array[String]
+
+        def members: () -> [ :value ]
+        def to_h: () -> { value: Array[String] }
+      end
+
+      class ListActionPlansResponse < Data
+        def self.new: (action_plans: Array[Peddler::APIs::ActionPlans20260601::ActionPlan], number_of_results: Integer, ?pagination: Peddler::APIs::ActionPlans20260601::Pagination?, ?refinements: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::ListActionPlansResponse
+                    | (Array[Peddler::APIs::ActionPlans20260601::ActionPlan], Integer, Peddler::APIs::ActionPlans20260601::Pagination?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::ListActionPlansResponse
+        def self.[]: (action_plans: Array[Peddler::APIs::ActionPlans20260601::ActionPlan], number_of_results: Integer, ?pagination: Peddler::APIs::ActionPlans20260601::Pagination?, ?refinements: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::ListActionPlansResponse
+                   | (Array[Peddler::APIs::ActionPlans20260601::ActionPlan], Integer, Peddler::APIs::ActionPlans20260601::Pagination?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::ListActionPlansResponse
+
+        def self.members: () -> [ :action_plans, :number_of_results, :pagination, :refinements ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ListActionPlansResponse
+
+        attr_reader action_plans: Array[Peddler::APIs::ActionPlans20260601::ActionPlan]
+        attr_reader number_of_results: Integer
+        attr_reader pagination: Peddler::APIs::ActionPlans20260601::Pagination?
+        attr_reader refinements: Hash[untyped, untyped]?
+
+        def members: () -> [ :action_plans, :number_of_results, :pagination, :refinements ]
+        def to_h: () -> { action_plans: Array[Peddler::APIs::ActionPlans20260601::ActionPlan], number_of_results: Integer, pagination: Peddler::APIs::ActionPlans20260601::Pagination?, refinements: Hash[untyped, untyped]? }
+      end
+
+      class LocalizedText < Data
+        def self.new: (locale: String, text: String) -> Peddler::APIs::ActionPlans20260601::LocalizedText
+                    | (String, String) -> Peddler::APIs::ActionPlans20260601::LocalizedText
+        def self.[]: (locale: String, text: String) -> Peddler::APIs::ActionPlans20260601::LocalizedText
+                   | (String, String) -> Peddler::APIs::ActionPlans20260601::LocalizedText
+
+        def self.members: () -> [ :locale, :text ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::LocalizedText
+
+        attr_reader locale: String
+        attr_reader text: String
+
+        def members: () -> [ :locale, :text ]
+        def to_h: () -> { locale: String, text: String }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::ActionPlans20260601::Pagination
+                    | (String?, String?) -> Peddler::APIs::ActionPlans20260601::Pagination
+        def self.[]: (?next_token: String?, ?previous_token: String?) -> Peddler::APIs::ActionPlans20260601::Pagination
+                   | (String?, String?) -> Peddler::APIs::ActionPlans20260601::Pagination
+
+        def self.members: () -> [ :next_token, :previous_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::Pagination
+
+        attr_reader next_token: String?
+        attr_reader previous_token: String?
+
+        def members: () -> [ :next_token, :previous_token ]
+        def to_h: () -> { next_token: String?, previous_token: String? }
+      end
+
+      class PlanDefinitionRef < Data
+        def self.new: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, plan_definition_id: String, ?inputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+                    | (Peddler::APIs::ActionPlans20260601::LocalizedText, String, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+        def self.[]: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, plan_definition_id: String, ?inputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+                   | (Peddler::APIs::ActionPlans20260601::LocalizedText, String, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+
+        def self.members: () -> [ :display_name, :plan_definition_id, :inputs ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::PlanDefinitionRef
+
+        attr_reader display_name: Peddler::APIs::ActionPlans20260601::LocalizedText
+        attr_reader inputs: Hash[untyped, untyped]?
+        attr_reader plan_definition_id: String
+
+        def members: () -> [ :display_name, :plan_definition_id, :inputs ]
+        def to_h: () -> { display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, plan_definition_id: String, inputs: Hash[untyped, untyped]? }
+      end
+
+      class PlanReferences < Data
+        def self.new: (?action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]?) -> Peddler::APIs::ActionPlans20260601::PlanReferences
+                    | (Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]?) -> Peddler::APIs::ActionPlans20260601::PlanReferences
+        def self.[]: (?action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]?) -> Peddler::APIs::ActionPlans20260601::PlanReferences
+                   | (Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]?) -> Peddler::APIs::ActionPlans20260601::PlanReferences
+
+        def self.members: () -> [ :action_items ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::PlanReferences
+
+        attr_reader action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]?
+
+        def members: () -> [ :action_items ]
+        def to_h: () -> { action_items: Array[Peddler::APIs::ActionPlans20260601::ActionItemReference]? }
+      end
+
+      class PlanStatuses < Array[untyped]
+        def self.parse: (Array[untyped]) -> PlanStatuses
+      end
+
+      class PlanStep < Data
+        def self.new: (definition: Peddler::APIs::ActionPlans20260601::StepDefinitionRef, mode: String, step_id: String, ?completed_date: Time?, ?dependencies: Array[String]?, ?description: Peddler::APIs::ActionPlans20260601::LocalizedText?, ?inputs: Hash[untyped, untyped]?, ?last_updated_date: Time?, ?outputs: Hash[untyped, untyped]?, ?started_date: Time?, ?status: Array[untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanStep
+                    | (Peddler::APIs::ActionPlans20260601::StepDefinitionRef, String, String, Time?, Array[String]?, Peddler::APIs::ActionPlans20260601::LocalizedText?, Hash[untyped, untyped]?, Time?, Hash[untyped, untyped]?, Time?, Array[untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanStep
+        def self.[]: (definition: Peddler::APIs::ActionPlans20260601::StepDefinitionRef, mode: String, step_id: String, ?completed_date: Time?, ?dependencies: Array[String]?, ?description: Peddler::APIs::ActionPlans20260601::LocalizedText?, ?inputs: Hash[untyped, untyped]?, ?last_updated_date: Time?, ?outputs: Hash[untyped, untyped]?, ?started_date: Time?, ?status: Array[untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanStep
+                   | (Peddler::APIs::ActionPlans20260601::StepDefinitionRef, String, String, Time?, Array[String]?, Peddler::APIs::ActionPlans20260601::LocalizedText?, Hash[untyped, untyped]?, Time?, Hash[untyped, untyped]?, Time?, Array[untyped]?) -> Peddler::APIs::ActionPlans20260601::PlanStep
+
+        def self.members: () -> [ :definition, :mode, :step_id, :completed_date, :dependencies, :description, :inputs, :last_updated_date, :outputs, :started_date, :status ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::PlanStep
+
+        attr_reader completed_date: Time?
+        attr_reader definition: Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+        attr_reader dependencies: Array[String]?
+        attr_reader description: Peddler::APIs::ActionPlans20260601::LocalizedText?
+        attr_reader inputs: Hash[untyped, untyped]?
+        attr_reader last_updated_date: Time?
+        attr_reader mode: String
+        attr_reader outputs: Hash[untyped, untyped]?
+        attr_reader started_date: Time?
+        attr_reader status: Array[untyped]?
+        attr_reader step_id: String
+
+        def members: () -> [ :definition, :mode, :step_id, :completed_date, :dependencies, :description, :inputs, :last_updated_date, :outputs, :started_date, :status ]
+        def to_h: () -> { definition: Peddler::APIs::ActionPlans20260601::StepDefinitionRef, mode: String, step_id: String, completed_date: Time?, dependencies: Array[String]?, description: Peddler::APIs::ActionPlans20260601::LocalizedText?, inputs: Hash[untyped, untyped]?, last_updated_date: Time?, outputs: Hash[untyped, untyped]?, started_date: Time?, status: Array[untyped]? }
+      end
+
+      class ResolutionDefinitionRef < Data
+        def self.new: (resolution_definition_id: String) -> Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+                    | (String) -> Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+        def self.[]: (resolution_definition_id: String) -> Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+                   | (String) -> Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+
+        def self.members: () -> [ :resolution_definition_id ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::ResolutionDefinitionRef
+
+        attr_reader resolution_definition_id: String
+
+        def members: () -> [ :resolution_definition_id ]
+        def to_h: () -> { resolution_definition_id: String }
+      end
+
+      class SearchRefinementValue < Data
+        def self.new: (count: Integer, display_name: String, value: String) -> Peddler::APIs::ActionPlans20260601::SearchRefinementValue
+                    | (Integer, String, String) -> Peddler::APIs::ActionPlans20260601::SearchRefinementValue
+        def self.[]: (count: Integer, display_name: String, value: String) -> Peddler::APIs::ActionPlans20260601::SearchRefinementValue
+                   | (Integer, String, String) -> Peddler::APIs::ActionPlans20260601::SearchRefinementValue
+
+        def self.members: () -> [ :count, :display_name, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::SearchRefinementValue
+
+        attr_reader count: Integer
+        attr_reader display_name: String
+        attr_reader value: String
+
+        def members: () -> [ :count, :display_name, :value ]
+        def to_h: () -> { count: Integer, display_name: String, value: String }
+      end
+
+      class SearchRefinementValues < Array[SearchRefinementValue]
+        def self.parse: (Array[untyped]) -> SearchRefinementValues
+      end
+
+      class StepDefinitionRef < Data
+        def self.new: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, step_definition_id: String, ?inputs: Hash[untyped, untyped]?, ?outputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+                    | (Peddler::APIs::ActionPlans20260601::LocalizedText, String, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+        def self.[]: (display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, step_definition_id: String, ?inputs: Hash[untyped, untyped]?, ?outputs: Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+                   | (Peddler::APIs::ActionPlans20260601::LocalizedText, String, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+
+        def self.members: () -> [ :display_name, :step_definition_id, :inputs, :outputs ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ActionPlans20260601::StepDefinitionRef
+
+        attr_reader display_name: Peddler::APIs::ActionPlans20260601::LocalizedText
+        attr_reader inputs: Hash[untyped, untyped]?
+        attr_reader outputs: Hash[untyped, untyped]?
+        attr_reader step_definition_id: String
+
+        def members: () -> [ :display_name, :step_definition_id, :inputs, :outputs ]
+        def to_h: () -> { display_name: Peddler::APIs::ActionPlans20260601::LocalizedText, step_definition_id: String, inputs: Hash[untyped, untyped]?, outputs: Hash[untyped, untyped]? }
+      end
+
+      class StepStatuses < Array[untyped]
+        def self.parse: (Array[untyped]) -> StepStatuses
+      end
+
+      def create_action_plan: (Hash[untyped, untyped], ?mode: String?, ?locale: String?) -> Peddler::Response
+      def get_action_plan: (String, ?locale: String?, ?included_data: Array[String]?) -> Peddler::Response
+
+      def list_action_plans: (?statuses: Array[String]?, ?plan_template_ids: Array[String]?, ?action_item_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?included_data: Array[String]?) -> Peddler::Response
+    end
+  end
+end

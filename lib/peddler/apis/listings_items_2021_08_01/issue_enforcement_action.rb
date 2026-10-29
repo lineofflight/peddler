@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class ListingsItems20210801
-      # The enforcement action taken by Amazon that affect the publishing or status of a listing
+      # An enforcement action that Amazon takes that affects the publishing or status of a listing.
       IssueEnforcementAction = Structure.new do
         # @return [String] The enforcement action name.
         #

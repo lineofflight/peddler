@@ -24,7 +24,7 @@ module Peddler
         attribute?(:marketplace_ids, [String], from: "marketplaceIds")
 
         # @return [Array<OrderChangeTypeEnum>] Known values: `BuyerRequestedChange`, `DeliveryTipChange`,
-        #   `OrderStatusChange`.
+        #   `OrderStatusChange`, `PreFulfillmentStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
 
         # @return [TrackingIdentifier]

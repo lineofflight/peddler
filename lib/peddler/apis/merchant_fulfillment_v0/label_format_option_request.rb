@@ -9,7 +9,7 @@ module Peddler
     class MerchantFulfillmentV0
       # Whether to include a packing slip.
       LabelFormatOptionRequest = Structure.new do
-        # @return [:boolean] When true, include a packing slip with the label.
+        # @return [:boolean] When `true`, include a packing slip with the label.
         attribute?(:include_packing_slip_with_label, :boolean, from: "IncludePackingSlipWithLabel")
       end
     end

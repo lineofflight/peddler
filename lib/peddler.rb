@@ -15,6 +15,8 @@ loader.setup
 
 module Peddler
   class << self
+    def action_items_2026_06_01 = APIs::ActionItems20260601
+    def action_plans_2026_06_01 = APIs::ActionPlans20260601
     def amazon_warehousing_and_distribution_2024_05_09 = APIs::AmazonWarehousingAndDistribution20240509
     def aplus_content_2020_11_01 = APIs::AplusContent20201101
     def application_integrations_2024_04_01 = APIs::ApplicationIntegrations20240401
@@ -47,6 +49,7 @@ module Peddler
     def listings_restrictions_2021_08_01 = APIs::ListingsRestrictions20210801
     def merchant_fulfillment_v0 = APIs::MerchantFulfillmentV0
     def messaging_v1 = APIs::MessagingV1
+    def messaging_2026_04_20 = APIs::Messaging20260420
     def notifications_v1 = APIs::NotificationsV1
     def orders_v0 = APIs::OrdersV0
     def orders_2026_01_01 = APIs::Orders20260101
@@ -86,6 +89,8 @@ module Peddler
     def vendor_shipments_v1 = APIs::VendorShipmentsV1
     def vendor_transaction_status_v1 = APIs::VendorTransactionStatusV1
 
+    alias_method :action_items, :action_items_2026_06_01
+    alias_method :action_plans, :action_plans_2026_06_01
     alias_method :amazon_warehousing_and_distribution, :amazon_warehousing_and_distribution_2024_05_09
     alias_method :aplus_content, :aplus_content_2020_11_01
     alias_method :application_integrations, :application_integrations_2024_04_01
@@ -111,7 +116,7 @@ module Peddler
     alias_method :listings_items, :listings_items_2021_08_01
     alias_method :listings_restrictions, :listings_restrictions_2021_08_01
     alias_method :merchant_fulfillment, :merchant_fulfillment_v0
-    alias_method :messaging, :messaging_v1
+    alias_method :messaging, :messaging_2026_04_20
     alias_method :notifications, :notifications_v1
     alias_method :orders, :orders_2026_01_01
     alias_method :product_fees, :product_fees_v0

@@ -533,12 +533,12 @@ module Peddler
       end
 
       class TrackingIdentifier < Data
-        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
-                    | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
-        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
-                   | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+        def self.new: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+                    | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+        def self.[]: (?acsin: String?, ?aftn: String?, ?carrier_tracking: Hash[untyped, untyped]?, ?container_number: String?, ?house_bill_of_lading_number: String?, ?id: String?, ?pro_number: String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
+                   | (String?, String?, Hash[untyped, untyped]?, String?, String?, String?, String?) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
 
-        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
+        def self.members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::NotificationsV1::TrackingIdentifier
 
@@ -548,9 +548,10 @@ module Peddler
         attr_reader container_number: String?
         attr_reader house_bill_of_lading_number: String?
         attr_reader id: String?
+        attr_reader pro_number: String?
 
-        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id ]
-        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Hash[untyped, untyped]?, container_number: String?, house_bill_of_lading_number: String?, id: String? }
+        def members: () -> [ :acsin, :aftn, :carrier_tracking, :container_number, :house_bill_of_lading_number, :id, :pro_number ]
+        def to_h: () -> { acsin: String?, aftn: String?, carrier_tracking: Hash[untyped, untyped]?, container_number: String?, house_bill_of_lading_number: String?, id: String?, pro_number: String? }
       end
 
       def create_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

@@ -12,11 +12,11 @@ module Peddler
         # @return [PackageDimensions]
         attribute(:dimensions, PackageDimensions, null: false)
 
-        # @return [Array<RecommendedPackageLineItem>]
-        attribute(:line_items, [RecommendedPackageLineItem], null: false, from: "lineItems")
-
         # @return [Weight]
         attribute(:weight, Weight, null: false)
+
+        # @return [Array<RecommendedPackageLineItem>]
+        attribute?(:line_items, [RecommendedPackageLineItem], from: "lineItems")
       end
     end
   end

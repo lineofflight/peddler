@@ -15,7 +15,7 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
-      # Delete a listings item for a selling partner.
+      # Deletes a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
@@ -91,7 +91,7 @@ module Peddler
         patch(path, body:, params:, rate_limit:, parser:)
       end
 
-      # Creates a new or fully-updates an existing listings item for a selling partner.
+      # Creates a new or fully updates an existing listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
@@ -124,12 +124,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon store identifiers for the request.
-      # @param issue_locale [String] A locale that is used to localize issues. When not provided, the default language
-      #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
-      #   available in the specified locale, localized messages default to "en_US".
-      # @param included_data [Array<String>] A comma-delimited list of data sets that you want to include in the
-      #   response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`,
-      #   `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
+      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available
+      #   in the specified locale, localized messages default to "en_US".
+      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
+      #   `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`,
+      #   `procurement`, `relationships`, `productTypes`.
       # @param identifiers [Array<String>] A comma-delimited list of product identifiers that you can use to search for
       #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
       #   'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.

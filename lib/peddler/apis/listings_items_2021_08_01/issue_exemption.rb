@@ -8,8 +8,8 @@ require "time"
 module Peddler
   module APIs
     class ListingsItems20210801
-      # Conveying the status of the listed enforcement actions and, if applicable, provides information about the
-      # exemption's expiry date.
+      # The status of the listed enforcement actions. If applicable, includes information about the exemption expiry
+      # date.
       IssueExemption = Structure.new do
         # @return [String] Indicates the current exemption status for the listed enforcement actions. It can take values
         #   such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption
@@ -17,8 +17,8 @@ module Peddler
         #   applied.
         attribute(:status, String, null: false)
 
-        # @return [Time] Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary
-        #   exemptions expires, and Amazon begins enforcing the listed actions.
+        # @return [Time] The timestamp, in ISO 8601 format, when the temporary exemption expires and Amazon begins
+        #   enforcing the listed actions.
         attribute?(:expiry_date, Time, from: "expiryDate")
       end
     end

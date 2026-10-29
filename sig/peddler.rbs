@@ -1,4 +1,12 @@
 module Peddler
+  def self.action_items: () -> singleton(APIs::ActionItems20260601)
+
+  def self.action_items_2026_06_01: () -> singleton(APIs::ActionItems20260601)
+
+  def self.action_plans: () -> singleton(APIs::ActionPlans20260601)
+
+  def self.action_plans_2026_06_01: () -> singleton(APIs::ActionPlans20260601)
+
   def self.amazon_warehousing_and_distribution: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
 
   def self.amazon_warehousing_and_distribution_2024_05_09: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
@@ -111,7 +119,9 @@ module Peddler
 
   def self.merchant_fulfillment_v0: () -> singleton(APIs::MerchantFulfillmentV0)
 
-  def self.messaging: () -> singleton(APIs::MessagingV1)
+  def self.messaging: () -> singleton(APIs::Messaging20260420)
+
+  def self.messaging_2026_04_20: () -> singleton(APIs::Messaging20260420)
 
   def self.messaging_v1: () -> singleton(APIs::MessagingV1)
 

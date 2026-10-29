@@ -56,12 +56,12 @@ module Peddler
       end
 
       class Case < Data
-        def self.new: (case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, ?appointments: Array[Peddler::APIs::Support20250201::Appointment]?, ?last_outbound_date: Time?, ?resolved_date: Time?) -> Peddler::APIs::Support20250201::Case
-                    | (String, Array[String], Time, Time, String, String, String, Array[Peddler::APIs::Support20250201::Appointment]?, Time?, Time?) -> Peddler::APIs::Support20250201::Case
-        def self.[]: (case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, ?appointments: Array[Peddler::APIs::Support20250201::Appointment]?, ?last_outbound_date: Time?, ?resolved_date: Time?) -> Peddler::APIs::Support20250201::Case
-                   | (String, Array[String], Time, Time, String, String, String, Array[Peddler::APIs::Support20250201::Appointment]?, Time?, Time?) -> Peddler::APIs::Support20250201::Case
+        def self.new: (case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, ?appointments: Array[Peddler::APIs::Support20250201::Appointment]?, ?resolved_date: Time?) -> Peddler::APIs::Support20250201::Case
+                    | (String, Array[String], Time, Time, String, String, String, Array[Peddler::APIs::Support20250201::Appointment]?, Time?) -> Peddler::APIs::Support20250201::Case
+        def self.[]: (case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, ?appointments: Array[Peddler::APIs::Support20250201::Appointment]?, ?resolved_date: Time?) -> Peddler::APIs::Support20250201::Case
+                   | (String, Array[String], Time, Time, String, String, String, Array[Peddler::APIs::Support20250201::Appointment]?, Time?) -> Peddler::APIs::Support20250201::Case
 
-        def self.members: () -> [ :case_id, :cc_emails, :created_date, :last_updated_date, :primary_email, :status, :subject, :appointments, :last_outbound_date, :resolved_date ]
+        def self.members: () -> [ :case_id, :cc_emails, :created_date, :last_updated_date, :primary_email, :status, :subject, :appointments, :resolved_date ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Support20250201::Case
 
@@ -69,37 +69,14 @@ module Peddler
         attr_reader case_id: String
         attr_reader cc_emails: Array[String]
         attr_reader created_date: Time
-        attr_reader last_outbound_date: Time?
         attr_reader last_updated_date: Time
         attr_reader primary_email: String
         attr_reader resolved_date: Time?
         attr_reader status: String
         attr_reader subject: String
 
-        def members: () -> [ :case_id, :cc_emails, :created_date, :last_updated_date, :primary_email, :status, :subject, :appointments, :last_outbound_date, :resolved_date ]
-        def to_h: () -> { case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, appointments: Array[Peddler::APIs::Support20250201::Appointment]?, last_outbound_date: Time?, resolved_date: Time? }
-      end
-
-      class CaseFilters < Data
-        def self.new: (?case_statuses: Array[String]?, ?cc_emails: Array[String]?, ?created_date: Peddler::APIs::Support20250201::DateFilter?, ?last_outbound_date: Peddler::APIs::Support20250201::DateFilter?, ?primary_emails: Array[String]?, ?resolved_date: Peddler::APIs::Support20250201::DateFilter?, ?subject_keywords: String?) -> Peddler::APIs::Support20250201::CaseFilters
-                    | (Array[String]?, Array[String]?, Peddler::APIs::Support20250201::DateFilter?, Peddler::APIs::Support20250201::DateFilter?, Array[String]?, Peddler::APIs::Support20250201::DateFilter?, String?) -> Peddler::APIs::Support20250201::CaseFilters
-        def self.[]: (?case_statuses: Array[String]?, ?cc_emails: Array[String]?, ?created_date: Peddler::APIs::Support20250201::DateFilter?, ?last_outbound_date: Peddler::APIs::Support20250201::DateFilter?, ?primary_emails: Array[String]?, ?resolved_date: Peddler::APIs::Support20250201::DateFilter?, ?subject_keywords: String?) -> Peddler::APIs::Support20250201::CaseFilters
-                   | (Array[String]?, Array[String]?, Peddler::APIs::Support20250201::DateFilter?, Peddler::APIs::Support20250201::DateFilter?, Array[String]?, Peddler::APIs::Support20250201::DateFilter?, String?) -> Peddler::APIs::Support20250201::CaseFilters
-
-        def self.members: () -> [ :case_statuses, :cc_emails, :created_date, :last_outbound_date, :primary_emails, :resolved_date, :subject_keywords ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Support20250201::CaseFilters
-
-        attr_reader case_statuses: Array[String]?
-        attr_reader cc_emails: Array[String]?
-        attr_reader created_date: Peddler::APIs::Support20250201::DateFilter?
-        attr_reader last_outbound_date: Peddler::APIs::Support20250201::DateFilter?
-        attr_reader primary_emails: Array[String]?
-        attr_reader resolved_date: Peddler::APIs::Support20250201::DateFilter?
-        attr_reader subject_keywords: String?
-
-        def members: () -> [ :case_statuses, :cc_emails, :created_date, :last_outbound_date, :primary_emails, :resolved_date, :subject_keywords ]
-        def to_h: () -> { case_statuses: Array[String]?, cc_emails: Array[String]?, created_date: Peddler::APIs::Support20250201::DateFilter?, last_outbound_date: Peddler::APIs::Support20250201::DateFilter?, primary_emails: Array[String]?, resolved_date: Peddler::APIs::Support20250201::DateFilter?, subject_keywords: String? }
+        def members: () -> [ :case_id, :cc_emails, :created_date, :last_updated_date, :primary_email, :status, :subject, :appointments, :resolved_date ]
+        def to_h: () -> { case_id: String, cc_emails: Array[String], created_date: Time, last_updated_date: Time, primary_email: String, status: String, subject: String, appointments: Array[Peddler::APIs::Support20250201::Appointment]?, resolved_date: Time? }
       end
 
       class ChatContent < Data
@@ -160,23 +137,6 @@ module Peddler
         def to_h: () -> { channel: String, contact_id: String, created_date: Time, chat_content: Peddler::APIs::Support20250201::ChatContent?, email_content: Peddler::APIs::Support20250201::EmailContent?, phone_content: Peddler::APIs::Support20250201::PhoneContent? }
       end
 
-      class DateFilter < Data
-        def self.new: (?after: Time?, ?before: Time?) -> Peddler::APIs::Support20250201::DateFilter
-                    | (Time?, Time?) -> Peddler::APIs::Support20250201::DateFilter
-        def self.[]: (?after: Time?, ?before: Time?) -> Peddler::APIs::Support20250201::DateFilter
-                   | (Time?, Time?) -> Peddler::APIs::Support20250201::DateFilter
-
-        def self.members: () -> [ :after, :before ]
-
-        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Support20250201::DateFilter
-
-        attr_reader after: Time?
-        attr_reader before: Time?
-
-        def members: () -> [ :after, :before ]
-        def to_h: () -> { after: Time?, before: Time? }
-      end
-
       class EmailContent < Data
         def self.new: (message: String, sender: Peddler::APIs::Support20250201::Participant, ?attachments: Array[Peddler::APIs::Support20250201::Attachment]?) -> Peddler::APIs::Support20250201::EmailContent
                     | (String, Peddler::APIs::Support20250201::Participant, Array[Peddler::APIs::Support20250201::Attachment]?) -> Peddler::APIs::Support20250201::EmailContent
@@ -230,24 +190,21 @@ module Peddler
       end
 
       class ListCasesRequest < Data
-        def self.new: (?case_filters: Peddler::APIs::Support20250201::CaseFilters?, ?marketplace_id: String?, ?max_results: Integer?, ?next_token: String?, ?sort_field: String?, ?sort_order: String?) -> Peddler::APIs::Support20250201::ListCasesRequest
-                    | (Peddler::APIs::Support20250201::CaseFilters?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Support20250201::ListCasesRequest
-        def self.[]: (?case_filters: Peddler::APIs::Support20250201::CaseFilters?, ?marketplace_id: String?, ?max_results: Integer?, ?next_token: String?, ?sort_field: String?, ?sort_order: String?) -> Peddler::APIs::Support20250201::ListCasesRequest
-                   | (Peddler::APIs::Support20250201::CaseFilters?, String?, Integer?, String?, String?, String?) -> Peddler::APIs::Support20250201::ListCasesRequest
+        def self.new: (?max_results: Integer?, ?next_token: String?, ?sort_order: String?) -> Peddler::APIs::Support20250201::ListCasesRequest
+                    | (Integer?, String?, String?) -> Peddler::APIs::Support20250201::ListCasesRequest
+        def self.[]: (?max_results: Integer?, ?next_token: String?, ?sort_order: String?) -> Peddler::APIs::Support20250201::ListCasesRequest
+                   | (Integer?, String?, String?) -> Peddler::APIs::Support20250201::ListCasesRequest
 
-        def self.members: () -> [ :case_filters, :marketplace_id, :max_results, :next_token, :sort_field, :sort_order ]
+        def self.members: () -> [ :max_results, :next_token, :sort_order ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Support20250201::ListCasesRequest
 
-        attr_reader case_filters: Peddler::APIs::Support20250201::CaseFilters?
-        attr_reader marketplace_id: String?
         attr_reader max_results: Integer?
         attr_reader next_token: String?
-        attr_reader sort_field: String?
         attr_reader sort_order: String?
 
-        def members: () -> [ :case_filters, :marketplace_id, :max_results, :next_token, :sort_field, :sort_order ]
-        def to_h: () -> { case_filters: Peddler::APIs::Support20250201::CaseFilters?, marketplace_id: String?, max_results: Integer?, next_token: String?, sort_field: String?, sort_order: String? }
+        def members: () -> [ :max_results, :next_token, :sort_order ]
+        def to_h: () -> { max_results: Integer?, next_token: String?, sort_order: String? }
       end
 
       class ListCasesResult < Data
