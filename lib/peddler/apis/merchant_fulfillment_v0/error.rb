@@ -9,7 +9,7 @@ module Peddler
     class MerchantFulfillmentV0
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
+        # @return [String] An error code that identifies the type of error.
         attribute(:code, String, null: false)
 
         # @return [String] A message that describes the error condition in a human-readable form.

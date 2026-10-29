@@ -188,8 +188,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @param shipping_option_id [String] The ID of the shipping option whose shipping labels you want.
-      # @param operation [String] Specify whether you want to generate or regenerate a label. Known values: `GENERATE`,
-      #   `REGENERATE`.
+      # @param operation [String] Specify whether you want to generate or regenerate a label. For retrieving existing
+      #   labels, set this value to `GENERATE`. Known values: `GENERATE`, `REGENERATE`.
       # @param body [Hash] Shipping details for when shipping is not done by the marketplace channel.
       # @return [Peddler::Response] The API response
       def generate_ship_labels(shipment_id, operation, shipping_option_id: nil, body: nil)

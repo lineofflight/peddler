@@ -76,6 +76,11 @@ module Peddler
         #   `Business`, `Prime`, `Premium`, `IBA`, `Replacement`.
         attribute?(:order_programs, [String], from: "OrderPrograms")
 
+        # @return [String] The seller action status for the order's reservation (for example `AWAITING_SELLER_ACTION`,
+        #   `ACKNOWLEDGED`, or `REJECTED`). Present only on `PreFulfillmentStatusChange` notifications; absent for all
+        #   other `OrderChangeType` values.
+        attribute?(:pre_fulfillment_status, String, from: "PreFulfillmentStatus")
+
         # @return [Array<String>] The shipping programs, if any, in which this order participates. Known values:
         #   `ShipDateSet`, `GlobalExpress`, `ISPU`, `AccessPoint`, `TFM`, `EasyShip`.
         attribute?(:shipping_programs, [String], from: "ShippingPrograms")

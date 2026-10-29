@@ -18,7 +18,7 @@ module Peddler
         # @return [DangerousGoodsDetails]
         attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "DangerousGoodsDetails")
 
-        # @return [:boolean] When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
+        # @return [:boolean] When `true`, the item qualifies as hazardous materials (hazmat). Defaults to `false`.
         attribute?(:hazmat, :boolean, from: "IsHazmat")
 
         # @return [String]

@@ -7,7 +7,7 @@ require "structure"
 module Peddler
   module APIs
     class ExternalFulfillmentShipments20240911
-      # Tax registration details of the entity. Applicable to direct fulfillment shipments.
+      # Tax registration details of the entity. Applicable only to direct fulfillment shipments.
       TaxRegistrationInfo = Structure.new do
         # @return [Address] The address associated with the tax registration number.
         attribute?(:address, Address)

@@ -92,12 +92,15 @@ module Peddler
       #   supported is 20.
       # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
       #   is 50.
+      # @param provider_service_job_reference_ids [Array<String>] A list of up to 20 reference IDs for the service jobs
+      #   assigned to the provider. You can use these IDs to query service jobs.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil,
         service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil,
         created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil,
-        schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
+        schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil,
+        provider_service_job_reference_ids: nil, rate_limit: 10.0)
         path = "/service/v1/serviceJobs"
         params = {
           "serviceOrderIds" => stringify_array(service_order_ids),
@@ -118,6 +121,7 @@ module Peddler
           "asins" => stringify_array(asins),
           "requiredSkills" => stringify_array(required_skills),
           "storeIds" => stringify_array(store_ids),
+          "providerServiceJobReferenceIds" => stringify_array(provider_service_job_reference_ids),
         }.compact
         parser = -> { GetServiceJobsResponse }
         get(path, params:, rate_limit:, parser:)

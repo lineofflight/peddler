@@ -57,6 +57,16 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
 - **Added**: Promotions 2025-12-01: `rate_limit` parameter on `get_promotion`
+- **Added**: Action Items 2026-06-01: new API for discovering and dismissing action items surfaced by Amazon (`list_action_items`, `get_action_item`, `dismiss_action_item`)
+- **Added**: Action Plans 2026-06-01: new API for creating and tracking action plans from pre-defined templates (`create_action_plan`, `get_action_plan`, `list_action_plans`)
+- **Added**: Messaging 2026-04-20: new API for managing automated buyer-seller message configurations (`create_automation_configuration`, `list_automation_configurations`, `get_automation_configuration`, `update_automation_configuration`)
+- **Changed**: The default `messaging` alias now points to Messaging 2026-04-20 instead of v1; the previous version remains available as `messaging_v1`
+- **Added**: Listings Items 2021-08-01: `quantity_discount_plan` and `replenishment_discount` fields on `ItemOfferByMarketplace`
+- **Added**: Services v1: `provider_service_job_reference_ids` parameter on `get_service_jobs`; `provider_service_job_reference_id` field on `ServiceJobProvider`
+- **Added**: External Fulfillment Shipments 2024-09-11: `tracking_details` field (new `TrackingDetails` type) on `Package`
+- **Added**: Notifications v1: `pro_number` field on `TrackingIdentifier`
+- **Added**: Notifications: `pre_fulfillment_status` field on the Order Change `Summary`
+- **Removed**: Support 2025-02-01: `case_filters`, `marketplace_id`, and `sort_field` fields on `ListCasesRequest` and `last_outbound_date` on `Case`, along with the `CaseFilters` and `DateFilter` types
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
 - **Added**: Notifications: `ShipmentTrackingMilestoneChanged` now has a full envelope (`event_time`, `notification_metadata`, `notification_type`, `notification_version`, `payload_version`) and a payload carrying `shipment_tracking_milestone_changed_notification`, with new tracking types (`TrackingDetail`, `TrackingMilestone`, `TrackingEstimate`, `TrackingIdentifier`, `CarrierTracking`, and others)
 

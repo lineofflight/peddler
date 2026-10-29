@@ -11,7 +11,7 @@ module Peddler
       # `orderChangeType`.
       OrderChangeTypeFilter = Structure.new do
         # @return [Array<OrderChangeTypeEnum>] Known values: `BuyerRequestedChange`, `DeliveryTipChange`,
-        #   `OrderStatusChange`.
+        #   `OrderStatusChange`, `PreFulfillmentStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
       end
     end

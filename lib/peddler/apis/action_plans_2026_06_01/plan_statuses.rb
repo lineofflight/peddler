@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module APIs
+    class ActionPlans20260601
+      # The state of a plan, expressed as an array.
+      class PlanStatuses < Array
+        class << self
+          def parse(array)
+            new(array)
+          end
+        end
+      end
+    end
+  end
+end

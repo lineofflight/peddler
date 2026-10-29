@@ -9,14 +9,14 @@ module Peddler
     class ExternalFulfillmentShipments20240911
       # Geographic coordinates.
       Geocodes = Structure.new do
-        # @return [String] The latitude coordinate.
-        attribute(:latitude, String, null: false)
+        # @return [Float] The latitude coordinate.
+        attribute(:latitude, Float, null: false)
 
-        # @return [String] The longitude coordinate.
-        attribute(:longitude, String, null: false)
+        # @return [Float] The longitude coordinate.
+        attribute(:longitude, Float, null: false)
 
-        # @return [String] The elevation in meters.
-        attribute?(:elevation, String)
+        # @return [Float] The elevation in meters.
+        attribute?(:elevation, Float)
       end
     end
   end

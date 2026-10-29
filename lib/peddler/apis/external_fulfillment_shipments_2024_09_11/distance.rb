@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The unit of measurement of the distance. Known values: `MI`, `KM`.
         attribute(:distance_unit, String, null: false, from: "distanceUnit")
 
-        # @return [String] The numerical value of the distance.
-        attribute(:value, String, null: false)
+        # @return [Float] The numerical value of the distance.
+        attribute(:value, Float, null: false)
       end
     end
   end

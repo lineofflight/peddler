@@ -1,0 +1,194 @@
+module Peddler
+  module APIs
+    class Messaging20260420 < API
+      class AutomationConfiguration < Data
+        def self.new: (automation_display_name: String, automation_id: String, automation_status: String, automation_type: String, ?automation_sub_type: String?, ?created_date_time: Time?, ?current_automation_version: Integer?, ?last_updated_date_time: Time?, ?latest_automation_version: Integer?, ?marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
+                    | (String, String, String, String, String?, Time?, Integer?, Time?, Integer?, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
+        def self.[]: (automation_display_name: String, automation_id: String, automation_status: String, automation_type: String, ?automation_sub_type: String?, ?created_date_time: Time?, ?current_automation_version: Integer?, ?last_updated_date_time: Time?, ?latest_automation_version: Integer?, ?marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
+                   | (String, String, String, String, String?, Time?, Integer?, Time?, Integer?, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
+
+        def self.members: () -> [ :automation_display_name, :automation_id, :automation_status, :automation_type, :automation_sub_type, :created_date_time, :current_automation_version, :last_updated_date_time, :latest_automation_version, :marketplace_automations ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
+
+        attr_reader automation_display_name: String
+        attr_reader automation_id: String
+        attr_reader automation_status: String
+        attr_reader automation_sub_type: String?
+        attr_reader automation_type: String
+        attr_reader created_date_time: Time?
+        attr_reader current_automation_version: Integer?
+        attr_reader last_updated_date_time: Time?
+        attr_reader latest_automation_version: Integer?
+        attr_reader marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?
+
+        def members: () -> [ :automation_display_name, :automation_id, :automation_status, :automation_type, :automation_sub_type, :created_date_time, :current_automation_version, :last_updated_date_time, :latest_automation_version, :marketplace_automations ]
+        def to_h: () -> { automation_display_name: String, automation_id: String, automation_status: String, automation_type: String, automation_sub_type: String?, created_date_time: Time?, current_automation_version: Integer?, last_updated_date_time: Time?, latest_automation_version: Integer?, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]? }
+      end
+
+      class AutomationDetails < Data
+        def self.new: (auto_response_text: String, ?auto_response_attachment_url: String?) -> Peddler::APIs::Messaging20260420::AutomationDetails
+                    | (String, String?) -> Peddler::APIs::Messaging20260420::AutomationDetails
+        def self.[]: (auto_response_text: String, ?auto_response_attachment_url: String?) -> Peddler::APIs::Messaging20260420::AutomationDetails
+                   | (String, String?) -> Peddler::APIs::Messaging20260420::AutomationDetails
+
+        def self.members: () -> [ :auto_response_text, :auto_response_attachment_url ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::AutomationDetails
+
+        attr_reader auto_response_attachment_url: String?
+        attr_reader auto_response_text: String
+
+        def members: () -> [ :auto_response_text, :auto_response_attachment_url ]
+        def to_h: () -> { auto_response_text: String, auto_response_attachment_url: String? }
+      end
+
+      class CreateAutomationConfigRequest < Data
+        def self.new: (automation_display_name: String, automation_type: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation], ?automation_sub_type: String?) -> Peddler::APIs::Messaging20260420::CreateAutomationConfigRequest
+                    | (String, String, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation], String?) -> Peddler::APIs::Messaging20260420::CreateAutomationConfigRequest
+        def self.[]: (automation_display_name: String, automation_type: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation], ?automation_sub_type: String?) -> Peddler::APIs::Messaging20260420::CreateAutomationConfigRequest
+                   | (String, String, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation], String?) -> Peddler::APIs::Messaging20260420::CreateAutomationConfigRequest
+
+        def self.members: () -> [ :automation_display_name, :automation_type, :marketplace_automations, :automation_sub_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::CreateAutomationConfigRequest
+
+        attr_reader automation_display_name: String
+        attr_reader automation_sub_type: String?
+        attr_reader automation_type: String
+        attr_reader marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]
+
+        def members: () -> [ :automation_display_name, :automation_type, :marketplace_automations, :automation_sub_type ]
+        def to_h: () -> { automation_display_name: String, automation_type: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation], automation_sub_type: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Messaging20260420::Error
+                    | (String, String, String?) -> Peddler::APIs::Messaging20260420::Error
+        def self.[]: (code: String, message: String, ?details: String?) -> Peddler::APIs::Messaging20260420::Error
+                   | (String, String, String?) -> Peddler::APIs::Messaging20260420::Error
+
+        def self.members: () -> [ :code, :message, :details ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::Error
+
+        attr_reader code: String
+        attr_reader details: String?
+        attr_reader message: String
+
+        def members: () -> [ :code, :message, :details ]
+        def to_h: () -> { code: String, message: String, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::APIs::Messaging20260420::Error]) -> Peddler::APIs::Messaging20260420::ErrorList
+                    | (Array[Peddler::APIs::Messaging20260420::Error]) -> Peddler::APIs::Messaging20260420::ErrorList
+        def self.[]: (errors: Array[Peddler::APIs::Messaging20260420::Error]) -> Peddler::APIs::Messaging20260420::ErrorList
+                   | (Array[Peddler::APIs::Messaging20260420::Error]) -> Peddler::APIs::Messaging20260420::ErrorList
+
+        def self.members: () -> [ :errors ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::ErrorList
+
+        attr_reader errors: Array[Peddler::APIs::Messaging20260420::Error]
+
+        def members: () -> [ :errors ]
+        def to_h: () -> { errors: Array[Peddler::APIs::Messaging20260420::Error] }
+      end
+
+      class ListAutomationConfigsResponse < Data
+        def self.new: (automation_configurations: Array[Peddler::APIs::Messaging20260420::AutomationConfiguration], ?pagination: Peddler::APIs::Messaging20260420::Pagination?) -> Peddler::APIs::Messaging20260420::ListAutomationConfigsResponse
+                    | (Array[Peddler::APIs::Messaging20260420::AutomationConfiguration], Peddler::APIs::Messaging20260420::Pagination?) -> Peddler::APIs::Messaging20260420::ListAutomationConfigsResponse
+        def self.[]: (automation_configurations: Array[Peddler::APIs::Messaging20260420::AutomationConfiguration], ?pagination: Peddler::APIs::Messaging20260420::Pagination?) -> Peddler::APIs::Messaging20260420::ListAutomationConfigsResponse
+                   | (Array[Peddler::APIs::Messaging20260420::AutomationConfiguration], Peddler::APIs::Messaging20260420::Pagination?) -> Peddler::APIs::Messaging20260420::ListAutomationConfigsResponse
+
+        def self.members: () -> [ :automation_configurations, :pagination ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::ListAutomationConfigsResponse
+
+        attr_reader automation_configurations: Array[Peddler::APIs::Messaging20260420::AutomationConfiguration]
+        attr_reader pagination: Peddler::APIs::Messaging20260420::Pagination?
+
+        def members: () -> [ :automation_configurations, :pagination ]
+        def to_h: () -> { automation_configurations: Array[Peddler::APIs::Messaging20260420::AutomationConfiguration], pagination: Peddler::APIs::Messaging20260420::Pagination? }
+      end
+
+      class MarketplaceAutomation < Data
+        def self.new: (automation_details: Peddler::APIs::Messaging20260420::AutomationDetails, marketplace_id: String, trigger_conditions: Peddler::APIs::Messaging20260420::TriggerConditions) -> Peddler::APIs::Messaging20260420::MarketplaceAutomation
+                    | (Peddler::APIs::Messaging20260420::AutomationDetails, String, Peddler::APIs::Messaging20260420::TriggerConditions) -> Peddler::APIs::Messaging20260420::MarketplaceAutomation
+        def self.[]: (automation_details: Peddler::APIs::Messaging20260420::AutomationDetails, marketplace_id: String, trigger_conditions: Peddler::APIs::Messaging20260420::TriggerConditions) -> Peddler::APIs::Messaging20260420::MarketplaceAutomation
+                   | (Peddler::APIs::Messaging20260420::AutomationDetails, String, Peddler::APIs::Messaging20260420::TriggerConditions) -> Peddler::APIs::Messaging20260420::MarketplaceAutomation
+
+        def self.members: () -> [ :automation_details, :marketplace_id, :trigger_conditions ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::MarketplaceAutomation
+
+        attr_reader automation_details: Peddler::APIs::Messaging20260420::AutomationDetails
+        attr_reader marketplace_id: String
+        attr_reader trigger_conditions: Peddler::APIs::Messaging20260420::TriggerConditions
+
+        def members: () -> [ :automation_details, :marketplace_id, :trigger_conditions ]
+        def to_h: () -> { automation_details: Peddler::APIs::Messaging20260420::AutomationDetails, marketplace_id: String, trigger_conditions: Peddler::APIs::Messaging20260420::TriggerConditions }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::APIs::Messaging20260420::Pagination
+                    | (String?) -> Peddler::APIs::Messaging20260420::Pagination
+        def self.[]: (?next_token: String?) -> Peddler::APIs::Messaging20260420::Pagination
+                   | (String?) -> Peddler::APIs::Messaging20260420::Pagination
+
+        def self.members: () -> [ :next_token ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::Pagination
+
+        attr_reader next_token: String?
+
+        def members: () -> [ :next_token ]
+        def to_h: () -> { next_token: String? }
+      end
+
+      class TriggerConditions < Data
+        def self.new: (asin_list: Array[String], buyer_contact_topics: Array[String], buyer_contact_type: String) -> Peddler::APIs::Messaging20260420::TriggerConditions
+                    | (Array[String], Array[String], String) -> Peddler::APIs::Messaging20260420::TriggerConditions
+        def self.[]: (asin_list: Array[String], buyer_contact_topics: Array[String], buyer_contact_type: String) -> Peddler::APIs::Messaging20260420::TriggerConditions
+                   | (Array[String], Array[String], String) -> Peddler::APIs::Messaging20260420::TriggerConditions
+
+        def self.members: () -> [ :asin_list, :buyer_contact_topics, :buyer_contact_type ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::TriggerConditions
+
+        attr_reader asin_list: Array[String]
+        attr_reader buyer_contact_topics: Array[String]
+        attr_reader buyer_contact_type: String
+
+        def members: () -> [ :asin_list, :buyer_contact_topics, :buyer_contact_type ]
+        def to_h: () -> { asin_list: Array[String], buyer_contact_topics: Array[String], buyer_contact_type: String }
+      end
+
+      class UpdateAutomationConfigRequest < Data
+        def self.new: (automation_display_name: String, automation_status: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]) -> Peddler::APIs::Messaging20260420::UpdateAutomationConfigRequest
+                    | (String, String, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]) -> Peddler::APIs::Messaging20260420::UpdateAutomationConfigRequest
+        def self.[]: (automation_display_name: String, automation_status: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]) -> Peddler::APIs::Messaging20260420::UpdateAutomationConfigRequest
+                   | (String, String, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]) -> Peddler::APIs::Messaging20260420::UpdateAutomationConfigRequest
+
+        def self.members: () -> [ :automation_display_name, :automation_status, :marketplace_automations ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::Messaging20260420::UpdateAutomationConfigRequest
+
+        attr_reader automation_display_name: String
+        attr_reader automation_status: String
+        attr_reader marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]
+
+        def members: () -> [ :automation_display_name, :automation_status, :marketplace_automations ]
+        def to_h: () -> { automation_display_name: String, automation_status: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation] }
+      end
+
+      def create_automation_configuration: (Array[String], Hash[untyped, untyped]) -> Peddler::Response
+
+      def get_automation_configuration: (String, Array[String]) -> Peddler::Response
+      def list_automation_configurations: (Array[String], ?automation_type: String?, ?automation_sub_type: String?, ?include_marketplace_automations: String?, ?page_size: Integer?, ?pagination_token: String?) -> Peddler::Response
+
+      def update_automation_configuration: (String, Array[String], Hash[untyped, untyped]) -> Peddler::Response
+    end
+  end
+end

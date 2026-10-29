@@ -9,12 +9,13 @@ module Peddler
     class MerchantFulfillmentV0
       # Extra services provided by a carrier.
       ShippingServiceOptions = Structure.new do
-        # @return [:boolean] When true, the carrier will pick up the package. Note: Scheduled carrier pickup is
-        #   available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
+        # @return [:boolean] When `true`, the carrier picks up the package. Note: Scheduled carrier pickup is available
+        #   only using Dynamex (US), DPD (UK), and Royal Mail (UK).
         attribute(:carrier_will_pick_up, :boolean, null: false, from: "CarrierWillPickUp")
 
         # @return [String] The delivery confirmation level. Known values: `DeliveryConfirmationWithAdultSignature`,
-        #   `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`.
+        #   `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`,
+        #   `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`.
         attribute(:delivery_experience, String, null: false, from: "DeliveryExperience")
 
         # @return [String] Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`.

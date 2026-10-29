@@ -12,8 +12,8 @@ module Peddler
         # @return [String] Three digit currency code in ISO 4217 format.
         attribute(:currency_code, String, null: false, from: "currencyCode")
 
-        # @return [String] The amount of money.
-        attribute(:value, String, null: false)
+        # @return [Float] The amount of money.
+        attribute(:value, Float, null: false)
       end
     end
   end

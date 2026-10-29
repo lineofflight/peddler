@@ -209,12 +209,12 @@ module Peddler
       end
 
       class ItemOfferByMarketplace < Data
-        def self.new: (marketplace_id: String, offer_type: String, price: Peddler::Money, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
-                    | (String, String, Peddler::Money, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
-        def self.[]: (marketplace_id: String, offer_type: String, price: Peddler::Money, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
-                   | (String, String, Peddler::Money, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
+        def self.new: (marketplace_id: String, offer_type: String, price: Peddler::Money, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?, ?quantity_discount_plan: Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?, ?replenishment_discount: Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
+                    | (String, String, Peddler::Money, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?, Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?, Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
+        def self.[]: (marketplace_id: String, offer_type: String, price: Peddler::Money, ?audience: Peddler::APIs::ListingsItems20210801::Audience?, ?points: Peddler::APIs::ListingsItems20210801::Points?, ?quantity_discount_plan: Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?, ?replenishment_discount: Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
+                   | (String, String, Peddler::Money, Peddler::APIs::ListingsItems20210801::Audience?, Peddler::APIs::ListingsItems20210801::Points?, Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?, Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount?) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
 
-        def self.members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points ]
+        def self.members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points, :quantity_discount_plan, :replenishment_discount ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::ItemOfferByMarketplace
 
@@ -223,9 +223,11 @@ module Peddler
         attr_reader offer_type: String
         attr_reader points: Peddler::APIs::ListingsItems20210801::Points?
         attr_reader price: Peddler::Money
+        attr_reader quantity_discount_plan: Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?
+        attr_reader replenishment_discount: Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount?
 
-        def members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points ]
-        def to_h: () -> { marketplace_id: String, offer_type: String, price: Peddler::Money, audience: Peddler::APIs::ListingsItems20210801::Audience?, points: Peddler::APIs::ListingsItems20210801::Points? }
+        def members: () -> [ :marketplace_id, :offer_type, :price, :audience, :points, :quantity_discount_plan, :replenishment_discount ]
+        def to_h: () -> { marketplace_id: String, offer_type: String, price: Peddler::Money, audience: Peddler::APIs::ListingsItems20210801::Audience?, points: Peddler::APIs::ListingsItems20210801::Points?, quantity_discount_plan: Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan?, replenishment_discount: Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount? }
       end
 
       class ItemOffers < Array[ItemOfferByMarketplace]
@@ -477,6 +479,56 @@ module Peddler
 
         def members: () -> [ :points_number ]
         def to_h: () -> { points_number: Integer }
+      end
+
+      class QuantityDiscountLevel < Data
+        def self.new: (lower_bound: Integer, value: String) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel
+                    | (Integer, String) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel
+        def self.[]: (lower_bound: Integer, value: String) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel
+                   | (Integer, String) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel
+
+        def self.members: () -> [ :lower_bound, :value ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel
+
+        attr_reader lower_bound: Integer
+        attr_reader value: String
+
+        def members: () -> [ :lower_bound, :value ]
+        def to_h: () -> { lower_bound: Integer, value: String }
+      end
+
+      class QuantityDiscountPlan < Data
+        def self.new: (discount_type: String, levels: Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel]) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan
+                    | (String, Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel]) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan
+        def self.[]: (discount_type: String, levels: Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel]) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan
+                   | (String, Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel]) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan
+
+        def self.members: () -> [ :discount_type, :levels ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::QuantityDiscountPlan
+
+        attr_reader discount_type: String
+        attr_reader levels: Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel]
+
+        def members: () -> [ :discount_type, :levels ]
+        def to_h: () -> { discount_type: String, levels: Array[Peddler::APIs::ListingsItems20210801::QuantityDiscountLevel] }
+      end
+
+      class ReplenishmentDiscount < Data
+        def self.new: (discount_percentage: Integer) -> Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount
+                    | (Integer) -> Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount
+        def self.[]: (discount_percentage: Integer) -> Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount
+                   | (Integer) -> Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount
+
+        def self.members: () -> [ :discount_percentage ]
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ListingsItems20210801::ReplenishmentDiscount
+
+        attr_reader discount_percentage: Integer
+
+        def members: () -> [ :discount_percentage ]
+        def to_h: () -> { discount_percentage: Integer }
       end
 
       def delete_listings_item: (String, String, Array[String], ?issue_locale: String?, ?rate_limit: Float) -> Peddler::Response
