@@ -68,6 +68,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Notifications: `pre_fulfillment_status` field on the Order Change `Summary`
 - **Removed**: Support 2025-02-01: `case_filters`, `marketplace_id`, and `sort_field` fields on `ListCasesRequest` and `last_outbound_date` on `Case`, along with the `CaseFilters` and `DateFilter` types
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
+- **Added**: Data Kiosk Economics 2024-03-15: new fee types (coupon, deal, FBA disposal, FBA removal, fuel and logistics surcharge) and the `supportsDynamicSandbox` directive
 - **Added**: Notifications: `ShipmentTrackingMilestoneChanged` now has a full envelope (`event_time`, `notification_metadata`, `notification_type`, `notification_version`, `payload_version`) and a payload carrying `shipment_tracking_milestone_changed_notification`, with new tracking types (`TrackingDetail`, `TrackingMilestone`, `TrackingEstimate`, `TrackingIdentifier`, `CarrierTracking`, and others)
 
 ## [5.5.0] - 2026-06-10
