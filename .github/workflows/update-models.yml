@@ -101,9 +101,11 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.create-pr.outputs.pr_number }}
 
-            A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown. The description will become a squash commit body, so don't repeat the PR title.
+            A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown.
 
-            If the diff only changes selling-partner-api-models.sha, no generated code changed. Compare the old and new SHAs upstream with `gh api repos/amzn/selling-partner-api-models/compare/<old>...<new>` and describe what changed in the specs and why it left the generated code untouched.
+            Also set the PR title: one line in the imperative, 50 characters at most, naming the most significant change, like "Add shipment tracking fields to Orders v0". If the changes span unrelated APIs, name the biggest one or the common theme. The title and description become the squash commit, so the description shouldn't restate the title.
+
+            If the diff only changes selling-partner-api-models.sha, no generated code changed. Keep the title as it is. Compare the old and new SHAs upstream with `gh api repos/amzn/selling-partner-api-models/compare/<old>...<new>` and describe what changed in the specs and why it left the generated code untouched.
 
             Then, if any user-visible interface changed (new or removed methods, new parameters, new fields on response types), append concise entries to the [Unreleased] section of CHANGELOG.md under the `### Models` header. Format them as bullet points prefixed with `**Added**:`, `**Changed**:`, or `**Removed**:` to distinguish the update type. Commit and push to the PR branch.
           claude_args: |
