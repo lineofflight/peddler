@@ -15,7 +15,7 @@ module Peddler
       # response for each successful request in the set includes the inventory count for the provided `sku` and
       # `locationId` pair.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] A list of inventory requests.
       # @return [Peddler::Response] The API response
       def batch_inventory(body)
