@@ -13,7 +13,7 @@ module Peddler
     class ExternalFulfillmentReturns20240911 < API
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param return_location_id [String] The SmartConnect location ID of the location from which you want to retrieve
       #   return items.
       # @param rma_id [String] The RMA ID of the return items you want to list.
@@ -66,7 +66,7 @@ module Peddler
 
       # Retrieve the return item with the specified ID.
       #
-      # @note This operation can make a static sandbox call.
+      # @note This operation can make a dynamic sandbox call.
       # @param return_id [String] The ID of the return item you want.
       # @return [Peddler::Response] The API response
       def get_return(return_id)

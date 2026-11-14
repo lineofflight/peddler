@@ -13,7 +13,7 @@ module Peddler
         #   `DF`.
         attribute?(:channel_name, String, from: "channelName")
 
-        # @return [String] The marketplace ID of the marketplace where you want to update inventory.
+        # @return [String]
         attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end
