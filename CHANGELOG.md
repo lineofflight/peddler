@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Notifications v1: `get_subscriptions` operation to list all subscriptions for a notification type; `tracking_identifier` field (new `TrackingFilter`/`TrackingIdentifier` types) on `EventFilter` for filtering shipment tracking milestone notifications; new `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification type
 - **Added**: External Fulfillment Location 2026-07-30: new sandbox-only API for creating test locations and merchants (`create_sandbox_location`)
 - **Added**: External Fulfillment Shipments 2024-09-11: sandbox-only `create_sandbox_shipment` and `update_sandbox_shipment` operations for simulating order creation and shipment status, invoice, and transport capacity changes
+- **Added**: Finances 2024-06-19: `SETTLEMENT_ID` as a known `related_identifier_name` filter for `list_transactions`; `AMAZON_FBA_FROM_ORIGIN` as a known `store_name` value
 - **Changed**: External Fulfillment Shipments 2024-09-11: `status` parameter on `update_package_status` is now scoped to the Seller Flex program instead of being deprecated
 - **Added**: Promotions 2025-12-01: new API for searching and managing promotions (`search_promotions`, `get_promotion`, `get_selection`)
 - **Added**: Support 2025-02-01: new API for support cases (`list_cases`, `get_case`, `list_contacts`)
@@ -64,6 +65,7 @@ All notable changes to this project will be documented in this file. This projec
 - **Added**: Listings Items 2021-08-01: `quantity_discount_plan` and `replenishment_discount` fields on `ItemOfferByMarketplace`
 - **Added**: Services v1: `provider_service_job_reference_ids` parameter on `get_service_jobs`; `provider_service_job_reference_id` field on `ServiceJobProvider`
 - **Added**: External Fulfillment Shipments 2024-09-11: `tracking_details` field (new `TrackingDetails` type) on `Package`
+- **Added**: Finances 2024-06-19: `SETTLEMENT_ID` as a known `related_identifier_name` filter for `list_transactions`; `AMAZON_FBA_FROM_ORIGIN` as a known `store_name` value
 - **Added**: Notifications v1: `pro_number` field on `TrackingIdentifier`
 - **Added**: Notifications: `pre_fulfillment_status` field on the Order Change `Summary`
 - **Removed**: Support 2025-02-01: `case_filters`, `marketplace_id`, and `sort_field` fields on `ListCasesRequest` and `last_outbound_date` on `Case`, along with the `CaseFilters` and `DateFilter` types
