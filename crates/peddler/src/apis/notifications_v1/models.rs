@@ -355,7 +355,7 @@ pub struct EventFilter {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub marketplace_ids: ::std::option::Option<MarketplaceIds>,
-    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -461,7 +461,7 @@ impl ::std::convert::From<::std::vec::Vec<::std::string::String>> for Marketplac
 }
 /// The supported order change type of ORDER_CHANGE notification.
 ///
-/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -505,7 +505,7 @@ impl ::std::str::FromStr for OrderChangeTypeEnum {
 /// An event filter you can use to customize your subscription to send notifications for a specific `orderChangeType`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct OrderChangeTypeFilter {
-    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+    /// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`. Other values may be returned by Amazon.
     #[serde(
         rename = "orderChangeTypes",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -514,7 +514,7 @@ pub struct OrderChangeTypeFilter {
 }
 /// A list of order change types you can subscribe to (for example, `BuyerRequestedChange`). To receive notifications of all change types, do not provide this list.
 ///
-/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`. Other values may be returned by Amazon.
+/// Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`. Other values may be returned by Amazon.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct OrderChangeTypes(pub ::std::vec::Vec<OrderChangeTypeEnum>);
@@ -790,6 +790,12 @@ pub struct TrackingIdentifier {
     /// Amazon unique tracking identifier.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub id: ::std::option::Option<::std::string::String>,
+    /// The PRO number assigned by the freight carrier
+    #[serde(
+        rename = "proNumber",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub pro_number: ::std::option::Option<::std::string::String>,
 }
 /// Carrier-provided tracking identifier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]

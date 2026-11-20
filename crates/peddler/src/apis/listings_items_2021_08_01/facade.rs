@@ -28,7 +28,7 @@ impl DeleteListingsItemParams {
         }
     }
 }
-/// Delete a listings item for a selling partner.
+/// Deletes a listings item for a selling partner.
 pub async fn delete_listings_item(
     client: &Client,
     params: DeleteListingsItemParams,
@@ -245,7 +245,7 @@ impl<B> PutListingsItemParams<B> {
         }
     }
 }
-/// Creates a new or fully-updates an existing listings item for a selling partner.
+/// Creates a new or fully updates an existing listings item for a selling partner.
 pub async fn put_listings_item<B: serde::Serialize>(
     client: &Client,
     params: PutListingsItemParams<B>,
@@ -297,9 +297,9 @@ pub struct SearchListingsItemsParams {
     pub seller_id: String,
     /// A comma-delimited list of Amazon store identifiers for the request.
     pub marketplace_ids: Vec<String>,
-    /// A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
+    /// A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
     pub issue_locale: Option<String>,
-    /// A comma-delimited list of data sets that you want to include in the response. Default: `summaries`.
+    /// A comma-delimited list of data sets to include in the response. Default: `summaries`.
     ///
     /// Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
     #[serde(default = "search_listings_items_included_data_default")]

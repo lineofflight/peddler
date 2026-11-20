@@ -4,6 +4,8 @@
 module Peddler
   module Native
     PAGINATIONS = {
+      "action_items_2026_06_01.list_action_items" => Pagination.new(operation: "action_items_2026_06_01.list_action_items", input: "/page_token", output: "/pagination/nextToken"),
+      "action_plans_2026_06_01.list_action_plans" => Pagination.new(operation: "action_plans_2026_06_01.list_action_plans", input: "/page_token", output: "/pagination/nextToken"),
       "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments" => Pagination.new(operation: "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments", input: "/next_token", output: "/nextToken"),
       "amazon_warehousing_and_distribution_2024_05_09.list_inventory" => Pagination.new(operation: "amazon_warehousing_and_distribution_2024_05_09.list_inventory", input: "/next_token", output: "/nextToken"),
       "amazon_warehousing_and_distribution_2024_05_09.list_outbounds" => Pagination.new(operation: "amazon_warehousing_and_distribution_2024_05_09.list_outbounds", input: "/next_token", output: "/nextToken"),
@@ -52,6 +54,7 @@ module Peddler
       "invoices_2024_06_19.get_invoices" => Pagination.new(operation: "invoices_2024_06_19.get_invoices", input: "/next_token", output: "/nextToken"),
       "invoices_2024_06_19.get_invoices_exports" => Pagination.new(operation: "invoices_2024_06_19.get_invoices_exports", input: "/next_token", output: "/nextToken"),
       "listings_items_2021_08_01.search_listings_items" => Pagination.new(operation: "listings_items_2021_08_01.search_listings_items", input: "/page_token", output: "/pagination/nextToken"),
+      "messaging_2026_04_20.list_automation_configurations" => Pagination.new(operation: "messaging_2026_04_20.list_automation_configurations", input: "/pagination_token", output: "/pagination/nextToken"),
       "notifications_v1.get_subscriptions" => Pagination.new(operation: "notifications_v1.get_subscriptions", input: "/next_token", output: "/payload/nextToken"),
       "orders_2026_01_01.search_orders" => Pagination.new(operation: "orders_2026_01_01.search_orders", input: "/pagination_token", output: "/pagination/nextToken"),
       "orders_v0.get_order_items" => Pagination.new(operation: "orders_v0.get_order_items", input: "/next_token", output: "/payload/NextToken"),
@@ -84,6 +87,230 @@ module Peddler
       "vendor_shipments_v1.get_shipment_details" => Pagination.new(operation: "vendor_shipments_v1.get_shipment_details", input: "/next_token", output: "/payload/pagination/nextToken"),
       "vendor_shipments_v1.get_shipment_labels" => Pagination.new(operation: "vendor_shipments_v1.get_shipment_labels", input: "/next_token", output: "/payload/pagination/nextToken"),
     }.freeze #: Hash[String, Pagination]
+
+    # The Selling Partner API for Action Items
+    #
+    # The Selling Partner API for Action Items enables you to discover and inspect action items surfaced by Amazon,
+    # including recommendations, issues, and tasks.
+    #
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/action-items-api-model/actionItems_2026-06-01.json
+    class ActionItems20260601
+      # @rbs @engine: engine
+
+      #: (engine engine) -> void
+      def initialize(engine) # :nodoc:
+        @engine = engine
+      end
+
+      # Dismiss the specified action item. An optional reason can be provided.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs action_item_id: String -- The unique identifier of the action item.
+      # @rbs body: untyped -- The request body for the dismissActionItem operation.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def dismiss_action_item(action_item_id, body, rate_limit: nil)
+        arguments = {
+          action_item_id: Arguments.segment("action_item_id", action_item_id),
+          body: Arguments.body("body", body, required: true),
+        }
+        Response.from_parts(@engine.operation("action_items_2026_06_01.dismiss_action_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "action_items_2026_06_01.dismiss_action_item")
+      end
+
+      # Retrieve a single action item by ID with full detail.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs action_item_id: String -- The unique identifier of the action item.
+      # @rbs locale: String? -- The BCP 47 locale for localized content. Defaults to `en-US`.
+      # @rbs included_data: Array[String]? -- A list of optional datasets to include in the response. When omitted, only
+      #   core action item fields are returned. Known values: `impacts`, `resolutions`, `references`.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def get_action_item(action_item_id, locale: nil, included_data: nil, rate_limit: nil)
+        arguments = {
+          action_item_id: Arguments.segment("action_item_id", action_item_id, last: true),
+          locale: Arguments.string("locale", locale),
+          included_data: Arguments.array("included_data", included_data),
+        }
+        Response.from_parts(@engine.operation("action_items_2026_06_01.get_action_item", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "action_items_2026_06_01.get_action_item")
+      end
+
+      # Retrieve a paginated, filterable list of action items for the selling partner. When you specify multiple
+      # filters, only action items that match all of them are returned. When you specify multiple values for one filter,
+      # action items that match any of those values are returned.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs statuses: Array[String]? -- Filter by status (OR match). Known values: `PENDING_SELLING_PARTNER`,
+      #   `AUTOMATABLE`, `DISMISSABLE`, `SNOOZABLE`, `DISMISSED`, `SNOOZED`, `OVERDUE`, `ACTIONED`, `RESOLVED`.
+      # @rbs classifications: Array[String]? -- Filter by classification (OR match). Known values: `ISSUE`,
+      #   `RECOMMENDATION`, `TASK`.
+      # @rbs type_definition_ids: Array[String]? -- Filter by action item type definition IDs. Multiple values allowed.
+      # @rbs marketplace_ids: Array[String]? -- Filter by marketplace IDs.
+      # @rbs updated_after: String? -- Retrieve items last updated at or after this time. When used with
+      #   `updatedBefore`, this value must be earlier than `updatedBefore`.
+      # @rbs updated_before: String? -- Retrieve items last updated at or before this time. When used with
+      #   `updatedAfter`, this value must be later than `updatedAfter`.
+      # @rbs included_data: Array[String]? -- A list of optional datasets to include in the response. When omitted, only
+      #   core action item fields are returned. Known values: `impacts`, `resolutions`, `references`, `refinements`.
+      # @rbs sort_by: String? -- How to sort results. Defaults to recommended. Known values: `lastUpdatedDate`,
+      #   `recommended`.
+      # @rbs sort_order: String? -- The sort order. Defaults to `DESC`. Known values: `ASC`, `DESC`.
+      # @rbs page_size: Integer? -- Number of results per page.
+      # @rbs page_token: String? -- A token to retrieve a specific page of results. Pass the nextToken or previousToken
+      #   value from a previous response.
+      # @rbs locale: String? -- The BCP 47 locale for localized content. Defaults to `en-US`.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def list_action_items(statuses: nil, classifications: nil, type_definition_ids: nil, marketplace_ids: nil, updated_after: nil, updated_before: nil, included_data: nil, sort_by: "recommended", sort_order: "DESC", page_size: 10, page_token: nil, locale: nil, rate_limit: nil)
+        arguments = {
+          statuses: Arguments.array("statuses", statuses),
+          classifications: Arguments.array("classifications", classifications),
+          type_definition_ids: Arguments.array("type_definition_ids", type_definition_ids),
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
+          updated_after: Arguments.string("updated_after", updated_after),
+          updated_before: Arguments.string("updated_before", updated_before),
+          included_data: Arguments.array("included_data", included_data),
+          sort_by: Arguments.string("sort_by", sort_by),
+          sort_order: Arguments.string("sort_order", sort_order),
+          page_size: Arguments.integer("page_size", page_size),
+          page_token: Arguments.string("page_token", page_token),
+          locale: Arguments.string("locale", locale),
+        }
+        Response.from_parts(@engine.operation("action_items_2026_06_01.list_action_items", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "action_items_2026_06_01.list_action_items")
+      end
+
+      # Each page of #list_action_items. `rate_limit` applies to every page.
+      #: (?statuses: Array[String]?, ?classifications: Array[String]?, ?type_definition_ids: Array[String]?, ?marketplace_ids: Array[String]?, ?updated_after: String?, ?updated_before: String?, ?included_data: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+      def list_action_items_pages(statuses: nil, classifications: nil, type_definition_ids: nil, marketplace_ids: nil, updated_after: nil, updated_before: nil, included_data: nil, sort_by: "recommended", sort_order: "DESC", page_size: 10, page_token: nil, locale: nil, rate_limit: nil)
+        arguments = {
+          statuses: Arguments.array("statuses", statuses),
+          classifications: Arguments.array("classifications", classifications),
+          type_definition_ids: Arguments.array("type_definition_ids", type_definition_ids),
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids),
+          updated_after: Arguments.string("updated_after", updated_after),
+          updated_before: Arguments.string("updated_before", updated_before),
+          included_data: Arguments.array("included_data", included_data),
+          sort_by: Arguments.string("sort_by", sort_by),
+          sort_order: Arguments.string("sort_order", sort_order),
+          page_size: Arguments.integer("page_size", page_size),
+          page_token: Arguments.string("page_token", page_token),
+          locale: Arguments.string("locale", locale),
+        }
+        PAGINATIONS.fetch("action_items_2026_06_01.list_action_items").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
+      end
+    end
+
+    # The Selling Partner API for Action Plans
+    #
+    # The Action Plans API allows you to create, configure, and execute action plans from pre-defined templates or
+    # custom-built workflows.
+    #
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/action-plans-api-model/actionPlans_2026-06-01.json
+    class ActionPlans20260601
+      # @rbs @engine: engine
+
+      #: (engine engine) -> void
+      def initialize(engine) # :nodoc:
+        @engine = engine
+      end
+
+      # Creates an action plan from a template. Use `mode=PREVIEW` to return the plan without creating or executing it.
+      # Omit `mode` to create the plan and submit it for execution.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs body: untyped -- The request for action plan creation.
+      # @rbs mode: String? -- The mode of operation. Set `PREVIEW` to return the plan without creating or executing it.
+      #   Omit `mode` to create the plan and submit it for execution.
+      # @rbs locale: String? -- The locale for localized content, as an ISO 639 language code and ISO 3166 country code
+      #   separated by a hyphen. Defaults to `en-US`.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def create_action_plan(body, mode: nil, locale: nil, rate_limit: nil)
+        arguments = {
+          mode: Arguments.string("mode", mode),
+          locale: Arguments.string("locale", locale),
+          body: Arguments.body("body", body, required: true),
+        }
+        Response.from_parts(@engine.operation("action_plans_2026_06_01.create_action_plan", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "action_plans_2026_06_01.create_action_plan")
+      end
+
+      # Returns an action plan by ID. Use `includedData=steps` to include the plan's steps with their resolved input and
+      # output values.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs action_plan_id: String -- The unique identifier of the action plan (UUID).
+      # @rbs locale: String? -- The locale for localized content, as an ISO 639 language code and ISO 3166 country code
+      #   separated by a hyphen. Defaults to `en-US`.
+      # @rbs included_data: Array[String]? -- Additional data to include in the response. Include `steps` to include the
+      #   plan's steps with their resolved input and output values.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def get_action_plan(action_plan_id, locale: nil, included_data: nil, rate_limit: nil)
+        arguments = {
+          action_plan_id: Arguments.segment("action_plan_id", action_plan_id, last: true),
+          locale: Arguments.string("locale", locale),
+          included_data: Arguments.array("included_data", included_data),
+        }
+        Response.from_parts(@engine.operation("action_plans_2026_06_01.get_action_plan", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "action_plans_2026_06_01.get_action_plan")
+      end
+
+      # Returns a paginated list of the seller's action plans, sorted newest first by `createdDate`. Multiple filters
+      # are combined with a logical AND. Multiple values in a single filter are combined with a logical OR.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs statuses: Array[String]? -- Filters by plan status. Known values: `DRAFT`, `PENDING_SELLING_PARTNER`,
+      #   `PROCESSING`, `DONE`, `CANCELLED`, `PARTIAL`.
+      # @rbs plan_template_ids: Array[String]? -- Filters by plan template IDs. Multiple values allowed.
+      # @rbs action_item_ids: Array[String]? -- Filters by associated action item IDs. Multiple values allowed.
+      # @rbs created_after: String? -- Plans created at or after this timestamp. Timestamp is in ISO 8601 format.
+      # @rbs created_before: String? -- Plans created at or before this timestamp. Timestamp is in ISO 8601 format.
+      # @rbs page_size: Integer? -- Maximum number of results per page.
+      # @rbs page_token: String? -- A token to retrieve a specific page of results. Pass the `nextToken` value from a
+      #   previous response. **Note:** The `previousToken` value is not yet supported.
+      # @rbs locale: String? -- The locale for localized content, as an ISO 639 language code and ISO 3166 country code
+      #   separated by a hyphen. Defaults to `en-US`.
+      # @rbs included_data: Array[String]? -- Additional data to return in the response. Specify `steps` to return each
+      #   plan's steps with their resolved input and output values. Known values: `steps`, `refinements`.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def list_action_plans(statuses: nil, plan_template_ids: nil, action_item_ids: nil, created_after: nil, created_before: nil, page_size: 10, page_token: nil, locale: nil, included_data: nil, rate_limit: nil)
+        arguments = {
+          statuses: Arguments.array("statuses", statuses),
+          plan_template_ids: Arguments.array("plan_template_ids", plan_template_ids),
+          action_item_ids: Arguments.array("action_item_ids", action_item_ids),
+          created_after: Arguments.string("created_after", created_after),
+          created_before: Arguments.string("created_before", created_before),
+          page_size: Arguments.integer("page_size", page_size),
+          page_token: Arguments.string("page_token", page_token),
+          locale: Arguments.string("locale", locale),
+          included_data: Arguments.array("included_data", included_data),
+        }
+        Response.from_parts(@engine.operation("action_plans_2026_06_01.list_action_plans", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "action_plans_2026_06_01.list_action_plans")
+      end
+
+      # Each page of #list_action_plans. `rate_limit` applies to every page.
+      #: (?statuses: Array[String]?, ?plan_template_ids: Array[String]?, ?action_item_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+      def list_action_plans_pages(statuses: nil, plan_template_ids: nil, action_item_ids: nil, created_after: nil, created_before: nil, page_size: 10, page_token: nil, locale: nil, included_data: nil, rate_limit: nil)
+        arguments = {
+          statuses: Arguments.array("statuses", statuses),
+          plan_template_ids: Arguments.array("plan_template_ids", plan_template_ids),
+          action_item_ids: Arguments.array("action_item_ids", action_item_ids),
+          created_after: Arguments.string("created_after", created_after),
+          created_before: Arguments.string("created_before", created_before),
+          page_size: Arguments.integer("page_size", page_size),
+          page_token: Arguments.string("page_token", page_token),
+          locale: Arguments.string("locale", locale),
+          included_data: Arguments.array("included_data", included_data),
+        }
+        PAGINATIONS.fetch("action_plans_2026_06_01.list_action_plans").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
+      end
+    end
 
     # The Selling Partner API for Amazon Warehousing and Distribution
     #
@@ -1684,7 +1911,7 @@ module Peddler
       # response for each successful request in the set includes the inventory count for the provided `sku` and
       # `locationId` pair.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # @rbs body: untyped -- A list of inventory requests.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1743,7 +1970,7 @@ module Peddler
 
       # Retrieve the return item with the specified ID.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # @rbs return_id: String -- The ID of the return item you want.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
@@ -1757,7 +1984,7 @@ module Peddler
 
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # @rbs return_location_id: String? -- The SmartConnect location ID of the location from which you want to retrieve
       #   return items.
@@ -1894,8 +2121,8 @@ module Peddler
       #
       # @rbs shipment_id: String -- The ID of the shipment whose shipping labels you want to generate and retrieve.
       # @rbs shipping_option_id: String? -- The ID of the shipping option whose shipping labels you want.
-      # @rbs operation: String -- Specify whether you want to generate or regenerate a label. Known values: `GENERATE`,
-      #   `REGENERATE`.
+      # @rbs operation: String -- Specify whether you want to generate or regenerate a label. For retrieving existing
+      #   labels, set this value to `GENERATE`. Known values: `GENERATE`, `REGENERATE`.
       # @rbs body: untyped? -- Shipping details for when shipping is not done by the marketplace channel.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
@@ -2916,7 +3143,8 @@ module Peddler
       #   to `DEFERRED_RELEASED` when the transaction is released.
       # @rbs related_identifier_name: String? -- The name of the `relatedIdentifier`. **Possible values:** *
       #   `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. * `ORDER_ID`: the
-      #   order ID associated with the transaction. **Note:** `FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only
+      #   order ID associated with the transaction. * `SETTLEMENT_ID`: the settlement group ID associated with the
+      #   transaction. **Note:** `FINANCIAL_EVENT_GROUP_ID`, `ORDER_ID`, and `SETTLEMENT_ID` are the only
       #   `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be
       #   included in the response when available, they cannot be used for filtering purposes.
       # @rbs related_identifier_value: String? -- The value of the `relatedIdentifier`.
@@ -5301,7 +5529,7 @@ module Peddler
         @engine = engine
       end
 
-      # Delete a listings item for a selling partner.
+      # Deletes a listings item for a selling partner.
       #
       # This operation can make a static sandbox call.
       #
@@ -5379,7 +5607,7 @@ module Peddler
         Response.from_parts(@engine.operation("listings_items_2021_08_01.patch_listings_item", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "listings_items_2021_08_01.patch_listings_item")
       end
 
-      # Creates a new or fully-updates an existing listings item for a selling partner.
+      # Creates a new or fully updates an existing listings item for a selling partner.
       #
       # This operation can make a static sandbox call.
       #
@@ -5414,12 +5642,12 @@ module Peddler
       #
       # @rbs seller_id: String -- A selling partner identifier, such as a merchant account or vendor code.
       # @rbs marketplace_ids: Array[String] -- A comma-delimited list of Amazon store identifiers for the request.
-      # @rbs issue_locale: String? -- A locale that is used to localize issues. When not provided, the default language
-      #   code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not
-      #   available in the specified locale, localized messages default to "en_US".
-      # @rbs included_data: Array[String]? -- A comma-delimited list of data sets that you want to include in the
-      #   response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`,
-      #   `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
+      # @rbs issue_locale: String? -- A locale for localization of issues. When not provided, the default language code
+      #   of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available
+      #   in the specified locale, localized messages default to "en_US".
+      # @rbs included_data: Array[String]? -- A comma-delimited list of data sets to include in the response. Default:
+      #   `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`,
+      #   `procurement`, `relationships`, `productTypes`.
       # @rbs identifiers: Array[String]? -- A comma-delimited list of product identifiers that you can use to search for
       #   listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use
       #   'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
@@ -5882,6 +6110,138 @@ module Peddler
           body: Arguments.body("body", body, required: true),
         }
         Response.from_parts(@engine.operation("messaging_v1.send_invoice", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_v1.send_invoice")
+      end
+    end
+
+    # The Selling Partner API for Messaging Automations
+    #
+    # The Selling Partner API for Messaging Automations allows sellers to programmatically manage automated buyer-seller
+    # messaging configurations. An automation configuration defines rules for automatically responding to buyer messages
+    # (for example, auto-responses to common questions about shipping, returns, or product details). A seller can create
+    # multiple automation configurations, and each configuration can apply to one or more Amazon stores. Each
+    # store-specific entry within a configuration contains the response content and the automation trigger conditions.
+    # The `marketplaceIds` query parameter is required on all operations for store-scoped authorization.
+    #
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging_2026-04-20.json
+    class Messaging20260420
+      # @rbs @engine: engine
+
+      #: (engine engine) -> void
+      def initialize(engine) # :nodoc:
+        @engine = engine
+      end
+
+      # Creates a new automation configuration for automated buyer-seller messaging. The configuration is `ACTIVE` as
+      # soon as it is created. The response returns the full automation configuration resource, including the
+      # server-generated `automationId`.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs marketplace_ids: Array[String] -- A comma-delimited list of [Amazon store
+      #   identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for
+      #   store-scoped operations and authorization. Your application must have permission to operate in the specified
+      #   stores before processing the request body.
+      # @rbs body: untyped -- The request body for creating an automation configuration.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def create_automation_configuration(marketplace_ids, body, rate_limit: nil)
+        arguments = {
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
+          body: Arguments.body("body", body, required: true),
+        }
+        Response.from_parts(@engine.operation("messaging_2026_04_20.create_automation_configuration", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_2026_04_20.create_automation_configuration")
+      end
+
+      # Returns the details of a specific automation configuration, including its store-specific automation entries with
+      # response content and trigger conditions.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs automation_id: String -- The unique identifier of the automation configuration.
+      # @rbs marketplace_ids: Array[String] -- A comma-delimited list of [Amazon store
+      #   identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for
+      #   store-scoped operations and authorization. Your application must have permission to operate in the specified
+      #   stores before processing the request body.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def get_automation_configuration(automation_id, marketplace_ids, rate_limit: nil)
+        arguments = {
+          automation_id: Arguments.segment("automation_id", automation_id, last: true),
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
+        }
+        Response.from_parts(@engine.operation("messaging_2026_04_20.get_automation_configuration", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "messaging_2026_04_20.get_automation_configuration")
+      end
+
+      # Returns a list of automation configurations that include the specified Amazon store. Results may include
+      # configurations that also apply to other stores, since a single configuration can span multiple stores.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs marketplace_ids: Array[String] -- A comma-delimited list of [Amazon store
+      #   identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for
+      #   store-scoped operations and authorization. Your application must have permission to operate in the specified
+      #   stores before processing the request body.
+      # @rbs automation_type: String? -- Filters results by automation type. Known values: `AUTO_RESPONSE`.
+      # @rbs automation_sub_type: String? -- Filters results by automation sub-type. Known values: `AUTO_RESPONSE`.
+      # @rbs include_marketplace_automations: String? -- When set to `true`, the response includes the full, store-level
+      #   automation details for each configuration, including response text, attachment URL, and the trigger conditions
+      #   that define when the automation activates for that store. When false or omitted, only the top-level
+      #   configuration metadata (identifier, status, display name, timestamps) is returned. Known values: `TRUE`,
+      #   `FALSE`.
+      # @rbs page_size: Integer? -- The number of results to return per page. Minimum: 1. Maximum: 50. Default: 10.
+      # @rbs pagination_token: String? -- A token to fetch the next page of results. Use the `nextToken` value returned
+      #   in the previous response's `pagination` object.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def list_automation_configurations(marketplace_ids, automation_type: nil, automation_sub_type: nil, include_marketplace_automations: "FALSE", page_size: nil, pagination_token: nil, rate_limit: nil)
+        arguments = {
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
+          automation_type: Arguments.string("automation_type", automation_type),
+          automation_sub_type: Arguments.string("automation_sub_type", automation_sub_type),
+          include_marketplace_automations: Arguments.string("include_marketplace_automations", include_marketplace_automations),
+          page_size: Arguments.integer("page_size", page_size),
+          pagination_token: Arguments.string("pagination_token", pagination_token),
+        }
+        Response.from_parts(@engine.operation("messaging_2026_04_20.list_automation_configurations", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "messaging_2026_04_20.list_automation_configurations")
+      end
+
+      # Each page of #list_automation_configurations. `rate_limit` applies to every page.
+      #: (Array[String] marketplace_ids, ?automation_type: String?, ?automation_sub_type: String?, ?include_marketplace_automations: String?, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+      def list_automation_configurations_pages(marketplace_ids, automation_type: nil, automation_sub_type: nil, include_marketplace_automations: "FALSE", page_size: nil, pagination_token: nil, rate_limit: nil)
+        arguments = {
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
+          automation_type: Arguments.string("automation_type", automation_type),
+          automation_sub_type: Arguments.string("automation_sub_type", automation_sub_type),
+          include_marketplace_automations: Arguments.string("include_marketplace_automations", include_marketplace_automations),
+          page_size: Arguments.integer("page_size", page_size),
+          pagination_token: Arguments.string("pagination_token", pagination_token),
+        }
+        PAGINATIONS.fetch("messaging_2026_04_20.list_automation_configurations").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
+      end
+
+      # Updates an existing automation configuration. This is a full replacement operation using `PUT` semantics; you
+      # must provide the complete desired state, including `automationDisplayName`, `automationStatus`, and
+      # `marketplaceAutomations`. The `marketplaceAutomations` entries you provide replace all of the configuration's
+      # existing Amazon store entries; any store that you omit is removed from the configuration. To deactivate a
+      # configuration, send its complete current state with `automationStatus` set to `DEACTIVATED`.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # @rbs automation_id: String -- The unique identifier of the automation configuration to update.
+      # @rbs marketplace_ids: Array[String] -- A comma-delimited list of [Amazon store
+      #   identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for
+      #   store-scoped operations and authorization. Your application must have permission to operate in the specified
+      #   stores before processing the request body.
+      # @rbs body: untyped -- The request body for updating an automation configuration.
+      # @rbs rate_limit: (Float | Integer)? -- Requests per second
+      # @rbs return: Response
+      def update_automation_configuration(automation_id, marketplace_ids, body, rate_limit: nil)
+        arguments = {
+          automation_id: Arguments.segment("automation_id", automation_id, last: true),
+          marketplace_ids: Arguments.array("marketplace_ids", marketplace_ids, required: true),
+          body: Arguments.body("body", body, required: true),
+        }
+        Response.from_parts(@engine.operation("messaging_2026_04_20.update_automation_configuration", Arguments.encode(arguments, "body"), Arguments.rate_limit(rate_limit)), "messaging_2026_04_20.update_automation_configuration")
       end
     end
 
@@ -8097,9 +8457,11 @@ module Peddler
       #   values supported is 20.
       # @rbs store_ids: Array[String]? -- List of Amazon-defined identifiers for the region scope. Max values supported
       #   is 50.
+      # @rbs provider_service_job_reference_ids: Array[String]? -- A list of up to 20 reference IDs for the service jobs
+      #   assigned to the provider. You can use these IDs to query service jobs.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
-      def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
+      def get_service_jobs(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, provider_service_job_reference_ids: nil, rate_limit: 10.0)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
           product_order_ids: Arguments.array("product_order_ids", product_order_ids),
@@ -8119,13 +8481,14 @@ module Peddler
           asins: Arguments.array("asins", asins),
           required_skills: Arguments.array("required_skills", required_skills),
           store_ids: Arguments.array("store_ids", store_ids),
+          provider_service_job_reference_ids: Arguments.array("provider_service_job_reference_ids", provider_service_job_reference_ids),
         }
         Response.from_parts(@engine.operation("services_v1.get_service_jobs", Arguments.encode(arguments), Arguments.rate_limit(rate_limit)), "services_v1.get_service_jobs")
       end
 
       # Each page of #get_service_jobs. `rate_limit` applies to every page.
-      #: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
-      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, rate_limit: 10.0)
+      #: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?provider_service_job_reference_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+      def get_service_jobs_pages(marketplace_ids, service_order_ids: nil, product_order_ids: nil, tracking_ids: nil, service_job_status: nil, page_token: nil, page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil, store_ids: nil, provider_service_job_reference_ids: nil, rate_limit: 10.0)
         arguments = {
           service_order_ids: Arguments.array("service_order_ids", service_order_ids),
           product_order_ids: Arguments.array("product_order_ids", product_order_ids),
@@ -8145,6 +8508,7 @@ module Peddler
           asins: Arguments.array("asins", asins),
           required_skills: Arguments.array("required_skills", required_skills),
           store_ids: Arguments.array("store_ids", store_ids),
+          provider_service_job_reference_ids: Arguments.array("provider_service_job_reference_ids", provider_service_job_reference_ids),
         }
         PAGINATIONS.fetch("services_v1.get_service_jobs").pages(@engine, arguments, Arguments.rate_limit(rate_limit))
       end
@@ -9051,7 +9415,7 @@ module Peddler
       # @rbs case_id: String -- The case identifier.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
-      def get_case(case_id, rate_limit: nil)
+      def get_case(case_id, rate_limit: 0.1)
         arguments = {
           case_id: Arguments.segment("case_id", case_id, last: true),
         }
@@ -9065,7 +9429,7 @@ module Peddler
       # @rbs body: untyped -- The request body for the listCases operation.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
-      def list_cases(body, rate_limit: nil)
+      def list_cases(body, rate_limit: 0.1)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
@@ -9074,7 +9438,7 @@ module Peddler
 
       # Each page of #list_cases. `rate_limit` applies to every page.
       #: (untyped body, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
-      def list_cases_pages(body, rate_limit: nil)
+      def list_cases_pages(body, rate_limit: 0.1)
         arguments = {
           body: Arguments.body("body", body, required: true),
         }
@@ -9095,7 +9459,7 @@ module Peddler
       #   Known values: `ASC`, `DESC`.
       # @rbs rate_limit: (Float | Integer)? -- Requests per second
       # @rbs return: Response
-      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
+      def list_contacts(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: 0.1)
         arguments = {
           case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
@@ -9107,7 +9471,7 @@ module Peddler
 
       # Each page of #list_contacts. `rate_limit` applies to every page.
       #: (String case_id, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
-      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: nil)
+      def list_contacts_pages(case_id, max_results: 10, next_token: nil, sort_order: "DESC", rate_limit: 0.1)
         arguments = {
           case_id: Arguments.segment("case_id", case_id),
           max_results: Arguments.integer("max_results", max_results),
@@ -10612,6 +10976,26 @@ module Peddler
   end
 
   class Client
+    # The Selling Partner API for Action Items, version 2026-06-01
+    #: () -> Native::ActionItems20260601
+    def action_items_2026_06_01
+      Native::ActionItems20260601.new(@engine)
+    end
+
+    # The latest version: #action_items_2026_06_01
+    #: () -> Native::ActionItems20260601
+    def action_items = action_items_2026_06_01
+
+    # The Selling Partner API for Action Plans, version 2026-06-01
+    #: () -> Native::ActionPlans20260601
+    def action_plans_2026_06_01
+      Native::ActionPlans20260601.new(@engine)
+    end
+
+    # The latest version: #action_plans_2026_06_01
+    #: () -> Native::ActionPlans20260601
+    def action_plans = action_plans_2026_06_01
+
     # The Selling Partner API for Amazon Warehousing and Distribution, version 2024-05-09
     #: () -> Native::AmazonWarehousingAndDistribution20240509
     def amazon_warehousing_and_distribution_2024_05_09
@@ -10914,9 +11298,15 @@ module Peddler
       Native::MessagingV1.new(@engine)
     end
 
-    # The latest version: #messaging_v1
-    #: () -> Native::MessagingV1
-    def messaging = messaging_v1
+    # The Selling Partner API for Messaging Automations, version 2026-04-20
+    #: () -> Native::Messaging20260420
+    def messaging_2026_04_20
+      Native::Messaging20260420.new(@engine)
+    end
+
+    # The latest version: #messaging_2026_04_20
+    #: () -> Native::Messaging20260420
+    def messaging = messaging_2026_04_20
 
     # Selling Partner API for Notifications, version v1
     #: () -> Native::NotificationsV1

@@ -16,6 +16,24 @@ pub fn execute<'a>(
     arguments: &'a str,
 ) -> OperationFuture<'a> {
     let handler: Handler = match operation {
+        "action_items_2026_06_01.dismiss_action_item" => {
+            action_items_2026_06_01_dismiss_action_item
+        }
+        "action_items_2026_06_01.get_action_item" => {
+            action_items_2026_06_01_get_action_item
+        }
+        "action_items_2026_06_01.list_action_items" => {
+            action_items_2026_06_01_list_action_items
+        }
+        "action_plans_2026_06_01.create_action_plan" => {
+            action_plans_2026_06_01_create_action_plan
+        }
+        "action_plans_2026_06_01.get_action_plan" => {
+            action_plans_2026_06_01_get_action_plan
+        }
+        "action_plans_2026_06_01.list_action_plans" => {
+            action_plans_2026_06_01_list_action_plans
+        }
         "amazon_warehousing_and_distribution_2024_05_09.cancel_inbound" => {
             amazon_warehousing_and_distribution_2024_05_09_cancel_inbound
         }
@@ -595,6 +613,18 @@ pub fn execute<'a>(
             messaging_v1_get_messaging_actions_for_order
         }
         "messaging_v1.send_invoice" => messaging_v1_send_invoice,
+        "messaging_2026_04_20.create_automation_configuration" => {
+            messaging_2026_04_20_create_automation_configuration
+        }
+        "messaging_2026_04_20.get_automation_configuration" => {
+            messaging_2026_04_20_get_automation_configuration
+        }
+        "messaging_2026_04_20.list_automation_configurations" => {
+            messaging_2026_04_20_list_automation_configurations
+        }
+        "messaging_2026_04_20.update_automation_configuration" => {
+            messaging_2026_04_20_update_automation_configuration
+        }
         "notifications_v1.create_destination" => notifications_v1_create_destination,
         "notifications_v1.create_subscription" => notifications_v1_create_subscription,
         "notifications_v1.delete_destination" => notifications_v1_delete_destination,
@@ -986,6 +1016,100 @@ fn reports_2021_06_30_get_reports_continue<'a>(
             )
             .map_err(|_| crate::Error::InvalidRequest)?;
         crate::apis::reports_2021_06_30::get_reports_continue(client, params).await
+    })
+}
+fn action_items_2026_06_01_dismiss_action_item<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_items_2026_06_01::DismissActionItemParams<
+            serde_json::Value,
+        > = serde_json::from_str(arguments).map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_items_2026_06_01::dismiss_action_item(client, params)
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn action_items_2026_06_01_get_action_item<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_items_2026_06_01::GetActionItemParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_items_2026_06_01::get_action_item(client, params)
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn action_items_2026_06_01_list_action_items<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_items_2026_06_01::ListActionItemsParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_items_2026_06_01::list_action_items(client, params)
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn action_plans_2026_06_01_create_action_plan<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_plans_2026_06_01::CreateActionPlanParams<
+            serde_json::Value,
+        > = serde_json::from_str(arguments).map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_plans_2026_06_01::create_action_plan(client, params)
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn action_plans_2026_06_01_get_action_plan<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_plans_2026_06_01::GetActionPlanParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_plans_2026_06_01::get_action_plan(client, params)
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn action_plans_2026_06_01_list_action_plans<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::action_plans_2026_06_01::ListActionPlansParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::action_plans_2026_06_01::list_action_plans(client, params)
+                .await?
+                .into_raw(),
+        )
     })
 }
 fn amazon_warehousing_and_distribution_2024_05_09_cancel_inbound<'a>(
@@ -4555,6 +4679,80 @@ fn messaging_v1_send_invoice<'a>(
             )
             .map_err(|_| crate::Error::InvalidRequest)?;
         crate::apis::messaging_v1::send_invoice(client, params).await
+    })
+}
+fn messaging_2026_04_20_create_automation_configuration<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::messaging_2026_04_20::CreateAutomationConfigurationParams<
+            serde_json::Value,
+        > = serde_json::from_str(arguments).map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::messaging_2026_04_20::create_automation_configuration(
+                    client,
+                    params,
+                )
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn messaging_2026_04_20_get_automation_configuration<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::messaging_2026_04_20::GetAutomationConfigurationParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::messaging_2026_04_20::get_automation_configuration(
+                    client,
+                    params,
+                )
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn messaging_2026_04_20_list_automation_configurations<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::messaging_2026_04_20::ListAutomationConfigurationsParams = serde_json::from_str(
+                arguments,
+            )
+            .map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::messaging_2026_04_20::list_automation_configurations(
+                    client,
+                    params,
+                )
+                .await?
+                .into_raw(),
+        )
+    })
+}
+fn messaging_2026_04_20_update_automation_configuration<'a>(
+    client: &'a crate::Client,
+    arguments: &'a str,
+) -> OperationFuture<'a> {
+    Box::pin(async move {
+        let params: crate::apis::messaging_2026_04_20::UpdateAutomationConfigurationParams<
+            serde_json::Value,
+        > = serde_json::from_str(arguments).map_err(|_| crate::Error::InvalidRequest)?;
+        Ok(
+            crate::apis::messaging_2026_04_20::update_automation_configuration(
+                    client,
+                    params,
+                )
+                .await?
+                .into_raw(),
+        )
     })
 }
 fn notifications_v1_create_destination<'a>(

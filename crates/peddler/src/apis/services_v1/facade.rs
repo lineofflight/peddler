@@ -639,6 +639,8 @@ pub struct GetServiceJobsParams {
     pub required_skills: Option<Vec<String>>,
     /// List of Amazon-defined identifiers for the region scope. Max values supported is 50.
     pub store_ids: Option<Vec<String>>,
+    /// A list of up to 20 reference IDs for the service jobs assigned to the provider. You can use these IDs to query service jobs.
+    pub provider_service_job_reference_ids: Option<Vec<String>>,
 }
 impl GetServiceJobsParams {
     /// Takes the required parameters. Each optional one is `None`, or its default in the spec.
@@ -662,6 +664,7 @@ impl GetServiceJobsParams {
             asins: None,
             required_skills: None,
             store_ids: None,
+            provider_service_job_reference_ids: None,
         }
     }
 }
@@ -686,6 +689,11 @@ pub async fn get_service_jobs(
     operation::pair(&mut query, "pageSize", params.page_size.as_ref());
     operation::pair(&mut query, "pageToken", params.page_token.as_ref());
     operation::csv(&mut query, "productOrderIds", params.product_order_ids.as_ref());
+    operation::csv(
+        &mut query,
+        "providerServiceJobReferenceIds",
+        params.provider_service_job_reference_ids.as_ref(),
+    );
     operation::csv(&mut query, "requiredSkills", params.required_skills.as_ref());
     operation::pair(&mut query, "scheduleEndDate", params.schedule_end_date.as_ref());
     operation::pair(
@@ -707,6 +715,11 @@ pub async fn get_service_jobs(
     operation::empty(&mut query, "asins", params.asins.as_ref());
     operation::empty(&mut query, "requiredSkills", params.required_skills.as_ref());
     operation::empty(&mut query, "storeIds", params.store_ids.as_ref());
+    operation::empty(
+        &mut query,
+        "providerServiceJobReferenceIds",
+        params.provider_service_job_reference_ids.as_ref(),
+    );
     let raw = client
         .execute_json(
             Request {

@@ -13,13 +13,14 @@ module Peddler
         attribute?(:carrier_will_pick_up, String, from: "CarrierWillPickUp")
 
         # Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`,
-        # `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`.
+        # `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`, `DeliveryConfirmationWithIdentityCheck`,
+        # `DeliveryConfirmationWithNameVerification`.
         attribute?(:delivery_experience, String, from: "DeliveryExperience")
 
-        # When true, include complex shipping options.
+        # When `true`, include complex shipping options.
         attribute?(:include_complex_shipping_options, :boolean, from: "IncludeComplexShippingOptions")
 
-        # When true, include a packing slip with the label.
+        # When `true`, include a packing slip with the label.
         attribute?(:include_packing_slip_with_label, :boolean, from: "IncludePackingSlipWithLabel")
       end
     end

@@ -9,15 +9,6 @@ module Peddler
     module Support20250201
       # The request body for the listCases operation.
       ListCasesRequest = Structure.new do
-        # Optional filters to narrow the returned collection. When absent, the operation returns all cases for the
-        # requesting identity.
-        attribute?(:case_filters, CaseFilters, from: "caseFilters")
-
-        # The marketplace identifier used for authorization only. This field does not impact the returned collection.
-        # For a list of possible values, refer to [Marketplace
-        # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute?(:marketplace_id, String, from: "marketplaceId")
-
         # Maximum number of results to return.
         attribute?(:max_results, Integer, from: "maxResults")
 
@@ -26,10 +17,6 @@ module Peddler
         # and include the same arguments as the call that produced the token. To get a complete list, call this
         # operation until `nextToken` is null. Note that this operation can return empty pages.
         attribute?(:next_token, String, from: "nextToken")
-
-        # The field to sort cases by. Defaults to CREATION_DATE when absent. Known values: `CASE_ID`, `STATUS`,
-        # `SUBJECT`, `PRIMARY_EMAIL`, `CREATION_DATE`, `LAST_OUTBOUND_DATE`, `RESOLUTION_DATE`.
-        attribute?(:sort_field, String, from: "sortField")
 
         # The sort direction. Defaults to DESC when absent. Known values: `ASC`, `DESC`.
         attribute?(:sort_order, String, from: "sortOrder")

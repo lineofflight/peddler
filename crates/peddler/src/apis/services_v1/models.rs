@@ -1530,6 +1530,12 @@ impl<'de> ::serde::Deserialize<'de> for ServiceJobMarketplaceId {
 /// Information about the service job provider.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ServiceJobProvider {
+    /// The reference ID for the service job assigned to the provider.
+    #[serde(
+        rename = "providerServiceJobReferenceId",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub provider_service_job_reference_id: ::std::option::Option<::std::string::String>,
     /// The identifier of the service job provider.
     #[serde(
         rename = "serviceJobProviderId",

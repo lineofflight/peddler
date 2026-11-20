@@ -18,16 +18,15 @@ module Peddler
         # The amount that the carrier will charge for the shipment with adjustments.
         attribute(:rate_with_adjustments, Money, null: false, from: "RateWithAdjustments")
 
-        # When true, additional seller inputs are required.
+        # When `true`, additional seller inputs are required.
         attribute(:requires_additional_seller_inputs, :boolean, null: false, from: "RequiresAdditionalSellerInputs")
 
-        # The date that the carrier will ship the package.
+        # The date that the carrier ships the package.
         attribute(:ship_date, String, null: false, from: "ShipDate")
 
         attribute(:shipping_service_id, String, null: false, from: "ShippingServiceId")
 
-        # A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard
-        # Overnight".
+        # The carrier's shipping service name, such as "UPS Ground" or "FedEx Standard Overnight".
         attribute(:shipping_service_name, String, null: false, from: "ShippingServiceName")
 
         # An Amazon-defined shipping service offer identifier.
@@ -48,10 +47,10 @@ module Peddler
 
         attribute?(:benefits, Benefits, from: "Benefits")
 
-        # The earliest date by which the shipment will be delivered.
+        # The earliest estimated delivery date for the shipment.
         attribute?(:earliest_estimated_delivery_date, String, from: "EarliestEstimatedDeliveryDate")
 
-        # The latest date by which the shipment will be delivered.
+        # The latest estimated delivery date for the shipment.
         attribute?(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
       end
     end

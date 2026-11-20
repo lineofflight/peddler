@@ -16,13 +16,14 @@ module Peddler
         # An identifier for the shipping option.
         attribute(:shipping_option_id, String, null: false, from: "shippingOptionId")
 
-        # The carrier name for the offering.
+        # The carrier name for the offering. Applicable only for Self Ship program
         attribute?(:carrier_name, String, from: "carrierName")
 
         # The drop-off location details. This value is populated when `handoverMethod` is `DROPOFF`.
         attribute?(:handover_location, HandoverLocation, from: "handoverLocation")
 
-        # The time window during which the package will be picked up.
+        # The time window during which the package will be picked up. This object is deprecated, please use `timeSlot`
+        # instead.
         attribute?(:pickup_window, TimeWindow, from: "pickupWindow")
 
         # A time window to hand over the package to or from Amazon Logistics.

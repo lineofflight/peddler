@@ -13,7 +13,7 @@ module Peddler
         attribute(:dimension_unit, String, null: false, from: "dimensionUnit")
 
         # The numerical value of the dimension. Must be a positive value.
-        attribute(:value, String, null: false)
+        attribute(:value, Float, null: false)
       end
     end
   end

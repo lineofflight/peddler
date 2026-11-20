@@ -51,7 +51,7 @@ pub struct TheOrderChangeNotificationSchema {
     pub notification_level: ::std::string::String,
     #[serde(rename = "OrderChangeTrigger")]
     pub order_change_trigger: TheOrderChangeTriggerSchema,
-    /// Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange, OrderStatusChange.
+    /// Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange, OrderStatusChange, PreFulfillmentStatusChange.
     #[serde(rename = "OrderChangeType")]
     pub order_change_type: ::std::string::String,
     /// The selling partner identifier.
@@ -224,6 +224,12 @@ pub struct TheSummarySchema {
     /// Known values: `StandardOrder`, `LongLeadTimeOrder`, `Preorder`, `BackOrder`, `SourcingOnDemandOrder`. Other values may be returned by Amazon.
     #[serde(rename = "OrderType")]
     pub order_type: ::std::string::String,
+    /// The seller action status for the order's reservation (for example `AWAITING_SELLER_ACTION`, `ACKNOWLEDGED`, or `REJECTED`). Present only on `PreFulfillmentStatusChange` notifications; absent for all other `OrderChangeType` values.
+    #[serde(
+        rename = "PreFulfillmentStatus",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub pre_fulfillment_status: ::std::option::Option<::std::string::String>,
     /// The purchase date of the order, presented in ISO-8601 date/time format. It will be null when there is no related information.
     #[serde(
         rename = "PurchaseDate",

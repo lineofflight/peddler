@@ -473,7 +473,7 @@ for AvailableCarrierWillPickUpOptionsList {
 pub struct AvailableDeliveryExperienceOption {
     #[serde(rename = "Charge")]
     pub charge: CurrencyAmount,
-    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`. Other values may be returned by Amazon.
+    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`, `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`. Other values may be returned by Amazon.
     #[serde(rename = "DeliveryExperienceOption")]
     pub delivery_experience_option: DeliveryExperienceOption,
 }
@@ -553,7 +553,7 @@ pub struct AvailableShippingServiceOptions {
     #[serde(rename = "AvailableDeliveryExperienceOptions")]
     pub available_delivery_experience_options: AvailableDeliveryExperienceOptionsList,
 }
-/// Benefits that are included and excluded for each shipping offer. Benefits represents services provided by Amazon (for example, `CLAIMS_PROTECTED`) when sellers purchase shipping through Amazon. Benefit details are made available for any shipment placed on or after January 1st 2024 00:00 UTC.
+/// Benefits that are included and excluded for each shipping offer. Benefits represent services provided by Amazon (for example, `CLAIMS_PROTECTED`) when sellers purchase shipping through Amazon. Benefit details are available for any shipment placed on or after January 1, 2024, 00:00 UTC.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Benefits {
     #[serde(
@@ -1068,7 +1068,7 @@ impl<'de> ::serde::Deserialize<'de> for DangerousGoodsDetailsUnitedNationsRegula
 }
 /// The delivery confirmation level.
 ///
-/// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`. Other values may be returned by Amazon.
+/// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`, `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1111,7 +1111,7 @@ impl ::std::str::FromStr for DeliveryExperienceOption {
 }
 /// The delivery confirmation level.
 ///
-/// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.
+/// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1237,7 +1237,7 @@ impl ::std::str::FromStr for EmailAddress {
 /// Error response returned when the request is unsuccessful.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct Error {
-    /// An error code that identifies the type of error that occurred.
+    /// An error code that identifies the type of error.
     pub code: ::std::string::String,
     /// Additional details that can help the caller understand or fix the issue.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
@@ -1265,10 +1265,10 @@ impl ::std::convert::From<::std::vec::Vec<Error>> for ErrorList {
         Self(value)
     }
 }
-/// An object representing an excluded benefit that is excluded for a shipping offer or rate.
+/// A benefit excluded from a shipping offer or rate.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ExcludedBenefit {
-    /// A benefit that is being excluded from a shipment.
+    /// The benefit excluded from a shipment.
     #[serde(rename = "Benefit", skip_serializing_if = "::std::option::Option::is_none")]
     pub benefit: ::std::option::Option<::std::string::String>,
     #[serde(
@@ -1378,7 +1378,7 @@ impl ::std::str::FromStr for FileType {
 /// Request schema.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct GetAdditionalSellerInputsRequest {
-    /// An Amazon defined order identifier
+    /// An Amazon-defined order identifier.
     #[serde(rename = "OrderId")]
     pub order_id: AmazonOrderId,
     /// The address from which to ship.
@@ -1582,7 +1582,7 @@ pub struct Item {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub dangerous_goods_details: ::std::option::Option<DangerousGoodsDetails>,
-    /// When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
+    /// When `true`, the item qualifies as hazardous materials (hazmat). Defaults to `false`.
     #[serde(rename = "IsHazmat", skip_serializing_if = "::std::option::Option::is_none")]
     pub is_hazmat: ::std::option::Option<bool>,
     #[serde(
@@ -1915,7 +1915,7 @@ impl ::std::convert::From<::std::vec::Vec<LabelFormat>> for LabelFormatList {
 /// The label format details and whether to include a packing slip.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct LabelFormatOption {
-    /// When true, include a packing slip with the label.
+    /// When `true`, include a packing slip with the label.
     #[serde(
         rename = "IncludePackingSlipWithLabel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -1931,7 +1931,7 @@ pub struct LabelFormatOption {
 /// Whether to include a packing slip.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct LabelFormatOptionRequest {
-    /// When true, include a packing slip with the label.
+    /// When `true`, include a packing slip with the label.
     #[serde(
         rename = "IncludePackingSlipWithLabel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2336,16 +2336,16 @@ impl ::std::str::FromStr for RateItemType {
         Ok(Self(value.to_string()))
     }
 }
-/// Information about a rejected shipping service
+/// Information about a rejected shipping service.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RejectedShippingService {
     /// The rejected shipping carrier name. For example, USPS.
     #[serde(rename = "CarrierName")]
     pub carrier_name: ::std::string::String,
-    /// A reason code meant to be consumed programatically. For example, `CARRIER_CANNOT_SHIP_TO_POBOX`.
+    /// A reason code meant to be consumed programmatically. For example, `CARRIER_CANNOT_SHIP_TO_POBOX`.
     #[serde(rename = "RejectionReasonCode")]
     pub rejection_reason_code: ::std::string::String,
-    /// A localized human readable description of the rejected reason.
+    /// A localized, human-readable description of the rejected reason.
     #[serde(
         rename = "RejectionReasonMessage",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2358,7 +2358,7 @@ pub struct RejectedShippingService {
     #[serde(rename = "ShippingServiceName")]
     pub shipping_service_name: ::std::string::String,
 }
-/// List of services that are for some reason unavailable for this request
+/// List of services that are for some reason unavailable for this request.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct RejectedShippingServiceList(pub ::std::vec::Vec<RejectedShippingService>);
@@ -2421,7 +2421,7 @@ pub struct SellerInputDefinition {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub input_target: ::std::option::Option<InputTargetType>,
-    /// When true, the additional input field is required.
+    /// When `true`, the additional input field is required.
     #[serde(rename = "IsRequired")]
     pub is_required: bool,
     #[serde(
@@ -2491,10 +2491,10 @@ impl<'de> ::serde::Deserialize<'de> for SellerOrderId {
 pub struct Shipment {
     #[serde(rename = "AmazonOrderId")]
     pub amazon_order_id: AmazonOrderId,
-    /// The date and time the shipment is created.
+    /// The date and time when the shipment was created.
     #[serde(rename = "CreatedDate")]
     pub created_date: Timestamp,
-    /// If you specify `DeclaredValue` in a previous call to the `createShipment` operation, then `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with a previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum insurance amount, or the combined sale prices that the items are listed for in the shipment.
+    /// If you specify `DeclaredValue` in a previous call to the `createShipment` operation, then `Insurance` indicates the shipment insurance amount that the carrier uses. Without `DeclaredValue`, the shipment uses the carrier's minimum insurance amount, or the combined sale prices that the items are listed for in the shipment.
     #[serde(rename = "Insurance")]
     pub insurance: CurrencyAmount,
     #[serde(rename = "ItemList")]
@@ -2674,19 +2674,19 @@ pub struct ShippingOfferingFilter {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub carrier_will_pick_up: ::std::option::Option<CarrierWillPickUpOption>,
-    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`. Other values may be returned by Amazon.
+    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `NoPreference`, `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`. Other values may be returned by Amazon.
     #[serde(
         rename = "DeliveryExperience",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub delivery_experience: ::std::option::Option<DeliveryExperienceOption>,
-    /// When true, include complex shipping options.
+    /// When `true`, include complex shipping options.
     #[serde(
         rename = "IncludeComplexShippingOptions",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub include_complex_shipping_options: ::std::option::Option<bool>,
-    /// When true, include a packing slip with the label.
+    /// When `true`, include a packing slip with the label.
     #[serde(
         rename = "IncludePackingSlipWithLabel",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2727,13 +2727,13 @@ pub struct ShippingService {
     /// The name of the carrier.
     #[serde(rename = "CarrierName")]
     pub carrier_name: ::std::string::String,
-    /// The earliest date by which the shipment will be delivered.
+    /// The earliest estimated delivery date for the shipment.
     #[serde(
         rename = "EarliestEstimatedDeliveryDate",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub earliest_estimated_delivery_date: ::std::option::Option<Timestamp>,
-    /// The latest date by which the shipment will be delivered.
+    /// The latest estimated delivery date for the shipment.
     #[serde(
         rename = "LatestEstimatedDeliveryDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2745,15 +2745,15 @@ pub struct ShippingService {
     /// The amount that the carrier will charge for the shipment with adjustments.
     #[serde(rename = "RateWithAdjustments")]
     pub rate_with_adjustments: CurrencyAmount,
-    /// When true, additional seller inputs are required.
+    /// When `true`, additional seller inputs are required.
     #[serde(rename = "RequiresAdditionalSellerInputs")]
     pub requires_additional_seller_inputs: bool,
-    /// The date that the carrier will ship the package.
+    /// The date that the carrier ships the package.
     #[serde(rename = "ShipDate")]
     pub ship_date: Timestamp,
     #[serde(rename = "ShippingServiceId")]
     pub shipping_service_id: ShippingServiceIdentifier,
-    /// A plain text representation of a carrier's shipping service. For example, "UPS Ground" or "FedEx Standard Overnight".
+    /// The carrier's shipping service name, such as "UPS Ground" or "FedEx Standard Overnight".
     #[serde(rename = "ShippingServiceName")]
     pub shipping_service_name: ::std::string::String,
     /// An Amazon-defined shipping service offer identifier.
@@ -2827,7 +2827,7 @@ impl ::std::convert::From<::std::vec::Vec<ShippingService>> for ShippingServiceL
 /// Extra services provided by a carrier.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingServiceOptions {
-    /// When true, the carrier will pick up the package. Note: Scheduled carrier pickup is available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
+    /// When `true`, the carrier picks up the package. Note: Scheduled carrier pickup is available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
     #[serde(rename = "CarrierWillPickUp")]
     pub carrier_will_pick_up: bool,
     /// Known values: `CarrierWillPickUp`, `ShipperWillDropOff`, `NoPreference`. Other values may be returned by Amazon.
@@ -2844,7 +2844,7 @@ pub struct ShippingServiceOptions {
     pub declared_value: ::std::option::Option<CurrencyAmount>,
     /// The delivery confirmation level.
     ///
-    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`. Other values may be returned by Amazon.
+    /// Known values: `DeliveryConfirmationWithAdultSignature`, `DeliveryConfirmationWithSignature`, `DeliveryConfirmationWithoutSignature`, `NoTracking`, `DeliveryConfirmationWithIdentityCheck`, `DeliveryConfirmationWithNameVerification`. Other values may be returned by Amazon.
     #[serde(rename = "DeliveryExperience")]
     pub delivery_experience: DeliveryExperienceType,
     /// The seller's preferred label format.
@@ -2899,7 +2899,7 @@ impl ::std::str::FromStr for StandardIdForLabel {
         Ok(Self(value.to_string()))
     }
 }
-/// The state or province code. This is a required field in Canada, US, and UK marketplaces, and for shipments that originate in China.
+/// The state or province code. This is a required field in Amazon Canada, US, and UK stores, and for shipments that originate in China.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct StateOrProvinceCode(::std::string::String);

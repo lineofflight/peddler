@@ -17,7 +17,7 @@ module Peddler
 
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # The shipping type for the sandbox shipment. Known values: `Self`, `Marketplace`, `THIRD_PARTY_CARRIER`.
+        # The shipping type for the sandbox shipment. Known values: `SELF`, `MARKETPLACE`, `THIRD_PARTY_CARRIER`.
         attribute(:shipping_type, String, null: false, from: "shippingType")
 
         # The number of line items in the shipment. Known values: `SINGLE`, `MULTIPLE`.

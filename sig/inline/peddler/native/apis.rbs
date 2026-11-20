@@ -4,6 +4,103 @@ module Peddler
   module Native
     PAGINATIONS: Hash[String, Pagination]
 
+    class ActionItems20260601
+      @engine: engine
+
+      def initialize: (engine engine) -> void
+
+      # Dismiss the specified action item. An optional reason can be provided.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - action_item_id: The unique identifier of the action item.
+      # - body: The request body for the dismissActionItem operation.
+      # - rate_limit: Requests per second
+      def dismiss_action_item: (String action_item_id, untyped body, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Retrieve a single action item by ID with full detail.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - action_item_id: The unique identifier of the action item.
+      # - locale: The BCP 47 locale for localized content. Defaults to `en-US`.
+      # - included_data: A list of optional datasets to include in the response. When omitted, only core action item fields are returned. Known values: `impacts`, `resolutions`, `references`.
+      # - rate_limit: Requests per second
+      def get_action_item: (String action_item_id, ?locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Retrieve a paginated, filterable list of action items for the selling partner. When you specify multiple
+      # filters, only action items that match all of them are returned. When you specify multiple values for one filter,
+      # action items that match any of those values are returned.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - statuses: Filter by status (OR match). Known values: `PENDING_SELLING_PARTNER`, `AUTOMATABLE`, `DISMISSABLE`, `SNOOZABLE`, `DISMISSED`, `SNOOZED`, `OVERDUE`, `ACTIONED`, `RESOLVED`.
+      # - classifications: Filter by classification (OR match). Known values: `ISSUE`, `RECOMMENDATION`, `TASK`.
+      # - type_definition_ids: Filter by action item type definition IDs. Multiple values allowed.
+      # - marketplace_ids: Filter by marketplace IDs.
+      # - updated_after: Retrieve items last updated at or after this time. When used with `updatedBefore`, this value must be earlier than `updatedBefore`.
+      # - updated_before: Retrieve items last updated at or before this time. When used with `updatedAfter`, this value must be later than `updatedAfter`.
+      # - included_data: A list of optional datasets to include in the response. When omitted, only core action item fields are returned. Known values: `impacts`, `resolutions`, `references`, `refinements`.
+      # - sort_by: How to sort results. Defaults to recommended. Known values: `lastUpdatedDate`, `recommended`.
+      # - sort_order: The sort order. Defaults to `DESC`. Known values: `ASC`, `DESC`.
+      # - page_size: Number of results per page.
+      # - page_token: A token to retrieve a specific page of results. Pass the nextToken or previousToken value from a previous response.
+      # - locale: The BCP 47 locale for localized content. Defaults to `en-US`.
+      # - rate_limit: Requests per second
+      def list_action_items: (?statuses: Array[String]?, ?classifications: Array[String]?, ?type_definition_ids: Array[String]?, ?marketplace_ids: Array[String]?, ?updated_after: String?, ?updated_before: String?, ?included_data: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Each page of #list_action_items. `rate_limit` applies to every page.
+      def list_action_items_pages: (?statuses: Array[String]?, ?classifications: Array[String]?, ?type_definition_ids: Array[String]?, ?marketplace_ids: Array[String]?, ?updated_after: String?, ?updated_before: String?, ?included_data: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+    end
+
+    class ActionPlans20260601
+      @engine: engine
+
+      def initialize: (engine engine) -> void
+
+      # Creates an action plan from a template. Use `mode=PREVIEW` to return the plan without creating or executing it.
+      # Omit `mode` to create the plan and submit it for execution.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - body: The request for action plan creation.
+      # - mode: The mode of operation. Set `PREVIEW` to return the plan without creating or executing it. Omit `mode` to create the plan and submit it for execution.
+      # - locale: The locale for localized content, as an ISO 639 language code and ISO 3166 country code separated by a hyphen. Defaults to `en-US`.
+      # - rate_limit: Requests per second
+      def create_action_plan: (untyped body, ?mode: String?, ?locale: String?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Returns an action plan by ID. Use `includedData=steps` to include the plan's steps with their resolved input and
+      # output values.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - action_plan_id: The unique identifier of the action plan (UUID).
+      # - locale: The locale for localized content, as an ISO 639 language code and ISO 3166 country code separated by a hyphen. Defaults to `en-US`.
+      # - included_data: Additional data to include in the response. Include `steps` to include the plan's steps with their resolved input and output values.
+      # - rate_limit: Requests per second
+      def get_action_plan: (String action_plan_id, ?locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Returns a paginated list of the seller's action plans, sorted newest first by `createdDate`. Multiple filters
+      # are combined with a logical AND. Multiple values in a single filter are combined with a logical OR.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - statuses: Filters by plan status. Known values: `DRAFT`, `PENDING_SELLING_PARTNER`, `PROCESSING`, `DONE`, `CANCELLED`, `PARTIAL`.
+      # - plan_template_ids: Filters by plan template IDs. Multiple values allowed.
+      # - action_item_ids: Filters by associated action item IDs. Multiple values allowed.
+      # - created_after: Plans created at or after this timestamp. Timestamp is in ISO 8601 format.
+      # - created_before: Plans created at or before this timestamp. Timestamp is in ISO 8601 format.
+      # - page_size: Maximum number of results per page.
+      # - page_token: A token to retrieve a specific page of results. Pass the `nextToken` value from a previous response. **Note:** The `previousToken` value is not yet supported.
+      # - locale: The locale for localized content, as an ISO 639 language code and ISO 3166 country code separated by a hyphen. Defaults to `en-US`.
+      # - included_data: Additional data to return in the response. Specify `steps` to return each plan's steps with their resolved input and output values. Known values: `steps`, `refinements`.
+      # - rate_limit: Requests per second
+      def list_action_plans: (?statuses: Array[String]?, ?plan_template_ids: Array[String]?, ?action_item_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Each page of #list_action_plans. `rate_limit` applies to every page.
+      def list_action_plans_pages: (?statuses: Array[String]?, ?plan_template_ids: Array[String]?, ?action_item_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?included_data: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+    end
+
     class AmazonWarehousingAndDistribution20240509
       @engine: engine
 
@@ -794,7 +891,7 @@ module Peddler
       # response for each successful request in the set includes the inventory count for the provided `sku` and
       # `locationId` pair.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # - body: A list of inventory requests.
       # - rate_limit: Requests per second
@@ -823,7 +920,7 @@ module Peddler
 
       # Retrieve the return item with the specified ID.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # - return_id: The ID of the return item you want.
       # - rate_limit: Requests per second
@@ -831,7 +928,7 @@ module Peddler
 
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
       #
-      # This operation can make a static sandbox call.
+      # This operation can make a dynamic sandbox call.
       #
       # - return_location_id: The SmartConnect location ID of the location from which you want to retrieve return items.
       # - rma_id: The RMA ID of the return items you want to list.
@@ -890,7 +987,7 @@ module Peddler
       #
       # - shipment_id: The ID of the shipment whose shipping labels you want to generate and retrieve.
       # - shipping_option_id: The ID of the shipping option whose shipping labels you want.
-      # - operation: Specify whether you want to generate or regenerate a label. Known values: `GENERATE`, `REGENERATE`.
+      # - operation: Specify whether you want to generate or regenerate a label. For retrieving existing labels, set this value to `GENERATE`. Known values: `GENERATE`, `REGENERATE`.
       # - body: Shipping details for when shipping is not done by the marketplace channel.
       # - rate_limit: Requests per second
       def generate_ship_labels: (String shipment_id, String operation, ?shipping_option_id: String?, ?body: untyped?, ?rate_limit: (Float | Integer)?) -> Response
@@ -1332,7 +1429,7 @@ module Peddler
       # - posted_before: The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. **Default:** Two minutes before the time of the request.
       # - marketplace_id: The identifier of the marketplace from which you want to retrieve transactions. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # - transaction_status: The status of the transaction. **Possible values:** * `DEFERRED`: the transaction is currently deferred. * `RELEASED`: the transaction is currently released. * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.
-      # - related_identifier_name: The name of the `relatedIdentifier`. **Possible values:** * `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. * `ORDER_ID`: the order ID associated with the transaction. **Note:** `FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
+      # - related_identifier_name: The name of the `relatedIdentifier`. **Possible values:** * `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction. * `ORDER_ID`: the order ID associated with the transaction. * `SETTLEMENT_ID`: the settlement group ID associated with the transaction. **Note:** `FINANCIAL_EVENT_GROUP_ID`, `ORDER_ID`, and `SETTLEMENT_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
       # - related_identifier_value: The value of the `relatedIdentifier`.
       # - next_token: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
       # - rate_limit: Requests per second
@@ -2473,7 +2570,7 @@ module Peddler
 
       def initialize: (engine engine) -> void
 
-      # Delete a listings item for a selling partner.
+      # Deletes a listings item for a selling partner.
       #
       # This operation can make a static sandbox call.
       #
@@ -2511,7 +2608,7 @@ module Peddler
       # - rate_limit: Requests per second
       def patch_listings_item: (String seller_id, String sku, Array[String] marketplace_ids, untyped body, ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?, ?rate_limit: (Float | Integer)?) -> Response
 
-      # Creates a new or fully-updates an existing listings item for a selling partner.
+      # Creates a new or fully updates an existing listings item for a selling partner.
       #
       # This operation can make a static sandbox call.
       #
@@ -2531,8 +2628,8 @@ module Peddler
       #
       # - seller_id: A selling partner identifier, such as a merchant account or vendor code.
       # - marketplace_ids: A comma-delimited list of Amazon store identifiers for the request.
-      # - issue_locale: A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
-      # - included_data: A comma-delimited list of data sets that you want to include in the response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
+      # - issue_locale: A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: "en_US", "fr_CA", "fr_FR". When a localization is not available in the specified locale, localized messages default to "en_US".
+      # - included_data: A comma-delimited list of data sets to include in the response. Default: `summaries`. Known values: `summaries`, `attributes`, `issues`, `offers`, `fulfillmentAvailability`, `procurement`, `relationships`, `productTypes`.
       # - identifiers: A comma-delimited list of product identifiers that you can use to search for listings items. **Note**: 1. This is required when you specify `identifiersType`. 2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`.
       # - identifiers_type: A type of product identifiers that you can use to search for listings items. **Note**: This is required when `identifiers` is provided. Known values: `ASIN`, `EAN`, `FNSKU`, `GTIN`, `ISBN`, `JAN`, `MINSAN`, `SKU`, `UPC`.
       # - variation_parent_sku: Filters results to include listing items that are variation children of the specified SKU. **Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request.
@@ -2740,6 +2837,64 @@ module Peddler
       # - body: This contains the message body for a message.
       # - rate_limit: Requests per second
       def send_invoice: (String amazon_order_id, Array[String] marketplace_ids, untyped body, ?rate_limit: (Float | Integer)?) -> Response
+    end
+
+    class Messaging20260420
+      @engine: engine
+
+      def initialize: (engine engine) -> void
+
+      # Creates a new automation configuration for automated buyer-seller messaging. The configuration is `ACTIVE` as
+      # soon as it is created. The response returns the full automation configuration resource, including the
+      # server-generated `automationId`.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - marketplace_ids: A comma-delimited list of [Amazon store identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for store-scoped operations and authorization. Your application must have permission to operate in the specified stores before processing the request body.
+      # - body: The request body for creating an automation configuration.
+      # - rate_limit: Requests per second
+      def create_automation_configuration: (Array[String] marketplace_ids, untyped body, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Returns the details of a specific automation configuration, including its store-specific automation entries with
+      # response content and trigger conditions.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - automation_id: The unique identifier of the automation configuration.
+      # - marketplace_ids: A comma-delimited list of [Amazon store identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for store-scoped operations and authorization. Your application must have permission to operate in the specified stores before processing the request body.
+      # - rate_limit: Requests per second
+      def get_automation_configuration: (String automation_id, Array[String] marketplace_ids, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Returns a list of automation configurations that include the specified Amazon store. Results may include
+      # configurations that also apply to other stores, since a single configuration can span multiple stores.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - marketplace_ids: A comma-delimited list of [Amazon store identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for store-scoped operations and authorization. Your application must have permission to operate in the specified stores before processing the request body.
+      # - automation_type: Filters results by automation type. Known values: `AUTO_RESPONSE`.
+      # - automation_sub_type: Filters results by automation sub-type. Known values: `AUTO_RESPONSE`.
+      # - include_marketplace_automations: When set to `true`, the response includes the full, store-level automation details for each configuration, including response text, attachment URL, and the trigger conditions that define when the automation activates for that store. When false or omitted, only the top-level configuration metadata (identifier, status, display name, timestamps) is returned. Known values: `TRUE`, `FALSE`.
+      # - page_size: The number of results to return per page. Minimum: 1. Maximum: 50. Default: 10.
+      # - pagination_token: A token to fetch the next page of results. Use the `nextToken` value returned in the previous response's `pagination` object.
+      # - rate_limit: Requests per second
+      def list_automation_configurations: (Array[String] marketplace_ids, ?automation_type: String?, ?automation_sub_type: String?, ?include_marketplace_automations: String?, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Response
+
+      # Each page of #list_automation_configurations. `rate_limit` applies to every page.
+      def list_automation_configurations_pages: (Array[String] marketplace_ids, ?automation_type: String?, ?automation_sub_type: String?, ?include_marketplace_automations: String?, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+
+      # Updates an existing automation configuration. This is a full replacement operation using `PUT` semantics; you
+      # must provide the complete desired state, including `automationDisplayName`, `automationStatus`, and
+      # `marketplaceAutomations`. The `marketplaceAutomations` entries you provide replace all of the configuration's
+      # existing Amazon store entries; any store that you omit is removed from the configuration. To deactivate a
+      # configuration, send its complete current state with `automationStatus` set to `DEACTIVATED`.
+      #
+      # This operation can make a static sandbox call.
+      #
+      # - automation_id: The unique identifier of the automation configuration to update.
+      # - marketplace_ids: A comma-delimited list of [Amazon store identifiers](https://developer-docs.amazon/sp-api/docs/marketplace-ids) for the request. Required for store-scoped operations and authorization. Your application must have permission to operate in the specified stores before processing the request body.
+      # - body: The request body for updating an automation configuration.
+      # - rate_limit: Requests per second
+      def update_automation_configuration: (String automation_id, Array[String] marketplace_ids, untyped body, ?rate_limit: (Float | Integer)?) -> Response
     end
 
     class NotificationsV1
@@ -3747,11 +3902,12 @@ module Peddler
       # - asins: List of Amazon Standard Identification Numbers (ASIN) of the items. Max values supported is 20.
       # - required_skills: A defined set of related knowledge, skills, experience, tools, materials, and work processes common to service delivery for a set of products and/or service scenarios. Max values supported is 20.
       # - store_ids: List of Amazon-defined identifiers for the region scope. Max values supported is 50.
+      # - provider_service_job_reference_ids: A list of up to 20 reference IDs for the service jobs assigned to the provider. You can use these IDs to query service jobs.
       # - rate_limit: Requests per second
-      def get_service_jobs: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
+      def get_service_jobs: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?provider_service_job_reference_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Response
 
       # Each page of #get_service_jobs. `rate_limit` applies to every page.
-      def get_service_jobs_pages: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
+      def get_service_jobs_pages: (Array[String] marketplace_ids, ?service_order_ids: Array[String]?, ?product_order_ids: Array[String]?, ?tracking_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?provider_service_job_reference_ids: Array[String]?, ?rate_limit: (Float | Integer)?) -> Enumerator[Response, void]
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
       #
@@ -4869,6 +5025,18 @@ module Peddler
   end
 
   class Client
+    # The Selling Partner API for Action Items, version 2026-06-01
+    def action_items_2026_06_01: () -> Native::ActionItems20260601
+
+    # The latest version: #action_items_2026_06_01
+    def action_items: () -> Native::ActionItems20260601
+
+    # The Selling Partner API for Action Plans, version 2026-06-01
+    def action_plans_2026_06_01: () -> Native::ActionPlans20260601
+
+    # The latest version: #action_plans_2026_06_01
+    def action_plans: () -> Native::ActionPlans20260601
+
     # The Selling Partner API for Amazon Warehousing and Distribution, version 2024-05-09
     def amazon_warehousing_and_distribution_2024_05_09: () -> Native::AmazonWarehousingAndDistribution20240509
 
@@ -5046,8 +5214,11 @@ module Peddler
     # Selling Partner API for Messaging, version v1
     def messaging_v1: () -> Native::MessagingV1
 
-    # The latest version: #messaging_v1
-    def messaging: () -> Native::MessagingV1
+    # The Selling Partner API for Messaging Automations, version 2026-04-20
+    def messaging_2026_04_20: () -> Native::Messaging20260420
+
+    # The latest version: #messaging_2026_04_20
+    def messaging: () -> Native::Messaging20260420
 
     # Selling Partner API for Notifications, version v1
     def notifications_v1: () -> Native::NotificationsV1

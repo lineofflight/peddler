@@ -56,7 +56,7 @@ module Peddler
         # The start time of the transaction.
         attribute?(:start_time, String, from: "startTime")
 
-        # The store name associated with the transaction. Known values: `AMAZON_HAUL`.
+        # The store name associated with the transaction. Known values: `AMAZON_HAUL`, `AMAZON_FBA_FROM_ORIGIN`.
         attribute?(:store_name, String, from: "storeName")
       end
     end

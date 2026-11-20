@@ -21,8 +21,8 @@ module Peddler
         # The type of shipment. Known values: `NEW`, `EXCHANGE`, `REPLACEMENT`.
         attribute(:shipment_type, String, null: false, from: "shipmentType")
 
-        # The timestamp of when the order was placed, in UTC
-        attribute?(:order_placed_timestamp, String, from: "orderPlacedTimestamp")
+        # The epoch timestamp (in milliseconds) of when the order was placed, in UTC.
+        attribute?(:order_placed_timestamp, Float, from: "orderPlacedTimestamp")
 
         # A list of order statuses for which the marketplace allows order rejection (seller cancellation). If the order
         # has a status that does not belong to this list, then seller cancellation is not possible.

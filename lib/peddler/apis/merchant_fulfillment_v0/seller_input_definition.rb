@@ -17,7 +17,7 @@ module Peddler
         # The display text for the additional input field.
         attribute(:input_display_text, String, null: false, from: "InputDisplayText")
 
-        # When true, the additional input field is required.
+        # When `true`, the additional input field is required.
         attribute(:required, :boolean, null: false, from: "IsRequired")
 
         attribute(:stored_value, AdditionalSellerInput, null: false, from: "StoredValue")

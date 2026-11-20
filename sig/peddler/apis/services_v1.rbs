@@ -946,19 +946,20 @@ module Peddler
       end
 
       class ServiceJobProvider < Data
-        def self.new: (?service_job_provider_id: String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
-                    | (String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
-        def self.[]: (?service_job_provider_id: String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
-                   | (String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
+        def self.new: (?provider_service_job_reference_id: String?, ?service_job_provider_id: String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
+                    | (String?, String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
+        def self.[]: (?provider_service_job_reference_id: String?, ?service_job_provider_id: String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
+                   | (String?, String?) -> Peddler::APIs::ServicesV1::ServiceJobProvider
 
-        def self.members: () -> [ :service_job_provider_id ]
+        def self.members: () -> [ :provider_service_job_reference_id, :service_job_provider_id ]
 
         def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::APIs::ServicesV1::ServiceJobProvider
 
+        attr_reader provider_service_job_reference_id: String?
         attr_reader service_job_provider_id: String?
 
-        def members: () -> [ :service_job_provider_id ]
-        def to_h: () -> { service_job_provider_id: String? }
+        def members: () -> [ :provider_service_job_reference_id, :service_job_provider_id ]
+        def to_h: () -> { provider_service_job_reference_id: String?, service_job_provider_id: String? }
       end
 
       class ServiceLocation < Data

@@ -16,7 +16,7 @@ module Peddler
         # Date the listings item was last updated, in ISO 8601 format.
         attribute(:last_updated_date, Time, null: false, from: "lastUpdatedDate")
 
-        # A marketplace identifier. Identifies the listings item's Amazon store.
+        # An Amazon store identifier. Identifies the listings item's Amazon store.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
         # The listings item's Amazon product type.

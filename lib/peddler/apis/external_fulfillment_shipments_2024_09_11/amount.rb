@@ -13,7 +13,7 @@ module Peddler
         attribute(:currency_code, String, null: false, from: "currencyCode")
 
         # The amount of money.
-        attribute(:value, String, null: false)
+        attribute(:value, Float, null: false)
       end
     end
   end

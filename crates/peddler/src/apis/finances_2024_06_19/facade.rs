@@ -216,9 +216,11 @@ pub struct ListTransactionsParams {
     ///
     /// * `ORDER_ID`: the order ID associated with the transaction.
     ///
+    /// * `SETTLEMENT_ID`: the settlement group ID associated with the transaction.
+    ///
     /// **Note:**
     ///
-    /// `FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
+    /// `FINANCIAL_EVENT_GROUP_ID`, `ORDER_ID`, and `SETTLEMENT_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes.
     pub related_identifier_name: Option<String>,
     /// The value of the `relatedIdentifier`.
     pub related_identifier_value: Option<String>,

@@ -1392,6 +1392,30 @@
               "deprecationReason": null
             },
             {
+              "name": "COUPON_UPFRONT_FEE",
+              "description": "Coupon Fees. For details about these fees, refer to [Coupon fees](https://sellercentral.amazon.com/help/hub/reference/external/GM2HYLSWFBZ267BB).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "COUPON_VARIABLE_FEE",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DEAL_UPFRONT_FEE",
+              "description": "Deal Fees. For details about these fees, refer to [Deal fees](https://sellercentral.amazon.com/help/hub/reference/external/G202111590).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DEAL_VARIABLE_FEE",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "DIGITAL_SERVICES_FEE_FBA",
               "description": null,
               "isDeprecated": false,
@@ -1404,6 +1428,12 @@
               "deprecationReason": null
             },
             {
+              "name": "FBA_DISPOSAL_FEE",
+              "description": "Fulfillment by Amazon (FBA) Disposal Order Fee. For details about this fee,\nrefer to [FBA disposal order fees](https://sellercentral.amazon.com/help/hub/reference/external/G5FKTA8LXU4TZPD5).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "FBA_FULFILLMENT_FEES",
               "description": "Fulfillment by Amazon (FBA) Fulfillment Fees, including base rate and surcharges.",
               "isDeprecated": false,
@@ -1411,7 +1441,19 @@
             },
             {
               "name": "FBA_INBOUND_PLACEMENT_SERVICE_FEE",
-              "description": "FBA Inbound Placement Service Fee. For details about this fee, refer to [FBA\ninbound placement service fee](https://sellercentral.amazon.com/help/hub/reference/external/GC3Q44PBK8BXQW3Z).",
+              "description": "Fulfillment by Amazon (FBA) Inbound Placement Service Fee. For details about\nthis fee, refer to [FBA inbound placement service fee](https://sellercentral.amazon.com/help/hub/reference/external/GC3Q44PBK8BXQW3Z).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FBA_REMOVAL_FEE",
+              "description": "Fulfillment by Amazon (FBA) Removal Order Fee. For details about this fee,\nrefer to [FBA removal order fees](https://sellercentral.amazon.com/help/hub/reference/external/G9W7FVTLY343ZBKN).",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FUEL_AND_LOGISTICS_RELATED_SURCHARGE",
+              "description": "Fulfillment by Amazon (FBA) Fulfillment Fee Fuel and Logistics-Related\nSurcharge. For details about this fee, refer to [Fuel and logistics-related surcharge](https://sellercentral.amazon.com/help/hub/reference/external/GPDC3KPYAGDTVDJP).",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -2911,6 +2953,14 @@
               "defaultValue": null
             }
           ]
+        },
+        {
+          "name": "supportsDynamicSandbox",
+          "description": "This directive indicates that the query supports the Selling Partner API dynamic\nsandbox. Dynamic sandbox requests are accepted only for queries whose schema\ndefinition includes this directive.",
+          "locations": [
+            "FIELD_DEFINITION"
+          ],
+          "args": []
         }
       ]
     }

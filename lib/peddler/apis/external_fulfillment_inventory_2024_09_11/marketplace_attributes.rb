@@ -12,7 +12,6 @@ module Peddler
         # The name of the fulfillment channel in which to update inventory. Known values: `FBA`, `MFN`, `DF`.
         attribute?(:channel_name, String, from: "channelName")
 
-        # The marketplace ID of the marketplace where you want to update inventory.
         attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end

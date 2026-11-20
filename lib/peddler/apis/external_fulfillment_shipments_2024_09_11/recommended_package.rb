@@ -11,9 +11,9 @@ module Peddler
       RecommendedPackage = Structure.new do
         attribute(:dimensions, PackageDimensions, null: false)
 
-        attribute(:line_items, [RecommendedPackageLineItem], null: false, from: "lineItems")
-
         attribute(:weight, Weight, null: false)
+
+        attribute?(:line_items, [RecommendedPackageLineItem], from: "lineItems")
       end
     end
   end

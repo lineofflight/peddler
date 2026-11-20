@@ -9,6 +9,9 @@ module Peddler
     module ServicesV1
       # Information about the service job provider.
       ServiceJobProvider = Structure.new do
+        # The reference ID for the service job assigned to the provider.
+        attribute?(:provider_service_job_reference_id, String, from: "providerServiceJobReferenceId")
+
         # The identifier of the service job provider.
         attribute?(:service_job_provider_id, String, from: "serviceJobProviderId")
       end

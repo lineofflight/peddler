@@ -21,7 +21,7 @@ module Peddler
 
         attribute?(:marketplace_ids, [String], from: "marketplaceIds")
 
-        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`.
+        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
 
         attribute?(:tracking_identifier, TrackingIdentifier, from: "trackingIdentifier")

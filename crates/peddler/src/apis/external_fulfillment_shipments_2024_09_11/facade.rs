@@ -120,7 +120,7 @@ pub struct GenerateShipLabelsParams<B = serde_json::Value> {
     pub shipment_id: String,
     /// The ID of the shipping option whose shipping labels you want.
     pub shipping_option_id: Option<String>,
-    /// Specify whether you want to generate or regenerate a label.
+    /// Specify whether you want to generate or regenerate a label. For retrieving existing labels, set this value to `GENERATE`
     ///
     /// Known values: `GENERATE`, `REGENERATE`.
     pub operation: String,

@@ -163,7 +163,7 @@ impl ::std::convert::From<::std::vec::Vec<Breakdown>> for Breakdowns {
 pub struct BusinessContext {
     /// The store name associated with the transaction.
     ///
-    /// Known values: `AMAZON_HAUL`. Other values may be returned by Amazon.
+    /// Known values: `AMAZON_HAUL`, `AMAZON_FBA_FROM_ORIGIN`. Other values may be returned by Amazon.
     #[serde(
         rename = "storeName",
         skip_serializing_if = "::std::option::Option::is_none"

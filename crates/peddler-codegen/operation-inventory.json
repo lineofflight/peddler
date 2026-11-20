@@ -1,6 +1,520 @@
 {
   "apis": [
     {
+      "family": "action_items",
+      "latest": true,
+      "module": "action_items_2026_06_01",
+      "operations": [
+        {
+          "id": "dismissActionItem",
+          "key": "action_items_2026_06_01.dismiss_action_item",
+          "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "path",
+              "name": "action_item_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "actionItemId"
+            },
+            {
+              "csv": false,
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DismissActionItemRequest"
+              },
+              "wire_name": "body"
+            }
+          ],
+          "path": "/actionItems/2026-06-01/items/{actionItemId}/dismissals",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::DismissActionItemResponse",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "getActionItem",
+          "key": "action_items_2026_06_01.get_action_item",
+          "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "path",
+              "name": "action_item_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "actionItemId"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "locale",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "locale"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "included_data",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "includedData"
+            }
+          ],
+          "path": "/actionItems/2026-06-01/items/{actionItemId}",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::GetActionItemResponse",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "listActionItems",
+          "key": "action_items_2026_06_01.list_action_items",
+          "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": true,
+              "in": "query",
+              "name": "statuses",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "statuses"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "classifications",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "classifications"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "type_definition_ids",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "typeDefinitionIds"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "marketplace_ids",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "marketplaceIds"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "updated_after",
+              "required": false,
+              "schema": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "wire_name": "updatedAfter"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "updated_before",
+              "required": false,
+              "schema": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "wire_name": "updatedBefore"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "included_data",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "includedData"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "sort_by",
+              "required": false,
+              "schema": {
+                "default": "recommended",
+                "enum": [
+                  "lastUpdatedDate",
+                  "recommended"
+                ],
+                "type": "string"
+              },
+              "wire_name": "sortBy"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "sort_order",
+              "required": false,
+              "schema": {
+                "default": "DESC",
+                "enum": [
+                  "ASC",
+                  "DESC"
+                ],
+                "type": "string"
+              },
+              "wire_name": "sortOrder"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "page_size",
+              "required": false,
+              "schema": {
+                "default": 10,
+                "type": "integer"
+              },
+              "wire_name": "pageSize"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "page_token",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "pageToken"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "locale",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "locale"
+            }
+          ],
+          "path": "/actionItems/2026-06-01/items",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::ListActionItemsResponse",
+              "status": 200
+            }
+          ]
+        }
+      ],
+      "ruby_class": "ActionItems20260601",
+      "source": "action-items-api-model/actionItems_2026-06-01.json",
+      "version": "2026_06_01"
+    },
+    {
+      "family": "action_plans",
+      "latest": true,
+      "module": "action_plans_2026_06_01",
+      "operations": [
+        {
+          "id": "createActionPlan",
+          "key": "action_plans_2026_06_01.create_action_plan",
+          "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "query",
+              "name": "mode",
+              "required": false,
+              "schema": {
+                "enum": [
+                  "PREVIEW"
+                ],
+                "type": "string"
+              },
+              "wire_name": "mode"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "locale",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "locale"
+            },
+            {
+              "csv": false,
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CreateActionPlanRequest"
+              },
+              "wire_name": "body"
+            }
+          ],
+          "path": "/actionPlans/2026-06-01/plans",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::GetActionPlanResponse",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "getActionPlan",
+          "key": "action_plans_2026_06_01.get_action_plan",
+          "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "path",
+              "name": "action_plan_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "actionPlanId"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "locale",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "locale"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "included_data",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "includedData"
+            }
+          ],
+          "path": "/actionPlans/2026-06-01/plans/{actionPlanId}",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::GetActionPlanResponse",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "listActionPlans",
+          "key": "action_plans_2026_06_01.list_action_plans",
+          "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/page_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": true,
+              "in": "query",
+              "name": "statuses",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "statuses"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "plan_template_ids",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "planTemplateIds"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "action_item_ids",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "actionItemIds"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "created_after",
+              "required": false,
+              "schema": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "wire_name": "createdAfter"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "created_before",
+              "required": false,
+              "schema": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "wire_name": "createdBefore"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "page_size",
+              "required": false,
+              "schema": {
+                "default": 10,
+                "type": "integer"
+              },
+              "wire_name": "pageSize"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "page_token",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "pageToken"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "locale",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "locale"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "included_data",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "includedData"
+            }
+          ],
+          "path": "/actionPlans/2026-06-01/plans",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::ListActionPlansResponse",
+              "status": 200
+            }
+          ]
+        }
+      ],
+      "ruby_class": "ActionPlans20260601",
+      "source": "action-plans-api-model/actionPlans_2026-06-01.json",
+      "version": "2026_06_01"
+    },
+    {
       "family": "amazon_warehousing_and_distribution",
       "latest": true,
       "module": "amazon_warehousing_and_distribution_2024_05_09",
@@ -10826,7 +11340,7 @@
     },
     {
       "family": "messaging",
-      "latest": true,
+      "latest": false,
       "module": "messaging_v1",
       "operations": [
         {
@@ -11363,6 +11877,247 @@
       "ruby_class": "MessagingV1",
       "source": "messaging-api-model/messaging.json",
       "version": "v1"
+    },
+    {
+      "family": "messaging",
+      "latest": true,
+      "module": "messaging_2026_04_20",
+      "operations": [
+        {
+          "id": "createAutomationConfiguration",
+          "key": "messaging_2026_04_20.create_automation_configuration",
+          "method": "POST",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": true,
+              "in": "query",
+              "name": "marketplace_ids",
+              "required": true,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "marketplaceIds"
+            },
+            {
+              "csv": false,
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CreateAutomationConfigRequest"
+              },
+              "wire_name": "body"
+            }
+          ],
+          "path": "/messaging/2026-04-20/automationConfigurations",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::AutomationConfiguration",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "getAutomationConfiguration",
+          "key": "messaging_2026_04_20.get_automation_configuration",
+          "method": "GET",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "path",
+              "name": "automation_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "automationId"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "marketplace_ids",
+              "required": true,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "marketplaceIds"
+            }
+          ],
+          "path": "/messaging/2026-04-20/automationConfigurations/{automationId}",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::AutomationConfiguration",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "listAutomationConfigurations",
+          "key": "messaging_2026_04_20.list_automation_configurations",
+          "method": "GET",
+          "pagination": {
+            "continuation": {
+              "adapter": false,
+              "drop": [],
+              "keep": null,
+              "operation": null,
+              "set": {}
+            },
+            "input": "/pagination_token",
+            "output": "/pagination/nextToken"
+          },
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": true,
+              "in": "query",
+              "name": "marketplace_ids",
+              "required": true,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "marketplaceIds"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "automation_type",
+              "required": false,
+              "schema": {
+                "enum": [
+                  "AUTO_RESPONSE"
+                ],
+                "type": "string"
+              },
+              "wire_name": "automationType"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "automation_sub_type",
+              "required": false,
+              "schema": {
+                "enum": [
+                  "AUTO_RESPONSE"
+                ],
+                "type": "string"
+              },
+              "wire_name": "automationSubType"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "include_marketplace_automations",
+              "required": false,
+              "schema": {
+                "default": "FALSE",
+                "enum": [
+                  "TRUE",
+                  "FALSE"
+                ],
+                "type": "string"
+              },
+              "wire_name": "includeMarketplaceAutomations"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "page_size",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              },
+              "wire_name": "pageSize"
+            },
+            {
+              "csv": false,
+              "in": "query",
+              "name": "pagination_token",
+              "required": false,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "paginationToken"
+            }
+          ],
+          "path": "/messaging/2026-04-20/automationConfigurations",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::ListAutomationConfigsResponse",
+              "status": 200
+            }
+          ]
+        },
+        {
+          "id": "updateAutomationConfiguration",
+          "key": "messaging_2026_04_20.update_automation_configuration",
+          "method": "PUT",
+          "pagination": null,
+          "pagination_exclusion": null,
+          "parameters": [
+            {
+              "csv": false,
+              "in": "path",
+              "name": "automation_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "wire_name": "automationId"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "marketplace_ids",
+              "required": true,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "marketplaceIds"
+            },
+            {
+              "csv": false,
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UpdateAutomationConfigRequest"
+              },
+              "wire_name": "body"
+            }
+          ],
+          "path": "/messaging/2026-04-20/automationConfigurations/{automationId}",
+          "rate": null,
+          "successes": [
+            {
+              "model": "super::models::AutomationConfiguration",
+              "status": 200
+            }
+          ]
+        }
+      ],
+      "ruby_class": "Messaging20260420",
+      "source": "messaging-api-model/messaging_2026-04-20.json",
+      "version": "2026_04_20"
     },
     {
       "family": "notifications",
@@ -15693,6 +16448,19 @@
                 "type": "array"
               },
               "wire_name": "storeIds"
+            },
+            {
+              "csv": true,
+              "in": "query",
+              "name": "provider_service_job_reference_ids",
+              "required": false,
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "wire_name": "providerServiceJobReferenceIds"
             }
           ],
           "path": "/service/v1/serviceJobs",
@@ -17726,7 +18494,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases/{caseId}",
-          "rate": null,
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::Case",
@@ -17763,7 +18531,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases",
-          "rate": null,
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::ListCasesResult",
@@ -17837,7 +18605,7 @@
             }
           ],
           "path": "/support/2025-02-01/cases/{caseId}/contacts",
-          "rate": null,
+          "rate": 0.1,
           "successes": [
             {
               "model": "super::models::ListContactsResult",
@@ -20671,5 +21439,5 @@
       "version": "v1"
     }
   ],
-  "revision": "7dcc8e9616e51d637f2065452b357655b623f880"
+  "revision": "9047916fede443a856e4802a68b322d7eada89ef"
 }

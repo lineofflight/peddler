@@ -12,6 +12,9 @@ module Peddler
         # The date and time when Amazon expects the seller to ship the packages.
         attribute(:expected_shipping_date_time_in_utc, String, null: false, from: "expectedShippingDateTimeInUTC")
 
+        # The date and time when Amazon expects the seller to ship the packages, in the shipment's local time zone.
+        attribute?(:expected_shipping_date_time, String, from: "expectedShippingDateTime")
+
         attribute?(:recommended_packages, [RecommendedPackage], from: "recommendedPackages")
 
         # The ship method recommended by the Amazon Fulfillment Network for the packages in this shipment.

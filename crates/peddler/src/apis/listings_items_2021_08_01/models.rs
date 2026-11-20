@@ -102,7 +102,7 @@ pub struct Issue {
     pub categories: ::std::vec::Vec<::std::string::String>,
     /// An issue code that identifies the type of issue.
     pub code: ::std::string::String,
-    /// Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+    /// Information about enforcement actions by Amazon that affect the publishing or status of a listing, including any associated exemptions.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub enforcements: ::std::option::Option<IssueEnforcements>,
     /// List of Amazon store identifiers.
@@ -118,7 +118,7 @@ pub struct Issue {
     /// Known values: `ERROR`, `WARNING`, `INFO`. Other values may be returned by Amazon.
     pub severity: ::std::string::String,
 }
-/// The enforcement action taken by Amazon that affect the publishing or status of a listing
+/// An enforcement action that Amazon takes that affects the publishing or status of a listing.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueEnforcementAction {
     /// The enforcement action name.
@@ -142,10 +142,10 @@ pub struct IssueEnforcements {
     /// The `exemption` field serves to convey the status of enforcement actions by Amazon.
     pub exemption: IssueExemption,
 }
-/// Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date.
+/// The status of the listed enforcement actions. If applicable, includes information about the exemption expiry date.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct IssueExemption {
-    /// Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary exemptions expires, and Amazon begins enforcing the listed actions.
+    /// The timestamp, in ISO 8601 format, when the temporary exemption expires and Amazon begins enforcing the listed actions.
     #[serde(
         rename = "expiryDate",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -293,8 +293,20 @@ pub struct ItemOfferByMarketplace {
     pub offer_type: ::std::string::String,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub points: ::std::option::Option<Points>,
-    /// Purchase price of the listings item
+    /// The purchase price of the listings item.
     pub price: Money,
+    /// The quantity discount plan applicable to this offer. A quantity discount plan defines discounts based on the purchase quantity, offered either as fixed prices or as percentage discounts across quantity tiers. Returned only when the offer has an active quantity discount schedule.
+    #[serde(
+        rename = "quantityDiscountPlan",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub quantity_discount_plan: ::std::option::Option<QuantityDiscountPlan>,
+    /// The seller-funded discount configured on this offer for the Subscribe & Save program. Returned only for offers that have a configured Subscribe & Save discount.
+    #[serde(
+        rename = "replenishmentDiscount",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub replenishment_discount: ::std::option::Option<ReplenishmentDiscount>,
 }
 /// The listings item's offer details.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
@@ -418,7 +430,7 @@ pub struct ItemRelationshipsByMarketplace {
 pub struct ItemSearchResults {
     /// A list of listings items.
     pub items: ::std::vec::Vec<Item>,
-    /// The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
+    /// The total number of selling partner listings items found for the search criteria (the response returns only results up to the page count limit per request regardless of the number found).
     ///
     /// Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.
     #[serde(rename = "numberOfResults")]
@@ -479,7 +491,7 @@ pub struct ItemSummaryByMarketplace {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub main_image: ::std::option::Option<ItemImage>,
-    /// A marketplace identifier. Identifies the listings item's Amazon store.
+    /// An Amazon store identifier. Identifies the listings item's Amazon store.
     #[serde(rename = "marketplaceId")]
     pub marketplace_id: ::std::string::String,
     /// The listings item's Amazon product type.
@@ -549,7 +561,7 @@ pub struct Money {
     #[serde(rename = "currencyCode")]
     pub currency_code: ::std::string::String,
 }
-/// When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
+/// When a response exceeds the `pageSize`, the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct Pagination {
     /// A token that can be used to fetch the next page.
@@ -584,6 +596,33 @@ pub struct Points {
     /// The number of Amazon Points offered with the purchase of an item, and their monetary value.
     #[serde(rename = "pointsNumber")]
     pub points_number: i64,
+}
+/// A quantity discount level, defining the discount applied when the purchase quantity meets a given threshold.
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+pub struct QuantityDiscountLevel {
+    /// The quantity threshold, which is the minimum purchase quantity necessary to receive the discount. The discount applies to all units when the quantity threshold is met.
+    #[serde(rename = "lowerBound")]
+    pub lower_bound: i64,
+    /// The quantity price for this quantity threshold. When `discountType` is `PERCENT`, this is the discount percentage offered on the price (for example, `5.0` means 5% off). When `discountType` is `FIXED`, this is the fixed price set in the local currency.
+    pub value: Decimal,
+}
+/// The active quantity discount plan for an offer. A quantity discount plan defines discounts on the offer price based on the purchase quantity. There are two types of discounts: fixed prices based on the order quantity, and percentage discounts on the price based on the order quantity.
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+pub struct QuantityDiscountPlan {
+    /// The quantity price type, indicating whether the quantity discount is a fixed price set in the local currency for each quantity threshold, or a percentage discount on the price.
+    ///
+    /// Known values: `PERCENT`, `FIXED`. Other values may be returned by Amazon.
+    #[serde(rename = "discountType")]
+    pub discount_type: ::std::string::String,
+    /// The quantity discount levels that define the discount at each quantity threshold.
+    pub levels: ::std::vec::Vec<QuantityDiscountLevel>,
+}
+/// A replenishment discount set by the selling partner on the offer for Subscribe & Save subscriptions.
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+pub struct ReplenishmentDiscount {
+    /// The seller-funded Subscribe & Save discount on the offer, as a percentage (0–100). For example, `5` means 5% off; `0` means the selling partner funds no discount.
+    #[serde(rename = "discountPercentage")]
+    pub discount_percentage: i64,
 }
 /// Error types.
 pub mod error {

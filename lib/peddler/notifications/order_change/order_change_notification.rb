@@ -18,7 +18,7 @@ module Peddler
         attribute(:order_change_trigger, OrderChangeTrigger, null: false, from: "OrderChangeTrigger")
 
         # Change type of this notification. The possible values include BuyerRequestedChange, DeliveryTipChange,
-        # OrderStatusChange.
+        # OrderStatusChange, PreFulfillmentStatusChange.
         attribute(:order_change_type, String, null: false, from: "OrderChangeType")
 
         # The selling partner identifier.

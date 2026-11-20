@@ -10,13 +10,13 @@ module Peddler
       # Geographic coordinates.
       Geocodes = Structure.new do
         # The latitude coordinate.
-        attribute(:latitude, String, null: false)
+        attribute(:latitude, Float, null: false)
 
         # The longitude coordinate.
-        attribute(:longitude, String, null: false)
+        attribute(:longitude, Float, null: false)
 
         # The elevation in meters.
-        attribute?(:elevation, String)
+        attribute?(:elevation, Float)
       end
     end
   end

@@ -65,6 +65,8 @@ module Peddler
     # Each API's typed model lookup, by the API part of a native operation key. Shareable, so that any Ractor can
     # read it.
     PARSERS = Ractor.make_shareable({
+      "action_items_2026_06_01" => -> { ActionItems20260601::PARSERS },
+      "action_plans_2026_06_01" => -> { ActionPlans20260601::PARSERS },
       "amazon_warehousing_and_distribution_2024_05_09" => -> { AmazonWarehousingAndDistribution20240509::PARSERS },
       "aplus_content_2020_11_01" => -> { AplusContent20201101::PARSERS },
       "application_integrations_2024_04_01" => -> { ApplicationIntegrations20240401::PARSERS },
@@ -97,6 +99,7 @@ module Peddler
       "listings_restrictions_2021_08_01" => -> { ListingsRestrictions20210801::PARSERS },
       "merchant_fulfillment_v0" => -> { MerchantFulfillmentV0::PARSERS },
       "messaging_v1" => -> { MessagingV1::PARSERS },
+      "messaging_2026_04_20" => -> { Messaging20260420::PARSERS },
       "notifications_v1" => -> { NotificationsV1::PARSERS },
       "orders_v0" => -> { OrdersV0::PARSERS },
       "orders_2026_01_01" => -> { Orders20260101::PARSERS },

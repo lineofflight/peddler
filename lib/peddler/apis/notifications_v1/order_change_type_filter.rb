@@ -10,7 +10,7 @@ module Peddler
       # An event filter you can use to customize your subscription to send notifications for a specific
       # `orderChangeType`.
       OrderChangeTypeFilter = Structure.new do
-        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`.
+        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
       end
     end

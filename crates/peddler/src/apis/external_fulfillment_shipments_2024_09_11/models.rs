@@ -753,7 +753,7 @@ pub struct Charge {
     pub base_charge: ChargeBreakup,
     /// The type of charge.
     ///
-    /// Known values: `PRODUCT`, `SHIPPING`, `GIFT_WRAP`, `TOTAL`, `OTHER`. Other values may be returned by Amazon.
+    /// Known values: `product`, `shipping`, `gift_wrap`, `total`, `other`. Other values may be returned by Amazon.
     #[serde(rename = "chargeType")]
     pub charge_type: ::std::string::String,
     /// The tax charge details.
@@ -808,8 +808,19 @@ pub struct ComplianceAttributes {
     /// Whether the country of origin must be provided for this line item.
     ///
     /// Known values: `REQUIRED`, `DISALLOWED`. Other values may be returned by Amazon.
-    #[serde(rename = "countryOfOriginRequirement")]
-    pub country_of_origin_requirement: RequirementLevel,
+    #[serde(
+        rename = "countryOfOriginRequirement",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub country_of_origin_requirement: ::std::option::Option<RequirementLevel>,
+    /// Whether a hazardous material label must be applied on packages containing this line item.
+    ///
+    /// Known values: `REQUIRED`, `DISALLOWED`. Other values may be returned by Amazon.
+    #[serde(
+        rename = "hazmatLabelRequirement",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub hazmat_label_requirement: ::std::option::Option<RequirementLevel>,
     /// Whether hazardous material labels must be applied on packages containing this line item.
     ///
     /// Known values: `REQUIRED`, `DISALLOWED`. Other values may be returned by Amazon.
@@ -818,8 +829,11 @@ pub struct ComplianceAttributes {
     /// Whether the item value must be provided for this line item.
     ///
     /// Known values: `REQUIRED`, `DISALLOWED`. Other values may be returned by Amazon.
-    #[serde(rename = "itemValueRequirement")]
-    pub item_value_requirement: RequirementLevel,
+    #[serde(
+        rename = "itemValueRequirement",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub item_value_requirement: ::std::option::Option<RequirementLevel>,
     /// Whether serial numbers must be provided for this line item.
     ///
     /// Known values: `REQUIRED`, `DISALLOWED`. Other values may be returned by Amazon.
@@ -916,7 +930,7 @@ pub struct CreateSandboxShipmentRequest {
     pub quantity_count: ::std::option::Option<::std::string::String>,
     /// The shipping type for the sandbox shipment.
     ///
-    /// Known values: `Self`, `Marketplace`, `THIRD_PARTY_CARRIER`. Other values may be returned by Amazon.
+    /// Known values: `SELF`, `MARKETPLACE`, `THIRD_PARTY_CARRIER`. Other values may be returned by Amazon.
     #[serde(rename = "shippingType")]
     pub shipping_type: ::std::string::String,
 }
@@ -1070,32 +1084,22 @@ for CustomChannelAttribute {
     }
 }
 /// A date and time in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-#[derive(
-    ::serde::Deserialize,
-    ::serde::Serialize,
-    Clone,
-    Debug,
-    Eq,
-    Hash,
-    Ord,
-    PartialEq,
-    PartialOrd
-)]
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
-pub struct DateTime(pub ::std::string::String);
+pub struct DateTime(pub ::chrono::DateTime<::chrono::offset::Utc>);
 impl ::std::ops::Deref for DateTime {
-    type Target = ::std::string::String;
-    fn deref(&self) -> &::std::string::String {
+    type Target = ::chrono::DateTime<::chrono::offset::Utc>;
+    fn deref(&self) -> &::chrono::DateTime<::chrono::offset::Utc> {
         &self.0
     }
 }
-impl ::std::convert::From<DateTime> for ::std::string::String {
+impl ::std::convert::From<DateTime> for ::chrono::DateTime<::chrono::offset::Utc> {
     fn from(value: DateTime) -> Self {
         value.0
     }
 }
-impl ::std::convert::From<::std::string::String> for DateTime {
-    fn from(value: ::std::string::String) -> Self {
+impl ::std::convert::From<::chrono::DateTime<::chrono::offset::Utc>> for DateTime {
+    fn from(value: ::chrono::DateTime<::chrono::offset::Utc>) -> Self {
         Self(value)
     }
 }
@@ -1105,38 +1109,40 @@ impl ::std::fmt::Display for DateTime {
     }
 }
 impl ::std::str::FromStr for DateTime {
-    type Err = ::std::convert::Infallible;
+    type Err = <::chrono::DateTime<::chrono::offset::Utc> as ::std::str::FromStr>::Err;
     fn from_str(value: &str) -> ::std::result::Result<Self, Self::Err> {
-        Ok(Self(value.to_string()))
+        Ok(Self(value.parse()?))
     }
 }
-/// A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies.
-#[derive(
-    ::serde::Deserialize,
-    ::serde::Serialize,
-    Clone,
-    Debug,
-    Eq,
-    Hash,
-    Ord,
-    PartialEq,
-    PartialOrd
-)]
+impl ::std::convert::TryFrom<&str> for DateTime {
+    type Error = <::chrono::DateTime<::chrono::offset::Utc> as ::std::str::FromStr>::Err;
+    fn try_from(value: &str) -> ::std::result::Result<Self, Self::Error> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<String> for DateTime {
+    type Error = <::chrono::DateTime<::chrono::offset::Utc> as ::std::str::FromStr>::Err;
+    fn try_from(value: String) -> ::std::result::Result<Self, Self::Error> {
+        value.parse()
+    }
+}
+/// A decimal number.
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
-pub struct Decimal(pub ::std::string::String);
+pub struct Decimal(pub ::serde_json::Number);
 impl ::std::ops::Deref for Decimal {
-    type Target = ::std::string::String;
-    fn deref(&self) -> &::std::string::String {
+    type Target = ::serde_json::Number;
+    fn deref(&self) -> &::serde_json::Number {
         &self.0
     }
 }
-impl ::std::convert::From<Decimal> for ::std::string::String {
+impl ::std::convert::From<Decimal> for ::serde_json::Number {
     fn from(value: Decimal) -> Self {
         value.0
     }
 }
-impl ::std::convert::From<::std::string::String> for Decimal {
-    fn from(value: ::std::string::String) -> Self {
+impl ::std::convert::From<::serde_json::Number> for Decimal {
+    fn from(value: ::serde_json::Number) -> Self {
         Self(value)
     }
 }
@@ -1146,9 +1152,21 @@ impl ::std::fmt::Display for Decimal {
     }
 }
 impl ::std::str::FromStr for Decimal {
-    type Err = ::std::convert::Infallible;
+    type Err = <::serde_json::Number as ::std::str::FromStr>::Err;
     fn from_str(value: &str) -> ::std::result::Result<Self, Self::Err> {
-        Ok(Self(value.to_string()))
+        Ok(Self(value.parse()?))
+    }
+}
+impl ::std::convert::TryFrom<&str> for Decimal {
+    type Error = <::serde_json::Number as ::std::str::FromStr>::Err;
+    fn try_from(value: &str) -> ::std::result::Result<Self, Self::Error> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<String> for Decimal {
+    type Error = <::serde_json::Number as ::std::str::FromStr>::Err;
+    fn try_from(value: String) -> ::std::result::Result<Self, Self::Error> {
+        value.parse()
     }
 }
 /// A dimension of a package.
@@ -1264,16 +1282,22 @@ pub struct HandoverLocation {
     pub map_url: ::std::option::Option<::std::string::String>,
 }
 /// Information about the shipment's invoice.
-#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceInfo {
     /// When the invoice was created.
-    #[serde(rename = "creationDateTime")]
-    pub creation_date_time: DateTime,
+    #[serde(
+        rename = "creationDateTime",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub creation_date_time: ::std::option::Option<DateTime>,
     /// The unique ID of the invoice that corresponds to the shipment.
-    #[serde(rename = "invoiceId")]
-    pub invoice_id: ::std::string::String,
+    #[serde(
+        rename = "invoiceId",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub invoice_id: ::std::option::Option<::std::string::String>,
 }
-/// Whether the invoice document is required to be attached to the shipment and its corresponding status.
+/// Whether the invoice document is required to be attached to the shipment and its corresponding status. Applicable only for Brazil marketplace.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct InvoiceRequirement {
     /// Whether the invoice document is required to be attached to the shipment.
@@ -1421,7 +1445,7 @@ pub struct Package {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub hazmat_labels: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /// An ID that uniquely identifies a package within a shipment.
+    /// The ID of the package whose information you want to update.
     pub id: ::std::string::String,
     /// Whether the package requires standard handling or extra care.
     ///
@@ -1439,18 +1463,24 @@ pub struct Package {
     /// Known values: `CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `SHIPPED`, `DELIVERED`, `CANCELLED`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<::std::string::String>,
+    /// The carrier and tracking details of the package. This field is returned in responses only, and is ignored if it is provided in a request.
+    #[serde(
+        rename = "trackingDetails",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub tracking_details: ::std::option::Option<TrackingDetails>,
     /// The weight of the package. The package must weigh at least 5 grams.
     pub weight: Weight,
 }
 /// The delivery status of the package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct PackageDeliveryStatus {
-    /// The reason for the sub-status.
+    /// The reason for the sub-status. Refer [table](https://developer-docs.amazon/sp-api/docs/process-shipment#step-6-update-the-package-status) for possible values.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reason: ::std::option::Option<PackageDeliveryStatusReason>,
     /// The status of the package.
     ///
-    /// Known values: `CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
+    /// Known values: `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status: ::std::option::Option<PackageStatus>,
     /// The sub-status of the package.
@@ -1462,7 +1492,7 @@ pub struct PackageDeliveryStatus {
     )]
     pub sub_status: ::std::option::Option<PackageSubStatus>,
 }
-/// The reason for the sub-status.
+/// The reason for the sub-status. Refer [table](https://developer-docs.amazon/sp-api/docs/process-shipment#step-6-update-the-package-status) for possible values.
 #[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
 pub struct PackageDeliveryStatusReason(::std::string::String);
@@ -1625,7 +1655,7 @@ impl ::std::convert::From<::std::vec::Vec<PackageShipLabel>> for PackageShipLabe
 }
 /// The status of a package.
 ///
-/// Known values: `CREATED`, `PICKUP_SLOT_RETRIEVED`, `INVOICE_GENERATED`, `SHIPLABEL_GENERATED`, `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
+/// Known values: `SHIPPED`, `DELIVERED`. Other values may be returned by Amazon.
 #[derive(
     ::serde::Deserialize,
     ::serde::Serialize,
@@ -1739,7 +1769,7 @@ pub struct Pagination {
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
 }
-/// Party identification details for the shipment, applicable to direct fulfillment shipments.
+/// Party identification details for the shipment, applicable only to direct fulfillment shipments.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct PartyIdentificationInfo {
     /// Address details of the party.
@@ -1757,7 +1787,7 @@ pub struct PartyIdentificationInfo {
     #[serde(rename = "taxInfo", skip_serializing_if = "::std::option::Option::is_none")]
     pub tax_info: ::std::option::Option<TaxRegistrationInfo>,
 }
-/// All involved party identification and metadata for the vendor, buyer, and seller. Applicable for direct-fulfillment sellers.
+/// All involved party identification and metadata for vendor, buyer, seller. Applicable only for direct-fulfillment sellers.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 #[serde(transparent)]
 pub struct PartyIdentificationInfoList(pub ::std::vec::Vec<PartyIdentificationInfo>);
@@ -1912,8 +1942,11 @@ impl ::std::str::FromStr for Priority {
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct RecommendedPackage {
     pub dimensions: PackageDimensions,
-    #[serde(rename = "lineItems")]
-    pub line_items: RecommendedPackageLineItems,
+    #[serde(
+        rename = "lineItems",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub line_items: ::std::option::Option<RecommendedPackageLineItems>,
     pub weight: Weight,
 }
 /// A line item to be contained in a recommended package. This attribute is provided only for orders that come with a specific recommendation of line-item distribution within the package recommendations.
@@ -2229,7 +2262,7 @@ pub struct Shipment {
     /// The list of packages in the shipment.
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub packages: ::std::option::Option<::std::vec::Vec<Package>>,
-    /// All involved party identification and metadata for vendor, buyer, seller. Applicable for direct-fulfillment sellers.
+    /// All involved party identification and metadata for vendor, buyer, seller. Applicable only for direct-fulfillment sellers.
     #[serde(
         rename = "partyInfoList",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2263,7 +2296,7 @@ pub struct Shipment {
 /// Information about the shipment and its line items, used to confirm or reject line items.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShipmentAcknowledgementRequest {
-    /// Details about the line items from the shipment that are being confirmed or rejected by the seller.
+    /// Details about the line items from the shipment that are being rejected by the seller.
     #[serde(rename = "lineItems")]
     pub line_items: ::std::vec::Vec<LineItemWithReason>,
     /// A unique identifier for every shipment rejection.
@@ -2282,12 +2315,12 @@ pub struct ShipmentInfo {
     /// Total number of units in the shipment.
     #[serde(rename = "numberOfUnits")]
     pub number_of_units: ::std::num::NonZeroU64,
-    /// The timestamp of when the order was placed, in UTC
+    /// The epoch timestamp (in milliseconds) of when the order was placed, in UTC.
     #[serde(
         rename = "orderPlacedTimestamp",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
-    pub order_placed_timestamp: ::std::option::Option<::std::string::String>,
+    pub order_placed_timestamp: ::std::option::Option<::serde_json::Number>,
     /// A list of order statuses for which the marketplace allows order rejection (seller cancellation). If the order has a status that does not belong to this list, then seller cancellation is not possible.
     #[serde(
         rename = "orderStatesEligibleForRejection",
@@ -2430,6 +2463,12 @@ pub struct ShipmentsResponse {
 /// Shipping information for the packages in a shipment.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingInfo {
+    /// The date and time when Amazon expects the seller to ship the packages, in the shipment's local time zone.
+    #[serde(
+        rename = "expectedShippingDateTime",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub expected_shipping_date_time: ::std::option::Option<DateTime>,
     /// The date and time when Amazon expects the seller to ship the packages.
     #[serde(rename = "expectedShippingDateTimeInUTC")]
     pub expected_shipping_date_time_in_utc: DateTime,
@@ -2462,7 +2501,7 @@ pub struct ShippingInfo {
 /// Shipping options for a single package.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct ShippingOptions {
-    /// The carrier name for the offering.
+    /// The carrier name for the offering. Applicable only for Self Ship program
     #[serde(
         rename = "carrierName",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2474,7 +2513,7 @@ pub struct ShippingOptions {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub handover_location: ::std::option::Option<HandoverLocation>,
-    /// The time window during which the package will be picked up.
+    /// The time window during which the package will be picked up. This object is deprecated, please use `timeSlot` instead.
     #[serde(
         rename = "pickupWindow",
         skip_serializing_if = "::std::option::Option::is_none"
@@ -2606,7 +2645,7 @@ pub struct Tax {
     #[serde(rename = "type", skip_serializing_if = "::std::option::Option::is_none")]
     pub type_: ::std::option::Option<::std::string::String>,
 }
-/// Tax registration details of the entity. Applicable to direct fulfillment shipments.
+/// Tax registration details of the entity. Applicable only to direct fulfillment shipments.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct TaxRegistrationInfo {
     /// The address associated with the tax registration number.
@@ -2641,6 +2680,186 @@ pub struct TimeWindow {
     /// The start time of the window.
     #[serde(rename = "startTime")]
     pub start_time: i64,
+}
+/// The carrier and tracking details of a package.
+#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
+pub struct TrackingDetails {
+    /// The carrier responsible for transporting this package to the customer.
+    pub carrier: TrackingDetailsCarrier,
+    /// The specific shipping method or service used for delivering this package.
+    #[serde(
+        rename = "shippingService",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub shipping_service: ::std::option::Option<TrackingDetailsShippingService>,
+    /// The carrier-provided tracking number that customers can use to monitor the package's delivery progress.
+    #[serde(
+        rename = "trackingId",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub tracking_id: ::std::option::Option<TrackingDetailsTrackingId>,
+}
+/// The carrier responsible for transporting this package to the customer.
+#[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct TrackingDetailsCarrier(::std::string::String);
+impl ::std::ops::Deref for TrackingDetailsCarrier {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<TrackingDetailsCarrier> for ::std::string::String {
+    fn from(value: TrackingDetailsCarrier) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for TrackingDetailsCarrier {
+    type Err = self::error::ConversionError;
+    fn from_str(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() < 1usize {
+            return Err("shorter than 1 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for TrackingDetailsCarrier {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TrackingDetailsCarrier {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for TrackingDetailsCarrier {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
+}
+/// The specific shipping method or service used for delivering this package.
+#[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct TrackingDetailsShippingService(::std::string::String);
+impl ::std::ops::Deref for TrackingDetailsShippingService {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<TrackingDetailsShippingService> for ::std::string::String {
+    fn from(value: TrackingDetailsShippingService) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for TrackingDetailsShippingService {
+    type Err = self::error::ConversionError;
+    fn from_str(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() < 1usize {
+            return Err("shorter than 1 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for TrackingDetailsShippingService {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TrackingDetailsShippingService {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for TrackingDetailsShippingService {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
+}
+/// The carrier-provided tracking number that customers can use to monitor the package's delivery progress.
+#[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct TrackingDetailsTrackingId(::std::string::String);
+impl ::std::ops::Deref for TrackingDetailsTrackingId {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<TrackingDetailsTrackingId> for ::std::string::String {
+    fn from(value: TrackingDetailsTrackingId) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for TrackingDetailsTrackingId {
+    type Err = self::error::ConversionError;
+    fn from_str(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() < 1usize {
+            return Err("shorter than 1 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for TrackingDetailsTrackingId {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: &str,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TrackingDetailsTrackingId {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for TrackingDetailsTrackingId {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
 }
 /// The request object for updating a sandbox shipment. The `updates` object is required for `SHIPMENT_STATUS_CHANGE` and `TRANSPORT_CAPACITY_CHANGE` update types, and must not be provided for `INVOICE_AVAILABILITY_CHANGE`.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]

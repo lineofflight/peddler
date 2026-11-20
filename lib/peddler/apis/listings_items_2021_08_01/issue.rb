@@ -24,8 +24,8 @@ module Peddler
         # Names of the attributes that are associated with the issue, if applicable.
         attribute?(:attribute_names, [String], from: "attributeNames")
 
-        # Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a
-        # listing. It also includes details about any associated exemptions.
+        # Information about enforcement actions by Amazon that affect the publishing or status of a listing, including
+        # any associated exemptions.
         attribute?(:enforcements, IssueEnforcements)
 
         # List of Amazon store identifiers.

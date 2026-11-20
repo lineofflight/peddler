@@ -13,7 +13,7 @@ module Peddler
         attribute(:distance_unit, String, null: false, from: "distanceUnit")
 
         # The numerical value of the distance.
-        attribute(:value, String, null: false)
+        attribute(:value, Float, null: false)
       end
     end
   end

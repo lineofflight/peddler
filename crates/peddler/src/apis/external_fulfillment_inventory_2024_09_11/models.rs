@@ -242,12 +242,52 @@ pub struct MarketplaceAttributes {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub channel_name: ::std::option::Option<::std::string::String>,
-    /// The marketplace ID of the marketplace where you want to update inventory.
     #[serde(
         rename = "marketplaceId",
         skip_serializing_if = "::std::option::Option::is_none"
     )]
-    pub marketplace_id: ::std::option::Option<::std::string::String>,
+    pub marketplace_id: ::std::option::Option<MarketplaceId>,
+}
+/// The identifier for the marketplace. Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for the full list of supported marketplace IDs.
+#[derive(
+    ::serde::Deserialize,
+    ::serde::Serialize,
+    Clone,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd
+)]
+#[serde(transparent)]
+pub struct MarketplaceId(pub ::std::string::String);
+impl ::std::ops::Deref for MarketplaceId {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<MarketplaceId> for ::std::string::String {
+    fn from(value: MarketplaceId) -> Self {
+        value.0
+    }
+}
+impl ::std::convert::From<::std::string::String> for MarketplaceId {
+    fn from(value: ::std::string::String) -> Self {
+        Self(value)
+    }
+}
+impl ::std::fmt::Display for MarketplaceId {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        self.0.fmt(f)
+    }
+}
+impl ::std::str::FromStr for MarketplaceId {
+    type Err = ::std::convert::Infallible;
+    fn from_str(value: &str) -> ::std::result::Result<Self, Self::Err> {
+        Ok(Self(value.to_string()))
+    }
 }
 /// Error types.
 pub mod error {

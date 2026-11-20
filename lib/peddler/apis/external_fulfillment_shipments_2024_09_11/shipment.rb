@@ -53,8 +53,8 @@ module Peddler
         # The list of packages in the shipment.
         attribute?(:packages, [Package])
 
-        # All involved party identification and metadata for vendor, buyer, seller. Applicable for direct-fulfillment
-        # sellers.
+        # All involved party identification and metadata for vendor, buyer, seller. Applicable only for
+        # direct-fulfillment sellers.
         attribute?(:party_info_list, [PartyIdentificationInfo], from: "partyInfoList")
 
         # The reason for the sub-status.

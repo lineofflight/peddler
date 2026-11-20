@@ -27,6 +27,9 @@ module Peddler
 
         # Amazon unique tracking identifier.
         attribute?(:id, String)
+
+        # The PRO number assigned by the freight carrier
+        attribute?(:pro_number, String, from: "proNumber")
       end
     end
   end

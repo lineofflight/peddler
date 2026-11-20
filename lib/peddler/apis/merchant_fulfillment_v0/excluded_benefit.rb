@@ -7,9 +7,9 @@ require "structure"
 module Peddler
   module APIs
     module MerchantFulfillmentV0
-      # An object representing an excluded benefit that is excluded for a shipping offer or rate.
+      # A benefit excluded from a shipping offer or rate.
       ExcludedBenefit = Structure.new do
-        # A benefit that is being excluded from a shipment.
+        # The benefit excluded from a shipment.
         attribute?(:benefit, String, from: "Benefit")
 
         attribute?(:reason_codes, [String], from: "ReasonCodes")

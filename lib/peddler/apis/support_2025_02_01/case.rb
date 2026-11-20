@@ -36,10 +36,6 @@ module Peddler
         # All appointments for the case.
         attribute?(:appointments, [Appointment])
 
-        # The timestamp of the last outbound contact on the case. The date must be in [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-        attribute?(:last_outbound_date, Time, from: "lastOutboundDate")
-
         # The time when the case was resolved. In [ISO 8601](https://developer-docs.amazon/sp-api/docs/iso-8601) format.
         attribute?(:resolved_date, Time, from: "resolvedDate")
       end

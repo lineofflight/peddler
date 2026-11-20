@@ -15,13 +15,22 @@ module Peddler
         # The listings item's offer type. Known values: `B2C`, `B2B`.
         attribute(:offer_type, String, null: false, from: "offerType")
 
-        # Purchase price of the listings item
+        # The purchase price of the listings item.
         attribute(:price, Money, null: false)
 
         # Buyer segment or program this offer is applicable to.
         attribute?(:audience, Audience)
 
         attribute?(:points, Points)
+
+        # The quantity discount plan applicable to this offer. A quantity discount plan defines discounts based on the
+        # purchase quantity, offered either as fixed prices or as percentage discounts across quantity tiers. Returned
+        # only when the offer has an active quantity discount schedule.
+        attribute?(:quantity_discount_plan, QuantityDiscountPlan, from: "quantityDiscountPlan")
+
+        # The seller-funded discount configured on this offer for the Subscribe & Save program. Returned only for offers
+        # that have a configured Subscribe & Save discount.
+        attribute?(:replenishment_discount, ReplenishmentDiscount, from: "replenishmentDiscount")
       end
     end
   end

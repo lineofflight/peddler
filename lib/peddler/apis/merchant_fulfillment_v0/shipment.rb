@@ -11,13 +11,12 @@ module Peddler
       Shipment = Structure.new do
         attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
-        # The date and time the shipment is created.
+        # The date and time when the shipment was created.
         attribute(:created_date, String, null: false, from: "CreatedDate")
 
         # If you specify `DeclaredValue` in a previous call to the `createShipment` operation, then `Insurance`
-        # indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with a previous call
-        # to the `createShipment` operation, then the shipment is insured for the carrier's minimum insurance amount, or
-        # the combined sale prices that the items are listed for in the shipment.
+        # indicates the shipment insurance amount that the carrier uses. Without `DeclaredValue`, the shipment uses the
+        # carrier's minimum insurance amount, or the combined sale prices that the items are listed for in the shipment.
         attribute(:insurance, Money, null: false, from: "Insurance")
 
         attribute(:item_list, [Item], null: false, from: "ItemList")

@@ -13,7 +13,7 @@ module Peddler
         attribute(:charge, ChargeBreakup, null: false)
 
         # The rate of the tax.
-        attribute?(:rate, String)
+        attribute?(:rate, Float)
 
         # The type of tax. Known values: `VAT`, `CST`, `IGST`, `SGST`, `CGST`, `UTGST`, `CESS`, `OTHER`, `TOTAL`.
         attribute?(:type, String)

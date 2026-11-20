@@ -10,7 +10,7 @@ module Peddler
       # The weight of a package.
       Weight = Structure.new do
         # The numerical value of the weight. Must be a positive value.
-        attribute(:value, String, null: false)
+        attribute(:value, Float, null: false)
 
         # The unit of measurement of the weight. Known values: `G`, `KG`, `LB`, `OZ`.
         attribute(:weight_unit, String, null: false, from: "weightUnit")

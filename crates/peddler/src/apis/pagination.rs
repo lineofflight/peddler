@@ -5,6 +5,32 @@
 pub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {
     Some(
         match operation {
+            "action_items_2026_06_01.list_action_items" => {
+                crate::pagination::Pagination {
+                    operation: "action_items_2026_06_01.list_action_items".to_owned(),
+                    input: "/page_token".to_owned(),
+                    output: "/pagination/nextToken".to_owned(),
+                    continuation: crate::pagination::Continuation {
+                        operation: None,
+                        keep: None,
+                        drop: vec![],
+                        set: vec![],
+                    },
+                }
+            }
+            "action_plans_2026_06_01.list_action_plans" => {
+                crate::pagination::Pagination {
+                    operation: "action_plans_2026_06_01.list_action_plans".to_owned(),
+                    input: "/page_token".to_owned(),
+                    output: "/pagination/nextToken".to_owned(),
+                    continuation: crate::pagination::Continuation {
+                        operation: None,
+                        keep: None,
+                        drop: vec![],
+                        set: vec![],
+                    },
+                }
+            }
             "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments" => {
                 crate::pagination::Pagination {
                     operation: "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments"
@@ -671,6 +697,20 @@ pub fn mapping(operation: &str) -> Option<crate::pagination::Pagination> {
                     operation: "listings_items_2021_08_01.search_listings_items"
                         .to_owned(),
                     input: "/page_token".to_owned(),
+                    output: "/pagination/nextToken".to_owned(),
+                    continuation: crate::pagination::Continuation {
+                        operation: None,
+                        keep: None,
+                        drop: vec![],
+                        set: vec![],
+                    },
+                }
+            }
+            "messaging_2026_04_20.list_automation_configurations" => {
+                crate::pagination::Pagination {
+                    operation: "messaging_2026_04_20.list_automation_configurations"
+                        .to_owned(),
+                    input: "/pagination_token".to_owned(),
                     output: "/pagination/nextToken".to_owned(),
                     continuation: crate::pagination::Continuation {
                         operation: None,

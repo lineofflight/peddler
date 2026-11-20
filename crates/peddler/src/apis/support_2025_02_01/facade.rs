@@ -35,7 +35,7 @@ pub async fn get_case(
                 headers: Vec::new(),
                 body: None,
             },
-            None,
+            Some(0.1),
         )
         .await?;
     Ok(TypedResponse::new(raw))
@@ -69,7 +69,7 @@ pub async fn list_cases<B: serde::Serialize>(
                 headers: Vec::new(),
                 body: Some(operation::json(&params.body)?),
             },
-            None,
+            Some(0.1),
         )
         .await?;
     Ok(TypedResponse::new(raw))
@@ -154,7 +154,7 @@ pub async fn list_contacts(
                 headers: Vec::new(),
                 body: None,
             },
-            None,
+            Some(0.1),
         )
         .await?;
     Ok(TypedResponse::new(raw))

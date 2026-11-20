@@ -64,14 +64,6 @@ pub struct Case {
     /// The time when the case was created. In [ISO 8601](https://developer-docs.amazon/sp-api/docs/iso-8601) format.
     #[serde(rename = "createdDate")]
     pub created_date: ::chrono::DateTime<::chrono::offset::Utc>,
-    /// The timestamp of the last outbound contact on the case. The date must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
-    #[serde(
-        rename = "lastOutboundDate",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub last_outbound_date: ::std::option::Option<
-        ::chrono::DateTime<::chrono::offset::Utc>,
-    >,
     /// The time when the case was last updated, which includes updates to the case details and new contacts added to the case. In [ISO 8601](https://developer-docs.amazon/sp-api/docs/iso-8601) format.
     #[serde(rename = "lastUpdatedDate")]
     pub last_updated_date: ::chrono::DateTime<::chrono::offset::Utc>,
@@ -90,108 +82,6 @@ pub struct Case {
     pub status: ::std::string::String,
     /// The subject of the case.
     pub subject: ::std::string::String,
-}
-/// Optional filters for case search. All filters are optional — when absent, no filtering is applied for that field. Different filters are combined with AND logic, and multiple values of the same field are combined with OR logic.
-#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
-pub struct CaseFilters {
-    /// Filter the collection by one or more case statuses.
-    ///
-    /// Known values: `RESOLVED`, `TRANSFERRED`, `PENDING_MERCHANT_ACTION`, `PENDING_AMAZON_ACTION`. Other values may be returned by Amazon.
-    #[serde(
-        rename = "caseStatuses",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub case_statuses: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /// Filter the collection by one or more CC email addresses.
-    #[serde(rename = "ccEmails", skip_serializing_if = "::std::option::Option::is_none")]
-    pub cc_emails: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /// Filter the collection by case creation date.
-    #[serde(
-        rename = "createdDate",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub created_date: ::std::option::Option<DateFilter>,
-    /// Filter the collection by last outbound contact date.
-    #[serde(
-        rename = "lastOutboundDate",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub last_outbound_date: ::std::option::Option<DateFilter>,
-    /// Filter the collection by primary email address.
-    #[serde(
-        rename = "primaryEmails",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub primary_emails: ::std::option::Option<::std::vec::Vec<::std::string::String>>,
-    /// Filter the collection by case resolution date.
-    #[serde(
-        rename = "resolvedDate",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub resolved_date: ::std::option::Option<DateFilter>,
-    /// Filter the collection by case subject keywords. Maximum 200 characters.
-    #[serde(
-        rename = "subjectKeywords",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub subject_keywords: ::std::option::Option<CaseFiltersSubjectKeywords>,
-}
-/// Filter the collection by case subject keywords. Maximum 200 characters.
-#[derive(::serde::Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[serde(transparent)]
-pub struct CaseFiltersSubjectKeywords(::std::string::String);
-impl ::std::ops::Deref for CaseFiltersSubjectKeywords {
-    type Target = ::std::string::String;
-    fn deref(&self) -> &::std::string::String {
-        &self.0
-    }
-}
-impl ::std::convert::From<CaseFiltersSubjectKeywords> for ::std::string::String {
-    fn from(value: CaseFiltersSubjectKeywords) -> Self {
-        value.0
-    }
-}
-impl ::std::str::FromStr for CaseFiltersSubjectKeywords {
-    type Err = self::error::ConversionError;
-    fn from_str(
-        value: &str,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        if value.chars().count() > 200usize {
-            return Err("longer than 200 characters".into());
-        }
-        if value.chars().count() < 1usize {
-            return Err("shorter than 1 characters".into());
-        }
-        Ok(Self(value.to_string()))
-    }
-}
-impl ::std::convert::TryFrom<&str> for CaseFiltersSubjectKeywords {
-    type Error = self::error::ConversionError;
-    fn try_from(
-        value: &str,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        value.parse()
-    }
-}
-impl ::std::convert::TryFrom<::std::string::String> for CaseFiltersSubjectKeywords {
-    type Error = self::error::ConversionError;
-    fn try_from(
-        value: ::std::string::String,
-    ) -> ::std::result::Result<Self, self::error::ConversionError> {
-        value.parse()
-    }
-}
-impl<'de> ::serde::Deserialize<'de> for CaseFiltersSubjectKeywords {
-    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
-    where
-        D: ::serde::Deserializer<'de>,
-    {
-        ::std::string::String::deserialize(deserializer)?
-            .parse()
-            .map_err(|e: self::error::ConversionError| {
-                <D::Error as ::serde::de::Error>::custom(e.to_string())
-            })
-    }
 }
 /// The content for a chat contact.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
@@ -253,16 +143,6 @@ pub struct Contact {
     )]
     pub phone_content: ::std::option::Option<PhoneContent>,
 }
-/// A date range filter with optional before and after bounds. Dates must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
-#[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
-pub struct DateFilter {
-    /// Include results with timestamps strictly after this value (exclusive).
-    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
-    pub after: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-    /// Include results with timestamps strictly before this value (exclusive).
-    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
-    pub before: ::std::option::Option<::chrono::DateTime<::chrono::offset::Utc>>,
-}
 /// The content of an email contact.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug)]
 pub struct EmailContent {
@@ -294,18 +174,6 @@ pub struct ErrorList {
 /// The request body for the listCases operation.
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, Default)]
 pub struct ListCasesRequest {
-    /// Optional filters to narrow the returned collection. When absent, the operation returns all cases for the requesting identity.
-    #[serde(
-        rename = "caseFilters",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub case_filters: ::std::option::Option<CaseFilters>,
-    /// The marketplace identifier used for authorization only. This field does not impact the returned collection. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-    #[serde(
-        rename = "marketplaceId",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub marketplace_id: ::std::option::Option<::std::string::String>,
     /// Maximum number of results to return.
     #[serde(
         rename = "maxResults",
@@ -318,14 +186,6 @@ pub struct ListCasesRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub next_token: ::std::option::Option<::std::string::String>,
-    /// The field to sort cases by. Defaults to CREATION_DATE when absent.
-    ///
-    /// Known values: `CASE_ID`, `STATUS`, `SUBJECT`, `PRIMARY_EMAIL`, `CREATION_DATE`, `LAST_OUTBOUND_DATE`, `RESOLUTION_DATE`. Other values may be returned by Amazon.
-    #[serde(
-        rename = "sortField",
-        skip_serializing_if = "::std::option::Option::is_none"
-    )]
-    pub sort_field: ::std::option::Option<::std::string::String>,
     /// The sort direction. Defaults to DESC when absent.
     ///
     /// Known values: `ASC`, `DESC`. Other values may be returned by Amazon.
