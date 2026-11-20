@@ -71,6 +71,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and each typed model has a page of its attributes and their types. The anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
 - Link the gem's page on RubyGems to the [documentation site](https://lineofflight.dev/peddler/) in place of rubydoc.info
 - List the known values of enum fields and parameters in the docs and the signatures. The types stay `String`: Amazon changes these lists without a version bump and the API can return values the spec does not list
+- Parse a notification's metadata into its model instead of a String in nine notifications, such as `DetailPageTrafficEvent`
 
 ### Removed
 
@@ -115,11 +116,23 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
 - **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so their `rate_limit:` defaults to `nil` and the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
 - **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so their `rate_limit:` defaults to 2.0 and the retry of a 429 waits 0.5 seconds, then 1, then 2
+- **Added**: Support 2025-02-01: a usage plan of 0.1 requests a second for its 3 operations, which had none, so their `rate_limit:` defaults to 0.1 and the retry of a 429 waits 10 seconds, then 20, then 40
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`; `invoice_id` parameter on `get_invoice_status`
 - **Added**: Shipping v2: `link_carrier_account_put` operation, the PUT twin of `link_carrier_account`
+- **Added**: Action Items 2026-06-01: new API for discovering and dismissing action items surfaced by Amazon (`list_action_items`, `get_action_item`, `dismiss_action_item`)
+- **Added**: Action Plans 2026-06-01: new API for creating and tracking action plans from pre-defined templates (`create_action_plan`, `get_action_plan`, `list_action_plans`)
+- **Added**: Messaging 2026-04-20: new API for managing automated buyer-seller message configurations (`create_automation_configuration`, `list_automation_configurations`, `get_automation_configuration`, `update_automation_configuration`)
+- **Changed**: The default `messaging` alias now points to Messaging 2026-04-20 instead of v1; the previous version remains available as `messaging_v1`
+- **Added**: Listings Items 2021-08-01: `quantity_discount_plan` and `replenishment_discount` fields on `ItemOfferByMarketplace`
+- **Added**: Services v1: `provider_service_job_reference_ids` parameter on `get_service_jobs`; `provider_service_job_reference_id` field on `ServiceJobProvider`
+- **Added**: External Fulfillment Shipments 2024-09-11: `tracking_details` field (new `TrackingDetails` type) on `Package`
+- **Added**: Notifications v1: `pro_number` field on `TrackingIdentifier`
+- **Added**: Notifications: `pre_fulfillment_status` field on the Order Change `Summary`
+- **Removed**: Support 2025-02-01: `case_filters`, `marketplace_id`, and `sort_field` fields on `ListCasesRequest` and `last_outbound_date` on `Case`, along with the `CaseFilters` and `DateFilter` types
 - **Added**: Reports: `promotions_api_mapping_id` field on `DetailsByPromotion` (Promotion report), and on `CouponDetails` for both the Seller Coupon and Vendor Coupon reports, cross-referencing promotions with the new Promotions API
+- **Added**: Data Kiosk Economics 2024-03-15: new fee types (coupon, deal, FBA disposal, FBA removal, fuel and logistics surcharge) and the `supportsDynamicSandbox` directive
 - **Added**: Notifications: `ShipmentTrackingMilestoneChanged` now has a full envelope (`event_time`, `notification_metadata`, `notification_type`, `notification_version`, `payload_version`) and a payload carrying `shipment_tracking_milestone_changed_notification`, with new tracking types (`TrackingDetail`, `TrackingMilestone`, `TrackingEstimate`, `TrackingIdentifier`, `CarrierTracking`, and others)
 
 ## [5.5.0] - 2026-06-10
