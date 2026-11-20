@@ -132,7 +132,7 @@ end
 
 unless installed == "cargo-about #{CARGO_ABOUT}"
   abort("cargo-about #{CARGO_ABOUT} is needed, found #{installed.lines.first.to_s.strip.inspect}. " \
-    "Install it with: cargo install cargo-about --version #{CARGO_ABOUT} --locked")
+    "Install it with: cargo install cargo-about --version #{CARGO_ABOUT} --locked --features cli")
 end
 
 library = standard_library

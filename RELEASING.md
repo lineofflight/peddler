@@ -55,7 +55,7 @@ A platform gem links 104 to 108 Rust crates into its binary, by platform, so it 
 The tool needs cargo-about, at the version it names:
 
 ```sh
-cargo install cargo-about --version 0.9.2 --locked
+cargo install cargo-about --version 0.9.2 --locked --features cli
 bundle exec rake native gem
 ```
 

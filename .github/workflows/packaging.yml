@@ -133,7 +133,7 @@ jobs:
       # accept fails this step.
       - name: Write the third-party license notices
         run: |
-          cargo install cargo-about --version 0.9.2 --locked
+          cargo install cargo-about --version 0.9.2 --locked --features cli
           ruby tools/third_party_licenses.rb ${{ matrix.platform }}
       - uses: oxidize-rb/actions/cross-gem@ec90b4aa48795518d79be3f5cc478d1d7ccd02a8 # v1.5.0
         id: cross-gem

@@ -7,7 +7,7 @@ gemspec
 gem "activesupport"
 gem "graphql"
 gem "hana"
-gem "herb"
+gem "herb", install_if: -> { !Gem.win_platform? } # 0.11.2 has a file name Windows refuses
 gem "irb"
 gem "minitest"
 gem "minitest-mock"
