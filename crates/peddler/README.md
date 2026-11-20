@@ -4,7 +4,7 @@ A Rust client for Amazon's [Selling Partner API (SP-API)][api-docs]. It is the R
 
 The crate provides:
 
-- all 384 SP-API operations in 70 API versions, each an async function with typed parameters, and a typed response where Amazon's model defines one
+- all 394 SP-API operations in 73 API versions, each an async function with typed parameters, and a typed response where Amazon's model defines one
 - typed models for reports, feeds, notifications and Data Kiosk schemas
 - Login with Amazon (LWA) token requests and an optional in-process token source
 - retries for throttled and failed requests, off by default
@@ -249,7 +249,7 @@ Amazon limits each operation for each seller. The crate doesn't count your calls
 
 ## Pagination
 
-An operation that returns its results in pages has a twin that ends in `_pages`. It takes the same parameters and returns a stream of pages. 79 operations have one.
+An operation that returns its results in pages has a twin that ends in `_pages`. It takes the same parameters and returns a stream of pages. 82 operations have one.
 
 ```rust
 use futures_util::StreamExt;

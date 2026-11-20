@@ -495,7 +495,7 @@ end
 
 It requests a page only when you ask for it. `pages.first(2)` makes two requests, and breaking out of `each` makes no more.
 
-79 operations have a `_pages` twin. The enumerator ends when a page carries no token for the next one. To continue from a token you saved, pass it as you would to the operation, for example `next_token:`.
+82 operations have a `_pages` twin. The enumerator ends when a page carries no token for the next one. To continue from a token you saved, pass it as you would to the operation, for example `next_token:`.
 
 A page that is an HTTP error raises `Peddler::Error`. If a page returns the token it was requested with, or a token that is not a String, the enumerator yields that page and then raises `Peddler::PaginationError`, whose `reason` says which.
 
