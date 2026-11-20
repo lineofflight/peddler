@@ -116,7 +116,7 @@ Peddler 6 sends its requests through a Rust core that ships with the gem as a na
 - **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
 - **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so their `rate_limit:` defaults to `nil` and the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
 - **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so their `rate_limit:` defaults to 2.0 and the retry of a 429 waits 0.5 seconds, then 1, then 2
-- **Added**: Support 2025-02-01: a usage plan of 0.1 requests a second for its 3 operations, which had none, so their `rate_limit:` defaults to 0.1 and the retry of a 429 waits 10 seconds, then 20, then 40
+- **Added**: Support 2025-02-01: a usage plan of 0.1 requests a second for its three operations, which had none, so their `rate_limit:` defaults to 0.1 and the retry of a 429 waits 10 seconds, then 20, then 40
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
 - **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`; `invoice_id` parameter on `get_invoice_status`
