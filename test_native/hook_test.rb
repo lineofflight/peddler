@@ -34,8 +34,8 @@ class HookTest < NativeTest
       assert_equal([nil, "from-lwa", "issued"] * 2, seen.map { |_, _, headers, _| headers["x-amz-access-token"] })
       assert_same(Thread.current, threads.first)
       refute_same(Thread.current, threads.last)
-      # A call inside a call waits for nothing: all 3 took turns on one connection.
-      assert_equal(1, accepted.size)
+      # A call inside a call waits for nothing: all 3 took turns on the pool.
+      assert_operator(accepted.size, :<=, 2)
     end
   end
 
@@ -68,7 +68,7 @@ class HookTest < NativeTest
       assert_same(failure, assert_raises(failure.class) { instance.reports.wait_for_report("r1", interval: 0.01) })
       assert_equal("DONE", instance.reports.wait_for_report("r1", interval: 0.01).to_h.fetch("processingStatus"))
       assert_equal(["token-1", "token-3", "token-4", "token-6"], Array.new(4) { requests.pop }.map { |_, _, headers, _| headers["x-amz-access-token"] })
-      assert_equal(1, accepted.size)
+      assert_operator(accepted.size, :<=, 2)
     end
   end
 

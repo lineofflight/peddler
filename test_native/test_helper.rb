@@ -72,6 +72,9 @@ class NativeTest < Minitest::Test
   end
 
   # Serves any number of requests on each connection, so a test can count the connections a client opens.
+  # Calls one after another may open two: the pool gets a connection back a moment after the call that used it
+  # returns, from a task on the runtime's thread, and a call that starts sooner connects while it waits and keeps
+  # the connection it didn't use.
   # The responder returns [status, body] or [status, body, headers].
   # Yields the URL, the accepted sockets and the requests as [method, target, headers, body].
   def serve_keep_alive(responder: ->(*) { [200, "{}"] })
