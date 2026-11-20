@@ -1,6 +1,16 @@
 {
  "mappings": [
   {
+   "operation": "action_items_2026_06_01.list_action_items",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "action_plans_2026_06_01.list_action_plans",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
    "operation": "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments",
    "input": "/next_token",
    "output": "/nextToken"
@@ -279,6 +289,11 @@
   {
    "operation": "listings_items_2021_08_01.search_listings_items",
    "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "messaging_2026_04_20.list_automation_configurations",
+   "input": "/pagination_token",
    "output": "/pagination/nextToken"
   },
   {

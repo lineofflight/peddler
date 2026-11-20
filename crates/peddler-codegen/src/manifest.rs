@@ -9,6 +9,20 @@ pub struct ModelSpec {
 
 pub const ALL_APIS: &[ModelSpec] = &[
     ModelSpec {
+        source: "action-items-api-model/actionItems_2026-06-01.json",
+        module: "action_items_2026_06_01",
+        family: "action_items",
+        version: "2026_06_01",
+        latest: true,
+    },
+    ModelSpec {
+        source: "action-plans-api-model/actionPlans_2026-06-01.json",
+        module: "action_plans_2026_06_01",
+        family: "action_plans",
+        version: "2026_06_01",
+        latest: true,
+    },
+    ModelSpec {
         source: "amazon-warehousing-and-distribution-model/awd_2024-05-09.json",
         module: "amazon_warehousing_and_distribution_2024_05_09",
         family: "amazon_warehousing_and_distribution",
@@ -237,6 +251,13 @@ pub const ALL_APIS: &[ModelSpec] = &[
         module: "messaging_v1",
         family: "messaging",
         version: "v1",
+        latest: false,
+    },
+    ModelSpec {
+        source: "messaging-api-model/messaging_2026-04-20.json",
+        module: "messaging_2026_04_20",
+        family: "messaging",
+        version: "2026_04_20",
         latest: true,
     },
     ModelSpec {

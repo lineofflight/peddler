@@ -8,7 +8,7 @@ Peddler has two generators. This one writes Rust, and the Ruby method of each op
 
 ## What it reads
 
-- `selling-partner-api-models/`, a checkout of [Amazon's models][models] at the revision in `selling-partner-api-models.sha`. It reads the 70 API models under `models/` that `src/manifest.rs` lists, and the 55 report, feed, notification and Data Kiosk schemas under `schemas/` that `supplemental-sources.json` lists.
+- `selling-partner-api-models/`, a checkout of [Amazon's models][models] at the revision in `selling-partner-api-models.sha`. It reads the 73 API models under `models/` that `src/manifest.rs` lists, and the 55 report, feed, notification and Data Kiosk schemas under `schemas/` that `supplemental-sources.json` lists.
 - `pagination.json`, which says which operations return pages and how to ask for the next one.
 - `lib/generator/patches/`, four JSON patches that repair notification schemas. The Ruby generator applies the same ones.
 
@@ -107,7 +107,7 @@ To add an API version, add a `ModelSpec` to `src/manifest.rs` with the model's p
 
 `pagination.json` is the only source of pagination. Nothing is inferred from names when a request runs.
 
-A mapping names the `operation`, the `input` (a JSON pointer to the argument that carries the token) and the `output` (a JSON pointer to the next token in the response). 79 operations are mapped.
+A mapping names the `operation`, the `input` (a JSON pointer to the argument that carries the token) and the `output` (a JSON pointer to the next token in the response). 82 operations are mapped.
 
 A `continuation` may also name another `operation` for the pages after the first.
 
