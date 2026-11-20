@@ -123,7 +123,9 @@ jobs:
       - uses: oxidize-rb/actions/setup-ruby-and-rust@ec90b4aa48795518d79be3f5cc478d1d7ccd02a8 # v1.5.0
         with:
           ruby-version: "4.0"
-          bundler-cache: true
+          # The container installs the bundle itself. A bundle installed here would be written to the project's
+          # .bundle/config, which the container mounts and obeys, and its extensions need a newer glibc than it has.
+          bundler-cache: false
           cargo-cache: false
       # The gem carries the licenses of the crates in its binary. The containers below
       # have no cargo-about, so the notices are written here. The gem task takes them as
