@@ -5,6 +5,11 @@ require_relative "test_helper"
 # Every client in a process is a light view on one runtime and one connection pool.
 # rubocop:disable Minitest/MultipleAssertions
 class SharedTest < NativeTest
+  # The pool gets a connection back from the runtime's thread a moment after the call that used it returns, 0.3 ms in
+  # a trace (see serve_keep_alive). A pause well past that lets the next call find it there, so that a second
+  # connection can only come from a second pool.
+  def wait_for_the_pool = sleep(0.05)
+
   def test_clients_views_and_lwa_share_one_pool
     tokens = JSON.generate(access_token: "from-lwa", token_type: "bearer", expires_in: 3600)
     responder = ->(_method, target, *) { [200, target == "/auth" ? tokens : "{}"] }
@@ -13,8 +18,12 @@ class SharedTest < NativeTest
       second = Peddler::Client.new(base_url: url, access_token: "seller-b", timeout: 5, retries: 1)
 
       assert_equal(200, first.request("GET", "/").status)
+      wait_for_the_pool
+
       assert_equal(200, second.orders_v0.get_order("1").status)
+      wait_for_the_pool
       fresh = Peddler::LWA.new(client_id: "id", client_secret: "secret", lwa_endpoint: "#{url}/auth").refresh(refresh_token: "refresh")
+      wait_for_the_pool
 
       assert_equal(200, first.with_access_token(fresh.access_token).request("GET", "/").status)
       seen = Array.new(4) { requests.pop }
@@ -22,7 +31,7 @@ class SharedTest < NativeTest
       assert_equal(["seller-a", "seller-b", nil, "from-lwa"], seen.map { |_, _, headers, _| headers["x-amz-access-token"] })
       assert_equal([gem_user_agent, gem_user_agent, hostless_user_agent, gem_user_agent],
         seen.map { |_, _, headers, _| headers["user-agent"] })
-      assert_operator(accepted.size, :<=, 2)
+      assert_equal(1, accepted.size)
     end
   end
 

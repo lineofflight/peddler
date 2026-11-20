@@ -34,7 +34,7 @@ class HookTest < NativeTest
       assert_equal([nil, "from-lwa", "issued"] * 2, seen.map { |_, _, headers, _| headers["x-amz-access-token"] })
       assert_same(Thread.current, threads.first)
       refute_same(Thread.current, threads.last)
-      # A call inside a call waits for nothing: all 3 took turns on the pool.
+      # A call inside a call waits for nothing: all three took turns on the pool.
       assert_operator(accepted.size, :<=, 2)
     end
   end
