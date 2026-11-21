@@ -36,12 +36,14 @@ jobs:
 
       # Advances selling-partner-api-models.sha, then regenerates the whole corpus: the Ruby
       # models and the Rust crate (models, facades, dispatch, pagination table, Ruby facades
-      # and operation-inventory.json). The Rust step builds with --locked. A pin move that
-      # only changes spec content needs no other edit. The generator refuses the rest and
-      # writes nothing, so no PR is opened: a spec file that was added or removed (the
-      # manifest, or supplemental-sources.json for a schema), a new token-like field
-      # (pagination.json), and an operation it has no rule for. A refusal names the spec
-      # file and the operation. The summary step below says what to do with each.
+      # and operation-inventory.json). The Rust step builds with --locked. A model or a
+      # schema Amazon adds or removes needs no edit: both generators name it by the same
+      # rules. An operation that looks paged and that pagination.json doesn't map gets no
+      # *_pages method, and the inventory lists it under unmapped_pagination. The generator
+      # refuses what it has no rule for and writes nothing, so no PR is opened: a name it
+      # can't derive, a mapping that no longer fits its model, and an operation it can't
+      # build. A refusal names the spec file, and the operation where there is one. The
+      # summary step below says what to do with each.
       - name: Regenerate Ruby and Rust output at the new pin
         shell: bash
         run: bundle exec rake generate:update 2>&1 | tee "$RUNNER_TEMP/generate.log"
@@ -69,9 +71,9 @@ jobs:
             echo
             echo "| The generator says | It means | Edit |"
             echo "| --- | --- | --- |"
-            echo "| \`pinned API inventory mismatch\` | Amazon added or removed an API model | \`crates/peddler-codegen/src/manifest.rs\` |"
-            echo "| \`pinned supplemental inventory mismatch\` | Amazon added or removed a report, feed, notification or Data Kiosk schema | \`crates/peddler-codegen/supplemental-sources.json\` |"
-            echo "| \`pagination: ...\` | a field looks like a page token and is neither mapped nor excluded | \`crates/peddler-codegen/pagination.json\`, with a reason |"
+            echo "| \`<spec files>: APIs of different names share the directory ...\` | Amazon put a new API in a directory of another | \`FILENAME_BASED_DIRECTORIES\`, in \`crates/peddler-codegen/src/manifest.rs\` and \`lib/generator/resolvers/api_name_resolver.rb\` |"
+            echo "| \`<spec file>: ... can't name an API\`, \`can't name a schema\`, \`is named ... too\` | a new model's or schema's name can't be a method, or is another's | the rule in \`crates/peddler-codegen/src/manifest.rs\` or \`supplemental.rs\`, and the Ruby generator's, with a test |"
+            echo "| \`pagination: ...\` | a mapping or an exclusion no longer fits its model: Amazon changed or removed the operation | \`crates/peddler-codegen/pagination.json\` |"
             echo "| \`<spec file>: <operationId>: ...\` | that operation uses something the generator has no rule for, such as a new kind of parameter or a default on a body | \`crates/peddler-codegen/src/clients.rs\`, with a test |"
             echo "| \`<spec file>: ...\` without an operation | the file is not JSON, a model can't be written, or 2 operations share an ID | \`crates/peddler-codegen/src/models.rs\` or \`clients.rs\`, with a test |"
             echo
@@ -161,6 +163,8 @@ jobs:
             A nightly job pulled in the latest Amazon SP-API specs and regenerated the Ruby and Rust code, including the operation inventory and the pin file. GitHub refuses PR diffs above 300 files, so read the change locally: run `git diff --stat origin/main...HEAD` for the overview and `git diff origin/main...HEAD -- <path>` for specific files. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown.
 
             Also set the PR title: one line in the imperative, 50 characters at most, naming the most significant change, like "Add shipment tracking fields to Orders v0". If the changes span unrelated APIs, name the biggest one or the common theme. The title and description become the squash commit, so the description shouldn't restate the title.
+
+            If `unmapped_pagination` in crates/peddler-codegen/operation-inventory.json gains operations, say in the description which ones: each looks paged, but has no `_pages` method until crates/peddler-codegen/pagination.json maps it or excludes it with a reason.
 
             If the diff only moves the pin, selling-partner-api-models.sha and the `revision` of crates/peddler-codegen/operation-inventory.json, no generated code changed. Keep the title as it is. Compare the old and new SHAs upstream with `gh api repos/amzn/selling-partner-api-models/compare/<old>...<new>` and describe what changed in the specs and why it left the generated code untouched.
 

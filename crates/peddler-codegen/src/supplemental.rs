@@ -7,7 +7,6 @@ use crate::{
     models::{self, visit_schema},
     unescape_pointer,
 };
-use serde::Deserialize;
 use serde_json::{Value, json};
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -16,15 +15,216 @@ use std::{
     process::Command,
 };
 
-#[derive(Debug, Deserialize)]
+/// A report, feed, notification or Data Kiosk schema
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Source {
+    /// `reports`, `feeds`, `notifications` or `data_kiosk`
     pub family: String,
+    /// The Rust module, named as the Ruby generator names the schema's file
     pub module: String,
+    /// The schema's path in the checkout
     pub path: String,
 }
 
-pub fn sources() -> Vec<Source> {
-    serde_json::from_str(include_str!("../supplemental-sources.json")).expect("audited inventory")
+/// A family of schemas: its directory, which of its files are schemas, and the module of
+/// one by its file name without the extension. The Ruby generator's `Report`, `Feed`,
+/// `Notification` and `DataKiosk` find and name them so.
+struct Family {
+    name: &'static str,
+    directory: &'static str,
+    schema: fn(&str) -> bool,
+    module: fn(&str) -> String,
+}
+
+const FAMILIES: [Family; 4] = [
+    Family {
+        name: "reports",
+        directory: "schemas/reports",
+        schema: |file| top_level(file, ".json"),
+        module: |name| {
+            underscore(
+                &name
+                    .strip_suffix("Report")
+                    .unwrap_or(name)
+                    .replace('-', "_"),
+            )
+        },
+    },
+    Family {
+        name: "feeds",
+        directory: "schemas/feeds",
+        schema: |file| top_level(file, ".json") && !file.contains(".example."),
+        module: feed_module,
+    },
+    Family {
+        name: "notifications",
+        directory: "schemas/notifications",
+        schema: |file| top_level(file, ".json"),
+        module: |name| {
+            underscore(
+                &name
+                    .strip_suffix("Notification")
+                    .unwrap_or(name)
+                    .replace('-', "_"),
+            )
+        },
+    },
+    Family {
+        name: "data_kiosk",
+        directory: "schemas/data-kiosk",
+        schema: |file| top_level(file, ".graphql"),
+        module: data_kiosk_module,
+    },
+];
+
+/// Whether a file is one Ruby's `Dir.glob("<directory>/*<extension>")` finds.
+fn top_level(file: &str, extension: &str) -> bool {
+    !file.contains('/') && !file.starts_with('.') && file.ends_with(extension)
+}
+
+/// `listings-feed-schema-v2` is `listings_feed_schema`: without its version, each word
+/// capitalized, then in snake case.
+fn feed_module(name: &str) -> String {
+    let digits = name.len() - name.trim_end_matches(|c: char| c.is_ascii_digit()).len();
+    let name = match name[..name.len() - digits].strip_suffix("-v") {
+        Some(stem) if digits > 0 => stem,
+        _ => name,
+    };
+    underscore(&name.split('-').map(capitalize).collect::<String>())
+}
+
+/// `analytics_salesAndTraffic_2024_04_24` is `sales_and_traffic20240424`: without
+/// `analytics_`, each word capitalized and joined, then in snake case.
+fn data_kiosk_module(name: &str) -> String {
+    let name = name.strip_prefix("analytics_").unwrap_or(name);
+    let joined: String = name
+        .split('_')
+        .flat_map(|part| {
+            // A word starts the part or at a capital, as `split(/(?=[A-Z])/)` cuts it.
+            part.chars().enumerate().map(|(i, c)| {
+                if i == 0 || c.is_ascii_uppercase() {
+                    c.to_ascii_uppercase()
+                } else {
+                    c.to_ascii_lowercase()
+                }
+            })
+        })
+        .collect();
+    underscore(&joined)
+}
+
+/// Ruby's `String#capitalize`: the first letter in capitals, the others not.
+fn capitalize(word: &str) -> String {
+    word.chars()
+        .enumerate()
+        .map(|(i, c)| {
+            if i == 0 {
+                c.to_ascii_uppercase()
+            } else {
+                c.to_ascii_lowercase()
+            }
+        })
+        .collect()
+}
+
+/// ActiveSupport's `underscore`, with the acronyms the Ruby generator gives it: an acronym
+/// is a word of its own, so `APIsUsage` is `apis_usage`, not `ap_is_usage`.
+pub fn underscore(word: &str) -> String {
+    let bytes = word.as_bytes();
+    let alphanumeric = |i: usize| bytes.get(i).is_some_and(u8::is_ascii_alphanumeric);
+    let word_char = |i: usize| {
+        bytes
+            .get(i)
+            .is_some_and(|b| b.is_ascii_alphanumeric() || *b == b'_')
+    };
+    // `(?:(?<=([A-Za-z\d]))|\b)(API|APIs|...)(?=\b|[^a-z])`, each acronym as `_` and itself
+    // in small letters, `_` only after a letter or a digit.
+    let mut spaced = String::new();
+    let mut i = 0;
+    while i < bytes.len() {
+        let after = i > 0 && alphanumeric(i - 1);
+        let boundary = after || i == 0 || !word_char(i - 1);
+        let acronym = boundary
+            .then(|| {
+                crate::manifest::ACRONYMS
+                    .iter()
+                    .map(|(_, acronym)| *acronym)
+                    .find(|acronym| {
+                        word[i..].starts_with(acronym)
+                            && !bytes
+                                .get(i + acronym.len())
+                                .is_some_and(u8::is_ascii_lowercase)
+                    })
+            })
+            .flatten();
+        match acronym {
+            Some(acronym) => {
+                if after {
+                    spaced.push('_');
+                }
+                spaced.push_str(&acronym.to_ascii_lowercase());
+                i += acronym.len();
+            }
+            None => {
+                let c = word[i..].chars().next().expect("a character at a boundary");
+                spaced.push(c);
+                i += c.len_utf8();
+            }
+        }
+    }
+    // `(?<=[A-Z])(?=[A-Z][a-z])|(?<=[a-z\d])(?=[A-Z])` as `_`, then dashes as `_`, in small
+    // letters.
+    let bytes = spaced.as_bytes();
+    let mut snake = String::new();
+    for (i, c) in spaced.char_indices() {
+        let previous = i.checked_sub(1).and_then(|j| bytes.get(j));
+        let upper = c.is_ascii_uppercase();
+        let split = upper
+            && previous.is_some_and(|p| {
+                p.is_ascii_lowercase()
+                    || p.is_ascii_digit()
+                    || (p.is_ascii_uppercase()
+                        && bytes.get(i + 1).is_some_and(u8::is_ascii_lowercase))
+            });
+        if split {
+            snake.push('_');
+        }
+        snake.push(if c == '-' { '_' } else { c });
+    }
+    snake.to_lowercase()
+}
+
+/// Every report, feed, notification and Data Kiosk schema in the checkout, with its
+/// module. A name that can't be a module, or that two schemas of a family share, is
+/// refused by the file.
+pub fn sources(checkout: &Path) -> Result<Vec<Source>, GenerationError> {
+    let mut sources = Vec::new();
+    for family in &FAMILIES {
+        let mut seen = BTreeMap::new();
+        for file in crate::files(&checkout.join(family.directory), family.schema)? {
+            let path = format!("{}/{file}", family.directory);
+            let name = file
+                .rsplit_once('.')
+                .map_or(file.as_str(), |(name, _)| name);
+            let module = (family.module)(name);
+            if !crate::manifest::identifier(&module) {
+                return Err(GenerationError(format!(
+                    "{path}: {module} can't name a schema"
+                )));
+            }
+            if let Some(other) = seen.insert(module.clone(), path.clone()) {
+                return Err(GenerationError(format!(
+                    "{path}: {other} is named {module} too"
+                )));
+            }
+            sources.push(Source {
+                family: family.name.into(),
+                module,
+                path,
+            });
+        }
+    }
+    Ok(sources)
 }
 
 pub const PATCHES: &[(&str, &[u8])] = &[
@@ -58,7 +258,7 @@ pub fn generate_supplemental(
     let mut output = BTreeMap::new();
     let mut errors = Vec::new();
     let mut families: BTreeMap<String, Vec<String>> = BTreeMap::new();
-    for source in sources() {
+    for source in sources(checkout_root)? {
         let result = (|| {
             let definitions = if source.family == "data_kiosk" {
                 graphql_definitions(&checkout_root.join(&source.path))?
@@ -278,7 +478,10 @@ impl Resolver<'_> {
                     .to_str()
                     .ok_or_else(|| GenerationError("schema path must be UTF-8".into()))?;
                 // `verify_sources` has shown every audited source tracked and unmodified.
-                if !sources().iter().any(|source| source.path == relative) {
+                if !sources(self.checkout)?
+                    .iter()
+                    .any(|source| source.path == relative)
+                {
                     return Err(GenerationError(format!(
                         "reference outside audited source inventory: {relative}"
                     )));
@@ -428,16 +631,18 @@ pub fn verify_sources(checkout: &Path, revision: &str) -> Result<(), GenerationE
     verify_pinned(
         checkout,
         revision,
-        &[
-            "schemas/reports",
-            "schemas/feeds",
-            "schemas/notifications",
-            "schemas/data-kiosk",
-        ],
+        &FAMILIES.map(|family| family.directory),
         |path| {
-            (path.ends_with(".json") || path.ends_with(".graphql")) && !path.contains(".example.")
+            FAMILIES.iter().any(|family| {
+                path.strip_prefix(family.directory)
+                    .and_then(|file| file.strip_prefix('/'))
+                    .is_some_and(family.schema)
+            })
         },
-        &sources().into_iter().map(|source| source.path).collect(),
+        &sources(checkout)?
+            .into_iter()
+            .map(|source| source.path)
+            .collect(),
         "supplemental",
     )?;
     let root = checkout

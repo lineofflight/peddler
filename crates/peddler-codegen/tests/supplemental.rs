@@ -90,3 +90,148 @@ fn unknown_root_refs_and_network_refs_fail_without_schema_fallback() {
         );
     }
 }
+
+/// A checkout holding these files, empty.
+fn checkout(files: &[&str]) -> tempfile::TempDir {
+    let temp = tempfile::tempdir().unwrap();
+    for file in files {
+        let path = temp.path().join(file);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(path, "{}").unwrap();
+    }
+    temp
+}
+
+/// The schemas are the files the Ruby generator reads, named as it names them, so a
+/// schema Amazon adds needs no edit.
+#[test]
+fn a_schema_is_found_and_named_as_the_ruby_generator_does() {
+    let temp = checkout(&[
+        "schemas/reports/accountHealthReport-2020-11-18.json",
+        "schemas/reports/endUserDataReport.json",
+        "schemas/reports/marketplaceAsinPageViewMetrics.json",
+        "schemas/reports/nested/deeperReport.json",
+        "schemas/reports/.hiddenReport.json",
+        "schemas/feeds/listings-feed-schema-v2.json",
+        "schemas/feeds/listings-feed-schema-v2.example.json",
+        "schemas/notifications/FBAInventoryAvailabilityChangeNotification.json",
+        "schemas/notifications/B2bAnyOfferChangedNotification.json",
+        "schemas/notifications/ListingsItemIssuesChangeNotification_2023-12-13.json",
+        "schemas/notifications/ListingsItemMfnQuantityChange.json",
+        "schemas/data-kiosk/analytics_salesAndTraffic_2024_04_24.graphql",
+        "schemas/data-kiosk/analytics_economics_2024_03_15.graphql",
+        "schemas/data-kiosk/notes.json",
+    ]);
+    let sources = peddler_codegen::supplemental::sources(temp.path()).unwrap();
+    let names: Vec<_> = sources
+        .iter()
+        .map(|source| (source.family.as_str(), source.module.as_str()))
+        .collect();
+    assert_eq!(
+        names,
+        [
+            ("reports", "account_health_report_2020_11_18"),
+            ("reports", "end_user_data"),
+            ("reports", "marketplace_asin_page_view_metrics"),
+            ("feeds", "listings_feed_schema"),
+            ("notifications", "b2b_any_offer_changed"),
+            ("notifications", "fba_inventory_availability_change"),
+            (
+                "notifications",
+                "listings_item_issues_change_notification_2023_12_13"
+            ),
+            ("notifications", "listings_item_mfn_quantity_change"),
+            ("data_kiosk", "economics20240315"),
+            ("data_kiosk", "sales_and_traffic20240424"),
+        ]
+    );
+}
+
+/// What it can't name, it refuses by the file.
+#[test]
+fn a_schema_name_it_cant_use_is_refused_by_the_file() {
+    for (files, refusal) in [
+        (
+            &["schemas/reports/fooReport.json", "schemas/reports/foo.json"][..],
+            "schemas/reports/fooReport.json: schemas/reports/foo.json is named foo too",
+        ),
+        (
+            &["schemas/reports/type.json"][..],
+            "schemas/reports/type.json: type can't name a schema",
+        ),
+        (
+            &["schemas/notifications/Order.Change.json"][..],
+            "schemas/notifications/Order.Change.json: order.change can't name a schema",
+        ),
+    ] {
+        let temp = checkout(files);
+        let error = peddler_codegen::supplemental::sources(temp.path()).unwrap_err();
+        assert_eq!(error.0, refusal);
+    }
+}
+
+/// As ActiveSupport's `underscore` gives them, with the acronyms the Ruby generator
+/// configures: `"APIsUsage".underscore` in Ruby, and so on.
+#[test]
+fn underscore_is_activesupports_with_peddlers_acronyms() {
+    for (word, snake) in [
+        (
+            "FBAInventoryAvailabilityChange",
+            "fba_inventory_availability_change",
+        ),
+        ("B2bAnyOfferChanged", "b2b_any_offer_changed"),
+        ("APIsUsage", "apis_usage"),
+        ("SKUsReport", "sk_us_report"),
+        ("fooAPIBar", "foo_api_bar"),
+        ("URLsList", "urls_list"),
+        (
+            "ListingsItemIssuesChangeNotification_2023_12_13",
+            "listings_item_issues_change_notification_2023_12_13",
+        ),
+        ("SalesAndTraffic20240424", "sales_and_traffic20240424"),
+        ("CODOrders", "cod_orders"),
+        ("Code", "code"),
+        (
+            "accountHealthReport_2020_11_18",
+            "account_health_report_2020_11_18",
+        ),
+        ("ListingsFeedSchema", "listings_feed_schema"),
+        ("APIURLs", "api_urls"),
+        ("foo_API", "foo_api"),
+        ("B2BCatalog", "b2b_catalog"),
+        ("ASINs", "asi_ns"),
+        ("sellerASINReport", "seller_asin_report"),
+        ("X1Y", "x1_y"),
+        ("API2Thing", "api2_thing"),
+    ] {
+        assert_eq!(
+            peddler_codegen::supplemental::underscore(word),
+            snake,
+            "{word}"
+        );
+    }
+}
+
+/// Every schema at the pin gets the name the Ruby generator gave its file.
+#[test]
+fn every_pinned_schema_is_named_as_in_ruby() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    let sources =
+        peddler_codegen::supplemental::sources(&root.join("selling-partner-api-models")).unwrap();
+    for family in ["reports", "feeds", "notifications", "data_kiosk"] {
+        let ruby: std::collections::BTreeSet<_> =
+            std::fs::read_dir(root.join("lib/peddler").join(family))
+                .unwrap()
+                .filter_map(|entry| {
+                    let name = entry.unwrap().file_name().into_string().unwrap();
+                    name.strip_suffix(".rb").map(str::to_owned)
+                })
+                .collect();
+        let rust: std::collections::BTreeSet<_> = sources
+            .iter()
+            .filter(|source| source.family == family)
+            .map(|source| source.module.clone())
+            .collect();
+        assert_eq!(rust, ruby, "{family}");
+    }
+}

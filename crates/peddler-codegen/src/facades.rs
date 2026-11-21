@@ -3,7 +3,7 @@ use crate::{
     GenerationError,
     clients::{Operation, Parameter, pascal, rust_type},
     docs, format_source, known_values,
-    manifest::ModelSpec,
+    manifest::{ModelSpec, ruby_class},
     pagination::{self, Resolved},
 };
 use serde_json::{Value, json};
@@ -517,37 +517,9 @@ fn ruby_default(value: &Value) -> Result<String, GenerationError> {
         }
     })
 }
-/// The words Peddler writes in capitals, as `lib/peddler/acronyms.rb` has them for the
-/// models. A test in Ruby holds this list to that file, entry for entry.
-const ACRONYMS: [(&str, &str); 16] = [
-    ("Api", "API"),
-    ("Apis", "APIs"),
-    ("Asin", "ASIN"),
-    ("B2b", "B2B"),
-    ("Cgst", "CGST"),
-    ("Cod", "COD"),
-    ("Ebt", "EBT"),
-    ("Fba", "FBA"),
-    ("Igst", "IGST"),
-    ("Lwa", "LWA"),
-    ("Safet", "SAFET"),
-    ("Sgst", "SGST"),
-    ("Sku", "SKU"),
-    ("Tds", "TDS"),
-    ("Url", "URL"),
-    ("Urls", "URLs"),
-];
-/// The name of an API's class in Ruby, which is that of its models' namespace: `FBAInventoryV1`.
-/// A word is an acronym before a capital or at the end, so that `Cod` leaves `Code` alone.
-fn ruby_class(module: &str) -> String {
-    ACRONYMS.iter().fold(pascal(module), |name, (from, to)| {
-        let word = regress::Regex::new(&format!("{from}(?=[A-Z]|$)")).expect("valid pattern");
-        word.replace_all(&name, to)
-    })
-}
 /// Ruby's keywords. A method named after one can't be called as the others are, and an
 /// argument named after one can't be read: the file would not parse.
-const RUBY_KEYWORDS: [&str; 35] = [
+pub(crate) const RUBY_KEYWORDS: [&str; 35] = [
     "alias", "and", "begin", "break", "case", "class", "def", "do", "else", "elsif", "end",
     "ensure", "false", "for", "if", "in", "module", "next", "nil", "not", "or", "redo", "rescue",
     "retry", "return", "self", "super", "then", "true", "undef", "unless", "until", "when",
@@ -665,8 +637,8 @@ pub(crate) fn ruby(
     // The type of a constant that spans lines is read from its last one.
     ruby.push_str("    }.freeze #: Hash[String, Pagination]\n\n");
     for (api, operations) in clients {
-        let class = ruby_class(api.module);
-        ruby.push_str(&docs::class(api, &specs[api.module]["info"]));
+        let class = ruby_class(&api.module);
+        ruby.push_str(&docs::class(api, &specs[api.module.as_str()]["info"]));
         // An instance variable's type is read before the first statement of the class
         // only, with a blank line after it. `Client` builds the class and no application
         // does, so RDoc leaves `new` off its page.
@@ -703,8 +675,8 @@ pub(crate) fn ruby(
     ruby.truncate(ruby.trim_end().len());
     ruby.push_str("\n  end\n\n  class Client\n");
     for (api, _) in clients {
-        let class = ruby_class(api.module);
-        ruby.push_str(&docs::accessor(&class, &specs[api.module]["info"]));
+        let class = ruby_class(&api.module);
+        ruby.push_str(&docs::accessor(&class, &specs[api.module.as_str()]["info"]));
         writeln!(
             ruby,
             "    def {}\n      Native::{class}.new(@engine)\n    end\n",
@@ -713,7 +685,7 @@ pub(crate) fn ruby(
         .unwrap();
         // Steep reads no alias, so the latest version is a method of its own.
         if api.latest {
-            ruby.push_str(&docs::latest(&class, api.module));
+            ruby.push_str(&docs::latest(&class, &api.module));
             writeln!(ruby, "    def {} = {}\n", api.family, api.module).unwrap();
         }
     }
@@ -721,11 +693,14 @@ pub(crate) fn ruby(
     ruby.push_str("\n  end\nend\n");
     Ok(ruby)
 }
+/// Every operation, and those that look paged without a mapping: the diff of a model
+/// update shows each of them.
 pub(crate) fn inventory(
     clients: &[(&ModelSpec, Vec<Operation>)],
     revision: &str,
     resolved: &[Resolved],
     source: &pagination::Source,
+    unmapped: &[pagination::Unmapped],
 ) -> Result<String, GenerationError> {
     let apis: Vec<Value> = clients
         .iter()
@@ -740,12 +715,20 @@ pub(crate) fn inventory(
                 "family": api.family,
                 "version": api.version,
                 "latest": api.latest,
-                "ruby_class": ruby_class(api.module),
+                "ruby_class": ruby_class(&api.module),
                 "operations": operations,
             })
         })
         .collect();
-    Ok(serde_json::to_string_pretty(&json!({"revision": revision, "apis": apis}))? + "\n")
+    let unmapped: Vec<Value> = unmapped
+        .iter()
+        .map(|op| json!({"operation": op.key, "source": op.source, "field": op.field}))
+        .collect();
+    Ok(serde_json::to_string_pretty(&json!({
+        "revision": revision,
+        "apis": apis,
+        "unmapped_pagination": unmapped,
+    }))? + "\n")
 }
 fn operation_json(
     api: &ModelSpec,
@@ -817,13 +800,15 @@ mod tests {
                 {"name":"minPrice","in":"query","type":"number"}],
                 "responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Page"}}}}}
         },"definitions":{"Page":{"type":"object","properties":{"nextToken":{"type":"string"}}}}});
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
-        let specs = BTreeMap::from([(api.module, spec)]);
+        let specs = BTreeMap::from([(api.module.as_str(), spec)]);
         let key = format!("{}.list_items", api.module);
         let source = json!({"mappings":[{"operation":key,"input":"/next_token","output":"/nextToken"}],"exclusions":[]});
         let source: pagination::Source = serde_json::from_value(source).unwrap();
-        let resolved = pagination::resolve(&source, &clients, &specs).unwrap();
+        let resolved = pagination::resolve(&source, &clients, &specs)
+            .unwrap()
+            .resolved;
         let ruby = ruby(&clients, &resolved, &specs).unwrap();
         assert!(ruby.contains(concat!(
             "      # Each page of #list_items. `rate_limit` applies to every page.\n",
@@ -837,9 +822,9 @@ mod tests {
         let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
             "/things/{id}":{"post":operation}
         },"definitions":{"Page":{"type":"object","properties":{"nextToken":{"type":"string"}}},"Thing":{"type":"object"}}});
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
-        let specs = BTreeMap::from([(api.module, spec)]);
+        let specs = BTreeMap::from([(api.module.as_str(), spec)]);
         let key = format!("{}.list_things", api.module);
         let source = if paged {
             json!({"mappings":[{"operation":key,"input":"/next_token","output":"/nextToken"}],"exclusions":[]})
@@ -847,7 +832,9 @@ mod tests {
             json!({"mappings":[],"exclusions":[{"operation":key,"reason":"none"}]})
         };
         let source: pagination::Source = serde_json::from_value(source).unwrap();
-        let resolved = pagination::resolve(&source, &clients, &specs).unwrap();
+        let resolved = pagination::resolve(&source, &clients, &specs)
+            .unwrap()
+            .resolved;
         let mapped: Vec<&Resolved> = resolved.iter().collect();
         rust(&clients[0].1, &mapped).unwrap()
     }
@@ -1053,7 +1040,7 @@ mod tests {
     /// An API's module takes the text of its Ruby class.
     #[test]
     fn a_module_is_documented_as_its_ruby_class_is() {
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let info =
             json!({"title":"Things API","description":"For things. See [the guide](doc:guide).\n"});
         let source = format!("{}pub mod things;", module_doc(api, &info));
@@ -1072,9 +1059,9 @@ mod tests {
         let spec = json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
             "/things":{"get":{"operationId":id,"parameters":parameters,"responses":{"200":{"description":"ok"}}}}
         }});
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let clients = vec![(api, crate::clients::render(&spec, api).unwrap())];
-        let specs = BTreeMap::from([(api.module, spec)]);
+        let specs = BTreeMap::from([(api.module.as_str(), spec)]);
         ruby(&clients, &[], &specs).map_err(|error| error.0)
     }
 
@@ -1082,7 +1069,7 @@ mod tests {
     /// Written out, the file would not parse, or would replace the constructor.
     #[test]
     fn a_name_that_ruby_cant_use_is_refused() {
-        let source = crate::manifest::ALL_APIS[0].source;
+        let source = crate::manifest::example().source;
         let query = |name: &str, required: bool| json!([{"name":name,"in":"query","type":"string","required":required}]);
         for keyword in RUBY_KEYWORDS {
             for required in [false, true] {
@@ -1118,7 +1105,7 @@ mod tests {
     fn a_keyword_of_rust_keeps_its_name_in_ruby() {
         let parameters = json!([{"name":"type","in":"query","type":"string"},{"name":"match","in":"query","type":"string","required":true}]);
         let ruby = ruby_of("move", parameters).unwrap();
-        let module = crate::manifest::ALL_APIS[0].module;
+        let module = crate::manifest::example().module;
         for line in [
             "      # @rbs type: String?\n".to_owned(),
             "      # @rbs match: String\n".to_owned(),
@@ -1128,23 +1115,6 @@ mod tests {
             format!("@engine.operation(\"{module}.move_\", "),
         ] {
             assert!(ruby.contains(&line), "{line}{ruby}");
-        }
-    }
-
-    /// As `Peddler::Acronyms.apply` names them in Ruby.
-    #[test]
-    fn a_class_is_named_with_peddlers_acronyms() {
-        for (module, class) in [
-            ("fba_inventory_v1", "FBAInventoryV1"),
-            ("orders_v0", "OrdersV0"),
-            ("apis_v1", "APIsV1"),
-            ("api_urls", "APIURLs"),
-            ("b2b_sku_v1", "B2BSKUV1"),
-            ("sku_2024_01_01", "Sku20240101"),
-            ("code_v1", "CodeV1"),
-            ("cod_v1", "CODV1"),
-        ] {
-            assert_eq!(ruby_class(module), class);
         }
     }
 

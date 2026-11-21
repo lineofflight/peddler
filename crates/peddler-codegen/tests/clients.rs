@@ -1,5 +1,21 @@
-use peddler_codegen::{clients, facades, manifest::ALL_APIS};
+use peddler_codegen::{clients, facades, manifest::ModelSpec};
 use serde_json::{Value, json};
+fn api() -> ModelSpec {
+    ModelSpec {
+        source: "catalog-items-api-model/catalogItems_2022-04-01.json".into(),
+        module: "catalog_items_2022_04_01".into(),
+        family: "catalog_items".into(),
+        version: "2022_04_01".into(),
+        latest: true,
+    }
+}
+/// The API of a module some rule of `clients.rs` names
+fn module(module: &str) -> ModelSpec {
+    ModelSpec {
+        module: module.into(),
+        ..api()
+    }
+}
 fn spec() -> Value {
     json!({"swagger":"2.0","produces":["application/json"],"info":{"title":"Synthetic","version":"1"},"paths":{
         "/items/{asin}":{"get":{"operationId":"getItem","parameters":[
@@ -18,7 +34,7 @@ fn spec() -> Value {
 #[test]
 fn all_operations_keep_per_operation_shapes_and_build_their_own_request() {
     let value = spec();
-    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    let operations = clients::render(&value, &api()).unwrap();
     assert_eq!(operations.len(), 2);
     let item = operations.iter().find(|op| op.name == "get_item").unwrap();
     let csv: Vec<_> = item.parameters.iter().filter(|p| p.csv).collect();
@@ -61,16 +77,16 @@ fn all_operations_keep_per_operation_shapes_and_build_their_own_request() {
 fn unsupported_parameters_and_invalid_defaults_fail_before_rendering() {
     let mut value = spec();
     value["paths"]["/items/{asin}"]["get"]["parameters"][1]["collectionFormat"] = json!("ssv");
-    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+    assert!(clients::render(&value, &api()).is_err());
     let mut value = spec();
     value["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!(["bad,value"]);
-    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+    assert!(clients::render(&value, &api()).is_err());
 }
 /// 31 operation IDs and many parameter names are shared between APIs, so a refusal
 /// says which operation it is in. The caller adds the file.
 #[test]
 fn a_refusal_names_its_operation() {
-    let refusal = |value: &Value| match clients::render(value, &ALL_APIS[0]) {
+    let refusal = |value: &Value| match clients::render(value, &api()) {
         Err(error) => error.0,
         Ok(_) => panic!("expected an error"),
     };
@@ -99,12 +115,8 @@ fn a_refusal_names_its_operation() {
 fn scalar_csv_default_is_normalized_to_its_declared_array_type() {
     let mut value = spec();
     value["paths"]["/items/{asin}"]["get"]["parameters"][2]["default"] = json!("summaries");
-    let api = ALL_APIS
-        .iter()
-        .find(|api| api.module == "catalog_items_2020_12_01")
-        .unwrap();
-    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
-    let operations = clients::render(&value, api).unwrap();
+    assert!(clients::render(&value, &api()).is_err());
+    let operations = clients::render(&value, &module("catalog_items_2020_12_01")).unwrap();
     let item = operations.iter().find(|op| op.name == "get_item").unwrap();
     assert_eq!(item.parameters[2].schema["default"], json!(["summaries"]));
 }
@@ -113,7 +125,7 @@ fn arbitrary_duplicate_operation_ids_fail_generation() {
     let mut value = spec();
     let operation = value["paths"]["/empty"]["post"].clone();
     value["paths"]["/empty"]["put"] = operation;
-    let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
+    let Err(err) = clients::render(&value, &api()) else {
         panic!("expected error");
     };
     assert!(err.0.contains("duplicate operationId empty"));
@@ -122,10 +134,6 @@ fn arbitrary_duplicate_operation_ids_fail_generation() {
 #[test]
 fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations() {
     let mut value = spec();
-    let api = ALL_APIS
-        .iter()
-        .find(|api| api.module == "shipping_v2")
-        .unwrap();
     let mut post_op = value["paths"]["/empty"]["post"].clone();
     post_op["operationId"] = json!("linkCarrierAccount");
     let put_op = post_op.clone();
@@ -133,7 +141,7 @@ fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations
         "post": post_op,
         "put": put_op,
     });
-    let operations = clients::render(&value, api).unwrap();
+    let operations = clients::render(&value, &module("shipping_v2")).unwrap();
     assert!(
         operations
             .iter()
@@ -150,12 +158,12 @@ fn shipping_v2_link_carrier_account_put_is_renamed_to_expose_distinct_operations
 fn malformed_scalar_defaults_fail_generation_before_runtime_construction() {
     let mut value = spec();
     value["paths"]["/items/{asin}"]["get"]["parameters"][4]["default"] = json!("not-a-boolean");
-    assert!(clients::render(&value, &ALL_APIS[0]).is_err());
+    assert!(clients::render(&value, &api()).is_err());
 }
 #[test]
 fn an_operation_media_type_replaces_the_api_one() {
     let successes = |value: &Value| {
-        let operations = clients::render(value, &ALL_APIS[0]).unwrap();
+        let operations = clients::render(value, &api()).unwrap();
         let item = operations.iter().find(|op| op.name == "get_item");
         item.unwrap().successes.clone()
     };
@@ -174,7 +182,7 @@ fn bodyless_success_status_does_not_offer_json_even_with_an_upstream_schema() {
     let mut value = spec();
     value["paths"]["/empty"]["post"]["responses"] =
         json!({"204":{"description":"bodyless","schema":{"type":"string"}}});
-    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    let operations = clients::render(&value, &api()).unwrap();
     assert_eq!(operations[0].successes, vec![(204, None)]);
 }
 
@@ -190,7 +198,7 @@ fn a_default_on_a_body_fails_generation() {
         let mut value = spec();
         value["paths"]["/empty"]["post"]["parameters"] =
             json!([{"name":"payload","in":"body","schema":{"type":"object","default":default}}]);
-        let Err(err) = clients::render(&value, &ALL_APIS[0]) else {
+        let Err(err) = clients::render(&value, &api()) else {
             panic!("expected an error for {default}");
         };
         assert!(
@@ -208,7 +216,7 @@ const THREE_COLUMNS: &str = "Search.\n\n**Usage Plans:**\n\n| Plan type | Rate (
 fn rated(description: &str) -> Result<Option<f64>, String> {
     let mut value = spec();
     value["paths"]["/empty"]["post"]["description"] = json!(description);
-    let operations = clients::render(&value, &ALL_APIS[0]).map_err(|error| error.0)?;
+    let operations = clients::render(&value, &api()).map_err(|error| error.0)?;
     Ok(operations
         .iter()
         .find(|op| op.name == "empty")
@@ -337,7 +345,7 @@ fn a_usage_plan_in_another_form_fails_generation_and_is_never_misread() {
 fn an_operation_hands_its_rate_to_the_client() {
     let mut value = spec();
     value["paths"]["/items/{asin}"]["get"]["description"] = json!(TWO_COLUMNS);
-    let operations = clients::render(&value, &ALL_APIS[0]).unwrap();
+    let operations = clients::render(&value, &api()).unwrap();
     let facade = facades::rust(&operations, &[]).unwrap();
     let calls: Vec<_> = facade.split(".execute_json(").skip(1).collect();
     assert_eq!(calls.len(), 2);

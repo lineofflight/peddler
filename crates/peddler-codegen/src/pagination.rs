@@ -1,8 +1,9 @@
 //! Explicit pagination metadata, checked against the pinned specs.
 //!
 //! `pagination.json` is the only source of mappings. Every mapped operation,
-//! argument and response path is resolved against the spec, and every operation
-//! with continuation-like fields must be mapped or excluded with a reason.
+//! argument and response path is resolved against the spec. An operation with
+//! continuation-like fields that is neither mapped nor excluded is unmapped: it
+//! gets no `*_pages` method, and the operation inventory lists it.
 use crate::{
     GenerationError,
     clients::{Operation, Parameter},
@@ -64,6 +65,30 @@ pub struct Resolved {
     /// Operation key used for pages after the first, when different.
     pub continuation_operation: Option<String>,
 }
+/// An operation that looks paged and that `pagination.json` neither maps nor excludes
+#[derive(Clone, Debug)]
+pub struct Unmapped {
+    /// Its key, as `pagination.json` names it
+    pub key: String,
+    /// Its spec file, under `models/`
+    pub source: String,
+    /// Its `operationId`
+    pub id: String,
+    /// What looks like a page token, such as `nextToken` or `response/pagination/nextToken`
+    pub field: String,
+}
+
+/// What `pagination.json` makes of the operations
+#[derive(Debug, Default)]
+pub struct Resolution {
+    /// The mapped operations, by key
+    pub resolved: Vec<Resolved>,
+    /// The operations that look paged and aren't decided, by key
+    pub unmapped: Vec<Unmapped>,
+    /// The operations `pagination.json` decides of an API no model is left of
+    pub stale: Vec<String>,
+}
+
 impl Resolved {
     pub fn adapter_key(&self) -> Option<String> {
         self.mapping
@@ -175,21 +200,33 @@ fn locate<'a>(
     found.ok_or_else(|| GenerationError(format!("pagination: unknown operation {key}")))
 }
 
-/// Resolves every mapping against specs and operations and audits
-/// that no continuation-like operation is left undecided.
+/// Whether `key` names an operation of an API that no model is left of. Amazon removed
+/// the model, so what `pagination.json` says of it is stale, not wrong.
+fn gone(clients: &Clients<'_>, key: &str) -> bool {
+    key.split_once('.')
+        .is_some_and(|(module, _)| !clients.iter().any(|(api, _)| api.module == module))
+}
+
+/// Resolves every mapping against specs and operations, and lists each
+/// continuation-like operation left undecided.
 pub fn resolve(
     source: &Source,
     clients: &Clients<'_>,
     specs: &BTreeMap<&str, Value>,
-) -> Result<Vec<Resolved>, GenerationError> {
+) -> Result<Resolution, GenerationError> {
     let mut resolved = Vec::new();
+    let mut stale = Vec::new();
     let mut decided = BTreeSet::new();
     for mapping in &source.mappings {
         if !decided.insert(mapping.operation.clone()) {
             return fail(format!("{} is decided twice", mapping.operation));
         }
+        if gone(clients, &mapping.operation) {
+            stale.push(mapping.operation.clone());
+            continue;
+        }
         let (api, op) = locate(clients, &mapping.operation)?;
-        let spec = &specs[api.module];
+        let spec = &specs[api.module.as_str()];
         let raw = raw_operation(spec, op)?;
         let input = pointer_segments(&mapping.input, "input")?;
         let output = pointer_segments(&mapping.output, "output")?;
@@ -322,29 +359,43 @@ pub fn resolve(
         });
     }
     for exclusion in &source.exclusions {
-        locate(clients, &exclusion.operation)?;
         if exclusion.reason.trim().is_empty() || !decided.insert(exclusion.operation.clone()) {
             return fail(format!(
                 "{} is decided twice or lacks a reason",
                 exclusion.operation
             ));
         }
+        if gone(clients, &exclusion.operation) {
+            stale.push(exclusion.operation.clone());
+            continue;
+        }
+        locate(clients, &exclusion.operation)?;
     }
+    let mut unmapped = Vec::new();
     for (api, operations) in clients {
-        let spec = &specs[api.module];
+        let spec = &specs[api.module.as_str()];
         for op in operations {
             let key = format!("{}.{}", api.module, op.name);
             if !decided.contains(&key)
-                && let Some(hit) = undecided(spec, op)?
+                && let Some(field) = undecided(spec, op)?
             {
-                return fail(format!(
-                    "{key} has continuation-like field {hit}; map or exclude it"
-                ));
+                unmapped.push(Unmapped {
+                    key,
+                    source: api.source.clone(),
+                    id: op.id.clone(),
+                    field,
+                });
             }
         }
     }
     resolved.sort_by(|a, b| a.key.cmp(&b.key));
-    Ok(resolved)
+    unmapped.sort_by(|a, b| a.key.cmp(&b.key));
+    stale.sort();
+    Ok(Resolution {
+        resolved,
+        unmapped,
+        stale,
+    })
 }
 
 fn names(

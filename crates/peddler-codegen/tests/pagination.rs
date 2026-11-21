@@ -1,8 +1,8 @@
 //! Mapping validation against synthetic specs.
 use peddler_codegen::{
     clients,
-    manifest::ALL_APIS,
-    pagination::{Source, resolve},
+    manifest::ModelSpec,
+    pagination::{Resolution, Source, resolve},
 };
 use serde_json::{Value, json};
 use std::collections::BTreeMap;
@@ -38,15 +38,25 @@ fn spec() -> Value {
     }})
 }
 
-fn run(source: Value, value: Value) -> Result<Vec<String>, String> {
+fn api() -> ModelSpec {
+    ModelSpec {
+        source: "amazon-warehousing-and-distribution-model/awd_2024-05-09.json".into(),
+        module: MODULE.into(),
+        family: "amazon_warehousing_and_distribution".into(),
+        version: "2024_05_09".into(),
+        latest: true,
+    }
+}
+fn resolution(source: Value, value: Value) -> Result<Resolution, String> {
     let source: Source = serde_json::from_value(source).map_err(|e| e.to_string())?;
-    let api = ALL_APIS.iter().find(|api| api.module == MODULE).unwrap();
-    let operations = clients::render(&value, api).map_err(|e| e.to_string())?;
-    let clients = vec![(api, operations)];
-    let specs = BTreeMap::from([(api.module, value)]);
-    resolve(&source, &clients, &specs)
-        .map(|r| r.into_iter().map(|r| r.key).collect())
-        .map_err(|e| e.to_string())
+    let api = api();
+    let operations = clients::render(&value, &api).map_err(|e| e.to_string())?;
+    let clients = vec![(&api, operations)];
+    let specs = BTreeMap::from([(api.module.as_str(), value)]);
+    resolve(&source, &clients, &specs).map_err(|e| e.to_string())
+}
+fn run(source: Value, value: Value) -> Result<Vec<String>, String> {
+    resolution(source, value).map(|r| r.resolved.into_iter().map(|r| r.key).collect())
 }
 /// Excludes the synthetic operations the test does not map, so the audit passes.
 fn decided(mappings: Value) -> Value {
@@ -129,7 +139,7 @@ fn every_mapped_reference_must_exist_and_be_a_string() {
 }
 
 #[test]
-fn duplicates_unknown_exclusions_and_undecided_fields_fail() {
+fn duplicates_and_unknown_operations_fail() {
     let error = run(
         decided(json!([mapping(json!({})), mapping(json!({}))])),
         spec(),
@@ -142,11 +152,92 @@ fn duplicates_unknown_exclusions_and_undecided_fields_fail() {
             .unwrap_err()
             .contains("unknown operation")
     );
+}
+
+/// An operation that looks paged and that nothing decides still generates: it is unmapped,
+/// with what looks like a page token, and gets no `*_pages` method.
+#[test]
+fn an_undecided_paged_operation_is_unmapped() {
+    let unmapped = |source| {
+        let resolution = resolution(source, spec()).unwrap();
+        let unmapped: Vec<_> = resolution
+            .unmapped
+            .iter()
+            .map(|op| {
+                (
+                    op.key.clone(),
+                    op.id.clone(),
+                    op.field.clone(),
+                    op.source.clone(),
+                )
+            })
+            .collect();
+        (resolution.resolved.len(), unmapped)
+    };
+    let source = api().source;
     // listItems carries nextToken, searchItems a body token, cursorOnly a cursor.
-    let error = run(decided(json!([])), spec()).unwrap_err();
-    assert!(error.contains("continuation-like field"), "{error}");
+    assert_eq!(
+        unmapped(decided(json!([]))),
+        (
+            0,
+            vec![
+                (
+                    format!("{MODULE}.list_items"),
+                    "listItems".into(),
+                    "nextToken".into(),
+                    source.clone()
+                ),
+                (
+                    format!("{MODULE}.search_items"),
+                    "searchItems".into(),
+                    "body/nextToken".into(),
+                    source.clone()
+                ),
+            ]
+        )
+    );
     let no_cursor = json!({"mappings": [mapping(json!({})), {"operation": format!("{MODULE}.search_items"), "input": "/body/nextToken", "output": "/payload/nextToken"}], "exclusions": []});
-    assert!(run(no_cursor, spec()).unwrap_err().contains("cursor_only"));
+    assert_eq!(
+        unmapped(no_cursor),
+        (
+            2,
+            vec![
+                (
+                    format!("{MODULE}.cursor_only"),
+                    "cursorOnly".into(),
+                    "response/pagination/nextCursor".into(),
+                    source.clone()
+                ),
+                (
+                    format!("{MODULE}.list_pages"),
+                    "listPages".into(),
+                    "pageToken".into(),
+                    source
+                ),
+            ]
+        )
+    );
+}
+
+/// What `pagination.json` says of an API Amazon removed is stale, not wrong: it is set
+/// aside, and the rest resolves.
+#[test]
+fn an_entry_of_a_removed_api_is_stale() {
+    let gone = |name: &str| format!("orders_v0.{name}");
+    let mut source = decided(
+        json!([mapping(json!({})), {"operation": gone("get_orders"), "input": "/next_token", "output": "/payload/NextToken"}]),
+    );
+    source["exclusions"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"operation": gone("get_order_items"), "reason": "gone"}));
+    let resolution = resolution(source, spec()).unwrap();
+    assert_eq!(
+        resolution.stale,
+        [gone("get_order_items"), gone("get_orders")]
+    );
+    let keys: Vec<_> = resolution.resolved.iter().map(|r| r.key.as_str()).collect();
+    assert_eq!(keys, [format!("{MODULE}.list_items")]);
 }
 
 #[test]

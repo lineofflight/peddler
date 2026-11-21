@@ -1,6 +1,6 @@
 # Rust models for reports, feeds, notifications and Data Kiosk
 
-Amazon describes report documents, feed documents and notifications as JSON Schema, and Data Kiosk as GraphQL. [`peddler-codegen`](../../crates/peddler-codegen/README.md) turns the 55 schemas that `crates/peddler-codegen/supplemental-sources.json` lists into Rust models: one module for each schema and an index for each of the four families, under `crates/peddler/src/{reports,feeds,notifications,data_kiosk}/`.
+Amazon describes report documents, feed documents and notifications as JSON Schema, and Data Kiosk as GraphQL. [`peddler-codegen`](../../crates/peddler-codegen/README.md) turns every schema the Ruby generator reads into Rust models: one module for each schema and an index for each of the four families, under `crates/peddler/src/{reports,feeds,notifications,data_kiosk}/`.
 
 They are generated with the rest of the Rust code, by `bundle exec rake generate:rust`, and checked by `bundle exec rake generate:rust:verify`. Building the crate or the gem needs none of this: the models are committed.
 

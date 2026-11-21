@@ -50,6 +50,15 @@ fn run() -> Result<(), GenerationError> {
     peddler_codegen::checkout::verify(&checkout, revision)?;
     let output = generate(&checkout.join("models"), revision)?;
     let dest = output_root.unwrap_or(root);
+    // A generated file no longer generated is of a model or a schema Amazon removed.
+    let mut obsolete = Vec::new();
+    for base in GENERATED_RUST {
+        for path in generated_rust_files(&dest, Path::new(base))? {
+            if !output.contains_key(&path) {
+                obsolete.push(path);
+            }
+        }
+    }
     if check {
         let mut drifted: Vec<_> = output
             .iter()
@@ -58,12 +67,7 @@ fn run() -> Result<(), GenerationError> {
             })
             .map(|(path, _)| path.display().to_string())
             .collect();
-        let base = Path::new("crates/peddler/src/apis");
-        for path in generated_rust_files(&dest, base)? {
-            if !output.contains_key(&path) {
-                drifted.push(path.display().to_string());
-            }
-        }
+        drifted.extend(obsolete.iter().map(|path| path.display().to_string()));
         if !drifted.is_empty() {
             return Err(GenerationError(format!(
                 "generated outputs missing or drifted:\n{}",
@@ -89,9 +93,29 @@ fn run() -> Result<(), GenerationError> {
             file.persist(path)
                 .map_err(|error| GenerationError(error.to_string()))?;
         }
+        for path in obsolete {
+            let path = dest.join(path);
+            fs::remove_file(&path)?;
+            // The directory of a removed API goes with its last file.
+            if let Some(parent) = path.parent()
+                && fs::read_dir(parent)?.next().is_none()
+            {
+                fs::remove_dir(parent)?;
+            }
+        }
     }
     Ok(())
 }
+
+/// The directories of generated Rust, where a file that starts with the generated notice
+/// and is no longer generated is obsolete
+const GENERATED_RUST: [&str; 5] = [
+    "crates/peddler/src/apis",
+    "crates/peddler/src/reports",
+    "crates/peddler/src/feeds",
+    "crates/peddler/src/notifications",
+    "crates/peddler/src/data_kiosk",
+];
 
 fn generated_rust_files(root: &Path, relative: &Path) -> Result<Vec<PathBuf>, GenerationError> {
     let mut files = Vec::new();

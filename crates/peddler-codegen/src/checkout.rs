@@ -1,6 +1,6 @@
 //! Checks that the spec checkout is at the pinned revision and that every source
 //! generation reads is tracked there and unmodified.
-use crate::{GenerationError, manifest::ALL_APIS, supplemental};
+use crate::{GenerationError, manifest, supplemental};
 use std::{collections::BTreeSet, path::Path, process::Command};
 
 pub(crate) fn git(root: &Path, args: &[&str]) -> Result<String, GenerationError> {
@@ -18,7 +18,8 @@ pub(crate) fn git(root: &Path, args: &[&str]) -> Result<String, GenerationError>
     String::from_utf8(output.stdout).map_err(|error| GenerationError(error.to_string()))
 }
 
-/// Fails unless the checkout is at `revision` and holds exactly the audited sources.
+/// Fails unless the checkout is at `revision`, and the sources generation reads in it are
+/// exactly those the revision tracks, unmodified.
 pub fn verify(checkout: &Path, revision: &str) -> Result<(), GenerationError> {
     let actual = git(checkout, &["rev-parse", "HEAD"])?;
     if actual.trim() != revision {
@@ -27,15 +28,15 @@ pub fn verify(checkout: &Path, revision: &str) -> Result<(), GenerationError> {
             actual.trim()
         )));
     }
-    let specs = ALL_APIS
-        .iter()
-        .map(|api| format!("models/{}", api.source))
+    let specs = manifest::sources(&checkout.join("models"))?
+        .into_iter()
+        .map(|source| format!("models/{source}"))
         .collect();
     verify_pinned(
         checkout,
         revision,
         &["models"],
-        |path| path.ends_with(".json"),
+        |path| path.strip_prefix("models/").is_some_and(manifest::is_model),
         &specs,
         "API",
     )?;
@@ -43,8 +44,8 @@ pub fn verify(checkout: &Path, revision: &str) -> Result<(), GenerationError> {
 }
 
 /// Fails unless the files the pinned revision tracks under `roots`, of those `filter`
-/// keeps, are exactly `expected`, and none is modified or untracked in the checkout.
-/// `label` names them in the error.
+/// keeps, are exactly `expected`, the ones in the checkout, and none is modified or
+/// untracked there. `label` names them in the error.
 pub(crate) fn verify_pinned(
     checkout: &Path,
     revision: &str,
@@ -62,7 +63,7 @@ pub(crate) fn verify_pinned(
         .collect();
     if tracked != *expected {
         return Err(GenerationError(format!(
-            "pinned {label} inventory mismatch; missing: {:?}; extra: {:?}",
+            "{label} sources in the checkout differ from the pin's; untracked: {:?}; missing: {:?}",
             expected.difference(&tracked).collect::<Vec<_>>(),
             tracked.difference(expected).collect::<Vec<_>>()
         )));

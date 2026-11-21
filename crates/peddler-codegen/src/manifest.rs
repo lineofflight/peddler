@@ -1,522 +1,238 @@
-/// Pinned API model inventory, using the established Ruby family/version names.
+//! The API models the generator reads, and their names. It reads every model in the
+//! checkout and names it by the rules of the Ruby generator, so that a model Amazon adds
+//! gets the same name from both, with no edit: `APINameResolver` names the family,
+//! `API#version` the version, and Peddler 5's `VersionSelector` picked the latest.
+use crate::{GenerationError, facades::RUBY_KEYWORDS};
+use serde_json::Value;
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    path::Path,
+};
+
+/// An API model and its names.
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ModelSpec {
-    pub source: &'static str,
-    pub module: &'static str,
-    pub family: &'static str,
-    pub version: &'static str,
+    /// The model's path under `models/`
+    pub source: String,
+    /// `<family>_<version>`, such as `orders_v0`: the Rust module and the method of
+    /// `Client` in Ruby
+    pub module: String,
+    /// Such as `orders`. `client.orders` in Ruby is the latest version
+    pub family: String,
+    /// The model's `info.version`, such as `v0` or `2026_01_01`
+    pub version: String,
+    /// Whether it is the latest version of its family
     pub latest: bool,
 }
 
-pub const ALL_APIS: &[ModelSpec] = &[
-    ModelSpec {
-        source: "action-items-api-model/actionItems_2026-06-01.json",
-        module: "action_items_2026_06_01",
-        family: "action_items",
-        version: "2026_06_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "action-plans-api-model/actionPlans_2026-06-01.json",
-        module: "action_plans_2026_06_01",
-        family: "action_plans",
-        version: "2026_06_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "amazon-warehousing-and-distribution-model/awd_2024-05-09.json",
-        module: "amazon_warehousing_and_distribution_2024_05_09",
-        family: "amazon_warehousing_and_distribution",
-        version: "2024_05_09",
-        latest: true,
-    },
-    ModelSpec {
-        source: "aplus-content-api-model/aplusContent_2020-11-01.json",
-        module: "aplus_content_2020_11_01",
-        family: "aplus_content",
-        version: "2020_11_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "application-integrations-api-model/appIntegrations-2024-04-01.json",
-        module: "application_integrations_2024_04_01",
-        family: "application_integrations",
-        version: "2024_04_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "application-management-api-model/application_2023-11-30.json",
-        module: "application_management_2023_11_30",
-        family: "application_management",
-        version: "2023_11_30",
-        latest: true,
-    },
-    ModelSpec {
-        source: "catalog-items-api-model/catalogItemsV0.json",
-        module: "catalog_items_v0",
-        family: "catalog_items",
-        version: "v0",
-        latest: false,
-    },
-    ModelSpec {
-        source: "catalog-items-api-model/catalogItems_2020-12-01.json",
-        module: "catalog_items_2020_12_01",
-        family: "catalog_items",
-        version: "2020_12_01",
-        latest: false,
-    },
-    ModelSpec {
-        source: "catalog-items-api-model/catalogItems_2022-04-01.json",
-        module: "catalog_items_2022_04_01",
-        family: "catalog_items",
-        version: "2022_04_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "customer-feedback-api-model/customerFeedback_2024-06-01.json",
-        module: "customer_feedback_2024_06_01",
-        family: "customer_feedback",
-        version: "2024_06_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "data-kiosk-api-model/dataKiosk_2023-11-15.json",
-        module: "data_kiosk_2023_11_15",
-        family: "data_kiosk",
-        version: "2023_11_15",
-        latest: true,
-    },
-    ModelSpec {
-        source: "delivery-by-amazon/deliveryShipmentInvoiceV2022-07-01.json",
-        module: "delivery_by_amazon_2022_07_01",
-        family: "delivery_by_amazon",
-        version: "2022_07_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "easy-ship-model/easyShip_2022-03-23.json",
-        module: "easy_ship_2022_03_23",
-        family: "easy_ship",
-        version: "2022_03_23",
-        latest: true,
-    },
-    ModelSpec {
-        source: "external-fulfillment/externalFulfillmentInventory_2024-09-11.json",
-        module: "external_fulfillment_inventory_2024_09_11",
-        family: "external_fulfillment_inventory",
-        version: "2024_09_11",
-        latest: true,
-    },
-    ModelSpec {
-        source: "external-fulfillment/externalFulfillmentLocation_2026-07-30.json",
-        module: "external_fulfillment_location_2026_07_30",
-        family: "external_fulfillment_location",
-        version: "2026_07_30",
-        latest: true,
-    },
-    ModelSpec {
-        source: "external-fulfillment/externalFulfillmentReturns_2024-09-11.json",
-        module: "external_fulfillment_returns_2024_09_11",
-        family: "external_fulfillment_returns",
-        version: "2024_09_11",
-        latest: true,
-    },
-    ModelSpec {
-        source: "external-fulfillment/externalFulfillmentShipments_2024-09-11.json",
-        module: "external_fulfillment_shipments_2024_09_11",
-        family: "external_fulfillment_shipments",
-        version: "2024_09_11",
-        latest: true,
-    },
-    ModelSpec {
-        source: "fba-inbound-eligibility-api-model/fbaInbound.json",
-        module: "fba_inbound_eligibility_v1",
-        family: "fba_inbound_eligibility",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "fba-inventory-api-model/fbaInventory.json",
-        module: "fba_inventory_v1",
-        family: "fba_inventory",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "feeds-api-model/feeds_2021-06-30.json",
-        module: "feeds_2021_06_30",
-        family: "feeds",
-        version: "2021_06_30",
-        latest: true,
-    },
-    ModelSpec {
-        source: "finance-remittance-api-model/financeRemittance-2026-03-17.json",
-        module: "finance_remittance_2026_03_17",
-        family: "finance_remittance",
-        version: "2026_03_17",
-        latest: true,
-    },
-    ModelSpec {
-        source: "finances-api-model/financesInvoices_2026-06-25.json",
-        module: "finances_invoices_2026_06_25",
-        family: "finances_invoices",
-        version: "2026_06_25",
-        latest: true,
-    },
-    ModelSpec {
-        source: "finances-api-model/financesV0.json",
-        module: "finances_v0",
-        family: "finances",
-        version: "v0",
-        latest: false,
-    },
-    ModelSpec {
-        source: "finances-api-model/finances_2024-06-19.json",
-        module: "finances_2024_06_19",
-        family: "finances",
-        version: "2024_06_19",
-        latest: true,
-    },
-    ModelSpec {
-        source: "finances-api-model/transfers_2024-06-01.json",
-        module: "transfers_2024_06_01",
-        family: "transfers",
-        version: "2024_06_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "fulfillment-inbound-api-model/fulfillmentInboundV0.json",
-        module: "fulfillment_inbound_v0",
-        family: "fulfillment_inbound",
-        version: "v0",
-        latest: false,
-    },
-    ModelSpec {
-        source: "fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json",
-        module: "fulfillment_inbound_2024_03_20",
-        family: "fulfillment_inbound",
-        version: "2024_03_20",
-        latest: true,
-    },
-    ModelSpec {
-        source: "fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json",
-        module: "fulfillment_outbound_2020_07_01",
-        family: "fulfillment_outbound",
-        version: "2020_07_01",
-        latest: false,
-    },
-    ModelSpec {
-        source: "fulfillment-outbound-api-model/fulfillmentOutbound_2026-07-04.json",
-        module: "fulfillment_outbound_2026_07_04",
-        family: "fulfillment_outbound",
-        version: "2026_07_04",
-        latest: true,
-    },
-    ModelSpec {
-        source: "invoices-api-model/InvoicesApiModel_2024-06-19.json",
-        module: "invoices_2024_06_19",
-        family: "invoices",
-        version: "2024_06_19",
-        latest: true,
-    },
-    ModelSpec {
-        source: "listings-items-api-model/listingsItems_2020-09-01.json",
-        module: "listings_items_2020_09_01",
-        family: "listings_items",
-        version: "2020_09_01",
-        latest: false,
-    },
-    ModelSpec {
-        source: "listings-items-api-model/listingsItems_2021-08-01.json",
-        module: "listings_items_2021_08_01",
-        family: "listings_items",
-        version: "2021_08_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "listings-restrictions-api-model/listingsRestrictions_2021-08-01.json",
-        module: "listings_restrictions_2021_08_01",
-        family: "listings_restrictions",
-        version: "2021_08_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "merchant-fulfillment-api-model/merchantFulfillmentV0.json",
-        module: "merchant_fulfillment_v0",
-        family: "merchant_fulfillment",
-        version: "v0",
-        latest: true,
-    },
-    ModelSpec {
-        source: "messaging-api-model/messaging.json",
-        module: "messaging_v1",
-        family: "messaging",
-        version: "v1",
-        latest: false,
-    },
-    ModelSpec {
-        source: "messaging-api-model/messaging_2026-04-20.json",
-        module: "messaging_2026_04_20",
-        family: "messaging",
-        version: "2026_04_20",
-        latest: true,
-    },
-    ModelSpec {
-        source: "notifications-api-model/notifications.json",
-        module: "notifications_v1",
-        family: "notifications",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "orders-api-model/ordersV0.json",
-        module: "orders_v0",
-        family: "orders",
-        version: "v0",
-        latest: false,
-    },
-    ModelSpec {
-        source: "orders-api-model/orders_2026-01-01.json",
-        module: "orders_2026_01_01",
-        family: "orders",
-        version: "2026_01_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "product-fees-api-model/productFeesV0.json",
-        module: "product_fees_v0",
-        family: "product_fees",
-        version: "v0",
-        latest: true,
-    },
-    ModelSpec {
-        source: "product-pricing-api-model/productPricingV0.json",
-        module: "product_pricing_v0",
-        family: "product_pricing",
-        version: "v0",
-        latest: false,
-    },
-    ModelSpec {
-        source: "product-pricing-api-model/productPricing_2022-05-01.json",
-        module: "product_pricing_2022_05_01",
-        family: "product_pricing",
-        version: "2022_05_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json",
-        module: "product_type_definitions_2020_09_01",
-        family: "product_type_definitions",
-        version: "2020_09_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "promotions-api-model/promotions_2025-12-01.json",
-        module: "promotions_2025_12_01",
-        family: "promotions",
-        version: "2025_12_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "replenishment-api-model/replenishment-2022-11-07.json",
-        module: "replenishment_2022_11_07",
-        family: "replenishment",
-        version: "2022_11_07",
-        latest: true,
-    },
-    ModelSpec {
-        source: "reports-api-model/reports_2021-06-30.json",
-        module: "reports_2021_06_30",
-        family: "reports",
-        version: "2021_06_30",
-        latest: true,
-    },
-    ModelSpec {
-        source: "sales-api-model/sales.json",
-        module: "sales_v1",
-        family: "sales",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "seller-wallet-api-model/sellerWallet_2024-03-01.json",
-        module: "seller_wallet_2024_03_01",
-        family: "seller_wallet",
-        version: "2024_03_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "sellers-api-model/sellers.json",
-        module: "sellers_v1",
-        family: "sellers",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "services-api-model/services.json",
-        module: "services_v1",
-        family: "services",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "shipment-invoicing-api-model/shipmentInvoicingV0.json",
-        module: "shipment_invoicing_v0",
-        family: "shipment_invoicing",
-        version: "v0",
-        latest: true,
-    },
-    ModelSpec {
-        source: "shipping-api-model/shipping.json",
-        module: "shipping_v1",
-        family: "shipping",
-        version: "v1",
-        latest: false,
-    },
-    ModelSpec {
-        source: "shipping-api-model/shippingV2.json",
-        module: "shipping_v2",
-        family: "shipping",
-        version: "v2",
-        latest: true,
-    },
-    ModelSpec {
-        source: "solicitations-api-model/solicitations.json",
-        module: "solicitations_v1",
-        family: "solicitations",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "supply-sources-api-model/supplySources_2020-07-01.json",
-        module: "supply_sources_2020_07_01",
-        family: "supply_sources",
-        version: "2020_07_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "support-api-model/support_2025-02-01.json",
-        module: "support_2025_02_01",
-        family: "support",
-        version: "2025_02_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "tokens-api-model/tokens_2021-03-01.json",
-        module: "tokens_2021_03_01",
-        family: "tokens",
-        version: "2021_03_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "tracking-api-model/tracking_2026-01-30.json",
-        module: "tracking_2026_01_30",
-        family: "tracking",
-        version: "2026_01_30",
-        latest: true,
-    },
-    ModelSpec {
-        source: "uploads-api-model/uploads_2020-11-01.json",
-        module: "uploads_2020_11_01",
-        family: "uploads",
-        version: "2020_11_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vehicles-api-model/vehicles_2024-11-01.json",
-        module: "vehicles_2024_11_01",
-        family: "vehicles",
-        version: "2024_11_01",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json",
-        module: "vendor_direct_fulfillment_inventory_v1",
-        family: "vendor_direct_fulfillment_inventory",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json",
-        module: "vendor_direct_fulfillment_orders_v1",
-        family: "vendor_direct_fulfillment_orders",
-        version: "v1",
-        latest: false,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json",
-        module: "vendor_direct_fulfillment_orders_2021_12_28",
-        family: "vendor_direct_fulfillment_orders",
-        version: "2021_12_28",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json",
-        module: "vendor_direct_fulfillment_payments_v1",
-        family: "vendor_direct_fulfillment_payments",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json",
-        module: "vendor_direct_fulfillment_sandbox_test_data_2021_10_28",
-        family: "vendor_direct_fulfillment_sandbox_test_data",
-        version: "2021_10_28",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json",
-        module: "vendor_direct_fulfillment_shipping_v1",
-        family: "vendor_direct_fulfillment_shipping",
-        version: "v1",
-        latest: false,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json",
-        module: "vendor_direct_fulfillment_shipping_2021_12_28",
-        family: "vendor_direct_fulfillment_shipping",
-        version: "2021_12_28",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json",
-        module: "vendor_direct_fulfillment_transactions_v1",
-        family: "vendor_direct_fulfillment_transactions",
-        version: "v1",
-        latest: false,
-    },
-    ModelSpec {
-        source: "vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json",
-        module: "vendor_direct_fulfillment_transactions_2021_12_28",
-        family: "vendor_direct_fulfillment_transactions",
-        version: "2021_12_28",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-invoices-api-model/vendorInvoices.json",
-        module: "vendor_invoices_v1",
-        family: "vendor_invoices",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-orders-api-model/vendorOrders.json",
-        module: "vendor_orders_v1",
-        family: "vendor_orders",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-shipments-api-model/vendorShipments.json",
-        module: "vendor_shipments_v1",
-        family: "vendor_shipments",
-        version: "v1",
-        latest: true,
-    },
-    ModelSpec {
-        source: "vendor-transaction-status-api-model/vendorTransactionStatus.json",
-        module: "vendor_transaction_status_v1",
-        family: "vendor_transaction_status",
-        version: "v1",
-        latest: true,
-    },
+/// The directories that hold several APIs, each named after its file. Any other API is
+/// named after its directory. `APINameResolver::FILENAME_BASED_DIRECTORIES` in Ruby is the
+/// same list, and a Ruby test holds the two together.
+pub const FILENAME_BASED_DIRECTORIES: [&str; 2] = ["external-fulfillment", "finances-api-model"];
+
+/// Whether a path under `models/` is an API model. Ruby's `Dir.glob("models/**/*.json")`
+/// finds them: a JSON file at any depth, none hidden.
+pub(crate) fn is_model(path: &str) -> bool {
+    path.ends_with(".json") && !path.split('/').any(|part| part.starts_with('.'))
+}
+
+/// The path under `models` of every API model, in byte order.
+pub fn sources(models: &Path) -> Result<Vec<String>, GenerationError> {
+    crate::files(models, is_model)
+}
+
+/// Names each model by its path and its `info.version`, and marks the latest version of
+/// each family. What it can't name, it refuses by the file: a directory that holds APIs of
+/// different names and isn't one of `FILENAME_BASED_DIRECTORIES`, a version or a name that
+/// can't be a method, and two models of one name.
+pub fn derive(models: &[(String, Value)]) -> Result<Vec<ModelSpec>, GenerationError> {
+    let mut by_directory: BTreeMap<&str, BTreeSet<&str>> = BTreeMap::new();
+    for (source, _) in models {
+        by_directory
+            .entry(directory(source))
+            .or_default()
+            .insert(base_name(source));
+    }
+    for (directory, names) in by_directory {
+        if names.len() > 1 && !FILENAME_BASED_DIRECTORIES.contains(&directory) {
+            let files: Vec<_> = models
+                .iter()
+                .map(|(source, _)| source.as_str())
+                .filter(|source| self::directory(source) == directory)
+                .collect();
+            return Err(GenerationError(format!(
+                "{}: APIs of different names share the directory {directory}; add it to FILENAME_BASED_DIRECTORIES, in Rust and in Ruby",
+                files.join(", ")
+            )));
+        }
+    }
+    let mut apis = Vec::new();
+    let mut seen: BTreeMap<String, &str> = BTreeMap::new();
+    for (source, spec) in models {
+        let located = |message: String| GenerationError(format!("{source}: {message}"));
+        let family = family(source);
+        let version = version(spec).map_err(|error| located(error.0))?;
+        let module = format!("{family}_{version}");
+        if !identifier(&family) || !identifier(&module) || RUBY_KEYWORDS.contains(&family.as_str())
+        {
+            return Err(located(format!("{module} can't name an API")));
+        }
+        if let Some(other) = seen.insert(module.clone(), source) {
+            return Err(located(format!("{other} is named {module} too")));
+        }
+        apis.push(ModelSpec {
+            source: source.clone(),
+            module,
+            family,
+            version,
+            latest: false,
+        });
+    }
+    let mut families: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    for api in &apis {
+        families
+            .entry(api.family.clone())
+            .or_default()
+            .push(api.version.clone());
+    }
+    for api in &mut apis {
+        api.latest = latest(&families[&api.family]) == Some(api.version.as_str());
+    }
+    Ok(apis)
+}
+
+/// The name of an API's family, as `APINameResolver#name` gives it: its directory's,
+/// without `-api-model` or `-model`, or in one of `FILENAME_BASED_DIRECTORIES` its file's,
+/// without its version, in snake case.
+pub fn family(source: &str) -> String {
+    let directory = directory(source);
+    if FILENAME_BASED_DIRECTORIES.contains(&directory) {
+        let mut name = String::new();
+        let mut previous = None;
+        for c in base_name(source).chars() {
+            if c.is_ascii_uppercase()
+                && previous.is_some_and(|p: char| p.is_ascii_lowercase() || p.is_ascii_digit())
+            {
+                name.push('_');
+            }
+            name.push(c);
+            previous = Some(c);
+        }
+        name.to_lowercase().replace('-', "_")
+    } else {
+        let name = directory.strip_suffix("-api-model").unwrap_or(directory);
+        let name = name.strip_suffix("-model").unwrap_or(name);
+        name.replace('-', "_")
+    }
+}
+
+/// The version of an API, as `API#version` reads it from the spec: `info.version`, with
+/// dashes as underscores. It names a module, so it must be a word.
+pub fn version(spec: &Value) -> Result<String, GenerationError> {
+    let version = spec["info"]["version"]
+        .as_str()
+        .ok_or_else(|| GenerationError("no info.version".into()))?
+        .replace('-', "_");
+    if version.is_empty()
+        || !version
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+    {
+        return Err(GenerationError(format!(
+            "{version:?} is no version of an API"
+        )));
+    }
+    Ok(version)
+}
+
+/// The latest of a family's versions, as Peddler 5's `VersionSelector` picked it: a dated
+/// version is later than any `v` one, and within each kind the greater string is later.
+pub fn latest(versions: &[String]) -> Option<&str> {
+    let key = |version: &String| (!version.starts_with('v'), version.clone());
+    versions
+        .iter()
+        .max_by(|a, b| key(a).cmp(&key(b)))
+        .map(String::as_str)
+}
+
+/// The name of the directory a model is in. One directly under `models/` is in `models`.
+fn directory(source: &str) -> &str {
+    match source.rsplit_once('/') {
+        Some((parent, _)) => parent.rsplit('/').next().unwrap_or(parent),
+        None => "models",
+    }
+}
+
+/// A model's file name without `.json`, a date at its end, or a `V` and a number at its
+/// end, as `APINameResolver.extract_base_name` has it: `financesV0` is `finances`.
+fn base_name(source: &str) -> &str {
+    let file = source.rsplit('/').next().unwrap_or(source);
+    let name = file.strip_suffix(".json").unwrap_or(file);
+    let bytes = name.as_bytes();
+    // `[_-]\d{4}[-_]\d{2}[-_]\d{2}$`
+    let dated = bytes.len() >= 11 && {
+        let date = &bytes[bytes.len() - 11..];
+        date.iter().enumerate().all(|(i, byte)| match i {
+            0 | 5 | 8 => matches!(byte, b'_' | b'-'),
+            _ => byte.is_ascii_digit(),
+        })
+    };
+    let name = if dated {
+        &name[..name.len() - 11]
+    } else {
+        name
+    };
+    // `V\d+$`
+    let digits = name.len() - name.trim_end_matches(|c: char| c.is_ascii_digit()).len();
+    match name[..name.len() - digits].strip_suffix('V') {
+        Some(stem) if digits > 0 => stem,
+        _ => name,
+    }
+}
+
+/// The words Peddler writes in capitals, as `lib/peddler/acronyms.rb` has them for the
+/// models. A test in Ruby holds this list to that file, entry for entry.
+pub const ACRONYMS: [(&str, &str); 16] = [
+    ("Api", "API"),
+    ("Apis", "APIs"),
+    ("Asin", "ASIN"),
+    ("B2b", "B2B"),
+    ("Cgst", "CGST"),
+    ("Cod", "COD"),
+    ("Ebt", "EBT"),
+    ("Fba", "FBA"),
+    ("Igst", "IGST"),
+    ("Lwa", "LWA"),
+    ("Safet", "SAFET"),
+    ("Sgst", "SGST"),
+    ("Sku", "SKU"),
+    ("Tds", "TDS"),
+    ("Url", "URL"),
+    ("Urls", "URLs"),
 ];
+/// The name of an API's class in Ruby, which is that of its models' namespace: `FBAInventoryV1`.
+/// A word is an acronym before a capital or at the end, so that `Cod` leaves `Code` alone.
+pub fn ruby_class(module: &str) -> String {
+    ACRONYMS
+        .iter()
+        .fold(crate::clients::pascal(module), |name, (from, to)| {
+            let word = regress::Regex::new(&format!("{from}(?=[A-Z]|$)")).expect("valid pattern");
+            word.replace_all(&name, to)
+        })
+}
+/// Whether a name can be a Rust module and a Ruby method alike.
+pub(crate) fn identifier(name: &str) -> bool {
+    name.starts_with(|c: char| c.is_ascii_lowercase())
+        && name
+            .bytes()
+            .all(|byte| byte.is_ascii_lowercase() || byte.is_ascii_digit() || byte == b'_')
+        && syn::parse_str::<syn::Ident>(name).is_ok()
+}
+
+/// An API for the tests: Action Items 2026-06-01, the latest of its family
+#[cfg(test)]
+pub(crate) fn example() -> ModelSpec {
+    let spec = serde_json::json!({"info": {"version": "2026-06-01"}});
+    let source = "action-items-api-model/actionItems_2026-06-01.json".to_owned();
+    derive(&[(source, spec)]).expect("a name").remove(0)
+}

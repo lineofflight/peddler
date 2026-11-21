@@ -88,5 +88,14 @@ module Generator
       assert_match(/Found multiple APIs in directory 'new-api-model'/, error.message)
       assert_match(/Please add this directory to FILENAME_BASED_DIRECTORIES/, error.message)
     end
+
+    # The Rust generator names the APIs by these rules too, and keeps the list a second time. Either one changed
+    # alone fails here.
+    def test_the_rust_generator_keeps_the_same_list
+      source = File.read(File.expand_path("../../../crates/peddler-codegen/src/manifest.rs", __dir__))
+      list = source[/^pub const FILENAME_BASED_DIRECTORIES: .+? = \[(.+?)\];/m, 1].to_s.scan(/"([\w-]+)"/).flatten
+
+      assert_equal(APINameResolver::FILENAME_BASED_DIRECTORIES.to_a, list)
+    end
   end
 end

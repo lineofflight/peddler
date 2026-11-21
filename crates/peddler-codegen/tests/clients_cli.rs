@@ -1,9 +1,28 @@
 //! The generator CLI against a synthetic checkout.
 mod support;
 
-use peddler_codegen::{generate, manifest::ALL_APIS};
+use peddler_codegen::generate;
 use serde_json::{Value, json};
 use std::{fs, path::Path, process::Command};
+
+/// The models of the synthetic checkout, each with its version
+const MODELS: [(&str, &str); 4] = [
+    (
+        "action-items-api-model/actionItems_2026-06-01.json",
+        "2026-06-01",
+    ),
+    ("catalog-items-api-model/catalogItemsV0.json", "v0"),
+    (
+        "catalog-items-api-model/catalogItems_2022-04-01.json",
+        "2022-04-01",
+    ),
+    (
+        "listings-items-api-model/listingsItems_2021-08-01.json",
+        "2021-08-01",
+    ),
+];
+/// The listings model, which patches an item
+const LISTINGS: &str = MODELS[3].0;
 
 fn spec(operation: &str) -> Value {
     let catalog = operation == "getCatalogItem";
@@ -21,7 +40,7 @@ fn spec(operation: &str) -> Value {
     } else {
         "Updates part of a listing. Refer to the [Listings Items guide](doc:listings-items-api-v2021-08-01-use-case-guide).\n**Note:** Only the fields that you send change.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |"
     };
-    let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic API.","version":"1","description":"Reads and updates listings. See the <a href=\"https://example.com/guide\">guide</a>."},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
+    let mut spec = json!({"swagger":"2.0","info":{"title":"Synthetic API.","version":"2021-08-01","description":"Reads and updates listings. See the <a href=\"https://example.com/guide\">guide</a>."},"produces":["application/json"],"consumes":["application/json"],"paths":{if catalog {"/items/{asin}"} else {"/items/{sellerId}/{sku}"}:{if catalog {"get"} else {"patch"}:{"operationId":operation,"parameters":parameters,"responses":{"200":{"description":"ok","schema":{"$ref":"#/definitions/Item"}},"404":{"description":"missing","schema":{"$ref":"#/definitions/Item"}}}}}},"definitions":{"Item":{"type":"object","required":["sku"],"properties":{"sku":{"type":"string"}}},"ListingsItemPatchRequest":{"type":"object","required":["patches"],"properties":{"patches":{"type":"array","items":{"type":"string"}}}}}});
     for (_, methods) in spec["paths"].as_object_mut().unwrap() {
         for (_, operation) in methods.as_object_mut().unwrap() {
             operation["description"] = json!(description);
@@ -51,20 +70,25 @@ fn git(root: &Path, args: &[&str]) -> String {
 fn repository() -> tempfile::TempDir {
     let root = tempfile::tempdir().unwrap();
     let checkout = root.path().join("selling-partner-api-models");
-    for api in ALL_APIS {
-        let operation = if api.module == "listings_items_2021_08_01" {
+    for (source, version) in MODELS {
+        let operation = if source == LISTINGS {
             "patchListingsItem"
         } else {
             "getCatalogItem"
         };
-        let path = checkout.join("models").join(api.source);
-        fs::create_dir_all(path.parent().unwrap()).unwrap();
-        fs::write(path, spec(operation).to_string()).unwrap();
+        let mut spec = spec(operation);
+        spec["info"]["version"] = json!(version);
+        write_model(&checkout, source, &spec);
     }
     support::write_supplemental(root.path());
     git(&checkout, &["init", "--quiet"]);
     commit(root.path());
     root
+}
+fn write_model(checkout: &Path, source: &str, spec: &Value) {
+    let path = checkout.join("models").join(source);
+    fs::create_dir_all(path.parent().unwrap()).unwrap();
+    fs::write(path, spec.to_string()).unwrap();
 }
 /// Commits the checkout as it is and pins that revision.
 fn commit(root: &Path) {
@@ -160,7 +184,7 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
         "      def initialize(engine) # :nodoc:\n",
     )));
     assert!(ruby.contains(concat!(
-        "    # Synthetic API, version 1\n",
+        "    # Synthetic API, version 2021-08-01\n",
         "    #: () -> Native::ListingsItems20210801\n",
         "    def listings_items_2021_08_01\n",
         "      Native::ListingsItems20210801.new(@engine)\n",
@@ -270,27 +294,16 @@ fn default_cli_generates_every_file_and_nonmutating_check_detects_drift() {
 fn invalid_second_client_leaves_no_partial_outputs() {
     let root = repository();
     let checkout = root.path().join("selling-partner-api-models");
-    let api = ALL_APIS
-        .iter()
-        .find(|api| api.module == "listings_items_2021_08_01")
-        .unwrap();
     let mut invalid = spec("patchListingsItem");
     invalid["paths"]["/items/{sellerId}/{sku}"]["patch"]["parameters"][1]["collectionFormat"] =
         json!("ssv");
-    fs::write(
-        checkout.join("models").join(api.source),
-        invalid.to_string(),
-    )
-    .unwrap();
+    write_model(&checkout, LISTINGS, &invalid);
     commit(root.path());
     let dest = tempfile::tempdir().unwrap();
     let output = cli(root.path(), dest.path(), false);
     assert!(!output.status.success());
     // The refusal says where: the spec file, then the operation.
-    let refusal = format!(
-        "{}: patchListingsItem: unsupported array parameter",
-        api.source
-    );
+    let refusal = format!("{LISTINGS}: patchListingsItem: unsupported array parameter");
     let stderr = String::from_utf8_lossy(&output.stderr);
     assert!(stderr.contains(&refusal), "{stderr}");
     assert!(!dest.path().join("crates").exists());
@@ -311,19 +324,12 @@ fn refused(root: &Path) -> String {
 fn a_name_ruby_cant_use_is_refused_before_writing() {
     let root = repository();
     let checkout = root.path().join("selling-partner-api-models");
-    let api = &ALL_APIS[0];
+    let source = MODELS[0].0;
     let mut hostile = spec("getCatalogItem");
     hostile["paths"]["/items/{asin}"]["get"]["parameters"][1]["name"] = json!("end");
-    fs::write(
-        checkout.join("models").join(api.source),
-        hostile.to_string(),
-    )
-    .unwrap();
+    write_model(&checkout, source, &hostile);
     commit(root.path());
-    let refusal = format!(
-        "{}: getCatalogItem: Ruby can't name an argument end",
-        api.source
-    );
+    let refusal = format!("{source}: getCatalogItem: Ruby can't name an argument end");
     let printed = refused(root.path());
     assert!(printed.contains(&refusal), "{printed}");
 }
@@ -343,7 +349,7 @@ fn mismatched_revision_is_rejected_before_writing() {
 fn modified_and_untracked_sources_are_rejected() {
     let root = repository();
     let checkout = root.path().join("selling-partner-api-models");
-    let source = format!("models/{}", ALL_APIS[0].source);
+    let source = format!("models/{}", MODELS[0].0);
     fs::write(checkout.join(&source), "{}\n").unwrap();
     assert!(refused(root.path()).contains("modified"));
     git(&checkout, &["checkout", "--", "models"]);
@@ -351,20 +357,132 @@ fn modified_and_untracked_sources_are_rejected() {
     refused(root.path());
 }
 
+/// A file the pin doesn't track can't be read: it may be anything.
 #[test]
-fn pinned_inventory_rejects_missing_and_extra_api_specs() {
-    for extra in [false, true] {
-        let root = repository();
-        let checkout = root.path().join("selling-partner-api-models");
-        if extra {
-            fs::write(checkout.join("models/unlisted.json"), "{}").unwrap();
-        } else {
-            let last = format!("models/{}", ALL_APIS.last().unwrap().source);
-            git(&checkout, &["rm", "--quiet", &last]);
-        }
-        commit(root.path());
-        assert!(refused(root.path()).contains("pinned API inventory mismatch"));
-    }
+fn an_untracked_model_is_rejected() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    fs::write(checkout.join("models/unlisted.json"), "{}").unwrap();
+    let printed = refused(root.path());
+    assert!(
+        printed.contains("API sources in the checkout differ from the pin's; untracked: [\"models/unlisted.json\"]"),
+        "{printed}"
+    );
+}
+
+/// A model Amazon adds is read with no edit, and gets the name the Ruby generator gives
+/// it. Its latest version is the family's method.
+#[test]
+fn a_new_model_is_generated_without_an_edit() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    let mut added = spec("getCatalogItem");
+    added["info"]["version"] = json!("2026-01-01");
+    write_model(
+        &checkout,
+        "catalog-items-api-model/catalogItems_2026-01-01.json",
+        &added,
+    );
+    commit(root.path());
+    let dest = tempfile::tempdir().unwrap();
+    let output = cli(root.path(), dest.path(), false);
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let ruby = fs::read_to_string(dest.path().join("lib/peddler/native/apis.rb")).unwrap();
+    assert!(ruby.contains("    class CatalogItems20260101\n"));
+    assert!(ruby.contains("    def catalog_items = catalog_items_2026_01_01\n"));
+    assert!(!ruby.contains("def catalog_items = catalog_items_2022_04_01"));
+    assert!(
+        dest.path()
+            .join("crates/peddler/src/apis/catalog_items_2026_01_01/facade.rs")
+            .exists()
+    );
+}
+
+/// A model Amazon removes goes, files and all, and what `pagination.json` says of it is
+/// stale: a warning, not a refusal.
+#[test]
+fn a_removed_model_goes_from_the_output() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    let mapping = root.path().join("crates/peddler-codegen/pagination.json");
+    fs::create_dir_all(mapping.parent().unwrap()).unwrap();
+    fs::write(
+        &mapping,
+        json!({"mappings": [], "exclusions": [{"operation": "catalog_items_v0.get_catalog_item", "reason": "synthetic"}]}).to_string(),
+    )
+    .unwrap();
+    let dest = tempfile::tempdir().unwrap();
+    assert!(cli(root.path(), dest.path(), false).status.success());
+    let module = dest.path().join("crates/peddler/src/apis/catalog_items_v0");
+    assert!(module.join("facade.rs").exists());
+
+    git(
+        &checkout,
+        &["rm", "--quiet", &format!("models/{}", MODELS[1].0)],
+    );
+    commit(root.path());
+    // The files of the removed model are no longer generated, so a check finds them.
+    let output = cli(root.path(), dest.path(), true);
+    assert!(!output.status.success());
+    assert!(String::from_utf8_lossy(&output.stderr).contains("catalog_items_v0/facade.rs"));
+    let output = cli(root.path(), dest.path(), false);
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    assert!(output.status.success(), "{stderr}");
+    assert!(
+        stderr.contains("warning: crates/peddler-codegen/pagination.json: catalog_items_v0.get_catalog_item is of no API left"),
+        "{stderr}"
+    );
+    assert!(!module.exists());
+    let ruby = fs::read_to_string(dest.path().join("lib/peddler/native/apis.rb")).unwrap();
+    assert!(!ruby.contains("catalog_items_v0"));
+    let index = fs::read_to_string(dest.path().join("crates/peddler/src/apis/mod.rs")).unwrap();
+    assert!(!index.contains("catalog_items_v0"));
+    assert!(cli(root.path(), dest.path(), true).status.success());
+}
+
+/// An operation that looks paged and that `pagination.json` neither maps nor excludes gets
+/// its method, and no `*_pages` one. The generator warns of it by the spec file and the
+/// operation, and the inventory lists it, so the diff of a model update shows it.
+#[test]
+fn an_unmapped_paged_operation_is_generated_and_listed() {
+    let root = repository();
+    let checkout = root.path().join("selling-partner-api-models");
+    let source = MODELS[2].0;
+    let mut paged = spec("getCatalogItem");
+    paged["info"]["version"] = json!("2022-04-01");
+    paged["paths"]["/items/{asin}"]["get"]["parameters"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"in":"query","name":"pageToken","type":"string"}));
+    write_model(&checkout, source, &paged);
+    commit(root.path());
+    let dest = tempfile::tempdir().unwrap();
+    let output = cli(root.path(), dest.path(), false);
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    assert!(output.status.success(), "{stderr}");
+    assert!(
+        stderr.contains(&format!("warning: {source}: getCatalogItem: pageToken looks like a page token, and crates/peddler-codegen/pagination.json neither maps nor excludes catalog_items_2022_04_01.get_catalog_item: no *_pages method")),
+        "{stderr}"
+    );
+    let ruby = fs::read_to_string(dest.path().join("lib/peddler/native/apis.rb")).unwrap();
+    assert!(ruby.contains("      def get_catalog_item(asin, marketplace_ids, included_data: [\"\\#{exit}\"], page_token: nil, rate_limit: nil)\n"));
+    assert!(!ruby.contains("_pages"));
+    let inventory: Value = serde_json::from_str(
+        &fs::read_to_string(
+            dest.path()
+                .join("crates/peddler-codegen/operation-inventory.json"),
+        )
+        .unwrap(),
+    )
+    .unwrap();
+    assert_eq!(
+        inventory["unmapped_pagination"],
+        json!([{"operation": "catalog_items_2022_04_01.get_catalog_item", "source": source, "field": "pageToken"}])
+    );
 }
 
 #[test]
@@ -393,7 +511,7 @@ fn success_model_reference_controls_the_generated_facade_type() {
         json!({"type":"object","properties":{"future":{"type":"string"}}});
     changed["paths"]["/items/{asin}"]["get"]["responses"]["200"]["schema"]["$ref"] =
         json!("#/definitions/FutureItem");
-    let operations = peddler_codegen::clients::render(&changed, &ALL_APIS[0]).unwrap();
+    let operations = peddler_codegen::clients::render(&changed, &api()).unwrap();
     assert_eq!(
         operations[0].successes[0].1.as_deref(),
         Some("super::models::FutureItem")
@@ -404,5 +522,14 @@ fn missing_success_model_is_reported_without_panicking() {
     let mut missing = spec("getCatalogItem");
     missing["paths"]["/items/{asin}"]["get"]["responses"]["200"]["schema"]["$ref"] =
         json!("#/definitions/Missing");
-    assert!(peddler_codegen::clients::render(&missing, &ALL_APIS[0]).is_err());
+    assert!(peddler_codegen::clients::render(&missing, &api()).is_err());
+}
+
+/// The API of the first model
+fn api() -> peddler_codegen::manifest::ModelSpec {
+    let (source, version) = MODELS[0];
+    let spec = json!({"info": {"version": version}});
+    peddler_codegen::manifest::derive(&[(source.into(), spec)])
+        .unwrap()
+        .remove(0)
 }

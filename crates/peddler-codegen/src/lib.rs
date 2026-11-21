@@ -63,9 +63,42 @@ pub(crate) fn unescape_pointer(segment: &str) -> String {
     segment.replace("~1", "/").replace("~0", "~")
 }
 
-/// Render all pinned models, public facades, dispatch and Ruby, without reading Git
-/// metadata or writing files. `spec_dir` is the checkout's `models` directory; output
-/// paths are repository-relative.
+/// Every file under `dir` whose path relative to it `keep` keeps, in byte order, with `/`
+/// between its parts. A missing `dir` has none, as for Ruby's `Dir.glob`.
+pub(crate) fn files(
+    dir: &Path,
+    keep: impl Fn(&str) -> bool,
+) -> Result<Vec<String>, GenerationError> {
+    let mut found = Vec::new();
+    if !dir.is_dir() {
+        return Ok(found);
+    }
+    let mut pending = vec![String::new()];
+    while let Some(relative) = pending.pop() {
+        for entry in fs::read_dir(dir.join(&relative))? {
+            let entry = entry?;
+            let name = entry.file_name().into_string().map_err(|name| {
+                GenerationError(format!("{}: a file name must be UTF-8", name.display()))
+            })?;
+            let path = if relative.is_empty() {
+                name
+            } else {
+                format!("{relative}/{name}")
+            };
+            if entry.file_type()?.is_dir() {
+                pending.push(path);
+            } else if keep(&path) {
+                found.push(path);
+            }
+        }
+    }
+    found.sort();
+    Ok(found)
+}
+
+/// Render every model in the checkout, public facades, dispatch and Ruby, without reading
+/// Git metadata or writing files. `spec_dir` is the checkout's `models` directory; output
+/// paths are repository-relative. What it can't map, it warns of on stderr.
 pub fn generate(
     spec_dir: &Path,
     revision: &str,
@@ -77,28 +110,33 @@ pub fn generate(
     let mut output = BTreeMap::new();
     let mut clients = Vec::new();
     let mut specs = BTreeMap::new();
-    for api in manifest::ALL_APIS {
-        // What is refused of a spec names its file: a file that is gone or is not
-        // JSON, a model or an operation.
-        let located = |error: GenerationError| GenerationError(format!("{}: {error}", api.source));
-        let spec: serde_json::Value = fs::read(spec_dir.join(api.source))
+    let mut parsed = Vec::new();
+    for source in manifest::sources(spec_dir)? {
+        // What is refused of a spec names its file: a file that is not JSON, a name, a
+        // model or an operation.
+        let spec: serde_json::Value = fs::read(spec_dir.join(&source))
             .map_err(GenerationError::from)
             .and_then(|bytes| Ok(serde_json::from_slice(&bytes)?))
-            .map_err(located)?;
+            .map_err(|error| GenerationError(format!("{source}: {error}")))?;
+        parsed.push((source, spec));
+    }
+    let apis = manifest::derive(&parsed)?;
+    for (api, (_, spec)) in apis.iter().zip(parsed) {
+        let located = |error: GenerationError| GenerationError(format!("{}: {error}", api.source));
         let models = models::normalize_definitions(&spec)
             .and_then(models::render)
             .map_err(located)?;
         output.insert(
-            base.join(api.module).join("models.rs"),
-            format!("{}{models}", notice(api.source)),
+            base.join(&api.module).join("models.rs"),
+            format!("{}{models}", notice(&api.source)),
         );
         clients.push((api, clients::render(&spec, api).map_err(located)?));
-        specs.insert(api.module, spec);
+        specs.insert(api.module.as_str(), spec);
     }
-    let modules: String = manifest::ALL_APIS
+    let modules: String = apis
         .iter()
         .map(|api| {
-            let doc = facades::module_doc(api, &specs[api.module]["info"]);
+            let doc = facades::module_doc(api, &specs[api.module.as_str()]["info"]);
             format!("{doc}pub mod {};\n", api.module)
         })
         .collect();
@@ -114,12 +152,32 @@ pub fn generate(
         Some(root) => pagination::load(root)?,
         None => pagination::Source::default(),
     };
-    let resolved = pagination::resolve(&source, &clients, &specs)?;
+    let pagination::Resolution {
+        resolved,
+        unmapped,
+        stale,
+    } = pagination::resolve(&source, &clients, &specs)?;
+    for key in &stale {
+        eprintln!(
+            "peddler-codegen: warning: {}: {key} is of no API left; remove it",
+            pagination::SOURCE
+        );
+    }
+    for op in &unmapped {
+        eprintln!(
+            "peddler-codegen: warning: {}: {}: {} looks like a page token, and {} neither maps nor excludes {}: no *_pages method",
+            op.source,
+            op.id,
+            op.field,
+            pagination::SOURCE,
+            op.key
+        );
+    }
     for (api, operations) in &clients {
-        let prefix = notice(api.source);
+        let prefix = notice(&api.source);
         let mapped: Vec<_> = resolved.iter().filter(|r| r.module == api.module).collect();
         output.insert(
-            base.join(api.module).join("facade.rs"),
+            base.join(&api.module).join("facade.rs"),
             format!(
                 "{prefix}{}",
                 facades::rust(operations, &mapped)
@@ -127,7 +185,7 @@ pub fn generate(
             ),
         );
         output.insert(
-            base.join(api.module).join("mod.rs"),
+            base.join(&api.module).join("mod.rs"),
             format!("{prefix}/// The models of this API's requests and responses.\npub mod models;\nmod facade;\npub use facade::*;\n"),
         );
     }
@@ -153,7 +211,7 @@ pub fn generate(
     );
     output.insert(
         PathBuf::from("crates/peddler-codegen/operation-inventory.json"),
-        facades::inventory(&clients, revision, &resolved, &source)?,
+        facades::inventory(&clients, revision, &resolved, &source, &unmapped)?,
     );
     output.extend(generate_supplemental(
         spec_dir

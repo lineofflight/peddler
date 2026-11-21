@@ -341,7 +341,7 @@ mod tests {
             "c\\nexit 14"
         );
         let (info, op) = described(hostile, "get_thing\nexit 15");
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let comments = [
             class(api, &info),
             accessor("Thing", &info),
@@ -371,7 +371,7 @@ mod tests {
             ":include:secret.txt ".repeat(40)
         );
         let (info, op) = described(&hostile, "get_thing");
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let comments = [
             class(api, &info),
             accessor("Thing", &info),
@@ -407,7 +407,7 @@ mod tests {
         // for a directive. Each of those characters stands here before one that a wrap
         // begins a line with. Rust does not count the vertical tab as whitespace.
         static DIRECTIVE: LazyLock<Regex> = LazyLock::new(|| regex(r"^#[\s]*:[\w-]+:"));
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         let filler = ["word"; 22].join(" ");
         for space in [' ', '\t', '\r', '\n', '\x0C', '\x0B'] {
             let hostile = format!("{filler} {space}:include: secret.txt");
@@ -502,7 +502,7 @@ mod tests {
             "@rbs ".repeat(60)
         );
         let (info, op) = described(&hostile, "get_thing");
-        let api = &crate::manifest::ALL_APIS[0];
+        let api = &crate::manifest::example();
         // Each line that starts an annotation, up to its description.
         let annotations = |comment: &str| -> Vec<String> {
             let lines = comment.lines().map(str::trim_start);
