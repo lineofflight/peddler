@@ -1,0 +1,105 @@
+{
+  "notificationVersion": "1.0",
+  "notificationType": "PRICING_HEALTH",
+  "payloadVersion": "1.0",
+  "eventTime": "2020-09-23T21:30:13.713Z",
+  "payload": {
+    "issueType": "BuyBoxDisqualification",
+    "sellerId": "A3EZFOFNDPFB8R",
+    "offerChangeTrigger": {
+      "marketplaceId": "ATVPDKIKX0DER",
+      "asin": "B007IBIWZY",
+      "itemCondition": "new",
+      "timeOfOfferChange": "2020-09-23T21:30:13.409Z"
+    },
+    "merchantOffer": {
+      "condition": "new",
+      "fulfillmentType": "MFN",
+      "listingPrice": {
+        "amount": 8184.23,
+        "currencyCode": "USD"
+      },
+      "shipping": {
+        "amount": 4.49,
+        "currencyCode": "USD"
+      },
+      "landedPrice": {
+        "amount": 8188.72,
+        "currencyCode": "USD"
+      },
+      "points" : {
+        "pointsNumber" : 34343
+      }
+    },
+    "summary": {
+      "numberOfOffers": [
+        {
+          "condition": "new",
+          "fulfillmentType": "MFN",
+          "offerCount": 3
+        }
+      ],
+      "buyBoxEligibleOffers": [
+        {
+          "condition": "new",
+          "fulfillmentType": "MFN",
+          "offerCount": 3
+        }
+      ],
+      "buyBoxPrices": [
+        {
+          "condition": "new",
+          "listingPrice": {
+            "amount": 8184.23,
+            "currencyCode": "USD"
+          },
+          "shipping": {
+            "amount": 4.49,
+            "currencyCode": "USD"
+          },
+          "landedPrice": {
+            "amount": 8188.72,
+            "currencyCode": "USD"
+          },
+          "points" : {
+            "pointsNumber" : 34343
+          }
+        }
+      ],
+      "salesRankings": [
+        {
+          "productCategoryId": "lawn_and_garden_display_on_website",
+          "rank": 4013
+        },
+        {
+          "productCategoryId": "home_garden_display_on_website",
+          "rank": 17316
+        }
+      ],
+      "referencePrice": {
+        "averageSellingPrice": {
+          "amount": 7500,
+          "currencyCode": "USD"
+        },
+        "competitivePriceThreshold": {
+          "amount": 8000,
+          "currencyCode": "USD"
+        },
+        "msrpPrice": {
+          "amount": 7900,
+          "currencyCode": "USD"
+        },
+        "retailOfferPrice": {
+          "amount": 8000,
+          "currencyCode": "USD"
+        }
+      }
+    }
+  },
+  "notificationMetadata": {
+    "applicationId": "amzn1.sellerapps.app.1da85d14-a68d-4ff3-9ff0-df6429e00d9a",
+    "subscriptionId": "e3a059ca-677a-442a-8d39-05b2848971b6",
+    "publishTime": "2020-09-23T21:30:16.903Z",
+    "notificationId": "23ae41cd-3537-4676-af46-6ee9abf8802e"
+  }
+}

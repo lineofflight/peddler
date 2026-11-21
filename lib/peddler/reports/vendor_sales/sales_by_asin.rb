@@ -10,34 +10,32 @@ module Peddler
     module VendorSales
       # Describes aggregated ASIN-level sales metrics for ASINs in the vendor's account.
       SalesByASIN = Structure.new do
-        # @return [String] The Amazon Standard Identification Number.
+        # The Amazon Standard Identification Number.
         attribute(:asin, String, null: false)
 
-        # @return [Date] The end date of the aggregated ASIN-level data.
+        # The end date of the aggregated ASIN-level data.
         attribute(:end_date, Date, null: false, from: "endDate")
 
-        # @return [Money] Revenue based on the cost of goods sold. Adjustments are made for returns.
+        # Revenue based on the cost of goods sold. Adjustments are made for returns.
         attribute(:shipped_cogs, Money, null: false, from: "shippedCogs")
 
-        # @return [Money] Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
+        # Revenue based on units shipped in the selected time frame. Adjustments are made for returns.
         attribute(:shipped_revenue, Money, null: false, from: "shippedRevenue")
 
-        # @return [Integer] Number of units shipped to Amazon customers.
+        # Number of units shipped to Amazon customers.
         attribute(:shipped_units, Integer, null: false, from: "shippedUnits")
 
-        # @return [Date] The start date of the aggregated ASIN-level data.
+        # The start date of the aggregated ASIN-level data.
         attribute(:start_date, Date, null: false, from: "startDate")
 
-        # @return [Integer] The quantity of units returned. This field is populated when sellingProgram is RETAIL or
-        #   BUSINESS.
+        # The quantity of units returned. This field is populated when sellingProgram is RETAIL or BUSINESS.
         attribute?(:customer_returns, Integer, from: "customerReturns")
 
-        # @return [Money] Ordered product sales in the selected time frame. Adjustments are made for returns. This field
-        #   is populated when distributorView is MANUFACTURING
+        # Ordered product sales in the selected time frame. Adjustments are made for returns. This field is populated
+        # when distributorView is MANUFACTURING
         attribute?(:ordered_revenue, Money, from: "orderedRevenue")
 
-        # @return [Integer] Number of units ordered by Amazon customers. This field is populated when distributorView is
-        #   MANUFACTURING
+        # Number of units ordered by Amazon customers. This field is populated when distributorView is MANUFACTURING
         attribute?(:ordered_units, Integer, from: "orderedUnits")
       end
     end

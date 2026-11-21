@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Issue information with code, message, and severity.
       Issue = Structure.new do
-        # @return [String] Issue code identifier.
+        # Issue code identifier.
         attribute(:code, String, null: false)
 
-        # @return [String] Issue description.
+        # Issue description.
         attribute(:message, String, null: false)
 
-        # @return [String] Issue severity level. Known values: `ERROR`, `WARNING`.
+        # Issue severity level. Known values: `ERROR`, `WARNING`.
         attribute(:severity, String, null: false)
       end
     end

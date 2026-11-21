@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of RateItem
       class RateItemList < Array
         class << self

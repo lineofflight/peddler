@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Issues associated with the listings item.
       class ItemIssues < Array
         class << self

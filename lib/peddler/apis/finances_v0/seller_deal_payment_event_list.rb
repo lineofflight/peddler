@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of payment events for deal-related fees.
       class SellerDealPaymentEventList < Array
         class << self

@@ -3,6 +3,7 @@
 require_relative "../parsers/json_schema_extractor"
 require_relative "../resolvers/type_resolver"
 require_relative "formatter"
+require_relative "known_values"
 require_relative "money_detector"
 require_relative "naming"
 
@@ -24,59 +25,23 @@ module Generator
       description.match?(/^An explanation about the purpose of this instance\.?$/i)
     end
 
-    # Check if any types use Money
-    def needs_money?(extracted_types = nil)
-      # If extracted_types provided, check them directly
-      if extracted_types
-        return extracted_types.any? do |_type_name, type_def|
-          type_def["properties"]&.any? do |_prop_name, prop_def|
-            prop_def["$ref"] == "#/definitions/Money" ||
-                (prop_def["items"].is_a?(Hash) && prop_def["items"]["$ref"] == "#/definitions/Money")
-          end
-        end
-      end
-
-      # Otherwise check properties (for Type class)
-      return false unless respond_to?(:properties)
-
-      properties.any? do |_prop_name, prop_def|
-        if prop_def["$ref"]
-          type_name = prop_def["$ref"].split("/").last
-          MoneyDetector.money_type?(type_name)
-        else
-          false
-        end
-      end
-    end
-
-    # Get list of all nested type file names for requiring
-    # This method requires schema and a name method to be available
-    def nested_type_files
-      extractor = JsonSchemaExtractor.new(schema, send(:name))
-      extracted_types = extractor.extract_types
-
-      # Return list of underscored type names for requiring
-      extracted_types.keys.map(&:underscore).sort
-    end
-
-    # Format property comment with description
+    # The comment above a property: its description and its known values, or nil when the schema has neither worth
+    # repeating. The declaration under it and the signature say the type. `definitions` are those a `$ref` names.
     # base_indent can be overridden by subclasses
-    def format_property_comment(prop_def, base_indent: 0)
-      return_type = ruby_type_for(prop_def, for_comment: true)
-      if prop_def["description"] && !prop_def["description"].empty? && !generic_placeholder?(prop_def["description"])
-        description = convert_html_links_to_yard(prop_def["description"])
-        description = convert_doc_links_to_full_url(description)
-        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: base_indent, wrap_indent: 2)
-      else
-        indent = " " * base_indent
-        "#{indent}# @return [#{return_type}]"
-      end
+    def format_property_comment(prop_def, base_indent: 0, definitions: nil)
+      description = prop_def["description"]
+      description = nil if description.nil? || description.strip.empty? || generic_placeholder?(description)
+      description &&= convert_doc_links_to_full_url(convert_html_links_to_markdown(description))
+      description = KnownValues.append(description, KnownValues.enum_values(prop_def, definitions))
+      return unless description
+
+      split_long_comment_line(description, base_indent: base_indent)
     end
 
     # Convert JSON Schema type to Ruby type
     # This method requires type_resolver to be available
-    def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
-      type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs, prop_name: prop_name)
+    def ruby_type_for(prop_def, for_rbs: false, prop_name: nil)
+      type_resolver.resolve(prop_def, for_rbs: for_rbs, prop_name: prop_name)
     end
 
     # Build type resolver - this should be overridden by subclasses if needed

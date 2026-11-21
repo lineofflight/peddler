@@ -1,0 +1,5 @@
+# The core signature takes no block.
+class Thread
+  def self.handle_interrupt: [T] (Hash[untyped, Symbol] mask) { () -> T } -> T
+                           | ...
+end

@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class Vehicles20241101
+    module Vehicles20241101
       # Engine power output of vehicle.
       EngineOutput = Structure.new do
-        # @return [String] Unit for measuring engine power. Known values: `KILOWATT`, `HORSEPOWER`.
+        # Unit for measuring engine power. Known values: `KILOWATT`, `HORSEPOWER`.
         attribute(:unit, String, null: false)
 
-        # @return [Float] Engine power value in specified unit.
+        # Engine power value in specified unit.
         attribute(:value, Float, null: false)
       end
     end

@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Services for a preview offer response. Includes delivery settings (for example, `paymentOnDelivery`).
       PreviewOfferServices = Structure.new do
-        # @return [Hash] Additional services for this offer.
+        # Additional services for this offer.
         attribute?(:additional, Hash)
 
-        # @return [PreviewDeliveryService] Delivery service settings for this offer.
+        # Delivery service settings for this offer.
         attribute?(:delivery, PreviewDeliveryService)
 
-        # @return [PreviewPackagingService] The packaging settings for this offer.
+        # The packaging settings for this offer.
         attribute?(:packaging, PreviewPackagingService)
       end
     end

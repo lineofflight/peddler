@@ -7,19 +7,18 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Request schema for the `getRangeSlotCapacity` operation. This schema is used to define the time range and
       # capacity types that are being queried.
       RangeSlotCapacityQuery = Structure.new do
-        # @return [Time] End date time up to which the capacity slots are being requested in ISO 8601 format.
+        # End date time up to which the capacity slots are being requested in ISO 8601 format.
         attribute(:end_date_time, Time, null: false, from: "endDateTime")
 
-        # @return [Time] Start date time from which the capacity slots are being requested in ISO 8601 format.
+        # Start date time from which the capacity slots are being requested in ISO 8601 format.
         attribute(:start_date_time, Time, null: false, from: "startDateTime")
 
-        # @return [Array<CapacityType>] An array of capacity types which are being requested. Default value is
-        #   `[SCHEDULED_CAPACITY]`. Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`,
-        #   `RESERVED_CAPACITY`.
+        # An array of capacity types which are being requested. Default value is `[SCHEDULED_CAPACITY]`. Known values:
+        # `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`.
         attribute?(:capacity_types, Array, from: "capacityTypes")
       end
     end

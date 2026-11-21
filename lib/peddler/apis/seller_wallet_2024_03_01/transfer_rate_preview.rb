@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The fees and foreign exchange rates that apply to the transaction.
       #
       # If the fees are in terms of the `baseAmount` (source account) currency, then the effective rate is equal to **1
@@ -18,17 +18,16 @@ module Peddler
       # In the preceding expressions, **fees** is equal to the sum of all `feeAmount.currencyAmount` values in the
       # `fees` array.
       TransferRatePreview = Structure.new do
-        # @return [Money] The base amount of the transaction.
+        # The base amount of the transaction.
         attribute(:base_amount, Money, null: false, from: "baseAmount")
 
-        # @return [Array<Fee>] A list of fees.
+        # A list of fees.
         attribute(:fees, [Fee], null: false)
 
-        # @return [FxRateDetails] The foreign exchange rate value of the transaction.
+        # The foreign exchange rate value of the transaction.
         attribute(:fx_rate_details, FxRateDetails, null: false, from: "fxRateDetails")
 
-        # @return [Money] The final amount transferred, which includes both the fee deduction and currency conversion
-        #   rate.
+        # The final amount transferred, which includes both the fee deduction and currency conversion rate.
         attribute(:transfer_amount, Money, null: false, from: "transferAmount")
       end
     end

@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `cancelReservation` operation.
       CancelReservationResponse = Structure.new do
-        # @return [Array<Error>] Errors encountered, if any
+        # Errors encountered, if any
         attribute?(:errors, [Error])
       end
     end

@@ -29,11 +29,68 @@ jobs:
           ruby-version: "4.0"
           bundler-cache: true
 
-      - name: Install dependencies
-        run: bundle install
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
 
-      - name: Generate code from API models
-        run: bundle exec rake generate:update
+      # Advances selling-partner-api-models.sha, then regenerates the whole corpus: the Ruby
+      # models and the Rust crate (models, facades, dispatch, pagination table, Ruby facades
+      # and operation-inventory.json). The Rust step builds with --locked. A pin move that
+      # only changes spec content needs no other edit. The generator refuses the rest and
+      # writes nothing, so no PR is opened: a spec file that was added or removed (the
+      # manifest, or supplemental-sources.json for a schema), a new token-like field
+      # (pagination.json), and an operation it has no rule for. A refusal names the spec
+      # file and the operation. The summary step below says what to do with each.
+      - name: Regenerate Ruby and Rust output at the new pin
+        shell: bash
+        run: bundle exec rake generate:update 2>&1 | tee "$RUNNER_TEMP/generate.log"
+
+      # Peddler 6 has no Ruby API classes. Generation must not bring them back.
+      - name: Refuse regenerated HTTP API classes
+        run: |
+          if grep -rEl '^\s*class \w+ < (Peddler::)?API\b|^\s*require "http"' lib/peddler.rb lib/peddler/apis sig/peddler/apis; then
+            echo "Generated Ruby code references the removed HTTP API classes." >&2
+            exit 1
+          fi
+          if ls lib/peddler/apis/*.rb | xargs grep -L 'PARSERS' | grep .; then
+            echo "A generated API file lacks PARSERS; the Ruby templates changed." >&2
+            exit 1
+          fi
+
+      - name: Explain a failed update
+        if: failure()
+        run: |
+          {
+            echo "### Model update failed"
+            echo
+            echo "No pull request was opened and nothing was written. The generator refuses what it"
+            echo "can't turn into a correct request, and says where: its last lines are below."
+            echo
+            echo "| The generator says | It means | Edit |"
+            echo "| --- | --- | --- |"
+            echo "| \`pinned API inventory mismatch\` | Amazon added or removed an API model | \`crates/peddler-codegen/src/manifest.rs\` |"
+            echo "| \`pinned supplemental inventory mismatch\` | Amazon added or removed a report, feed, notification or Data Kiosk schema | \`crates/peddler-codegen/supplemental-sources.json\` |"
+            echo "| \`pagination: ...\` | a field looks like a page token and is neither mapped nor excluded | \`crates/peddler-codegen/pagination.json\`, with a reason |"
+            echo "| \`<spec file>: <operationId>: ...\` | that operation uses something the generator has no rule for, such as a new kind of parameter or a default on a body | \`crates/peddler-codegen/src/clients.rs\`, with a test |"
+            echo "| \`<spec file>: ...\` without an operation | the file is not JSON, a model can't be written, or 2 operations share an ID | \`crates/peddler-codegen/src/models.rs\` or \`clients.rs\`, with a test |"
+            echo
+            echo "The last 2 change how a request is built, so read that operation in Amazon's file"
+            echo "first. If the model itself is wrong, leave the pin where it is until Amazon corrects it."
+            echo
+            echo "The fix has to travel with the pin move, so it can't be made at the current pin:"
+            echo
+            echo "1. Run \`bundle exec rake generate:update\` locally."
+            echo "2. Make the edit the table names."
+            echo "3. Run \`bundle exec rake generate\`."
+            echo "4. Open 1 pull request with everything."
+            echo
+            echo "The generator said:"
+            echo
+            echo '```'
+            tail -n 30 "$RUNNER_TEMP/generate.log" 2>/dev/null || echo "(no generator output; an earlier step failed)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Create Pull Request
         id: create-pr
@@ -101,14 +158,14 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.create-pr.outputs.pr_number }}
 
-            A nightly job pulled in the latest Amazon SP-API specs and regenerated code. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown.
+            A nightly job pulled in the latest Amazon SP-API specs and regenerated the Ruby and Rust code, including the operation inventory and the pin file. GitHub refuses PR diffs above 300 files, so read the change locally: run `git diff --stat origin/main...HEAD` for the overview and `git diff origin/main...HEAD -- <path>` for specific files. Review the diff and update the PR description with a high-level, concise summary of what's new, removed, or breaking. Group changes by API or theme. Don't list changes individually. Use plain text only, no markdown.
 
             Also set the PR title: one line in the imperative, 50 characters at most, naming the most significant change, like "Add shipment tracking fields to Orders v0". If the changes span unrelated APIs, name the biggest one or the common theme. The title and description become the squash commit, so the description shouldn't restate the title.
 
-            If the diff only changes selling-partner-api-models.sha, no generated code changed. Keep the title as it is. Compare the old and new SHAs upstream with `gh api repos/amzn/selling-partner-api-models/compare/<old>...<new>` and describe what changed in the specs and why it left the generated code untouched.
+            If the diff only moves the pin, selling-partner-api-models.sha and the `revision` of crates/peddler-codegen/operation-inventory.json, no generated code changed. Keep the title as it is. Compare the old and new SHAs upstream with `gh api repos/amzn/selling-partner-api-models/compare/<old>...<new>` and describe what changed in the specs and why it left the generated code untouched.
 
             Then, if any user-visible interface changed (new or removed methods, new parameters, new fields on response types), append concise entries to the [Unreleased] section of CHANGELOG.md under the `### Models` header. Format them as bullet points prefixed with `**Added**:`, `**Changed**:`, or `**Removed**:` to distinguish the update type. Commit and push to the PR branch.
           claude_args: |
             --model sonnet
-            --allowedTools "Bash(gh pr diff:*),Bash(gh pr edit:*),Bash(gh pr view:*),Bash(gh api repos/amzn/selling-partner-api-models/*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Read,Edit"
+            --allowedTools "Bash(gh pr diff:*),Bash(git diff:*),Bash(gh pr edit:*),Bash(gh pr view:*),Bash(gh api repos/amzn/selling-partner-api-models/*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Read,Edit"
             --system-prompt "Relaxed, direct, still professional tone. Be concise. No emojis."

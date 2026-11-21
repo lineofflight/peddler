@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The type and amount of a charge applied on a package.
       ChargeComponent = Structure.new do
-        # @return [Money]
         attribute?(:amount, Money)
 
-        # @return [String] The type of charge. Known values: `TAX`, `DISCOUNT`.
+        # The type of charge. Known values: `TAX`, `DISCOUNT`.
         attribute?(:charge_type, String, from: "chargeType")
       end
     end

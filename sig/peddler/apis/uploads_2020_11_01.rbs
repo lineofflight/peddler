@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Uploads20201101 < API
+    module Uploads20201101
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateUploadDestinationResponse < Data
         def self.new: (?errors: Array[Peddler::APIs::Uploads20201101::Error]?, ?payload: Peddler::APIs::Uploads20201101::UploadDestination?) -> Peddler::APIs::Uploads20201101::CreateUploadDestinationResponse
                     | (Array[Peddler::APIs::Uploads20201101::Error]?, Peddler::APIs::Uploads20201101::UploadDestination?) -> Peddler::APIs::Uploads20201101::CreateUploadDestinationResponse
@@ -57,8 +59,6 @@ module Peddler
         def members: () -> [ :headers, :upload_destination_id, :url ]
         def to_h: () -> { headers: Hash[untyped, untyped]?, upload_destination_id: String?, url: String? }
       end
-
-      def create_upload_destination_for_resource: (Array[String], String, String, ?content_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

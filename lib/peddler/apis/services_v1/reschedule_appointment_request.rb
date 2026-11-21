@@ -7,13 +7,13 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Input for rescheduled appointment operation.
       RescheduleAppointmentRequest = Structure.new do
-        # @return [AppointmentTimeInput] Input appointment time details.
+        # Input appointment time details.
         attribute(:appointment_time, AppointmentTimeInput, null: false, from: "appointmentTime")
 
-        # @return [String] Input appointment reschedule reason.
+        # Input appointment reschedule reason.
         attribute(:reschedule_reason_code, String, null: false, from: "rescheduleReasonCode")
       end
     end

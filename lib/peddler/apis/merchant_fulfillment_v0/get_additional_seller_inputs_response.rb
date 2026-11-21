@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Response schema.
       GetAdditionalSellerInputsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [GetAdditionalSellerInputsResult]
         attribute?(:payload, GetAdditionalSellerInputsResult)
       end
     end

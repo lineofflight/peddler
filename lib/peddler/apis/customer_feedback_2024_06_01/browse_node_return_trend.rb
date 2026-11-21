@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The trend of return topic metrics for all items in the requested browse node.
       BrowseNodeReturnTrend = Structure.new do
-        # @return [String] The name of the topic.
+        # The name of the topic.
         attribute(:topic, String, null: false)
 
-        # @return [Array<BrowseNodeReturnTrendPoint>] The browse node return trend metrics.
+        # The browse node return trend metrics.
         attribute(:trend_metrics, [BrowseNodeReturnTrendPoint], null: false, from: "trendMetrics")
       end
     end

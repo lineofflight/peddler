@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The length.
       Length = Structure.new do
-        # @return [String] Known values: `inches`, `centimeters`.
+        # Known values: `inches`, `centimeters`.
         attribute?(:unit, String)
 
-        # @return [Float] The value in units.
+        # The value in units.
         attribute?(:value, Float)
       end
     end

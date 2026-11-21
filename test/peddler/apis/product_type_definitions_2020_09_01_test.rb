@@ -14,11 +14,11 @@ module Peddler
           requirements: "LISTING_OFFER_ONLY",
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
 
         # And download the JSON schema
         url = res.dig("schema", "link", "resource")
-        json_schema = HTTP.get(url).parse(:json)
+        json_schema = client.download_document(replayed(url)).json(max_bytes: 1_000_000)
 
         assert(json_schema)
       end

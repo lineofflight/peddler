@@ -2,8 +2,7 @@
 
 require "logger"
 
-# @!visibility private
-module Generator
+module Generator # :nodoc:
   class << self
     def logger
       @logger ||= begin

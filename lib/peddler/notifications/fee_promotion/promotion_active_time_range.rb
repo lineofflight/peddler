@@ -8,10 +8,8 @@ module Peddler
   module Notifications
     module FeePromotion
       PromotionActiveTimeRange = Structure.new do
-        # @return [String]
         attribute(:effective_from_date, String, null: false, from: "EffectiveFromDate")
 
-        # @return [String]
         attribute(:effective_through_date, String, null: false, from: "EffectiveThroughDate")
       end
     end

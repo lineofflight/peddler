@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorTransactionStatusV1
+    module VendorTransactionStatusV1
       # Represents the status of a transaction.
       TransactionStatus = Structure.new do
-        # @return [Transaction]
         attribute?(:transaction_status, Transaction, from: "transactionStatus")
       end
     end

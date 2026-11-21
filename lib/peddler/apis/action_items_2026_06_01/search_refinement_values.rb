@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # The list of refinement values for a given refinement key.
       class SearchRefinementValues < Array
         class << self

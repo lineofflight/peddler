@@ -1,405 +1,87 @@
 # Peddler
 
-Peddler is a Ruby interface to the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
+Peddler is a Ruby gem and a Rust crate for the [Amazon Selling Partner API (SP-API)][api-docs]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-Peddler is automatically generated from the latest Open API models provided by Amazon. A nightly job tracks Amazon's spec changes, so new endpoints and fields land shortly after Amazon publishes them. Model changes are not considered breaking and don't trigger a major version bump.
+Both are generated from Amazon's latest OpenAPI models and cover every SP-API endpoint, report, notification and feed. A nightly job tracks Amazon's spec changes, so new endpoints and fields land shortly after Amazon publishes them. Model changes are not considered breaking and don't trigger a major version bump.
 
-Peddler covers all SP-API endpoints, reports, notifications, and feeds. It's also lightweight: thanks to Zeitwerk, only the code you use gets loaded.
+Both run on the same Rust core. The crate is that core, and the gem ships it as a native extension.
 
-<img src="https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
+![Peddler](https://github.com/lineofflight/peddler/blob/main/images/peddler.jpg?raw=true)
 
-## Installation
+## Quick start
+
+| | Ruby | Rust |
+| --- | --- | --- |
+| Package | [`peddler` gem](https://rubygems.org/gems/peddler) | [`peddler` crate](https://crates.io/crates/peddler) |
+| Needs | Ruby 3.3 or later | Rust 1.88 or later |
+| API docs | [lineofflight.dev/peddler](https://lineofflight.dev/peddler/) | [docs.rs/peddler](https://docs.rs/peddler) |
+
+Both examples read your [LWA credentials][view-credentials] from `LWA_CLIENT_ID` and `LWA_CLIENT_SECRET` and a seller's refresh token from `REFRESH_TOKEN`, then list the seller's marketplaces.
+
+### Ruby
 
 Add to your Gemfile.
 
-### Agent skills
+```ruby
+gem "peddler"
+```
 
-Install the skills for agents:
+```ruby
+require "peddler"
+
+lwa = Peddler::LWA.new
+access_token = lwa.refresh(refresh_token: ENV.fetch("REFRESH_TOKEN")).access_token
+client = Peddler::Client.new(region: "eu-west-1", access_token: access_token)
+
+response = client.sellers.get_marketplace_participations
+response.parse.payload.each { |participation| puts participation.marketplace.name }
+```
+
+The [Ruby guide](RUBY.md) covers the rest.
+
+### Rust
+
+Add the crate and [Tokio](https://tokio.rs), the async runtime its calls run on.
 
 ```shell
-# Install both skills
-npx skills add lineofflight/peddler
-
-# Or install individually
-npx skills add lineofflight/peddler -s building-with-peddler
-npx skills add lineofflight/peddler -s amazon-sp-api
+cargo add peddler
+cargo add tokio --features macros,rt-multi-thread
 ```
 
-- `building-with-peddler`: Ruby integration, token caching, retries, and pagination.
-- `amazon-sp-api`: Language-agnostic OpenAPI spec research, issue hunting, and discussions.
+```rust
+use peddler::{Client, apis::sellers_v1, auth::LwaClient};
+use std::env;
 
-## Usage
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let lwa = LwaClient::new(&env::var("LWA_CLIENT_ID")?, &env::var("LWA_CLIENT_SECRET")?)?;
+    let tokens = lwa.refresh(&env::var("REFRESH_TOKEN")?).await?;
+    let client = Client::new("https://sellingpartnerapi-eu.amazon.com", &tokens.access_token)?;
 
-### Authorization
-
-Before using Peddler, you must [register as a developer][register-as-developer], [register your application][register-application], and [obtain your Login with Amazon (LWA) credentials][view-credentials]; Amazon's [official SP-API code samples][api-samples] can help you get started.
-
-Set your LWA credentials in your environment.
-
-```shell
-export LWA_CLIENT_ID=<YOUR_CLIENT_ID>
-export LWA_CLIENT_SECRET=<YOUR_CLIENT_SECRET>
+    let params = sellers_v1::GetMarketplaceParticipationsParams::new();
+    let response = sellers_v1::get_marketplace_participations(&client, params).await?;
+    println!("{}", response.raw.status);
+    if let Some(participations) = response.json()?.payload {
+        for participation in participations.iter() {
+            println!("{}", participation.marketplace.name);
+        }
+    }
+    Ok(())
+}
 ```
 
-A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
+An HTTP error status is a response, not an `Err`, so the example prints the status. The [crate's README](crates/peddler/README.md) is the Rust guide.
 
-```ruby
-response = Peddler::LWA.request(
-  code: "<AUTHORIZATION_CODE>"
-)
-refresh_token = response.parse.refresh_token
-```
+## Guides
 
-Use this to generate a temporary access token to authenticate individual requests.
+- [Ruby guide](RUBY.md): installing the gem, tokens, calls, errors, documents and tests
+- [Rust guide](crates/peddler/README.md): installing the crate, tokens, calls, errors and documents
 
-```ruby
-response = Peddler::LWA.request(
-  refresh_token: "<REFRESH_TOKEN>",
-)
-access_token = response.parse.access_token
-```
+## License
 
-Similarly, you can request a token for grantless operations.
+Peddler is released under the [MIT License](LICENSE).
 
-```ruby
-response = Peddler::LWA.request(
-  scope: "sellingpartnerapi::notifications",
-)
-access_token = response.parse.access_token
-```
+The precompiled gems carry the notices of the third-party code they link: see [Licenses](RUBY.md#licenses) in the Ruby guide.
 
-In place of environment variables, you can set them directly when requesting the token.
-
-```ruby
-response = Peddler::LWA.request(
-  client_id: "<YOUR_CLIENT_ID>",
-  client_secret: "<YOUR_CLIENT_SECRET>",
-  refresh_token: "<REFRESH_TOKEN>",
-)
-access_token = response.parse.access_token
-```
-
-Access tokens are valid for one hour. To optimize performance, cache and reuse across calls.
-
-For example,
-
-```ruby
-class Seller
-  attr_reader :refresh_token
-
-  def access_token
-    Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
-      Peddler::LWA.request(refresh_token:).parse.access_token
-    end
-  end
-end
-```
-
-### Restricted Data Tokens (RDT) and PII
-
-Some operations are restricted because they return Personally Identifiable Information (PII), such as a buyer's name and shipping address. To call one, exchange your access token for a Restricted Data Token (RDT) scoped to the specific resources you need, then pass the RDT in place of the access token.
-
-```ruby
-api = Peddler.tokens.new(aws_region, access_token)
-response = api.create_restricted_data_token({
-  "restrictedResources" => [
-    {
-      "method" => "GET",
-      "path" => "/orders/v0/orders/123-1234567-1234567/address",
-    },
-  ],
-})
-restricted_data_token = response.parse.restricted_data_token
-```
-
-Use the RDT exactly where you would normally pass the access token.
-
-```ruby
-api = Peddler.orders.new(aws_region, restricted_data_token)
-address = api.get_order_address("123-1234567-1234567").parse.payload.shipping_address
-```
-
-For the Orders API, also specify which `dataElements` you need (`buyerInfo`, `shippingAddress`, or `buyerTaxInformation`).
-
-```ruby
-api = Peddler.tokens.new(aws_region, access_token)
-response = api.create_restricted_data_token({
-  "restrictedResources" => [
-    {
-      "method" => "GET",
-      "path" => "/orders/v0/orders",
-      "dataElements" => ["buyerInfo", "shippingAddress"],
-    },
-  ],
-})
-restricted_data_token = response.parse.restricted_data_token
-```
-
-An RDT is valid for one hour. Like access tokens, cache and reuse it across calls. See the [Tokens API Use Case Guide][tokens-guide] for the full list of restricted operations.
-
-### Rate limiting
-
-Amazon's SP-API imposes [rate limits][rate-limits] on operations. Override the default value by passing a `:rate_limit` parameter when calling an operation.
-
-Provide an optional `:retries` argument when initializing an API to specify retry attempts if throttled. Default is 0 (no retries). If set, Peddler retries with exponential backoff.
-
-```ruby
-api = Peddler.orders_v0.new(aws_region, access_token, retries: 3)
-api.get_orders("...": "...")
-```
-
-### Typed Responses
-
-Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support. Types are based on Ruby's [Data class](https://docs.ruby-lang.org/en/4.0/Data.html) and are lazy-loaded.
-
-```ruby
-api = Peddler.orders.new(aws_region, access_token)
-
-# Get orders with type-safe response
-response = api.get_orders("...": "...")
-
-# Use .parse to get typed Data objects
-orders = response.parse.payload.orders  # Returns array of Order Data objects
-order = orders.first
-
-# Type-safe attribute access
-order.amazon_order_id     # => "123-4567890-1234567"
-order.order_status        # => "Shipped"
-order.prime?              # => true
-order.order_total         # => Money object (automatic coercion)
-order.order_total.cents   # => 9999
-order.order_total.currency.iso_code # => "USD"
-```
-
-#### Hash Access
-
-If you prefer working with plain hashes instead of typed Data objects:
-
-```ruby
-api = Peddler.orders.new(aws_region, access_token)
-response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-
-# Use .to_h to get raw Hash
-orders = response.to_h["payload"]["orders"]
-
-# Or use .dig directly (delegates to .to_h)
-orders = response.dig("payload", "orders")
-```
-
-### Error Handling
-
-All HTTP errors (4xx and 5xx) raise `Peddler::Error`. Errors expose Amazon's `message` and the underlying `response`, and support pattern matching on `status`:
-
-```ruby
-begin
-  response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-rescue Peddler::Error => e
-  case e
-  in status: 429
-    backoff_and_retry
-  in status: 500..599
-    retry_later
-  else
-    raise
-  end
-end
-```
-
-#### Rescuing Specific Errors
-
-Peddler raises a specific subclass per Amazon error code and predefines one for every code we have seen Amazon return (e.g., `Peddler::Errors::QuotaExceeded`, `Peddler::Errors::InvalidInput`). Unknown codes get a subclass created at runtime; this is rare, and worth [reporting](https://github.com/lineofflight/peddler/issues) so we can predefine it. To rescue one without a boot-time `NameError`, define it beforehand:
-
-```ruby
-# config/initializers/peddler_errors.rb
-module Peddler
-  module Errors
-    class NewAmazonErrorCode < Error; end
-  end
-end
-```
-### Sandbox and custom endpoints
-
-Switch a client to Amazon's hosted sandbox with `sandbox`:
-
-```ruby
-api = Peddler.orders_v0.new(aws_region, access_token).sandbox
-```
-
-To point a client at a different backend entirely — a local mock, a recording proxy, or Amazon's [Sample AI Sandbox for SP-API](https://github.com/amzn/selling-partner-api-samples/tree/main/local-ai-sandbox) (default `http://localhost:9001`) — pass `base_url`:
-
-```ruby
-api = Peddler.orders_v0.new(aws_region, access_token, base_url: "http://localhost:9001")
-```
-
-`base_url` overrides the destination for every request the client makes. It is mutually exclusive with `sandbox` (combining them raises `CannotSandbox`), and `sandbox?` stays `false`. Only the scheme, host, and port of `base_url` are used; any path is ignored.
-
-### Available APIs
-
-Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the Peddler module:
-
-```ruby
-api = Peddler.<api_name>_<version>.new(aws_region, access_token, **options)
-```
-
-You can also simply use the latest version:
-
-```ruby
-api = Peddler.<api_name>.new(aws_region, access_token, **options)
-```
-
-Available APIs by category:
-
-#### Orders and Financial APIs
-
-- **Orders API**: Retrieve and manage orders
-- **Finances API**: Financial data, payments, refunds
-- **Invoices API**: Manage billing invoices
-- **Sales API**: Order metrics and sales data
-
-```ruby
-api = Peddler.orders.new(aws_region, access_token)
-response = api.get_orders("...": "...")
-orders = response.parse.payload.orders
-```
-
-#### Catalog and Listing APIs
-
-- **Catalog Items API**: Access Amazon's catalog data
-- **Listings Items API**: Create and update listings
-- **Listings Restrictions API**: Check listing eligibility
-- **Product Type Definitions API**: Get schema requirements for listings
-- **A+ Content API**: Create and manage enhanced marketing content
-- **Product Pricing API**: Get pricing information
-- **Product Fees API**: Retrieve fee estimates for products
-
-```ruby
-api = Peddler.catalog_items.new(aws_region, access_token)
-response = api.get_catalog_item("...": "...")
-item = response.parse.payload
-```
-
-#### Fulfillment and Inventory APIs
-
-- **Fulfillment Inbound API**: Send inventory to FBA
-- **Fulfillment Outbound API**: Create and track FBA orders
-- **FBA Inventory API**: Manage FBA inventory quantities
-- **FBA Inbound Eligibility API**: Check product eligibility for FBA
-- **Merchant Fulfillment API**: Create shipping labels for self-fulfilled orders
-- **Easy Ship API**: Manage Amazon's carrier service
-- **Shipping APIs**: Create shipments and purchase shipping labels
-- **Replenishment API**: Manage inventory replenishment
-- **Amazon Warehousing and Distribution API**: Manage fulfillment warehousing
-- **Supply Sources API**: Manage supply/inventory sources
-- **Shipment Invoicing API**: Manage shipment-related invoices
-
-```ruby
-api = Peddler.fulfillment_outbound.new(aws_region, access_token)
-response = api.create_fulfillment_order(body: { "...": "..." })
-```
-
-#### Data Management APIs
-
-- **Feeds API**: Upload data to Amazon (listings, prices, inventory, etc.)
-- **Reports API**: Request and download reports (orders, inventory, fulfillment, etc.)
-- **Uploads API**: Upload files for various SP-API operations
-- **Data Kiosk API**: Access analytical data with GraphQL queries
-
-```ruby
-# Feeds API - create feed document, upload, submit
-api = Peddler.feeds.new(aws_region, access_token)
-document = api.create_feed_document(contentType: "text/xml; charset=UTF-8")
-api.upload_feed_document(document.dig("url"), File.read("feed.xml"), "text/xml")
-feed = api.create_feed(feedType: "POST_INVENTORY_AVAILABILITY_DATA", marketplaceIds: ["ATVPDKIKX0DER"], inputFeedDocumentId: document.dig("feedDocumentId"))
-```
-
-#### Data Kiosk API
-
-The Data Kiosk API provides access to Amazon's analytical data through GraphQL queries. Peddler supports four Data Kiosk schema versions, each with type-safe classes for parsing responses.
-
-**Available Schemas:**
-
-- **SalesAndTraffic20231115**: Sales and traffic metrics by ASIN and date
-- **SalesAndTraffic20240424**: Enhanced sales and traffic data (2024)
-- **Economics20240315**: Economics and profitability data
-- **VendorAnalytics20240930**: Vendor-specific analytics and forecasting data
-
-```ruby
-api = Peddler.data_kiosk.new(aws_region, access_token)
-response = api.create_query(query: "query { salesAndTrafficByDate(...) { data { date sales } } }")
-query_id = response.dig("payload", "queryId")
-# Poll for completion and download document
-```
-#### Vendor APIs
-
-- **Vendor Orders API**: Retrieve purchase orders
-- **Vendor Direct Fulfillment Orders API**: Manage direct fulfillment orders
-- **Vendor Direct Fulfillment Shipping API**: Manage shipping for direct fulfillment
-- **Vendor Direct Fulfillment Payments API**: Process payments for direct fulfillment
-- **Vendor Direct Fulfillment Inventory API**: Manage inventory for direct fulfillment
-- **Vendor Direct Fulfillment Transactions API**: Track transaction status
-- **Vendor Direct Fulfillment Sandbox Test Data API**: Generate test data in sandbox
-- **Vendor Shipments API**: Track vendor shipments
-- **Vendor Invoices API**: Submit and track invoices
-- **Vendor Transaction Status API**: Check transaction status
-
-```ruby
-api = Peddler.vendor_orders.new(aws_region, access_token)
-orders = api.get_purchase_orders(limit: 10, createdAfter: "2023-01-01T00:00:00Z").parse
-```
-
-#### Authorization and Account Management APIs
-
-- **Application Management API**: Manage application authorization
-- **Tokens API**: Generate restricted data tokens for accessing PII
-- **Sellers API**: Get seller account information and marketplace participation
-- **Services API**: Manage seller services and subscriptions
-- **Seller Wallet API**: Manage seller financial accounts
-- **Application Integrations API**: Manage app integrations
-- **Vehicles API**: Manage vehicle data for automotive products
-
-### Complex Workflows
-
-Detailed workflows are available in test files with VCR cassettes:
-
-- **Feeds API**: [test/peddler/apis/feeds_2021_06_30_test.rb](test/peddler/apis/feeds_2021_06_30_test.rb)
-- **Data Kiosk API**: [test/peddler/apis/data_kiosk_2023_11_15_test.rb](test/peddler/apis/data_kiosk_2023_11_15_test.rb)
-- **Reports API**: [lib/peddler/apis/reports_2021_06_30.rb](lib/peddler/apis/reports_2021_06_30.rb) (YARD docs)
-- **Notifications API**: [lib/peddler/notifications/](lib/peddler/notifications/) (type-safe parsing)
-
-For complete method signatures, see [sig/peddler/apis/](sig/peddler/apis/)
-
-For a complete list of available APIs and their detailed documentation, refer to the [API models repository][openapi-models].
-
-## Best practices
- 
-Writing efficient SP-API code? See the [Peddler skill](skills/building-with-peddler/SKILL.md) and [Amazon SP-API skill](skills/amazon-sp-api/SKILL.md) for cutting call volume, batching, caching, API versions, reports, and error handling.
-
-## Development
-
-```bash
-# Setup
-bundle install
-bundle exec rbs collection install
-
-# Run tests and linting
-bundle exec rake
-
-# Run tests only
-bundle exec rake test
-
-# Regenerate API classes from latest Amazon OpenAPI specs
-bundle exec rake generate
-
-# Type check with Steep
-bundle exec steep check --severity-level=hint
-```
 [api-docs]: https://developer-docs.amazon.com/sp-api/docs/welcome
-[register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
-[register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
-[openapi-models]: https://github.com/amzn/selling-partner-api-models
-[api-samples]: https://github.com/amzn/selling-partner-api-samples
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
-[authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
-[rate-limits]: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
-[tokens-guide]: https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide
-[httprb]: https://github.com/httprb/http

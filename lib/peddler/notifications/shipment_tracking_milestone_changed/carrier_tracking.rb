@@ -9,10 +9,10 @@ module Peddler
     module ShipmentTrackingMilestoneChanged
       # The carrier information, including the tracking number and carrier code.
       CarrierTracking = Structure.new do
-        # @return [String] The tracking number assigned by the carrier.
+        # The tracking number assigned by the carrier.
         attribute(:tracking_number, String, null: false, from: "trackingNumber")
 
-        # @return [String] The carrier code associated with the carrier tracking number.
+        # The carrier code associated with the carrier tracking number.
         attribute?(:carrier_code, String, from: "carrierCode")
       end
     end

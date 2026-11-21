@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # A list of time slots.
       class TimeSlots < Array
         class << self

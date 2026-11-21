@@ -6,29 +6,24 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A full-width background image with a text overlay box containing subheadline, headline, and body text. The text
       # box can be positioned to the left or right, and styled light or dark.
       PremiumFullBackgroundTextModule = Structure.new do
-        # @return [String] Known values: `DARK`, `LIGHT`.
+        # Known values: `DARK`, `LIGHT`.
         attribute(:color_type, String, null: false, from: "colorType")
 
-        # @return [ImageComponent]
         attribute(:desktop_image, ImageComponent, null: false, from: "desktopImage")
 
-        # @return [ImageComponent]
         attribute(:mobile_image, ImageComponent, null: false, from: "mobileImage")
 
-        # @return [String] Known values: `LEFT`, `RIGHT`.
+        # Known values: `LEFT`, `RIGHT`.
         attribute(:position_type, String, null: false, from: "positionType")
 
-        # @return [ParagraphComponent]
         attribute?(:description, ParagraphComponent)
 
-        # @return [TextComponent]
         attribute?(:headline, TextComponent)
 
-        # @return [TextComponent]
         attribute?(:subheadline, TextComponent)
       end
     end

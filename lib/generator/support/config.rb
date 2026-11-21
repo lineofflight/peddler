@@ -17,7 +17,6 @@ module Generator
 
     class << self
       def template_path(template_name)
-        # RBS templates are in templates/rbs/, Ruby templates are in templates/
         File.join(BASE_PATH, "lib/generator/templates/#{template_name}.erb")
       end
     end

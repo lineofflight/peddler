@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of removal shipment event information.
       class RemovalShipmentEventList < Array
         class << self

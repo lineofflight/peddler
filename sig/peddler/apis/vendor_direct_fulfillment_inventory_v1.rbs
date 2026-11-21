@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class VendorDirectFulfillmentInventoryV1 < API
+    module VendorDirectFulfillmentInventoryV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
                     | (String, String, String?) -> Peddler::APIs::VendorDirectFulfillmentInventoryV1::Error
@@ -143,8 +145,6 @@ module Peddler
         def members: () -> [ :transaction_id ]
         def to_h: () -> { transaction_id: String? }
       end
-
-      def submit_inventory_update: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The response schema for the `getPaymentMethods` operation.
       GetPaymentMethodsResponse = Structure.new do
-        # @return [Array<PaymentMethodDetails>]
         attribute?(:payment_methods, [PaymentMethodDetails], from: "paymentMethods")
       end
     end

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Orders20260101 < API
+    module Orders20260101
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AddressExtendedFields < Data
         def self.new: (?complement: String?, ?neighborhood: String?, ?street_name: String?, ?street_number: String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
                     | (String?, String?, String?, String?) -> Peddler::APIs::Orders20260101::AddressExtendedFields
@@ -1237,9 +1239,6 @@ module Peddler
         def members: () -> [ :carrier, :shipping_service ]
         def to_h: () -> { carrier: String?, shipping_service: String? }
       end
-
-      def get_order: (String, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
-      def search_orders: (?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?fulfillment_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?fulfilled_by: Array[String]?, ?max_results_per_page: Integer?, ?pagination_token: String?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

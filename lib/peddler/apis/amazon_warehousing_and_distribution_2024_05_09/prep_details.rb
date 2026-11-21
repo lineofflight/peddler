@@ -6,24 +6,23 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # The preparation details for a product. This contains the prep category, prep owner, and label owner.
       # Prep instructions are generated based on the specified category.
       PrepDetails = Structure.new do
-        # @return [String] Known values: `AMAZON`, `SELF`.
+        # Known values: `AMAZON`, `SELF`.
         attribute?(:label_owner, String, from: "labelOwner")
 
-        # @return [String] The preparation category for shipping an item to Amazon's fulfillment network. Known values:
-        #   `ADULT`, `BABY`, `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`,
-        #   `SMALL`, `TEXTILE`, `NO_PREP`, `UNKNOWN`.
+        # The preparation category for shipping an item to Amazon's fulfillment network. Known values: `ADULT`, `BABY`,
+        # `FC_PROVIDED`, `FRAGILE`, `GRANULAR`, `HANGER`, `LIQUID`, `PERFORATED`, `SET`, `SHARP`, `SMALL`, `TEXTILE`,
+        # `NO_PREP`, `UNKNOWN`.
         attribute?(:prep_category, String, from: "prepCategory")
 
-        # @return [Array<PrepInstruction>] Contains information about the preparation of the inbound products. The
-        #   system auto-generates this field with the use of the `prepCategory`, and if you attempt to pass a value for
-        #   this field, the system will ignore it.
+        # Contains information about the preparation of the inbound products. The system auto-generates this field with
+        # the use of the `prepCategory`, and if you attempt to pass a value for this field, the system will ignore it.
         attribute?(:prep_instructions, [PrepInstruction], from: "prepInstructions")
 
-        # @return [String] Known values: `AMAZON`, `SELF`.
+        # Known values: `AMAZON`, `SELF`.
         attribute?(:prep_owner, String, from: "prepOwner")
       end
     end

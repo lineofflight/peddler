@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ActionPlans20260601
+    module ActionPlans20260601
       # The plan template this plan instantiates.
       ActionPlanType = Structure.new do
-        # @return [PlanDefinitionRef] The plan template.
+        # The plan template.
         attribute(:definition, PlanDefinitionRef, null: false)
       end
     end

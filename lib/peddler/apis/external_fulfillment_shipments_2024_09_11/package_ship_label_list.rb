@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A list of label documents for each package specified in the request. In case of partial failures when generating
       # labels, the `isErrored` and `errorDetails` attributes detail the cause of failure.
       class PackageShipLabelList < Array

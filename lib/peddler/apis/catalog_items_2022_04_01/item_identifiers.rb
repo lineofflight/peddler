@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
       class ItemIdentifiers < Array
         class << self

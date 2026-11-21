@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # A list of label results
       class LabelResultList < Array
         class << self

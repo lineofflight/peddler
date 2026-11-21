@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class FBAInboundEligibilityV1 < API
+    module FBAInboundEligibilityV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, ?details: String?, ?message: String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
                     | (String, String?, String?) -> Peddler::APIs::FBAInboundEligibilityV1::Error
@@ -60,8 +62,6 @@ module Peddler
         def members: () -> [ :asin, :eligible_for_program, :program, :ineligibility_reason_list, :marketplace_id ]
         def to_h: () -> { asin: String, eligible_for_program: bool, program: String, ineligibility_reason_list: Array[String]?, marketplace_id: String? }
       end
-
-      def get_item_eligibility_preview: (String, String, ?marketplace_ids: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

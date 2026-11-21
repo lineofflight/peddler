@@ -6,19 +6,19 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Rate item for shipping costs and adjustments.
       RateItem = Structure.new do
-        # @return [String] Unique identifier for the RateItem. Known values: `FBM_SHIP_PLUS_CREDIT`.
+        # Unique identifier for the RateItem. Known values: `FBM_SHIP_PLUS_CREDIT`.
         attribute(:rate_item_id, String, null: false, from: "RateItemID")
 
-        # @return [Money] The monetary value for the RateItem.
+        # The monetary value for the RateItem.
         attribute?(:rate_item_charge, Money, from: "RateItemCharge")
 
-        # @return [String] Localized name for the RateItem.
+        # Localized name for the RateItem.
         attribute?(:rate_item_name_localization, String, from: "RateItemNameLocalization")
 
-        # @return [String] Type of the RateItem. Known values: `INCLUDED`.
+        # Type of the RateItem. Known values: `INCLUDED`.
         attribute?(:rate_item_type, String, from: "RateItemType")
       end
     end

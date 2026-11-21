@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ApplicationManagement20231130 < API
+    module ApplicationManagement20231130
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::ApplicationManagement20231130::Error
                     | (String, String, String?) -> Peddler::APIs::ApplicationManagement20231130::Error
@@ -34,8 +36,6 @@ module Peddler
         def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::ApplicationManagement20231130::Error] }
       end
-
-      def rotate_application_client_secret: (?rate_limit: Float) -> Peddler::Response
     end
   end
 end

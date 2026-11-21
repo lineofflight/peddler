@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The address and contact details.
       AddressWithContact = Structure.new do
-        # @return [Address]
         attribute?(:address, Address)
 
-        # @return [ContactDetails]
         attribute?(:contact_details, ContactDetails, from: "contactDetails")
       end
     end

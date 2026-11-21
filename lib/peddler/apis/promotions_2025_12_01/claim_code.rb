@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Claim code configuration for accessing the promotion.
       ClaimCode = Structure.new do
-        # @return [String] The type of claim code. Known values: `GROUP`, `INDIVIDUAL`.
+        # The type of claim code. Known values: `GROUP`, `INDIVIDUAL`.
         attribute(:type, String, null: false)
 
-        # @return [String] The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
+        # The claim code (6-12 alphanumeric uppercase). Required when `type` is `GROUP`.
         attribute?(:value, String)
       end
     end

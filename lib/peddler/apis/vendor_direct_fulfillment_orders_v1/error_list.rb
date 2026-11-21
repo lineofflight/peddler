@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # A list of error responses returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Fee type and cost.
       Fee = Structure.new do
-        # @return [Money] The amount of the fee.
+        # The amount of the fee.
         attribute(:amount, Money, null: false)
 
-        # @return [String] The type of fee. Known values: `FBAPerUnitFulfillmentFee`, `FBAPerOrderFulfillmentFee`,
-        #   `FBATransportationFee`, `FBAFulfillmentCODFee`.
+        # The type of fee. Known values: `FBAPerUnitFulfillmentFee`, `FBAPerOrderFulfillmentFee`,
+        # `FBATransportationFee`, `FBAFulfillmentCODFee`.
         attribute(:name, String, null: false)
       end
     end

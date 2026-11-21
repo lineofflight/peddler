@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `assignAppointmentResources` operation.
       AssignAppointmentResourcesResponse = Structure.new do
-        # @return [Array<Error>] Errors occurred during during the `assignAppointmentResources` operation.
+        # Errors occurred during during the `assignAppointmentResources` operation.
         attribute?(:errors, [Error])
 
-        # @return [Hash] The payload for the `assignAppointmentResource` operation.
+        # The payload for the `assignAppointmentResource` operation.
         attribute?(:payload, Hash)
       end
     end

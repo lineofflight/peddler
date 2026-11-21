@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A list of issues associated with a media asset or pairing.
       class IssueList < Array
         class << self

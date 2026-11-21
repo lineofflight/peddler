@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentReturns20240911
+    module ExternalFulfillmentReturns20240911
       # One-time password (OTP) details of the return item.
       OtpDetails = Structure.new do
-        # @return [String] One-time password to validate the return delivered to the seller.
+        # One-time password to validate the return delivered to the seller.
         attribute(:otp, String, null: false)
 
-        # @return [Integer] The UNIX timestamp of when the verification code expires.
+        # The UNIX timestamp of when the verification code expires.
         attribute(:valid_till, Integer, null: false, from: "validTill")
       end
     end

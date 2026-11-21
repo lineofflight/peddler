@@ -6,16 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Shipment source channel related information.
       ChannelDetails = Structure.new do
-        # @return [String] Known values: `AMAZON`, `EXTERNAL`.
+        # Known values: `AMAZON`, `EXTERNAL`.
         attribute(:channel_type, String, null: false, from: "channelType")
 
-        # @return [AmazonOrderDetails]
         attribute?(:amazon_order_details, AmazonOrderDetails, from: "amazonOrderDetails")
 
-        # @return [AmazonShipmentDetails]
         attribute?(:amazon_shipment_details, AmazonShipmentDetails, from: "amazonShipmentDetails")
       end
     end

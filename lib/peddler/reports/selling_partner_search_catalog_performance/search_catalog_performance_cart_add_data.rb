@@ -9,23 +9,21 @@ module Peddler
     module SellingPartnerSearchCatalogPerformance
       # The search attributed cart-add data for your catalog.
       SearchCatalogPerformanceCartAddData = Structure.new do
-        # @return [Integer] The number of times customers add an ASIN to a cart. This data originates from the search
-        #   results page.
+        # The number of times customers add an ASIN to a cart. This data originates from the search results page.
         attribute(:cart_add_count, Integer, null: false, from: "cartAddCount")
 
-        # @return [Money]
         attribute(:cart_added_median_price, Money, null: false, from: "cartAddedMedianPrice")
 
-        # @return [Integer] The number of times customers add an ASIN to a cart with the one-day delivery message in the
-        #   search results page.
+        # The number of times customers add an ASIN to a cart with the one-day delivery message in the search results
+        # page.
         attribute(:one_day_shipping_cart_add_count, Integer, null: false, from: "oneDayShippingCartAddCount")
 
-        # @return [Integer] The number of times customers add an ASIN to a cart with the same day delivery message in
-        #   the search results page.
+        # The number of times customers add an ASIN to a cart with the same day delivery message in the search results
+        # page.
         attribute(:same_day_shipping_cart_add_count, Integer, null: false, from: "sameDayShippingCartAddCount")
 
-        # @return [Integer] The number of times customers add an ASIN to a cart with the two-day delivery message in the
-        #   search results page.
+        # The number of times customers add an ASIN to a cart with the two-day delivery message in the search results
+        # page.
         attribute(:two_day_shipping_cart_add_count, Integer, null: false, from: "twoDayShippingCartAddCount")
       end
     end

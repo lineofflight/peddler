@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # The response schema for the `getSubscriptions` operation.
       GetSubscriptionsResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `getSubscriptions` operation.
+        # One or more unexpected errors occurred during the `getSubscriptions` operation.
         attribute?(:errors, [Error])
 
-        # @return [GetSubscriptionsPayload] The payload for the `getSubscriptions` operation.
+        # The payload for the `getSubscriptions` operation.
         attribute?(:payload, GetSubscriptionsPayload)
       end
     end

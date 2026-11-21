@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # An array of package objects in a container.
       class Packages < Array
         class << self

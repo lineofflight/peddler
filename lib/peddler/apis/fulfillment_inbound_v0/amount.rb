@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # The monetary value.
       Amount = Structure.new do
-        # @return [String] Known values: `USD`, `GBP`.
+        # Known values: `USD`, `GBP`.
         attribute(:currency_code, String, null: false, from: "CurrencyCode")
 
-        # @return [Float] The amount.
+        # The amount.
         attribute(:value, Float, null: false, from: "Value")
       end
     end

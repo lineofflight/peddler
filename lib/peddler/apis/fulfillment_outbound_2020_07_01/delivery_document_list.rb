@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # A list of delivery documents for a package.
       class DeliveryDocumentList < Array
         class << self

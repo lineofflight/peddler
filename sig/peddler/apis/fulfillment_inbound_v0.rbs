@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class FulfillmentInboundV0 < API
+    module FulfillmentInboundV0
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ASINPrepInstructions < Data
         def self.new: (?asin: String?, ?barcode_instruction: String?, ?prep_guidance: String?, ?prep_instruction_list: Array[untyped]?) -> Peddler::APIs::FulfillmentInboundV0::ASINPrepInstructions
                     | (String?, String?, String?, Array[untyped]?) -> Peddler::APIs::FulfillmentInboundV0::ASINPrepInstructions
@@ -443,14 +445,6 @@ module Peddler
       class SKUPrepInstructionsList < Array[SKUPrepInstructions]
         def self.parse: (Array[untyped]) -> SKUPrepInstructionsList
       end
-
-      def get_bill_of_lading: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_labels: (String, String, String, ?number_of_packages: Integer?, ?package_labels_to_print: Array[String]?, ?number_of_pallets: Integer?, ?page_size: Integer?, ?page_start_index: Integer?, ?rate_limit: Float) -> Peddler::Response
-      def get_prep_instructions: (String, ?seller_sku_list: Array[String]?, ?asin_list: Array[String]?, ?rate_limit: Float) -> Peddler::Response
-
-      def get_shipment_items: (String, String, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_shipment_items_by_shipment_id: (String, ?marketplace_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_shipments: (String, String, ?shipment_status_list: Array[String]?, ?shipment_id_list: Array[String]?, ?last_updated_after: String?, ?last_updated_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -9,7 +9,7 @@ module Peddler
     module ShipmentTrackingMilestoneChanged
       # The location where a tracking milestone occurred.
       TrackingMilestoneLocation = Structure.new do
-        # @return [TrackingMilestoneAddress] The physical address where the milestone occurred.
+        # The physical address where the milestone occurred.
         attribute?(:address, TrackingMilestoneAddress)
       end
     end

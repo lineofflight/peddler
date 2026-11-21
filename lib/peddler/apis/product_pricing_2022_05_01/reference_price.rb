@@ -6,15 +6,15 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The reference price for the specified ASIN `marketplaceId` combination.
       ReferencePrice = Structure.new do
-        # @return [String] Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For
-        #   definitions, refer to the [Product Pricing API Use Case
-        #   Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api).
+        # Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For definitions,
+        # refer to the [Product Pricing API Use Case
+        # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api).
         attribute(:name, String, null: false)
 
-        # @return [Money] The reference price for the ASIN `marketplaceId` combination.
+        # The reference price for the ASIN `marketplaceId` combination.
         attribute(:price, Money, null: false)
       end
     end

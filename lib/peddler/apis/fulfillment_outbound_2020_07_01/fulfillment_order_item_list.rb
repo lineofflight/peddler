@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An array of fulfillment order item information.
       class FulfillmentOrderItemList < Array
         class << self

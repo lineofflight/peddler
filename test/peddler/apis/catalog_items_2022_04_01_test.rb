@@ -14,7 +14,7 @@ module Peddler
           identifiers_type: "ASIN",
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_catalog_item
@@ -33,7 +33,7 @@ module Peddler
           ],
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

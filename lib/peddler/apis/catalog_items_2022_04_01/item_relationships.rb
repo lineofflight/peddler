@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Relationships grouped by `marketplaceId` for an Amazon catalog item (for example, variations).
       class ItemRelationships < Array
         class << self

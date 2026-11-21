@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # The discount funding on the offer.
       DiscountFunding = Structure.new do
-        # @return [Array<Number>] Filters the results to only include offers with the percentage specified.
+        # Filters the results to only include offers with the percentage specified.
         attribute?(:percentage, [Float])
       end
     end

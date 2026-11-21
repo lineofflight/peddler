@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # Classification (browse node) for an Amazon catalog item.
       ItemBrowseClassification = Structure.new do
-        # @return [String] Identifier of the classification.
+        # Identifier of the classification.
         attribute(:classification_id, String, null: false, from: "classificationId")
 
-        # @return [String] Display name for the classification.
+        # Display name for the classification.
         attribute(:display_name, String, null: false, from: "displayName")
 
-        # @return [:self] Parent classification of the current classification.
+        # Parent classification of the current classification.
         attribute?(:parent, :self)
       end
     end

@@ -1,0 +1,509 @@
+{
+ "mappings": [
+  {
+   "operation": "action_items_2026_06_01.list_action_items",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "action_plans_2026_06_01.list_action_plans",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "amazon_warehousing_and_distribution_2024_05_09.list_inbound_shipments",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "amazon_warehousing_and_distribution_2024_05_09.list_inventory",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "amazon_warehousing_and_distribution_2024_05_09.list_outbounds",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "amazon_warehousing_and_distribution_2024_05_09.list_replenishment_orders",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "aplus_content_2020_11_01.list_content_document_asin_relations",
+   "input": "/page_token",
+   "output": "/nextPageToken",
+   "continuation": {
+    "keep": [
+     "content_reference_key",
+     "marketplace_id"
+    ]
+   }
+  },
+  {
+   "operation": "aplus_content_2020_11_01.search_content_documents",
+   "input": "/page_token",
+   "output": "/nextPageToken",
+   "continuation": {
+    "keep": [
+     "marketplace_id"
+    ]
+   }
+  },
+  {
+   "operation": "aplus_content_2020_11_01.search_content_publish_records",
+   "input": "/page_token",
+   "output": "/nextPageToken",
+   "continuation": {
+    "keep": [
+     "marketplace_id",
+     "asin"
+    ]
+   }
+  },
+  {
+   "operation": "catalog_items_2020_12_01.search_catalog_items",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "catalog_items_2022_04_01.search_catalog_items",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "data_kiosk_2023_11_15.get_queries",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "external_fulfillment_returns_2024_09_11.list_returns",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "external_fulfillment_shipments_2024_09_11.get_shipments",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fba_inventory_v1.get_inventory_summaries",
+   "input": "/next_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "feeds_2021_06_30.get_feeds",
+   "input": "/next_token",
+   "output": "/nextToken",
+   "continuation": {
+    "keep": [],
+    "adapter": true
+   }
+  },
+  {
+   "operation": "finance_remittance_2026_03_17.get_remittance",
+   "input": "/next_token_for_line_items",
+   "output": "/nextTokenForLineItems"
+  },
+  {
+   "operation": "finance_remittance_2026_03_17.get_remittance_headers",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "finances_2024_06_19.list_balances",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "finances_2024_06_19.list_summary",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "finances_2024_06_19.list_transactions",
+   "input": "/next_token",
+   "output": "/payload/nextToken"
+  },
+  {
+   "operation": "finances_invoices_2026_06_25.get_invoice",
+   "input": "/next_token_for_line_items",
+   "output": "/nextTokenForLineItems"
+  },
+  {
+   "operation": "finances_invoices_2026_06_25.get_invoice_headers",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "finances_v0.list_financial_event_groups",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "finances_v0.list_financial_events",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "finances_v0.list_financial_events_by_group_id",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "finances_v0.list_financial_events_by_order_id",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.get_self_ship_appointment_slots",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_delivery_window_options",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_inbound_plan_boxes",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_inbound_plan_items",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_inbound_plan_pallets",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_inbound_plans",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_packing_group_boxes",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_packing_group_items",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_packing_options",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_placement_options",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_shipment_boxes",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_shipment_content_update_previews",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_shipment_items",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_shipment_pallets",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_2024_03_20.list_transportation_options",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "fulfillment_inbound_v0.get_shipment_items",
+   "input": "/next_token",
+   "output": "/payload/NextToken",
+   "continuation": {
+    "drop": [
+     "last_updated_after",
+     "last_updated_before"
+    ],
+    "set": {
+     "query_type": "NEXT_TOKEN"
+    }
+   }
+  },
+  {
+   "operation": "fulfillment_inbound_v0.get_shipments",
+   "input": "/next_token",
+   "output": "/payload/NextToken",
+   "continuation": {
+    "drop": [
+     "shipment_status_list",
+     "shipment_id_list",
+     "last_updated_after",
+     "last_updated_before"
+    ],
+    "set": {
+     "query_type": "NEXT_TOKEN"
+    }
+   }
+  },
+  {
+   "operation": "fulfillment_outbound_2020_07_01.get_feature_inventory",
+   "input": "/next_token",
+   "output": "/payload/nextToken"
+  },
+  {
+   "operation": "fulfillment_outbound_2020_07_01.list_all_fulfillment_orders",
+   "input": "/next_token",
+   "output": "/payload/nextToken"
+  },
+  {
+   "operation": "fulfillment_outbound_2026_07_04.list_orders",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "invoices_2024_06_19.get_invoices",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "invoices_2024_06_19.get_invoices_exports",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "listings_items_2021_08_01.search_listings_items",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "messaging_2026_04_20.list_automation_configurations",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "notifications_v1.get_subscriptions",
+   "input": "/next_token",
+   "output": "/payload/nextToken"
+  },
+  {
+   "operation": "orders_2026_01_01.search_orders",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "orders_v0.get_order_items",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "orders_v0.get_order_items_buyer_info",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "orders_v0.get_orders",
+   "input": "/next_token",
+   "output": "/payload/NextToken"
+  },
+  {
+   "operation": "promotions_2025_12_01.get_selection",
+   "input": "/pagination_token",
+   "output": "/selection/selectionDetails/pagination/nextToken"
+  },
+  {
+   "operation": "promotions_2025_12_01.search_promotions",
+   "input": "/pagination_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "reports_2021_06_30.get_reports",
+   "input": "/next_token",
+   "output": "/nextToken",
+   "continuation": {
+    "keep": [],
+    "adapter": true
+   }
+  },
+  {
+   "operation": "seller_wallet_2024_03_01.list_account_transactions",
+   "input": "/next_page_token",
+   "output": "/nextPageToken"
+  },
+  {
+   "operation": "seller_wallet_2024_03_01.list_transfer_schedules",
+   "input": "/next_page_token",
+   "output": "/nextPageToken"
+  },
+  {
+   "operation": "services_v1.get_fixed_slot_capacity",
+   "input": "/next_page_token",
+   "output": "/nextPageToken"
+  },
+  {
+   "operation": "services_v1.get_range_slot_capacity",
+   "input": "/next_page_token",
+   "output": "/nextPageToken"
+  },
+  {
+   "operation": "services_v1.get_service_jobs",
+   "input": "/page_token",
+   "output": "/payload/nextPageToken"
+  },
+  {
+   "operation": "supply_sources_2020_07_01.get_supply_sources",
+   "input": "/next_page_token",
+   "output": "/nextPageToken"
+  },
+  {
+   "operation": "support_2025_02_01.list_cases",
+   "input": "/body/nextToken",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "support_2025_02_01.list_contacts",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "transfers_2024_06_01.list_expected_payouts",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "transfers_2024_06_01.list_payouts",
+   "input": "/next_token",
+   "output": "/nextToken"
+  },
+  {
+   "operation": "vehicles_2024_11_01.get_vehicles",
+   "input": "/page_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_orders_2021_12_28.get_orders",
+   "input": "/next_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_orders_v1.get_orders",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_2021_12_28.get_customer_invoices",
+   "input": "/next_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_2021_12_28.get_packing_slips",
+   "input": "/next_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_2021_12_28.get_shipping_labels",
+   "input": "/next_token",
+   "output": "/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_v1.get_customer_invoices",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_v1.get_packing_slips",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_direct_fulfillment_shipping_v1.get_shipping_labels",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_orders_v1.get_purchase_orders",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_orders_v1.get_purchase_orders_status",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_shipments_v1.get_shipment_details",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  },
+  {
+   "operation": "vendor_shipments_v1.get_shipment_labels",
+   "input": "/next_token",
+   "output": "/payload/pagination/nextToken"
+  }
+ ],
+ "exclusions": [
+  {
+   "operation": "data_kiosk_2023_11_15.get_query",
+   "reason": "Its pagination.nextToken is for creating another asynchronous query with createQuery paginationToken and the original query. It is not a getQuery page loop."
+  },
+  {
+   "operation": "data_kiosk_2023_11_15.create_query",
+   "reason": "The body paginationToken starts a new asynchronous query for the next result page. It is a document lifecycle step, not a stream of createQuery responses."
+  },
+  {
+   "operation": "fba_inventory_v1.add_inventory",
+   "reason": "x-amzn-idempotency-token is an idempotency header, not pagination."
+  },
+  {
+   "operation": "fulfillment_inbound_v0.get_labels",
+   "reason": "PageStartIndex is a numeric request index. The response has no continuation field to follow."
+  },
+  {
+   "operation": "fulfillment_inbound_v0.get_shipment_items_by_shipment_id",
+   "reason": "The response NextToken says only to pass it in the next request. The operation has no token input, and the pinned docs do not say it continues through getShipmentItems with QueryType=NEXT_TOKEN. Callers can opt in with an explicit generic mapping."
+  },
+  {
+   "operation": "promotions_2025_12_01.get_promotion",
+   "reason": "The response has four nested selection tokens and the operation has no matching token input. Selections page through getSelection."
+  },
+  {
+   "operation": "replenishment_2022_11_07.list_offer_metrics",
+   "reason": "Numeric limit/offset in the request body and only totalResults in the response. No continuation token is returned."
+  },
+  {
+   "operation": "replenishment_2022_11_07.list_offers",
+   "reason": "Numeric limit/offset in the request body and only totalResults in the response. No continuation token is returned."
+  },
+  {
+   "operation": "shipping_v2.get_additional_inputs",
+   "reason": "requestToken identifies a getRates result. It is not pagination."
+  },
+  {
+   "operation": "shipping_v2.get_rates",
+   "reason": "The response requestToken identifies the rates for later purchase calls. It is not pagination."
+  },
+  {
+   "operation": "shipping_v2.purchase_shipment",
+   "reason": "The body requestToken identifies a getRates result. It is not pagination."
+  },
+  {
+   "operation": "tokens_2021_03_01.create_restricted_data_token",
+   "reason": "The restrictedDataToken is an RDT credential, not pagination."
+  }
+ ]
+}

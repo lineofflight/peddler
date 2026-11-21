@@ -6,26 +6,24 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The A+ Content standard comparison product block.
       StandardComparisonProductBlock = Structure.new do
-        # @return [Integer] The rank or index of this comparison product block within the module. Different blocks
-        #   cannot occupy the same position within a single module.
+        # The rank or index of this comparison product block within the module. Different blocks cannot occupy the same
+        # position within a single module.
         attribute(:position, Integer, null: false)
 
-        # @return [String]
         attribute?(:asin, String)
 
-        # @return [:boolean] Determines whether this block of content is visually highlighted.
+        # Determines whether this block of content is visually highlighted.
         attribute?(:highlight, :boolean)
 
-        # @return [ImageComponent]
         attribute?(:image, ImageComponent)
 
-        # @return [Array<PlainTextItem>] Comparison metrics for the product.
+        # Comparison metrics for the product.
         attribute?(:metrics, [PlainTextItem])
 
-        # @return [String] The comparison product title.
+        # The comparison product title.
         attribute?(:title, String)
       end
     end

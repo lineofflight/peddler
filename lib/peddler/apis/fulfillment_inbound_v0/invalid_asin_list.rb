@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of invalid ASIN values and the reasons they are invalid.
       class InvalidASINList < Array
         class << self

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The list of items you want to include in a shipment.
       class ItemList < Array
         class << self

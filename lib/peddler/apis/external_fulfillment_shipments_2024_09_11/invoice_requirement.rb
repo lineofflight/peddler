@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Whether the invoice document is required to be attached to the shipment and its corresponding status. Applicable
       # only for Brazil marketplace.
       InvoiceRequirement = Structure.new do
-        # @return [String] Whether the invoice document is required to be attached to the shipment. Known values:
-        #   `REQUIRED`, `NOT_REQUIRED`.
+        # Whether the invoice document is required to be attached to the shipment. Known values: `REQUIRED`,
+        # `NOT_REQUIRED`.
         attribute?(:requirement, String)
 
-        # @return [String] The status of the of the invoice document that is attached to the shipment. Known values:
-        #   `PENDING`, `AVAILABLE`, `NOT_AVAILABLE`.
+        # The status of the of the invoice document that is attached to the shipment. Known values: `PENDING`,
+        # `AVAILABLE`, `NOT_AVAILABLE`.
         attribute?(:status, String)
       end
     end

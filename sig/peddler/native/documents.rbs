@@ -1,0 +1,29 @@
+module Peddler
+  module Native
+    class Engine
+      def download_document: (String url, String config) -> DocumentHandle
+      def start_document_upload: (String url, String config, String content_type, Array[[String, String]] headers, Integer? content_length) -> UploadHandle
+    end
+
+    class DocumentHandle
+      def status: () -> Integer
+      def headers: () -> Array[[String, String]]
+      def charset: () -> String?
+      def close: () -> void
+      def closed?: () -> bool
+      def next_row: (String mode, String? charset) -> untyped
+      def json: (Integer max_bytes) -> String
+    end
+
+    class UploadHandle
+      def completed?: () -> bool
+      def push: (String chunk) -> bool
+      def finish: () -> response_parts
+      def close: () -> void
+    end
+  end
+
+  interface _DocumentIO
+    def read: (Integer length) -> String?
+  end
+end

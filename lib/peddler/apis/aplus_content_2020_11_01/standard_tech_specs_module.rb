@@ -6,16 +6,15 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The standard table of technical feature names and definitions.
       StandardTechSpecsModule = Structure.new do
-        # @return [Array<StandardTextPairBlock>] The specification list.
+        # The specification list.
         attribute(:specification_list, [StandardTextPairBlock], null: false, from: "specificationList")
 
-        # @return [TextComponent]
         attribute?(:headline, TextComponent)
 
-        # @return [Integer] The number of tables to present. Features are evenly divided between the tables.
+        # The number of tables to present. Features are evenly divided between the tables.
         attribute?(:table_count, Integer, from: "tableCount")
       end
     end

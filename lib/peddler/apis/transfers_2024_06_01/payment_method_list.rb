@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # The list of payment methods with payment method details.
       class PaymentMethodList < Array
         class << self

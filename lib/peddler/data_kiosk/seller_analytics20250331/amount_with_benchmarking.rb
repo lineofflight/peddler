@@ -10,10 +10,10 @@ module Peddler
     module SellerAnalytics20250331
       # Monetary amount with the corresponding currency code and time range benchmarking.
       AmountWithBenchmarking = Structure.new do
-        # @return [Amount] The monetary amount and its currency code, in ISO 4217 format.
+        # The monetary amount and its currency code, in ISO 4217 format.
         attribute?(:amount, Amount, null: false)
 
-        # @return [TimeRangeBenchmarking] Relevant benchmarking comparison.
+        # Relevant benchmarking comparison.
         attribute?(:time_range_benchmarking, TimeRangeBenchmarking, from: "timeRangeBenchmarking")
       end
     end

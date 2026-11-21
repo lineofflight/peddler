@@ -8,9 +8,9 @@ module Peddler
       include FeatureHelpers
 
       def test_list_catalog_categories
-        res = api.sandbox.list_catalog_categories("TEST_CASE_200", asin: "asin_200")
+        res = api.list_catalog_categories("TEST_CASE_200", asin: "asin_200")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

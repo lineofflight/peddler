@@ -6,23 +6,21 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The shipping address for the order.
       OrderAddress = Structure.new do
-        # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
+        # An Amazon-defined order identifier, in 3-7-7 format.
         attribute(:amazon_order_id, String, null: false, from: "AmazonOrderId")
 
-        # @return [String] The company name of the contact buyer. For IBA orders, the buyer company must be Amazon
-        #   entities.
+        # The company name of the contact buyer. For IBA orders, the buyer company must be Amazon entities.
         attribute?(:buyer_company_name, String, from: "BuyerCompanyName")
 
-        # @return [DeliveryPreferences]
         attribute?(:delivery_preferences, DeliveryPreferences, from: "DeliveryPreferences")
 
-        # @return [Address] The shipping address for the order.
+        # The shipping address for the order.
         #
         # **Note**: `ShippingAddress` is only available for orders with the following status values: `Unshipped`,
-        #   `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.
+        # `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.
         attribute?(:shipping_address, Address, from: "ShippingAddress")
       end
     end

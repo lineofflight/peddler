@@ -6,18 +6,18 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsRestrictions20210801
+    module ListingsRestrictions20210801
       # A reason for the restriction, including path forward links that may allow Selling Partners to remove the
       # restriction, if available.
       Reason = Structure.new do
-        # @return [String] A message describing the reason for the restriction.
+        # A message describing the reason for the restriction.
         attribute(:message, String, null: false)
 
-        # @return [Array<Link>] A list of path forward links that may allow Selling Partners to remove the restriction.
+        # A list of path forward links that may allow Selling Partners to remove the restriction.
         attribute?(:links, [Link])
 
-        # @return [String] A code indicating why the listing is restricted. Known values: `APPROVAL_REQUIRED`,
-        #   `ASIN_NOT_FOUND`, `NOT_ELIGIBLE`.
+        # A code indicating why the listing is restricted. Known values: `APPROVAL_REQUIRED`, `ASIN_NOT_FOUND`,
+        # `NOT_ELIGIBLE`.
         attribute?(:reason_code, String, from: "reasonCode")
       end
     end

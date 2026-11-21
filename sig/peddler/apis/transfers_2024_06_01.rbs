@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Transfers20240601 < API
+    module Transfers20240601
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::Transfers20240601::Error
                     | (String, String, String?) -> Peddler::APIs::Transfers20240601::Error
@@ -289,12 +291,6 @@ module Peddler
       class RelatedIdentifiers < Array[RelatedIdentifier]
         def self.parse: (Array[untyped]) -> RelatedIdentifiers
       end
-
-      def get_payment_methods: (String, ?payment_method_types: Array[String]?, ?rate_limit: Float) -> Peddler::Response
-      def initiate_payout: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def list_expected_payouts: (?marketplace_ids: Array[String]?, ?account_type: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_payouts: (?marketplace_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?payout_id: String?, ?account_type: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

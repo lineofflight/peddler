@@ -8,7 +8,7 @@ module Peddler
     module <%= namespace_name %>
 <% else -%>
   module APIs
-    class <%= api_name.camelize %>
+    module <%= api_name.camelize %>
 <% end -%>
 <% if definition["description"] -%>
 <%= split_long_comment_line(definition["description"], base_indent: 6) %>

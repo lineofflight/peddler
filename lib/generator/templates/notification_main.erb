@@ -5,7 +5,7 @@
 module Peddler
   module Notifications
 <% if schema["title"] || schema["description"] -%>
-    # <%= schema["title"] %>
+<%= split_long_comment_line(schema["title"].to_s, base_indent: 4) %>
     #
 <%= split_long_comment_line(schema["description"], base_indent: 4) %>
 <% end -%>

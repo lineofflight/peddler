@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Product types for a listing item, by Amazon store.
       class ItemProductTypes < Array
         class << self

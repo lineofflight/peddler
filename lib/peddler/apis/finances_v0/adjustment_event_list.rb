@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of adjustment event information for the seller's account.
       class AdjustmentEventList < Array
         class << self

@@ -6,29 +6,27 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Labeling requirements and item preparation instructions to help you prepare items for shipment to Amazon's
       # fulfillment network.
       SKUPrepInstructions = Structure.new do
-        # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
+        # The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")
 
-        # @return [Array<AmazonPrepFeesDetails>]
         attribute?(:amazon_prep_fees_details_list, [AmazonPrepFeesDetails], from: "AmazonPrepFeesDetailsList")
 
-        # @return [String] Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`.
+        # Known values: `RequiresFNSKULabel`, `CanUseOriginalBarcode`, `MustProvideSellerSKU`.
         attribute?(:barcode_instruction, String, from: "BarcodeInstruction")
 
-        # @return [String] Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`.
+        # Known values: `ConsultHelpDocuments`, `NoAdditionalPrepRequired`, `SeePrepInstructionsList`.
         attribute?(:prep_guidance, String, from: "PrepGuidance")
 
-        # @return [Array<PrepInstruction>] Known values: `Polybagging`, `BubbleWrapping`, `Taping`,
-        #   `BlackShrinkWrapping`, `Labeling`, `HangGarment`, `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`,
-        #   `SuffocationStickering`, `CapSealing`, `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`,
-        #   `NoPrep`.
+        # Known values: `Polybagging`, `BubbleWrapping`, `Taping`, `BlackShrinkWrapping`, `Labeling`, `HangGarment`,
+        # `SetCreation`, `Boxing`, `RemoveFromHanger`, `Debundle`, `SuffocationStickering`, `CapSealing`,
+        # `SetStickering`, `BlankStickering`, `ShipsInProductPackaging`, `NoPrep`.
         attribute?(:prep_instruction_list, Array, from: "PrepInstructionList")
 
-        # @return [String] The seller SKU of the item.
+        # The seller SKU of the item.
         attribute?(:seller_sku, String, from: "SellerSKU")
       end
     end

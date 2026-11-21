@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
+        # An error code that identifies the type of error that occurred.
         attribute(:code, String, null: false)
 
-        # @return [String] A message that describes the error condition in a human-readable form.
+        # A message that describes the error condition in a human-readable form.
         attribute(:message, String, null: false)
 
-        # @return [String] Additional details that can help you understand or fix the issue.
+        # Additional details that can help you understand or fix the issue.
         attribute?(:details, String)
       end
     end

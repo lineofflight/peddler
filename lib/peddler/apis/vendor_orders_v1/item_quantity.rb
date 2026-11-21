@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Details of quantity ordered.
       ItemQuantity = Structure.new do
-        # @return [Integer] Acknowledged quantity. This value should not be zero.
+        # Acknowledged quantity. This value should not be zero.
         attribute?(:amount, Integer)
 
-        # @return [String] Unit of measure for the acknowledged quantity. Known values: `Cases`, `Eaches`.
+        # Unit of measure for the acknowledged quantity. Known values: `Cases`, `Eaches`.
         attribute?(:unit_of_measure, String, from: "unitOfMeasure")
 
-        # @return [Integer] The case size, in the event that we ordered using cases.
+        # The case size, in the event that we ordered using cases.
         attribute?(:unit_size, Integer, from: "unitSize")
       end
     end

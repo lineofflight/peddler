@@ -1,0 +1,36 @@
+{
+  "source": "test/vcr_cassettes/Peddler/APIs/ListingsItems20210801Test/test_patch_listings_item.yml",
+  "request": {
+    "method": "PATCH",
+    "path": "/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123",
+    "query": [
+      [
+        "includedData",
+        "issues"
+      ],
+      [
+        "marketplaceIds",
+        "A1F83G8C2ARO7P"
+      ]
+    ],
+    "body_base64": "eyJwcm9kdWN0VHlwZSI6IlBST0RVQ1QiLCJwYXRjaGVzIjpbeyJvcCI6InJlcGxhY2UiLCJwYXRoIjoiL2F0dHJpYnV0ZXMvcHVyY2hhc2FibGVfb2ZmZXIiLCJ2YWx1ZSI6W3siY3VycmVuY3kiOiJHQlAiLCJvdXJfcHJpY2UiOlt7InNjaGVkdWxlIjpbeyJ2YWx1ZV93aXRoX3RheCI6Mzk5Ljk5fV19XX1dfV19"
+  },
+  "response": {
+    "status": 200,
+    "headers": [
+      [
+        "content-type",
+        "application/json"
+      ],
+      [
+        "x-amzn-ratelimit-limit",
+        "5.0"
+      ],
+      [
+        "x-amzn-requestid",
+        "54921441-6350-499f-9a93-5c0292c87637"
+      ]
+    ],
+    "body_base64": "Cnsic2t1IjoiU0tVMTIzIiwic3RhdHVzIjoiQUNDRVBURUQiLCJzdWJtaXNzaW9uSWQiOiI3YWZlYTA2YzM5Njk0NWEwOTI2Njc3NDU3MGYzY2FmNCIsImlzc3VlcyI6W119Cg=="
+  }
+}

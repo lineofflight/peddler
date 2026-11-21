@@ -8,27 +8,27 @@ module Peddler
       include FeatureHelpers
 
       def test_get_pricing
-        res = api.sandbox.get_pricing("ATVPDKIKX0DER", "Asin")
+        res = api.get_pricing("ATVPDKIKX0DER", "Asin")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_competitive_pricing
-        res = api.sandbox.get_competitive_pricing("ATVPDKIKX0DER", "Asin")
+        res = api.get_competitive_pricing("ATVPDKIKX0DER", "Asin")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_listing_offers
-        res = api.sandbox.get_listing_offers("ATVPDKIKX0DER", "New", "NABetaASINB00V5DG6IQ")
+        res = api.get_listing_offers("ATVPDKIKX0DER", "New", "NABetaASINB00V5DG6IQ")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res, typed: false)
       end
 
       def test_get_item_offers
-        res = api.sandbox.get_item_offers("ATVPDKIKX0DER", "New", "B00V5DG6IQ")
+        res = api.get_item_offers("ATVPDKIKX0DER", "New", "B00V5DG6IQ")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res, typed: false)
       end
 
       def test_get_item_offers_batch
@@ -106,9 +106,9 @@ module Peddler
             },
           ],
         }
-        res = api.sandbox.get_item_offers_batch(payload)
+        res = api.get_item_offers_batch(payload)
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_listing_offers_batch
@@ -151,9 +151,9 @@ module Peddler
             },
           ],
         }
-        res = api.sandbox.get_listing_offers_batch(payload)
+        res = api.get_listing_offers_batch(payload)
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

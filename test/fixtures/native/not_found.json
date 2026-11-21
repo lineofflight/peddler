@@ -1,0 +1,27 @@
+{
+  "source": "test/vcr_cassettes/Peddler/Errors/NotFoundTest/test_not_found.yml",
+  "request": {
+    "method": "GET",
+    "path": "/reports/2021-06-30/reports/1234567",
+    "query": [],
+    "body_base64": null
+  },
+  "response": {
+    "status": 404,
+    "headers": [
+      [
+        "content-type",
+        "application/json"
+      ],
+      [
+        "x-amzn-ratelimit-limit",
+        "2.0"
+      ],
+      [
+        "x-amzn-requestid",
+        "dc880af3-4263-4b91-9294-138c838ff571"
+      ]
+    ],
+    "body_base64": "ewogICJlcnJvcnMiOiBbCiAgICB7CiAgICAgICJjb2RlIjogIk5vdEZvdW5kIiwKICAgICAgIm1lc3NhZ2UiOiAiT25lIG9yIG1vcmUgb2YgdGhlIHByb3ZpZGVkIFJlcG9ydFJlcXVlc3RJZHMgY291bGQgbm90IGJlIGZvdW5kLiIKICAgIH0KICBdCn0="
+  }
+}

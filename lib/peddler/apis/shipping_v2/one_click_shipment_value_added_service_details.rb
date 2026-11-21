@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The value-added services to be added to a shipping service purchase.
       class OneClickShipmentValueAddedServiceDetails < Array
         class << self

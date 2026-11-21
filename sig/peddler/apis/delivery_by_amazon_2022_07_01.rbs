@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class DeliveryByAmazon20220701 < API
+    module DeliveryByAmazon20220701
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::DeliveryByAmazon20220701::Error
                     | (String, String, String?) -> Peddler::APIs::DeliveryByAmazon20220701::Error
@@ -96,9 +98,6 @@ module Peddler
         def members: () -> [ :errors ]
         def to_h: () -> { errors: Array[Peddler::APIs::DeliveryByAmazon20220701::Error]? }
       end
-
-      def get_invoice_status: (String, String, String, ?order_id: String?, ?shipment_id: String?, ?invoice_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def submit_invoice: (Hash[untyped, untyped], ?order_id: String?, ?shipment_id: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

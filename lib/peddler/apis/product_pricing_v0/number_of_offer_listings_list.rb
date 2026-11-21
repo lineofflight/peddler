@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # The number of active offer listings for the item that was submitted. The listing count is returned by condition,
       # one for each listing condition value that is returned.
       class NumberOfOfferListingsList < Array

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # A list of marketplace identifiers you can subscribe to (for example, `ATVPDKIKX0DER`). To receive notifications
       # in every marketplace, do not provide this list.
       class MarketplaceIds < Array

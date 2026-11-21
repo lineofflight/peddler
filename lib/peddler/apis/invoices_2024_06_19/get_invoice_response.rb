@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # Success.
       GetInvoiceResponse = Structure.new do
-        # @return [Invoice]
         attribute?(:invoice, Invoice)
       end
     end

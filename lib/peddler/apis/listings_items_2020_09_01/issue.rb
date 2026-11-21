@@ -6,19 +6,19 @@ require "structure"
 
 module Peddler
   module APIs
-    class ListingsItems20200901
+    module ListingsItems20200901
       # An issue with a listings item.
       Issue = Structure.new do
-        # @return [String] An issue code that identifies the type of issue.
+        # An issue code that identifies the type of issue.
         attribute(:code, String, null: false)
 
-        # @return [String] A message that describes the issue.
+        # A message that describes the issue.
         attribute(:message, String, null: false)
 
-        # @return [String] The severity of the issue. Known values: `ERROR`, `WARNING`, `INFO`.
+        # The severity of the issue. Known values: `ERROR`, `WARNING`, `INFO`.
         attribute(:severity, String, null: false)
 
-        # @return [String] Name of the attribute associated with the issue, if applicable.
+        # Name of the attribute associated with the issue, if applicable.
         attribute?(:attribute_name, String, from: "attributeName")
       end
     end

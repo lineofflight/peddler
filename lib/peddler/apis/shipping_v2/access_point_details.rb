@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # AccessPointDetails object
       AccessPointDetails = Structure.new do
-        # @return [String]
         attribute?(:access_point_id, String, from: "accessPointId")
       end
     end

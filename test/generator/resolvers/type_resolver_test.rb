@@ -26,7 +26,6 @@ module Generator
       }
 
       assert_equal("[Offer]", resolver.resolve(prop_def))
-      assert_equal("Array<Offer>", resolver.resolve(prop_def, for_comment: true))
     end
 
     def test_array_with_tuple_style_ref
@@ -54,7 +53,6 @@ module Generator
 
       # TypeResolver should handle tuple-style items
       assert_equal("[Item]", resolver.resolve(prop_def))
-      assert_equal("Array<Item>", resolver.resolve(prop_def, for_comment: true))
     end
 
     def test_generated_type_with_additional_properties_true
@@ -103,7 +101,6 @@ module Generator
       }
 
       assert_equal("[String]", resolver.resolve(prop_def))
-      assert_equal("Array<String>", resolver.resolve(prop_def, for_comment: true))
     end
 
     def test_generated_type_check_for_money

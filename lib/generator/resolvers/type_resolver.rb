@@ -15,13 +15,13 @@ module Generator
       @api_name = api_name
     end
 
-    def resolve(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
+    def resolve(prop_def, for_rbs: false, prop_name: nil)
       return (for_rbs ? "Hash[untyped, untyped]" : "Hash") unless prop_def.is_a?(Hash)
 
       if prop_def["$ref"]
-        resolve_ref_type(prop_def["$ref"], for_comment, for_rbs)
+        resolve_ref_type(prop_def["$ref"], for_rbs)
       else
-        resolve_inline_type(prop_def, for_comment, for_rbs, prop_name)
+        resolve_inline_type(prop_def, for_rbs, prop_name)
       end
     end
 
@@ -45,7 +45,7 @@ module Generator
 
     private
 
-    def resolve_ref_type(ref, for_comment, for_rbs = false)
+    def resolve_ref_type(ref, for_rbs = false)
       ref_name = ref.split("/").last
 
       # Special handling for Money types
@@ -62,10 +62,10 @@ module Generator
       return Naming.class_name(ref_name) if generated_type?(ref_name)
 
       # For non-object types, resolve their actual type
-      resolve_ref_definition(ref_name, for_comment, for_rbs)
+      resolve_ref_definition(ref_name, for_rbs)
     end
 
-    def resolve_ref_definition(ref_name, for_comment, for_rbs = false)
+    def resolve_ref_definition(ref_name, for_rbs = false)
       ref_def = specification&.dig("definitions", ref_name)
       return "String" unless ref_def
 
@@ -73,7 +73,7 @@ module Generator
       when "string"
         "String"
       when "array"
-        resolve_ref_array(ref_def, for_comment, for_rbs)
+        resolve_ref_array(ref_def, for_rbs)
       when "integer"
         "Integer"
       when "number"
@@ -85,29 +85,27 @@ module Generator
       end
     end
 
-    def resolve_ref_array(ref_def, for_comment, for_rbs = false)
+    def resolve_ref_array(ref_def, for_rbs = false)
       return (for_rbs ? "Array[untyped]" : "Array") unless ref_def["items"]
 
       if ref_def["items"]["$ref"]
         # Handle $ref case (reference to another type)
         item_type = ref_def["items"]["$ref"].split("/").last
 
-        if for_comment
-          "Array<#{item_type}>"
-        elsif generated_type?(item_type)
+        if generated_type?(item_type)
           "[#{Naming.class_name(item_type)}]"
         else
           for_rbs ? "Array[untyped]" : "Array"
         end
       elsif ref_def["items"]["type"]
         # Handle primitive type case (string, integer, etc.)
-        resolve_array_with_type(ref_def["items"]["type"], for_comment, for_rbs)
+        resolve_array_with_type(ref_def["items"]["type"], for_rbs)
       else
         for_rbs ? "Array[untyped]" : "Array"
       end
     end
 
-    def resolve_inline_type(prop_def, for_comment, for_rbs = false, prop_name = nil)
+    def resolve_inline_type(prop_def, for_rbs = false, prop_name = nil)
       case prop_def["type"]
       when "string"
         resolve_string_type(prop_def)
@@ -118,7 +116,7 @@ module Generator
       when "boolean"
         ":boolean"
       when "array"
-        resolve_array_type(prop_def, for_comment, for_rbs)
+        resolve_array_type(prop_def, for_rbs)
       when "object"
         # Check if this inline object matches an extracted type
         if prop_name && prop_def["properties"]
@@ -146,7 +144,7 @@ module Generator
       end
     end
 
-    def resolve_array_type(prop_def, for_comment, for_rbs = false)
+    def resolve_array_type(prop_def, for_rbs = false)
       return (for_rbs ? "Array[untyped]" : "Array") unless prop_def["items"]
 
       items = prop_def["items"]
@@ -159,47 +157,39 @@ module Generator
       return (for_rbs ? "Array[untyped]" : "Array") unless items.is_a?(Hash)
 
       if items["$ref"]
-        resolve_array_with_ref(items["$ref"], for_comment, for_rbs)
+        resolve_array_with_ref(items["$ref"], for_rbs)
       elsif items["type"]
-        resolve_array_with_type(items["type"], for_comment, for_rbs)
+        resolve_array_with_type(items["type"], for_rbs)
       else
         for_rbs ? "Array[untyped]" : "Array"
       end
     end
 
-    def resolve_array_with_ref(ref, for_comment, for_rbs = false)
+    def resolve_array_with_ref(ref, for_rbs = false)
       item_type = ref.split("/").last
 
       # Check if this is a self-referential array (direct property, not via another type)
-      if item_type == type_name
-        return for_comment ? "Array<self>" : "[:self]"
-      end
+      return "[:self]" if item_type == type_name
 
-      if for_comment
-        "Array<#{item_type}>"
-      elsif generated_type?(item_type)
+      if generated_type?(item_type)
         "[#{Naming.class_name(item_type)}]"
       else
         for_rbs ? "Array[untyped]" : "Array"
       end
     end
 
-    def resolve_array_with_type(item_type, for_comment, for_rbs = false)
-      if for_comment
-        "Array<#{item_type.capitalize}>"
+    def resolve_array_with_type(item_type, for_rbs = false)
+      case item_type
+      when "string"
+        "[String]"
+      when "integer"
+        "[Integer]"
+      when "number"
+        "[Float]"
+      when "boolean"
+        "[:boolean]"
       else
-        case item_type
-        when "string"
-          "[String]"
-        when "integer"
-          "[Integer]"
-        when "number"
-          "[Float]"
-        when "boolean"
-          "[:boolean]"
-        else
-          for_rbs ? "Array[untyped]" : "Array"
-        end
+        for_rbs ? "Array[untyped]" : "Array"
       end
     end
   end

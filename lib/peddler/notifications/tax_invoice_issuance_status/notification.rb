@@ -9,22 +9,22 @@ module Peddler
     module TaxInvoiceIssuanceStatus
       # Notification envelope with metadata
       Notification = Structure.new do
-        # @return [String] The time the notification was sent.
+        # The time the notification was sent.
         attribute(:event_time, String, null: false, from: "eventTime")
 
-        # @return [NotificationMetadata] The notification's metadata.
+        # The notification's metadata.
         attribute(:notification_metadata, NotificationMetadata, null: false, from: "notificationMetadata")
 
-        # @return [String] The notification type. Known values: `TAX_INVOICE_ISSUANCE_STATUS`.
+        # The notification type. Known values: `TAX_INVOICE_ISSUANCE_STATUS`.
         attribute(:notification_type, String, null: false, from: "notificationType")
 
-        # @return [String] The notification version.
+        # The notification version.
         attribute(:notification_version, String, null: false, from: "notificationVersion")
 
-        # @return [Payload] The payload containing invoice issuance status details.
+        # The payload containing invoice issuance status details.
         attribute(:payload, Payload, null: false)
 
-        # @return [String] The payload version of the notification.
+        # The payload version of the notification.
         attribute(:payload_version, String, null: false, from: "payloadVersion")
       end
     end

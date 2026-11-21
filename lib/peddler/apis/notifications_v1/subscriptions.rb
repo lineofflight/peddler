@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # A list of subscriptions.
       class Subscriptions < Array
         class << self

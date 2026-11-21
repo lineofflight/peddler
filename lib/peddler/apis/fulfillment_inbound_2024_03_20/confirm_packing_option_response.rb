@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `confirmPackingOption` response.
       ConfirmPackingOptionResponse = Structure.new do
-        # @return [String] UUID for the given operation.
+        # UUID for the given operation.
         attribute(:operation_id, String, null: false, from: "operationId")
       end
     end

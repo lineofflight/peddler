@@ -6,20 +6,18 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The specific rate for a shipping service, or null if no service available.
       ServiceRate = Structure.new do
-        # @return [Weight] The weight that was used to calculate the totalCharge.
+        # The weight that was used to calculate the totalCharge.
         attribute(:billable_weight, Weight, null: false, from: "billableWeight")
 
-        # @return [ShippingPromiseSet]
         attribute(:promise, ShippingPromiseSet, null: false)
 
-        # @return [String] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping
-        #   Premium`.
+        # Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`.
         attribute(:service_type, String, null: false, from: "serviceType")
 
-        # @return [Money] The total charge that will be billed for the rate.
+        # The total charge that will be billed for the rate.
         attribute(:total_charge, Money, null: false, from: "totalCharge")
       end
     end

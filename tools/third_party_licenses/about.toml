@@ -1,0 +1,139 @@
+# What cargo-about is told when it writes the licence notices of a platform gem.
+# See tools/third_party_licenses.rb.
+
+# The licences a crate linked into the extension may have. Where a crate offers a
+# choice, the first one listed here is taken. A crate that none of these satisfies
+# fails the packaging step: read its licence before adding it here.
+accepted = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+    "MPL-2.0",
+]
+
+# Only what ends up in the binary: no build scripts and no tests.
+ignore-build-dependencies = true
+ignore-dev-dependencies = true
+
+# The extension is Peddler's own, under the gem's licence.
+private = { ignore = true }
+
+# chrono keeps its 2 licences in 1 file.
+workarounds = ["chrono"]
+
+# 7 crates ship a license file that cargo-about doesn't take by itself, so it would
+# print the standard text of the license, without the crate's copyright line. Each
+# entry points at the file the crate ships. The last entry, for encoding_rs, keeps a
+# source file out of the notices. A checksum is of the text that is used:
+# the file, or the part from `start` to `end`. When a new version of the crate changes
+# that text, the tool fails and names the crate: read the new file, then update the
+# entry.
+
+# Its MIT text is wrapped narrowly, which cargo-about scores too low.
+[async-stream.clarify]
+license = "MIT"
+
+[[async-stream.clarify.files]]
+path = "LICENSE"
+checksum = "157d381f6304eba77459fc10dfb5b1b22fc0d04e384a32865f32d8e67a34c0eb"
+
+# Their MIT text is indented by 4 spaces, which cargo-about scores too low. Only
+# the Windows gem links them.
+[windows-link.clarify]
+license = "MIT OR Apache-2.0"
+
+[[windows-link.clarify.files]]
+path = "license-mit"
+license = "MIT"
+checksum = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+
+[[windows-link.clarify.files]]
+path = "license-apache-2.0"
+license = "Apache-2.0"
+checksum = "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+
+[windows-sys.clarify]
+license = "MIT OR Apache-2.0"
+
+[[windows-sys.clarify.files]]
+path = "license-mit"
+license = "MIT"
+checksum = "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+
+[[windows-sys.clarify.files]]
+path = "license-apache-2.0"
+license = "Apache-2.0"
+checksum = "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+
+# An Apache-2.0 text without its appendix is taken for the Pixar license.
+[sync_wrapper.clarify]
+license = "Apache-2.0"
+
+[[sync_wrapper.clarify.files]]
+path = "LICENSE"
+checksum = "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+
+# As sync_wrapper.
+[ryu.clarify]
+license = "Apache-2.0 OR BSL-1.0"
+
+[[ryu.clarify.files]]
+path = "LICENSE-APACHE"
+license = "Apache-2.0"
+checksum = "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+
+[[ryu.clarify.files]]
+path = "LICENSE-BOOST"
+license = "BSL-1.0"
+checksum = "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+
+# Both of its licenses are in 1 file.
+[aws-lc-rs.clarify]
+license = "ISC AND (Apache-2.0 OR ISC)"
+
+[[aws-lc-rs.clarify.files]]
+path = "LICENSE"
+license = "ISC"
+checksum = "3cc9b9267235c6c73f950b3189f33b3f6d3a6daf6fa07763843edd7a9a8b6b2e"
+start = "Copyright Amazon.com, Inc. or its affiliates."
+end = "OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+
+[[aws-lc-rs.clarify.files]]
+path = "LICENSE"
+license = "Apache-2.0"
+checksum = "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b"
+start = "                                 Apache License"
+end = "END OF TERMS AND CONDITIONS"
+
+# Its file lists the copyright lines of every part of AWS-LC and then the text of
+# each license, so the whole file stands for each of them.
+[aws-lc-sys.clarify]
+license = "ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)"
+
+[[aws-lc-sys.clarify.files]]
+path = "LICENSE"
+checksum = "728536b4160e051f86d7c9c388f704866b3d512cd7df97ac3516c65279523c4e"
+
+# cargo-about also took 1 of its source files, which has the BSD-3-Clause text in a
+# comment above a data table, for a license file.
+[encoding_rs.clarify]
+license = "(Apache-2.0 OR MIT) AND BSD-3-Clause"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-MIT"
+license = "MIT"
+checksum = "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-APACHE"
+license = "Apache-2.0"
+checksum = "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+
+[[encoding_rs.clarify.files]]
+path = "LICENSE-WHATWG"
+license = "BSD-3-Clause"
+checksum = "838118388fe5c2e7f1dbbaeed13e1c7f3ebf88be91319c7c1d77c18e987d1a50"

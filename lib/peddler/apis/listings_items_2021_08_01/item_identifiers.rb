@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
       class ItemIdentifiers < Array
         class << self

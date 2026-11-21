@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `cancelServiceJobByServiceJobId` operation.
       CancelServiceJobByServiceJobIdResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the `cancelServiceJobByServiceJobId` operation.
+        # Encountered errors for the `cancelServiceJobByServiceJobId` operation.
         attribute?(:errors, [Error])
       end
     end

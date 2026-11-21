@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # A list of additional information about the item.
       class Contexts < Array
         class << self

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of coupon payment event information.
       class CouponPaymentEventList < Array
         class << self

@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # This object allows users to specify an order to be scheduled. Only the amazonOrderId is required.
       OrderScheduleDetails = Structure.new do
-        # @return [String]
         attribute(:amazon_order_id, String, null: false, from: "amazonOrderId")
 
-        # @return [PackageDetails]
         attribute?(:package_details, PackageDetails, from: "packageDetails")
       end
     end

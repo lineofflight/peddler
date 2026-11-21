@@ -9,10 +9,10 @@ module Peddler
     module AccountHealthReport20201118
       # ReportingDateRange with start timestamp and end timestamp defined.
       ReportingDateRange = Structure.new do
-        # @return [String] Reporting start date in UTC.
+        # Reporting start date in UTC.
         attribute(:reporting_date_from, String, null: false, from: "reportingDateFrom")
 
-        # @return [String] Reporting end date in UTC.
+        # Reporting end date in UTC.
         attribute(:reporting_date_to, String, null: false, from: "reportingDateTo")
       end
     end

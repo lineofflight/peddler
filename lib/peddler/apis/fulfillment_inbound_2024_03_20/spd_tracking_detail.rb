@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains information related to Small Parcel Delivery (SPD) shipment tracking.
       SpdTrackingDetail = Structure.new do
-        # @return [Array<SpdTrackingItem>] List of Small Parcel Delivery (SPD) tracking items.
+        # List of Small Parcel Delivery (SPD) tracking items.
         attribute?(:spd_tracking_items, [SpdTrackingItem], from: "spdTrackingItems")
       end
     end

@@ -9,17 +9,16 @@ module Peddler
     module ListingsFeedProcessingReportSchema
       # Header information about the feed submission.
       Header = Structure.new do
-        # @return [String] The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        # The identifier for the feed. This identifier is unique only in combination with a seller ID.
         attribute(:feed_id, String, null: false, from: "feedId")
 
-        # @return [String] Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
+        # Identifier for the Selling Partner, such as the Merchant Account or Vendor Code.
         attribute(:seller_id, String, null: false, from: "sellerId")
 
-        # @return [String] Version of the JSON Selling Partner Listings Feeds specification used for the feed
-        #   submission.
+        # Version of the JSON Selling Partner Listings Feeds specification used for the feed submission.
         attribute(:version, String, null: false)
 
-        # @return [Report] The report information for the feed submission.
+        # The report information for the feed submission.
         attribute?(:report, Report)
       end
     end

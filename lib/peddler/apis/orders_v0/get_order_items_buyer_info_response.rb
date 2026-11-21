@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The response schema for the `getOrderItemsBuyerInfo` operation.
       GetOrderItemsBuyerInfoResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `getOrderItemsBuyerInfo` operation.
+        # One or more unexpected errors occurred during the `getOrderItemsBuyerInfo` operation.
         attribute?(:errors, [Error])
 
-        # @return [OrderItemsBuyerInfoList] The payload for the `getOrderItemsBuyerInfo` operation.
+        # The payload for the `getOrderItemsBuyerInfo` operation.
         attribute?(:payload, OrderItemsBuyerInfoList)
       end
     end

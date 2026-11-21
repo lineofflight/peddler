@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of value-added services available for a shipping service offering.
       class AvailableValueAddedServiceGroupList < Array
         class << self

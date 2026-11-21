@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Sales ranks of an Amazon catalog item.
       class ItemSalesRanks < Array
         class << self

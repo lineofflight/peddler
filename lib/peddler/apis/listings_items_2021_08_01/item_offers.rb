@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # The listings item's offer details.
       class ItemOffers < Array
         class << self

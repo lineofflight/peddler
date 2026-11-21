@@ -12,14 +12,11 @@ module Peddler
       # available at different date range aggregation levels: DAY, WEEK, MONTH, QUARTER, YEAR. Requests can span
       # multiple date range periods.
       Report = Structure.new do
-        # @return [Array<NetPureProductMarginAggregateDetails>]
         attribute(:net_pure_product_margin_aggregate, [NetPureProductMarginAggregateDetails], null: false, from: "netPureProductMarginAggregate")
 
-        # @return [Array<NetPureProductMarginDetailsByAsin>]
         attribute(:net_pure_product_margin_by_asin, [NetPureProductMarginDetailsByASIN], null: false, from: "netPureProductMarginByAsin")
 
-        # @return [Hash] The report summary including the specified reporting date range and the last updated date in
-        #   the input.
+        # The report summary including the specified reporting date range and the last updated date in the input.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An array of return authorization information.
       class ReturnAuthorizationList < Array
         class << self

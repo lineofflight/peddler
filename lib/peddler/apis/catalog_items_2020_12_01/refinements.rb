@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Search refinements.
       Refinements = Structure.new do
-        # @return [Array<BrandRefinement>] Brand search refinements.
+        # Brand search refinements.
         attribute(:brands, [BrandRefinement], null: false)
 
-        # @return [Array<ClassificationRefinement>] Classification search refinements.
+        # Classification search refinements.
         attribute(:classifications, [ClassificationRefinement], null: false)
       end
     end

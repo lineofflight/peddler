@@ -1,0 +1,57 @@
+# Generated from lib/peddler/native/errors.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class TransportError < StandardError
+  end
+
+  class TimeoutError < TransportError
+  end
+
+  class ForkError < StandardError
+  end
+
+  class AuthenticationError < StandardError
+    @status: Integer?
+
+    @code: String?
+
+    # The HTTP status when Login with Amazon rejected the request
+    attr_reader status: Integer?
+
+    # What Login with Amazon names as the problem, such as "invalid_client" or "invalid_grant"
+    attr_reader code: String?
+
+    def initialize: (String message, ?Integer? status, ?code: String?) -> void
+
+    # Supports pattern matching on status and code
+    #
+    # Example:
+    #
+    #     case error
+    #     in code: "invalid_grant" then reauthorize
+    #     in status: 500.. then retry_later
+    #     end
+    def deconstruct_keys: (Array[Symbol]? keys) -> Hash[Symbol, untyped]
+  end
+
+  class DocumentError < StandardError
+  end
+
+  class DocumentTimeoutError < DocumentError
+  end
+
+  class WorkflowError < StandardError
+  end
+
+  class WorkflowTimeoutError < WorkflowError
+  end
+
+  class PaginationError < StandardError
+    @reason: Symbol
+
+    # What was wrong with the token of the page
+    attr_reader reason: Symbol
+
+    def initialize: (Symbol reason) -> void
+  end
+end

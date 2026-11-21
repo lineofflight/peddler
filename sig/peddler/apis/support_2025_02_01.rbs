@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Support20250201 < API
+    module Support20250201
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Appointment < Data
         def self.new: (appointment_id: String, callback_timing: Peddler::APIs::Support20250201::CallbackTiming, phone_number: Peddler::APIs::Support20250201::PhoneNumber, status: String, ?answering_party: String?) -> Peddler::APIs::Support20250201::Appointment
                     | (String, Peddler::APIs::Support20250201::CallbackTiming, Peddler::APIs::Support20250201::PhoneNumber, String, String?) -> Peddler::APIs::Support20250201::Appointment
@@ -291,11 +293,6 @@ module Peddler
         def members: () -> [ :country_code, :number, :extension ]
         def to_h: () -> { country_code: String, number: String, extension: String? }
       end
-
-      def get_case: (String, ?rate_limit: Float) -> Peddler::Response
-      def list_cases: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def list_contacts: (String, ?max_results: Integer?, ?next_token: String?, ?sort_order: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

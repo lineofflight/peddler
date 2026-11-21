@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Details about the movement of money. Breakdowns are further categorized into breakdown types, breakdown amounts,
       # and sub-breakdowns.
       Breakdown = Structure.new do
-        # @return [Money] The monetary amount of the charge.
+        # The monetary amount of the charge.
         attribute(:breakdown_amount, Money, null: false, from: "breakdownAmount")
 
-        # @return [String] The type of charge.
+        # The type of charge.
         #
         # **Possible values for `invoiceAmountBreakdowns`:**
         #
@@ -39,7 +39,7 @@ module Peddler
         # * `Other`: Other line item breakdown type.
         attribute(:breakdown_type, String, null: false, from: "breakdownType")
 
-        # @return [Array<self>] A list of breakdowns that detail how the total amount is calculated.
+        # A list of breakdowns that detail how the total amount is calculated.
         attribute?(:breakdowns, [:self])
       end
     end

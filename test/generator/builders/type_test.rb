@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "helper"
+require "prism"
 require "generator/builders/type"
 
 module Generator
@@ -86,20 +87,6 @@ module Generator
       assert_equal("[SimpleType]", type.ruby_type_for(array_prop))
     end
 
-    def test_ruby_type_for_array_of_objects_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = {
-        "definitions" => {
-          "SimpleType" => { "type" => "object", "properties" => {} },
-        },
-      }
-      type = Type.new("ComplexType", definition, API_NAME, specification)
-
-      array_prop = { "type" => "array", "items" => { "$ref" => "#/definitions/SimpleType" } }
-
-      assert_equal("Array<SimpleType>", type.ruby_type_for(array_prop, for_comment: true))
-    end
-
     def test_ruby_type_for_array_of_strings
       definition = { "type" => "object", "properties" => {} }
       specification = { "definitions" => {} }
@@ -108,16 +95,6 @@ module Generator
       string_array = { "type" => "array", "items" => { "type" => "string" } }
 
       assert_equal("[String]", type.ruby_type_for(string_array))
-    end
-
-    def test_ruby_type_for_array_of_strings_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
-      type = Type.new("ComplexType", definition, API_NAME, specification)
-
-      string_array = { "type" => "array", "items" => { "type" => "string" } }
-
-      assert_equal("Array<String>", type.ruby_type_for(string_array, for_comment: true))
     end
 
     def test_money_type_handling
@@ -139,8 +116,6 @@ module Generator
         },
       }
       type = Type.new("TypeWithMoney", definition, API_NAME, specification)
-
-      assert_predicate(type, :needs_money?)
       money_prop = { "$ref" => "#/definitions/Money" }
 
       assert_equal("Money", type.ruby_type_for(money_prop))
@@ -190,32 +165,6 @@ module Generator
       }
 
       assert_equal("[:self]", type.ruby_type_for(children_prop))
-    end
-
-    def test_array_with_self_reference_comment
-      definition = {
-        "type" => "object",
-        "properties" => {
-          "name" => { "type" => "string" },
-          "children" => {
-            "type" => "array",
-            "items" => { "$ref" => "#/definitions/TreeNode" },
-          },
-        },
-      }
-      specification = {
-        "definitions" => {
-          "TreeNode" => definition,
-        },
-      }
-      type = Type.new("TreeNode", definition, API_NAME, specification)
-
-      children_prop = {
-        "type" => "array",
-        "items" => { "$ref" => "#/definitions/TreeNode" },
-      }
-
-      assert_equal("Array<self>", type.ruby_type_for(children_prop, for_comment: true))
     end
 
     def test_type_dependencies
@@ -371,24 +320,6 @@ module Generator
       assert_equal("[SimpleType]", type.ruby_type_for(array_type_ref))
     end
 
-    def test_handle_ref_with_array_type_comment
-      definition = { "type" => "object", "properties" => {} }
-      specification = {
-        "definitions" => {
-          "SimpleType" => { "type" => "object", "properties" => {} },
-          "ArrayType" => {
-            "type" => "array",
-            "items" => { "$ref" => "#/definitions/SimpleType" },
-          },
-        },
-      }
-      type = Type.new("SimpleType", definition, API_NAME, specification)
-
-      array_type_ref = { "$ref" => "#/definitions/ArrayType" }
-
-      assert_equal("Array<SimpleType>", type.ruby_type_for(array_type_ref, for_comment: true))
-    end
-
     def test_format_property_comment_with_description
       definition = { "type" => "object", "properties" => {} }
       specification = { "definitions" => {} }
@@ -397,7 +328,7 @@ module Generator
       prop_with_desc = { "type" => "string", "description" => "The name of the item" }
       comment = type.send(:format_property_comment, prop_with_desc)
 
-      assert_match(/@return \[String\] The name of the item/, comment)
+      assert_equal("        # The name of the item", comment)
     end
 
     def test_format_property_comment_without_description
@@ -408,7 +339,7 @@ module Generator
       prop_without_desc = { "type" => "integer" }
       comment = type.send(:format_property_comment, prop_without_desc)
 
-      assert_equal("        # @return [Integer]", comment)
+      assert_nil(comment)
     end
 
     def test_format_property_comment_lists_known_values
@@ -416,10 +347,10 @@ module Generator
       specification = { "definitions" => {} }
       type = Type.new("SimpleType", definition, API_NAME, specification)
 
-      prop = { "type" => "string", "description" => "The type of shipping.", "enum" => ["Marketplace", "Self"] }
+      prop = { "type" => "string", "description" => "The type of shipping", "enum" => ["Marketplace", "Self"] }
       comment = type.send(:format_property_comment, prop)
 
-      assert_match(/@return \[String\] The type of shipping\. Known values: `Marketplace`, `Self`\./, comment)
+      assert_equal("        # The type of shipping. Known values: `Marketplace`, `Self`.", comment)
     end
 
     def test_format_property_comment_lists_known_values_without_description
@@ -429,7 +360,7 @@ module Generator
 
       comment = type.send(:format_property_comment, { "type" => "string", "enum" => ["A", "B"] })
 
-      assert_equal("        # @return [String] Known values: `A`, `B`.", comment)
+      assert_equal("        # Known values: `A`, `B`.", comment)
     end
 
     def test_format_property_comment_lists_known_values_from_ref
@@ -441,21 +372,28 @@ module Generator
       }
       type = Type.new("SimpleType", definition, API_NAME, specification)
 
-      prop = { "$ref" => "#/definitions/Status", "description" => "The status" }
+      prop = { "$ref" => "#/definitions/Status", "description" => "The status." }
       comment = type.send(:format_property_comment, prop)
 
-      assert_match(/@return \[String\] The status\. Known values: `Open`, `Closed`\./, comment)
+      assert_equal("        # The status. Known values: `Open`, `Closed`.", comment)
     end
 
     def test_format_property_comment_lists_known_values_of_array_items
       definition = { "type" => "object", "properties" => {} }
-      specification = { "definitions" => {} }
+      specification = {
+        "definitions" => {
+          "Program" => { "type" => "string", "enum" => ["SELLER_FLEX"] },
+        },
+      }
       type = Type.new("SimpleType", definition, API_NAME, specification)
 
       prop = { "type" => "array", "items" => { "type" => "string", "enum" => ["HAZMAT", "MPS"] } }
-      comment = type.send(:format_property_comment, prop)
 
-      assert_equal("        # @return [Array<String>] Known values: `HAZMAT`, `MPS`.", comment)
+      assert_equal("        # Known values: `HAZMAT`, `MPS`.", type.send(:format_property_comment, prop))
+
+      prop = { "type" => "array", "items" => { "$ref" => "#/definitions/Program" } }
+
+      assert_equal("        # Known values: `SELLER_FLEX`.", type.send(:format_property_comment, prop))
     end
 
     def test_format_property_comment_skips_known_values_the_description_already_lists
@@ -466,7 +404,25 @@ module Generator
       prop = { "type" => "string", "description" => "Possible values: `Open`, `Closed`.", "enum" => ["Open", "Closed"] }
       comment = type.send(:format_property_comment, prop)
 
-      refute_match(/Known values/, comment)
+      assert_equal("        # Possible values: `Open`, `Closed`.", comment)
+    end
+
+    # A spec is data, its enum too: a value is written as the text it is, whatever it holds.
+    def test_format_property_comment_writes_hostile_known_values_as_text
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
+
+      prop = { "type" => "string", "enum" => ["a`b", "`c`", "\#{exit}", '"d"', "e\n\n:stopdoc:\n@rbs f"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # Known values: ``a`b``, `` `c` ``, `\#{exit}`, `\"d\"`, `e :stopdoc: @rbs f`.", comment)
+
+      # A wrap that begins a line inside a value leaves no directive there either.
+      prop = { "type" => "string", "description" => "a" * 90, "enum" => ["x :include: /etc/passwd"] }
+      comment = type.send(:format_property_comment, prop)
+
+      assert_equal("        # #{"a" * 90}. Known values: `x\n        # \\:include: /etc/passwd`.", comment)
     end
 
     def test_required_properties
@@ -558,6 +514,69 @@ module Generator
       type = Type.new("T", definition, API_NAME, { "definitions" => {} })
 
       assert_equal('attribute?(:active, :boolean, from: "isActive")', type.attribute_declaration_for("isActive", { "type" => "boolean" }))
+    end
+
+    # A property name is data. Whatever it holds, the file reads it back as the same symbol and the same string:
+    # it parses, and loading it defines the attribute and runs nothing.
+    HOSTILE_NAME = "Evil\"\#{raise %q(the name ran)}\n\\"
+
+    def test_a_property_name_never_breaks_the_file
+      assert_empty(Prism.parse(hostile_source).errors, hostile_source)
+    end
+
+    def test_a_property_name_is_written_as_a_symbol_and_a_string
+      calls = calls_in(Prism.parse(hostile_source).value)
+      symbol, _type, keywords = calls.last.arguments.arguments
+      key = keywords.elements.first.value
+
+      assert_equal([:require, :new, :attribute?], calls.map(&:name), hostile_source)
+      assert_equal([Prism::SymbolNode, HOSTILE_NAME.underscore], [symbol.class, symbol.unescaped])
+      assert_equal([Prism::StringNode, HOSTILE_NAME], [key.class, key.unescaped])
+    end
+
+    def test_a_property_name_loads_as_the_attribute_and_nothing_else
+      eval(hostile_source, TOPLEVEL_BINDING.dup, "hostile_name.rb")
+      model = Peddler::APIs::TestAPI::HostileName
+      attribute = HOSTILE_NAME.underscore.to_sym
+
+      assert_equal([attribute], model.members)
+      assert_equal("x", model.parse({ HOSTILE_NAME => "x" }).public_send(attribute))
+    ensure
+      Peddler::APIs.send(:remove_const, :TestAPI) if Peddler::APIs.const_defined?(:TestAPI, false)
+    end
+
+    # The name of a type is data too, and it is the constant the file defines: one that is code never renders.
+    def test_a_type_name_that_is_no_constant_is_refused
+      definition = { "type" => "object", "properties" => { "id" => { "type" => "string" } } }
+      type = Type.new("String; raise %q(the name ran); Evil", definition, API_NAME, { "definitions" => {} })
+
+      assert_raises(ArgumentError) { type.send(:render) }
+    end
+
+    # A type of a feed, a notification or a report opens the module of its schema, which is named after the
+    # schema's file. That name is data too: the type is refused before its file is written.
+    def test_a_namespace_that_is_no_constant_is_refused
+      definition = { "type" => "object", "properties" => { "id" => { "type" => "string" } } }
+      type = Type.new("Report", definition, "reports/x;exit 1;y", { "definitions" => {} })
+      type.define_singleton_method(:write_file) { |*| raise "a file was written" }
+
+      assert_raises(ArgumentError) { type.generate }
+    end
+
+    private
+
+    # The file of a model whose 1 property has the hostile name
+    def hostile_source
+      definition = { "type" => "object", "properties" => { HOSTILE_NAME => { "type" => "string" } } }
+
+      Type.new("HostileName", definition, API_NAME, { "definitions" => {} }).send(:render)
+    end
+
+    # Every call in the source, in the order it is written
+    def calls_in(node, found = [])
+      found << node if node.is_a?(Prism::CallNode)
+      node.compact_child_nodes.each { |child| calls_in(child, found) }
+      found
     end
   end
 end

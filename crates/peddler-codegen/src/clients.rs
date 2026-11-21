@@ -1,0 +1,430 @@
+//! Every operation of an API and its parameters, read from Amazon's Swagger 2 spec.
+use crate::{GenerationError, known_values, manifest::ModelSpec};
+use heck::{ToPascalCase, ToSnakeCase};
+use serde_json::{Map, Value, json};
+
+#[derive(Debug)]
+pub struct Operation {
+    pub id: String,
+    pub name: String,
+    pub method: String,
+    pub path: String,
+    pub description: String,
+    /// The requests per second its usage plan allows, if it documents a number
+    pub rate: Option<f64>,
+    /// The kind of sandbox call it can make, if any: "static" or "dynamic"
+    pub sandbox: Option<&'static str>,
+    pub parameters: Vec<Parameter>,
+    pub successes: Vec<(u16, Option<String>)>,
+}
+#[derive(Debug)]
+pub struct Parameter {
+    pub name: String,
+    pub wire_name: String,
+    /// Its place among the spec's parameters. `Operation::parameters` puts a body last.
+    pub position: usize,
+    pub location: String,
+    pub description: Option<String>,
+    /// The values its docs list. `schema` keeps only what a request is checked against.
+    pub known: Vec<Value>,
+    pub required: bool,
+    pub schema: Value,
+    pub csv: bool,
+}
+impl Operation {
+    pub fn body(&self) -> Option<&Parameter> {
+        self.parameters.iter().find(|p| p.location == "body")
+    }
+    /// Its method in Ruby, where a keyword of Rust is a name like any other
+    pub(crate) fn ruby_name(&self) -> &str {
+        self.name.trim_end_matches('_')
+    }
+}
+impl Parameter {
+    /// Its argument in Ruby, where a keyword of Rust is a name like any other
+    pub(crate) fn ruby_name(&self) -> String {
+        self.wire_name.to_snake_case()
+    }
+}
+/// A name as Rust writes it: a keyword takes a `_`.
+pub(crate) fn snake(name: &str) -> String {
+    let result = name.to_snake_case();
+    if typify::accept_as_ident(&result) {
+        result
+    } else {
+        format!("{result}_")
+    }
+}
+pub(crate) fn pascal(name: &str) -> String {
+    name.to_pascal_case()
+}
+
+const METHODS: [&str; 7] = ["get", "post", "put", "patch", "delete", "head", "options"];
+/// What the generator reads of a parameter. Swagger 2 keeps these on the parameter
+/// itself. Its constraints are left out: Amazon checks them.
+const SCHEMA_KEYS: [&str; 4] = ["type", "format", "enum", "default"];
+
+pub fn render(spec: &Value, api: &ModelSpec) -> Result<Vec<Operation>, GenerationError> {
+    let paths = spec["paths"]
+        .as_object()
+        .ok_or_else(|| GenerationError("missing paths".into()))?;
+    let mut operations = Vec::new();
+    let mut seen = std::collections::BTreeSet::new();
+    for (path, methods) in paths {
+        let shared = methods
+            .get("parameters")
+            .and_then(Value::as_array)
+            .cloned()
+            .unwrap_or_default();
+        for (method, operation) in methods.as_object().into_iter().flatten() {
+            if !METHODS.contains(&method.as_str()) {
+                continue;
+            }
+            let Some(id) = operation["operationId"].as_str() else {
+                continue;
+            };
+            // Amazon gives Shipping v2's POST and PUT of a carrier account the same ID.
+            let wire_id =
+                if api.module == "shipping_v2" && id == "linkCarrierAccount" && method == "put" {
+                    format!("{id}_{method}")
+                } else {
+                    id.to_owned()
+                };
+            if !seen.insert(wire_id.clone()) {
+                return Err(GenerationError(format!("duplicate operationId {id}")));
+            }
+            // What is refused of an operation names it. The caller names the file.
+            let named = |error: GenerationError| GenerationError(format!("{id}: {error}"));
+            let description = operation["description"].as_str().unwrap_or_default();
+            operations.push(Operation {
+                name: snake(&wire_id),
+                id: id.to_owned(),
+                method: method.to_ascii_uppercase(),
+                path: path.clone(),
+                description: description.to_owned(),
+                rate: rate(description).map_err(named)?,
+                sandbox: sandbox(methods, operation),
+                parameters: parameters(spec, api, &shared, operation).map_err(named)?,
+                successes: successes(spec, operation).map_err(named)?,
+            });
+        }
+    }
+    operations.sort_by(|a, b| a.name.cmp(&b.name));
+    Ok(operations)
+}
+/// The header cells of a usage plan table that this reads a rate under.
+const RATE_HEADER: [&str; 2] = ["Rate (requests per second)", "Burst"];
+
+/// The cells of a line that is a row of a table.
+fn row(line: &str) -> Option<Vec<&str>> {
+    let cells = line.trim().strip_prefix('|')?.strip_suffix('|')?;
+    Some(cells.split('|').map(str::trim).collect())
+}
+/// The rate of an operation, in requests per second, from the usage plan table of its
+/// description, which is the only place a spec has it: the cell under
+/// `Rate (requests per second)` in the first row. The header ends with that cell and
+/// `Burst`, after the name of the plan at most, and a rule of dashes follows it. A line
+/// break may be spelled as a backslash and an n. A rate of `n` varies by seller, so the
+/// operation has none.
+///
+/// Amazon may change how it writes the table. A description that mentions a usage plan
+/// or a burst without a table this reads, or with a rate that is no positive number, is
+/// refused: a rate in another unit, or the burst, must not be taken for the rate.
+fn rate(description: &str) -> Result<Option<f64>, GenerationError> {
+    let text = description.replace("\\n", "\n");
+    let rows: Vec<_> = text.lines().map(row).collect();
+    let cell = rows.windows(3).find_map(|table| {
+        let [Some(header), Some(rule), Some(first)] = table else {
+            return None;
+        };
+        let column = header.len().checked_sub(2).filter(|column| *column <= 1)?;
+        let dashes = |cell: &&str| !cell.is_empty() && cell.bytes().all(|byte| byte == b'-');
+        let reads = header[column..] == RATE_HEADER
+            && rule.len() == header.len()
+            && rule.iter().all(dashes)
+            && first.len() == header.len();
+        reads.then(|| first[column])
+    });
+    let Some(cell) = cell else {
+        let text = description.to_lowercase();
+        return if text.contains("usage plan") || text.contains("burst") {
+            Err(GenerationError("usage plan without a rate table".into()))
+        } else {
+            Ok(None)
+        };
+    };
+    if cell.eq_ignore_ascii_case("n") {
+        return Ok(None);
+    }
+    match cell.parse::<f64>() {
+        Ok(rate) if rate.is_finite() && rate > 0.0 => Ok(Some(rate)),
+        _ => Err(GenerationError(format!("unsupported rate {cell:?}"))),
+    }
+}
+/// The kind of sandbox call an operation can make, as v5 read it: static if its first
+/// success response has a static sandbox, or else dynamic if it or its path has one.
+fn sandbox(path: &Value, operation: &Value) -> Option<&'static str> {
+    let set = |value: &Value| !matches!(value, Value::Null | Value::Bool(false));
+    let responses = operation["responses"].as_object();
+    let success = responses.and_then(|all| all.iter().find(|(code, _)| code.starts_with('2')));
+    if success.is_some_and(|(_, response)| set(&response["x-amzn-api-sandbox"]["static"])) {
+        Some("static")
+    } else if [path, operation]
+        .iter()
+        .any(|value| set(&value["x-amzn-api-sandbox"]["dynamic"]))
+    {
+        Some("dynamic")
+    } else {
+        None
+    }
+}
+/// An operation's parameters: its path's, then its own, with a body last.
+fn parameters(
+    spec: &Value,
+    api: &ModelSpec,
+    shared: &[Value],
+    operation: &Value,
+) -> Result<Vec<Parameter>, GenerationError> {
+    let mut declared = shared.to_vec();
+    for parameter in operation["parameters"].as_array().into_iter().flatten() {
+        let resolved = resolve(parameter, spec)?;
+        declared.retain(|p| !(p["name"] == resolved["name"] && p["in"] == resolved["in"]));
+        declared.push(resolved.clone());
+    }
+    let mut parameters = Vec::new();
+    let mut body = None;
+    for (position, value) in declared.iter().enumerate() {
+        let value = resolve(value, spec)?;
+        if value["in"] == "body" {
+            body = Some(body_parameter(spec, value, position)?);
+        } else {
+            parameters.push(parameter(api, value, position)?);
+        }
+    }
+    parameters.extend(body);
+    Ok(parameters)
+}
+fn description(value: &Value) -> Option<String> {
+    value["description"].as_str().map(str::to_owned)
+}
+fn wire_name(value: &Value) -> Result<String, GenerationError> {
+    let name = value["name"].as_str();
+    Ok(name
+        .ok_or_else(|| GenerationError("missing parameter name".into()))?
+        .to_owned())
+}
+fn body_parameter(
+    spec: &Value,
+    value: &Value,
+    position: usize,
+) -> Result<Parameter, GenerationError> {
+    // Swagger 2 bodies are JSON unless the spec says otherwise.
+    let consumes = media_types(spec, value, "consumes");
+    if !(consumes.is_empty() || consumes.contains(&"application/json")) {
+        return Err(GenerationError("unsupported request media".into()));
+    }
+    // What sits next to a reference is not schema. Shipping v1 keeps examples there.
+    let schema = match value["schema"].get("$ref") {
+        Some(reference) => json!({"$ref": reference}),
+        None => value["schema"].clone(),
+    };
+    // A parameter's default is written into the Ruby method. A body's could be any
+    // JSON, which is not checked as the others are, and no spec has one.
+    if schema.get("default").is_some() {
+        return Err(GenerationError("unsupported default for a body".into()));
+    }
+    Ok(Parameter {
+        name: "body".into(),
+        wire_name: wire_name(value)?,
+        position,
+        location: "body".into(),
+        description: description(value),
+        known: Vec::new(),
+        required: value["required"] == true,
+        schema,
+        csv: false,
+    })
+}
+/// A path, query or header parameter.
+fn parameter(
+    api: &ModelSpec,
+    value: &Value,
+    position: usize,
+) -> Result<Parameter, GenerationError> {
+    let wire_name = wire_name(value)?;
+    let location = value["in"].as_str().unwrap_or("").to_owned();
+    let required = value["required"] == true;
+    let mut schema: Map<String, Value> = SCHEMA_KEYS
+        .iter()
+        .filter_map(|key| Some(((*key).to_owned(), value.get(key)?.clone())))
+        .collect();
+    if schema.get("type") == Some(&json!("string"))
+        && schema.get("format") == Some(&json!("boolean"))
+    {
+        schema.insert("type".into(), json!("boolean"));
+        if let Some(default) = schema.get("default").and_then(Value::as_str) {
+            let default = default
+                .parse::<bool>()
+                .map_err(|_| GenerationError("invalid boolean default".into()))?;
+            schema.insert("default".into(), json!(default));
+        }
+    }
+    let mut schema = Value::Object(schema);
+    let array = schema["type"] == "array";
+    if array {
+        schema["items"] = json!({"type": value["items"]["type"]});
+    }
+    // Swagger 2 joins an array with commas unless it says otherwise.
+    let csv = array && value["collectionFormat"] != "multi";
+    if csv && schema["default"].is_string() {
+        if api.module == "catalog_items_2020_12_01"
+            && wire_name == "includedData"
+            && schema["default"] == "summaries"
+        {
+            schema["default"] = json!(["summaries"]);
+        } else {
+            return Err(GenerationError(format!(
+                "unexplained scalar array default for {wire_name}"
+            )));
+        }
+    }
+    if !["path", "query", "header"].contains(&location.as_str())
+        || (location == "path" && (!required || schema["type"] != "string"))
+    {
+        return Err(GenerationError(format!(
+            "unsupported {location} parameter {wire_name}"
+        )));
+    }
+    if array
+        && (location != "query"
+            || !["csv", "multi"].contains(&value["collectionFormat"].as_str().unwrap_or("csv"))
+            || schema["items"]["type"] != "string")
+    {
+        return Err(GenerationError(format!(
+            "unsupported array parameter {wire_name}"
+        )));
+    }
+    let parameter = Parameter {
+        name: snake(&wire_name),
+        wire_name,
+        position,
+        location,
+        description: description(value),
+        known: known_values::enum_values(value, None).to_vec(),
+        required,
+        schema,
+        csv,
+    };
+    rust_type(&parameter)?;
+    validate_default(&parameter)?;
+    Ok(parameter)
+}
+/// An operation's success statuses, each with the model it returns, if it has one.
+fn successes(
+    spec: &Value,
+    operation: &Value,
+) -> Result<Vec<(u16, Option<String>)>, GenerationError> {
+    let json = media_types(spec, operation, "produces").contains(&"application/json");
+    let mut successes = Vec::new();
+    for (status, response) in operation["responses"].as_object().into_iter().flatten() {
+        if !status.starts_with('2') {
+            continue;
+        }
+        let status = status
+            .parse::<u16>()
+            .map_err(|_| GenerationError("success range unsupported".into()))?;
+        // Only a JSON response has a model.
+        let schema = if json {
+            &resolve(response, spec)?["schema"]
+        } else {
+            &Value::Null
+        };
+        let model = if matches!(status, 204 | 205) {
+            None
+        } else if let Some(reference) = schema["$ref"].as_str() {
+            let name = reference
+                .strip_prefix("#/definitions/")
+                .ok_or_else(|| GenerationError("external success schema".into()))?;
+            if spec["definitions"].get(name).is_none() {
+                return Err(GenerationError(format!("missing success schema {name}")));
+            }
+            Some(format!("super::models::{}", pascal(name)))
+        } else if schema["type"] == "string" {
+            Some("String".into())
+        } else if schema.is_null() {
+            None
+        } else {
+            return Err(GenerationError("unsupported inline success schema".into()));
+        };
+        successes.push((status, model));
+    }
+    Ok(successes)
+}
+/// The media types an operation consumes or produces: its own list, or else the API's.
+fn media_types<'a>(spec: &'a Value, operation: &'a Value, key: &str) -> Vec<&'a str> {
+    operation
+        .get(key)
+        .or_else(|| spec.get(key))
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+        .collect()
+}
+fn resolve<'a>(value: &'a Value, spec: &'a Value) -> Result<&'a Value, GenerationError> {
+    if let Some(reference) = value["$ref"].as_str() {
+        let pointer = reference
+            .strip_prefix('#')
+            .ok_or_else(|| GenerationError("external reference".into()))?;
+        spec.pointer(pointer)
+            .ok_or_else(|| GenerationError(format!("missing {reference}")))
+    } else {
+        Ok(value)
+    }
+}
+fn validate_default(p: &Parameter) -> Result<(), GenerationError> {
+    let Some(default) = p.schema.get("default") else {
+        return Ok(());
+    };
+    let valid = match p.schema["type"].as_str() {
+        Some("string") => default.is_string(),
+        Some("boolean") => default.is_boolean(),
+        Some("integer") if p.schema["format"] == "int32" => default
+            .as_i64()
+            .is_some_and(|value| i32::try_from(value).is_ok()),
+        Some("integer") => default.as_i64().is_some(),
+        Some("number") => default.as_f64().is_some_and(f64::is_finite),
+        Some("array") => default.as_array().is_some_and(|values| {
+            values.iter().all(|value| {
+                value
+                    .as_str()
+                    .is_some_and(|text| !text.is_empty() && (!p.csv || !text.contains(',')))
+            })
+        }),
+        _ => false,
+    };
+    if !valid {
+        return Err(GenerationError(format!(
+            "invalid default for {}",
+            p.wire_name
+        )));
+    }
+    Ok(())
+}
+pub(crate) fn rust_type(p: &Parameter) -> Result<String, GenerationError> {
+    Ok(match p.schema["type"].as_str() {
+        Some("string") => "String",
+        Some("boolean") => "bool",
+        Some("integer") if p.schema["format"] == "int32" => "i32",
+        Some("integer") => "i64",
+        Some("number") => "serde_json::Number",
+        Some("array") => "Vec<String>",
+        _ => {
+            return Err(GenerationError(format!(
+                "unsupported parameter {}",
+                p.wire_name
+            )));
+        }
+    }
+    .into())
+}

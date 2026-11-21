@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The Response for the UnlinkCarrierAccountResponse operation.
       UnlinkCarrierAccountResponse = Structure.new do
-        # @return [:boolean] Is Carrier unlinked from Merchant
+        # Is Carrier unlinked from Merchant
         attribute?(:unlinked, :boolean, from: "isUnlinked")
       end
     end

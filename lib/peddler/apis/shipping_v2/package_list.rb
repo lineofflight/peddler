@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of packages to be shipped through a shipping service offering.
       class PackageList < Array
         class << self

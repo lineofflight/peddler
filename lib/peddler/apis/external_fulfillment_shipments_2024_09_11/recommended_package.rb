@@ -6,16 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Recommendations for a package
       RecommendedPackage = Structure.new do
-        # @return [PackageDimensions]
         attribute(:dimensions, PackageDimensions, null: false)
 
-        # @return [Weight]
         attribute(:weight, Weight, null: false)
 
-        # @return [Array<RecommendedPackageLineItem>]
         attribute?(:line_items, [RecommendedPackageLineItem], from: "lineItems")
       end
     end

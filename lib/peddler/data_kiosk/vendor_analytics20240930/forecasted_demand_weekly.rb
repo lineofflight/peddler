@@ -9,16 +9,16 @@ module Peddler
     module VendorAnalytics20240930
       # Forecasted customer demand by week. A null value for a given metric means that the metric is not available.
       ForecastedDemandWeekly = Structure.new do
-        # @return [ForecastedDemandStatistic] Amazon's estimate that customer demand will be at or below this value.
+        # Amazon's estimate that customer demand will be at or below this value.
         attribute?(:demand, ForecastedDemandStatistic)
 
-        # @return [String] End date of the forecasting range.
+        # End date of the forecasting range.
         attribute?(:end_date, String, null: false, from: "endDate")
 
-        # @return [String] Start date of the forecasting range.
+        # Start date of the forecasting range.
         attribute?(:start_date, String, null: false, from: "startDate")
 
-        # @return [Integer] Week number of the forecasting range.
+        # Week number of the forecasting range.
         attribute?(:week_number, Integer, null: false, from: "weekNumber")
       end
     end

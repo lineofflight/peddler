@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Service Selection Criteria.
       ServiceSelection = Structure.new do
-        # @return [Array<String>]
         attribute(:service_id, [String], null: false, from: "serviceId")
       end
     end

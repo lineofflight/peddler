@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionPlans20260601
+    module ActionPlans20260601
       # The set of values available for a single search refinement.
       class SearchRefinementValues < Array
         class << self

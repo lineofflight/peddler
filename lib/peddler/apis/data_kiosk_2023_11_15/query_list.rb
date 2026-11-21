@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class DataKiosk20231115
+    module DataKiosk20231115
       # A list of queries.
       class QueryList < Array
         class << self

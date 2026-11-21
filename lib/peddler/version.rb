@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Peddler
-  VERSION = "5.5.0"
+  VERSION = "6.0.0" #: String
 end

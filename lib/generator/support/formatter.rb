@@ -4,7 +4,7 @@ module Generator
   module Formatter
     MAX_LINE_LENGTH = 120
 
-    def split_long_comment_line(line, base_indent: 0, wrap_indent: 0, max_line_length: MAX_LINE_LENGTH)
+    def split_long_comment_line(line, base_indent: 0, max_line_length: MAX_LINE_LENGTH)
       max_width = max_line_length - base_indent - 2 # Account for the space and `#`
 
       # Split into lines and process them intelligently:
@@ -71,21 +71,15 @@ module Generator
         # Word wrap this paragraph
         current_line = []
         lines = []
-        first_line = true
         paragraph.split.each do |word|
-          if first_line && (current_line + [word]).join(" ").size <= max_width
-            current_line << word
-          elsif !first_line && (current_line + [word]).join(" ").size <= max_width - wrap_indent
+          if (current_line + [word]).join(" ").size <= max_width
             current_line << word
           else
-            lines << " " * base_indent + "# " + " " * (first_line ? 0 : wrap_indent) + current_line.join(" ")
-            first_line = false
+            lines << " " * base_indent + "# " + escape_rdoc_directive(current_line.join(" "))
             current_line = [word]
           end
         end
-        unless current_line.empty?
-          lines << " " * base_indent + "# " + " " * (first_line ? 0 : wrap_indent) + current_line.join(" ")
-        end
+        lines << " " * base_indent + "# " + escape_rdoc_directive(current_line.join(" ")) unless current_line.empty?
 
         all_lines.concat(lines)
       end
@@ -93,23 +87,11 @@ module Generator
       all_lines.empty? ? " " * base_indent + "#" : all_lines.join("\n")
     end
 
-    def format_method_definition(method_name, params, base_indent: 0, max_line_length: MAX_LINE_LENGTH)
-      max_width = max_line_length - base_indent
-
-      current_line = ["def #{method_name}("]
-      lines = []
-      params.each do |param|
-        if (current_line + ["#{param},"]).join.size <= max_width
-          current_line << param + ", "
-        else
-          lines << " " * base_indent + current_line.join.strip
-          current_line = ["  " + param + ", "]
-        end
-      end
-      joined = current_line.join
-      lines << " " * base_indent + (joined[..-3] || "") + ")"
-
-      lines.join("\n")
+    # A line of a spec's text as RDoc must read it: as text. RDoc takes a line that starts with `:word:` for a
+    # directive, wherever in a comment it stands, and `:include: file` puts that file on the built page. `call-seq:`
+    # and `Document-method:` are directives without the colon in front. A backslash makes each of them text again.
+    def escape_rdoc_directive(line)
+      line.sub(/\A(?=:[\w-]+:)/) { "\\" }.sub(/\A(call-seq|Document-method):/) { "#{Regexp.last_match(1)}\\:" }
     end
 
     def convert_doc_links_to_full_url(text)
@@ -118,17 +100,17 @@ module Generator
         path = Regexp.last_match(2)
         url = "https://developer-docs.amazon.com/sp-api/docs/#{path}"
 
-        "{#{url} #{link_text}}"
+        "[#{link_text}](#{url})"
       end
     end
 
-    def convert_html_links_to_yard(text)
+    def convert_html_links_to_markdown(text)
       # Handle quoted href attributes: <a href="url"> or <a href='url'>
       text = text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
 
-        "{#{url} #{link_text}}"
+        "[#{link_text}](#{url})"
       end
 
       # Handle unquoted href attributes: <a href=url>
@@ -136,7 +118,7 @@ module Generator
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
 
-        "{#{url} #{link_text}}"
+        "[#{link_text}](#{url})"
       end
 
       # Normalize markdown bold: convert __text__ to **text** for consistency

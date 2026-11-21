@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # The response schema for the `competitiveSummaryBatch` operation.
       CompetitiveSummaryBatchResponse = Structure.new do
-        # @return [Array<CompetitiveSummaryResponse>] The response list for the `competitiveSummaryBatch` operation.
+        # The response list for the `competitiveSummaryBatch` operation.
         attribute(:responses, [CompetitiveSummaryResponse], null: false)
       end
     end

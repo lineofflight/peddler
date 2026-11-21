@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class SellersV1
+    module SellersV1
       # List of marketplace participations.
       class MarketplaceParticipationList < Array
         class << self

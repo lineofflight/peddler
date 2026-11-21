@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # A response to an individual inventory request.
       InventoryResponse = Structure.new do
-        # @return [InventoryResponseBody] The body of the response.
+        # The body of the response.
         attribute(:body, InventoryResponseBody, null: false)
 
-        # @return [HttpStatusLine] The HTTP status code associated with the response.
+        # The HTTP status code associated with the response.
         attribute(:status, HttpStatusLine, null: false)
       end
     end

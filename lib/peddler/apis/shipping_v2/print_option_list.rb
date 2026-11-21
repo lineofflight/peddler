@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of the format options for a label.
       class PrintOptionList < Array
         class << self

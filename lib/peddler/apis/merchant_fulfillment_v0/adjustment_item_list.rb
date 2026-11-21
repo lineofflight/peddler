@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # List of adjustments.
       class AdjustmentItemList < Array
         class << self

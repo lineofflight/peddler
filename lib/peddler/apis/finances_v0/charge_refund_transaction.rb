@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # The charge refund transaction.
       ChargeRefundTransaction = Structure.new do
-        # @return [Money] The amount of the charge refund credit.
+        # The amount of the charge refund credit.
         attribute?(:charge_amount, Money, from: "ChargeAmount")
 
-        # @return [String] The type of charge.
+        # The type of charge.
         attribute?(:charge_type, String, from: "ChargeType")
       end
     end

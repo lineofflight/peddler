@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of expense information related to an affordability promotion.
       class AffordabilityExpenseEventList < Array
         class << self

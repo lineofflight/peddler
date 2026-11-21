@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The volume of the shipment.
       Volume = Structure.new do
-        # @return [String] The unit of measurement. Known values: `CuFt`, `CuIn`, `CuM`, `CuY`.
+        # The unit of measurement. Known values: `CuFt`, `CuIn`, `CuM`, `CuY`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
-        # @return [String] The measurement value.
+        # The measurement value.
         attribute(:value, String, null: false)
       end
     end

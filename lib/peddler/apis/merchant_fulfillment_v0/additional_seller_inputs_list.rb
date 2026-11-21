@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of additional seller input pairs required to purchase shipping.
       class AdditionalSellerInputsList < Array
         class << self

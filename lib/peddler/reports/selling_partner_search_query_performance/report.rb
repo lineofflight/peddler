@@ -13,10 +13,9 @@ module Peddler
       # For example, a request at the WEEK level cannot start on 2025-01-05 and end on 2025-01-18 as this request spans
       # two weeks.
       Report = Structure.new do
-        # @return [Array<SearchQueryPerformanceData>]
         attribute(:data_by_asin, [SearchQueryPerformanceData], null: false, from: "dataByAsin")
 
-        # @return [Hash] Summarizes the original report request.
+        # Summarizes the original report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

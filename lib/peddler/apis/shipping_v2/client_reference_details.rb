@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Object to pass additional information about the MCI Integrator shipperType: List of ClientReferenceDetail
       class ClientReferenceDetails < Array
         class << self

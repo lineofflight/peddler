@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesInvoices20260625
+    module FinancesInvoices20260625
       # Identifier for an item in the invoice line item.
       ItemIdentifier = Structure.new do
-        # @return [String] The type of item identifier. Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`,
-        #   `ISBN`.
+        # The type of item identifier. Known values: `ASIN`, `EXTERNAL_ID`, `SKU`, `UPC`, `EAN`, `ISBN`.
         attribute(:item_identifier_name, String, null: false, from: "itemIdentifierName")
 
-        # @return [String] The value of the item identifier.
+        # The value of the item identifier.
         attribute(:item_identifier_value, String, null: false, from: "itemIdentifierValue")
       end
     end

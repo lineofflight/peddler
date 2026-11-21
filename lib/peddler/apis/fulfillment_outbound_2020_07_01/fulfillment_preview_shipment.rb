@@ -6,29 +6,28 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Delivery and item information for a shipment in a fulfillment order preview.
       FulfillmentPreviewShipment = Structure.new do
-        # @return [Array<FulfillmentPreviewItem>] Information about the items in the shipment.
+        # Information about the items in the shipment.
         attribute(:fulfillment_preview_items, [FulfillmentPreviewItem], null: false, from: "fulfillmentPreviewItems")
 
-        # @return [String] The earliest date that the shipment is expected to arrive at its destination.
+        # The earliest date that the shipment is expected to arrive at its destination.
         attribute?(:earliest_arrival_date, String, from: "earliestArrivalDate")
 
-        # @return [String] The earliest date that the shipment is expected to be sent from the fulfillment center, in
-        #   ISO 8601 date time format.
+        # The earliest date that the shipment is expected to be sent from the fulfillment center, in ISO 8601 date time
+        # format.
         attribute?(:earliest_ship_date, String, from: "earliestShipDate")
 
-        # @return [String] The latest date that the shipment is expected to arrive at its destination, in ISO 8601 date
-        #   time format.
+        # The latest date that the shipment is expected to arrive at its destination, in ISO 8601 date time format.
         attribute?(:latest_arrival_date, String, from: "latestArrivalDate")
 
-        # @return [String] The latest date that the shipment is expected to be sent from the fulfillment center, in ISO
-        #   8601 date time format.
+        # The latest date that the shipment is expected to be sent from the fulfillment center, in ISO 8601 date time
+        # format.
         attribute?(:latest_ship_date, String, from: "latestShipDate")
 
-        # @return [Array<String>] Provides additional insight into the shipment timeline when exact delivery dates are
-        #   not able to be precomputed.
+        # Provides additional insight into the shipment timeline when exact delivery dates are not able to be
+        # precomputed.
         attribute?(:shipping_notes, [String], from: "shippingNotes")
       end
     end

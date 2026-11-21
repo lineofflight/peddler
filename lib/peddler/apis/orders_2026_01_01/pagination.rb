@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Pagination occurs when a request has results that exceed the response limit. This means the results are divided
       # into individual pages. To retrieve a different page, you must pass the token value as the `paginationToken`
       # query parameter in the subsequent request. All other parameters must be provided with the same values that were
@@ -14,7 +14,7 @@ module Peddler
       # `includedData`, which can be modified between calls. The token will expire after 24 hours. When there are no
       # other pages to fetch, the `pagination` field will be absent from the response.
       Pagination = Structure.new do
-        # @return [String] A token that can be used to fetch the next page of results.
+        # A token that can be used to fetch the next page of results.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

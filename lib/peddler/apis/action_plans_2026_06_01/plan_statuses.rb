@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionPlans20260601
+    module ActionPlans20260601
       # The state of a plan, expressed as an array.
       class PlanStatuses < Array
         class << self

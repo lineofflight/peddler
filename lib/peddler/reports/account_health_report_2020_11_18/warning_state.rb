@@ -9,11 +9,10 @@ module Peddler
     module AccountHealthReport20201118
       # Seller account warning state for 1 requested marketplace.
       WarningState = Structure.new do
-        # @return [String] Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or
-        #   NONE.
+        # Seller account warning state status for 1 requested marketplace. It could be GOOD or BAD or NONE.
         attribute(:status, String, null: false)
 
-        # @return [String] Seller account warning type for 1 requested marketplace.
+        # Seller account warning type for 1 requested marketplace.
         attribute(:warning_type, String, null: false, from: "warningType")
       end
     end

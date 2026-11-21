@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # A list of all the available rates that can be used to send the shipment.
       class RateList < Array
         class << self

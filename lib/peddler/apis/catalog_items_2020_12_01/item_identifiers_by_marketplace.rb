@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
       ItemIdentifiersByMarketplace = Structure.new do
-        # @return [Array<ItemIdentifier>] Identifiers associated with the item in the Amazon catalog for the indicated
-        #   Amazon marketplace.
+        # Identifiers associated with the item in the Amazon catalog for the indicated Amazon marketplace.
         attribute(:identifiers, [ItemIdentifier], null: false)
 
-        # @return [String] Amazon marketplace identifier.
+        # Amazon marketplace identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
       end
     end

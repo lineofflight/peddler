@@ -13,14 +13,11 @@ module Peddler
       # date range aggregation levels: DAY, WEEK, MONTH. Per-ASIN data is available at different ASIN aggregation
       # levels: PARENT, CHILD, SKU. Requests can span multiple date range periods.
       Report = Structure.new do
-        # @return [Hash] Report summary including specified reporting date range, dateGranularity, and asinGranularity
-        #   in the input.
+        # Report summary including specified reporting date range, dateGranularity, and asinGranularity in the input.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
 
-        # @return [Array<SalesAndTrafficByAsin>]
         attribute(:sales_and_traffic_by_asin, [SalesAndTrafficByASIN], null: false, from: "salesAndTrafficByAsin")
 
-        # @return [Array<SalesAndTrafficByDate>]
         attribute(:sales_and_traffic_by_date, [SalesAndTrafficByDate], null: false, from: "salesAndTrafficByDate")
       end
     end

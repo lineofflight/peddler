@@ -7,15 +7,14 @@ require "time"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Business days and hours when the destination is open for deliveries.
       BusinessHour = Structure.new do
-        # @return [String] Specific day of the week for which operating hours are being defined. Known values: `SUN`,
-        #   `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`.
+        # Specific day of the week for which operating hours are being defined. Known values: `SUN`, `MON`, `TUE`,
+        # `WED`, `THU`, `FRI`, `SAT`.
         attribute?(:day_of_week, String, from: "dayOfWeek")
 
-        # @return [Array<TimeWindow>] Collection of time windows during which the location is available for deliveries
-        #   on the specified day.
+        # Collection of time windows during which the location is available for deliveries on the specified day.
         attribute?(:time_windows, [TimeWindow], from: "timeWindows")
       end
     end

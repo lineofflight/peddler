@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # A list of action item classifications.
       class ActionItemTypeClassifications < Array
         class << self

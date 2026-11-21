@@ -15,7 +15,7 @@ module Peddler
           condition_type: "new_new",
         )
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

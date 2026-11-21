@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents an AWD distribution package.
       DistributionPackage = Structure.new do
-        # @return [DistributionPackageContents] The contents appropriate for the type.
+        # The contents appropriate for the type.
         attribute(:contents, DistributionPackageContents, null: false)
 
-        # @return [MeasurementData] Measurements of a package, including weight, volume, and dimensions.
+        # Measurements of a package, including weight, volume, and dimensions.
         attribute(:measurements, MeasurementData, null: false)
 
-        # @return [String] Type of distribution package. Known values: `CASE`, `PALLET`.
+        # Type of distribution package. Known values: `CASE`, `PALLET`.
         attribute(:type, String, null: false)
       end
     end

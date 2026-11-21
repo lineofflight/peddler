@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Quantity of inventory with an associated measurement unit context.
       InventoryQuantity = Structure.new do
-        # @return [Float] Quantity of the respective inventory.
+        # Quantity of the respective inventory.
         attribute(:quantity, Float, null: false)
 
-        # @return [String] Unit of measurement for the inventory. Known values: `PRODUCT_UNITS`, `CASES`, `PALLETS`.
+        # Unit of measurement for the inventory. Known values: `PRODUCT_UNITS`, `CASES`, `PALLETS`.
         attribute(:unit_of_measurement, String, null: false, from: "unitOfMeasurement")
       end
     end

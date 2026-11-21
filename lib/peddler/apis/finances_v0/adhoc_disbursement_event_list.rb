@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of `AdhocDisbursement` events.
       class AdhocDisbursementEventList < Array
         class << self

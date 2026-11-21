@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ProductPricingV0 < API
+    module ProductPricingV0
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ASINIdentifier < Data
         def self.new: (asin: String, marketplace_id: String) -> Peddler::APIs::ProductPricingV0::ASINIdentifier
                     | (String, String) -> Peddler::APIs::ProductPricingV0::ASINIdentifier
@@ -893,15 +895,6 @@ module Peddler
         def members: () -> [ :total_offer_count, :buy_box_eligible_offers, :buy_box_prices, :competitive_price_threshold, :list_price, :lowest_prices, :number_of_offers, :offers_available_time, :sales_rankings, :suggested_lower_price_plus_shipping ]
         def to_h: () -> { total_offer_count: Integer, buy_box_eligible_offers: Array[Peddler::APIs::ProductPricingV0::OfferCountType]?, buy_box_prices: Array[Peddler::APIs::ProductPricingV0::BuyBoxPriceType]?, competitive_price_threshold: Peddler::Money?, list_price: Peddler::Money?, lowest_prices: Array[Peddler::APIs::ProductPricingV0::LowestPriceType]?, number_of_offers: Array[Peddler::APIs::ProductPricingV0::OfferCountType]?, offers_available_time: Time?, sales_rankings: Array[Peddler::APIs::ProductPricingV0::SalesRankType]?, suggested_lower_price_plus_shipping: Peddler::Money? }
       end
-
-      def get_competitive_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def get_item_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_item_offers_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_listing_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def get_listing_offers_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?item_condition: String?, ?offer_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

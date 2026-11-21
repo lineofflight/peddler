@@ -63,7 +63,7 @@ module Generator
     # Class name for the feed (e.g., "ListingsFeedSchema")
     def class_name
       # Underscore first to ensure ActiveSupport::Inflector applies acronym rules correctly
-      feed_name.underscore.camelize
+      Naming.constant(feed_name.underscore.camelize)
     end
 
     # Root properties from schema

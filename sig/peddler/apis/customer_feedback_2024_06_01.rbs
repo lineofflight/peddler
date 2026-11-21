@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class CustomerFeedback20240601 < API
+    module CustomerFeedback20240601
+      PARSERS: Hash[String, ^() -> untyped]
+
       class BrowseNodeAllOccurrence < Data
         def self.new: (all_products: Float, top_twenty_five_percent_products: Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
                     | (Float, Float) -> Peddler::APIs::CustomerFeedback20240601::BrowseNodeAllOccurrence
@@ -693,16 +695,6 @@ module Peddler
         def members: () -> [ :occurrence_percentage ]
         def to_h: () -> { occurrence_percentage: Float }
       end
-
-      def get_browse_node_return_topics: (String, String) -> Peddler::Response
-      def get_browse_node_return_trends: (String, String) -> Peddler::Response
-      def get_browse_node_review_topics: (String, String, String) -> Peddler::Response
-
-      def get_browse_node_review_trends: (String, String) -> Peddler::Response
-      def get_item_browse_node: (String, String) -> Peddler::Response
-      def get_item_review_topics: (String, String, String) -> Peddler::Response
-
-      def get_item_review_trends: (String, String) -> Peddler::Response
     end
   end
 end

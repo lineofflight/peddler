@@ -1,0 +1,8 @@
+[workspace]
+members = ["crates/peddler", "crates/peddler-ruby"]
+default-members = ["crates/peddler"]
+resolver = "3"
+
+# The extension ships as a binary in the platform gems, so its symbols are left out.
+[profile.release]
+strip = "symbols"

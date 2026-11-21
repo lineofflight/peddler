@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # Standard product description text.
       StandardProductDescriptionModule = Structure.new do
-        # @return [ParagraphComponent]
         attribute(:body, ParagraphComponent, null: false)
       end
     end

@@ -6,15 +6,15 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Drop-off location for the fulfillment order.
       OrderDropOffLocation = Structure.new do
-        # @return [Hash] Drop-off location attributes.
+        # Drop-off location attributes.
         attribute?(:attributes, Hash)
 
-        # @return [String] Specifies the preferred location to leave the package at the destination address. Possible
-        #   values: `FRONT_DOOR`, `DELIVERY_BOX`, `GAS_METER_BOX`, `BICYCLE_BASKET`, `GARAGE`, `RECEPTIONIST`,
-        #   `FALLBACK_NEIGHBOR_DELIVERY`, `DO_NOT_LEAVE_UNATTENDED`, `LOCKER`
+        # Specifies the preferred location to leave the package at the destination address. Possible values:
+        # `FRONT_DOOR`, `DELIVERY_BOX`, `GAS_METER_BOX`, `BICYCLE_BASKET`, `GARAGE`, `RECEPTIONIST`,
+        # `FALLBACK_NEIGHBOR_DELIVERY`, `DO_NOT_LEAVE_UNATTENDED`, `LOCKER`
         attribute?(:type, String)
       end
     end

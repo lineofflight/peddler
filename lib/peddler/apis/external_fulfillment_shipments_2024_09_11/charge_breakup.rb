@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The composition of the charge.
       ChargeBreakup = Structure.new do
-        # @return [Amount] The base amount charged.
+        # The base amount charged.
         attribute(:base_amount, Amount, null: false, from: "baseAmount")
 
-        # @return [Amount] The offer or coupon amount.
+        # The offer or coupon amount.
         attribute(:discount_amount, Amount, null: false, from: "discountAmount")
 
-        # @return [Amount] The total amount after discount.
+        # The total amount after discount.
         attribute(:net_amount, Amount, null: false, from: "netAmount")
       end
     end

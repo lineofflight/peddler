@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Response schema for the cancelShipment operation.
       CancelShipmentResponse = Structure.new do
-        # @return [Hash]
         attribute?(:payload, Hash)
       end
     end

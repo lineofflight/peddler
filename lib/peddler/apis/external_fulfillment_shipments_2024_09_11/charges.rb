@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The charges associated with the shipment.
       class Charges < Array
         class << self

@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # The response schema for the submitShipmentConfirmations operation.
       SubmitShipmentConfirmationsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [TransactionReference] The response payload for the submitShipmentConfirmations operation.
+        # The response payload for the submitShipmentConfirmations operation.
         attribute?(:payload, TransactionReference)
       end
     end

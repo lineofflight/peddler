@@ -6,16 +6,15 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateByIdRequest = Structure.new do
-        # @return [String] Known values: `ASIN`, `SellerSKU`.
+        # Known values: `ASIN`, `SellerSKU`.
         attribute(:id_type, String, null: false, from: "IdType")
 
-        # @return [String] The item identifier.
+        # The item identifier.
         attribute(:id_value, String, null: false, from: "IdValue")
 
-        # @return [FeesEstimateRequest]
         attribute?(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
       end
     end

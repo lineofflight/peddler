@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # The identifier for a transaction.
       TransactionIdentifier = Structure.new do
-        # @return [String] The transaction identifier.
+        # The transaction identifier.
         attribute?(:id, String)
 
-        # @return [String] The transaction identifier name. Use the `getInvoicesAttributes` operation to check
-        #   `transactionIdentifierName` options.
+        # The transaction identifier name. Use the `getInvoicesAttributes` operation to check
+        # `transactionIdentifierName` options.
         attribute?(:name, String)
       end
     end

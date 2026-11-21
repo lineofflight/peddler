@@ -1,0 +1,30 @@
+# Generated from lib/peddler/marketplace.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  # Amazon's marketplaces, by country code
+  #
+  # https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
+  MARKETPLACE_IDS: Hash[String, { id: String, country_name: String, selling_region: String }]
+
+  class Marketplace
+    # Finds the marketplace for the given country code
+    def self.find: (String country_code) -> Marketplace
+
+    # Returns the marketplace ID for the given country code
+    def self.id: (String country_code) -> String
+
+    # Returns the marketplace IDs for the given country codes
+    def self.ids: (*String country_codes) -> Array[String]
+
+    # Returns all marketplaces
+    def self.all: () -> Array[Marketplace]
+
+    def endpoint: () -> Endpoint
+
+    # Its ID, so a marketplace is its ID wherever a String is taken
+    def to_str: () -> String
+
+    # Its ID as JSON, so a marketplace anywhere inside a request body is sent as its ID
+    def to_json: (*untyped) -> String
+  end
+end

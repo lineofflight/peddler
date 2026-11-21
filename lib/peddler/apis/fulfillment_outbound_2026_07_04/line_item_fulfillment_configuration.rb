@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Fulfillment service configuration for a line item.
       LineItemFulfillmentConfiguration = Structure.new do
-        # @return [OrderLineItemServices] Services for the line item.
+        # Services for the line item.
         attribute?(:services, OrderLineItemServices)
       end
     end

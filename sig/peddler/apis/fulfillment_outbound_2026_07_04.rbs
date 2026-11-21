@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704 < API
+    module FulfillmentOutbound20260704
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Address < Data
         def self.new: (address_line1: String, country_code: String, name: String, postal_code: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?district_or_county: String?, ?email: String?, ?phone: String?, ?state_or_region: String?) -> Peddler::APIs::FulfillmentOutbound20260704::Address
                     | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentOutbound20260704::Address
@@ -1356,19 +1358,6 @@ module Peddler
         def members: () -> [ :unit, :value ]
         def to_h: () -> { unit: String, value: String }
       end
-
-      def cancel_order: (String, ?x_amzn_fulfillment_service_id: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def create_order: (Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_offers: (Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def get_order: (String, ?x_amzn_fulfillment_service_id: String?, ?shipments: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_order_preview: (Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def list_orders: (?x_amzn_fulfillment_service_id: String?, ?updated_after: String?, ?page_token: String?, ?shipments: String?, ?rate_limit: Float) -> Peddler::Response
-      def update_order: (String, Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def update_order_status: (String, Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?) -> Peddler::Response
-      def update_package: (String, String, Hash[untyped, untyped], ?x_amzn_fulfillment_service_id: String?) -> Peddler::Response
     end
   end
 end

@@ -6,17 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about taxes.
       Tax = Structure.new do
-        # @return [ChargeBreakup] Details of individual tax charges.
+        # Details of individual tax charges.
         attribute(:charge, ChargeBreakup, null: false)
 
-        # @return [Float] The rate of the tax.
+        # The rate of the tax.
         attribute?(:rate, Float)
 
-        # @return [String] The type of tax. Known values: `VAT`, `CST`, `IGST`, `SGST`, `CGST`, `UTGST`, `CESS`,
-        #   `OTHER`, `TOTAL`.
+        # The type of tax. Known values: `VAT`, `CST`, `IGST`, `SGST`, `CGST`, `UTGST`, `CESS`, `OTHER`, `TOTAL`.
         attribute?(:type, String)
       end
     end

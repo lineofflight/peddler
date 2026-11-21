@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # A list of serial numbers for the items associated with the `OrderItemId` value.
       class OrderItemSerialNumbers < Array
         class << self

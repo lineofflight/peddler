@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinanceRemittance20260317
+    module FinanceRemittance20260317
       # A related business identifier for a remittance line item.
       RelatedItemIdentifier = Structure.new do
-        # @return [String] An enumerated set of related business identifier names for a line item. Known values:
-        #   `VENDOR_CODE`.
+        # An enumerated set of related business identifier names for a line item. Known values: `VENDOR_CODE`.
         attribute(:related_identifier_name, String, null: false, from: "relatedIdentifierName")
 
-        # @return [Array<String>] The corresponding values for `relatedIdentifierName`.
+        # The corresponding values for `relatedIdentifierName`.
         attribute(:related_identifier_value, [String], null: false, from: "relatedIdentifierValue")
       end
     end

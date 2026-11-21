@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # A list of service types that can be used to send the shipment.
       class ServiceTypeList < Array
         class << self

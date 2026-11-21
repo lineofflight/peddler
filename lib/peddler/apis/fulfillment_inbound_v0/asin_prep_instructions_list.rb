@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of item preparation instructions.
       class ASINPrepInstructionsList < Array
         class << self

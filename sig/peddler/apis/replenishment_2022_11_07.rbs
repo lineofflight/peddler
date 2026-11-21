@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Replenishment20221107 < API
+    module Replenishment20221107
+      PARSERS: Hash[String, ^() -> untyped]
+
       class DeliveriesCondition < Data
         def self.new: (?condition: String?, ?next30_days_deliveries: Integer?) -> Peddler::APIs::Replenishment20221107::DeliveriesCondition
                     | (String?, Integer?) -> Peddler::APIs::Replenishment20221107::DeliveriesCondition
@@ -586,10 +588,6 @@ module Peddler
         def members: () -> [ :end_date, :start_date ]
         def to_h: () -> { end_date: Time, start_date: Time }
       end
-
-      def get_selling_partner_metrics: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
-      def list_offer_metrics: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
-      def list_offers: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

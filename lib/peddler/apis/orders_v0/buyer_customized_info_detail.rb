@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Buyer information for custom orders from the Amazon Custom program.
       BuyerCustomizedInfoDetail = Structure.new do
-        # @return [String] The location of a ZIP file containing Amazon Custom data.
+        # The location of a ZIP file containing Amazon Custom data.
         attribute?(:customized_url, String, from: "CustomizedURL")
       end
     end

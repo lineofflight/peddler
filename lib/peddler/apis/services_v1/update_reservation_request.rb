@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Request schema for the `updateReservation` operation.
       UpdateReservationRequest = Structure.new do
-        # @return [Reservation] `Reservation` object to reduce the capacity of a resource.
+        # `Reservation` object to reduce the capacity of a resource.
         attribute(:reservation, Reservation, null: false)
 
-        # @return [String] Resource (store) identifier.
+        # Resource (store) identifier.
         attribute(:resource_id, String, null: false, from: "resourceId")
       end
     end

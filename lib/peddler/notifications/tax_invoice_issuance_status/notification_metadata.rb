@@ -8,16 +8,16 @@ module Peddler
   module Notifications
     module TaxInvoiceIssuanceStatus
       NotificationMetadata = Structure.new do
-        # @return [String] The application identifier.
+        # The application identifier.
         attribute(:application_id, String, null: false, from: "applicationId")
 
-        # @return [String] The notification identifier.
+        # The notification identifier.
         attribute(:notification_id, String, null: false, from: "notificationId")
 
-        # @return [String] The time the notification was published.
+        # The time the notification was published.
         attribute(:publish_time, String, null: false, from: "publishTime")
 
-        # @return [String] The subscription identifier.
+        # The subscription identifier.
         attribute(:subscription_id, String, null: false, from: "subscriptionId")
       end
     end

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # A list of error responses returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

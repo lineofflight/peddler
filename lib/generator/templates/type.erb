@@ -6,6 +6,9 @@ require "structure"
 <% if uses_time_types? -%>
 require "time"
 <% end -%>
+<% if uses_uri_types? -%>
+require "uri"
+<% end -%>
 
 <% if namespace -%>
 module Peddler
@@ -18,7 +21,9 @@ module Peddler
       <%= class_name %> = Structure.new do
 <% properties.each_with_index do |(prop_name, prop_def), index| -%>
 <%= "\n" if index > 0 -%>
-        <%= format_property_comment(prop_def) %>
+<% if (comment = format_property_comment(prop_def)) -%>
+        <%= comment %>
+<% end -%>
         <%= attribute_declaration_for(prop_name, prop_def) %>
 <% end -%>
       end
@@ -28,14 +33,16 @@ end
 <% else -%>
 module Peddler
   module APIs
-    class <%= api_name.camelize %>
+    module <%= api_name.camelize %>
       <% if class_description -%>
         <%= class_description %>
       <% end -%>
       <%= class_name %> = Structure.new do
         <% properties.each_with_index do |(prop_name, prop_def), index| -%>
           <%= "\n" if index > 0 -%>
-          <%= format_property_comment(prop_def) %>
+          <% if (comment = format_property_comment(prop_def)) -%>
+            <%= comment %>
+          <% end -%>
           <%= attribute_declaration_for(prop_name, prop_def) %>
         <% end -%>
       end

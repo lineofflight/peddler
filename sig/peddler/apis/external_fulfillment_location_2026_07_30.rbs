@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ExternalFulfillmentLocation20260730 < API
+    module ExternalFulfillmentLocation20260730
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateSandboxLocationRequest < Data
         def self.new: (location_name: String, marketplace_id: String, merchant_ids: Array[String], ?channels: Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
                     | (String, String, Array[String], Array[String]?) -> Peddler::APIs::ExternalFulfillmentLocation20260730::CreateSandboxLocationRequest
@@ -86,8 +88,6 @@ module Peddler
         def members: () -> [ :fba, :mfn ]
         def to_h: () -> { fba: String?, mfn: String? }
       end
-
-      def create_sandbox_location: (Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

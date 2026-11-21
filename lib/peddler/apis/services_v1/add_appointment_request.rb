@@ -7,10 +7,10 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Input for add appointment operation.
       AddAppointmentRequest = Structure.new do
-        # @return [AppointmentTimeInput] Input appointment time details.
+        # Input appointment time details.
         attribute(:appointment_time, AppointmentTimeInput, null: false, from: "appointmentTime")
       end
     end

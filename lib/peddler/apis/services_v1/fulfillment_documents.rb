@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # List of documents captured during service appointment fulfillment.
       class FulfillmentDocuments < Array
         class << self

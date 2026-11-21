@@ -6,33 +6,33 @@ require "structure"
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Vendor details associated with an Amazon catalog item for the indicated Amazon marketplace.
       ItemVendorDetailsByMarketplace = Structure.new do
-        # @return [String] Amazon marketplace identifier.
+        # Amazon marketplace identifier.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] Brand code associated with an Amazon catalog item.
+        # Brand code associated with an Amazon catalog item.
         attribute?(:brand_code, String, from: "brandCode")
 
-        # @return [String] Product category associated with an Amazon catalog item.
+        # Product category associated with an Amazon catalog item.
         attribute?(:category_code, String, from: "categoryCode")
 
-        # @return [String] Manufacturer code associated with an Amazon catalog item.
+        # Manufacturer code associated with an Amazon catalog item.
         attribute?(:manufacturer_code, String, from: "manufacturerCode")
 
-        # @return [String] Parent vendor code of the manufacturer code.
+        # Parent vendor code of the manufacturer code.
         attribute?(:manufacturer_code_parent, String, from: "manufacturerCodeParent")
 
-        # @return [String] Product group associated with an Amazon catalog item.
+        # Product group associated with an Amazon catalog item.
         attribute?(:product_group, String, from: "productGroup")
 
-        # @return [String] Replenishment category associated with an Amazon catalog item. Known values: `ALLOCATED`,
-        #   `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`,
-        #   `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`.
+        # Replenishment category associated with an Amazon catalog item. Known values: `ALLOCATED`,
+        # `BASIC_REPLENISHMENT`, `IN_SEASON`, `LIMITED_REPLENISHMENT`, `MANUFACTURER_OUT_OF_STOCK`, `NEW_PRODUCT`,
+        # `NON_REPLENISHABLE`, `NON_STOCKUPABLE`, `OBSOLETE`, `PLANNED_REPLENISHMENT`.
         attribute?(:replenishment_category, String, from: "replenishmentCategory")
 
-        # @return [String] Product subcategory associated with an Amazon catalog item.
+        # Product subcategory associated with an Amazon catalog item.
         attribute?(:subcategory_code, String, from: "subcategoryCode")
       end
     end

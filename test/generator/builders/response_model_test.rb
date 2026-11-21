@@ -18,9 +18,7 @@ module Generator
 
       model = ResponseModel.new(operation).build
 
-      assert_equal(:response, model[:type])
       assert_equal("GetOrderResponse", model[:model])
-      assert_empty(model[:path])
     end
 
     def test_inline_payload_with_ref
@@ -40,9 +38,7 @@ module Generator
 
       model = ResponseModel.new(operation).build
 
-      assert_equal(:single, model[:type])
       assert_equal("Order", model[:model])
-      assert_equal(["payload"], model[:path])
     end
 
     def test_inline_payload_with_array_property
@@ -66,9 +62,7 @@ module Generator
 
       model = ResponseModel.new(operation).build
 
-      assert_equal(:array, model[:type])
       assert_equal("order", model[:model])
-      assert_equal(["payload", "orders"], model[:path])
     end
 
     def test_no_schema_response
@@ -80,9 +74,7 @@ module Generator
 
       model = ResponseModel.new(operation).build
 
-      assert_equal(:raw, model[:type])
       assert_nil(model[:model])
-      assert_equal(["payload"], model[:path])
     end
 
     def test_handles_multiple_success_codes
@@ -98,7 +90,6 @@ module Generator
 
       model = ResponseModel.new(operation).build
 
-      assert_equal(:response, model[:type])
       assert_equal("CreateOrderResponse", model[:model])
     end
   end

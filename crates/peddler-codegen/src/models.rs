@@ -1,0 +1,238 @@
+use crate::{GenerationError, known_values};
+use serde_json::{Map, Value, json};
+use std::collections::{BTreeMap, BTreeSet};
+
+/// Normalize only schemas. Example data and property-name maps are never schemas.
+pub fn normalize_definitions(spec: &Value) -> Result<Value, GenerationError> {
+    let definitions = spec
+        .get("definitions")
+        .and_then(Value::as_object)
+        .ok_or_else(|| GenerationError("missing definitions object".into()))?;
+    let mut normalized = definitions.clone();
+    for schema in normalized.values_mut() {
+        normalize_schema(schema, definitions)?;
+    }
+    Ok(Value::Object(normalized))
+}
+
+fn normalize_schema(
+    schema: &mut Value,
+    definitions: &Map<String, Value>,
+) -> Result<(), GenerationError> {
+    // Fields stay strings, and the values a schema lists for one are documentation.
+    let mut known = known_values::enum_values(schema, Some(definitions)).to_vec();
+    let Some(node) = schema.as_object_mut() else {
+        return Ok(());
+    };
+    node.remove("default");
+    if node.get("minLength").and_then(Value::as_u64) == Some(0) {
+        node.remove("minLength");
+    }
+    for (exclusive, bound) in [
+        ("exclusiveMinimum", "minimum"),
+        ("exclusiveMaximum", "maximum"),
+    ] {
+        if let Some(enabled) = node.get(exclusive).and_then(Value::as_bool) {
+            node.remove(exclusive);
+            if enabled {
+                let value = node.remove(bound).filter(Value::is_number).ok_or_else(|| {
+                    GenerationError(format!("{exclusive} requires a numeric {bound}"))
+                })?;
+                node.insert(exclusive.into(), value);
+            }
+        }
+    }
+    // Schemars stores numeric constraints as f64. Canonicalize decimal spelling
+    // (e.g. 11.00) so Serde's flattened schema parser sees a number, not the
+    // arbitrary-precision transport map. Keep the constraints themselves intact.
+    for key in [
+        "minimum",
+        "maximum",
+        "exclusiveMinimum",
+        "exclusiveMaximum",
+        "multipleOf",
+    ] {
+        if let Some(value) = node.get_mut(key)
+            && value.is_f64()
+        {
+            let number = value
+                .as_f64()
+                .and_then(serde_json::Number::from_f64)
+                .ok_or_else(|| GenerationError(format!("{key} must be a finite number")))?;
+            *value = Value::Number(number);
+        }
+    }
+    // An enum of strings is a string, whether or not the spec says `type: string`.
+    let strings = node
+        .get("enum")
+        .and_then(Value::as_array)
+        .is_some_and(|values| values.iter().all(Value::is_string));
+    if strings && !node.contains_key("type") {
+        node.insert("type".into(), json!("string"));
+    }
+    if node.get("type").and_then(Value::as_str) == Some("string")
+        && let Some(values) = node.remove("enum")
+        && !values.is_array()
+    {
+        return Err(GenerationError("enum must be an array".into()));
+    }
+    let description = node.get("description").and_then(Value::as_str);
+    let description = description.unwrap_or_default();
+    // An enum of other values stays an enum: no other value can come. A string may be
+    // null, which is no value to list.
+    let open = known
+        .iter()
+        .all(|value| value.is_string() || value.is_null());
+    known.retain(|value| !value.is_null());
+    if let Some(sentence) = known_values::sentence(description, &known).filter(|_| open) {
+        let documentation =
+            format!("{description}\n\n{sentence} Other values may be returned by Amazon.");
+        node.insert(
+            "description".into(),
+            Value::String(documentation.trim().into()),
+        );
+    }
+    let required: BTreeSet<String> = node
+        .get("required")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+        .map(str::to_owned)
+        .collect();
+    if let Some(properties) = node.get_mut("properties").and_then(Value::as_object_mut) {
+        for (name, property) in properties {
+            let optional_array =
+                !required.contains(name) && is_array(property, definitions, &mut BTreeSet::new());
+            normalize_schema(property, definitions)?;
+            if optional_array {
+                let property = property
+                    .as_object_mut()
+                    .ok_or_else(|| GenerationError("array schema must be an object".into()))?;
+                if let Some(reference) = property.remove("$ref") {
+                    property.insert("anyOf".into(), json!([{"$ref":reference}, {"type":"null"}]));
+                } else {
+                    property.insert("type".into(), json!(["array", "null"]));
+                }
+            }
+        }
+    }
+    for key in ["additionalProperties", "items", "not"] {
+        if let Some(child) = node.get_mut(key) {
+            if let Some(children) = child.as_array_mut() {
+                for child in children {
+                    normalize_schema(child, definitions)?;
+                }
+            } else {
+                normalize_schema(child, definitions)?;
+            }
+        }
+    }
+    for key in ["allOf", "anyOf", "oneOf"] {
+        if let Some(children) = node.get_mut(key).and_then(Value::as_array_mut) {
+            for child in children {
+                normalize_schema(child, definitions)?;
+            }
+        }
+    }
+    for key in ["definitions", "patternProperties"] {
+        if let Some(children) = node.get_mut(key).and_then(Value::as_object_mut) {
+            for child in children.values_mut() {
+                normalize_schema(child, definitions)?;
+            }
+        }
+    }
+    Ok(())
+}
+
+fn is_array(schema: &Value, definitions: &Map<String, Value>, seen: &mut BTreeSet<String>) -> bool {
+    if schema.get("type").and_then(Value::as_str) == Some("array") {
+        return true;
+    }
+    let Some(name) = schema
+        .get("$ref")
+        .and_then(Value::as_str)
+        .and_then(|reference| reference.strip_prefix("#/definitions/"))
+    else {
+        return false;
+    };
+    if !seen.insert(name.into()) {
+        return false;
+    }
+    definitions
+        .get(name)
+        .is_some_and(|schema| is_array(schema, definitions, seen))
+}
+
+pub(crate) fn render(mut definitions: Value) -> Result<String, GenerationError> {
+    // Register each concrete number schema without dropping bounds or formats.
+    // Typify matches conversions excluding documentation, and retains named wrappers.
+    let mut numbers = Vec::new();
+    for schema in definitions
+        .as_object_mut()
+        .expect("normalized definitions")
+        .values_mut()
+    {
+        visit_schema(schema, &mut |node| {
+            if node.get("type").and_then(Value::as_str) == Some("number") {
+                numbers.push(Value::Object(node.clone()));
+            }
+        });
+    }
+    let mut settings = typify::TypeSpaceSettings::default();
+    for number in numbers {
+        settings.with_conversion(
+            serde_json::from_value(number)?,
+            "::serde_json::Number",
+            [
+                typify::TypeSpaceImpl::Display,
+                typify::TypeSpaceImpl::FromStr,
+            ]
+            .into_iter(),
+        );
+    }
+    let schemas: BTreeMap<String, schemars::schema::Schema> = serde_json::from_value(definitions)?;
+    let mut types = typify::TypeSpace::new(&settings);
+    types
+        .add_ref_types(schemas)
+        .map_err(|error| GenerationError(error.to_string()))?;
+    // Amazon descriptions include unindented Markdown lists. Preserve their text.
+    Ok(format!(
+        "#![allow(clippy::doc_lazy_continuation)]\n{}",
+        super::format_source(&types.to_stream().to_string())?
+    ))
+}
+
+/// Calls `action` on a schema and on every schema nested in it.
+pub(crate) fn visit_schema(schema: &mut Value, action: &mut impl FnMut(&mut Map<String, Value>)) {
+    let Some(node) = schema.as_object_mut() else {
+        return;
+    };
+    action(node);
+    for key in ["properties", "patternProperties", "definitions"] {
+        if let Some(children) = node.get_mut(key).and_then(Value::as_object_mut) {
+            for child in children.values_mut() {
+                visit_schema(child, action);
+            }
+        }
+    }
+    for key in [
+        "items",
+        "additionalProperties",
+        "not",
+        "contains",
+        "allOf",
+        "anyOf",
+        "oneOf",
+    ] {
+        if let Some(child) = node.get_mut(key) {
+            if let Some(children) = child.as_array_mut() {
+                for child in children {
+                    visit_schema(child, action);
+                }
+            } else {
+                visit_schema(child, action);
+            }
+        }
+    }
+}

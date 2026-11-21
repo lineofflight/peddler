@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # Use these parameters to paginate through the response.
       ListOffersRequestPagination = Structure.new do
-        # @return [Integer] The maximum number of results to return in the response.
+        # The maximum number of results to return in the response.
         attribute(:limit, Integer, null: false)
 
-        # @return [Integer] The offset from which to retrieve the number of results specified by the `limit` value. The
-        #   first result is at offset 0.
+        # The offset from which to retrieve the number of results specified by the `limit` value. The first result is at
+        # offset 0.
         attribute(:offset, Integer, null: false)
       end
     end

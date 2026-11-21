@@ -1,0 +1,5 @@
+# Generated from lib/peddler/version.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  VERSION: String
+end

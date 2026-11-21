@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class SolicitationsV1
+    module SolicitationsV1
       # A simple object containing the name of the template.
       SolicitationsAction = Structure.new do
-        # @return [String]
         attribute(:name, String, null: false)
       end
     end

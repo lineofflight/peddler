@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The destination for the delivery offer.
       Destination = Structure.new do
-        # @return [VariablePrecisionAddress]
         attribute?(:delivery_address, VariablePrecisionAddress, from: "deliveryAddress")
 
-        # @return [String] The IP address of the customer.
+        # The IP address of the customer.
         attribute?(:ip_address, String, from: "ipAddress")
       end
     end

@@ -6,17 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class SellerWallet20240301
+    module SellerWallet20240301
       # The response returned when the schedule transfer's delete request is successful.
       DeleteTransferSchedule = Structure.new do
-        # @return [String] A success code that specifies that the delete operation was successful. For example, HTTP
-        #   200.
+        # A success code that specifies that the delete operation was successful. For example, HTTP 200.
         attribute(:code, String, null: false)
 
-        # @return [String] A message that describes the success condition of the delete schedule transaction.
+        # A message that describes the success condition of the delete schedule transaction.
         attribute(:message, String, null: false)
 
-        # @return [String] Additional details that can help the caller understand the operation execution.
+        # Additional details that can help the caller understand the operation execution.
         attribute?(:details, String)
       end
     end

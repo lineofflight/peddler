@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShippingV1
+    module VendorDirectFulfillmentShippingV1
       # Response payload with packing slip.
       GetPackingSlipResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [PackingSlip]
         attribute?(:payload, PackingSlip)
       end
     end

@@ -1,0 +1,9 @@
+# Generated from lib/peddler/money.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class Money
+    def self.parse: (untyped value) -> Money?
+
+    def to_d: () -> BigDecimal
+  end
+end

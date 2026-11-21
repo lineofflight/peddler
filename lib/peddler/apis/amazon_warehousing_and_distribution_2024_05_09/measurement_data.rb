@@ -6,17 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Package weight and dimension.
       MeasurementData = Structure.new do
-        # @return [PackageWeight] Weight of the package.
+        # Weight of the package.
         attribute(:weight, PackageWeight, null: false)
 
-        # @return [PackageDimensions] Dimensions of the package. Dimensions are required when creating an inbound or
-        #   outbound order.
+        # Dimensions of the package. Dimensions are required when creating an inbound or outbound order.
         attribute?(:dimensions, PackageDimensions)
 
-        # @return [PackageVolume] Volume of the package.
+        # Volume of the package.
         attribute?(:volume, PackageVolume)
       end
     end

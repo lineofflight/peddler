@@ -1,0 +1,387 @@
+[
+  {
+    "family": "reports",
+    "module": "account_health_report_2020_11_18",
+    "path": "schemas/reports/accountHealthReport-2020-11-18.json",
+    "definitions": 9,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "b2b_product_opportunities_not_yet_on_amazon_report_2020_11_19",
+    "path": "schemas/reports/b2bProductOpportunitiesNotYetOnAmazonReport-2020-11-19.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "b2b_product_opportunities_recommended_for_you_report_2020_11_19",
+    "path": "schemas/reports/b2bProductOpportunitiesRecommendedForYouReport-2020-11-19.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "end_user_data",
+    "path": "schemas/reports/endUserDataReport.json",
+    "definitions": 2,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "marketplace_asin_page_view_metrics",
+    "path": "schemas/reports/marketplaceAsinPageViewMetrics.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "promotion",
+    "path": "schemas/reports/promotionReport.json",
+    "definitions": 2,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "seller_coupon",
+    "path": "schemas/reports/sellerCouponReport.json",
+    "definitions": 2,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "seller_sales_and_traffic",
+    "path": "schemas/reports/sellerSalesAndTrafficReport.json",
+    "definitions": 7,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "selling_partner_market_basket_analysis",
+    "path": "schemas/reports/sellingPartnerMarketBasketAnalysisReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "selling_partner_repeat_purchase",
+    "path": "schemas/reports/sellingPartnerRepeatPurchaseReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "selling_partner_search_catalog_performance",
+    "path": "schemas/reports/sellingPartnerSearchCatalogPerformanceReport.json",
+    "definitions": 6,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "selling_partner_search_query_performance",
+    "path": "schemas/reports/sellingPartnerSearchQueryPerformanceReport.json",
+    "definitions": 7,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "selling_partner_search_terms",
+    "path": "schemas/reports/sellingPartnerSearchTermsReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_coupon",
+    "path": "schemas/reports/vendorCouponReport.json",
+    "definitions": 3,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_forecasting",
+    "path": "schemas/reports/vendorForecastingReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_inventory",
+    "path": "schemas/reports/vendorInventoryReport.json",
+    "definitions": 4,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_net_pure_product_margin",
+    "path": "schemas/reports/vendorNetPureProductMarginReport.json",
+    "definitions": 2,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_real_time_inventory",
+    "path": "schemas/reports/vendorRealTimeInventoryReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_real_time_sales",
+    "path": "schemas/reports/vendorRealTimeSalesReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_real_time_traffic",
+    "path": "schemas/reports/vendorRealTimeTrafficReport.json",
+    "definitions": 1,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_sales",
+    "path": "schemas/reports/vendorSalesReport.json",
+    "definitions": 3,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "reports",
+    "module": "vendor_traffic",
+    "path": "schemas/reports/vendorTrafficReport.json",
+    "definitions": 2,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "feeds",
+    "module": "listings_feed_message_schema",
+    "path": "schemas/feeds/listings-feed-message-schema-v2.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "feeds",
+    "module": "listings_feed_processing_report_schema",
+    "path": "schemas/feeds/listings-feed-processing-report-schema-v2.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "feeds",
+    "module": "listings_feed_schema",
+    "path": "schemas/feeds/listings-feed-schema-v2.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "any_offer_changed",
+    "path": "schemas/notifications/AnyOfferChangedNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "b2b_any_offer_changed",
+    "path": "schemas/notifications/B2bAnyOfferChangedNotification.json",
+    "definitions": 26,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "branded_item_content_change",
+    "path": "schemas/notifications/BrandedItemContentChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "data_kiosk_query_processing_finished",
+    "path": "schemas/notifications/DataKioskQueryProcessingFinishedNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "detail_page_traffic_event",
+    "path": "schemas/notifications/DetailPageTrafficEventNotification.json",
+    "definitions": 4,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "fba_inventory_availability_change",
+    "path": "schemas/notifications/FBAInventoryAvailabilityChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "fba_outbound_shipment_status",
+    "path": "schemas/notifications/FBAOutboundShipmentStatusNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "fee_promotion",
+    "path": "schemas/notifications/FeePromotionNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "feed_processing_finished",
+    "path": "schemas/notifications/FeedProcessingFinishedNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "fulfillment_order_status",
+    "path": "schemas/notifications/FulfillmentOrderStatusNotification.json",
+    "definitions": 7,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "item_inventory_event_change",
+    "path": "schemas/notifications/ItemInventoryEventChangeNotification.json",
+    "definitions": 4,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "item_product_type_change",
+    "path": "schemas/notifications/ItemProductTypeChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "item_sales_event_change",
+    "path": "schemas/notifications/ItemSalesEventChangeNotification.json",
+    "definitions": 4,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "listings_item_issues_change",
+    "path": "schemas/notifications/ListingsItemIssuesChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "listings_item_issues_change_notification_2023_12_13",
+    "path": "schemas/notifications/ListingsItemIssuesChangeNotification_2023-12-13.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "listings_item_mfn_quantity_change",
+    "path": "schemas/notifications/ListingsItemMfnQuantityChange.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "listings_item_status_change",
+    "path": "schemas/notifications/ListingsItemStatusChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "order_change",
+    "path": "schemas/notifications/OrderChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "pricing_health",
+    "path": "schemas/notifications/PricingHealthNotification.json",
+    "definitions": 21,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "product_type_definitions_change",
+    "path": "schemas/notifications/ProductTypeDefinitionsChangeNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "report_processing_finished",
+    "path": "schemas/notifications/ReportProcessingFinishedNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "shipment_tracking_milestone_changed",
+    "path": "schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "tax_invoice_export_status_change",
+    "path": "schemas/notifications/TaxInvoiceExportStatusChange.json",
+    "definitions": 3,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "tax_invoice_issuance_eligibility_status_change",
+    "path": "schemas/notifications/TaxInvoiceIssuanceEligibilityStatusChangeNotification.json",
+    "definitions": 3,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "tax_invoice_issuance_status",
+    "path": "schemas/notifications/TaxInvoiceIssuanceStatusNotification.json",
+    "definitions": 3,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "notifications",
+    "module": "transaction_update",
+    "path": "schemas/notifications/TransactionUpdateNotification.json",
+    "definitions": 0,
+    "graphql_named_type_count": null
+  },
+  {
+    "family": "data_kiosk",
+    "module": "economics20240315",
+    "path": "schemas/data-kiosk/analytics_economics_2024_03_15.graphql",
+    "definitions": null,
+    "graphql_named_type_count": 31
+  },
+  {
+    "family": "data_kiosk",
+    "module": "sales_and_traffic20240424",
+    "path": "schemas/data-kiosk/analytics_salesAndTraffic_2024_04_24.graphql",
+    "definitions": null,
+    "graphql_named_type_count": 15
+  },
+  {
+    "family": "data_kiosk",
+    "module": "seller_analytics20250331",
+    "path": "schemas/data-kiosk/analytics_sellerAnalytics_2025_03_31.graphql",
+    "definitions": null,
+    "graphql_named_type_count": 33
+  },
+  {
+    "family": "data_kiosk",
+    "module": "vendor_analytics20240930",
+    "path": "schemas/data-kiosk/analytics_vendorAnalytics_2024_09_30.graphql",
+    "definitions": null,
+    "graphql_named_type_count": 26
+  }
+]

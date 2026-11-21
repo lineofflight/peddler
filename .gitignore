@@ -1,10 +1,16 @@
 Gemfile.lock
 .bundle
 .gem_rbs_collection
-.yardoc
 doc
 pkg
 rbs_collection.lock.yaml
 selling-partner-api-models
 test/config.json
 vendor
+/target/
+/crates/peddler-codegen/target/
+/tmp/
+/lib/peddler/peddler_native.*
+/THIRD_PARTY_LICENSES.html
+/lib/peddler/[0-9]*/
+/.claude/settings.local.json

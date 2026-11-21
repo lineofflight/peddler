@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # The label format details and whether to include a packing slip.
       LabelFormatOption = Structure.new do
-        # @return [:boolean] When `true`, include a packing slip with the label.
+        # When `true`, include a packing slip with the label.
         attribute?(:include_packing_slip_with_label, :boolean, from: "IncludePackingSlipWithLabel")
 
-        # @return [String] Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
+        # Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
         attribute?(:label_format, String, from: "LabelFormat")
       end
     end

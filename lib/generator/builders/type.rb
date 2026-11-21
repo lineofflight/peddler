@@ -7,7 +7,6 @@ require_relative "../support/money_detector"
 require_relative "../support/naming"
 require_relative "../resolvers/type_resolver"
 require_relative "../support/schema_helpers"
-require_relative "../support/known_values"
 require "structure/rbs"
 
 module Generator
@@ -45,10 +44,11 @@ module Generator
       NAMESPACES[prefix]
     end
 
+    # The module of the schema a type belongs to, named after the schema's file as the schema's own `class_name` is
     def namespace_name
       return unless namespace
 
-      api_name.split("/", 2).last.camelize
+      Naming.constant(api_name.split("/", 2).last.camelize)
     end
 
     def attribute_declaration_for(prop_name, prop_def)
@@ -57,9 +57,11 @@ module Generator
       required = required_properties.include?(prop_name)
       nullable = Array(prop_def["type"]).include?("null")
 
-      parts = [":#{name}", type]
+      # A name comes from the spec, and a spec is data: the symbol and the string are written as Ruby reads them
+      # back, whatever the name holds.
+      parts = [name.to_sym.inspect, type]
       parts << "null: false" if required ? !nullable : prop_def["x-non-null"]
-      parts << "from: \"#{prop_name}\"" if name != prop_name
+      parts << "from: #{prop_name.dump}" if name != prop_name
 
       "#{required ? "attribute" : "attribute?"}(#{parts.join(", ")})"
     end
@@ -90,29 +92,23 @@ module Generator
       "#{base}/#{filename}"
     end
 
-    def ruby_type_for(prop_def, for_comment: false, for_rbs: false, prop_name: nil)
-      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs, prop_name: prop_name)
+    def ruby_type_for(prop_def, for_rbs: false, prop_name: nil)
+      resolved_type = type_resolver.resolve(prop_def, for_rbs: for_rbs, prop_name: prop_name)
 
       # Handle self-references properly
       return resolved_type if resolved_type == ":self"
 
       # Only use string class names for the specific edges that cause cycles
-      unless for_comment
-        # Handle direct references
-        if resolved_type.is_a?(String) &&
-            resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
-            resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
-            resolved_type != "Money" && resolved_type != ":boolean"
-          # Return as a string for lazy loading
-          return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
-        end
+      if resolved_type.is_a?(String) &&
+          resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
+          resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
+          resolved_type != "Money" && resolved_type != ":boolean"
+        return "\"#{resolved_type}\"" if cycle_edge?(resolved_type)
+      end
 
-        # Handle arrays containing cycle-causing types
-        if resolved_type.is_a?(String)
-          inner_type = array_inner_type(resolved_type)
-          # Return as array with string class name for lazy loading
-          return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
-        end
+      if resolved_type.is_a?(String)
+        inner_type = array_inner_type(resolved_type)
+        return "[\"#{inner_type}\"]" if cycle_edge?(inner_type)
       end
 
       resolved_type
@@ -131,32 +127,6 @@ module Generator
           dep != name &&
           !(cycle_edges && cycle_edges.include?([name, dep]))
       end.uniq
-    end
-
-    def uses_string_class_names?
-      properties.any? do |_prop_name, prop_def|
-        resolved_type = type_resolver.resolve(prop_def)
-
-        # Check for self-references
-        if resolved_type == class_name || resolved_type == "[#{class_name}]"
-          return true
-        end
-
-        # Check for cycle-causing edges
-        if resolved_type.is_a?(String)
-          # Handle direct types
-          if resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
-              resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
-              resolved_type != "Money" && resolved_type != ":boolean"
-            return true if cycle_edge?(resolved_type)
-          end
-
-          # Handle arrays
-          return true if cycle_edge?(array_inner_type(resolved_type))
-        end
-
-        false
-      end
     end
 
     # Returns just the class definition without module wrapping
@@ -230,11 +200,9 @@ module Generator
       return dependencies unless prop_def.is_a?(Hash)
 
       if prop_def["$ref"]
-        # Extract type name from $ref like "#/definitions/LowestPricedOffersInput"
         type_name = prop_def["$ref"].split("/").last
         dependencies << type_name
       end
-      # Extract dependencies from array items
       if prop_def["type"] == "array" && prop_def["items"].is_a?(Hash) && prop_def["items"]["$ref"]
         item_type = prop_def["items"]["$ref"].split("/").last
         dependencies << item_type
@@ -265,22 +233,14 @@ module Generator
     end
 
     def format_property_comment(prop_def)
-      return_type = ruby_type_for(prop_def, for_comment: true)
-      description = prop_def["description"]
-      description = nil if generic_placeholder?(description)
-      description = convert_doc_links_to_full_url(convert_html_links_to_yard(description)) if description
-      known_values = KnownValues.enum_values(prop_def, specification&.dig("definitions"))
-      description = KnownValues.append(description, known_values)
-      return "        # @return [#{return_type}]" unless description
-
-      split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8, wrap_indent: 2)
+      super(prop_def, base_indent: 8, definitions: specification&.dig("definitions"))
     end
 
     def class_description
       return unless definition["description"]
       return if generic_placeholder?(definition["description"])
 
-      description = convert_html_links_to_yard(definition["description"])
+      description = convert_html_links_to_markdown(definition["description"])
       description = convert_doc_links_to_full_url(description)
       split_long_comment_line(description, base_indent: 6)
     end
@@ -305,6 +265,11 @@ module Generator
       end
     end
 
+    # Check if any property uses URI (requires 'uri' library)
+    def uses_uri_types?
+      properties.any? { |_name, prop_def| ruby_type_for(prop_def).to_s.include?("URI") }
+    end
+
     def array_type?
       definition["type"] == "array"
     end
@@ -327,7 +292,6 @@ module Generator
     end
 
     def structure_rbs_class_definition
-      # Get the constant - Zeitwerk will autoload it
       parent = if namespace
         Peddler.const_get(namespace).const_get(namespace_name)
       else
@@ -335,7 +299,6 @@ module Generator
       end
       klass = parent.const_get(class_name)
 
-      # Generate RBS using Structure::RBS
       rbs_content = Structure::RBS.emit(klass)
       raise "Structure::RBS.emit returned nil for #{api_name.camelize}::#{class_name}" unless rbs_content
 
@@ -348,10 +311,8 @@ module Generator
     end
 
     def array_rbs_class_definition
-      # Generate the array class definition inline (no template needed)
       item_type = array_item_type
       if item_type && generated_type?(item_type)
-        # Apply acronym transformations to item type
         item_class_name = Naming.class_name(item_type)
         <<~RBS
           class #{class_name} < Array[#{item_class_name}]

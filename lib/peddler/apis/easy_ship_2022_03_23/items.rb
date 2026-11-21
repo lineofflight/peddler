@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # A list of items contained in the package.
       class Items < Array
         class << self

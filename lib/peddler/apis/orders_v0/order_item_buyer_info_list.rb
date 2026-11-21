@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A single order item's buyer information list.
       class OrderItemBuyerInfoList < Array
         class << self
