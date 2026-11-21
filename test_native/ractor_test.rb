@@ -387,7 +387,7 @@ class RactorTest < NativeTest
   def test_four_ractors_make_fifty_calls_each_on_one_pool
     serve_keep_alive(responder: ->(_method, target, *) { [200, JSON.generate(path: target)] }) do |url, accepted, requests|
       ractors = Array.new(4) do |number|
-        Ractor.new(url, number) do |base, index|
+        start_ractor(url, number) do |base, index|
           client = Peddler::Client.new(base_url: base, access_token: "token-#{index}")
           Array.new(50) { |call| client.request("GET", "/#{index}/#{call}").dig("path") }
         end
@@ -571,7 +571,19 @@ class RactorTest < NativeTest
 
   # What the block returns from another Ractor. The block sees its arguments and nothing of the test.
   def in_ractor(*arguments, &block)
-    take(Ractor.new(*arguments, &block))
+    take(start_ractor(*arguments, &block))
+  end
+
+  # A Ractor in the test's process. On Windows before Ruby 4.1, one that collects garbage waits until the main
+  # Ractor's waiting thread wakes, and #take's Thread#join doesn't wake it before the deadline. A script of #run_ruby
+  # waits in Ractor#value, which wakes it, so those tests run everywhere.
+  def start_ractor(*arguments, &block)
+    if Gem.win_platform? && RUBY_VERSION < "4.1"
+      skip("Ruby bug #21537: before 4.1, a Ractor on Windows can stall until the main Ractor's waiting thread wakes " \
+        "(https://bugs.ruby-lang.org/issues/21537)")
+    end
+
+    Ractor.new(*arguments, &block)
   end
 
   def take(ractor)

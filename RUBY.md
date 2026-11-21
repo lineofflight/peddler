@@ -646,6 +646,7 @@ participations = ractor.value # ractor.take before Ruby 4.0
 - On Ruby 3.3, call `Peddler.eager_load!` in the main Ractor before you start another that uses a typed model. The typed models load on first use, and Ruby 3.3 loads code in the main Ractor only. The call loads them all. From Ruby 3.4 a Ractor loads a model itself.
 - WebMock works in the main Ractor only. While it is enabled, a call from another Ractor raises `Ractor::IsolationError` and sends nothing. So does one made while WebMock is loaded and Peddler's adapter is not: `require "peddler/webmock"` in the main Ractor first.
 - On Ruby 3.3 and 3.4, don't fork while other Ractors run. Ruby hangs most such children and crashes some, with or without Peddler.
+- On Windows, Ruby before 4.1 can stall a Ractor until the main Ractor's waiting thread wakes, with or without Peddler: [Ruby bug #21537](https://bugs.ruby-lang.org/issues/21537).
 
 How far Ractors scale is up to Ruby. On Ruby 3.3 and 3.4, four Ractors together parse less than one does alone: about half as many typed responses. On Ruby 4.0 they parse two to three times as many.
 
