@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of charges based on the shipping service charges applied on a package.
       class ChargeList < Array
         class << self

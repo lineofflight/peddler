@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class FBAInventoryV1 < API
+    module FBAInventoryV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AddInventoryRequest < Data
         def self.new: (?inventory_items: Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
                     | (Array[Peddler::APIs::FBAInventoryV1::InventoryItem]?) -> Peddler::APIs::FBAInventoryV1::AddInventoryRequest
@@ -319,11 +321,6 @@ module Peddler
         def members: () -> [ :carrier_damaged_quantity, :customer_damaged_quantity, :defective_quantity, :distributor_damaged_quantity, :expired_quantity, :total_unfulfillable_quantity, :warehouse_damaged_quantity ]
         def to_h: () -> { carrier_damaged_quantity: Integer?, customer_damaged_quantity: Integer?, defective_quantity: Integer?, distributor_damaged_quantity: Integer?, expired_quantity: Integer?, total_unfulfillable_quantity: Integer?, warehouse_damaged_quantity: Integer? }
       end
-
-      def add_inventory: (String, Hash[untyped, untyped]) -> Peddler::Response
-      def create_inventory_item: (Hash[untyped, untyped]) -> Peddler::Response
-      def delete_inventory_item: (String, String) -> Peddler::Response
-      def get_inventory_summaries: (String, String, Array[String], ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

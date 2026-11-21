@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `GenerateShipmentContentUpdatePreviews` request.
       GenerateShipmentContentUpdatePreviewsRequest = Structure.new do
-        # @return [Array<BoxUpdateInput>] A list of boxes that will be present in the shipment after the update.
+        # A list of boxes that will be present in the shipment after the update.
         attribute(:boxes, [BoxUpdateInput], null: false)
 
-        # @return [Array<ItemInput>] A list of all items that will be present in the shipment after the update.
+        # A list of all items that will be present in the shipment after the update.
         attribute(:items, [ItemInput], null: false)
       end
     end

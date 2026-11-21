@@ -6,7 +6,7 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Specify delivery settings.
       DeliveryService = Structure.new do
       end

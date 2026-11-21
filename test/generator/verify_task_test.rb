@@ -12,7 +12,6 @@ module Generator
       "lib/peddler/reports",
       "lib/peddler/feeds",
       "lib/peddler/data_kiosk",
-      "sig/peddler.rbs",
       "sig/peddler/apis",
       "sig/peddler/notifications",
       "sig/peddler/reports",
@@ -25,6 +24,8 @@ module Generator
     end
 
     def test_generated_paths_are_tracked_by_git
+      skip("not a git repository") unless system("git", "rev-parse", "--git-dir", out: File::NULL, err: File::NULL)
+
       Generator.generated_paths.each do |path|
         tracked = system("git", "ls-files", "--error-unmatch", path, out: File::NULL, err: File::NULL)
 

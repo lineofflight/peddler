@@ -6,25 +6,24 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # Container in the shipment.
       Container = Structure.new do
-        # @return [String]
         attribute(:container_reference_id, String, null: false, from: "containerReferenceId")
 
-        # @return [Dimensions] The length, width, height, and weight of the container.
+        # The length, width, height, and weight of the container.
         attribute(:dimensions, Dimensions, null: false)
 
-        # @return [Array<ContainerItem>] A list of the items in the container.
+        # A list of the items in the container.
         attribute(:items, [ContainerItem], null: false)
 
-        # @return [Money] The total value of all items in the container.
+        # The total value of all items in the container.
         attribute(:value, Money, null: false)
 
-        # @return [Weight] The weight of the container.
+        # The weight of the container.
         attribute(:weight, Weight, null: false)
 
-        # @return [String] The type of physical container being used. (always 'PACKAGE')
+        # The type of physical container being used. (always 'PACKAGE')
         attribute?(:container_type, String, from: "containerType")
       end
     end

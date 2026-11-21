@@ -9,11 +9,9 @@ module Peddler
     module VendorForecasting
       # Forecast customer demand of your products for production and inventory planning purposes.
       Report = Structure.new do
-        # @return [Array<ForecastByAsin>]
         attribute(:forecast_by_asin, [ForecastByASIN], null: false, from: "forecastByAsin")
 
-        # @return [Hash] The report input summary which includes the marketplace, selling program, and last updated
-        #   date.
+        # The report input summary which includes the marketplace, selling program, and last updated date.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

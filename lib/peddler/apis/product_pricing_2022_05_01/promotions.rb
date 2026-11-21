@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # A list of live promotions applicable to this offer.
       class Promotions < Array
         class << self

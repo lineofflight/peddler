@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # Pagination details for list responses.
       Pagination = Structure.new do
-        # @return [String] A token to retrieve the next page of results. Absent when there are no more results.
+        # A token to retrieve the next page of results. Absent when there are no more results.
         attribute?(:next_token, String, from: "nextToken")
 
-        # @return [String] A token to retrieve the previous page of results. Absent on the first page.
+        # A token to retrieve the previous page of results. Absent on the first page.
         attribute?(:previous_token, String, from: "previousToken")
       end
     end

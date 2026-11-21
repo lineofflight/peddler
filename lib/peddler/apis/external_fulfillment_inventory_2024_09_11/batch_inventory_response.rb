@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # The response of the `batchInventory` operation.
       BatchInventoryResponse = Structure.new do
-        # @return [Array<InventoryResponse>]
         attribute?(:responses, [InventoryResponse])
       end
     end

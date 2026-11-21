@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
       TDSReimbursementEvent = Structure.new do
-        # @return [String] The date and time when the financial event was posted.
+        # The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [Money] The amount reimbursed.
+        # The amount reimbursed.
         attribute?(:reimbursed_amount, Money, from: "ReimbursedAmount")
 
-        # @return [String] The Tax-Deducted-at-Source (TDS) identifier.
+        # The Tax-Deducted-at-Source (TDS) identifier.
         attribute?(:tds_order_id, String, from: "TDSOrderId")
       end
     end

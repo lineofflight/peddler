@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionPlans20260601
+    module ActionPlans20260601
       # Classifications for an action item type.
       class ActionItemTypeClassifications < Array
         class << self

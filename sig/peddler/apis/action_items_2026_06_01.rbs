@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ActionItems20260601 < API
+    module ActionItems20260601
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ActionItem < Data
         def self.new: (action_item_id: String, description: Peddler::APIs::ActionItems20260601::LocalizedText, last_updated_date: Time, status: Array[untyped], type: Peddler::APIs::ActionItems20260601::ActionItemType, ?due_date: Time?, ?impacts: Array[Peddler::APIs::ActionItems20260601::Impact]?, ?references: Peddler::APIs::ActionItems20260601::References?, ?resolutions: Array[Peddler::APIs::ActionItems20260601::Resolution]?) -> Peddler::APIs::ActionItems20260601::ActionItem
                     | (String, Peddler::APIs::ActionItems20260601::LocalizedText, Time, Array[untyped], Peddler::APIs::ActionItems20260601::ActionItemType, Time?, Array[Peddler::APIs::ActionItems20260601::Impact]?, Peddler::APIs::ActionItems20260601::References?, Array[Peddler::APIs::ActionItems20260601::Resolution]?) -> Peddler::APIs::ActionItems20260601::ActionItem
@@ -411,10 +413,6 @@ module Peddler
       class SearchRefinementValues < Array[SearchRefinementValue]
         def self.parse: (Array[untyped]) -> SearchRefinementValues
       end
-
-      def dismiss_action_item: (String, Hash[untyped, untyped]) -> Peddler::Response
-      def get_action_item: (String, ?locale: String?, ?included_data: Array[String]?) -> Peddler::Response
-      def list_action_items: (?statuses: Array[String]?, ?classifications: Array[String]?, ?type_definition_ids: Array[String]?, ?marketplace_ids: Array[String]?, ?updated_after: String?, ?updated_before: String?, ?included_data: Array[String]?, ?sort_by: String?, ?sort_order: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?) -> Peddler::Response
     end
   end
 end

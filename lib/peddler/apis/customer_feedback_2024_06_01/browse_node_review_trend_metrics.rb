@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class CustomerFeedback20240601
+    module CustomerFeedback20240601
       # The browse node review topic metrics.
       BrowseNodeReviewTrendMetrics = Structure.new do
-        # @return [BrowseNodeAllOccurrence] The percent of reviews that mention the topic.
+        # The percent of reviews that mention the topic.
         attribute(:occurrence_percentage, BrowseNodeAllOccurrence, null: false, from: "occurrencePercentage")
       end
     end

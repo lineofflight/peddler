@@ -10,7 +10,7 @@ module Peddler
       def test_get_order_metrics
         res = api.get_order_metrics(["A1805IZSGTT6HS"], "2025-05-01T00:00:00-00:00--2025-06-01T00:00:00-00:00", "Total")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # Upfront fee (or a flat fee) for each promotion submitted.
       UpfrontFee = Structure.new do
-        # @return [String] Known values: `ONE_TIME`, `DAILY`.
+        # Known values: `ONE_TIME`, `DAILY`.
         attribute(:frequency, String, null: false)
 
-        # @return [Money]
         attribute(:rate, Money, null: false)
       end
     end

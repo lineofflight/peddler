@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentShipping20211228
+    module VendorDirectFulfillmentShipping20211228
       # Represents a list of customer invoices, potentially paginated.
       CustomerInvoiceList = Structure.new do
-        # @return [Array<CustomerInvoice>] Represents a customer invoice within the `CustomerInvoiceList`.
+        # Represents a customer invoice within the `CustomerInvoiceList`.
         attribute?(:customer_invoices, [CustomerInvoice], from: "customerInvoices")
 
-        # @return [Pagination] The pagination elements required to retrieve the remaining data.
+        # The pagination elements required to retrieve the remaining data.
         attribute?(:pagination, Pagination)
       end
     end

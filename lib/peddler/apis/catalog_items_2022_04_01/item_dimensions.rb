@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20220401
+    module CatalogItems20220401
       # An array of dimensions that are associated with the item in the Amazon catalog, grouped by `marketplaceId`.
       class ItemDimensions < Array
         class << self

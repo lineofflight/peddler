@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `listShipmentItems` response.
       ListShipmentItemsResponse = Structure.new do
-        # @return [Array<Item>] The items in a shipment.
+        # The items in a shipment.
         attribute(:items, [Item], null: false)
 
-        # @return [Pagination]
         attribute?(:pagination, Pagination)
       end
     end

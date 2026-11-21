@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Represents the packages to inbound.
       InboundPackages = Structure.new do
-        # @return [Array<DistributionPackageQuantity>] List of packages to be inbounded.
+        # List of packages to be inbounded.
         attribute(:packages_to_inbound, [DistributionPackageQuantity], null: false, from: "packagesToInbound")
       end
     end

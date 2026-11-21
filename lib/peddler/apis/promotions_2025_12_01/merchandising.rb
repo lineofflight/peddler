@@ -6,11 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class Promotions20251201
+    module Promotions20251201
       # The merchandising configuration for displaying promotions on the retail website.
       Merchandising = Structure.new do
-        # @return [String] Whether the promotion badge and details are displayed on the product detail pages and search
-        #   results on the retail website. Known values: `ALLOWED`, `NOT_ALLOWED`.
+        # Whether the promotion badge and details are displayed on the product detail pages and search results on the
+        # retail website. Known values: `ALLOWED`, `NOT_ALLOWED`.
         attribute?(:display_on_website, String, from: "displayOnWebsite")
       end
     end

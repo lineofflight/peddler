@@ -11,10 +11,10 @@ module Peddler
       # granularity. Requests can span multiple date range periods. For example, if the customer specified dataStartTime
       # and dataEndTime span three hours, the report would contain data for each complete hour within the time span.
       Report = Structure.new do
-        # @return [Array<ReportData>] List of hour and ASIN combinations.
+        # List of hour and ASIN combinations.
         attribute(:report_data, [ReportData], null: false, from: "reportData")
 
-        # @return [Hash] Summarizes the original report request.
+        # Summarizes the original report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

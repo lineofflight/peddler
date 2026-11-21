@@ -11,82 +11,16 @@ module Peddler
     # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
     # Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).
     #
-    # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide
-    # Product Type Definitions API Use Case Guide}.
+    # For more information, see the [Product Type Definitions API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
-    class ProductTypeDefinitions20200901 < API
-      # Search for and return a list of Amazon product types that have definitions available.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param keywords [Array<String>] A comma-delimited list of keywords to search product types. **Note:** Cannot be
-      #   used with `itemName`.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
-      # @param item_name [String] Title of ASIN to get product type recommendation. **Note:** Cannot be used with
-      #   `keywords`.
-      # @param locale [String] Locale for display names in response. Defaults to primary locale of the marketplace.
-      # @param search_locale [String] Language used for `keywords` or `itemName` parameters. Defaults to primary locale
-      #   of the marketplace.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
-        search_locale: nil, rate_limit: 5.0)
-        path = "/definitions/2020-09-01/productTypes"
-        params = {
-          "keywords" => stringify_array(keywords),
-          "marketplaceIds" => stringify_array(marketplace_ids),
-          "itemName" => item_name,
-          "locale" => locale,
-          "searchLocale" => search_locale,
-        }.compact
-        parser = -> { ProductTypeList }
-        get(path, params:, rate_limit:, parser:)
-      end
-
-      # Retrieve an Amazon product type definition.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param product_type [String] The Amazon product type name.
-      # @param seller_id [String] A selling partner identifier. When provided, seller-specific requirements and values
-      #   are populated within the product type definition schema, such as brand names associated with the selling
-      #   partner.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
-      #   Note: This parameter is limited to one marketplaceId at this time.
-      # @param product_type_version [String] The version of the Amazon product type to retrieve. Defaults to "LATEST".
-      #   Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease
-      #   version is currently available, the "LATEST" live version will be provided.
-      # @param requirements [String] The name of the requirements set to retrieve requirements for. Known values:
-      #   `LISTING`, `LISTING_PRODUCT_ONLY`, `LISTING_OFFER_ONLY`.
-      # @param requirements_enforced [String] Identifies if the required attributes for a requirements set are enforced
-      #   by the product type definition schema. Non-enforced requirements enable structural validation of individual
-      #   attributes without all the required attributes being present (such as for partial updates). Known values:
-      #   `ENFORCED`, `NOT_ENFORCED`.
-      # @param locale [String] Locale for retrieving display labels and other presentation details. Defaults to the
-      #   default language of the first marketplace in the request. Known values: `DEFAULT`, `ar`, `ar_AE`, `de`,
-      #   `de_DE`, `en`, `en_AE`, `en_AU`, `en_CA`, `en_GB`, `en_IN`, `en_SG`, `en_US`, `es`, `es_ES`, `es_MX`, `es_US`,
-      #   `fr`, `fr_CA`, `fr_FR`, `it`, `it_IT`, `ja`, `ja_JP`, `nl`, `nl_NL`, `pl`, `pl_PL`, `pt`, `pt_BR`, `pt_PT`,
-      #   `sv`, `sv_SE`, `tr`, `tr_TR`, `zh`, `zh_CN`, `zh_TW`.
-      # @param parentage_level [String] The parentage level of the listing to retrieve a schema for. When provided, the
-      #   schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in
-      #   a smaller schema with fewer conditions. Known values: `NONE`, `CHILD`, `PARENT`.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
-        requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", parentage_level: nil,
-        rate_limit: 5.0)
-        path = "/definitions/2020-09-01/productTypes/#{percent_encode(product_type)}"
-        params = {
-          "sellerId" => seller_id,
-          "marketplaceIds" => stringify_array(marketplace_ids),
-          "productTypeVersion" => product_type_version,
-          "requirements" => requirements,
-          "requirementsEnforced" => requirements_enforced,
-          "locale" => locale,
-          "parentageLevel" => parentage_level,
-        }.compact
-        parser = -> { ProductTypeDefinition }
-        get(path, params:, rate_limit:, parser:)
-      end
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
+    module ProductTypeDefinitions20200901
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
+        "product_type_definitions_2020_09_01.get_definitions_product_type" => -> { ProductTypeDefinition },
+        "product_type_definitions_2020_09_01.search_definitions_product_types" => -> { ProductTypeList },
+      })
     end
   end
 end

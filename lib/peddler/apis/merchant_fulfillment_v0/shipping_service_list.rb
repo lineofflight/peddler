@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of shipping services offers.
       class ShippingServiceList < Array
         class << self

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Vehicles20241101 < API
+    module Vehicles20241101
+      PARSERS: Hash[String, ^() -> untyped]
+
       class EngineOutput < Data
         def self.new: (unit: String, value: Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
                     | (String, Float) -> Peddler::APIs::Vehicles20241101::EngineOutput
@@ -146,8 +148,6 @@ module Peddler
         def members: () -> [ :vehicles, :pagination ]
         def to_h: () -> { vehicles: Array[Peddler::APIs::Vehicles20241101::Vehicle], pagination: Peddler::APIs::Vehicles20241101::Pagination? }
       end
-
-      def get_vehicles: (String, String, ?page_token: String?, ?updated_after: String?) -> Peddler::Response
     end
   end
 end

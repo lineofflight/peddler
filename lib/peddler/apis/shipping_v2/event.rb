@@ -7,21 +7,20 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A tracking event.
       Event = Structure.new do
-        # @return [String] Known values: `ReadyForReceive`, `PickupDone`, `Delivered`, `Departed`, `DeliveryAttempted`,
-        #   `Lost`, `OutForDelivery`, `ArrivedAtCarrierFacility`, `Rejected`, `Undeliverable`, `PickupCancelled`,
-        #   `ReturnInitiated`, `AvailableForPickup`, `RecipientRequestedAlternateDeliveryTiming`.
+        # Known values: `ReadyForReceive`, `PickupDone`, `Delivered`, `Departed`, `DeliveryAttempted`, `Lost`,
+        # `OutForDelivery`, `ArrivedAtCarrierFacility`, `Rejected`, `Undeliverable`, `PickupCancelled`,
+        # `ReturnInitiated`, `AvailableForPickup`, `RecipientRequestedAlternateDeliveryTiming`.
         attribute(:event_code, String, null: false, from: "eventCode")
 
-        # @return [Time] The ISO 8601 formatted timestamp of the event.
+        # The ISO 8601 formatted timestamp of the event.
         attribute(:event_time, Time, null: false, from: "eventTime")
 
-        # @return [Location]
         attribute?(:location, Location)
 
-        # @return [String] Known values: `FORWARD`, `RETURNS`.
+        # Known values: `FORWARD`, `RETURNS`.
         attribute?(:shipment_type, String, from: "shipmentType")
       end
     end

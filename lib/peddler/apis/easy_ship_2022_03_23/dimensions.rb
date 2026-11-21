@@ -6,22 +6,22 @@ require "structure"
 
 module Peddler
   module APIs
-    class EasyShip20220323
+    module EasyShip20220323
       # The dimensions of the scheduled package.
       Dimensions = Structure.new do
-        # @return [Float] The height dimension.
+        # The height dimension.
         attribute?(:height, Float)
 
-        # @return [String] Identifier for custom package dimensions.
+        # Identifier for custom package dimensions.
         attribute?(:identifier, String)
 
-        # @return [Float] The length dimension.
+        # The length dimension.
         attribute?(:length, Float)
 
-        # @return [String] Known values: `cm`.
+        # Known values: `cm`.
         attribute?(:unit, String)
 
-        # @return [Float] The width dimension.
+        # The width dimension.
         attribute?(:width, Float)
       end
     end

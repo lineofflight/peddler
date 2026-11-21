@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `scheduleSelfShipAppointment` response.
       ScheduleSelfShipAppointmentResponse = Structure.new do
-        # @return [SelfShipAppointmentDetails]
         attribute(:self_ship_appointment_details, SelfShipAppointmentDetails, null: false, from: "selfShipAppointmentDetails")
       end
     end

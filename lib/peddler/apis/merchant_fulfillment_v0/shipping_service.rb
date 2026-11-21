@@ -6,55 +6,51 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A shipping service offer made by a carrier.
       ShippingService = Structure.new do
-        # @return [String] The name of the carrier.
+        # The name of the carrier.
         attribute(:carrier_name, String, null: false, from: "CarrierName")
 
-        # @return [Money] The amount that the carrier will charge for the shipment.
+        # The amount that the carrier will charge for the shipment.
         attribute(:rate, Money, null: false, from: "Rate")
 
-        # @return [Money] The amount that the carrier will charge for the shipment with adjustments.
+        # The amount that the carrier will charge for the shipment with adjustments.
         attribute(:rate_with_adjustments, Money, null: false, from: "RateWithAdjustments")
 
-        # @return [:boolean] When `true`, additional seller inputs are required.
+        # When `true`, additional seller inputs are required.
         attribute(:requires_additional_seller_inputs, :boolean, null: false, from: "RequiresAdditionalSellerInputs")
 
-        # @return [String] The date that the carrier ships the package.
+        # The date that the carrier ships the package.
         attribute(:ship_date, String, null: false, from: "ShipDate")
 
-        # @return [String]
         attribute(:shipping_service_id, String, null: false, from: "ShippingServiceId")
 
-        # @return [String] The carrier's shipping service name, such as "UPS Ground" or "FedEx Standard Overnight".
+        # The carrier's shipping service name, such as "UPS Ground" or "FedEx Standard Overnight".
         attribute(:shipping_service_name, String, null: false, from: "ShippingServiceName")
 
-        # @return [String] An Amazon-defined shipping service offer identifier.
+        # An Amazon-defined shipping service offer identifier.
         attribute(:shipping_service_offer_id, String, null: false, from: "ShippingServiceOfferId")
 
-        # @return [ShippingServiceOptions] Extra services offered by the carrier.
+        # Extra services offered by the carrier.
         attribute(:shipping_service_options, ShippingServiceOptions, null: false, from: "ShippingServiceOptions")
 
-        # @return [Array<RateItem>] A list of adjustments applied to a shipping service.
+        # A list of adjustments applied to a shipping service.
         attribute?(:adjustment_item_list, [RateItem], from: "AdjustmentItemList")
 
-        # @return [Array<LabelFormatOption>]
         attribute?(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")
 
-        # @return [Array<LabelFormat>] Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
+        # Known values: `PDF`, `PNG`, `ZPL203`, `ZPL300`, `ShippingServiceDefault`.
         attribute?(:available_label_formats, Array, from: "AvailableLabelFormats")
 
-        # @return [AvailableShippingServiceOptions]
         attribute?(:available_shipping_service_options, AvailableShippingServiceOptions, from: "AvailableShippingServiceOptions")
 
-        # @return [Benefits]
         attribute?(:benefits, Benefits, from: "Benefits")
 
-        # @return [String] The earliest estimated delivery date for the shipment.
+        # The earliest estimated delivery date for the shipment.
         attribute?(:earliest_estimated_delivery_date, String, from: "EarliestEstimatedDeliveryDate")
 
-        # @return [String] The latest estimated delivery date for the shipment.
+        # The latest estimated delivery date for the shipment.
         attribute?(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
       end
     end

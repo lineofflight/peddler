@@ -9,8 +9,7 @@ require "generator/data_kiosk"
 require "generator/entrypoint"
 require "generator/support/introspection_loader"
 
-# @!visibility private
-module Generator
+module Generator # :nodoc:
   class << self
     def generate
       # Setup introspection loader once before any parallel operations
@@ -37,7 +36,6 @@ module Generator
         "lib/peddler/reports",
         "lib/peddler/feeds",
         "lib/peddler/data_kiosk",
-        "sig/peddler.rbs",
         "sig/peddler/apis",
         "sig/peddler/notifications",
         "sig/peddler/reports",

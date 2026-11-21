@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Order details.
       GetOrderResponse = Structure.new do
-        # @return [Order] All available information about the requested order.
+        # All available information about the requested order.
         attribute(:order, Order, null: false)
       end
     end

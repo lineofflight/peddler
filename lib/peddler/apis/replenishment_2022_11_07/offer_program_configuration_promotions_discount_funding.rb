@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # A promotional percentage discount applied to the offer.
       OfferProgramConfigurationPromotionsDiscountFunding = Structure.new do
-        # @return [Float] The percentage discount on the offer.
+        # The percentage discount on the offer.
         attribute?(:percentage, Float)
       end
     end

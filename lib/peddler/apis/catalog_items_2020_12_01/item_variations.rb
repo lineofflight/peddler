@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Variation details by marketplace for an Amazon catalog item (variation relationships).
       class ItemVariations < Array
         class << self

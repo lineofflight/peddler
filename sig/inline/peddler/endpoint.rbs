@@ -1,0 +1,20 @@
+# Generated from lib/peddler/endpoint.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class Endpoint
+    # Amazon's endpoints, by AWS region
+    #
+    # https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints
+    REGIONS: Hash[String, Hash[Symbol, String]]
+
+    def self.all: () -> Array[Endpoint]
+
+    def self.find: (String aws_region) -> Endpoint
+
+    def self.find_by_selling_region: (String selling_region) -> Endpoint
+
+    def production: () -> URI::HTTPS
+
+    def sandbox: () -> URI::HTTPS
+  end
+end

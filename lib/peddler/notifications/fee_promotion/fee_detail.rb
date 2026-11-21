@@ -8,22 +8,16 @@ module Peddler
   module Notifications
     module FeePromotion
       FeeDetail = Structure.new do
-        # @return [FeeAmount]
         attribute(:fee_amount, FeeAmount, null: false, from: "FeeAmount")
 
-        # @return [String]
         attribute(:fee_type, String, null: false, from: "FeeType")
 
-        # @return [FinalFee]
         attribute(:final_fee, FinalFee, null: false, from: "FinalFee")
 
-        # @return [FeePromotion]
         attribute?(:fee_promotion, FeePromotion, from: "FeePromotion")
 
-        # @return [Array]
         attribute?(:included_fees, Array, from: "IncludedFees")
 
-        # @return [TaxAmount]
         attribute?(:tax_amount, TaxAmount, from: "TaxAmount")
       end
     end

@@ -9,10 +9,10 @@ module Peddler
     module AccountHealthReport20201118
       # The root schema comprises the entire JSON document.
       Report = Structure.new do
-        # @return [Array<Object>] Seller's corresponding account status for each requested marketplace.
+        # Seller's corresponding account status for each requested marketplace.
         attribute(:account_statuses, Array, null: false, from: "accountStatuses")
 
-        # @return [Array<Object>] Seller's performance metrics for requeted marketpalces.
+        # Seller's performance metrics for requeted marketpalces.
         attribute(:performance_metrics, Array, null: false, from: "performanceMetrics")
       end
     end

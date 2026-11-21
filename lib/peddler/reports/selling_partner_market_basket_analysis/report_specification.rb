@@ -10,25 +10,25 @@ module Peddler
     module SellingPartnerMarketBasketAnalysis
       # Summarizes the original report request.
       ReportSpecification = Structure.new do
-        # @return [Date] The end date of the report (any time component is ignored). For WEEK, MONTH and QUARTER
-        #   reportPeriods, this value must correspond to the last day in the specified reportPeriod or else a fatal
-        #   error is returned. For example, dataEndTime must be a Saturday for the WEEK reportPeriod.
+        # The end date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this
+        # value must correspond to the last day in the specified reportPeriod or else a fatal error is returned. For
+        # example, dataEndTime must be a Saturday for the WEEK reportPeriod.
         attribute(:data_end_time, Date, null: false, from: "dataEndTime")
 
-        # @return [Date] The start date of the report (any time component is ignored). For WEEK, MONTH and QUARTER
-        #   reportPeriods, this value must correspond to the first day in the specified reportPeriod or else a fatal
-        #   error is returned. For example, dataStartTime must be a Sunday for the WEEK reportPeriod.
+        # The start date of the report (any time component is ignored). For WEEK, MONTH and QUARTER reportPeriods, this
+        # value must correspond to the first day in the specified reportPeriod or else a fatal error is returned. For
+        # example, dataStartTime must be a Sunday for the WEEK reportPeriod.
         attribute(:data_start_time, Date, null: false, from: "dataStartTime")
 
-        # @return [Array] This parameter must match the marketplaceId of the selling partner account. This report type
-        #   supports only one marketplaceId per report. Specifying multiple marketplaces will result in a fatal error
-        #   and fail to generate the report.
+        # This parameter must match the marketplaceId of the selling partner account. This report type supports only one
+        # marketplaceId per report. Specifying multiple marketplaces will result in a fatal error and fail to generate
+        # the report.
         attribute(:marketplace_ids, Array, null: false, from: "marketplaceIds")
 
-        # @return [ReportOptions] Report options specifying parameters such as reportPeriod.
+        # Report options specifying parameters such as reportPeriod.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] Type of the report. Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`.
+        # Type of the report. Known values: `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

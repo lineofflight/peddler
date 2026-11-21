@@ -6,19 +6,19 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Error response returned when the request is unsuccessful.
       Error = Structure.new do
-        # @return [String] An error code that identifies the type of error that occurred.
+        # An error code that identifies the type of error that occurred.
         attribute(:code, String, null: false)
 
-        # @return [String] A message that describes the error condition.
+        # A message that describes the error condition.
         attribute(:message, String, null: false)
 
-        # @return [String] Additional details that can help the caller understand or fix the issue.
+        # Additional details that can help the caller understand or fix the issue.
         attribute?(:details, String)
 
-        # @return [String] The type of error. Known values: `ERROR`, `WARNING`.
+        # The type of error. Known values: `ERROR`, `WARNING`.
         attribute?(:error_level, String, from: "errorLevel")
       end
     end

@@ -14,10 +14,10 @@ module Peddler
       # retrieval and aggregation. If the customer does not elect to share their data, the report does not generate
       # data.
       Report = Structure.new do
-        # @return [Array<EndUserData>] A list of consented end users (buyers) and their data.
+        # A list of consented end users (buyers) and their data.
         attribute(:end_user_data, [EndUserData], null: false, from: "endUserData")
 
-        # @return [Hash] Summarizes the report request.
+        # Summarizes the report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

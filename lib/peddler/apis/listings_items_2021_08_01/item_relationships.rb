@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ListingsItems20210801
+    module ListingsItems20210801
       # Relationships for a listing item, by Amazon store (for example, variations).
       class ItemRelationships < Array
         class << self

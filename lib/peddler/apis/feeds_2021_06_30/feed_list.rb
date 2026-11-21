@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Feeds20210630
+    module Feeds20210630
       # A list of feeds.
       class FeedList < Array
         class << self

@@ -10,6 +10,7 @@ require_relative "support/formatter"
 require_relative "support/file_writer"
 require_relative "support/introspection_loader"
 require_relative "support/money_detector"
+require_relative "support/naming"
 require_relative "parsers/path"
 require_relative "resolvers/type_resolver"
 require_relative "resolvers/api_name_resolver"
@@ -22,13 +23,14 @@ module Generator
     include FileWriter
     include Formatter
 
+    INVENTORY = "crates/peddler-codegen/operation-inventory.json"
+
     attr_reader :file
 
     class << self
       def generate
         cleanup!
 
-        # Generate each API in parallel
         Parallel.each(apis, &:generate)
       end
 
@@ -79,7 +81,6 @@ module Generator
       api_types = types
       return [] if api_types.empty?
 
-      # Detect circular dependencies across all types for this API
       detector = CircularDependencyDetector.new(api_types)
       detector.detect
       api_types.each do |type|
@@ -87,17 +88,14 @@ module Generator
         type.cycle_edges = detector.cycle_edges
       end
 
-      # Generate each type Ruby file
       api_types.each do |type|
         @written_files << type.generate
       end
 
-      # Store types for RBS generation
       @api_types = api_types
     end
 
     def generate_rbs!
-      # Generate unified RBS file with both API operations and type definitions
       @written_files << RBS::Unified.new(self, name_with_version, @api_types || []).generate
     end
 
@@ -106,7 +104,6 @@ module Generator
       model["definitions"].each do |name, definition|
         # Skip non-object definitions but allow allOf compositions and arrays
         next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
-        # Skip Money types as we use the custom Money type for these
         next if MoneyDetector.money_type?(name)
         # Skip types with ONLY additionalProperties (no defined properties) - they'll be referenced as Hash
         next if definition["additionalProperties"] && !definition["properties"] && !definition["allOf"]
@@ -122,7 +119,7 @@ module Generator
 
     def description
       description = model["info"]["description"]
-      description = convert_html_links_to_yard(description)
+      description = convert_html_links_to_markdown(description)
       description = convert_doc_links_to_full_url(description)
 
       split_long_comment_line(description, base_indent: 4)
@@ -132,52 +129,43 @@ module Generator
       "peddler/apis/#{name_with_version}"
     end
 
-    def has_helper?
-      File.exist?("lib/" + helper_library_name + ".rb")
-    end
-
-    def helper_class_name
-      "Peddler::Helpers::#{name_with_version.camelize}"
-    end
-
-    def helper_library_name
-      "peddler/helpers/#{name_with_version}"
-    end
-
     def class_name
-      name_with_version.camelize
+      Naming.constant(name_with_version.camelize)
     end
 
     def name
       @name ||= APINameResolver.new(file).name
     end
 
+    # The version comes from the spec, and goes into the name of a module and of a file. A spec is data: one that
+    # would be anything but a word is refused.
     def version
-      model["info"]["version"].tr("-", "_")
+      version = model["info"]["version"].tr("-", "_")
+      raise ArgumentError, "#{version.inspect} is no version of an API" unless version.match?(/\A\w+\z/)
+
+      version
     end
 
     def name_with_version
       [name, version].join("_")
     end
 
-    def latest_version?
-      all_apis = self.class.apis.select { |api| api.name == name }
-      latest_version = VersionSelector.find_latest_version(all_apis.map(&:version))
-      version == latest_version
-    end
+    # Typed success models by native operation key. The Rust generator owns the keys, so they are
+    # read from its inventory by path and method.
+    def parsers
+      keys = native_keys
 
-    def operations
-      @operations ||= begin
-        ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
-        deduplicate_operations(ops)
-      end
-    end
+      paths.flat_map do |path|
+        path.operations.filter_map do |op|
+          next unless op.has_typed_response?
 
-    def type_names
-      model["definitions"]
-        .select { |name, def_| def_["type"] == "object" && !MoneyDetector.money_type?(name) && !def_["additionalProperties"] }
-        .keys
-        .sort
+          key = keys.fetch([path.path, op.verb.upcase]) do
+            raise "#{path.path} #{op.verb} of #{name_with_version} is missing from #{INVENTORY}"
+          end
+
+          [key, Naming.class_name(op.response_model[:model])]
+        end
+      end.sort.to_h
     end
 
     def paths
@@ -195,44 +183,20 @@ module Generator
 
     private
 
-    def deduplicate_operations(ops)
-      # Group by operation ID
-      operation_map = ops.group_by { |op| op.operation["operationId"].underscore }
-
-      # Find duplicates
-      duplicates = operation_map.select { |_, ops| ops.size > 1 }
-
-      if duplicates.any?
-        duplicates.each do |method_name, ops|
-          verbs = ops.map(&:verb).join(", ")
-          Generator.logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
-        end
-      end
-
-      # Handle duplicates
-      duplicates.each do |method_name, ops|
-        if name_with_version == "shipping_v2" && method_name == "link_carrier_account"
-          # Special case for ShippingV2's link_carrier_account - choose POST version
-          post_op = ops.find { |op| op.verb == "post" }
-          operation_map[method_name] = [post_op] if post_op
-        else
-          # For any other duplicates, raise an error
-          verbs = ops.map(&:verb).join(", ")
-          raise "Error: Found duplicate operation '#{method_name}' in #{name_with_version} " \
-            "with HTTP verbs: #{verbs}. Please handle this case specifically."
-        end
-      end
-
-      # Return flattened list of operations with duplicates resolved
-      operation_map.values.flatten
-    end
-
     def render
       ERB.new(template, trim_mode: "-").result(binding)
     end
 
     def template
       File.read(Config.template_path("api"))
+    end
+
+    def native_keys
+      inventory = JSON.parse(File.read(File.join(Config::BASE_PATH, INVENTORY)))
+      api = inventory["apis"].find { |entry| entry["module"] == name_with_version }
+      raise "#{name_with_version} is missing from #{INVENTORY}" unless api
+
+      api["operations"].to_h { |op| [[op["path"], op["method"]], op["key"]] }
     end
 
     def model

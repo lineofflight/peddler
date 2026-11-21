@@ -8,7 +8,6 @@ module Peddler
   module Notifications
     module AnyOfferChanged
       Points = Structure.new do
-        # @return [Integer]
         attribute(:points_number, Integer, null: false, from: "PointsNumber")
       end
     end

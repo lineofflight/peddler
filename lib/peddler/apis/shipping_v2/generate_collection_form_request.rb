@@ -6,16 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The request schema Call to generate the collection form.
       GenerateCollectionFormRequest = Structure.new do
-        # @return [String]
         attribute(:carrier_id, String, null: false, from: "carrierId")
 
-        # @return [Array<ClientReferenceDetail>]
         attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
 
-        # @return [Address]
         attribute?(:ship_from_address, Address, from: "shipFromAddress")
       end
     end

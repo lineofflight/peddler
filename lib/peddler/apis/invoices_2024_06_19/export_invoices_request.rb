@@ -7,50 +7,49 @@ require "time"
 
 module Peddler
   module APIs
-    class Invoices20240619
+    module Invoices20240619
       # The information required to create the export request.
       ExportInvoicesRequest = Structure.new do
-        # @return [String] The ID of the marketplace from which you want the invoices.
+        # The ID of the marketplace from which you want the invoices.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [Date] The latest invoice creation date for invoices that you want to include in the response. Dates
-        #   are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is
-        #   the time of the request.
+        # The latest invoice creation date for invoices that you want to include in the response. Dates are in [ISO
+        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the time of the
+        # request.
         attribute?(:date_end, Date, from: "dateEnd")
 
-        # @return [Date] The earliest invoice creation date for invoices that you want to include in the response. Dates
-        #   are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is
-        #   24 hours prior to the time of the request.
+        # The earliest invoice creation date for invoices that you want to include in the response. Dates are in [ISO
+        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is 24 hours prior
+        # to the time of the request.
         attribute?(:date_start, Date, from: "dateStart")
 
-        # @return [String] The external ID of the invoices you want included in the response.
+        # The external ID of the invoices you want included in the response.
         attribute?(:external_invoice_id, String, from: "externalInvoiceId")
 
-        # @return [String] Known values: `XML`.
+        # Known values: `XML`.
         attribute?(:file_format, String, from: "fileFormat")
 
-        # @return [String] The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes`
-        #   operation to check `invoiceType` options.
+        # The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes` operation to
+        # check `invoiceType` options.
         attribute?(:invoice_type, String, from: "invoiceType")
 
-        # @return [String] The series number of the invoices you want included in the response.
+        # The series number of the invoices you want included in the response.
         attribute?(:series, String)
 
-        # @return [Array<String>] A list of statuses that you can use to filter invoices. Use the
-        #   `getInvoicesAttributes` operation to check invoice status options.
+        # A list of statuses that you can use to filter invoices. Use the `getInvoicesAttributes` operation to check
+        # invoice status options.
         #
         # Min count: 1
         attribute?(:statuses, [String])
 
-        # @return [TransactionIdentifier]
         attribute?(:transaction_identifier, TransactionIdentifier, from: "transactionIdentifier")
 
-        # @return [String] The marketplace-specific classification of the transaction type for which the invoice was
-        #   created. Use the `getInvoicesAttributes` operation to check `transactionType` options
+        # The marketplace-specific classification of the transaction type for which the invoice was created. Use the
+        # `getInvoicesAttributes` operation to check `transactionType` options
         attribute?(:transaction_type, String, from: "transactionType")
 
-        # @return [String] The Warehouse code included in the invoice issued on behalf of the vendor. Check the
-        #   warehouse code under your WarehouseSettings in VendorCentral.
+        # The Warehouse code included in the invoice issued on behalf of the vendor. Check the warehouse code under your
+        # WarehouseSettings in VendorCentral.
         attribute?(:warehouse_code, String, from: "warehouseCode")
       end
     end

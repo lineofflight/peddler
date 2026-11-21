@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class SellersV1 < API
+    module SellersV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Account < Data
         def self.new: (business_type: String, marketplace_participation_list: Array[Peddler::APIs::SellersV1::MarketplaceParticipation], selling_plan: String, ?business: Peddler::APIs::SellersV1::Business?, ?primary_contact: Peddler::APIs::SellersV1::PrimaryContact?) -> Peddler::APIs::SellersV1::Account
                     | (String, Array[Peddler::APIs::SellersV1::MarketplaceParticipation], String, Peddler::APIs::SellersV1::Business?, Peddler::APIs::SellersV1::PrimaryContact?) -> Peddler::APIs::SellersV1::Account
@@ -197,9 +199,6 @@ module Peddler
         def members: () -> [ :address, :name, :non_latin_name ]
         def to_h: () -> { address: Peddler::APIs::SellersV1::Address, name: String, non_latin_name: String? }
       end
-
-      def get_account: (?rate_limit: Float) -> Peddler::Response
-      def get_marketplace_participations: (?rate_limit: Float) -> Peddler::Response
     end
   end
 end

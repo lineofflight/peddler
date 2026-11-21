@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class EasyShip20220323 < API
+    module EasyShip20220323
+      PARSERS: Hash[String, ^() -> untyped]
+
       class CreateScheduledPackageRequest < Data
         def self.new: (amazon_order_id: String, marketplace_id: String, package_details: Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
                     | (String, String, Peddler::APIs::EasyShip20220323::PackageDetails) -> Peddler::APIs::EasyShip20220323::CreateScheduledPackageRequest
@@ -389,14 +391,6 @@ module Peddler
         def members: () -> [ :unit, :value ]
         def to_h: () -> { unit: String?, value: Float? }
       end
-
-      def create_scheduled_package: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_scheduled_package_bulk: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_scheduled_package: (String, String, ?rate_limit: Float) -> Peddler::Response
-      def list_handover_slots: (?list_handover_slots_request: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
-
-      def update_scheduled_packages: (?update_scheduled_packages_request: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

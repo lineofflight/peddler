@@ -54,9 +54,26 @@ module Peddler
       assert_equal(@marketplace.id, @marketplace.to_str)
     end
 
+    def test_to_json_is_its_id_at_any_depth
+      id = @marketplace.id
+
+      assert_equal(%("#{id}"), @marketplace.to_json)
+      assert_equal(%(["#{id}"]), JSON.generate([@marketplace]))
+      assert_equal(%({"a":[{"b":"#{id}"}]}), JSON.generate({ "a" => [{ "b" => @marketplace }] }))
+    end
+
     def test_dynamic_shorthand_methods
       assert_equal("US", Marketplace.us.country_code)
       assert_equal("GB", Marketplace.gb.country_code)
+    end
+
+    # The finders are defined in a loop, so their signatures are kept by hand.
+    def test_every_finder_has_a_signature
+      signatures = File.read(File.expand_path("../../sig/peddler/marketplace.rbs", __dir__))
+      finders = [*MARKETPLACE_IDS.keys, "GB"].map(&:downcase)
+
+      assert_equal(finders.sort, signatures.scan(/def self\.(\w\w): \(\) -> Marketplace/).flatten.sort)
+      assert_equal(finders.map(&:upcase), finders.map { |finder| Marketplace.public_send(finder).country_code })
     end
 
     def test_marketplace_ids_ractor_shareable

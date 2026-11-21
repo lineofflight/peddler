@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911 < API
+    module ExternalFulfillmentInventory20240911
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ActionableError < Data
         def self.new: (?error_sub_type: String?, ?error_type: String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
                     | (String?, String?) -> Peddler::APIs::ExternalFulfillmentInventory20240911::ActionableError
@@ -200,8 +202,6 @@ module Peddler
         def members: () -> [ :channel_name, :marketplace_id ]
         def to_h: () -> { channel_name: String?, marketplace_id: String? }
       end
-
-      def batch_inventory: (Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

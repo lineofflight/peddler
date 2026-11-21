@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # Contains details about an invalid ASIN
       InvalidASIN = Structure.new do
-        # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
+        # The Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String, from: "ASIN")
 
-        # @return [String] The reason that the ASIN is invalid. Known values: `DoesNotExist`, `InvalidASIN`.
+        # The reason that the ASIN is invalid. Known values: `DoesNotExist`, `InvalidASIN`.
         attribute?(:error_reason, String, from: "ErrorReason")
       end
     end

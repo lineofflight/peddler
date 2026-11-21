@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrders20211228
+    module VendorDirectFulfillmentOrders20211228
       # A list of tax line items.
       class TaxLineItem < Array
         class << self

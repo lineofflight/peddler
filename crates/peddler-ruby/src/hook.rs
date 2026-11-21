@@ -1,0 +1,382 @@
+//! Ruby, called in the middle of a native call.
+//!
+//! The work of a call owns Rust data only and is polled without the GVL, so it never
+//! calls Ruby. It parks a question and waits for the answer. Parking ends the pass, and
+//! `gvl::asking` answers between passes, on the calling thread with the GVL held: it
+//! calls a token source for the token of an attempt, and the exchange hook, which the
+//! WebMock adapter sets, for a request the work would send.
+//!
+//! A question is parked in a slot of the calling thread that exists only during a pass
+//! of a call that answers. Anywhere else, on a runtime thread or in a call that asks
+//! nothing, there is no slot: the exchange goes to the network and a token is refused.
+//!
+//! A token source is its Ractor's own and is asked there. The exchange hook is the main
+//! Ractor's: only it sets one, and while one is set a call of another Ractor is refused.
+//!
+//! Nothing has to require the WebMock adapter. A call looks for WebMock before it sends
+//! anything and loads the adapter the first time it finds it (see `adapt`).
+
+use super::{ACCESS_TOKEN, argument_error, peddler_const};
+use magnus::{
+    Error, ExceptionClass, RArray, RClass, RModule, RString, Ruby, Symbol, TryConvert, Value,
+    method, prelude::*,
+};
+use peddler::{
+    Response,
+    auth::AuthError,
+    intercept::{Exchange, Failure, Interceptor, Reply},
+};
+use std::{
+    cell::RefCell,
+    collections::VecDeque,
+    sync::atomic::{AtomicBool, Ordering},
+};
+use tokio::sync::oneshot;
+
+/// What the work asks of Ruby.
+pub(super) enum Question {
+    /// The access token of an attempt.
+    Token,
+    /// What to do with a request the work is about to send.
+    Exchange(Exchange),
+    /// The response of a request that went to the network after all.
+    Completed(Response),
+}
+
+/// What Ruby answered.
+pub(super) enum Answer {
+    Token(String),
+    /// The response: a stubbed one to an exchange, or the real one given back.
+    Reply(Response),
+    /// The exchange times out.
+    TimedOut,
+    /// The request goes to the network.
+    Proceed,
+    /// The call has nothing to answer the question with.
+    Refused,
+}
+
+type Parked = (Question, oneshot::Sender<Answer>);
+
+/// The questions of one pass, and whether the call hands its exchanges to the hook.
+pub(super) struct Pass {
+    parked: VecDeque<Parked>,
+    exchanges: bool,
+}
+
+impl Pass {
+    /// The next question the work still waits on.
+    pub(super) fn next(&mut self) -> Option<Parked> {
+        loop {
+            let parked = self.parked.pop_front()?;
+            // An attempt that timed out, say, dropped the question it had parked.
+            if !parked.1.is_closed() {
+                return Some(parked);
+            }
+        }
+    }
+}
+
+thread_local! {
+    static PASS: RefCell<Option<Pass>> = const { RefCell::new(None) };
+}
+
+/// Opens the slot of the calling thread for one pass.
+pub(super) fn enter(pass: Pass) {
+    PASS.with(|slot| *slot.borrow_mut() = Some(pass));
+}
+
+/// Closes the slot and returns it with what the work parked.
+pub(super) fn leave() -> Option<Pass> {
+    PASS.with(|slot| slot.borrow_mut().take())
+}
+
+/// Ready once the work has parked a question. The work is polled first in every pass,
+/// so there is nothing to be woken for.
+pub(super) async fn asked() {
+    std::future::poll_fn(|_| {
+        let parked = PASS.with(|slot| {
+            slot.borrow()
+                .as_ref()
+                .is_some_and(|pass| !pass.parked.is_empty())
+        });
+        if parked {
+            std::task::Poll::Ready(())
+        } else {
+            std::task::Poll::Pending
+        }
+    })
+    .await;
+}
+
+/// Parks a question and waits for its answer. None where nothing answers.
+async fn ask(question: Question) -> Option<Answer> {
+    let (reply, answer) = oneshot::channel();
+    PASS.with(|slot| {
+        let mut slot = slot.borrow_mut();
+        slot.as_mut()?.parked.push_back((question, reply));
+        Some(())
+    })?;
+    answer.await.ok()
+}
+
+/// Gives the timeouts around the work their turn before it sends a request with what Ruby
+/// answered. Ruby may have answered after the deadline of the attempt, and a timeout polls
+/// its work before its timer: without this pause the work would take the late answer and
+/// hand the request to the HTTP client, and only then be dropped.
+async fn pause() {
+    tokio::task::yield_now().await;
+}
+
+/// The token source of a client that has no token of its own: Ruby is asked before
+/// every attempt. A client nothing answers for has no token to send and fails closed.
+pub(super) async fn token() -> Result<String, AuthError> {
+    match ask(Question::Token).await {
+        Some(Answer::Token(token)) => {
+            pause().await;
+            Ok(token)
+        }
+        _ => Err(AuthError::InvalidConfig),
+    }
+}
+
+/// The interceptor of the shared pool. It takes the exchanges of a call that began
+/// while an exchange hook was set.
+pub(super) struct Hook;
+
+impl Interceptor for Hook {
+    fn enabled(&self) -> bool {
+        PASS.with(|slot| slot.borrow().as_ref().is_some_and(|pass| pass.exchanges))
+    }
+
+    fn exchange<'a>(&'a self, exchange: Exchange, real: Reply<'a>) -> Reply<'a> {
+        Box::pin(async move {
+            match ask(Question::Exchange(exchange)).await {
+                Some(Answer::Reply(response)) => Ok(response),
+                Some(Answer::TimedOut) => Err(Failure::Timeout),
+                Some(Answer::Proceed) => {
+                    pause().await;
+                    let response = real.await?;
+                    match ask(Question::Completed(response)).await {
+                        Some(Answer::Reply(response)) => Ok(response),
+                        _ => Err(Failure::Transport),
+                    }
+                }
+                _ => Err(Failure::Transport),
+            }
+        })
+    }
+}
+
+/// Whether an exchange hook is set, so that a call without one doesn't look for it.
+static HOOKED: AtomicBool = AtomicBool::new(false);
+/// The instance variable of `Peddler::Native` that holds the hook.
+pub(super) const HOOK: &str = "@exchange_hook";
+
+pub(super) fn hooked() -> bool {
+    HOOKED.load(Ordering::Acquire)
+}
+
+/// What a Ractor other than the main one is told of the hook. The hook is an instance
+/// variable of a module, which only the main Ractor sets, and what WebMock keeps behind
+/// it is not shareable either.
+const SET: &str = "the exchange hook is set and cleared in the main Ractor only";
+const CALL: &str = "the exchange hook that WebMock sets answers the main Ractor only: disable WebMock or call from the main Ractor";
+const LOAD: &str = "WebMock is loaded, and its adapter for Peddler loads in the main Ractor only: require \"peddler/webmock\" there before a call from another Ractor";
+
+fn main_ractor(ruby: &Ruby) -> Result<bool, Error> {
+    let ractor: RClass = ruby.class_object().const_get("Ractor")?;
+    let current: Value = ractor.funcall("current", ())?;
+    current.equal(ractor.funcall::<_, _, Value>("main", ())?)
+}
+
+fn isolation_error(ruby: &Ruby, message: &'static str) -> Error {
+    let class = ruby
+        .class_object()
+        .const_get::<_, RClass>("Ractor")
+        .and_then(|ractor| ractor.const_get::<_, ExceptionClass>("IsolationError"));
+    match class {
+        Ok(class) => Error::new(class, message),
+        Err(error) => error,
+    }
+}
+
+/// The constant that tells WebMock is loaded, and the feature that holds its adapter.
+pub(super) const WEBMOCK: &str = "WebMock";
+const ADAPTER: &str = "peddler/webmock";
+/// Whether the WebMock adapter is loaded. It tells by setting or clearing the hook, which
+/// it does as it loads, and a call then looks for WebMock no more.
+static ADAPTED: AtomicBool = AtomicBool::new(false);
+
+/// Loads the WebMock adapter before the first exchange of a process that has WebMock
+/// loaded, so that no request passes WebMock unseen for want of a `require`. The adapter
+/// sets the hook as it loads if WebMock is enabled, and the call that loaded it finds
+/// the hook set. Without WebMock this is a constant lookup.
+///
+/// The lookup is `const_source_location`, which is nil where there is no constant.
+/// `const_defined?` asks the loaded features about a constant that is an autoload, and
+/// those are the main Ractor's to change: asked in another Ractor while the main one
+/// loads code, it ends the process. In the main Ractor a `WebMock` that is still an
+/// autoload is not WebMock loaded, and the call does not load it.
+///
+/// A Ractor other than the main one is refused while WebMock is loaded and the adapter
+/// is not, whether WebMock is enabled or not. It can't load the adapter: Ruby 3.3 loads
+/// code in the main Ractor only, and the hook is set there. It could read whether
+/// `Net::HTTP` is swapped, as the adapter does, though not `WebMock::Config`. But that
+/// reading stays the adapter's, and until it is made the call is refused. An autoload
+/// refuses it too: only the main Ractor may tell one from WebMock loaded.
+fn adapt(ruby: &Ruby) -> Result<(), Error> {
+    if ADAPTED.load(Ordering::Acquire) {
+        return Ok(());
+    }
+    let object = ruby.class_object();
+    let name = ruby.sym_new(WEBMOCK);
+    if object
+        .funcall::<_, _, Value>("const_source_location", (name, false))?
+        .is_nil()
+    {
+        return Ok(());
+    }
+    if !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, LOAD));
+    }
+    // Asked here only: it reads the loaded features, as `const_defined?` does.
+    if !object
+        .funcall::<_, _, Value>("autoload?", (name, false))?
+        .is_nil()
+    {
+        return Ok(());
+    }
+    ruby.require(ADAPTER)?;
+    ADAPTED.store(true, Ordering::Release);
+    Ok(())
+}
+
+/// Refuses a call of a Ractor other than the main one while a hook is set. It can't be
+/// asked there, and a request sent on without asking would reach the network from a
+/// test that believes it stubbed.
+pub(super) fn guard(ruby: &Ruby) -> Result<(), Error> {
+    adapt(ruby)?;
+    if hooked() && !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, CALL));
+    }
+    Ok(())
+}
+
+/// `Peddler::Native.exchange_hook = hook`, or nil for none. The hook answers
+/// `call(method, url, headers, body)` with `[status, headers, body]` for a response,
+/// `:timeout`, or anything else to let the request go out, which it gets back in
+/// `completed(ticket, status, headers, body)` with the real response. Whoever sets or
+/// clears the hook answers for it from then on, and no call loads the WebMock adapter.
+fn set(ruby: &Ruby, native: RModule, hook: Value) -> Result<Value, Error> {
+    if !main_ractor(ruby)? {
+        return Err(isolation_error(ruby, SET));
+    }
+    native.ivar_set(HOOK, hook)?;
+    HOOKED.store(!hook.is_nil(), Ordering::Release);
+    ADAPTED.store(true, Ordering::Release);
+    Ok(hook)
+}
+
+/// What answers the questions of one call. It lives on the stack of the call, where the
+/// collector sees what it holds, and the work never has it.
+pub(super) struct Responder {
+    source: Option<Value>,
+    hook: Option<Value>,
+    /// What the hook returned for the request that is on the network.
+    ticket: Option<Value>,
+}
+
+impl Responder {
+    /// None for a call that asks Ruby nothing: no token source and no exchange hook.
+    pub(super) fn new(ruby: &Ruby, source: Option<Value>) -> Result<Option<Self>, Error> {
+        adapt(ruby)?;
+        // The flag is read once. Read again for the refusal, it could be clear by then and
+        // set once more before the hook is read, and a Ractor would reach the hook.
+        let hook = if hooked() {
+            if !main_ractor(ruby)? {
+                return Err(isolation_error(ruby, CALL));
+            }
+            peddler_const::<RModule>(ruby, "Native")?.ivar_get::<_, Option<Value>>(HOOK)?
+        } else {
+            None
+        };
+        Ok((source.is_some() || hook.is_some()).then_some(Self {
+            source,
+            hook,
+            ticket: None,
+        }))
+    }
+
+    pub(super) fn pass(&self) -> Pass {
+        Pass {
+            parked: VecDeque::new(),
+            exchanges: self.hook.is_some(),
+        }
+    }
+
+    /// Calls Ruby for the answer. What Ruby raises ends the call.
+    pub(super) fn answer(&mut self, ruby: &Ruby, question: Question) -> Result<Answer, Error> {
+        match (question, self.source, self.hook) {
+            (Question::Token, Some(source), _) => {
+                let token: Value = source.funcall("call", ())?;
+                // Raises the fixed ArgumentError that a token given to the client gets.
+                let token: String =
+                    peddler_const::<RModule>(ruby, "Native")?.funcall("access_token", (token,))?;
+                // As the core takes a token: not blank, and a header value.
+                if token.trim().is_empty() || http::HeaderValue::from_str(&token).is_err() {
+                    return Err(argument_error(ruby, ACCESS_TOKEN));
+                }
+                Ok(Answer::Token(token))
+            }
+            (Question::Exchange(exchange), _, Some(hook)) => {
+                let body = ruby.str_from_slice(&exchange.body);
+                let arguments = (exchange.method, exchange.url, exchange.headers, body);
+                let verdict: Value = hook.funcall("call", arguments)?;
+                if let Some(reply) = RArray::from_value(verdict) {
+                    let (status, headers, body): (u16, Vec<(String, String)>, RString) =
+                        TryConvert::try_convert(reply.as_value())?;
+                    // SAFETY: the GVL is held and the bytes are copied before Ruby runs again.
+                    let body = unsafe { body.as_slice().to_vec() };
+                    return Ok(Answer::Reply(Response {
+                        status,
+                        headers: lowercase(headers),
+                        body,
+                    }));
+                }
+                if Symbol::from_value(verdict)
+                    .is_some_and(|symbol| symbol.name().is_ok_and(|name| name == "timeout"))
+                {
+                    return Ok(Answer::TimedOut);
+                }
+                self.ticket = Some(verdict);
+                Ok(Answer::Proceed)
+            }
+            (Question::Completed(response), _, Some(hook)) => {
+                let body = ruby.str_from_slice(&response.body);
+                let arguments = (
+                    self.ticket.take(),
+                    response.status,
+                    response.headers.clone(),
+                    body,
+                );
+                let _: Value = hook.funcall("completed", arguments)?;
+                Ok(Answer::Reply(response))
+            }
+            _ => Ok(Answer::Refused),
+        }
+    }
+}
+
+/// Header names as the core keeps those of a response.
+fn lowercase(headers: Vec<(String, String)>) -> Vec<(String, String)> {
+    headers
+        .into_iter()
+        .map(|(name, value)| (name.to_ascii_lowercase(), value))
+        .collect()
+}
+
+pub(super) fn init(native: RModule) -> Result<(), Error> {
+    native.define_singleton_method("exchange_hook=", method!(set, 1))?;
+    Ok(())
+}

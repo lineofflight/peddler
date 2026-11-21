@@ -8,83 +8,17 @@ module Peddler
     #
     # Manage configurations and capabilities of seller supply sources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
-    class SupplySources20200701 < API
-      # The path to retrieve paginated supply sources.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param next_page_token [String] The pagination token to retrieve a specific page of results.
-      # @param page_size [Number] The number of supply sources to return per paginated request.
-      # @return [Peddler::Response] The API response
-      def get_supply_sources(next_page_token: nil, page_size: 10)
-        path = "/supplySources/2020-07-01/supplySources"
-        params = {
-          "nextPageToken" => next_page_token,
-          "pageSize" => page_size,
-        }.compact
-        parser = -> { GetSupplySourcesResponse }
-        get(path, params:, parser:)
-      end
-
-      # Create a new supply source.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param payload [Hash] A request to create a supply source.
-      # @return [Peddler::Response] The API response
-      def create_supply_source(payload)
-        path = "/supplySources/2020-07-01/supplySources"
-        body = payload
-        parser = -> { CreateSupplySourceResponse }
-        post(path, body:, parser:)
-      end
-
-      # Retrieve a supply source.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param supply_source_id [String] The unique identifier of a supply source.
-      # @return [Peddler::Response] The API response
-      def get_supply_source(supply_source_id)
-        path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-        parser = -> { SupplySource }
-        get(path, parser:)
-      end
-
-      # Update the configuration and capabilities of a supply source.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param supply_source_id [String] The unique identitier of a supply source.
-      # @param payload [Hash]
-      # @return [Peddler::Response] The API response
-      def update_supply_source(supply_source_id, payload: nil)
-        path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-        body = payload
-        parser = -> { ErrorList }
-        put(path, body:, parser:)
-      end
-
-      # Archive a supply source, making it inactive. Cannot be undone.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param supply_source_id [String] The unique identifier of a supply source.
-      # @return [Peddler::Response] The API response
-      def archive_supply_source(supply_source_id)
-        path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-        parser = -> { ErrorList }
-        delete(path, parser:)
-      end
-
-      # Update the status of a supply source.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param supply_source_id [String] The unique identifier of a supply source.
-      # @param payload [Hash]
-      # @return [Peddler::Response] The API response
-      def update_supply_source_status(supply_source_id, payload: nil)
-        path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}/status"
-        body = payload
-        parser = -> { ErrorList }
-        put(path, body:, parser:)
-      end
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
+    module SupplySources20200701
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
+        "supply_sources_2020_07_01.archive_supply_source" => -> { ErrorList },
+        "supply_sources_2020_07_01.create_supply_source" => -> { CreateSupplySourceResponse },
+        "supply_sources_2020_07_01.get_supply_source" => -> { SupplySource },
+        "supply_sources_2020_07_01.get_supply_sources" => -> { GetSupplySourcesResponse },
+        "supply_sources_2020_07_01.update_supply_source" => -> { ErrorList },
+        "supply_sources_2020_07_01.update_supply_source_status" => -> { ErrorList },
+      })
     end
   end
 end

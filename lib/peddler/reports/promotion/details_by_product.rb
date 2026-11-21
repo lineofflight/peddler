@@ -9,29 +9,29 @@ module Peddler
     module Promotion
       # An object that contains details about a product.
       DetailsByProduct = Structure.new do
-        # @return [String] The product ASIN.
+        # The product ASIN.
         attribute(:asin, String, null: false)
 
-        # @return [String] The product name.
+        # The product name.
         attribute(:product_name, String, null: false, from: "productName")
 
-        # @return [Float] The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in
-        #   the Seller Central UI.
+        # The total revenue generated at the ASIN level. For sellers, this is equivalent to "sales" in the Seller
+        # Central UI.
         attribute(:product_revenue, Float, null: false, from: "productRevenue")
 
-        # @return [String] ISO 4217 currency code of productRevenue.
+        # ISO 4217 currency code of productRevenue.
         attribute(:product_revenue_currency_code, String, null: false, from: "productRevenueCurrencyCode")
 
-        # @return [Integer] The number of units sold at the promotional price.
+        # The number of units sold at the promotional price.
         attribute(:product_units_sold, Integer, null: false, from: "productUnitsSold")
 
-        # @return [Float] Total funding provided by the vendor at the ASIN level. For vendors only.
+        # Total funding provided by the vendor at the ASIN level. For vendors only.
         attribute?(:product_amount_spent, Float, from: "productAmountSpent")
 
-        # @return [String] ISO 4217 currency code of productAmountSpent.
+        # ISO 4217 currency code of productAmountSpent.
         attribute?(:product_amount_spent_currency_code, String, from: "productAmountSpentCurrencyCode")
 
-        # @return [Integer] The number of customer views of the product detail page.
+        # The number of customer views of the product detail page.
         attribute?(:product_glance_views, Integer, from: "productGlanceViews")
       end
     end

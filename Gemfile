@@ -4,12 +4,10 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "http", ENV["HTTP_VERSION"] if ENV["HTTP_VERSION"]
-
 gem "activesupport"
 gem "graphql"
 gem "hana"
-gem "herb"
+gem "herb", install_if: -> { !Gem.win_platform? } # 0.11.2 has a file name Windows refuses
 gem "irb"
 gem "minitest"
 gem "minitest-mock"
@@ -17,8 +15,9 @@ gem "parallel"
 gem "openssl"
 gem "pstore"
 gem "rake"
+gem "rake-compiler"
 gem "rbs"
-gem "rdiscount"
+gem "rdoc", "~> 8.1.0"
 gem "rubocop"
 gem "rubocop-graphql"
 gem "rubocop-minitest"
@@ -30,7 +29,6 @@ gem "ruby-lsp"
 gem "steep"
 gem "vcr"
 gem "webmock"
-gem "yard"
 
 # For exploratory code
 gem "csv"

@@ -6,20 +6,19 @@ require "structure"
 
 module Peddler
   module APIs
-    class Support20250201
+    module Support20250201
       # The request body for the listCases operation.
       ListCasesRequest = Structure.new do
-        # @return [Integer] Maximum number of results to return.
+        # Maximum number of results to return.
         attribute?(:max_results, Integer, from: "maxResults")
 
-        # @return [String] A token to retrieve the next page of results. The response includes `nextToken` when the
-        #   number of results exceeds the specified `maxResults` value. To get the next page of results, call the
-        #   operation with this token and include the same arguments as the call that produced the token. To get a
-        #   complete list, call this operation until `nextToken` is null. Note that this operation can return empty
-        #   pages.
+        # A token to retrieve the next page of results. The response includes `nextToken` when the number of results
+        # exceeds the specified `maxResults` value. To get the next page of results, call the operation with this token
+        # and include the same arguments as the call that produced the token. To get a complete list, call this
+        # operation until `nextToken` is null. Note that this operation can return empty pages.
         attribute?(:next_token, String, from: "nextToken")
 
-        # @return [String] The sort direction. Defaults to DESC when absent. Known values: `ASC`, `DESC`.
+        # The sort direction. Defaults to DESC when absent. Known values: `ASC`, `DESC`.
         attribute?(:sort_order, String, from: "sortOrder")
       end
     end

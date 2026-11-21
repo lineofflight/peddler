@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of sponsored products payment events.
       class ProductAdsPaymentEventList < Array
         class << self

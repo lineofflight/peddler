@@ -6,57 +6,55 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorInvoicesV1
+    module VendorInvoicesV1
       # Details of the item being invoiced.
       InvoiceItem = Structure.new do
-        # @return [ItemQuantity] Invoiced quantity of this item. Quantity must be greater than zero.
+        # Invoiced quantity of this item. Quantity must be greater than zero.
         attribute(:invoiced_quantity, ItemQuantity, null: false, from: "invoicedQuantity")
 
-        # @return [Integer] Unique number related to this line item.
+        # Unique number related to this line item.
         attribute(:item_sequence_number, Integer, null: false, from: "itemSequenceNumber")
 
-        # @return [Money] The item cost to Amazon, which should match the cost on the order. Price information should
-        #   not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items
-        #   are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
+        # The item cost to Amazon, which should match the cost on the order. Price information should not be zero or
+        # negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are priced by
+        # weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
         attribute(:net_cost, Money, null: false, from: "netCost")
 
-        # @return [Array<AdditionalDetails>] Line-level additional details provided by the selling party, e.g. tax
-        #   exemption reason code and text.
+        # Line-level additional details provided by the selling party, e.g. tax exemption reason code and text.
         attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
 
-        # @return [Array<AllowanceDetails>] Individual allowance details per line item.
+        # Individual allowance details per line item.
         attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
 
-        # @return [String] Amazon Standard Identification Number (ASIN) of an item.
+        # Amazon Standard Identification Number (ASIN) of an item.
         attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")
 
-        # @return [Array<ChargeDetails>] Individual charge details per line item.
+        # Individual charge details per line item.
         attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
 
-        # @return [CreditNoteDetails] Details required in order to process a credit note. This information is required
-        #   only if invoiceType is CreditNote.
+        # Details required in order to process a credit note. This information is required only if invoiceType is
+        # CreditNote.
         attribute?(:credit_note_details, CreditNoteDetails, from: "creditNoteDetails")
 
-        # @return [String] HSN Tax code. The HSN number cannot contain alphabets.
+        # HSN Tax code. The HSN number cannot contain alphabets.
         attribute?(:hsn_code, String, from: "hsnCode")
 
-        # @return [String] Product or service description for the invoiced line item.
+        # Product or service description for the invoiced line item.
         attribute?(:item_description, String, from: "itemDescription")
 
-        # @return [String] This field represents weight unit of measure of items that are ordered by cases and
-        #   supporting priced by weight. Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`.
+        # This field represents weight unit of measure of items that are ordered by cases and supporting priced by
+        # weight. Known values: `POUNDS`, `OUNCES`, `GRAMS`, `KILOGRAMS`.
         attribute?(:net_cost_unit_of_measure, String, from: "netCostUnitOfMeasure")
 
-        # @return [String] The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character
-        #   alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when
-        #   invoiceType is CreditNote.
+        # The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character alpha-numeric
+        # code. This value is mandatory only when invoiceType is Invoice, and is not required when invoiceType is
+        # CreditNote.
         attribute?(:purchase_order_number, String, from: "purchaseOrderNumber")
 
-        # @return [Array<TaxDetails>] Individual tax details per line item.
+        # Individual tax details per line item.
         attribute?(:tax_details, [TaxDetails], from: "taxDetails")
 
-        # @return [String] The vendor selected product identifier of the item. Should be the same as was provided in the
-        #   purchase order.
+        # The vendor selected product identifier of the item. Should be the same as was provided in the purchase order.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
       end
     end

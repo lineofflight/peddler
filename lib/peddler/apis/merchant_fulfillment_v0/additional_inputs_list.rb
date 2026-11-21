@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # A list of additional inputs.
       class AdditionalInputsList < Array
         class << self

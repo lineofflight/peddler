@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # An array of items that Amazon accepted for return. Returns empty if no items were accepted for return.
       class ReturnItemList < Array
         class << self

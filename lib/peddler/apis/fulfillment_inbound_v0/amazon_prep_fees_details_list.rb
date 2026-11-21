@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of preparation instructions and fees for Amazon to prep goods for shipment.
       class AmazonPrepFeesDetailsList < Array
         class << self

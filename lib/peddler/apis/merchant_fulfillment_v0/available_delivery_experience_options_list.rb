@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # List of available delivery experience options.
       class AvailableDeliveryExperienceOptionsList < Array
         class << self

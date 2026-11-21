@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ShipmentInvoicingV0 < API
+    module ShipmentInvoicingV0
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Address < Data
         def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::APIs::ShipmentInvoicingV0::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::ShipmentInvoicingV0::Address
@@ -299,10 +301,6 @@ module Peddler
       class TaxClassificationList < Array[TaxClassification]
         def self.parse: (Array[untyped]) -> TaxClassificationList
       end
-
-      def get_invoice_status: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_shipment_details: (String, ?rate_limit: Float) -> Peddler::Response
-      def submit_invoice: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

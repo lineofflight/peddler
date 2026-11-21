@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # The available ways the selling partner can act on an action item. Returned in priority order; the first entry is
       # the recommended resolution.
       class Resolutions < Array

@@ -6,14 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentInventory20240911
+    module ExternalFulfillmentInventory20240911
       # The channel name and marketplace ID. This is required only when multiple channels have the same location ID.
       MarketplaceAttributes = Structure.new do
-        # @return [String] The name of the fulfillment channel in which to update inventory. Known values: `FBA`, `MFN`,
-        #   `DF`.
+        # The name of the fulfillment channel in which to update inventory. Known values: `FBA`, `MFN`, `DF`.
         attribute?(:channel_name, String, from: "channelName")
 
-        # @return [String]
         attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end

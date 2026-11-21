@@ -6,25 +6,24 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # The type of fee, fee amount, and other details.
       FeeDetail = Structure.new do
-        # @return [Money] The amount charged for a given fee.
+        # The amount charged for a given fee.
         attribute(:fee_amount, Money, null: false, from: "FeeAmount")
 
-        # @return [String] The type of fee charged to a seller.
+        # The type of fee charged to a seller.
         attribute(:fee_type, String, null: false, from: "FeeType")
 
-        # @return [Money] The final fee amount for a given fee.
+        # The final fee amount for a given fee.
         attribute(:final_fee, Money, null: false, from: "FinalFee")
 
-        # @return [Money] The promotion amount for a given fee.
+        # The promotion amount for a given fee.
         attribute?(:fee_promotion, Money, from: "FeePromotion")
 
-        # @return [Array<IncludedFeeDetail>]
         attribute?(:included_fee_detail_list, [IncludedFeeDetail], from: "IncludedFeeDetailList")
 
-        # @return [Money] The tax amount for a given fee.
+        # The tax amount for a given fee.
         attribute?(:tax_amount, Money, from: "TaxAmount")
       end
     end

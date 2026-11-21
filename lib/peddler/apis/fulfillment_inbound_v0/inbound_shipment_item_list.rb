@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentInboundV0
+    module FulfillmentInboundV0
       # A list of inbound shipment item information.
       class InboundShipmentItemList < Array
         class << self

@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A single frequently asked question with its corresponding answer.
       Faq = Structure.new do
-        # @return [ParagraphComponent]
         attribute(:answer, ParagraphComponent, null: false)
 
-        # @return [ParagraphComponent]
         attribute(:question, ParagraphComponent, null: false)
       end
     end

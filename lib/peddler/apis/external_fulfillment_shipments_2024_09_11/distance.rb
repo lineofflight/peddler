@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A distance measurement.
       Distance = Structure.new do
-        # @return [String] The unit of measurement of the distance. Known values: `MI`, `KM`.
+        # The unit of measurement of the distance. Known values: `MI`, `KM`.
         attribute(:distance_unit, String, null: false, from: "distanceUnit")
 
-        # @return [Float] The numerical value of the distance.
+        # The numerical value of the distance.
         attribute(:value, Float, null: false)
       end
     end

@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # The response schema for the getShipmentDetails operation.
       GetShipmentDetailsResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [ShipmentDetail] The payload for the getShipmentDetails operation
+        # The payload for the getShipmentDetails operation
         attribute?(:payload, ShipmentDetail)
       end
     end

@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20260704
+    module FulfillmentOutbound20260704
       # Payment on delivery settings. Currently only available in India.
       OrderLineItemPaymentOnDelivery = Structure.new do
-        # @return [Money]
         attribute?(:per_unit_service_price, Money, from: "perUnitServicePrice")
       end
     end

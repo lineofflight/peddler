@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # The business impacts associated with an action item.
       class ActionItemImpacts < Array
         class << self

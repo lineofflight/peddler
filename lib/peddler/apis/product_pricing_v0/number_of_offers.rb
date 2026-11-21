@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list that contains the total number of offers information for given conditions and fulfillment channels.
       class NumberOfOffers < Array
         class << self

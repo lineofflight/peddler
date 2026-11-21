@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # A list of error responses returned when a request is unsuccessful.
       GetMyFeesEstimatesErrorList = Structure.new do
-        # @return [Array<Error>] A list of error responses returned when a request is unsuccessful.
+        # A list of error responses returned when a request is unsuccessful.
         attribute(:errors, [Error], null: false)
       end
     end

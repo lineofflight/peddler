@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A custom attribute that is loosely typed, modeled through a key-value pair and its data type.
       CustomAttribute = Structure.new do
-        # @return [String] The attribute key.
+        # The attribute key.
         attribute?(:key, String)
 
-        # @return [String] Known values: `STRING`, `BOOLEAN`, `INTEGER`, `DOUBLE`, `JSON_STRING`.
+        # Known values: `STRING`, `BOOLEAN`, `INTEGER`, `DOUBLE`, `JSON_STRING`.
         attribute?(:type, String)
 
-        # @return [String] The attribute value.
+        # The attribute value.
         attribute?(:value, String)
       end
     end

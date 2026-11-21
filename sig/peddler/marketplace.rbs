@@ -1,27 +1,36 @@
 module Peddler
-  MARKETPLACE_IDS: Hash[String, Hash[Symbol, String]]
-
   class Marketplace < Data
-    def self.new: (?id: String?, ?country_code: String?, ?country_name: String?, ?selling_region: String?) -> Marketplace
+    def self.new: (id: String, country_code: String, country_name: String, selling_region: String) -> Marketplace
 
-    def self.all: () -> Array[Marketplace]
-    def self.find: (String country_code) -> Marketplace
-
+    # A finder for each country code, and `gb` for the United Kingdom
+    def self.ae: () -> Marketplace
+    def self.au: () -> Marketplace
+    def self.be: () -> Marketplace
+    def self.br: () -> Marketplace
+    def self.ca: () -> Marketplace
+    def self.de: () -> Marketplace
+    def self.eg: () -> Marketplace
+    def self.es: () -> Marketplace
+    def self.fr: () -> Marketplace
     def self.gb: () -> Marketplace
-    def self.id: (String country_code) -> String
-    def self.ids: (*String country_codes) -> Array[String]
-
-    # Dynamically defined country methods
+    def self.ie: () -> Marketplace
+    def self.in: () -> Marketplace
+    def self.it: () -> Marketplace
+    def self.jp: () -> Marketplace
+    def self.mx: () -> Marketplace
+    def self.nl: () -> Marketplace
+    def self.pl: () -> Marketplace
+    def self.sa: () -> Marketplace
+    def self.se: () -> Marketplace
+    def self.sg: () -> Marketplace
+    def self.tr: () -> Marketplace
+    def self.uk: () -> Marketplace
     def self.us: () -> Marketplace
+    def self.za: () -> Marketplace
+
     attr_reader country_code: String
     attr_reader country_name: String
     attr_reader id: String
-
     attr_reader selling_region: String
-
-    def endpoint: () -> Endpoint
-
-    alias to_s to_str
-    def to_str: () -> String
   end
 end

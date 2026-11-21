@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The response schema for the the getShipmentDocuments operation.
       GetShipmentDocumentsResponse = Structure.new do
-        # @return [GetShipmentDocumentsResult]
         attribute?(:payload, GetShipmentDocumentsResult)
       end
     end

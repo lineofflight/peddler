@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # Address information for tracking the package.
       TrackingAddress = Structure.new do
-        # @return [String] The city.
+        # The city.
         attribute(:city, String, null: false)
 
-        # @return [String] The country.
+        # The country.
         attribute(:country, String, null: false)
 
-        # @return [String] The state.
+        # The state.
         attribute(:state, String, null: false)
       end
     end

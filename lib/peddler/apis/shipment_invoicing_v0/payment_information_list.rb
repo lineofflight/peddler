@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShipmentInvoicingV0
+    module ShipmentInvoicingV0
       # A list of payment transactions.
       class PaymentInformationList < Array
         class << self

@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `setPackingInformation` request.
       SetPackingInformationRequest = Structure.new do
-        # @return [Array<PackageGroupingInput>] List of packing information for the inbound plan.
+        # List of packing information for the inbound plan.
         attribute(:package_groupings, [PackageGroupingInput], null: false, from: "packageGroupings")
       end
     end

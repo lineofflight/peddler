@@ -4,24 +4,89 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 
+Peddler 6 sends its requests through a Rust core that ships with the gem as a native extension. See [UPGRADING.md](UPGRADING.md#from-v5x-to-v60) for what to change in an application.
+
 ### Added
 
-- Add `base_url` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
-- Support pattern matching on errors by HTTP status, e.g. `case error in {status: 500..599}`
+- Add `Peddler::Client`, a single client for every API: `Peddler::Client.new(region: "eu-west-1", access_token: token)`, then `client.orders_v0.get_orders(...)`, or `client.orders` for the latest version
+- Add `Peddler.new`, short for `Peddler::Client.new`, which takes the same arguments
+- Accept a callable as `access_token:`, such as a lambda around your cache. The client calls it before every attempt of a call, a retry and each page of a `*_pages` enumerator included, and keeps nothing it returns. The time it takes counts against `timeout:`
+- Add `Client#with_access_token`, a view of a client that sends another token over the same connections, for another seller or a restricted data token
+- Add `Peddler::LWA#refresh`, `#client_credentials` and `#exchange_authorization_code`, which return `Peddler::LWA::Tokens`. Tokens with the same values are equal, as they were as `LWAToken`
+- Add `timeout:` and `lwa_endpoint:` to `Peddler::LWA.new`: the seconds each of its requests may take, 30 by default, and the token endpoint, for a proxy or a test
+- Add `Peddler::LWA#token_source`, an optional token source for one process: it keeps one access token, requests the next one 60 seconds before the old one expires and makes one request at a time, however many threads ask
+- Add a `*_pages` method next to each of 82 paginated operations. It takes the operation's arguments and returns a lazy `Enumerator` of responses that requests a page only when asked
+- Add `wait_for_report`, `wait_for_feed` and `wait_for_query`, which poll until a job is `DONE`, `CANCELLED` or `FATAL`. They are on `client.reports`, `client.feeds` and `client.data_kiosk`, beside 5.x's document helpers
+- Add streaming downloads: `open_report_document`, `open_feed_document` and `open_query_document` on the same three APIs, and `Client#download_document` for a signed URL, yield a `Peddler::Document`, read with `each_tsv`, `each_jsonl`, `each_chunk` or `json(max_bytes:)`. `each_tsv` decodes the charset of the `Content-Type` (such as Cp1252 or Shift_JIS) to UTF-8 and takes a `charset:` override
+- Add `create_and_upload_feed_document` on `client.feeds`, and `Client#upload_document` for a signed URL, which upload a String or an IO. A String, and a source that answers `size`, such as a File or a StringIO, are sent with `Content-Length`, as `upload_feed_document` sends them, and `content_length:` declares the length of another source
+- Add `status`, `code` and `request_id` to `Peddler::Error`, and pattern matching on `status` and `code`, e.g. `case error in {status: 500..599}`. A `Peddler::AuthenticationError` matches in the same way
+- Add `Client#request`, the call for an endpoint Peddler has no method for yet: `client.request("GET", "/orders/v0/orders", params: { MarketplaceIds: ids })`. A parameter value takes what an operation's argument takes, a `Peddler::Marketplace` and an Array among them
+- Add a `timeout:` option to the client: the seconds each attempt of a call may take. The waits between retries are not counted
+- Add a `base_url:` option to point a client at a custom backend (local sandbox, mock, or proxy) instead of Amazon's endpoints
+- Add `Peddler::TransportError` and `Peddler::TimeoutError` for requests that get no response, `Peddler::AuthenticationError` (with `status` and `code`) for rejected token requests, and `Peddler::PaginationError`, `Peddler::DocumentError`, `Peddler::DocumentTimeoutError`, `Peddler::WorkflowError`, `Peddler::WorkflowTimeoutError` and `Peddler::ForkError`
+- Name what ran out of time in the class of a timeout: `Peddler::TimeoutError` for a request, the lookup of a document by its ID included, `Peddler::DocumentTimeoutError` for a transfer, and `Peddler::WorkflowTimeoutError` only for a `wait_for_*` past its own `timeout:`
+- Cancel a call and close its connection, or end its wait before a retry, when Ruby raises in its thread: `Timeout.timeout`, `Thread#raise`, `Thread#kill` or an interrupt. A signal the program traps and `Thread#wakeup` leave the call running and a wait no shorter
+- Ship precompiled gems for `arm64-darwin`, `x86_64-darwin`, `aarch64-linux-gnu`, `x86_64-linux-gnu`, `arm-linux-gnu`, `aarch64-linux-musl`, `x86_64-linux-musl`, `arm-linux-musl` and `x64-mingw-ucrt`, each with builds for Ruby 3.3, 3.4 and 4.0. Other platforms compile the extension during installation and need Rust 1.88 or later; see [native extension](RUBY.md#native-extension)
+- Ship `THIRD_PARTY_LICENSES.html` in each precompiled gem: every Rust crate linked into its extension, with its version, its license and the license's text, and the notices of the Rust standard library, and in the Windows gem those of the MinGW-w64 runtime and winpthreads
+- Run in Ractors other than the main one ([#279](https://github.com/lineofflight/peddler/issues/279)): build the client in the Ractor that uses it. A response crosses to another Ractor as a copy or made shareable, and a frozen one still parses its body; see [Ractors](RUBY.md#ractors)
+- Add `Peddler.eager_load!`, which loads every typed model at once. Ruby 3.3 needs it in the main Ractor before another Ractor uses one
+- Add Amazon's description of each parameter to the shipped signatures of the operations, so an editor that reads RBS shows it on hover
+- Ship `sig/manifest.yaml`, which names the libraries the signatures need. `rbs collection` then loads `date` and `delegate`, and an application's type checker reads `response.status`, which it took for untyped
+- Publish the core as the [`peddler` Rust crate](crates/peddler/README.md)
 
 ### Changed
 
-- Improve error messages for degraded responses: keep Amazon's message when the code cannot become a class name, and fall back to the status line (e.g. `"429 Too Many Requests"`) when the body cannot be parsed
-- Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279))
-- Fall back to the base `Peddler::Error` when a dynamic error class cannot be defined inside a non-main Ractor, instead of leaking `Ractor::IsolationError` ([#279](https://github.com/lineofflight/peddler/issues/279))
-- List the known values of enum fields and parameters in the generated docs. The types stay `String`: Amazon changes these lists without a version bump and the API can return values the spec does not list
-
-### Fixed
-
-- Return decompressed content from `download_report_document` for GZIP reports. Given a document ID, the helper now requests the URL with Amazon's `enableContentEncodingUrlHeader` option and inflates the body transparently, as `download_query_document` already did for Data Kiosk; `download_result_feed_document` inflates too when the URL was fetched with that option. If you were wrapping the result in `Zlib::GzipReader`, remove it
-- Raise the same `Peddler::Error` as unretried requests when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`; the original error remains available via `cause`
-- Sanitize API parameter names that are not valid Ruby identifiers (for example Amazon's dotted query parameters, `carrierTracking.trackingNumber`), which broke code generation; the query string still sends Amazon's original name
+- Send requests through the native extension in place of the `http` gem. All clients in a process share one connection pool. After `fork`, create clients and a `Peddler::LWA` in the child: one created before the fork raises `Peddler::ForkError` there
+- Load the client, responses, errors, `Peddler::LWA`, marketplaces and `Peddler::Money` with `require "peddler"`. 5.x loaded them on first use, as the typed models still are
+- Reach WebMock and VCR through an adapter that Peddler loads by itself. Requests no longer pass Ruby's HTTP libraries, and both see them all the same; see [tests](UPGRADING.md#6-tests)
+- Send requests through the proxy that `HTTPS_PROXY` or `ALL_PROXY` names in the environment, unless `NO_PROXY` lists the host. 5.x ignored them
+- Raise the same `Peddler::Error` for every HTTP error. Tell errors apart by `code`, which replaces the class per Amazon error code. A body without a message gives `request failed with status 500`, with its status
+- Raise `Peddler::Error` for any status outside 2xx. 5.x raised from 400 up and returned a 3xx as a response
+- Return a new client from `sandbox` and leave the one it is called on in production
+- Request tokens through an instance of `Peddler::LWA`: `Peddler::LWA.new.refresh(refresh_token:)`. A rejected token request raises `Peddler::AuthenticationError`, which is not a `Peddler::Error`
+- Retry only a GET after a 500, 502, 503 or 504, a failed connection or a timeout. 5.x sent a request that changes data again after these, which could submit a feed or an order twice. A 429 is still retried whatever the method, and the waits before a retry are those of 5.x. `retries:` takes 0 to 10
+- Take `rate_limit:` on every operation method, also one Amazon documents no rate for, where its default is `nil`. A value that is not a positive number raises `ArgumentError` before anything is sent
+- Ignore a `Retry-After` header that is neither a number of seconds nor a date. 5.x retried at once
+- Raise `Peddler::Error` when retries are exhausted on an error status, instead of leaking `HTTP::OutOfRetriesError`
+- Allow each attempt of a call 30 seconds by default. 5.x had no timeout
+- Raise `ArgumentError` that names the argument when a required argument is `nil` or an argument has the wrong type, before anything is sent, such as `order_id is required`. An object whose `to_s` is an inspect form, such as `#<Object>`, counts as the wrong type. See the [argument forms](UPGRADING.md#argument-forms) that are still sent as 5.x sent them
+- Send a `Peddler::Marketplace` as its ID where 5.x sent its inspect text: alone where a list of IDs goes, and anywhere inside a request body, from an operation and from `Client#request`
+- Refuse `.` and `..` for an argument anywhere in a path, and an empty String for one that ends a path, with an `ArgumentError` that names the argument. The same goes for the ID a document helper takes
+- Refuse a String that is not valid UTF-8 with an `ArgumentError` that names the argument, such as `order_id must be valid UTF-8`. 5.x sent its bytes
+- Raise `ArgumentError` that names the option or argument and its rule when `Peddler::Client.new`, `Peddler::LWA.new`, a grant, a document transfer or a wait gets a bad one, such as `retries must be an Integer between 0 and 10`. An unknown option of a transfer raises one that lists the options
+- Return decompressed content from `download_report_document` for GZIP reports, given a document ID. If you were wrapping the result in `Zlib::GzipReader`, remove it
+- Allow the document helpers 600 seconds for a call. 5.x had no limit
+- Make `Peddler::Response` a class of its own. `status` (with `informational?`, `success?`, `redirect?`, `client_error?` and `server_error?`), `code`, `headers[]`, `headers.include?`, `charset`, `to_s`, `to_str`, `parse`, `to_h` and `dig` read as before. The other readers of the `http` gem's response are gone. `Response.new` takes a status, the headers as pairs and a body
+- Show the class and the status when a response is inspected, `#<Peddler::Response 200>`, and nothing of its headers or body
+- Return the body of a response as a String
+- Give header names in lowercase from `headers.to_h` and `headers.each`. `headers[]` still finds a name in any case
+- Wrap the status of a response in a class of Peddler's own. It compares and calculates as the Integer it holds and is not one, as before; `code` is
+- Turn `Peddler::APIs::<Api>` into a module that holds the API's typed models
+- Ship the signatures of the client, the operations and the hand-written classes in `sig/inline`, exported from inline RBS in the Ruby files. Those of the typed models stay in `sig/peddler`, and `sig/peddler.rbs` is gone. An application's type checker finds both under `sig/`, as before
+- Send `mskus` as a repeated parameter in Fulfillment Inbound 2024-03-20 `list_prep_details` and `list_item_compliance_details`, as Amazon specifies. 5.x joined the values with commas
+- Make `MARKETPLACE_IDS` and `Endpoint::REGIONS` Ractor-shareable by freezing them deeply ([#279](https://github.com/lineofflight/peddler/issues/279)). `Endpoint::REGIONS` was `Peddler::REGIONS`
+- Add a runtime dependency on `bigdecimal`, and on `rb_sys` for the source gem
+- Require `zeitwerk` 2.7 or later. On Ruby 3.3 and 3.4, 2.6 loses the typed models of a namespace that the main Ractor first uses after another Ractor ran
+- Require `structure` 4.5 or later, which defines the typed models for every Ractor
+- Build the documentation site with RDoc in place of YARD. Each method shows its RBS signature, and each typed model has a page of its attributes and their types. The anchors of the pages changed: `#request-instance_method` is now `#method-i-request`
+- Link the gem's page on RubyGems to the [documentation site](https://lineofflight.dev/peddler/) in place of rubydoc.info
+- List the known values of enum fields and parameters in the docs and the signatures. The types stay `String`: Amazon changes these lists without a version bump and the API can return values the spec does not list
 - Parse a notification's metadata into its model instead of a String in nine notifications, such as `DetailPageTrafficEvent`
+
+### Removed
+
+- Remove the API classes and their accessors: `Peddler.orders_v0.new(aws_region, access_token)`, `Peddler::APIs::OrdersV0.new` and `Peddler::API`, with its `http:` option and its `access_token`, `retries`, `endpoint` and `endpoint_uri` readers. Use `Peddler::Client`
+- Remove `Peddler::LWA.request` and `Peddler::LWAToken`
+- Remove the readers `client_id`, `client_secret`, `options` and `grant_type` of a `Peddler::LWA`, and `Peddler::LWA::URL`
+- Remove `status.to_sym` and the predicates the `http` gem named after each status, such as `status.ok?` and `status.not_found?`
+- Remove `headers.get` and `headers.keys` from the headers of a response
+- Remove `Peddler::Errors` and the error classes named after Amazon's codes; rescue `Peddler::Error` and match on `code`
+- Remove the sandbox guards (`Peddler::API::CannotSandbox` and `Peddler::API::MustSandbox`); Amazon rejects those calls itself
+- Remove `Response#parsable?`; `parse` returns the Hash when the operation has no typed model. Remove `Response.wrap` and `Response#parser` too
+- Remove the `Peddler::Helpers` modules. Their methods are on the API views, where they were called
+- Remove the instance methods of `Peddler::Acronyms`: call `Peddler::Acronyms.apply` and `Peddler::Acronyms.values`
+- Remove `Marketplace#to_s` from the signatures. The class never defined it
+- Remove the `http` and `nokogiri` dependencies
 
 ### Models
 
@@ -30,15 +95,11 @@ All notable changes to this project will be documented in this file. This projec
 - **Changed**: The default `fulfillment_outbound` alias now points to Fulfillment Outbound 2026-07-04 instead of 2020-07-01; the previous version remains available as `fulfillment_outbound_2020_07_01`
 - **Added**: Finances 2024-06-19: `list_balances` and `list_summary` operations for retrieving account balances and financial summaries
 - **Added**: Transfers 2024-06-01: `list_payouts` and `list_expected_payouts` operations, with new `Payout`, `ExpectedPayout`, `Period`, `PartnerMetadata`, and `RelatedIdentifier` types
-- **Removed**: Transfers 2024-06-01: unused `PaymentMethodTypeList` type, replaced by `RelatedIdentifiers`
 - **Added**: Listings Items 2021-08-01: `marketplace_ids` field on `Issue`
 - **Added**: Orders 2026-01-01: `cancellation_execution` field (new `ItemCancellationExecution` type) on `ItemCancellation`; `label_printing_window` field on `OrderFulfillment`
-- **Added**: Fulfillment Inbound 2024-03-20: explicit `rate_limit` parameter on all operations; `discounts` field on `DeliveryWindowOption`
-- **Added**: Support 2025-02-01: explicit `rate_limit` parameter on all operations
-- **Changed**: Invoices 2024-06-19: removed the `rate_limit` parameter from all operations
+- **Added**: Fulfillment Inbound 2024-03-20: `discounts` field on `DeliveryWindowOption`
 - **Added**: Product Pricing 2022-05-01: `promotions` field on `Offer` and `SegmentedFeaturedOffer`, backed by new `Promotion`, `PromotionDiscount`, `PromotionSavings`, `PurchaseCondition`, `PurchaseRequirements`, and threshold types
 - **Removed**: Data Kiosk: removed the Sales and Traffic 2023-11-15 schema (`sales_and_traffic20231115`) and its generated types, deprecated by Amazon in favor of the 2024-04-24 version
-- **Added**: Transfers 2024-06-01: re-added the `PaymentMethodTypeList` type
 - **Added**: Tracking 2026-01-30: new API for tracking shipments to and from Amazon-owned warehouses, fulfillment centers, and external warehouses (`get_shipment_tracking`)
 - **Added**: Notifications v1: `get_subscriptions` operation to list all subscriptions for a notification type; `tracking_identifier` field (new `TrackingFilter`/`TrackingIdentifier` types) on `EventFilter` for filtering shipment tracking milestone notifications; new `SHIPMENT_TRACKING_MILESTONE_CHANGED` notification type
 - **Added**: External Fulfillment Location 2026-07-30: new sandbox-only API for creating test locations and merchants (`create_sandbox_location`)
@@ -53,10 +114,13 @@ All notable changes to this project will be documented in this file. This projec
 - **Removed**: Notifications: `FulfillmentOrderStatusNotification`, `FulfillmentShipment`, `FulfillmentShipmentPackage`, and `FulfillmentReturnItem` types from Fulfillment Order Status
 - **Added**: A+ Content 2020-11-01: `create_media`, `get_media`, and `update_media` operations; Premium and Brand Story modules on `ContentModule`
 - **Added**: Invoices 2024-06-19: `warehouse_code` parameter on invoice operations
+- **Removed**: Invoices 2024-06-19: the usage plans of its 10 operations, so their `rate_limit:` defaults to `nil` and the retry of a 429 waits up to 1 second, then 1 to 2, then 3 to 4, and no longer by a rate
+- **Added**: Fulfillment Inbound 2024-03-20: a usage plan of 2 requests a second for 40 operations that had none, so their `rate_limit:` defaults to 2.0 and the retry of a 429 waits 0.5 seconds, then 1, then 2
+- **Added**: Support 2025-02-01: a usage plan of 0.1 requests a second for its three operations, which had none, so their `rate_limit:` defaults to 0.1 and the retry of a 429 waits 10 seconds, then 20, then 40
 - **Added**: Vendor Invoices v1 and Vendor Direct Fulfillment Payments v1: additional party identifications, allowance details, and new party, tax, and date fields on invoices
 - **Added**: Orders 2026-01-01: `promise_calculation_inputs` field on `FulfillmentOrder`; `asin` and `purchase_price` on `AssociatedOrderItem`
-- **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`
-- **Added**: Promotions 2025-12-01: `rate_limit` parameter on `get_promotion`
+- **Added**: Delivery by Amazon 2022-07-01: `invoices` and `order_invoicing_status` fields on `GetInvoiceStatusResponse`; `invoice_id` parameter on `get_invoice_status`
+- **Added**: Shipping v2: `link_carrier_account_put` operation, the PUT twin of `link_carrier_account`
 - **Added**: Action Items 2026-06-01: new API for discovering and dismissing action items surfaced by Amazon (`list_action_items`, `get_action_item`, `dismiss_action_item`)
 - **Added**: Action Plans 2026-06-01: new API for creating and tracking action plans from pre-defined templates (`create_action_plan`, `get_action_plan`, `list_action_plans`)
 - **Added**: Messaging 2026-04-20: new API for managing automated buyer-seller message configurations (`create_automation_configuration`, `list_automation_configurations`, `get_automation_configuration`, `update_automation_configuration`)
@@ -388,7 +452,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - Work around bad charset name
 
-## [2.3.0] - 2020-01-27
+## 2.3.0 - 2020-01-27
 
 ### Added
 
@@ -402,7 +466,7 @@ All notable changes to this project will be documented in this file. This projec
 - Remove China. It is no longer supported starting 1st October 2019.
 - Remove Off-Amazon Payments. This is no longer under the MWS umbrella and has its own official Ruby client.
 
-## [2.2.0] - 2019-09-04
+## 2.2.0 - 2019-09-04
 
 ### Added
 
@@ -440,19 +504,19 @@ All notable changes to this project will be documented in this file. This projec
 - Properly massage inbound shipment items in FulfillmentInboundShipment#create_inbound_shipment and FulfillmentInboundShipment#update_inbound_shipment_plan.
 - Require inbound shipment items argument.
 
-## [2.0.3] - 2018-06-29
+## 2.0.3 - 2018-06-29
 
 ### Fixed
 
 - Structure nested structured lists.
 
-## [2.0.2] - 2018-06-22
+## 2.0.2 - 2018-06-22
 
 ### Fixed
 
 - Parse flat files with blank rows.
 
-## [2.0.1] - 2018-06-01
+## 2.0.1 - 2018-06-01
 
 ### Fixed
 
@@ -685,20 +749,15 @@ All notable changes to this project will be documented in this file. This projec
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0
-[2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
+[2.4.5]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/hakanensari/peddler/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/hakanensari/peddler/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/hakanensari/peddler/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/hakanensari/peddler/compare/v2.3.0...v2.4.0
-[2.3.0]: https://github.com/hakanensari/peddler/compare/v2.2.0...v2.3.0
-[2.2.0]: https://github.com/hakanensari/peddler/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/hakanensari/peddler/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/hakanensari/peddler/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/hakanensari/peddler/compare/v2.0.3...v2.0.4
-[2.0.3]: https://github.com/hakanensari/peddler/compare/v2.0.2...v2.0.3
-[2.0.2]: https://github.com/hakanensari/peddler/compare/v2.0.1...v2.0.2
-[2.0.1]: https://github.com/hakanensari/peddler/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/hakanensari/peddler/compare/v1.6.7...v2.0.0
 [1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
 [1.6.6]: https://github.com/hakanensari/peddler/compare/v1.6.5...v1.6.6

@@ -3,6 +3,7 @@
 require "helper"
 require "generator/api"
 require "tempfile"
+require "tmpdir"
 
 module Generator
   class APITest < Minitest::Test
@@ -83,6 +84,28 @@ module Generator
       assert_equal("2024_01_01", @api.version)
     end
 
+    # The version comes from the spec, and goes into the name of a module and of a file. A spec is data.
+    def test_a_version_that_is_no_identifier_is_refused
+      file = Tempfile.new(["test-api-model", ".json"])
+      file.write(@test_spec.merge("info" => { "version" => "1\"; exit 1; \"" }).to_json)
+      file.rewind
+
+      assert_raises(ArgumentError) { API.new(file.path).name_with_version }
+    ensure
+      file.close!
+    end
+
+    # An API is named after the directory of its spec, and that name goes into code as a module. It is data too.
+    def test_an_api_named_after_a_hostile_directory_is_refused
+      Dir.mktmpdir do |dir|
+        file = File.join(dir, "x;exit 1;y-api-model", "spec.json")
+        FileUtils.mkdir_p(File.dirname(file))
+        File.write(file, @test_spec.to_json)
+
+        assert_raises(ArgumentError) { API.new(file).class_name }
+      end
+    end
+
     def test_name_with_version
       # Name depends on file path structure
       assert_match(/_2024_01_01$/, @api.name_with_version)
@@ -105,64 +128,8 @@ module Generator
       assert_match(/A test API for testing purposes/, @api.description)
     end
 
-    def test_type_names
-      assert_equal(["TestItem", "TestResponse"], @api.type_names)
-    end
-
-    def test_type_names_excludes_money
-      spec_with_money = @test_spec.dup
-      spec_with_money["definitions"]["Money"] = {
-        "type" => "object",
-        "properties" => {
-          "currencyCode" => { "type" => "string" },
-          "amount" => { "type" => "string" },
-        },
-      }
-
-      temp_file = Tempfile.new(["with-money", ".json"])
-      temp_file.write(spec_with_money.to_json)
-      temp_file.rewind
-
-      api = API.new(temp_file.path)
-
-      refute_includes(api.type_names, "Money")
-
-      temp_file.close
-      temp_file.unlink
-    end
-
-    def test_operations_count
-      assert_equal(2, @api.operations.size)
-    end
-
-    def test_operations_have_correct_operation_ids
-      operation_ids = @api.operations.map(&:operation_id)
-
-      assert_includes(operation_ids, "getTest")
-      assert_includes(operation_ids, "getTestById")
-    end
-
     def test_paths
       assert_equal(2, @api.paths.size)
-      # Path objects have a path attribute
-      paths = @api.paths
-
-      assert(paths.any? { |p| p.path == "/test" })
-      # Path class converts {id} to #{percent_encode(id)}
-      assert(paths.any? { |p| p.path == "/test/\#{percent_encode(id)}" })
-    end
-
-    def test_has_helper
-      # Should return false for our test API
-      refute_predicate(@api, :has_helper?)
-    end
-
-    def test_helper_class_name
-      assert_match(/^Peddler::Helpers::.*20240101$/, @api.helper_class_name)
-    end
-
-    def test_helper_library_name
-      assert_match(%r{^peddler/helpers/.*_2024_01_01$}, @api.helper_library_name)
     end
 
     def test_github_model_filename
@@ -170,33 +137,18 @@ module Generator
       assert_match(/\.json$/, @api.github_model_filename)
     end
 
-    def test_duplicate_operation_handling
-      spec_with_duplicate = @test_spec.dup
-      # Add a duplicate operation with different HTTP verb
-      spec_with_duplicate["paths"]["/test"]["post"] = {
-        "operationId" => "getTest", # Same operationId as GET
-        "description" => "Post test data",
-        "responses" => { "200" => { "description" => "Success" } },
-      }
-
-      temp_file = Tempfile.new(["duplicate", ".json"])
-      temp_file.write(spec_with_duplicate.to_json)
-      temp_file.rewind
-
-      api = API.new(temp_file.path)
-
-      # Suppress logger output during this test
-      old_level = Generator.logger.level
-      Generator.logger.level = Logger::ERROR
-
-      # Should raise an error for unhandled duplicates
-      assert_raises(RuntimeError) do
-        api.operations
+    def test_parsers_use_native_keys
+      @api.define_singleton_method(:native_keys) do
+        { ["/test", "GET"] => "test_2024_01_01.get_test" }
       end
-    ensure
-      Generator.logger.level = old_level
-      temp_file.close
-      temp_file.unlink
+
+      assert_equal({ "test_2024_01_01.get_test" => "TestResponse" }, @api.parsers)
+    end
+
+    def test_parsers_reject_operation_missing_from_inventory
+      @api.define_singleton_method(:native_keys) { {} }
+
+      assert_raises(RuntimeError) { @api.parsers }
     end
 
     def test_file_path

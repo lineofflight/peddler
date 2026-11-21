@@ -32,9 +32,10 @@ module Peddler
             "Identifier": "UmaS1",
           },
         }
-        res = api.sandbox.get_my_fees_estimate_for_sku(payload, nil)
+        # v5 recorded this with an empty SKU
+        res = api.get_my_fees_estimate_for_sku(payload, "")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_my_fees_estimate_for_asin
@@ -62,9 +63,10 @@ module Peddler
             "Identifier": "UmaS1",
           },
         }
-        res = api.sandbox.get_my_fees_estimate_for_asin(payload, nil)
+        # Recorded with an empty ASIN, as above
+        res = api.get_my_fees_estimate_for_asin(payload, "")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

@@ -20,7 +20,7 @@ jobs:
         with:
           ruby-version: "4.0"
           bundler-cache: true
-      - run: bundle exec rake yard
+      - run: bundle exec rake rdoc
       - uses: actions/upload-pages-artifact@v3
         with:
           path: doc/

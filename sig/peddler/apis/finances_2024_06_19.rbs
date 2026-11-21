@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Finances20240619 < API
+    module Finances20240619
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AmazonPayContext < Data
         def self.new: (?channel: String?, ?order_type: String?, ?store_name: String?) -> Peddler::APIs::Finances20240619::AmazonPayContext
                     | (String?, String?, String?) -> Peddler::APIs::Finances20240619::AmazonPayContext
@@ -464,10 +466,6 @@ module Peddler
         def members: () -> [ :next_token, :transactions ]
         def to_h: () -> { next_token: String?, transactions: Array[Peddler::APIs::Finances20240619::Transaction]? }
       end
-
-      def list_balances: (?marketplace_ids: Array[String]?, ?balance_type: String?, ?account_type: String?, ?as_of_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_summary: (?marketplace_ids: Array[String]?, ?account_type: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?period_start: String?, ?period_end: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_transactions: (?posted_after: String?, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?related_identifier_name: String?, ?related_identifier_value: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

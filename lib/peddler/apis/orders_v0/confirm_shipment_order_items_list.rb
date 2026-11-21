@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A list of order items.
       class ConfirmShipmentOrderItemsList < Array
         class << self

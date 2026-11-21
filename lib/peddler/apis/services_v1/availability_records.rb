@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # List of `AvailabilityRecord`s to represent the capacity of a resource over a time range.
       class AvailabilityRecords < Array
         class << self

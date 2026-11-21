@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The response schema for the sendInvoice operation.
       InvoiceResponse = Structure.new do
-        # @return [Array<Error>]
         attribute?(:errors, [Error])
       end
     end

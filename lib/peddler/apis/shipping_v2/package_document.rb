@@ -6,16 +6,15 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A document related to a package.
       PackageDocument = Structure.new do
-        # @return [String]
         attribute(:contents, String, null: false)
 
-        # @return [String] Known values: `PDF`, `PNG`, `ZPL`.
+        # Known values: `PDF`, `PNG`, `ZPL`.
         attribute(:format, String, null: false)
 
-        # @return [String] Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
+        # Known values: `PACKSLIP`, `LABEL`, `RECEIPT`, `CUSTOM_FORM`.
         attribute(:type, String, null: false)
       end
     end

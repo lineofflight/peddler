@@ -6,33 +6,31 @@ require "structure"
 
 module Peddler
   module APIs
-    class Transfers20240601
+    module Transfers20240601
       # All the information related to an expected payout.
       ExpectedPayout = Structure.new do
-        # @return [PartnerMetadata] Metadata that describes the selling partner.
+        # Metadata that describes the selling partner.
         attribute(:partner_metadata, PartnerMetadata, null: false, from: "partnerMetadata")
 
-        # @return [String] The status of the expected payout. Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`,
-        #   `NO_PAYOUT_EXPECTED`.
+        # The status of the expected payout. Known values: `SCHEDULED`, `DISABLED`, `AT_RISK`, `NO_PAYOUT_EXPECTED`.
         attribute(:status, String, null: false)
 
-        # @return [String] The last few digits of the payment instrument.
+        # The last few digits of the payment instrument.
         attribute?(:account_tail, String, from: "accountTail")
 
-        # @return [Money] The total amount of money expected in the payout. Can be null when no payout is expected
+        # The total amount of money expected in the payout. Can be null when no payout is expected
         attribute?(:amount, Money)
 
-        # @return [String] The type of payout instrument to which funds will be delivered. Known values: `BANK_ACCOUNT`,
-        #   `DEBIT_CARD`.
+        # The type of payout instrument to which funds will be delivered. Known values: `BANK_ACCOUNT`, `DEBIT_CARD`.
         attribute?(:payment_method, String, from: "paymentMethod")
 
-        # @return [Period] The interval considered for calculating the payout amount.
+        # The interval considered for calculating the payout amount.
         attribute?(:period, Period)
 
-        # @return [Array<RelatedIdentifier>] Identifiers related to the payout, such as settlement IDs.
+        # Identifiers related to the payout, such as settlement IDs.
         attribute?(:related_identifiers, [RelatedIdentifier], from: "relatedIdentifiers")
 
-        # @return [String] The expected date when the payout would be initiated in Amazon's system.
+        # The expected date when the payout would be initiated in Amazon's system.
         attribute?(:scheduled_date, String, from: "scheduledDate")
       end
     end

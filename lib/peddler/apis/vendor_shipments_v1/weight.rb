@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The weight of the shipment.
       Weight = Structure.new do
-        # @return [String] The unit of measurement. Known values: `G`, `Kg`, `Oz`, `Lb`.
+        # The unit of measurement. Known values: `G`, `Kg`, `Oz`, `Lb`.
         attribute(:unit_of_measure, String, null: false, from: "unitOfMeasure")
 
-        # @return [String] The measurement value.
+        # The measurement value.
         attribute(:value, String, null: false)
       end
     end

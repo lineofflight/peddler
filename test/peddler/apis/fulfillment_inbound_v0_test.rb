@@ -8,39 +8,39 @@ module Peddler
       include FeatureHelpers
 
       def test_get_prep_instructions
-        res = api.sandbox.get_prep_instructions("US", asin_list: ["ASIN1"])
+        res = api.get_prep_instructions("US", asin_list: ["ASIN1"])
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_labels
-        res = api.sandbox.get_labels("348975493", "PackageLabel_Letter_2", "BARCODE_2D")
+        res = api.get_labels("348975493", "PackageLabel_Letter_2", "BARCODE_2D")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_bill_of_lading
-        res = api.sandbox.get_bill_of_lading("shipmentId")
+        res = api.get_bill_of_lading("shipmentId")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_shipments
-        res = api.sandbox.get_shipments("SHIPMENT", "ATVPDKIKX0DER")
+        res = api.get_shipments("SHIPMENT", "ATVPDKIKX0DER")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res, typed: false)
       end
 
       def test_get_shipment_items_by_shipment_id
-        res = api.sandbox.get_shipment_items_by_shipment_id("FBA15DJ9SVVD", marketplace_id: "ATVPDKIKX0DER")
+        res = api.get_shipment_items_by_shipment_id("FBA15DJ9SVVD", marketplace_id: "ATVPDKIKX0DER")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_shipment_items
-        res = api.sandbox.get_shipment_items("SHIPMENT", "ATVPDKIKX0DER", next_token: "NextToken")
+        res = api.get_shipment_items("SHIPMENT", "ATVPDKIKX0DER", next_token: "NextToken")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

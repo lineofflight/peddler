@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # Request body for dismissing an action item.
       DismissActionItemRequest = Structure.new do
-        # @return [DismissalReason] The reason for dismissing the action item.
+        # The reason for dismissing the action item.
         attribute?(:reason, DismissalReason)
       end
     end

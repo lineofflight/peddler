@@ -10,10 +10,8 @@ module Peddler
     module SellerAnalytics20250331
       # A custom type which supports time range benchmarking for native Float types.
       FloatWithBenchmarking = Structure.new do
-        # @return [TimeRangeBenchmarking]
         attribute?(:time_range_benchmarking, TimeRangeBenchmarking, from: "timeRangeBenchmarking")
 
-        # @return [Float]
         attribute?(:value, Float, null: false)
       end
     end

@@ -6,6 +6,7 @@ require "peddler/acronyms"
 
 module Peddler
   class Inflector < Zeitwerk::GemInflector
+    #: (String basename, String _abspath) -> String
     def camelize(...)
       Acronyms.apply(super)
     end

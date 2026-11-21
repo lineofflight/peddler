@@ -69,96 +69,6 @@ module Generator
       refute(obj.generic_placeholder?(nil))
     end
 
-    def test_needs_money_with_extracted_types_containing_money
-      obj = TestClass.new({}, "Test", "test_api")
-      extracted_types = {
-        "Order" => {
-          "properties" => {
-            "total" => { "$ref" => "#/definitions/Money" },
-          },
-        },
-      }
-
-      assert(obj.needs_money?(extracted_types))
-    end
-
-    def test_needs_money_with_extracted_types_containing_money_in_array
-      obj = TestClass.new({}, "Test", "test_api")
-      extracted_types = {
-        "Order" => {
-          "properties" => {
-            "charges" => {
-              "type" => "array",
-              "items" => { "$ref" => "#/definitions/Money" },
-            },
-          },
-        },
-      }
-
-      assert(obj.needs_money?(extracted_types))
-    end
-
-    def test_needs_money_with_extracted_types_without_money
-      obj = TestClass.new({}, "Test", "test_api")
-      extracted_types = {
-        "Order" => {
-          "properties" => {
-            "id" => { "type" => "string" },
-          },
-        },
-      }
-
-      refute(obj.needs_money?(extracted_types))
-    end
-
-    def test_needs_money_with_properties_method
-      schema = {
-        "properties" => {
-          "orderTotal" => { "$ref" => "#/definitions/MoneyType" },
-        },
-        "definitions" => {
-          "MoneyType" => {
-            "type" => "object",
-            "properties" => {
-              "amount" => { "type" => "number" },
-              "currencyCode" => { "type" => "string" },
-            },
-          },
-        },
-      }
-      obj = TestClass.new(schema, "Test", "test_api")
-
-      # Should check properties when no extracted_types provided
-      assert_predicate(obj, :needs_money?)
-    end
-
-    def test_nested_type_files_returns_sorted_underscored_names
-      schema = {
-        "properties" => {
-          "item" => {
-            "type" => "object",
-            "properties" => {
-              "name" => { "type" => "string" },
-            },
-          },
-          "metadata" => {
-            "type" => "object",
-            "properties" => {
-              "createdAt" => { "type" => "string" },
-            },
-          },
-        },
-      }
-      obj = TestClass.new(schema, "Order", "test_api")
-
-      files = obj.nested_type_files
-
-      assert_instance_of(Array, files)
-      assert(files.all?(String))
-      # Should be sorted
-      assert_equal(files, files.sort)
-    end
-
     def test_format_property_comment_with_description
       schema = {}
       obj = TestClass.new(schema, "Test", "test_api")
@@ -170,8 +80,7 @@ module Generator
 
       comment = obj.format_property_comment(prop_def)
 
-      assert_includes(comment, "@return [String]")
-      assert_includes(comment, "The unique order identifier")
+      assert_equal("# The unique order identifier", comment)
     end
 
     def test_format_property_comment_without_description
@@ -182,8 +91,7 @@ module Generator
 
       comment = obj.format_property_comment(prop_def)
 
-      assert_includes(comment, "@return [Integer]")
-      refute_includes(comment, "An explanation")
+      assert_nil(comment)
     end
 
     def test_format_property_comment_with_generic_placeholder
@@ -195,10 +103,8 @@ module Generator
         "description" => "An explanation about the purpose of this instance.",
       }
 
-      comment = obj.format_property_comment(prop_def)
-      # Should not include the generic placeholder
-      refute_includes(comment, "An explanation about the purpose")
-      assert_includes(comment, "@return [String]")
+      # The generic placeholder says nothing of the property
+      assert_nil(obj.format_property_comment(prop_def))
     end
 
     def test_ruby_type_for_delegates_to_type_resolver
@@ -212,22 +118,6 @@ module Generator
       type = obj.ruby_type_for({ "type" => "string" })
 
       assert_equal("String", type)
-    end
-
-    def test_ruby_type_for_with_for_comment_option
-      schema = {
-        "properties" => {
-          "items" => {
-            "type" => "array",
-            "items" => { "type" => "string" },
-          },
-        },
-      }
-      obj = TestClass.new(schema, "Test", "test_api")
-
-      type = obj.ruby_type_for({ "type" => "array", "items" => { "type" => "string" } }, for_comment: true)
-
-      assert_equal("Array<String>", type)
     end
 
     def test_type_resolver_is_memoized

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FinancesV0
+    module FinancesV0
       # A list of events related to the seller's Pay with Amazon account.
       class PayWithAmazonEventList < Array
         class << self

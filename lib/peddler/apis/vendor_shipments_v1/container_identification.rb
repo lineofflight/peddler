@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # A list of carton identifiers.
       ContainerIdentification = Structure.new do
-        # @return [String] Container identification number that adheres to the definition of the container
-        #   identification type.
+        # Container identification number that adheres to the definition of the container identification type.
         attribute(:container_identification_number, String, null: false, from: "containerIdentificationNumber")
 
-        # @return [String] The container identification type. Known values: `SSCC`, `AMZNCC`, `GTIN`, `BPS`, `CID`.
+        # The container identification type. Known values: `SSCC`, `AMZNCC`, `GTIN`, `BPS`, `CID`.
         attribute(:container_identification_type, String, null: false, from: "containerIdentificationType")
       end
     end

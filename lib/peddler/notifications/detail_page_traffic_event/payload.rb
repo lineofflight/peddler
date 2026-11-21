@@ -9,7 +9,6 @@ module Peddler
     module DetailPageTrafficEvent
       # Notification payload data
       Payload = Structure.new do
-        # @return [Array<DetailPageTrafficEvent>]
         attribute(:detail_page_traffic_events, [DetailPageTrafficEvent], null: false, from: "detailPageTrafficEvents")
       end
     end

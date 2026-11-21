@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # Request for estimated fees for a list of products.
       class GetMyFeesEstimatesRequest < Array
         class << self

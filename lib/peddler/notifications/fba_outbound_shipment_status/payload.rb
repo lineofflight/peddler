@@ -9,7 +9,6 @@ module Peddler
     module FBAOutboundShipmentStatus
       # Notification payload that wraps nested notification data
       Payload = Structure.new do
-        # @return [FBAOutboundShipmentStatusNotification]
         attribute(:fba_outbound_shipment_status_notification, FBAOutboundShipmentStatusNotification, null: false, from: "FBAOutboundShipmentStatusNotification")
       end
     end

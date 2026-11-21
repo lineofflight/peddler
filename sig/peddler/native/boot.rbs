@@ -1,0 +1,38 @@
+module Peddler
+  module Native
+    type error_metadata = [String?, String?, String?]
+    type response_parts = [Integer, Array[[String, String]], String, error_metadata?]
+
+    def self.status_reason: (Integer code) -> String?
+
+    # What the native layer hands every HTTP exchange to, or nil for none. The WebMock adapter sets or clears it as
+    # it loads, and the native layer, which loads the adapter once WebMock is loaded, then looks for WebMock no more.
+    def self.exchange_hook=: (untyped hook) -> untyped
+
+    type tokens = [String, String?, String, Integer, String?]
+
+    # What the generated facades take
+    type engine = Engine
+
+    # Anything that returns the access token when called
+    interface _TokenSource
+      def call: () -> untyped
+    end
+
+    class Engine
+      def self.from_config: (String config) -> Engine
+      def with_base_url: (String base_url) -> Engine
+      def with_access_token: (String access_token) -> Engine
+      def with_token_source: (_TokenSource source) -> Engine
+      def request: (String method, String path, Array[[String, String]] query, String? body) -> response_parts
+      def operation: (String operation, String arguments, Float? rate_limit) -> response_parts
+    end
+
+    class LwaEngine
+      def self.new: (String client_id, String client_secret, Integer | Float timeout, String endpoint) -> LwaEngine
+      def exchange_authorization_code: (String code, String? redirect_uri) -> tokens
+      def refresh: (String refresh_token) -> tokens
+      def client_credentials: (String scope) -> tokens
+    end
+  end
+end

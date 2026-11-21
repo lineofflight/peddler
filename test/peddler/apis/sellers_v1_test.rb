@@ -10,7 +10,8 @@ module Peddler
       def test_get_marketplace_participations
         res = api.get_marketplace_participations
 
-        assert_predicate(res.status, :ok?)
+        assert_equal(200, res.status)
+        assert_success(res)
       end
     end
   end

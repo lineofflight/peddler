@@ -6,11 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # Information about the line of business associated with a transaction.
       BusinessContext = Structure.new do
-        # @return [String] The store name associated with the transaction. Known values: `AMAZON_HAUL`,
-        #   `AMAZON_FBA_FROM_ORIGIN`.
+        # The store name associated with the transaction. Known values: `AMAZON_HAUL`, `AMAZON_FBA_FROM_ORIGIN`.
         attribute?(:store_name, String, from: "storeName")
       end
     end

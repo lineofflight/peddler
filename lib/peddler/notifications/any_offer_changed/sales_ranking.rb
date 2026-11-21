@@ -8,10 +8,8 @@ module Peddler
   module Notifications
     module AnyOfferChanged
       SalesRanking = Structure.new do
-        # @return [String]
         attribute(:product_category_id, String, null: false, from: "ProductCategoryId")
 
-        # @return [Integer]
         attribute(:rank, Integer, null: false, from: "Rank")
       end
     end

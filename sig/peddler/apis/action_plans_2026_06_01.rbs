@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ActionPlans20260601 < API
+    module ActionPlans20260601
+      PARSERS: Hash[String, ^() -> untyped]
+
       class ActionItem < Data
         def self.new: (description: Peddler::APIs::ActionPlans20260601::LocalizedText, type: Peddler::APIs::ActionPlans20260601::ActionItemType, ?references: Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
                     | (Peddler::APIs::ActionPlans20260601::LocalizedText, Peddler::APIs::ActionPlans20260601::ActionItemType, Peddler::APIs::ActionPlans20260601::ActionItemReferences?) -> Peddler::APIs::ActionPlans20260601::ActionItem
@@ -461,11 +463,6 @@ module Peddler
       class StepStatuses < Array[untyped]
         def self.parse: (Array[untyped]) -> StepStatuses
       end
-
-      def create_action_plan: (Hash[untyped, untyped], ?mode: String?, ?locale: String?) -> Peddler::Response
-      def get_action_plan: (String, ?locale: String?, ?included_data: Array[String]?) -> Peddler::Response
-
-      def list_action_plans: (?statuses: Array[String]?, ?plan_template_ids: Array[String]?, ?action_item_ids: Array[String]?, ?created_after: String?, ?created_before: String?, ?page_size: Integer?, ?page_token: String?, ?locale: String?, ?included_data: Array[String]?) -> Peddler::Response
     end
   end
 end

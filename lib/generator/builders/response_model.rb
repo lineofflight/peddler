@@ -2,8 +2,6 @@
 
 module Generator
   class ResponseModel
-    DEFAULT_PAYLOAD_KEY = "payload"
-
     attr_reader :operation
 
     def initialize(operation)
@@ -28,21 +26,16 @@ module Generator
     private
 
     def find_success_response
-      responses = operation["responses"]
-      responses["200"] || responses["201"] || responses["202"] || responses["204"]
+      operation["responses"].select { |code, _| code.match?(/\A2\d\d\z/) }.min_by(&:first)&.last
     end
 
     def default_response_model
-      { type: :raw, model: nil, path: ["payload"] }
+      { model: nil }
     end
 
     def build_ref_response_model(ref)
       response_type_name = ref.split("/").last
-      {
-        type: :response,
-        model: response_type_name,
-        path: [],
-      }
+      { model: response_type_name }
     end
 
     def handle_inline_payload_response(payload_schema)
@@ -77,27 +70,15 @@ module Generator
     end
 
     def build_properties_array_model(array_name)
-      {
-        type: :array,
-        model: array_name.sub(/s$/, ""),
-        path: [DEFAULT_PAYLOAD_KEY, array_name],
-      }
+      { model: array_name.sub(/s$/, "") }
     end
 
     def build_properties_single_model(model_name)
-      {
-        type: :single,
-        model: model_name,
-        path: [DEFAULT_PAYLOAD_KEY, model_name],
-      }
+      { model: model_name }
     end
 
     def build_single_model(model_name)
-      {
-        type: :single,
-        model: model_name,
-        path: [DEFAULT_PAYLOAD_KEY],
-      }
+      { model: model_name }
     end
   end
 end

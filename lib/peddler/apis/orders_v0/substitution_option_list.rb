@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # A collection of substitution options.
       class SubstitutionOptionList < Array
         class << self

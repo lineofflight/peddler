@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorShipmentsV1
+    module VendorShipmentsV1
       # The request schema for the SubmitShipments operation.
       SubmitShipments = Structure.new do
-        # @return [Array<Shipment>] A list of one or more shipments with underlying details.
+        # A list of one or more shipments with underlying details.
         attribute?(:shipments, [Shipment])
       end
     end

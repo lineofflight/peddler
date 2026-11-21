@@ -6,11 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class Replenishment20221107
+    module Replenishment20221107
       # An object which contains the preferences applied to the offer.
       OfferProgramConfigurationPreferences = Structure.new do
-        # @return [String] The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of
-        #   Amazon's auto-enrollment feature. Known values: `OPTED_IN`, `OPTED_OUT`.
+        # The auto-enrollment preference indicates whether the offer is opted-in to or opted-out of Amazon's
+        # auto-enrollment feature. Known values: `OPTED_IN`, `OPTED_OUT`.
         attribute?(:auto_enrollment, String, from: "autoEnrollment")
       end
     end

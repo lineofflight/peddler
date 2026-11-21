@@ -119,13 +119,6 @@ module Generator
       )
     end
 
-    # Check if any types use Money (shared implementation)
-    def needs_money?
-      extractor = JsonSchemaExtractor.new(schema, send(:name))
-      extracted_types = extractor.extract_types
-      super(extracted_types)
-    end
-
     private
 
     # Provide the api_name for type resolver (common pattern)

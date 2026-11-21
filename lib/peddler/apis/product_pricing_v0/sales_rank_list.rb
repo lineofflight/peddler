@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list of sales rank information for the item, by category.
       class SalesRankList < Array
         class << self

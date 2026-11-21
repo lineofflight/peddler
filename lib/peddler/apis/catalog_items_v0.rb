@@ -9,27 +9,12 @@ module Peddler
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
-    class CatalogItemsV0 < API
-      # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
-      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
-      # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
-      #   seller's SellerId, which is included with every operation that you submit.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
-        path = "/catalog/v0/categories"
-        params = {
-          "MarketplaceId" => marketplace_id,
-          "ASIN" => asin,
-          "SellerSKU" => seller_sku,
-        }.compact
-        parser = -> { ListCatalogCategoriesResponse }
-        get(path, params:, rate_limit:, parser:)
-      end
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
+    module CatalogItemsV0
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
+        "catalog_items_v0.list_catalog_categories" => -> { ListCatalogCategoriesResponse },
+      })
     end
   end
 end

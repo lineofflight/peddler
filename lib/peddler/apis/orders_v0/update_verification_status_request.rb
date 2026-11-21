@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # The request body for the `updateVerificationStatus` operation.
       UpdateVerificationStatusRequest = Structure.new do
-        # @return [UpdateVerificationStatusRequestBody] The updated values of the `VerificationStatus` field.
+        # The updated values of the `VerificationStatus` field.
         attribute(:regulated_order_verification_status, UpdateVerificationStatusRequestBody, null: false, from: "regulatedOrderVerificationStatus")
       end
     end

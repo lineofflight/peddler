@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # Common properties of batch requests against individual APIs.
       BatchRequest = Structure.new do
-        # @return [String] Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
+        # Known values: `GET`, `PUT`, `PATCH`, `DELETE`, `POST`.
         attribute(:method, String, null: false)
 
-        # @return [String] The resource path of the operation you are calling in batch without any query parameters.
+        # The resource path of the operation you are calling in batch without any query parameters.
         #
         # If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
         #
@@ -23,7 +23,6 @@ module Peddler
         # **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
         attribute(:uri, String, null: false)
 
-        # @return [Hash]
         attribute?(:headers, Hash)
       end
     end

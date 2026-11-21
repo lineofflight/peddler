@@ -9,19 +9,17 @@ module Peddler
     module TransactionUpdate
       # Nested notification data
       TransactionUpdateNotification = Structure.new do
-        # @return [String] The date and time when the transaction was posted.
+        # The date and time when the transaction was posted.
         attribute(:posted_date, String, null: false, from: "PostedDate")
 
-        # @return [SellingPartnerMetadata]
         attribute(:selling_partner_metadata, SellingPartnerMetadata, null: false, from: "SellingPartnerMetadata")
 
-        # @return [TotalAmount]
         attribute(:total_amount, TotalAmount, null: false, from: "TotalAmount")
 
-        # @return [String] Type of transaction.
+        # Type of transaction.
         attribute(:transaction_type, String, null: false, from: "TransactionType")
 
-        # @return [Array<RelatedIdentifier>] Related business identifiers of the transaction.
+        # Related business identifiers of the transaction.
         attribute?(:related_identifiers, [RelatedIdentifier], from: "RelatedIdentifiers")
       end
     end

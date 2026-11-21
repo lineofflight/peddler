@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class OrdersV0
+    module OrdersV0
       # Substitution preferences for an order item.
       SubstitutionPreferences = Structure.new do
-        # @return [String] The type of substitution that these preferences represent. Known values:
-        #   `CUSTOMER_PREFERENCE`, `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`.
+        # The type of substitution that these preferences represent. Known values: `CUSTOMER_PREFERENCE`,
+        # `AMAZON_RECOMMENDED`, `DO_NOT_SUBSTITUTE`.
         attribute(:substitution_type, String, null: false, from: "SubstitutionType")
 
-        # @return [Array<SubstitutionOption>] Substitution options for the order item.
+        # Substitution options for the order item.
         attribute?(:substitution_options, [SubstitutionOption], from: "SubstitutionOptions")
       end
     end

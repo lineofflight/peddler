@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A list of A+ Content modules.
       class ContentModuleList < Array
         class << self

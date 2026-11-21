@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class SalesV1 < API
+    module SalesV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Error < Data
         def self.new: (code: String, message: String, ?details: String?) -> Peddler::APIs::SalesV1::Error
                     | (String, String, String?) -> Peddler::APIs::SalesV1::Error
@@ -64,8 +66,6 @@ module Peddler
       class OrderMetricsList < Array[OrderMetricsInterval]
         def self.parse: (Array[untyped]) -> OrderMetricsList
       end
-
-      def get_order_metrics: (Array[String], String, String, ?granularity_time_zone: String?, ?buyer_type: String?, ?fulfillment_network: String?, ?first_day_of_week: String?, ?asin: String?, ?sku: String?, ?amazon_program: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

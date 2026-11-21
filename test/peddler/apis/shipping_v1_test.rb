@@ -8,45 +8,46 @@ module Peddler
       include FeatureHelpers
 
       def test_create_shipment
-        res = api.sandbox.create_shipment({ "clientReferenceId" => "TEST_CASE_200" })
+        res = api.create_shipment({ "clientReferenceId" => "TEST_CASE_200" })
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_shipment
-        res = api.sandbox.get_shipment("TEST_CASE_200")
+        res = api.get_shipment("TEST_CASE_200")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res, typed: false)
       end
 
       def test_cancel_shipment
-        res = api.sandbox.cancel_shipment("TEST_CASE_200")
+        res = api.cancel_shipment("TEST_CASE_200")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_purchase_labels
-        res = api.sandbox.purchase_labels("TEST_CASE_200", nil)
+        res = api.purchase_labels("TEST_CASE_200", {})
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_retrieve_shipping_label
-        res = api.sandbox.retrieve_shipping_label("TEST_CASE_200", nil, nil)
+        # v5 recorded this with an empty tracking ID
+        res = api.retrieve_shipping_label("TEST_CASE_200", "", {})
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_purchase_shipment
-        res = api.sandbox.purchase_shipment({ "clientReferenceId" => "TEST_CASE_2000" })
+        res = api.purchase_shipment({ "clientReferenceId" => "TEST_CASE_2000" })
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
 
       def test_get_tracking_information
-        res = api.sandbox.get_tracking_information("TEST_CASE_200")
+        res = api.get_tracking_information("TEST_CASE_200")
 
-        assert_predicate(res.status, :success?)
+        assert_success(res)
       end
     end
   end

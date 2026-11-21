@@ -44,13 +44,6 @@ module Generator
       temp_file.unlink
     end
 
-    def test_nested_type_files_returns_array
-      files = @account_health.nested_type_files
-
-      assert_instance_of(Array, files)
-      assert(files.all?(String))
-    end
-
     def test_report_type_definition_structure
       type_def = @account_health.send(:report_type_definition)
 

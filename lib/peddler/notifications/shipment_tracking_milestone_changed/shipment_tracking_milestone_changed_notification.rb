@@ -9,7 +9,7 @@ module Peddler
     module ShipmentTrackingMilestoneChanged
       # The milestone change event data.
       ShipmentTrackingMilestoneChangedNotification = Structure.new do
-        # @return [TrackingDetail] Current and historical tracking information for the shipment.
+        # Current and historical tracking information for the shipment.
         attribute(:tracking_detail, TrackingDetail, null: false, from: "trackingDetail")
       end
     end

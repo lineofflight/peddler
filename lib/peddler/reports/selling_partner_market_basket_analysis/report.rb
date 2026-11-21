@@ -13,10 +13,9 @@ module Peddler
       # in the selling partner's catalog and "purchasedWithAsin" might or might not be an ASIN in the selling partner's
       # catalog.
       Report = Structure.new do
-        # @return [Array<DetailsByAsin>]
         attribute(:data_by_asin, [DetailsByASIN], null: false, from: "dataByAsin")
 
-        # @return [Hash] Summarizes the original report request.
+        # Summarizes the original report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

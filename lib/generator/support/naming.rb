@@ -5,29 +5,23 @@ module Generator
   # Handles class names, attribute names, and acronym transformations
   module Naming
     class << self
-      # Convert a string to a Ruby class name with proper acronym handling
-      # @param name [String] the name to convert (e.g., "api_client", "SKUInfo")
-      # @return [String] PascalCase class name with acronyms applied
+      # Convert a name (e.g., "api_client", "SKUInfo") to a PascalCase Ruby class name with acronyms applied
       def class_name(name)
-        camelized = name.camelize
-        Peddler::Acronyms.apply(camelized)
+        constant(Peddler::Acronyms.apply(name.camelize), name)
       end
 
-      # Convert an API parameter name to a Ruby identifier
-      # Amazon sometimes nests query parameters with dots (e.g., "carrierTracking.trackingNumber"),
-      # which underscore alone leaves as invalid Ruby.
-      # @param param_name [String] the parameter name
-      # @return [String] snake_case identifier safe to use as a method parameter
-      def parameter_name(param_name)
-        param_name.underscore.gsub(/[^a-z0-9_]/, "_")
+      # A name as the constant it must be. It comes from a spec, or from the name of a spec's file or directory, and
+      # goes into code as a class or a module and into the name of a file. All of that is data: a name that would be
+      # anything but a constant is refused. `source` is what the error shows, when the name was made of something.
+      def constant(name, source = name)
+        raise ArgumentError, "#{source.inspect} is no name for a constant" unless name.match?(/\A[A-Z][A-Za-z0-9_]*\z/)
+
+        name
       end
 
-      # Convert a property name to a Ruby attribute name
+      # Convert a property name to a snake_case Ruby attribute name
       # - Underscores the name
-      # - Strips "is_" prefix from boolean attributes for idiomatic Ruby
-      # @param prop_name [String] the property name
-      # @param prop_def [Hash] the property definition (to check type)
-      # @return [String] snake_case attribute name
+      # - Strips "is_" prefix from boolean attributes for idiomatic Ruby. The property definition tells the type.
       def attribute_name(prop_name, prop_def = nil)
         underscored = prop_name.underscore
         return underscored unless prop_def

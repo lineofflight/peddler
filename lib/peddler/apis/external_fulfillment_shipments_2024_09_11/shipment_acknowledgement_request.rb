@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Information about the shipment and its line items, used to confirm or reject line items.
       ShipmentAcknowledgementRequest = Structure.new do
-        # @return [Array<LineItemWithReason>] Details about the line items from the shipment that are being rejected by
-        #   the seller.
+        # Details about the line items from the shipment that are being rejected by the seller.
         attribute(:line_items, [LineItemWithReason], null: false, from: "lineItems")
 
-        # @return [String] A unique identifier for every shipment rejection.
+        # A unique identifier for every shipment rejection.
         attribute?(:reference_id, String, from: "referenceId")
       end
     end

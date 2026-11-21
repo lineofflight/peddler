@@ -58,7 +58,7 @@ module Generator
     # Class name for the report (e.g., "EndUserData", "AccountHealth_2020_11_18")
     def class_name
       # Underscore first to ensure ActiveSupport::Inflector applies acronym rules correctly
-      report_name.underscore.camelize
+      Naming.constant(report_name.underscore.camelize)
     end
 
     # Root properties from schema (excluding reportSpecification which is metadata)

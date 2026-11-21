@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The reason that the item is invalid for return.
       InvalidItemReason = Structure.new do
-        # @return [String] A human readable description of the invalid item reason code.
+        # A human readable description of the invalid item reason code.
         attribute(:description, String, null: false)
 
-        # @return [String] Known values: `InvalidValues`, `DuplicateRequest`, `NoCompletedShipItems`,
-        #   `NoReturnableQuantity`.
+        # Known values: `InvalidValues`, `DuplicateRequest`, `NoCompletedShipItems`, `NoReturnableQuantity`.
         attribute(:invalid_item_reason_code, String, null: false, from: "invalidItemReasonCode")
       end
     end

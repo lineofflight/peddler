@@ -6,20 +6,20 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Response schema for the `addAppointmentForServiceJobByServiceJobId` and
       # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
       SetAppointmentResponse = Structure.new do
-        # @return [String] New appointment identifier generated during the `addAppointmentForServiceJobByServiceJobId`
-        #   or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+        # New appointment identifier generated during the `addAppointmentForServiceJobByServiceJobId` or
+        # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
         attribute?(:appointment_id, String, from: "appointmentId")
 
-        # @return [Array<Error>] Errors occurred during during the `addAppointmentForServiceJobByServiceJobId` or
-        #   `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+        # Errors occurred during during the `addAppointmentForServiceJobByServiceJobId` or
+        # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
         attribute?(:errors, [Error])
 
-        # @return [Array<Warning>] Warnings generated during the `addAppointmentForServiceJobByServiceJobId` or
-        #   `rescheduleAppointmentForServiceJobByServiceJobId` operations.
+        # Warnings generated during the `addAppointmentForServiceJobByServiceJobId` or
+        # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
         attribute?(:warnings, [Warning])
       end
     end

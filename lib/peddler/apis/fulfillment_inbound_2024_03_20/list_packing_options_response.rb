@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # The `listPlacementOptions` response.
       ListPackingOptionsResponse = Structure.new do
-        # @return [Array<PackingOption>] List of packing options.
+        # List of packing options.
         attribute(:packing_options, [PackingOption], null: false, from: "packingOptions")
 
-        # @return [Pagination]
         attribute?(:pagination, Pagination)
       end
     end

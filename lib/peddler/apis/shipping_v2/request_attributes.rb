@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Specify the type of attributes to be added on a label.
       class RequestAttributes < Array
         class << self

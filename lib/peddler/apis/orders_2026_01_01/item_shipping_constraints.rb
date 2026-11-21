@@ -6,25 +6,24 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Special shipping requirements and restrictions that must be observed when shipping an order item.
       ItemShippingConstraints = Structure.new do
-        # @return [String] Payment must be collected from the customer at the time of delivery. Known values:
-        #   `MANDATORY`.
+        # Payment must be collected from the customer at the time of delivery. Known values: `MANDATORY`.
         attribute?(:cash_on_delivery, String, from: "cashOnDelivery")
 
-        # @return [String] The line item must be delivered by pallet. Known values: `MANDATORY`.
+        # The line item must be delivered by pallet. Known values: `MANDATORY`.
         attribute?(:pallet_delivery, String, from: "palletDelivery")
 
-        # @return [String] The carrier must confirm that the recipient is of the legal age to receive the line item upon
-        #   delivery. Known values: `MANDATORY`.
+        # The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery. Known
+        # values: `MANDATORY`.
         attribute?(:recipient_age_verification, String, from: "recipientAgeVerification")
 
-        # @return [String] The person receiving the line item must be the same as the intended recipient of the order.
-        #   Known values: `MANDATORY`.
+        # The person receiving the line item must be the same as the intended recipient of the order. Known values:
+        # `MANDATORY`.
         attribute?(:recipient_identity_verification, String, from: "recipientIdentityVerification")
 
-        # @return [String] The recipient of the line item must sign to confirm its delivery. Known values: `MANDATORY`.
+        # The recipient of the line item must sign to confirm its delivery. Known values: `MANDATORY`.
         attribute?(:signature_confirmation, String, from: "signatureConfirmation")
       end
     end

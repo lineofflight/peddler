@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class SupplySources20200701 < API
+    module SupplySources20200701
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Address < Data
         def self.new: (address_line1: String, country_code: String, name: String, state_or_region: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::APIs::SupplySources20200701::Address
                     | (String, String, String, String, String?, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::SupplySources20200701::Address
@@ -523,15 +525,6 @@ module Peddler
         def members: () -> [ :status ]
         def to_h: () -> { status: String? }
       end
-
-      def archive_supply_source: (String) -> Peddler::Response
-      def create_supply_source: (Hash[untyped, untyped]) -> Peddler::Response
-      def get_supply_source: (String) -> Peddler::Response
-      def get_supply_sources: (?next_page_token: String?, ?page_size: Numeric?) -> Peddler::Response
-
-      def update_supply_source: (String, ?payload: Hash[untyped, untyped]?) -> Peddler::Response
-
-      def update_supply_source_status: (String, ?payload: Hash[untyped, untyped]?) -> Peddler::Response
     end
   end
 end

@@ -12,10 +12,9 @@ module Peddler
       # WEEK, MONTH, and QUARTER. Requests cannot span multiple periods. For example, a request at the WEEK level cannot
       # start on 2025-01-05 and end on 2025-01-18 as this request spans two weeks.
       Report = Structure.new do
-        # @return [Array<SearchCatalogPerformanceData>]
         attribute(:data_by_asin, [SearchCatalogPerformanceData], null: false, from: "dataByAsin")
 
-        # @return [Hash] Summarizes the original report request.
+        # Summarizes the original report request.
         attribute(:report_specification, ReportSpecification, null: false, from: "reportSpecification")
       end
     end

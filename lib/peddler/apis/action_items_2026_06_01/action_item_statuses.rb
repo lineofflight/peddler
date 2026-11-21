@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # The state of an action item, expressed as a list combining lifecycle state with currently available
       # capabilities.
       class ActionItemStatuses < Array

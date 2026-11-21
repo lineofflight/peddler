@@ -1,113 +1,146 @@
 # Generator System
 
-## Why this generator exists
+This generator writes Peddler's typed Ruby models from Amazon's specs: the response types of every API, and the types of notifications, reports, feeds and Data Kiosk schemas.
 
-Peddler generates its SP-API client from Amazon's specs with a hand-written
-generator rather than [openapi-generator][oag] or swagger-codegen. This is a
-deliberate, re-evaluated decision — not legacy inertia.
-
-**Why not an off-the-shelf generator:**
-
-- openapi-generator's Ruby generator does not support `oneOf`/`anyOf`/`allOf`
-  composition or AWS SigV4. SP-API specs lean on `allOf` (see
-  `builders/type.rb` `merge_from_all_of`) and `anyOf` (see
-  `parsers/json_schema_extractor.rb`). Closer to a hard blocker than a
-  quality preference.
-- Its Ruby output is an untyped generic client: no RBS, no `Structure`-typed
-  response models, no idiomatic naming. That typed surface is Peddler's value.
-- Amazon's own official SDK is openapi-generator-based but ships no Ruby
-  target.
-- Adopting it would still require a forked template set plus an SP-API
-  spec-preprocessing layer — not less maintenance than this generator.
-
-**What this generator does that a generic one will not:** unifies Amazon's
-many money shapes into one `Peddler::Money`; breaks only cycle-causing type
-edges with lazy string class names; applies JSON Patch to fix known Amazon
-schema bugs; parses rate limits out of documentation prose; emits RBS by
-introspecting generated classes via the `structure` gem; handles JSON
-notification/report/feed schemas and Data Kiosk GraphQL.
-
-**Maintenance contract:** generated code is committed and corresponds to the
-exact upstream spec revision recorded in `selling-partner-api-models.sha`.
-`bundle exec rake generate` reproduces against that pinned revision.
-`bundle exec rake generate:verify` regenerates at the pin and fails if output
-drifts from what is committed — so any generator refactor must keep output
-byte-identical (or land the intended change in the same commit). Advancing to
-newer Amazon specs is a deliberate act: `bundle exec rake generate:update`
-pulls latest, regenerates, and rewrites the pin in one step (this is what the
-nightly `update-models` workflow runs). Treat `generate:verify` as the source
-of truth, not unit tests of internals.
-
-[oag]: https://openapi-generator.tech/docs/generators/ruby/
+Peddler has two generators. The Rust one, [`peddler-codegen`](../../crates/peddler-codegen/README.md), writes the Rust core and the Ruby method of each operation. This one writes what `response.parse` returns.
 
 Entry point: `lib/generator.rb`
 
-Pipeline: Clone specs → Generate APIs/Notifications/Reports/Feeds → Generate RBS → Format
+## What it reads
 
-## Directory Structure
+- `selling-partner-api-models/`, a checkout of [Amazon's models][models] at the revision in `selling-partner-api-models.sha`: the OpenAPI models under `models/`, and the JSON and GraphQL schemas under `schemas/`
+- `crates/peddler-codegen/operation-inventory.json`, which the Rust generator writes. It names every operation and the model of its response
+- `lib/generator/patches/`, JSON patches for known mistakes in Amazon's notification schemas
 
-### Main Generators (Orchestrators)
-- **`api.rb`** - Generate API classes from OpenAPI specs
-- **`notification.rb`** - Generate notification types from JSON schemas
-- **`report.rb`** - Generate report types from JSON schemas
-- **`feed.rb`** - Generate feed types from JSON schemas
-- **`entrypoint.rb`** - Generate main `lib/peddler.rb` file
-- **`specs.rb`** - Clone/sync Amazon SP-API specs from GitHub
+## What it writes
+
+| Path | Holds |
+| --- | --- |
+| `lib/peddler.rb` | the entry point, with the lookup from an API to its models |
+| `lib/peddler/apis/<api>.rb` | the module of an API version, with the typed model of each operation's response |
+| `lib/peddler/apis/<api>/` | the types of that API |
+| `lib/peddler/{notifications,reports,feeds,data_kiosk}/` | the types of the other schemas |
+| `sig/peddler/{apis,notifications,reports,feeds,data_kiosk}/` | the RBS signatures of those types. The entry point carries its own as inline RBS. |
+
+Every Ruby file it writes carries a comment that starts `# This file is generated.`
+
+It doesn't write the operation methods, `lib/peddler/native/apis.rb`, their documentation or their signatures. Those come from the Rust generator.
+
+## Running it
+
+```sh
+# Both generators, at the pinned revision
+bundle exec rake generate
+
+# Regenerate at the pin and fail if a committed file changes
+bundle exec rake generate:verify
+
+# Move the pin to Amazon's latest revision, then regenerate
+bundle exec rake generate:update
+```
+
+`rake generate` runs the Rust generator first, because this one reads its inventory. It needs a Rust toolchain. It ends with `rake rbs:export`, which writes `sig/inline` from the Ruby that carries inline RBS, and `generate:verify` fails if that changes too.
+
+To run one part of this generator, at the pinned revision and without Rust:
+
+```sh
+bundle exec rake generate:apis
+bundle exec rake generate:notifications
+bundle exec rake generate:reports
+bundle exec rake generate:feeds
+bundle exec rake generate:data_kiosk
+bundle exec rake generate:entrypoints
+```
+
+A part doesn't export: run `bundle exec rake rbs:export` after `generate:entrypoints`.
+
+Generated code is committed and corresponds to the pinned revision. A change to the generator must leave the output as it is, or land the changed output in the same commit. `generate:verify` is the test of that, more than the unit tests of the generator's parts. The nightly `update-models` workflow runs `generate:update`.
+
+## Why this generator exists
+
+Peddler generates its types with a generator of its own, not with [openapi-generator][oag] or swagger-codegen.
+
+- openapi-generator's Ruby generator doesn't support `oneOf`, `anyOf` and `allOf`. Amazon's specs use `allOf` (see `merge_from_all_of` in `builders/type.rb`) and `anyOf` (see `parsers/json_schema_extractor.rb`).
+- Its Ruby output is untyped: no RBS, no `Structure` models, no Ruby naming. The typed models are what this generator is for.
+- Amazon's own SDK is built with openapi-generator and has no Ruby target.
+- Adopting it would still need a set of forked templates and a layer that repairs Amazon's specs first. That is not less to maintain.
+
+What this generator does that a general one won't:
+
+- It turns Amazon's many money shapes into a single `Peddler::Money`.
+- It breaks cycles between types, and only those, by naming a class lazily.
+- It applies JSON patches for known mistakes in Amazon's schemas.
+- It writes RBS by loading the classes it generated and asking the `structure` gem for their attributes.
+- It handles the JSON schemas of notifications, reports and feeds, and Data Kiosk's GraphQL.
+
+## Directory structure
+
+### Orchestrators
+
+- **`api.rb`**: each API's types and its response lookup, from an OpenAPI model
+- **`notification.rb`**: notification types, from JSON schemas
+- **`report.rb`**: report types, from JSON schemas
+- **`feed.rb`**: feed types, from JSON schemas
+- **`data_kiosk.rb`**: Data Kiosk types, from GraphQL schemas
+- **`entrypoint.rb`**: `lib/peddler.rb`
+- **`specs.rb`**: the checkout of Amazon's models, and the pin
 
 ### Builders (`builders/`)
-Classes that construct/build generated code:
-- **`type.rb`** - Build type classes (used by all generators above)
-- **`operation.rb`** - Build API operation methods
-- **`parameter_builder.rb`** - Build parameter lists for API operations
-- **`response_model.rb`** - Build response model metadata for operations
+
+- **`type.rb`**: builds a type class. Every orchestrator uses it
+- **`operation.rb`**: reads an operation's response model
+- **`response_model.rb`**: finds the model of a successful response
 
 ### Parsers (`parsers/`)
-Classes that parse/extract information from specs:
-- **`json_schema_extractor.rb`** - Extract nested types from JSON schemas
-- **`rate_limit_parser.rb`** - Parse rate limit info from OpenAPI specs
-- **`path.rb`** - Parse OpenAPI path definitions into operations
+
+- **`json_schema_extractor.rb`**: extracts nested types from JSON schemas
+- **`graphql_type_extractor.rb`**: extracts types from a GraphQL schema
+- **`path.rb`**: collects the operations of an OpenAPI path
 
 ### Resolvers (`resolvers/`)
-Classes that resolve/translate between representations:
-- **`type_resolver.rb`** - Resolve OpenAPI types to Ruby types
-- **`api_name_resolver.rb`** - Resolve API names from file paths
-- **`version_selector.rb`** - Select latest version from multiple API versions
+
+- **`type_resolver.rb`**: maps OpenAPI types to Ruby types
+- **`api_name_resolver.rb`**: derives an API's name and version from its file path
 
 ### Analyzers (`analyzers/`)
-Classes that analyze code structure:
-- **`circular_dependency_detector.rb`** - Detect circular type dependencies
+
+- **`circular_dependency_detector.rb`**: finds cycles between types
 
 ### Support (`support/`)
-Shared utilities, infrastructure, and mixins:
-- **`config.rb`** - Configuration (paths, constants)
-- **`logger.rb`** - Logging utilities
-- **`file_writer.rb`** - File I/O operations, formatting, RBS sorting
-- **`formatter.rb`** - Code formatting utilities (YARD comments, markdown, etc.)
-- **`schema_helpers.rb`** - Shared schema manipulation for Notification/Report/Feed/Type
-- **`schema_generator.rb`** - Shared generation patterns for schema-based generators
-- **`introspection_loader.rb`** - Zeitwerk loader for introspecting generated classes
 
-### Templates & Types
-- **`templates/`** - ERB templates for code generation
-- **`rbs/`** - RBS signature generation modules
-  - `unified.rb` - Combined API operations + types signatures
-  - `types.rb` - Type-only signatures (notifications/reports/feeds)
-  - `entrypoint.rb` - Entrypoint signature
+- **`config.rb`**: paths and constants
+- **`logger.rb`**: logging
+- **`file_writer.rb`**: writes files, formats them and sorts RBS
+- **`formatter.rb`**: formats comments
+- **`known_values.rb`**: lists an enum's values in the comment of a field
+- **`naming.rb`**: names of classes and attributes
+- **`money_detector.rb`**: recognizes a money shape
+- **`schema_helpers.rb`**: schema handling shared by notifications, reports, feeds and types
+- **`schema_generator.rb`**: the steps the schema orchestrators share
+- **`introspection_loader.rb`**: a Zeitwerk loader for the generated classes
 
-## How It Works
+### Templates and signatures
 
-1. **Sync Specs**: `Specs` orchestrator checks out Amazon's selling-partner-api-models repo at the revision pinned in `selling-partner-api-models.sha`
-2. **Generate Code**: Each orchestrator (API, Notification, Report, Feed) reads JSON/OpenAPI specs and:
-   - Extracts type definitions using `JsonSchemaExtractor` parser
-   - Generates Ruby classes using `Type` builder
-   - Generates operation methods using `Operation` builder (API only)
-   - Generates main wrapper files from ERB templates
-3. **Generate RBS**: Each orchestrator introspects generated classes and creates RBS signatures
-4. **Format**: All files are formatted with RuboCop and RBS files are sorted
+- **`templates/`**: ERB templates for Ruby files
+- **`rbs/`**: RBS generation
+  - `unified.rb`: an API's lookup and types
+  - `types.rb`: types only, for notifications, reports, feeds and Data Kiosk
+  - `entrypoint.rb`: the entry point
+- **`patches/`**: the JSON patches
 
-## Key Patterns
+## How it works
 
-- **Parallel Generation**: All generators use `Parallel.each` for concurrent processing
-- **Type Resolution**: OpenAPI/JSON types → Ruby types handled by `TypeResolver`
-- **Circular Dependencies**: Detected by `CircularDependencyDetector`, resolved with lazy string class names
-- **Introspection**: Generated classes loaded via `IntrospectionLoader` for RBS generation with Structure gem
+1. **Sync specs**: `Specs` checks out Amazon's models at the pinned revision.
+2. **Generate code**: each orchestrator reads its specs, extracts the type definitions, builds a Ruby class for each and writes the module that holds them from an ERB template. `API` also writes the lookup from each operation to its response model.
+3. **Generate RBS**: each orchestrator loads the classes it wrote and writes their signatures.
+4. **Format**: RuboCop formats the Ruby files, and the RBS files are sorted.
+
+## Key patterns
+
+- **Parallel generation**: the orchestrators process their specs with `Parallel.each`.
+- **Type resolution**: `TypeResolver` maps OpenAPI and JSON Schema types to Ruby types.
+- **Circular dependencies**: `CircularDependencyDetector` finds them, and the type builder names one class of each cycle lazily, as a String.
+- **Introspection**: `IntrospectionLoader` loads the generated classes, so that the `structure` gem can describe them for RBS.
+
+[models]: https://github.com/amzn/selling-partner-api-models
+[oag]: https://openapi-generator.tech/docs/generators/ruby/

@@ -9,10 +9,9 @@ module Peddler
     module AccountHealthReport20201118
       # Total invoice defects count due to missing invoice and late invoice.
       InvoiceDefect = Structure.new do
-        # @return [Integer] Invoice defects count.
+        # Invoice defects count.
         attribute(:count, Integer, null: false)
 
-        # @return [String]
         attribute(:status, String, null: false)
       end
     end

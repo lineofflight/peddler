@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of post-purchase details about a package that will be shipped using a shipping service.
       class PackageDocumentDetailList < Array
         class << self

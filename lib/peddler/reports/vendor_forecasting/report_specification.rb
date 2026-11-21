@@ -10,18 +10,18 @@ module Peddler
     module VendorForecasting
       # The report input summary which includes the marketplace, selling program, and last updated date.
       ReportSpecification = Structure.new do
-        # @return [Date] The date when the report was last updated. Follows the
-        #   {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} Date format of YYYY-MM-DD.
+        # The date when the report was last updated. Follows the [ISO
+        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) Date format of YYYY-MM-DD.
         attribute(:last_updated_date, Date, null: false, from: "lastUpdatedDate")
 
-        # @return [Array<String>] This parameter must match the marketplaceId of the selling partner account. Each
-        #   selling partner account belongs to only one marketplaceId.
+        # This parameter must match the marketplaceId of the selling partner account. Each selling partner account
+        # belongs to only one marketplaceId.
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
-        # @return [ReportOptions] Report options specifying parameters such as sellingProgram.
+        # Report options specifying parameters such as sellingProgram.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type. Known values: `GET_VENDOR_FORECASTING_REPORT`.
+        # The report type. Known values: `GET_VENDOR_FORECASTING_REPORT`.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

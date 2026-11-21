@@ -1,0 +1,13 @@
+module Peddler
+  module Native
+    class Engine
+      def download_workflow_document: (String kind, String id, String config) -> DocumentHandle
+      def wait_for: (String kind, String id, Float interval, Float timeout) -> response_parts
+      def start_feed_document_upload: (String content_type, String config, Integer? content_length, bool declared) -> UploadHandle
+    end
+
+    class UploadHandle
+      def document_id: () -> String?
+    end
+  end
+end

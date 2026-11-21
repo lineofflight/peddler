@@ -10,23 +10,22 @@ module Peddler
     module TaxInvoiceIssuanceStatus
       # Notification payload data
       Payload = Structure.new do
-        # @return [Time] The date and time the invoice was issued. Values are in ISO 8601 date-time format.
+        # The date and time the invoice was issued. Values are in ISO 8601 date-time format.
         attribute(:date, Time, null: false)
 
-        # @return [String] The invoice identifier used by an external party, typically the government agency that
-        #   authorized the invoice.
+        # The invoice identifier used by an external party, typically the government agency that authorized the invoice.
         attribute(:invoice_id, String, null: false, from: "invoiceId")
 
-        # @return [String] The identifier for the Amazon store where the invoice was issued.
+        # The identifier for the Amazon store where the invoice was issued.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The status of the tax invoice issuance. Known values: `SUCCESS`, `ERROR`.
+        # The status of the tax invoice issuance. Known values: `SUCCESS`, `ERROR`.
         attribute(:status, String, null: false)
 
-        # @return [Hash] Error details when the invoice issuance fails. Only present for error statuses.
+        # Error details when the invoice issuance fails. Only present for error statuses.
         attribute?(:error, Hash)
 
-        # @return [String] The order identifier associated with the invoice.
+        # The order identifier associated with the invoice.
         attribute?(:order_id, String, from: "orderId")
       end
     end

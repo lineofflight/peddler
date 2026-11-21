@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The payload schema for the retrieveShippingLabel operation.
       RetrieveShippingLabelResult = Structure.new do
-        # @return [LabelSpecification]
         attribute(:label_specification, LabelSpecification, null: false, from: "labelSpecification")
 
-        # @return [String]
         attribute(:label_stream, String, null: false, from: "labelStream")
       end
     end

@@ -1,0 +1,229 @@
+# Builds and smoke-tests the release artifacts (Rust crate, source gem and
+# platform gems). It never publishes: no registry credentials, no tag triggers.
+# Publishing is a separate, manual step.
+name: Packaging
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/packaging.yml"
+      - "peddler.gemspec"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "crates/**"
+      - "lib/peddler/**"
+      - "sig/**"
+      - "tools/inline_rbs.rb"
+      - "tools/native_smoke.rb"
+      - "tools/gem_audit.rb"
+      - "tools/third_party_licenses.rb"
+      - "tools/third_party_licenses/**"
+      - "rakelib/gem.rake"
+      - "Gemfile"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: packaging-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  crate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - name: Package and verify the crate
+        run: cargo package -p peddler --locked
+      - name: Build the extracted package as a fresh consumer
+        run: |
+          # The crate's name carries its version, which only its manifest states.
+          crate="$(ls target/package/peddler-*.crate)"
+          name="$(basename "$crate" .crate)"
+          work="$RUNNER_TEMP/consumer"
+          mkdir -p "$work/src"
+          tar -xzf "$crate" -C "$work"
+          cat > "$work/Cargo.toml" <<TOML
+          [package]
+          name = "consumer"
+          version = "0.0.0"
+          edition = "2024"
+
+          [dependencies]
+          peddler = { path = "$name" }
+
+          [workspace]
+          TOML
+          echo 'fn main() { peddler::Client::new("http://127.0.0.1:1", "token").unwrap(); }' > "$work/src/main.rs"
+          cd "$work" && cargo build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crate
+          path: target/package/peddler-*.crate
+
+  source-gem:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.3", "3.4", "4.0"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - run: bundle install
+      - run: bundle exec rake build
+      - run: ruby tools/gem_audit.rb pkg/peddler-*.gem
+      - name: Install the source gem and smoke test it outside the repository
+        run: |
+          export GEM_HOME="$RUNNER_TEMP/gems" GEM_PATH="$RUNNER_TEMP/gems"
+          gem_file="$(ls "$PWD"/pkg/peddler-*.gem)"
+          script="$PWD/tools/native_smoke.rb"
+          gem install --no-document "$gem_file"
+          cd "$RUNNER_TEMP" && ruby "$script"
+      - uses: actions/upload-artifact@v4
+        if: matrix.ruby == '4.0'
+        with:
+          name: source-gem
+          path: pkg/peddler-*.gem
+
+  cross-gem:
+    # rb-sys-dock builds every platform inside rb-sys containers on Linux; the
+    # fat gem carries Ruby 3.3, 3.4 and 4.0 binaries under lib/peddler/<minor>/.
+    # "arm-linux" is glibc on 32-bit ARMv7 or later, hard float.
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - arm64-darwin
+          - x86_64-darwin
+          - aarch64-linux
+          - x86_64-linux
+          - aarch64-linux-musl
+          - x86_64-linux-musl
+          - arm-linux
+          - arm-linux-musl
+          - x64-mingw-ucrt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oxidize-rb/actions/setup-ruby-and-rust@ec90b4aa48795518d79be3f5cc478d1d7ccd02a8 # v1.5.0
+        with:
+          ruby-version: "4.0"
+          # The container installs the bundle itself. A bundle installed here would be written to the project's
+          # .bundle/config, which the container mounts and obeys, and its extensions need a newer glibc than it has.
+          bundler-cache: false
+          cargo-cache: false
+      # The gem carries the licenses of the crates in its binary. The containers below
+      # have no cargo-about, so the notices are written here. The gem task takes them as
+      # they are while the lockfile and the manifests are unchanged, and says so in the
+      # log if its toolchain is another than this runner's, whose standard library the
+      # notices name. A license that tools/third_party_licenses/about.toml doesn't
+      # accept fails this step.
+      - name: Write the third-party license notices
+        run: |
+          cargo install cargo-about --version 0.9.2 --locked --features cli
+          ruby tools/third_party_licenses.rb ${{ matrix.platform }}
+      - uses: oxidize-rb/actions/cross-gem@ec90b4aa48795518d79be3f5cc478d1d7ccd02a8 # v1.5.0
+        id: cross-gem
+        with:
+          platform: ${{ matrix.platform }}
+          ruby-versions: "3.3,3.4,4.0"
+      # The action's gem-path output looks for "*-<platform>.gem", which misses the
+      # "-gnu" suffix added to Linux gems, so locate the gem here.
+      - id: gem
+        run: |
+          path="$(ls pkg/peddler-*-${{ matrix.platform }}*.gem)"
+          if [ "$(printf '%s\n' "$path" | wc -l)" -ne 1 ]; then
+            echo "expected exactly one gem for ${{ matrix.platform }}, found: $path" >&2
+            exit 1
+          fi
+          echo "path=$path" >> "$GITHUB_OUTPUT"
+      - run: ruby tools/gem_audit.rb "${{ steps.gem.outputs.path }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gem-${{ matrix.platform }}
+          path: ${{ steps.gem.outputs.path }}
+
+  smoke:
+    needs: cross-gem
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [arm64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux, x64-mingw-ucrt]
+        ruby: ["3.3", "3.4", "4.0"]
+        include:
+          - { platform: arm64-darwin, runner: macos-15 }
+          - { platform: x86_64-darwin, runner: macos-15-intel }
+          - { platform: aarch64-linux, runner: ubuntu-22.04-arm }
+          - { platform: x86_64-linux, runner: ubuntu-22.04 }
+          # RubyInstaller's Rubies, which are built with UCRT
+          - { platform: x64-mingw-ucrt, runner: windows-latest }
+    runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - uses: actions/download-artifact@v5
+        with:
+          name: gem-${{ matrix.platform }}
+          path: gems
+      - name: Install the platform gem and smoke test it without Rust
+        run: |
+          ruby_dir="$(dirname "$(command -v ruby)")"
+          export GEM_HOME="$RUNNER_TEMP/gems" GEM_PATH="$RUNNER_TEMP/gems"
+          script="$PWD/tools/native_smoke.rb"
+          gem_file="$(ls "$PWD"/gems/peddler-*.gem)"
+          cd "$RUNNER_TEMP"
+          PATH="$ruby_dir:/usr/bin:/bin" gem install --no-document "$gem_file"
+          PATH="$ruby_dir:/usr/bin:/bin" ruby "$script" --binary
+
+  # musl and 32-bit ARM Linux have no runner of their own. Each gem is installed and smoke tested in the official
+  # Ruby image of its platform, which has no Rust: Alpine for musl, Debian for glibc. 32-bit ARM runs under QEMU.
+  # The image's GEM_HOME is left as it is, so the bigdecimal built with its Ruby stays on the gem path: Alpine has no
+  # compiler to build another.
+  smoke-container:
+    needs: cross-gem
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [aarch64-linux-musl, x86_64-linux-musl, arm-linux, arm-linux-musl]
+        ruby: ["3.3", "3.4", "4.0"]
+        include:
+          - { platform: aarch64-linux-musl, runner: ubuntu-24.04-arm, image: alpine, docker: linux/arm64 }
+          - { platform: x86_64-linux-musl, runner: ubuntu-24.04, image: alpine, docker: linux/amd64 }
+          - { platform: arm-linux, runner: ubuntu-24.04, image: slim, docker: linux/arm/v7 }
+          - { platform: arm-linux-musl, runner: ubuntu-24.04, image: alpine, docker: linux/arm/v7 }
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+        if: matrix.docker == 'linux/arm/v7'
+        with:
+          platforms: arm
+      - uses: actions/download-artifact@v5
+        with:
+          name: gem-${{ matrix.platform }}
+          path: gems
+      - name: Install the platform gem and smoke test it in a Ruby image without Rust
+        run: >-
+          docker run --rm --platform ${{ matrix.docker }} --volume "$PWD:/work:ro" --workdir /tmp
+          ruby:${{ matrix.ruby }}-${{ matrix.image }}
+          sh -c 'gem install --no-document /work/gems/peddler-*.gem && ruby /work/tools/native_smoke.rb --binary'

@@ -7,9 +7,15 @@ plugins:
 inherit_gem:
   rubocop-shopify: rubocop.yml
 
+inherit_mode:
+  merge:
+    - Include
+
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.3
+  Include:
+    - Steepfile.shipped
 
 RBS:
   Enabled: true
@@ -42,8 +48,12 @@ Style/Alias:
   Enabled: true
   Include: *generated
 
-# These tests assert that generated code contains literal `#{...}` text; the
-# cop's autocorrect would turn it into live interpolation.
-Lint/InterpolationCheck:
-  Exclude:
-    - test/generator/builders/operation_render_test.rb
+# Steep reads a method inside `class << self` as an instance method when it checks inline RBS, so the files it
+# checks inline take `def self.`.
+Style/ClassMethodsDefinitions:
+  EnforcedStyle: def_self
+  Include:
+    - lib/peddler.rb
+    - lib/peddler/*.rb
+    - lib/peddler/lwa/**/*
+    - lib/peddler/native/**/*

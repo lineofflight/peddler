@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Whether serial numbers must be provided for this line item.
       SerialNumberRequirement = Structure.new do
-        # @return [String] The requirement type for this request.
+        # The requirement type for this request.
         #
         # **Possible values**: `REQUIRED`
         attribute?(:requirement_type, String, from: "requirementType")

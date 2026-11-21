@@ -6,19 +6,19 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentOrdersV1
+    module VendorDirectFulfillmentOrdersV1
       # Tax registration details of the entity.
       TaxRegistrationDetails = Structure.new do
-        # @return [String] Tax registration number for the party. For example, VAT ID.
+        # Tax registration number for the party. For example, VAT ID.
         attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
-        # @return [Address] Address associated with the tax registration number.
+        # Address associated with the tax registration number.
         attribute?(:tax_registration_address, Address, from: "taxRegistrationAddress")
 
-        # @return [String] Tax registration message that can be used for additional tax related details.
+        # Tax registration message that can be used for additional tax related details.
         attribute?(:tax_registration_messages, String, from: "taxRegistrationMessages")
 
-        # @return [String] Tax registration type for the entity. Known values: `VAT`, `GST`.
+        # Tax registration type for the entity. Known values: `VAT`, `GST`.
         attribute?(:tax_registration_type, String, from: "taxRegistrationType")
       end
     end

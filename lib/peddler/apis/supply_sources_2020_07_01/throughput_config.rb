@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The throughput configuration.
       ThroughputConfig = Structure.new do
-        # @return [String] Known values: `Order`.
+        # Known values: `Order`.
         attribute(:throughput_unit, String, null: false, from: "throughputUnit")
 
-        # @return [ThroughputCap]
         attribute?(:throughput_cap, ThroughputCap, from: "throughputCap")
       end
     end

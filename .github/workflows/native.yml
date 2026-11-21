@@ -1,0 +1,76 @@
+name: Native crates
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+          rustup default stable
+      - run: cargo fmt --all --check
+      - run: cargo test -p peddler --locked
+      - run: cargo clippy -p peddler --all-targets --locked -- -D warnings
+
+  generation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+          rustup default stable
+      - name: Sync pinned specs
+        run: bundle exec rake generate:rust:setup
+      # The generator is its own workspace: every cargo command names its manifest.
+      - run: cargo fmt --manifest-path crates/peddler-codegen/Cargo.toml --all --check
+      - run: cargo test --manifest-path crates/peddler-codegen/Cargo.toml --locked
+      - run: cargo clippy --manifest-path crates/peddler-codegen/Cargo.toml --all-targets --locked -- -D warnings
+      - name: Check deterministic committed output
+        run: |
+          cargo run --manifest-path crates/peddler-codegen/Cargo.toml --locked -- --root . --check
+          cargo run --manifest-path crates/peddler-codegen/Cargo.toml --locked -- --root . --check
+
+  binding:
+    # ci.yml builds the extension and runs the whole suite for each Ruby. This job
+    # covers only what it does not: the shared-fixture export and the binding lint.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+      - name: Set up Rust
+        run: |
+          rustup toolchain install stable --profile minimal --component clippy
+          rustup default stable
+      - run: ruby tools/export_native_fixtures.rb --check
+      - name: Lint binding
+        run: RUBY="$(ruby -rrbconfig -e 'print RbConfig.ruby')" cargo clippy --workspace --all-targets --locked -- -D warnings
+
+  windows:
+    # The extension built from source with RubyInstaller's Ruby and the GNU toolchain, as `gem install` builds the
+    # source gem there, and the native tests run against it. The tests of fork and SIGUSR1 skip: Windows has neither.
+    runs-on: windows-latest
+    steps:
+      # Git for Windows checks text out with CRLF. Keep the files as committed, as the other jobs see them.
+      - run: git config --global core.autocrlf false
+      - uses: actions/checkout@v5
+      - uses: oxidize-rb/actions/setup-ruby-and-rust@ec90b4aa48795518d79be3f5cc478d1d7ccd02a8 # v1.5.0
+        with:
+          ruby-version: "4.0"
+          bundler-cache: true
+          cargo-cache: false
+      - run: bundle exec rake native:build
+      - run: bundle exec rake native:test

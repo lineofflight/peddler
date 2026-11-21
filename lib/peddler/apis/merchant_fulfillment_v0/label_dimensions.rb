@@ -6,16 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Dimensions for printing a shipping label.
       LabelDimensions = Structure.new do
-        # @return [Float] The length dimension.
+        # The length dimension.
         attribute(:length, Float, null: false, from: "Length")
 
-        # @return [String] The unit of measurement. Known values: `inches`, `centimeters`.
+        # The unit of measurement. Known values: `inches`, `centimeters`.
         attribute(:unit, String, null: false, from: "Unit")
 
-        # @return [Float] The width dimension.
+        # The width dimension.
         attribute(:width, Float, null: false, from: "Width")
       end
     end

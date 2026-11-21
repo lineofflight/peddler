@@ -6,12 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class NotificationsV1
+    module NotificationsV1
       # An event filter you can use to customize your subscription to send notifications for a specific
       # `orderChangeType`.
       OrderChangeTypeFilter = Structure.new do
-        # @return [Array<OrderChangeTypeEnum>] Known values: `BuyerRequestedChange`, `DeliveryTipChange`,
-        #   `OrderStatusChange`, `PreFulfillmentStatusChange`.
+        # Known values: `BuyerRequestedChange`, `DeliveryTipChange`, `OrderStatusChange`, `PreFulfillmentStatusChange`.
         attribute?(:order_change_types, Array, from: "orderChangeTypes")
       end
     end

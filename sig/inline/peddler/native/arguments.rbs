@@ -1,0 +1,67 @@
+# Generated from lib/peddler/native/arguments.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  module Native
+    module Arguments
+      INTEGER: Regexp
+
+      DECIMAL: Regexp
+
+      NOT_JSON: Object
+
+      # What is said of a Hash or an Array that can't be encoded as a body
+      JSON_RULE: ::String
+
+      # A String, or what v5 sent as one: see `text`
+      def self.string: (String name, untyped value, ?required: bool) -> String?
+
+      # An argument that is one segment of the path. What the core refuses is refused here by name: `.` and `..`
+      # would address another resource, and so would nothing at the end of a path, which is the collection above.
+      def self.segment: (String name, untyped value, ?last: bool) -> String
+
+      # A String is a list of one, which is how v5 sent it
+      def self.array: (String name, untyped value, ?required: bool) -> Array[String]?
+
+      def self.integer: (String name, untyped value, ?required: bool) -> Integer?
+
+      def self.number: (String name, untyped value, ?required: bool) -> (Integer | Float)?
+
+      def self.boolean: (String name, untyped value, ?required: bool) -> bool?
+
+      # A String holds the JSON already, as in v5, so it is parsed and not encoded a second time
+      def self.body: (String name, untyped value, ?required: bool) -> untyped
+
+      # A value of a raw request's query: what an operation's argument is as text, a boolean, or an Array of them,
+      # joined with commas as v5 joined it
+      def self.parameter: (String name, untyped value) -> String
+
+      # The requests per second a caller gives for the wait after a 429, in place of the rate Amazon documents for
+      # the operation. nil is no rate. v5 divided 1.0 by it, so it is any number that is positive as a Float.
+      def self.rate_limit: (untyped value) -> Float?
+
+      # The arguments as the JSON the core takes. Each was checked but the inside of a body, so what can't be
+      # encoded is there. The encoder's error quotes the value, so the error is raised here, outside its rescue,
+      # where it can't become the cause.
+      def self.encode: (Hash[Symbol, untyped] arguments, ?String? body) -> String
+
+      private def self.missing: (String name, bool required) -> nil
+
+      # What an object converts itself to with `to_str`. Without one it is itself, and so it is when its `to_str`
+      # raises or returns no String. That error is not raised: it is the caller's own and may hold anything.
+      private def self.plain: (untyped value) -> untyped
+
+      # An argument as text, or nil if it has none. A String is itself. nil, a boolean, a Hash and an Array have
+      # none, nor has an object whose `to_str` fails. Anything else is its `to_s`, as v5 sent it, unless that is an
+      # inspect form such as "#<Object>" or "#<data Point x=1>", which is nobody's argument.
+      #
+      # Text that is not valid UTF-8 is refused by the argument's name. The encoder would refuse it too, in an
+      # error that quotes it.
+      private def self.text: (String name, untyped value) -> String?
+
+      private def self.scalar: (String name, untyped value) -> String
+
+      # Whether the value is a String that spells a number. One that is not valid UTF-8 can't be matched.
+      private def self.numeral?: (untyped value, Regexp pattern) -> bool
+    end
+  end
+end

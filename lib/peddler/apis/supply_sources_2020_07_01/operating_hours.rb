@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # A list of Operating Hours.
       class OperatingHours < Array
         class << self

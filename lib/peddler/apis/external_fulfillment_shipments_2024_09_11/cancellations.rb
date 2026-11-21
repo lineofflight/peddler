@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # A list of cancellations for the given line item.
       #
       # **Note:** Currently, SmartConnect does not support partial cancellation of a shipment or its line items. This

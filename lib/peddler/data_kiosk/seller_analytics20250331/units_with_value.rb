@@ -9,10 +9,10 @@ module Peddler
     module SellerAnalytics20250331
       # Number of units with their corresponding monetary value.
       UnitsWithValue = Structure.new do
-        # @return [String] Number of units.
+        # Number of units.
         attribute?(:units, String)
 
-        # @return [Amount] Monetary value of the units.
+        # Monetary value of the units.
         attribute?(:value, Amount)
       end
     end

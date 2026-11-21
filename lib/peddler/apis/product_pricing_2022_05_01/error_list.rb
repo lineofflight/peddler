@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricing20220501
+    module ProductPricing20220501
       # A list of error responses that are returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

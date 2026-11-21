@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list of competitive pricing information.
       class CompetitivePriceList < Array
         class << self

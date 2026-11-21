@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class Uploads20201101
+    module Uploads20201101
       # A list of error responses returned when a request is unsuccessful.
       class ErrorList < Array
         class << self

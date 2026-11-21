@@ -7,16 +7,16 @@ require "time"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # A time window along with associated capacity in which the service can be performed.
       AppointmentSlot = Structure.new do
-        # @return [Integer] Number of resources for which a slot can be reserved.
+        # Number of resources for which a slot can be reserved.
         attribute?(:capacity, Integer)
 
-        # @return [Time] Time window end time in ISO 8601 format.
+        # Time window end time in ISO 8601 format.
         attribute?(:end_time, Time, from: "endTime")
 
-        # @return [Time] Time window start time in ISO 8601 format.
+        # Time window start time in ISO 8601 format.
         attribute?(:start_time, Time, from: "startTime")
       end
     end

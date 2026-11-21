@@ -13,192 +13,21 @@ module Peddler
     # For more information, refer to the [Notifications Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
-    class NotificationsV1 < API
-      # Returns information about subscriptions of the specified notification type. You can use this API to retrieve all
-      # subscriptions when multiple subscriptions exist for a notification type (for example, when using filter
-      # expressions).
-      #
-      # The operation returns all subscriptions for the caller's party.
-      #
-      # `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns
-      # subscriptions across all payload versions.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param notification_types [Array<String>] A list of notification types to retrieve subscriptions for. Currently
-      #   limited to a single notification type per request. For more information about notification types, refer to the
-      #   [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param payload_version [String] The version of the payload object to be used in the notification.
-      # @param page_size [Integer] The maximum number of subscriptions to return per page. Minimum value is 30. Maximum
-      #   value is 100. Default is 30.
-      # @param next_token [String] A token to retrieve the next page of results. If this field is not empty in a
-      #   response, pass its value in the next request to retrieve the next page.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_subscriptions(notification_types, payload_version: nil, page_size: 30, next_token: nil, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions"
-        params = {
-          "notificationTypes" => stringify_array(notification_types),
-          "payloadVersion" => payload_version,
-          "pageSize" => page_size,
-          "nextToken" => next_token,
-        }.compact
-        parser = -> { GetSubscriptionsResponse }
-        get(path, params:, rate_limit:, parser:)
-      end
-
-      # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
-      # is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload
-      # version subscription's information. You can use this API to get subscription information when you do not have a
-      # subscription identifier.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to the [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param payload_version [String] The version of the payload object to be used in the notification.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}"
-        params = {
-          "payloadVersion" => payload_version,
-        }.compact
-        parser = -> { GetSubscriptionResponse }
-        get(path, params:, rate_limit:, parser:)
-      end
-
-      # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
-      # you can subscribe, you must first create the destination by calling the `createDestination` operation. If the
-      # notification type that you specify supports multiple payload versions, you can use this operation to subscribe
-      # to a different payload version if you already have an existing subscription for a different payload version.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request schema for the `createSubscription` operation.
-      # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to the [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_subscription(body, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}"
-        parser = -> { CreateSubscriptionResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
-      # operation is grantless. For more information, refer to [Grantless
-      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
-      # Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param subscription_id [String] The identifier for the subscription that you want to get.
-      # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to the [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
-        parser = -> { GetSubscriptionByIdResponse }
-        get(path, rate_limit:, parser:)
-      end
-
-      # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
-      # subscription identifier can be for any subscription associated with your application. After you successfully
-      # call this operation, notifications will stop being sent for the associated subscription. The
-      # `deleteSubscriptionById` operation is grantless. For more information, refer to [Grantless
-      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
-      # Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param subscription_id [String] The identifier for the subscription that you want to delete.
-      # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to the [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
-        parser = -> { DeleteSubscriptionByIdResponse }
-        delete(path, rate_limit:, parser:)
-      end
-
-      # Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For
-      # more information, see "Grantless operations" in the Selling Partner API Developer Guide.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] The request schema for the `sendTestNotification` operation.
-      # @param notification_type [String] The type of notification. For more information about notification types, refer
-      #   to the [Notifications API v1 Use Case
-      #   Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def send_test_notification(body, notification_type, rate_limit: 1.0)
-        must_sandbox!
-
-        path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/testNotification"
-        parser = -> { SendTestNotificationResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
-      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
-      # Selling Partner API Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_destinations(rate_limit: 1.0)
-        path = "/notifications/v1/destinations"
-        parser = -> { GetDestinationsResponse }
-        get(path, rate_limit:, parser:)
-      end
-
-      # Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For
-      # more information, refer to [Grantless
-      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
-      # Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request schema for the `createDestination` operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_destination(body, rate_limit: 1.0)
-        path = "/notifications/v1/destinations"
-        parser = -> { CreateDestinationResponse }
-        post(path, body:, rate_limit:, parser:)
-      end
-
-      # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
-      # more information, refer to [Grantless
-      # Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API
-      # Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param destination_id [String] The identifier generated when you created the destination.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_destination(destination_id, rate_limit: 1.0)
-        path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
-        parser = -> { GetDestinationResponse }
-        get(path, rate_limit:, parser:)
-      end
-
-      # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
-      # refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the
-      # Selling Partner API Developer Guide.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param destination_id [String] The identifier for the destination that you want to delete.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def delete_destination(destination_id, rate_limit: 1.0)
-        path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
-        parser = -> { DeleteDestinationResponse }
-        delete(path, rate_limit:, parser:)
-      end
+    # https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
+    module NotificationsV1
+      # Typed models of successful responses, by native operation key. Shareable, so that any Ractor can read it.
+      PARSERS = Ractor.make_shareable({
+        "notifications_v1.create_destination" => -> { CreateDestinationResponse },
+        "notifications_v1.create_subscription" => -> { CreateSubscriptionResponse },
+        "notifications_v1.delete_destination" => -> { DeleteDestinationResponse },
+        "notifications_v1.delete_subscription_by_id" => -> { DeleteSubscriptionByIdResponse },
+        "notifications_v1.get_destination" => -> { GetDestinationResponse },
+        "notifications_v1.get_destinations" => -> { GetDestinationsResponse },
+        "notifications_v1.get_subscription" => -> { GetSubscriptionResponse },
+        "notifications_v1.get_subscription_by_id" => -> { GetSubscriptionByIdResponse },
+        "notifications_v1.get_subscriptions" => -> { GetSubscriptionsResponse },
+        "notifications_v1.send_test_notification" => -> { SendTestNotificationResponse },
+      })
     end
   end
 end

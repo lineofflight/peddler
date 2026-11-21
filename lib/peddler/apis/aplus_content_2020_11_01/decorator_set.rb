@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A set of content decorators.
       class DecoratorSet < Array
         class << self

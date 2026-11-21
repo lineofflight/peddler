@@ -6,17 +6,16 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
-        # @return [Money]
         attribute(:charge_amount, Money, null: false, from: "chargeAmount")
 
-        # @return [String] Type of charge applied. Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`,
-        #   `PACKAGING`, `LOADING`, `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`.
+        # Type of charge applied. Known values: `GIFTWRAP`, `FULFILLMENT`, `MARKETINGINSERT`, `PACKAGING`, `LOADING`,
+        # `FREIGHTOUT`, `TAX_COLLECTED_AT_SOURCE`.
         attribute(:type, String, null: false)
 
-        # @return [Array<TaxDetail>] Individual tax details per line item.
+        # Individual tax details per line item.
         attribute?(:tax_details, [TaxDetail], from: "taxDetails")
       end
     end

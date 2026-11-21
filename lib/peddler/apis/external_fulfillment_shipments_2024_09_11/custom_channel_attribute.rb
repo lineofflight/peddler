@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # Marketplace channel-specific attribute value.
       class CustomChannelAttribute < Array
         class << self

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and
       # fulfillment channels.
       class BuyBoxEligibleOffers < Array

@@ -6,14 +6,14 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # Range capacity entity where each entry has a capacity type and corresponding slots.
       RangeCapacity = Structure.new do
-        # @return [String] Capacity type corresponding to the slots. Known values: `SCHEDULED_CAPACITY`,
-        #   `AVAILABLE_CAPACITY`, `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`.
+        # Capacity type corresponding to the slots. Known values: `SCHEDULED_CAPACITY`, `AVAILABLE_CAPACITY`,
+        # `ENCUMBERED_CAPACITY`, `RESERVED_CAPACITY`.
         attribute?(:capacity_type, String, from: "capacityType")
 
-        # @return [Array<RangeSlot>] Array of capacity slots in range slot format.
+        # Array of capacity slots in range slot format.
         attribute?(:slots, [RangeSlot])
       end
     end

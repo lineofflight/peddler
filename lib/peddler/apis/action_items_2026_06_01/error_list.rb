@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class ActionItems20260601
+    module ActionItems20260601
       # A list of error responses returned when a request is unsuccessful.
       ErrorList = Structure.new do
-        # @return [Array<Error>] A list of error responses.
+        # A list of error responses.
         attribute(:errors, [Error], null: false)
       end
     end

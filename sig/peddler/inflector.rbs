@@ -1,5 +1,0 @@
-module Peddler
-  class Inflector < Zeitwerk::GemInflector
-    def camelize: (String basename, String _abspath) -> String
-  end
-end

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A list of the document specifications supported for a shipment service offering.
       class SupportedDocumentSpecificationList < Array
         class << self

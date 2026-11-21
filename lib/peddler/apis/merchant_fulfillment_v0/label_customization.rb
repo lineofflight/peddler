@@ -6,13 +6,12 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Custom text for shipping labels.
       LabelCustomization = Structure.new do
-        # @return [String]
         attribute?(:custom_text_for_label, String, from: "CustomTextForLabel")
 
-        # @return [String] Known values: `AmazonOrderId`.
+        # Known values: `AmazonOrderId`.
         attribute?(:standard_id_for_label, String, from: "StandardIdForLabel")
       end
     end

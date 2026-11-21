@@ -1,23 +1,18 @@
 module Peddler
-  class Response < SimpleDelegator
-    extend Forwardable
+  class Response
+    class Status < SimpleDelegator
+      def initialize: (Integer code) -> void
 
-    @parser: untyped
-
-    def self.wrap: (HTTP::Response response, ?parser: untyped) -> Response
-
-    attr_reader parser: untyped
-    def initialize: (HTTP::Response http_response, ?parser: untyped) -> void
-
-    def dig: (untyped, *untyped) -> untyped
-    def parsable?: () -> bool
-    def parse: () -> untyped
-    def raise_for_status!: () -> void
-    def status: () -> Integer
-    def to_h: () -> Hash[String, untyped]
-
-    private
-
-    def raise: (*untyped) -> bot
+      # What the Integer it wraps answers, as v5's status did
+      def <: (Integer | Float other) -> bool
+      def <=: (Integer | Float other) -> bool
+      def >: (Integer | Float other) -> bool
+      def >=: (Integer | Float other) -> bool
+      def <=>: (untyped other) -> Integer?
+      def ==: (untyped other) -> bool
+      def between?: (Integer | Float min, Integer | Float max) -> bool
+      def to_i: () -> Integer
+      def to_s: () -> String
+    end
   end
 end

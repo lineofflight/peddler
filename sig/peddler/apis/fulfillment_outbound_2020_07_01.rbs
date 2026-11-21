@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701 < API
+    module FulfillmentOutbound20200701
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Address < Data
         def self.new: (address_line1: String, country_code: String, name: String, postal_code: String, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?district_or_county: String?, ?phone: String?, ?state_or_region: String?) -> Peddler::APIs::FulfillmentOutbound20200701::Address
                     | (String, String, String, String, String?, String?, String?, String?, String?, String?) -> Peddler::APIs::FulfillmentOutbound20200701::Address
@@ -1587,26 +1589,6 @@ module Peddler
         def members: () -> [ :unit, :value ]
         def to_h: () -> { unit: String, value: String }
       end
-
-      def cancel_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_fulfillment_order: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def create_fulfillment_return: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
-      def delivery_offers: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def get_feature_inventory: (String, String, ?next_token: String?, ?query_start_date: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_feature_sku: (String, String, String, ?rate_limit: Float) -> Peddler::Response
-      def get_features: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_fulfillment_preview: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def get_package_tracking_details: (Integer, ?rate_limit: Float) -> Peddler::Response
-      def list_all_fulfillment_orders: (?query_start_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def list_return_reason_codes: (String, ?marketplace_id: String?, ?seller_fulfillment_order_id: String?, ?language: String?, ?rate_limit: Float) -> Peddler::Response
-
-      def submit_fulfillment_order_status_update: (String, Hash[untyped, untyped]) -> Peddler::Response
-      def update_fulfillment_order: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

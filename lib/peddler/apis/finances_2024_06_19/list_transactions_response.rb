@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class Finances20240619
+    module Finances20240619
       # The response to the `listTransactions` operation.
       ListTransactionsResponse = Structure.new do
-        # @return [TransactionsPayload] The payload for the `listTransactions` operation.
+        # The payload for the `listTransactions` operation.
         attribute?(:payload, TransactionsPayload)
       end
     end

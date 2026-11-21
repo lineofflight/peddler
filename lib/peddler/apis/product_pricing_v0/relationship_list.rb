@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # A list that contains product variation information, if applicable.
       class RelationshipList < Array
         class << self

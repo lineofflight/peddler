@@ -1,0 +1,189 @@
+{
+  "NotificationVersion": "1.0",
+  "NotificationType": "ANY_OFFER_CHANGED",
+  "PayloadVersion": "1.0",
+  "EventTime": "2020-07-13T19:42:04.284Z",
+  "NotificationMetadata": {
+    "ApplicationId": "app-id-d0e9e693-c3ad-4373-979f-ed4ec98dd746",
+    "SubscriptionId": "subscription-id-d0e9e693-c3ad-4373-979f-ed4ec98dd746",
+    "PublishTime": "2020-07-13T19:42:04.284Z",
+    "NotificationId": "d0e9e693-c3ad-4373-979f-ed4ec98dd746"
+  },
+  "Payload": {
+    "AnyOfferChangedNotification": {
+      "SellerId": "A3TH9S8BH6GOGM",
+      "OfferChangeTrigger": {
+        "MarketplaceId": "ATVPDKIKX0DER",
+        "ASIN": "123",
+        "ItemCondition": "New",
+        "TimeOfOfferChange": "2020-07-13T19:42:04.284Z",
+        "OfferChangeType": "Internal"
+      },
+      "Summary": {
+        "NumberOfOffers": [
+          {
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferCount": 10
+          },
+          {
+            "Condition": "used",
+            "FulfillmentChannel": "Amazon",
+            "OfferCount": 21
+          }
+        ],
+        "LowestPrices": [
+          {
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "LandedPrice": {
+              "Amount": 10.0,
+              "CurrencyCode": "USD"
+            },
+            "ListingPrice": {
+              "Amount": 10.0,
+              "CurrencyCode": "USD"
+            },
+            "Shipping": {
+              "Amount": 0.0,
+              "CurrencyCode": "USD"
+            }
+          },
+          {
+            "Condition": "used",
+            "FulfillmentChannel": "Amazon",
+            "LandedPrice": {
+              "Amount": 11.0,
+              "CurrencyCode": "USD"
+            },
+            "ListingPrice": {
+              "Amount": 20.0,
+              "CurrencyCode": "USD"
+            },
+            "Shipping": {
+              "Amount": 40.0,
+              "CurrencyCode": "USD"
+            },
+            "Points": {
+              "PointsNumber": 34343
+            }
+          }
+        ],
+        "BuyBoxPrices": [
+          {
+            "Condition": "new",
+            "LandedPrice": {
+              "Amount": 10.0,
+              "CurrencyCode": "USD"
+            },
+            "ListingPrice": {
+              "Amount": 10.0,
+              "CurrencyCode": "USD"
+            },
+            "Shipping": {
+              "Amount": 0.0,
+              "CurrencyCode": "USD"
+            }
+          },
+          {
+            "Condition": "used",
+            "LandedPrice": {
+              "Amount": 11.0,
+              "CurrencyCode": "USD"
+            },
+            "ListingPrice": {
+              "Amount": 20.0,
+              "CurrencyCode": "USD"
+            },
+            "Shipping": {
+              "Amount": 40.0,
+              "CurrencyCode": "USD"
+            },
+            "Points": {
+              "PointsNumber": 34343
+            }
+          }
+        ],
+        "ListPrice": {
+          "Amount": 55.0,
+          "CurrencyCode": "USD"
+        },
+        "MinimumAdvertisedPrice": {
+          "Amount": 66.0,
+          "CurrencyCode": "USD"
+        },
+        "SuggestedLowerPricePlusShipping": {
+          "Amount": 77.0,
+          "CurrencyCode": "USD"
+        },
+        "TotalBuyBoxEligibleOffers": 100,
+        "SalesRankings": [
+          {
+            "ProductCategoryId": "1243",
+            "Rank": 1
+          },
+          {
+            "ProductCategoryId": "1234",
+            "Rank": 2
+          }
+        ],
+        "NumberOfBuyBoxEligibleOffers": [
+          {
+            "Condition": "new",
+            "FulfillmentChannel": "Merchant",
+            "OfferCount": 23
+          },
+          {
+            "Condition": "used",
+            "FulfillmentChannel": "Amazon",
+            "OfferCount": 54
+          }
+        ],
+        "CompetitivePriceThreshold": {
+          "Amount": 22.0,
+          "CurrencyCode": "USD"
+        }
+      },
+      "Offers": [
+        {
+          "SellerId": "111",
+          "SubCondition": "New",
+          "SellerFeedbackRating": {
+            "FeedbackCount": 9,
+            "SellerPositiveFeedbackRating": 10
+          },
+          "ShippingTime": {
+            "MinimumHours": 10,
+            "MaximumHours": 30,
+            "AvailabilityType": "available",
+            "AvailableDate": "2020-07-13T19:42:04.284Z"
+          },
+          "ListingPrice": {
+            "Amount": 23.0,
+            "CurrencyCode": "USD"
+          },
+          "Points": {
+            "PointsNumber": 33333
+          },
+          "Shipping": {
+            "Amount": 110.0,
+            "CurrencyCode": "USD"
+          },
+          "ShipsFrom": {
+            "Country": "USA",
+            "State": "MI"
+          },
+          "IsFulfilledByAmazon": true,
+          "PrimeInformation": {
+            "IsOfferPrime": true,
+            "IsOfferNationalPrime": false
+          },
+          "IsExpeditedShippingAvailable": true,
+          "IsFeaturedMerchant": true,
+          "ShipsDomestically": true,
+          "ShipsInternationally": true
+        }
+      ]
+    }
+  }
+}

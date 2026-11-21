@@ -6,14 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # A package status summary.
       TrackingSummary = Structure.new do
-        # @return [String] Known values: `PreTransit`, `InTransit`, `Delivered`, `Lost`, `OutForDelivery`, `Rejected`,
-        #   `Undeliverable`, `DeliveryAttempted`, `PickupCancelled`, `AwaitingCustomerPickup`.
+        # Known values: `PreTransit`, `InTransit`, `Delivered`, `Lost`, `OutForDelivery`, `Rejected`, `Undeliverable`,
+        # `DeliveryAttempted`, `PickupCancelled`, `AwaitingCustomerPickup`.
         attribute?(:status, String)
 
-        # @return [TrackingDetailCodes]
         attribute?(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")
       end
     end

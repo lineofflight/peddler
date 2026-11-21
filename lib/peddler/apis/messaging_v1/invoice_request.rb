@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class MessagingV1
+    module MessagingV1
       # The request schema for the `sendInvoice` operation.
       InvoiceRequest = Structure.new do
-        # @return [Array<Attachment>] Attachments to include in the message to the buyer.
+        # Attachments to include in the message to the buyer.
         attribute?(:attachments, [Attachment])
       end
     end

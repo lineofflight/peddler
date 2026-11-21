@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class SalesV1
+    module SalesV1
       # The response schema for the getOrderMetrics operation.
       GetOrderMetricsResponse = Structure.new do
-        # @return [Array<Error>] Encountered errors for the getOrderMetrics operation.
+        # Encountered errors for the getOrderMetrics operation.
         attribute?(:errors, [Error])
 
-        # @return [Array<OrderMetricsInterval>] The payload for the getOrderMetrics operation.
+        # The payload for the getOrderMetrics operation.
         attribute?(:payload, [OrderMetricsInterval])
       end
     end

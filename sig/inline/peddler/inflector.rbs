@@ -1,0 +1,7 @@
+# Generated from lib/peddler/inflector.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  class Inflector < Zeitwerk::GemInflector
+    def camelize: (String basename, String _abspath) -> String
+  end
+end

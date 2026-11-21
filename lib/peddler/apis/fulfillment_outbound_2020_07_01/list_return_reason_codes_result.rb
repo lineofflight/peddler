@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # The request for the `listReturnReasonCodes` operation.
       ListReturnReasonCodesResult = Structure.new do
-        # @return [Array<ReasonCodeDetails>]
         attribute?(:reason_code_details, [ReasonCodeDetails], from: "reasonCodeDetails")
       end
     end

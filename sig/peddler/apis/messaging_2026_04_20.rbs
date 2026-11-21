@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class Messaging20260420 < API
+    module Messaging20260420
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AutomationConfiguration < Data
         def self.new: (automation_display_name: String, automation_id: String, automation_status: String, automation_type: String, ?automation_sub_type: String?, ?created_date_time: Time?, ?current_automation_version: Integer?, ?last_updated_date_time: Time?, ?latest_automation_version: Integer?, ?marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
                     | (String, String, String, String, String?, Time?, Integer?, Time?, Integer?, Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation]?) -> Peddler::APIs::Messaging20260420::AutomationConfiguration
@@ -182,13 +184,6 @@ module Peddler
         def members: () -> [ :automation_display_name, :automation_status, :marketplace_automations ]
         def to_h: () -> { automation_display_name: String, automation_status: String, marketplace_automations: Array[Peddler::APIs::Messaging20260420::MarketplaceAutomation] }
       end
-
-      def create_automation_configuration: (Array[String], Hash[untyped, untyped]) -> Peddler::Response
-
-      def get_automation_configuration: (String, Array[String]) -> Peddler::Response
-      def list_automation_configurations: (Array[String], ?automation_type: String?, ?automation_sub_type: String?, ?include_marketplace_automations: String?, ?page_size: Integer?, ?pagination_token: String?) -> Peddler::Response
-
-      def update_automation_configuration: (String, Array[String], Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The contact details
       ContactDetails = Structure.new do
-        # @return [Hash]
         attribute?(:primary, Hash)
       end
     end

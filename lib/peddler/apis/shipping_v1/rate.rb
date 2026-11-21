@@ -7,26 +7,24 @@ require "time"
 
 module Peddler
   module APIs
-    class ShippingV1
+    module ShippingV1
       # The available rate that can be used to send the shipment
       Rate = Structure.new do
-        # @return [Weight] The weight that was used to calculate the totalCharge.
+        # The weight that was used to calculate the totalCharge.
         attribute?(:billed_weight, Weight, from: "billedWeight")
 
-        # @return [Time] The time after which the offering will expire.
+        # The time after which the offering will expire.
         attribute?(:expiration_time, Time, from: "expirationTime")
 
-        # @return [ShippingPromiseSet]
         attribute?(:promise, ShippingPromiseSet)
 
-        # @return [String] An identifier for the rate.
+        # An identifier for the rate.
         attribute?(:rate_id, String, from: "rateId")
 
-        # @return [String] Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping
-        #   Premium`.
+        # Known values: `Amazon Shipping Ground`, `Amazon Shipping Standard`, `Amazon Shipping Premium`.
         attribute?(:service_type, String, from: "serviceType")
 
-        # @return [Money] The total charge that will be billed for the rate.
+        # The total charge that will be billed for the rate.
         attribute?(:total_charge, Money, from: "totalCharge")
       end
     end

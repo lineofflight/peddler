@@ -6,21 +6,20 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorDirectFulfillmentPaymentsV1
+    module VendorDirectFulfillmentPaymentsV1
       # Details of tax amount applied.
       TaxDetail = Structure.new do
-        # @return [Money] Total tax amount applied on invoice total or an item total.
+        # Total tax amount applied on invoice total or an item total.
         attribute(:tax_amount, Money, null: false, from: "taxAmount")
 
-        # @return [String] Type of the tax applied. Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`,
-        #   `PST`, `TVA`, `VAT`, `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`.
+        # Type of the tax applied. Known values: `CGST`, `SGST`, `CESS`, `UTGST`, `IGST`, `MwSt.`, `PST`, `TVA`, `VAT`,
+        # `GST`, `ST`, `Consumption`, `MutuallyDefined`, `DomesticVAT`.
         attribute(:tax_type, String, null: false, from: "taxType")
 
-        # @return [String] Tax percentage applied. Percentage must be expressed in decimal.
+        # Tax percentage applied. Percentage must be expressed in decimal.
         attribute?(:tax_rate, String, from: "taxRate")
 
-        # @return [Money] This field will contain the invoice amount that is taxable at the rate specified in the tax
-        #   rate field.
+        # This field will contain the invoice amount that is taxable at the rate specified in the tax rate field.
         attribute?(:taxable_amount, Money, from: "taxableAmount")
       end
     end

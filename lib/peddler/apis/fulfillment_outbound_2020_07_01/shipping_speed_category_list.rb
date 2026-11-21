@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class FulfillmentOutbound20200701
+    module FulfillmentOutbound20200701
       # List of shipping speed categories.
       class ShippingSpeedCategoryList < Array
         class << self

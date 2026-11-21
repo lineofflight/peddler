@@ -18,8 +18,8 @@ log_error() {
 
 matches=$(
   {
-    # Output README.md
-    cat README.md
+    # Output the README and the Ruby guide
+    cat README.md RUBY.md
     # Find comments in the lib directory, excluding .erb files
     grep -EhoR --exclude='*.erb' '# .*' lib
   } |

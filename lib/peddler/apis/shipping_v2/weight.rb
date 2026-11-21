@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # The weight in the units indicated.
       Weight = Structure.new do
-        # @return [String] The unit of measurement. Known values: `GRAM`, `KILOGRAM`, `OUNCE`, `POUND`.
+        # The unit of measurement. Known values: `GRAM`, `KILOGRAM`, `OUNCE`, `POUND`.
         attribute(:unit, String, null: false)
 
-        # @return [Float] The measurement value.
+        # The measurement value.
         attribute(:value, Float, null: false)
       end
     end

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class ShippingV1 < API
+    module ShippingV1
+      PARSERS: Hash[String, ^() -> untyped]
+
       class AcceptedRate < Data
         def self.new: (?billed_weight: Peddler::APIs::ShippingV1::Weight?, ?promise: Peddler::APIs::ShippingV1::ShippingPromiseSet?, ?service_type: String?, ?total_charge: Peddler::Money?) -> Peddler::APIs::ShippingV1::AcceptedRate
                     | (Peddler::APIs::ShippingV1::Weight?, Peddler::APIs::ShippingV1::ShippingPromiseSet?, String?, Peddler::Money?) -> Peddler::APIs::ShippingV1::AcceptedRate
@@ -773,19 +775,6 @@ module Peddler
         def members: () -> [ :unit, :value ]
         def to_h: () -> { unit: String, value: Float }
       end
-
-      def cancel_shipment: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def get_account: (?rate_limit: Float) -> Peddler::Response
-      def get_rates: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_shipment: (String, ?rate_limit: Float) -> Peddler::Response
-
-      def get_tracking_information: (String, ?rate_limit: Float) -> Peddler::Response
-      def purchase_labels: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-
-      def purchase_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def retrieve_shipping_label: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

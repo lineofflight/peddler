@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # The set of ASIN badges.
       class ASINBadgeSet < Array
         class << self

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class AplusContent20201101
+    module AplusContent20201101
       # A set of messages to the user, such as warnings or comments.
       class MessageSet < Array
         class << self

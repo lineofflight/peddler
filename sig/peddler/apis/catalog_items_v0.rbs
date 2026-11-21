@@ -1,6 +1,8 @@
 module Peddler
   module APIs
-    class CatalogItemsV0 < API
+    module CatalogItemsV0
+      PARSERS: Hash[String, ^() -> untyped]
+
       class Categories < Data
         def self.new: (?product_category_id: String?, ?product_category_name: String?, ?parent: Hash[untyped, untyped]?) -> Peddler::APIs::CatalogItemsV0::Categories
                     | (String?, String?, Hash[untyped, untyped]?) -> Peddler::APIs::CatalogItemsV0::Categories
@@ -61,8 +63,6 @@ module Peddler
       class ListOfCategories < Array[Categories]
         def self.parse: (Array[untyped]) -> ListOfCategories
       end
-
-      def list_catalog_categories: (String, ?asin: String?, ?seller_sku: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -36,5 +36,13 @@ module Peddler
     def test_returns_acronym_values
       refute_empty(Acronyms.values)
     end
+
+    # The generator of the API classes keeps the list a second time, in Rust. Either one changed alone fails here.
+    def test_the_rust_generator_keeps_the_same_list
+      source = File.read(File.expand_path("../../crates/peddler-codegen/src/manifest.rs", __dir__))
+      list = source[/^pub const ACRONYMS: .+? = \[(.+?)^\];/m, 1].to_s.scan(/\("(\w+)", "(\w+)"\)/)
+
+      assert_equal(Acronyms::MAP.to_a, list)
+    end
   end
 end

@@ -8,20 +8,20 @@ module Peddler
   module Notifications
     module B2BAnyOfferChanged
       Summary = Structure.new do
-        # @return [Array<OfferCount>] A list that contains the total number of B2B offers that are eligible for the Buy
-        #   Box for the given conditions and fulfillment channels
+        # A list that contains the total number of B2B offers that are eligible for the Buy Box for the given conditions
+        # and fulfillment channels
         attribute(:buy_box_eligible_offers, [OfferCount], null: false, from: "BuyBoxEligibleOffers")
 
-        # @return [Array<LowestPrice>] A list that contains the lowest prices of the item for the given conditions,
-        #   fulfillment channels, quantity tiers, and discount types
+        # A list that contains the lowest prices of the item for the given conditions, fulfillment channels, quantity
+        # tiers, and discount types
         attribute(:lowest_prices, [LowestPrice], null: false, from: "LowestPrices")
 
-        # @return [Array<OfferCount>] A list that contains the total number of B2B offers for the item for the given
-        #   conditions and fulfillment channels
+        # A list that contains the total number of B2B offers for the item for the given conditions and fulfillment
+        # channels
         attribute(:number_of_offers, [OfferCount], null: false, from: "NumberOfOffers")
 
-        # @return [Array<BuyBoxPrice>] A list that contains the Buy Box price of the item for the given conditions,
-        #   quantity tiers, and discount types
+        # A list that contains the Buy Box price of the item for the given conditions, quantity tiers, and discount
+        # types
         attribute?(:buy_box_prices, [BuyBoxPrice], from: "BuyBoxPrices")
       end
     end

@@ -20,14 +20,6 @@ module Generator
       Generator.logger.level = @original_logger_level
     end
 
-    def test_wrapper_properties_returns_hash
-      notification = @b2b_notification || @any_offer_notification
-
-      properties = notification.wrapper_properties
-
-      assert_instance_of(Hash, properties)
-    end
-
     def test_envelope_properties_returns_hash
       notification = @b2b_notification || @any_offer_notification
 
@@ -42,23 +34,6 @@ module Generator
       properties = notification.payload_properties
 
       assert_instance_of(Hash, properties)
-    end
-
-    def test_wrapper_required_properties_returns_array
-      notification = @b2b_notification || @any_offer_notification
-
-      required = notification.wrapper_required_properties
-
-      assert_instance_of(Array, required)
-    end
-
-    def test_nested_type_files_returns_array
-      notification = @b2b_notification || @any_offer_notification
-
-      files = notification.nested_type_files
-
-      assert_instance_of(Array, files)
-      assert(files.all?(String))
     end
 
     def test_notification_type_definition_structure
@@ -105,11 +80,12 @@ module Generator
       temp_file.write(spec.to_json)
       temp_file.rewind
 
-      files = Generator::Notification.new(temp_file.path).nested_type_files
+      notification = Generator::Notification.new(temp_file.path)
+      types = Generator::JsonSchemaExtractor.new(notification.schema, notification.notification_name).extract_types.keys
 
-      refute_includes(files, "notification")
+      refute_includes(types, "Notification")
       # Sibling definitions are still extracted, so the assertion above is not vacuous
-      assert_includes(files, "notification_metadata")
+      assert_includes(types, "NotificationMetadata")
 
       temp_file.close
       temp_file.unlink

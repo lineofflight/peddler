@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductPricingV0
+    module ProductPricingV0
       # The payload for the `getPricing` and `getCompetitivePricing` operations.
       class PriceList < Array
         class << self

@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class SalesV1
+    module SalesV1
       # A set of order metrics, each scoped to a particular time interval.
       class OrderMetricsList < Array
         class << self

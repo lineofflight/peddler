@@ -2,33 +2,35 @@
 
 require "bundler/gem_tasks"
 require "minitest/test_task"
-require "pathname"
-require "rbs"
-require "rbs/sorter"
+require "rbconfig"
 require "rubocop/rake_task"
+require "shellwords"
 require "steep/rake_task"
-require "yard"
 
-Minitest::TestTask.create do |t|
-  t.libs << "test"
-  t.test_globs = ["test/**/*_test.rb"]
+# Bundler's release task tags, then pushes the source gem alone, and every user would compile Rust. A release is
+# nine platform gems, the source gem and the crate: see RELEASING.md.
+Rake.application.tasks.select { |task| task.name.start_with?("release") }.each(&:clear)
+desc "Refuse: a release is done by hand, see RELEASING.md"
+task(:release) { abort("rake release would push the source gem alone. Follow RELEASING.md.") }
+
+suite = Minitest::TestTask.create do |t|
+  t.libs << "test" << "tmp/native"
+  t.test_globs = ["test/**/*_test.rb", "test_native/**/*_test.rb"]
+end
+# The suite runs against the extension built into tmp/native, in a child process under a deadline
+# (see run_with_deadline in rakelib/native.rake).
+Rake::Task[:test].clear_actions.enhance(["native:build"]) do
+  run_with_deadline(300, "tests", RbConfig.ruby, *Shellwords.split(suite.make_test_cmd))
 end
 RuboCop::RakeTask.new
 Steep::RakeTask.new
-YARD::Rake::YardocTask.new
 
-desc "Sort manually written RBS signature files"
-task "rbs:sort" do
-  manual_rbs_files = Dir.glob("sig/peddler/*.rbs")
-  manual_rbs_files.each do |file|
-    RBS::Sorter.new(Pathname(file)).run
-  end
-end
-
+# The generated Ruby carries its types inline, so the export follows it.
 desc "Generate all code from specs"
-task :generate do
+task generate: "generate:rust" do
   require_relative "lib/generator"
   Generator.generate
+  Rake::Task["rbs:export"].invoke
 end
 
 namespace :generate do
@@ -72,14 +74,17 @@ namespace :generate do
   task :update do
     require_relative "lib/generator"
     Generator::Specs.advance!
-    Generator.generate
+    Rake::Task["generate"].invoke
   end
 
+  # rust:verify compares the Rust generator's output with the files on disk, so it runs before generate
+  # rewrites them. The git gate then covers both generators' paths and the signatures exported from them, so a
+  # generator change that moves a type shows as drift.
   desc "Regenerate at the pinned spec revision; fail if committed output drifts"
-  task verify: :generate do
+  task verify: ["rust:verify", :generate] do
     require "open3"
 
-    paths = Generator.generated_paths
+    paths = Generator.generated_paths + RUST_GENERATED_PATHS + ["sig/inline"]
     status_out, _err, status = Open3.capture3("git", "status", "--porcelain", "--", *paths)
     raise "git status failed" unless status.success?
 
@@ -96,4 +101,4 @@ namespace :generate do
   end
 end
 
-task default: [:rubocop, :test, :steep]
+task default: [:rubocop, :test, :steep, "rbs:verify"]

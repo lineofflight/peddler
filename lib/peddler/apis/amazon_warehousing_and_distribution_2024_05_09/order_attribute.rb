@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class AmazonWarehousingAndDistribution20240509
+    module AmazonWarehousingAndDistribution20240509
       # Consists of the order preference and corresponding preference value.
       OrderAttribute = Structure.new do
-        # @return [String] Preference for the distribution order. Known values: `PARTIAL_ORDER`.
+        # Preference for the distribution order. Known values: `PARTIAL_ORDER`.
         attribute(:order_preference, String, null: false, from: "orderPreference")
 
-        # @return [String] Value for the order preference. Known values: `SET`, `UNSET`.
+        # Value for the order preference. Known values: `SET`, `UNSET`.
         attribute(:order_preference_value, String, null: false, from: "orderPreferenceValue")
       end
     end

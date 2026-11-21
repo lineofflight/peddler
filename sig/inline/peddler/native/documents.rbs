@@ -1,0 +1,164 @@
+# Generated from lib/peddler/native/documents.rb by rake rbs:export. Do not edit.
+
+module Peddler
+  module Native
+    UINT64_MAX: Integer
+
+    def self.valid_utf8_string?: (untyped value) -> bool
+
+    module TransferConfig
+      COMPRESSIONS: Array[Symbol]
+
+      LIMITS: Array[Symbol]
+
+      UNKNOWN: ::String
+
+      # The options as the JSON the engine takes
+      def self.json: (Hash[untyped, untyped] options) -> String
+
+      # A limit in bytes as it is, or the error that names it
+      def self.limit: (Symbol name, untyped value) -> Integer
+    end
+
+    # The document, or what the block returns with the document closed after it
+    def self.open_document: [T] (DocumentHandle handle) ?{ (Document document) -> T } -> (T | Document)
+
+    module Uploads
+      CHUNK_BYTES: Integer
+
+      # Raises unless the source is a String or a read(length) source, and its length, when one is declared, fits in
+      # 64 bits
+      def self.check: (untyped source, untyped content_length) -> void
+
+      # The declared length, a String's own, or the size a source answers, as v5 sent it, less its position when
+      # it answers one, as a File and a StringIO do. A body without a length goes out chunked.
+      def self.length: (untyped source, Integer? content_length) -> Integer?
+
+      # Uploads the source to a signed URL and returns the response
+      def self.put: (Engine engine, untyped url, untyped source, untyped content_type, untyped headers, untyped content_length, Hash[Symbol, untyped] transfer_options) -> Response
+
+      # Feed an upload handle from a String or read(length) source until the source ends
+      # or the transfer completes early. Source exceptions stay the cause of a fixed error.
+      def self.drain: (UploadHandle upload, String | (_DocumentIO & Object) source) -> void
+    end
+  end
+
+  class Document
+    @handle: Native::DocumentHandle
+
+    # How a document's JSON is read: exact decimals, any depth, and the last value of a repeated key
+    JSON_OPTIONS: Hash[Symbol, untyped]
+
+    def initialize: (Native::DocumentHandle handle) -> void
+
+    # - return: the headers of the download, as a response answers them
+    def headers: () -> Response::Headers
+
+    # - return: the charset parameter of the document's Content-Type, as Amazon sent it
+    def charset: () -> String?
+
+    def closed?: () -> bool
+
+    # Ends the download and frees its connection. A document that is closed stays closed.
+    def close: () -> void
+
+    def inspect: () -> String
+
+    # Yields the bytes of the document as they arrive
+    #
+    # Without a block it returns an Enumerator.
+    #
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks or the document is larger than `max_bytes`.
+    def each_chunk: () { (String chunk) -> void } -> Document
+                  | () -> Enumerator[String, Document]
+
+    # Yields each line of a JSON Lines document, such as a Data Kiosk result, parsed
+    #
+    # A number with a fraction parses as a BigDecimal. A line of whitespace is skipped. Without a block it returns
+    # an Enumerator.
+    #
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, a line is not JSON or one is larger than
+    # `max_record_bytes`.
+    def each_jsonl: () { (untyped row) -> void } -> Document
+                  | () -> Enumerator[untyped, Document]
+
+    # Yields each row of a tab-separated document, such as a report, as Strings of UTF-8
+    #
+    # The first row holds the column names. Text is decoded from the charset of the document's Content-Type. Give
+    # `charset:` to decode from another, when Amazon labels the document wrongly. Without a block it returns an
+    # Enumerator.
+    #
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, the charset is unknown, the text is not in it or a
+    # row is larger than `max_record_bytes`.
+    def each_tsv: (?charset: String?) { (Array[String] row) -> void } -> Document
+                | (?charset: String?) -> Enumerator[Array[String], Document]
+
+    # The whole document as JSON, parsed. A number with a fraction parses as a BigDecimal.
+    #
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the transfer breaks, the document is larger than `max_bytes` or it is
+    # not JSON.
+    #
+    # - max_bytes: the most the document may hold, since all of it is kept in memory
+    def json: (max_bytes: Integer) -> untyped
+
+    private
+
+    # Yields each row, then closes the document, also when the arguments are invalid or the block breaks or raises
+    def each_row: (String mode, ?String? charset) { (untyped row) -> void } -> self
+  end
+
+  class Client
+    # Opens the document at a signed URL, to read it as it arrives
+    #
+    # The request carries no access token. A document is decompressed when the reply says
+    # `Content-Encoding: gzip`, or when `compression: :gzip` is given.
+    #
+    # It takes the signed URL and options: `timeout:` in seconds for the whole download (30), `compression:` (`:auto`
+    # or `:gzip`), `max_bytes:` for the document once decompressed and `max_record_bytes:` for one row (1 MiB).
+    # Without a block it returns the document. With one it yields the document, closes it when the block returns,
+    # and returns what the block returned.
+    #
+    # Example:
+    #
+    #     client.download_document(url, timeout: 120) do |document|
+    #       document.each_tsv { |row| puts row.first }
+    #     end
+    #
+    # Raises ArgumentError if the URL or an option breaks its rule. The message names it.
+    # Raises Peddler::Error if the URL answers outside 2xx.
+    # Raises Peddler::DocumentTimeoutError if the download runs past its timeout.
+    # Raises Peddler::DocumentError if the request can't be sent.
+    def download_document: [T] (String url, **untyped transfer_options) { (Document document) -> T } -> T
+                         | (String url, **untyped transfer_options) -> Document
+
+    # Uploads a String or a `read(length)` source to a signed URL
+    #
+    # The request carries no access token. A String, and a source that answers `size`, as a File and a StringIO
+    # do, are sent with their length. Give `content_length:` for another source whose length you know. Without one
+    # the body goes out chunked.
+    #
+    # Example:
+    #
+    #     File.open("feed.json", "rb") do |file|
+    #       client.upload_document(url, file, content_type: "application/json; charset=UTF-8")
+    #     end
+    #
+    # Raises ArgumentError if an argument or an option breaks its rule. The message names it.
+    # Raises Peddler::Error if the URL answers outside 2xx.
+    # Raises Peddler::DocumentTimeoutError if the upload runs past its timeout.
+    # Raises Peddler::DocumentError if the upload can't be sent, the source fails or its length is not the one
+    # declared.
+    #
+    # - url: the signed URL
+    # - source: the content, or what returns it from `read(length)`
+    # - content_type: the content type the URL was signed for
+    # - headers: more headers the URL was signed with
+    # - content_length: the bytes the source holds
+    # - transfer_options: `timeout:` in seconds for the whole upload (30) and `max_bytes:` for what is sent
+    def upload_document: (String url, String | (_DocumentIO & Object) source, content_type: String, ?headers: Hash[String, String], ?content_length: Integer?, **untyped transfer_options) -> Response
+  end
+end

@@ -1,0 +1,373 @@
+[
+  {
+    "operation": "sellers_v1.get_marketplace_participations",
+    "arguments": {},
+    "method": "GET",
+    "path": "/sellers/v1/marketplaceParticipations",
+    "query": [],
+    "body": null,
+    "status": 200,
+    "response": "not-json"
+  },
+  {
+    "operation": "feeds_2021_06_30.cancel_feed",
+    "arguments": {
+      "feed_id": "literal%2F/a"
+    },
+    "method": "DELETE",
+    "path": "/feeds/2021-06-30/feeds/literal%252F%2Fa",
+    "query": [],
+    "body": null,
+    "status": 200,
+    "response": ""
+  },
+  {
+    "operation": "feeds_2021_06_30.get_feed_document",
+    "arguments": {
+      "feed_document_id": "f",
+      "enable_content_encoding_url_header": true
+    },
+    "method": "GET",
+    "path": "/feeds/2021-06-30/documents/f",
+    "query": [
+      [
+        "enableContentEncodingUrlHeader",
+        "true"
+      ]
+    ],
+    "body": null,
+    "status": 599,
+    "response": "broken error"
+  },
+  {
+    "operation": "fulfillment_inbound_2024_03_20.list_item_compliance_details",
+    "arguments": {
+      "mskus": [
+        "a,b",
+        "c"
+      ],
+      "marketplace_id": "UK"
+    },
+    "method": "GET",
+    "path": "/inbound/fba/2024-03-20/items/compliance",
+    "query": [
+      [
+        "marketplaceId",
+        "UK"
+      ],
+      [
+        "mskus",
+        "a,b"
+      ],
+      [
+        "mskus",
+        "c"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "catalog_items_2022_04_01.get_catalog_item",
+    "arguments": {
+      "asin": "a",
+      "marketplace_ids": [
+        "UK"
+      ],
+      "included_data": []
+    },
+    "method": "GET",
+    "path": "/catalog/2022-04-01/items/a",
+    "query": [
+      [
+        "includedData",
+        ""
+      ],
+      [
+        "marketplaceIds",
+        "UK"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "catalog_items_2020_12_01.get_catalog_item",
+    "arguments": {
+      "asin": "a",
+      "marketplace_ids": [
+        "UK"
+      ]
+    },
+    "method": "GET",
+    "path": "/catalog/2020-12-01/items/a",
+    "query": [
+      [
+        "includedData",
+        "summaries"
+      ],
+      [
+        "marketplaceIds",
+        "UK"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "vendor_direct_fulfillment_orders_2021_12_28.get_orders",
+    "arguments": {
+      "created_after": "2026-10-01T10:00:00+02:00",
+      "created_before": "2026-10-02T10:00:00Z",
+      "limit": 17,
+      "include_details": false
+    },
+    "method": "GET",
+    "path": "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders",
+    "query": [
+      [
+        "createdAfter",
+        "2026-10-01T10:00:00+02:00"
+      ],
+      [
+        "createdBefore",
+        "2026-10-02T10:00:00Z"
+      ],
+      [
+        "includeDetails",
+        "false"
+      ],
+      [
+        "limit",
+        "17"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "fulfillment_inbound_v0.get_prep_instructions",
+    "arguments": {
+      "ship_to_country_code": "GB",
+      "seller_sku_list": []
+    },
+    "method": "GET",
+    "path": "/fba/inbound/v0/prepInstructions",
+    "query": [
+      [
+        "SellerSKUList",
+        ""
+      ],
+      [
+        "ShipToCountryCode",
+        "GB"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "supply_sources_2020_07_01.update_supply_source",
+    "arguments": {
+      "supply_source_id": "s"
+    },
+    "method": "PUT",
+    "path": "/supplySources/2020-07-01/supplySources/s",
+    "query": [],
+    "body": null,
+    "status": 204,
+    "response": ""
+  },
+  {
+    "operation": "supply_sources_2020_07_01.update_supply_source",
+    "arguments": {
+      "supply_source_id": "s",
+      "body": {
+        "future": {
+          "empty": [],
+          "null": null
+        }
+      }
+    },
+    "method": "PUT",
+    "path": "/supplySources/2020-07-01/supplySources/s",
+    "query": [],
+    "body": {
+      "future": {
+        "empty": [],
+        "null": null
+      }
+    },
+    "status": 204,
+    "response": ""
+  },
+  {
+    "operation": "shipping_v2.link_carrier_account",
+    "arguments": {
+      "carrier_id": "c",
+      "x_amzn_shipping_business_id": "AmazonShipping_UK",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/shipping/v2/carrierAccounts/c",
+    "query": [],
+    "headers": [
+      [
+        "x-amzn-shipping-business-id",
+        "AmazonShipping_UK"
+      ]
+    ],
+    "body": {},
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "shipping_v2.link_carrier_account_put",
+    "arguments": {
+      "carrier_id": "c",
+      "body": {}
+    },
+    "method": "PUT",
+    "path": "/shipping/v2/carrierAccounts/c",
+    "query": [],
+    "body": {},
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "fulfillment_outbound_2026_07_04.create_order",
+    "arguments": {
+      "body": {
+        "future": [],
+        "lineItems": []
+      }
+    },
+    "method": "POST",
+    "path": "/fulfillment/outbound/2026-07-04/orders",
+    "query": [],
+    "body": {
+      "future": [],
+      "lineItems": []
+    },
+    "status": 202,
+    "response": "{\"orderId\":\"o\",\"status\":\"ACCEPTED\"}"
+  },
+  {
+    "operation": "finances_2024_06_19.list_balances",
+    "arguments": {
+      "as_of_date": "2026-10-02"
+    },
+    "method": "GET",
+    "path": "/finances/2024-06-19/balances",
+    "query": [
+      [
+        "asOfDate",
+        "2026-10-02"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "shipping_v2.get_shipment_documents",
+    "arguments": {
+      "shipment_id": "s",
+      "package_client_reference_id": "p",
+      "dpi": 300.5
+    },
+    "method": "GET",
+    "path": "/shipping/v2/shipments/s/documents",
+    "query": [
+      [
+        "dpi",
+        "300.5"
+      ],
+      [
+        "packageClientReferenceId",
+        "p"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "shipping_v2.get_shipment_documents",
+    "arguments": {
+      "shipment_id": "s",
+      "package_client_reference_id": "p",
+      "dpi": 300
+    },
+    "method": "GET",
+    "path": "/shipping/v2/shipments/s/documents",
+    "query": [
+      [
+        "dpi",
+        "300"
+      ],
+      [
+        "packageClientReferenceId",
+        "p"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "supply_sources_2020_07_01.get_supply_sources",
+    "arguments": {},
+    "method": "GET",
+    "path": "/supplySources/2020-07-01/supplySources",
+    "query": [
+      [
+        "pageSize",
+        "10"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "shipping_v2.get_shipment_documents",
+    "arguments": {
+      "shipment_id": "s",
+      "package_client_reference_id": "p",
+      "dpi": 1000000000000000000000
+    },
+    "method": "GET",
+    "path": "/shipping/v2/shipments/s/documents",
+    "query": [
+      [
+        "dpi",
+        "1000000000000000000000"
+      ],
+      [
+        "packageClientReferenceId",
+        "p"
+      ]
+    ],
+    "body": null,
+    "status": 200,
+    "response": "{}"
+  },
+  {
+    "operation": "product_fees_v0.get_my_fees_estimates",
+    "arguments": {
+      "body": []
+    },
+    "method": "POST",
+    "path": "/products/fees/v0/feesEstimate",
+    "query": [],
+    "body": [],
+    "status": 200,
+    "response": "[]"
+  }
+]

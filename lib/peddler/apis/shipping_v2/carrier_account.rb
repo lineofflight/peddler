@@ -6,13 +6,11 @@ require "structure"
 
 module Peddler
   module APIs
-    class ShippingV2
+    module ShippingV2
       # Carrier Account details used to fetch rates.
       CarrierAccount = Structure.new do
-        # @return [String]
         attribute(:carrier_account_id, String, null: false, from: "carrierAccountId")
 
-        # @return [String]
         attribute(:carrier_id, String, null: false, from: "carrierId")
       end
     end

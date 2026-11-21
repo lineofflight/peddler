@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<%= meta("generator", stamp) %>
+<%= meta("toolchain", toolchain) %>
+<title>Third-party licenses of peddler <%= h(version) %> (<%= h(platform) %>)</title>
+</head>
+<body>
+<h1>Third-party licenses</h1>
+<p>The peddler <%= h(version) %> gem for <%= h(platform) %> contains a compiled extension. The <%= crates.size %> Rust crates below and the Rust standard library<%= " and parts of MinGW-w64" unless mingw.empty? %> are linked into it. Each crate is listed with its version and its license, and the text of every license follows. Peddler itself is under the MIT License in the LICENSE file of the gem.</p>
+<h2>Crates</h2>
+<table>
+<tr><th>Crate</th><th>Version</th><th>License</th><th>Text</th></tr>
+<% crates.each do |crate| -%>
+<tr class="crate"><td><%= h(crate.name) %></td><td><%= h(crate.version) %></td><td><%= h(crate.license) %></td><td><%= crate.texts.map { |index| %(<a href="#text-#{index}">#{h(notices[index].id)}</a>) }.join(", ") %></td></tr>
+<% end -%>
+<tr class="standard-library"><td>The Rust standard library: std, core, alloc and the crates they bundle</td><td><%= h(toolchain) %></td><td>Apache-2.0 OR MIT, and those of the bundled crates</td><td><a href="#standard-library">its notices</a></td></tr>
+<% unless mingw.empty? -%>
+<tr class="mingw-w64"><td>MinGW-w64: its runtime and winpthreads</td><td>7.0.0</td><td>Several, which their notices state</td><td><a href="#mingw-w64">their notices</a></td></tr>
+<% end -%>
+</table>
+<h2>License texts</h2>
+<% notices.each_with_index do |notice, index| -%>
+<h3 id="text-<%= index %>"><%= h(notice.name) %> (<%= h(notice.id) %>)</h3>
+<p>Applies to: <%= h(notice.crates.join(", ")) %></p>
+<pre><%= h(notice.text) %></pre>
+<% end -%>
+<h2 id="standard-library">The Rust standard library</h2>
+<p>The extension links the Rust standard library: std, core, alloc and the crates they bundle. What follows is the document of their license and copyright notices that <%= h(toolchain) %> ships, the toolchain these notices were written with.</p>
+<%= library %>
+<% unless mingw.empty? -%>
+<h2 id="mingw-w64">MinGW-w64</h2>
+<p>The extension is built with MinGW-w64 7.0.0, and links its runtime and its winpthreads library statically. Their license and copyright notices follow, as MinGW-w64 ships them.</p>
+<% mingw.each do |name, text| -%>
+<h3><%= h(name) %></h3>
+<pre><%= h(text) %></pre>
+<% end -%>
+<% end -%>
+</body>
+</html>

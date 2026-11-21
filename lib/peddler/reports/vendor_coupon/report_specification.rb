@@ -9,13 +9,13 @@ module Peddler
     module VendorCoupon
       # Summarizes the original report request.
       ReportSpecification = Structure.new do
-        # @return [Array<String>] Marketplace IDs as specified in the report request.
+        # Marketplace IDs as specified in the report request.
         attribute(:marketplace_ids, [String], null: false, from: "marketplaceIds")
 
-        # @return [ReportOptions] Report options specifying parameters campaignStartDateFrom and campaignStartDateTo.
+        # Report options specifying parameters campaignStartDateFrom and campaignStartDateTo.
         attribute(:report_options, ReportOptions, null: false, from: "reportOptions")
 
-        # @return [String] The report type.
+        # The report type.
         attribute(:report_type, String, null: false, from: "reportType")
       end
     end

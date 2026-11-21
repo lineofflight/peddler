@@ -10,19 +10,19 @@ module Peddler
     module FBAInventoryAvailabilityChange
       # The root schema comprises the entire JSON document.
       Notification = Structure.new do
-        # @return [Payload] The details of this notification.
+        # The details of this notification.
         attribute(:payload, Payload, null: false, from: "Payload")
 
-        # @return [Time] Timestamp of the event. Formatted as ISO 8601 date-time.
+        # Timestamp of the event. Formatted as ISO 8601 date-time.
         attribute?(:event_time, Time, from: "EventTime")
 
-        # @return [String] The type of this notification. Known values: `FBA_INVENTORY_AVAILABILITY_CHANGES`.
+        # The type of this notification. Known values: `FBA_INVENTORY_AVAILABILITY_CHANGES`.
         attribute?(:notification_type, String, from: "NotificationType")
 
-        # @return [String] The version of this notification.
+        # The version of this notification.
         attribute?(:notification_version, String, from: "NotificationVersion")
 
-        # @return [String] The version of the payload.
+        # The version of the payload.
         attribute?(:payload_version, String, from: "PayloadVersion")
       end
     end

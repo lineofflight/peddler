@@ -6,48 +6,47 @@ require "structure"
 
 module Peddler
   module APIs
-    class Orders20260101
+    module Orders20260101
       # Information about a single product within an order.
       OrderItem = Structure.new do
-        # @return [String] A unique identifier for this specific item within the order.
+        # A unique identifier for this specific item within the order.
         attribute(:order_item_id, String, null: false, from: "orderItemId")
 
-        # @return [ItemProduct] Information about the product being ordered.
+        # Information about the product being ordered.
         attribute(:product, ItemProduct, null: false)
 
-        # @return [Integer] The number of units of this item that the customer ordered.
+        # The number of units of this item that the customer ordered.
         attribute(:quantity_ordered, Integer, null: false, from: "quantityOrdered")
 
-        # @return [Array<AssociatedOrderItem>] A list of order items associated with this item. For example, a value-add
-        #   service purchased with the product, or a product covered by a warranty protection plan.
+        # A list of order items associated with this item. For example, a value-add service purchased with the product,
+        # or a product covered by a warranty protection plan.
         attribute?(:associated_order_items, [AssociatedOrderItem], from: "associatedOrderItems")
 
-        # @return [ItemCancellation] The cancellation information of the order item.
+        # The cancellation information of the order item.
         attribute?(:cancellation, ItemCancellation)
 
-        # @return [ItemExpense] The expense information related to this specific item.
+        # The expense information related to this specific item.
         attribute?(:expense, ItemExpense)
 
-        # @return [ItemFulfillment] Information about how the order item should be processed, packed, and shipped to the
-        #   customer.
+        # Information about how the order item should be processed, packed, and shipped to the customer.
         attribute?(:fulfillment, ItemFulfillment)
 
-        # @return [Measurement] The unit of measure and value for items sold by weight, volume, or other measurements
-        #   rather than simple count.
+        # The unit of measure and value for items sold by weight, volume, or other measurements rather than simple
+        # count.
         attribute?(:measurement, Measurement)
 
-        # @return [ItemProceeds] The money that the seller receives from the sale of this specific item.
+        # The money that the seller receives from the sale of this specific item.
         attribute?(:proceeds, ItemProceeds)
 
-        # @return [Array<String>] Special programs that apply specifically to this item within the order.
+        # Special programs that apply specifically to this item within the order.
         #
         # **Possible values**: `TRANSPARENCY`, `SUBSCRIBE_AND_SAVE`
         attribute?(:programs, [String])
 
-        # @return [ItemPromotion] Details about any discounts, coupons, or promotional offers applied to this item.
+        # Details about any discounts, coupons, or promotional offers applied to this item.
         attribute?(:promotion, ItemPromotion)
 
-        # @return [ItemTax] Tax-related information for this order item.
+        # Tax-related information for this order item.
         attribute?(:tax, ItemTax)
       end
     end

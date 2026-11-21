@@ -6,10 +6,9 @@ require "structure"
 
 module Peddler
   module APIs
-    class FBAInventoryV1
+    module FBAInventoryV1
       # The object with the list of Inventory to be added
       AddInventoryRequest = Structure.new do
-        # @return [Array<InventoryItem>]
         attribute?(:inventory_items, [InventoryItem], from: "inventoryItems")
       end
     end

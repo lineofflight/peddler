@@ -9,17 +9,17 @@ module Peddler
     module TaxInvoiceIssuanceEligibilityStatusChange
       # Notification payload data
       Payload = Structure.new do
-        # @return [String] The identifier for the store where the invoice issuance eligibility status applies.
+        # The identifier for the store where the invoice issuance eligibility status applies.
         attribute(:marketplace_id, String, null: false, from: "marketplaceId")
 
-        # @return [String] The invoice issuance operation available to the seller. Known values: `inbound`,
-        #   `outbound-fba-offers`, `c-returns`, `removals`.
+        # The invoice issuance operation available to the seller. Known values: `inbound`, `outbound-fba-offers`,
+        # `c-returns`, `removals`.
         attribute(:operation, String, null: false)
 
-        # @return [String] The status of the seller invoice issuance operation. Known values: `BLOCKED`, `ALLOWED`.
+        # The status of the seller invoice issuance operation. Known values: `BLOCKED`, `ALLOWED`.
         attribute(:status, String, null: false)
 
-        # @return [Array<Object>] An optional message to describe why the operation is blocked.
+        # An optional message to describe why the operation is blocked.
         attribute?(:message, Array)
       end
     end

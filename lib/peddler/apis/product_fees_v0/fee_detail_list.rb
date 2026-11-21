@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class ProductFeesV0
+    module ProductFeesV0
       # A list of other fees that contribute to a given fee.
       class FeeDetailList < Array
         class << self

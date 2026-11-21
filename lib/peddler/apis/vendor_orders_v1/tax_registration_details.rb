@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class VendorOrdersV1
+    module VendorOrdersV1
       # Tax registration details of the entity.
       TaxRegistrationDetails = Structure.new do
-        # @return [String] Tax registration number for the entity. For example, VAT ID.
+        # Tax registration number for the entity. For example, VAT ID.
         attribute(:tax_registration_number, String, null: false, from: "taxRegistrationNumber")
 
-        # @return [String] Tax registration type for the entity. Known values: `VAT`, `GST`.
+        # Tax registration type for the entity. Known values: `VAT`, `GST`.
         attribute(:tax_registration_type, String, null: false, from: "taxRegistrationType")
       end
     end

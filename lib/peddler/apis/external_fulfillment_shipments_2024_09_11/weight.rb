@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class ExternalFulfillmentShipments20240911
+    module ExternalFulfillmentShipments20240911
       # The weight of a package.
       Weight = Structure.new do
-        # @return [Float] The numerical value of the weight. Must be a positive value.
+        # The numerical value of the weight. Must be a positive value.
         attribute(:value, Float, null: false)
 
-        # @return [String] The unit of measurement of the weight. Known values: `G`, `KG`, `LB`, `OZ`.
+        # The unit of measurement of the weight. Known values: `G`, `KG`, `LB`, `OZ`.
         attribute(:weight_unit, String, null: false, from: "weightUnit")
       end
     end

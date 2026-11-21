@@ -6,10 +6,10 @@ require "structure"
 
 module Peddler
   module APIs
-    class FulfillmentInbound20240320
+    module FulfillmentInbound20240320
       # Contains tokens to fetch from a certain page.
       Pagination = Structure.new do
-        # @return [String] When present, pass this string token in the next request to return the next response page.
+        # When present, pass this string token in the next request to return the next response page.
         attribute?(:next_token, String, from: "nextToken")
       end
     end

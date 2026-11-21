@@ -8,10 +8,10 @@ module Peddler
   module Notifications
     module FulfillmentOrderStatus
       Amount = Structure.new do
-        # @return [String] The unit of measure for the amount. Possible values: EACHES.
+        # The unit of measure for the amount. Possible values: EACHES.
         attribute(:unit, String, null: false)
 
-        # @return [String] The amount of a product in the associated unit of measurement.
+        # The amount of a product in the associated unit of measurement.
         attribute(:value, String, null: false)
       end
     end

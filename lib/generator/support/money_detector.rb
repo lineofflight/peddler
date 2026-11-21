@@ -8,16 +8,13 @@ module Generator
 
     class << self
       # Check if a type name is a known Money type
-      # @param name [String] the type name to check
-      # @return [Boolean] true if the name is a known Money type
       def money_type?(name)
         MONEY_TYPES.include?(name)
       end
 
       # Detect if an object definition looks like a Money type
       # Money objects have: amount/Amount/currencyAmount (number) + currencyCode/CurrencyCode (string)
-      # @param definition [Hash] the JSON Schema object definition
-      # @return [Boolean] true if the object has Money-like structure
+      # The definition is the JSON Schema object definition.
       def money_like?(definition)
         return false unless definition.is_a?(Hash) && definition["type"] == "object"
         return false unless definition["properties"]

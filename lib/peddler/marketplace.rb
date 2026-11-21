@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require "json"
+
 module Peddler
-  # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
+  # Amazon's marketplaces, by country code
+  #
+  # https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
   MARKETPLACE_IDS = Ractor.make_shareable({
     "CA" => { id: "A2EUQ1WTGCTBG2", country_name: "Canada", selling_region: "North America" },
     "US" => { id: "ATVPDKIKX0DER", country_name: "United States", selling_region: "North America" },
@@ -26,82 +30,90 @@ module Peddler
     "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
     "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
-  })
+  }) #: Hash[String, { id: String, country_name: String, selling_region: String }]
 
-  # @!parse
-  #   # Wraps an Amazon marketplace
-  #   #
-  #   # @api public
-  #   #
-  #   # @!attribute [r] id
-  #   # @!attribute [r] country_code
-  #   # @!attribute [r] country_name
-  #   # @!attribute [r] selling_region
-  #   class Peddler::Marketplace < Data; end
-  class Marketplace < Data.define(:id, :country_code, :country_name, :selling_region)
-    class << self
-      # Finds the marketplace for the given country code
-      #
-      # @param [String] country_code
-      def find(country_code)
-        values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
-          raise ArgumentError, "#{country_code} not found"
-        end
+  # @rbs skip
+  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) # :nodoc:
 
+  # An Amazon marketplace: its `id`, its `country_code`, its `country_name` and its `selling_region`
+  class Marketplace
+    ##
+    # :attr_reader: id
+    # Amazon's identifier of the marketplace, such as "ATVPDKIKX0DER"
+
+    ##
+    # :attr_reader: country_code
+    # The code of its country, such as "US"
+
+    ##
+    # :attr_reader: country_name
+    # The name of its country, such as "United States"
+
+    ##
+    # :attr_reader: selling_region
+    # The selling region it is in: "North America", "Europe" or "Far East"
+
+    # Finds the marketplace for the given country code
+    #
+    #: (String country_code) -> Marketplace
+    def self.find(country_code)
+      values = MARKETPLACE_IDS[country_code == "GB" ? "UK" : country_code] ||
+        raise(ArgumentError, "#{country_code} not found")
+
+      new(**values, country_code: country_code)
+    end
+
+    # Returns the marketplace ID for the given country code
+    #
+    #: (String country_code) -> String
+    def self.id(country_code)
+      find(country_code).id
+    end
+
+    # Returns the marketplace IDs for the given country codes
+    #
+    #: (*String country_codes) -> Array[String]
+    def self.ids(*country_codes)
+      country_codes.map { |country_code| id(country_code) }
+    end
+
+    # Returns all marketplaces
+    #
+    #: () -> Array[Marketplace]
+    def self.all
+      MARKETPLACE_IDS.map do |country_code, values|
         new(**values, country_code: country_code)
-      end
-
-      # Returns the marketplace ID for the given country code
-      #
-      # @param [String] country_code
-      # @return [String]
-      def id(country_code)
-        find(country_code).id
-      end
-
-      # Returns the marketplace IDs for the given country codes
-      #
-      # @param [Array<String>] country_codes
-      # @return [Array<String>]
-      def ids(*country_codes)
-        country_codes.map { |country_code| id(country_code) }
-      end
-
-      # Returns all marketplaces
-      #
-      # @return [Array<Peddler::Marketplace>]
-      def all
-        MARKETPLACE_IDS.map do |country_code, values|
-          new(**values, country_code: country_code)
-        end
-      end
-
-      # Dynamically generate shorthand methods for each country code
-      # e.g., Marketplace.us returns the US marketplace
-      MARKETPLACE_IDS.each_key do |country_code|
-        method_name = country_code.downcase
-        define_method(method_name) do
-          # @type self: singleton(Marketplace)
-          find(country_code)
-        end
-      end
-
-      # Special alias for GB (Great Britain) -> UK
-      define_method(:gb) do
-        # @type self: singleton(Marketplace)
-        find("GB")
       end
     end
 
-    # @return [Peddler::Endpoint]
+    # Dynamically generate shorthand methods for each country code
+    # e.g., Marketplace.us returns the US marketplace
+    # GB (Great Britain) is a special alias for UK
+    #
+    # Their blocks are shareable, so that any Ractor can call the methods.
+    [*MARKETPLACE_IDS.keys, "GB"].each do |country_code|
+      finder = Ractor.make_shareable(proc do
+        # @type self: singleton(Marketplace)
+        find(country_code)
+      end)
+      define_singleton_method(country_code.downcase, &finder) # steep:ignore BlockTypeMismatch
+    end
+
+    #: () -> Endpoint
     def endpoint
       Endpoint.find_by_selling_region(selling_region)
     end
 
-    # @note So HTTP can encode
-    # @return [String]
+    # Its ID, so a marketplace is its ID wherever a String is taken
+    #: () -> String
     def to_str
       id
+    end
+
+    # Its ID as JSON, so a marketplace anywhere inside a request body is sent as its ID
+    #: (*untyped) -> String
+    def to_json(*)
+      id.to_json(*)
     end
   end
 end

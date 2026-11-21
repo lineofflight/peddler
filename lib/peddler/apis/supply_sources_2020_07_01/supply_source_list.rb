@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class SupplySources20200701
+    module SupplySources20200701
       # The list of `SupplySource`s.
       class SupplySourceList < Array
         class << self

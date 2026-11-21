@@ -6,13 +6,13 @@ require "structure"
 
 module Peddler
   module APIs
-    class MerchantFulfillmentV0
+    module MerchantFulfillmentV0
       # Response schema.
       CreateShipmentResponse = Structure.new do
-        # @return [Array<Error>] One or more unexpected errors occurred during the `createShipment` operation.
+        # One or more unexpected errors occurred during the `createShipment` operation.
         attribute?(:errors, [Error])
 
-        # @return [Shipment] Shipment information.
+        # Shipment information.
         attribute?(:payload, Shipment)
       end
     end

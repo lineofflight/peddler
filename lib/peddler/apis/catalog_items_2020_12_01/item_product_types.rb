@@ -4,7 +4,7 @@
 
 module Peddler
   module APIs
-    class CatalogItems20201201
+    module CatalogItems20201201
       # Product types associated with the Amazon catalog item.
       class ItemProductTypes < Array
         class << self

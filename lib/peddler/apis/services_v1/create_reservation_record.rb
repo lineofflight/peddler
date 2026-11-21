@@ -6,18 +6,18 @@ require "structure"
 
 module Peddler
   module APIs
-    class ServicesV1
+    module ServicesV1
       # `CreateReservationRecord` entity contains the `Reservation` if there is an error/warning while performing the
       # requested operation on it, otherwise it will contain the new `reservationId`.
       CreateReservationRecord = Structure.new do
-        # @return [Array<Error>] Errors encountered, if any.
+        # Errors encountered, if any.
         attribute?(:errors, [Error])
 
-        # @return [Reservation] Reservation record if the operation failed. It will only contain the new `reservationId`
-        #   if the operation is successful.
+        # Reservation record if the operation failed. It will only contain the new `reservationId` if the operation is
+        # successful.
         attribute?(:reservation, Reservation)
 
-        # @return [Array<Warning>] Warnings encountered, if any.
+        # Warnings encountered, if any.
         attribute?(:warnings, [Warning])
       end
     end

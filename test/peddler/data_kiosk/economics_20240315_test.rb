@@ -159,9 +159,8 @@ module Peddler
         response = api.get_query(query_id)
         data_document_id = response.parse.data_document_id
 
-        response = api.download_query_document(data_document_id)
-        data = response.to_s.each_line.map do |line|
-          payload = JSON.parse(line)
+        url = api.get_document(data_document_id).parse.document_url
+        data = client.download_document(replayed(url)).each_jsonl.map do |payload|
           DataKiosk::Economics20240315::Economics.parse(payload)
         end
 
@@ -170,12 +169,8 @@ module Peddler
 
       private
 
-      def api_class
-        APIs::DataKiosk20231115
-      end
-
-      def aws_region
-        "us-east-1"
+      def api_name
+        "data_kiosk_2023_11_15"
       end
     end
   end
