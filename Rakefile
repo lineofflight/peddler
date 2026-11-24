@@ -17,6 +17,19 @@ RuboCop::RakeTask.new
 Steep::RakeTask.new
 YARD::Rake::YardocTask.new
 
+# Add the analytics snippet to every page YARD writes.
+Rake::Task["yard"].enhance do
+  snippet = File.read("tools/analytics.html")
+  Dir.glob("doc/**/*.html").each do |page|
+    html = File.read(page)
+    next if html.include?(snippet)
+
+    abort "#{page} has no </head>; cannot add analytics" unless html.include?("</head>")
+
+    File.write(page, html.sub("</head>") { "#{snippet}</head>" })
+  end
+end
+
 desc "Sort manually written RBS signature files"
 task "rbs:sort" do
   manual_rbs_files = Dir.glob("sig/peddler/*.rbs")
