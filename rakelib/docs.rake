@@ -74,3 +74,18 @@ Rake::Task[:rdoc].enhance do
 
   abort("doc/index.html shows the emoji of the theme toggle: see tools/rdoc_theme.css.")
 end
+
+# Every page of the site carries the analytics snippet, kept in tools/analytics.html. RDoc's pages leave the head
+# open (HTML allows it), so the snippet goes before </head> or, failing that, before <body>, where the head ends.
+Rake::Task[:rdoc].enhance do
+  snippet = File.read("tools/analytics.html")
+  Dir["doc/**/*.html"].each do |page|
+    html = File.read(page)
+    next if html.include?(snippet)
+
+    marker = html[%r{</head>}] || html[/<body[\s>]/]
+    abort("#{page} has no </head> or <body>: cannot add analytics, see tools/analytics.html.") unless marker
+
+    File.write(page, html.sub(marker) { "#{snippet}#{marker}" })
+  end
+end
